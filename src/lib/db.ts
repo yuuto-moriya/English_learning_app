@@ -1,0 +1,152 @@
+import Dexie, { type EntityTable } from 'dexie'
+import type { Category, Level } from './types'
+
+/** FSRSカード状態（単語IDごと） */
+export interface CardRow {
+  id: string
+  cat: Category
+  lv: Level
+  due: number
+  stability: number
+  difficulty: number
+  elapsed_days: number
+  scheduled_days: number
+  learning_steps: number
+  reps: number
+  lapses: number
+  state: number
+  last_review: number | null
+  addedAt: number
+  /** 既知としてスキップ */
+  known?: boolean
+}
+
+export interface LogRow {
+  id?: number
+  wordId: string
+  rating: number
+  mode: string
+  at: number
+  ms: number
+}
+
+export interface DailyRow {
+  date: string
+  reviews: number
+  newLearned: number
+  correct: number
+  listening: number
+  speaking: number
+  seconds: number
+}
+
+export interface TranslationRow {
+  id?: number
+  at: number
+  from: string
+  to: string
+  src: string
+  out: string
+  fav?: boolean
+}
+
+export interface SpeakingRow {
+  id?: number
+  at: number
+  text: string
+  source: string
+  pron: number
+  accuracy: number
+  fluency: number
+  completeness: number
+}
+
+export class AppDB extends Dexie {
+  cards!: EntityTable<CardRow, 'id'>
+  logs!: EntityTable<LogRow, 'id'>
+  daily!: EntityTable<DailyRow, 'date'>
+  translations!: EntityTable<TranslationRow, 'id'>
+  speaking!: EntityTable<SpeakingRow, 'id'>
+
+  constructor() {
+    super('tetsu-english')
+    this.version(1).stores({
+      cards: 'id, cat, lv, due, state, addedAt',
+      logs: '++id, wordId, at',
+      daily: 'date',
+      translations: '++id, at, fav',
+      speaking: '++id, at',
+    })
+  }
+}
+
+export const db = new AppDB()
+
+export function todayKey(d = new Date()): string {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+export async function bumpDaily(patch: Partial<Omit<DailyRow, 'date'>>) {
+  const date = todayKey()
+  await db.transaction('rw', db.daily, async () => {
+    const cur = (await db.daily.get(date)) ?? {
+      date,
+      reviews: 0,
+      newLearned: 0,
+      correct: 0,
+      listening: 0,
+      speaking: 0,
+      seconds: 0,
+    }
+    for (const [k, v] of Object.entries(patch)) {
+      ;(cur as unknown as Record<string, number>)[k] += v as number
+    }
+    await db.daily.put(cur)
+  })
+}
+
+/** 連続学習日数 */
+export async function getStreak(): Promise<number> {
+  const rows = await db.daily.toArray()
+  const active = new Set(rows.filter((r) => r.reviews + r.listening + r.speaking > 0).map((r) => r.date))
+  let streak = 0
+  const d = new Date()
+  if (!active.has(todayKey(d))) d.setDate(d.getDate() - 1)
+  while (active.has(todayKey(d))) {
+    streak++
+    d.setDate(d.getDate() - 1)
+  }
+  return streak
+}
+
+export async function exportAll(): Promise<string> {
+  const data = {
+    app: 'tetsu-english',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    cards: await db.cards.toArray(),
+    logs: await db.logs.toArray(),
+    daily: await db.daily.toArray(),
+    translations: await db.translations.toArray(),
+    speaking: await db.speaking.toArray(),
+    settings: localStorage.getItem('tetsu-settings'),
+  }
+  return JSON.stringify(data)
+}
+
+export async function importAll(json: string) {
+  const data = JSON.parse(json)
+  if (data.app !== 'tetsu-english') throw new Error('このアプリのバックアップファイルではありません')
+  await db.transaction('rw', [db.cards, db.logs, db.daily, db.translations, db.speaking], async () => {
+    await Promise.all([db.cards.clear(), db.logs.clear(), db.daily.clear(), db.translations.clear(), db.speaking.clear()])
+    await db.cards.bulkPut(data.cards ?? [])
+    await db.logs.bulkPut(data.logs ?? [])
+    await db.daily.bulkPut(data.daily ?? [])
+    await db.translations.bulkPut(data.translations ?? [])
+    await db.speaking.bulkPut(data.speaking ?? [])
+  })
+  if (data.settings) localStorage.setItem('tetsu-settings', data.settings)
+}

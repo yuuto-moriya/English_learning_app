@@ -1,0 +1,50 @@
+# 設備管理・保全（EAM / EN 13306 / ISO 55000 / RAMS）
+maintenance|maintenance|保全；保守|4|ˈmeɪntənəns||EN 13306|EN 13306では「アイテムを要求機能を果たせる状態に維持・回復するための、ライフサイクル全体の技術・管理・マネジメント活動の組み合わせ」。|Good *maintenance* keeps assets safe and available.|適切な保全は設備を安全で使える状態に保つ。
+item|item|アイテム（保全対象）|6|ˈaɪtəm|ˈaɪtəm|EN 13306|部品・装置・システムなど、個別に扱える保全の対象。EN 13306の基本用語。|Each *item* in the asset register has a unique ID.|資産台帳の各アイテムには固有のIDがある。
+failure|failure|故障|5|ˈfeɪljə|ˈfeɪljɚ|EN 13306|アイテムが要求機能を果たす能力を失うこと（事象）。|The *failure* of the point machine delayed ten trains.|転てつ機の故障で10本の列車が遅れた。
+fault|fault|フォールト（故障状態）|5|fɔːlt|fɔlt|EN 13306|要求機能を果たせない状態。EN 13306ではfailure（事象）とfault（状態）を区別する。|The *fault* was traced to a broken cable.|その故障状態の原因は断線したケーブルだった。
+failure mode|failure mode|故障モード|6|ˈfeɪljə məʊd|ˈfeɪljɚ moʊd|EN 13306|故障がどのように起こるかの様式（摩耗・破断・腐食など）。|Fatigue cracking is the main *failure mode* of this rail.|疲労き裂がこのレールの主な故障モードだ。
+preventive maintenance|preventive maintenance|予防保全|5|prɪˌventɪv ˈmeɪntənəns|prɪˌvɛntɪv ˈmeɪntənəns|EN 13306|故障の確率や機能低下を減らすために行う保全。時間基準・状態基準・予知を含む。|*Preventive maintenance* costs less than repairing failures.|予防保全は故障の修理より費用がかからない。
+predetermined maintenance|time-based maintenance|時間基準保全（TBM）|6|ˌpriːdɪˌtɜːmɪnd ˈmeɪntənəns|ˌtaɪm beɪst ˈmeɪntənəns|EN 13306|状態を調べずに、決められた間隔や使用量で行う予防保全。EN 13306の用語。日本で言うTBM。|Lubricating the points every month is *predetermined maintenance*.|毎月の分岐器への給油は時間基準保全だ。
+condition-based maintenance|condition-based maintenance|状態基準保全（CBM）|6|kənˌdɪʃn beɪst ˈmeɪntənəns|kənˌdɪʃən beɪst ˈmeɪntənəns|EN 13306|状態の監視・評価に基づいて行う予防保全。略CBM。|*Condition-based maintenance* uses data from the recording car.|状態基準保全では検測車のデータを使う。
+predictive maintenance|predictive maintenance|予知保全|6|prɪˌdɪktɪv ˈmeɪntənəns|prɪˌdɪktɪv ˈmeɪntənəns|EN 13306|状態の予測（劣化傾向の分析）に基づいて行う状態基準保全。|*Predictive maintenance* tells us when to tamp before faults appear.|予知保全は狂いが出る前にいつつき固めるべきかを教えてくれる。
+corrective maintenance|corrective maintenance|事後保全（是正保全）|5|kəˌrektɪv ˈmeɪntənəns|kəˌrɛktɪv ˈmeɪntənəns|EN 13306|故障・不具合の発見後に機能を回復させる保全。|*Corrective maintenance* was needed after the storm.|嵐の後に事後保全が必要になった。
+deferred maintenance|deferred maintenance|延期保全（保全の繰延べ）|6|dɪˌfɜːd ˈmeɪntənəns|dɪˌfɝd ˈmeɪntənəns|EN 13306|すぐには行わず、所定の規則に従って後回しにする是正保全。積み上がると「保全の負債」になる。|Years of *deferred maintenance* led to many speed restrictions.|長年の保全の繰延べが多くの速度制限につながった。
+condition monitoring|condition monitoring|状態監視|6|kənˈdɪʃn ˌmɒnɪtərɪŋ|kənˈdɪʃən ˌmɑːnɪtərɪŋ|EN 13306|設備の状態を継続的・定期的に測定・観察すること。|Sensors provide *condition monitoring* of the points.|センサーが分岐器の状態監視を行う。
+reliability|reliability|信頼性|5|rɪˌlaɪəˈbɪləti||EN 13306;EN 50126|所定の条件・期間でアイテムが要求機能を果たせる能力。RAMSのR。|The *reliability* of the points improved after the upgrade.|改良後、分岐器の信頼性が向上した。
+availability|availability|アベイラビリティ（可用性）|5|əˌveɪləˈbɪləti||EN 13306;EN 50126|必要な時に要求機能を果たせる状態にある能力。RAMSのA。|Night maintenance keeps daytime *availability* high.|夜間保守で日中の可用性を高く保っている。
+maintainability|maintainability|保全性|6|meɪnˌteɪnəˈbɪləti||EN 13306;EN 50126|保全を容易に行える能力（設計上の性質）。RAMSのM。|Good access improves the *maintainability* of the switch.|作業のしやすさは分岐器の保全性を向上させる。
+RAMS|RAMS|RAMS（信頼性・可用性・保全性・安全性）|6|ræmz||EN 50126|Reliability, Availability, Maintainability and Safety の頭文字。鉄道システムの品質管理の枠組み（EN 50126）。|The supplier must show *RAMS* evidence for the new system.|納入業者は新システムのRAMSの根拠を示さなければならない。
+mean time between failures|mean time between failures|平均故障間隔（MTBF）|6|ˌmiːn taɪm bɪˌtwiːn ˈfeɪljəz|ˌmiːn taɪm bɪˌtwiːn ˈfeɪljɚz|EN 13306|故障と故障の間の平均動作時間。大きいほど信頼性が高い。|The *mean time between failures* of the point machine is two years.|その転てつ機の平均故障間隔は2年だ。
+mean time to restoration|mean time to repair|平均修復時間（MTTR）|6|ˌmiːn taɪm tə ˌrestəˈreɪʃn|ˌmiːn taɪm tə rɪˈpɛr|EN 13306|故障から機能回復までの平均時間。EN 13306ではrestoration、一般にはrepairとも。|We reduced the *mean time to restoration* by 30%.|平均修復時間を30%短縮した。
+downtime|downtime|ダウンタイム（停止時間）|5|ˈdaʊntaɪm||EN 13306|アイテムが機能を果たせない状態の時間。|Planned *downtime* is scheduled during engineering hours.|計画停止は夜間保守時間帯に予定されている。
+useful life|useful life|耐用寿命|6|ˌjuːsfl ˈlaɪf|ˌjuːsfəl ˈlaɪf|EN 13306|使用開始から、故障率が許容できなくなる等の限界状態に至るまでの期間。|The *useful life* of a concrete sleeper is about 50 years.|コンクリートまくらぎの耐用寿命は約50年だ。
+remaining useful life|remaining useful life|残存寿命（RUL）|6|rɪˌmeɪnɪŋ ˌjuːsfl ˈlaɪf|rɪˌmeɪnɪŋ ˌjuːsfəl ˈlaɪf|一般用語|現時点から寿命を迎えるまでの推定期間。更新計画の基礎データ。|The model estimates the *remaining useful life* of each rail.|そのモデルは各レールの残存寿命を推定する。
+overhaul|overhaul|オーバーホール（分解整備）|5|ˈəʊvəhɔːl|ˈoʊvɚhɔl|EN 13306|分解点検を含む包括的な整備。|The tamping machine is due for an *overhaul*.|そのマルタイはオーバーホールの時期だ。
+renewal|replacement|更新|5|rɪˈnjuːəl|rɪˈpleɪsmənt|一般用語|寿命に達した資産を新しいものに置き換えること。保守（maintenance）と区別される投資。|*Renewal* of the old bridge is planned for 2030.|古い橋の更新は2030年に計画されている。
+refurbishment|rehabilitation|改修（リニューアル）|6|ˌriːˈfɜːbɪʃmənt|ˌriːəˌbɪlɪˈteɪʃən|一般用語|性能や寿命を回復させるための大規模な修繕。|The station will close for *refurbishment*.|駅は改修のため閉鎖される。
+asset|asset|資産；設備|5|ˈæset|ˈæsɛt|ISO 55000|組織にとって潜在的・実際の価値をもつもの（ISO 55000）。鉄道では線路・橋梁・分岐器など。|Track is one of our most valuable *assets*.|線路は最も価値の高い資産の1つだ。
+asset management|asset management|アセットマネジメント|6|ˈæset ˌmænɪdʒmənt|ˈæsɛt ˌmænɪdʒmənt|ISO 55000|資産から価値を実現するための組織の調整された活動（ISO 55000）。リスク・性能・費用の最適化を図る。|*Asset management* balances cost, risk and performance.|アセットマネジメントは費用・リスク・性能のバランスをとる。
+asset register|asset register|資産台帳|6|ˈæset ˌredʒɪstə|ˈæsɛt ˌrɛdʒɪstɚ|一般用語|資産の所在・属性・状態を記録した台帳。EAMの基礎データ。|Update the *asset register* after every renewal.|更新のたびに資産台帳を更新してください。
+asset hierarchy|asset hierarchy|資産階層（設備体系）|6|ˈæset ˈhaɪərɑːki|ˈæsɛt ˈhaɪɚɑrki|一般用語|路線→区間→設備→部品のように資産を階層的に整理した構造。|The *asset hierarchy* starts with the route and ends with components.|資産階層は路線から始まり部品で終わる。
+functional location|functional location|機能場所（SAP）|6|ˌfʌŋkʃənl ləʊˈkeɪʃn|ˌfʌŋkʃənəl loʊˈkeɪʃən|SAP EAM|SAP PM/EAMで設備を取り付ける「場所」を表す階層オブジェクト。設備（equipment）を付け外しできる。|Each switch is a *functional location* in SAP.|SAPでは各分岐器が機能場所として登録されている。
+work order|work order|作業指示（保全オーダ）|5|ˈwɜːk ˌɔːdə|ˈwɝk ˌɔrdɚ|SAP EAM;EN 13306|保全作業の内容・資材・工数・費用を管理する指示書。SAPでは保全オーダ。|Create a *work order* for the broken clip.|折れたクリップの作業指示を作成してください。
+maintenance notification|maintenance request|保全通知（不具合報告）|6|ˈmeɪntənəns ˌnəʊtɪfɪˌkeɪʃn|ˈmeɪntənəns rɪˌkwɛst|SAP EAM|SAP PM/EAMで不具合や作業依頼を記録する伝票。承認後に作業指示へ変換する。|The inspector raised a *maintenance notification* in the app.|検査員がアプリで保全通知を起票した。
+maintenance plan|maintenance plan|保全計画|5|ˈmeɪntənəns plæn||TSI INF App.S;EN 13306|保全の手順・周期をまとめた文書・計画。TSIではインフラ管理者の保全手順を定める文書群。|The *maintenance plan* sets the inspection intervals.|保全計画が点検周期を定めている。
+maintenance strategy|maintenance strategy|保全戦略|6|ˈmeɪntənəns ˌstrætədʒi||EN 13306|保全の目的を達成するための方針（予防・事後・状態基準などの組み合わせ）。|Our *maintenance strategy* is shifting to condition-based.|当社の保全戦略は状態基準型へ移行している。
+criticality|criticality|重要度（クリティカリティ）|6|ˌkrɪtɪˈkæləti||一般用語|故障した場合の影響の大きさによる資産の重要性。保全の優先順位付けに使う。|Assets with high *criticality* are inspected more often.|重要度の高い資産はより頻繁に点検される。
+failure mode and effects analysis|failure mode and effects analysis|故障モード影響解析（FMEA）|6|ˌfeɪljə məʊd ənd ɪˌfekts əˈnæləsɪs|ˌfeɪljɚ moʊd ənd ɪˌfɛkts əˈnæləsɪs|一般用語|故障モードごとに影響と原因を分析し対策を決める手法。略FMEA。|We used *failure mode and effects analysis* to review the design.|設計の見直しに故障モード影響解析を用いた。
+reliability-centred maintenance|reliability-centered maintenance|信頼性中心保全（RCM）|6|rɪˌlaɪəˈbɪləti ˌsentəd ˈmeɪntənəns|rɪˌlaɪəˈbɪləti ˌsɛntɚd ˈmeɪntənəns|一般用語|機能と故障モードの分析から最適な保全方式を選ぶ手法。英国綴りcentred。|*Reliability-centred maintenance* helped us cut unnecessary tasks.|信頼性中心保全で不要な作業を減らせた。
+life-cycle cost|life-cycle cost|ライフサイクルコスト（LCC）|6|ˈlaɪf ˌsaɪkl ˌkɒst|ˈlaɪf ˌsaɪkəl ˌkɔːst|一般用語|取得・運用・保全・更新・廃棄までの総費用。英国ではwhole-life costとも。|Slab track has a lower *life-cycle cost* on busy lines.|輸送量の多い路線ではスラブ軌道の方がライフサイクルコストが低い。
+deterioration model|degradation model|劣化予測モデル|6|dɪˌtɪəriəˈreɪʃn ˌmɒdl|ˌdɛɡrəˈdeɪʃən ˌmɑːdəl|一般用語|軌道狂いや材料の劣化進行を予測するモデル。保全計画の最適化に使う。|The *deterioration model* predicts when the track will need tamping.|劣化予測モデルはいつつき固めが必要になるかを予測する。
+backlog|backlog|未処理作業（バックログ）|5|ˈbæklɒɡ|ˈbæklɑːɡ|SAP EAM|計画されたが未実施の作業の蓄積。|We have a *backlog* of 200 work orders.|200件の未処理の作業指示がある。
+spare parts|spare parts|予備品|5|ˌspeə ˈpɑːts|ˌspɛr ˈpɑrts|EN 13306|故障時の交換用に保有する部品。在庫管理が保全の可用性に影響する。|Keep *spare parts* for critical switches at the depot.|重要な分岐器の予備品を基地に置いておいてください。
+measuring point|measuring point|測定ポイント（SAP）|6|ˈmeʒərɪŋ pɔɪnt|ˈmɛʒɚɪŋ pɔɪnt|SAP EAM|SAPで設備の測定値（摩耗量・温度・カウンタ）を記録する対象。状態基準保全のトリガーに使う。|Rail wear is recorded at each *measuring point*.|レール摩耗は各測定ポイントで記録される。
+digital twin|digital twin|デジタルツイン|6|ˌdɪdʒɪtl ˈtwɪn|ˌdɪdʒɪtəl ˈtwɪn|一般用語|現実の設備をデータで再現したモデル。状態監視・シミュレーションに使う。|The *digital twin* shows the condition of every switch.|デジタルツインはすべての分岐器の状態を表示する。
+key performance indicator|key performance indicator|重要業績評価指標（KPI）|5|ˌkiː pəˈfɔːməns ˌɪndɪkeɪtə|ˌkiː pɚˈfɔrməns ˌɪndɪkeɪtɚ|一般用語|目標達成度を測る主要な指標。保全ではMTBF・故障件数・遅延分など。|Train delay minutes is our main *key performance indicator*.|列車遅延分数が主要なKPIだ。
+process mining|process mining|プロセスマイニング|6|ˈprəʊses ˌmaɪnɪŋ|ˈprɑːsɛs ˌmaɪnɪŋ|一般用語|ITシステムのイベントログから実際の業務プロセスを可視化・分析する手法。|*Process mining* showed long waiting times in the approval step.|プロセスマイニングで承認ステップの長い待ち時間が明らかになった。
+lead time|lead time|リードタイム|5|ˈliːd taɪm||一般用語|業務の開始から完了までの所要時間。|We cut the *lead time* from defect report to repair by half.|欠陥報告から補修までのリードタイムを半減した。
+as-is process|current-state process|現行（As-Is）プロセス|6|ˌæz ˈɪz ˌprəʊses|ˌkɝənt steɪt ˈprɑːsɛs|一般用語|現状の業務の流れ。改善後の姿はto-be process。|First, we mapped the *as-is process* of track inspection.|まず線路点検の現行プロセスを図示した。
+to-be process|future-state process|あるべき（To-Be）プロセス|6|ˌtə ˈbiː ˌprəʊses|ˌfjuːtʃɚ steɪt ˈprɑːsɛs|一般用語|改善後に目指す業務の流れ。|The *to-be process* removes two manual steps.|あるべきプロセスでは手作業のステップが2つなくなる。
+bottleneck|bottleneck|ボトルネック|5|ˈbɒtlnek|ˈbɑːtəlnɛk|一般用語|全体の流れを制約している工程。|Material delivery is the *bottleneck* in night work.|夜間作業では資材の搬入がボトルネックだ。
+EOF

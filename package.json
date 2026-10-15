@@ -1,0 +1,44 @@
+{
+  "name": "english-learning-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "英語学習・翻訳の統合PWA（一般/ビジネス/保線の単語、リスニング、スピーキング、シーン別学習、翻訳）",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json",
+    "test": "vitest run",
+    "data:build": "python3 scripts/build_vocab.py",
+    "data:check": "python3 scripts/check_data.py",
+    "pages:dev": "wrangler pages dev dist --compatibility-date=2026-10-01",
+    "pages:deploy": "npm run build && wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "dexie": "^4.4.6",
+    "dexie-react-hooks": "^4.4.0",
+    "lucide-react": "^1.57.0",
+    "motion": "^14.2.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^8.4.0",
+    "ts-fsrs": "^5.4.2",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261015.1",
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "fake-indexeddb": "^6.2.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.4",
+    "wrangler": "^4.151.0"
+  }
+}

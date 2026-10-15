@@ -1,0 +1,39 @@
+# 損傷・劣化
+rail defect|rail defect|レール損傷|5|ˈreɪl ˌdiːfekt|ˈreɪl ˌdiːfɛkt|JIS E 1001;UIC 712|レールのきず・亀裂・摩耗などの総称。UIC Code 712（現IRS 70712）に分類体系がある。|Every *rail defect* must be recorded in the system.|すべてのレール損傷はシステムに記録しなければならない。
+broken rail|broken rail|レール折損|5|ˌbrəʊkən ˈreɪl|ˌbroʊkən ˈreɪl|UIC 712|レールが完全に破断した状態。直ちに列車を止め、防護と仮補修を行う。|A *broken rail* was found at 4 a.m.|午前4時にレール折損が発見された。
+rail crack|rail crack|レールの亀裂|5|ˈreɪl kræk||UIC 712|レール内部・表面の割れ。超音波探傷や渦流探傷で検出する。|Ultrasonic testing detected a *rail crack* under the head.|超音波探傷で頭部の下に亀裂が検出された。
+rolling contact fatigue|rolling contact fatigue|転がり接触疲労（RCF）|6|ˌrəʊlɪŋ ˌkɒntækt fəˈtiːɡ|ˌroʊlɪŋ ˌkɑːntækt fəˈtiːɡ|UIC 712|車輪の繰り返し接触によって生じるレール表面の疲労き裂。略RCF。削正で予防する。|*Rolling contact fatigue* is a major cause of rail renewal.|転がり接触疲労はレール更新の主要な原因だ。
+head check|gauge corner cracking|ヘッドチェック|6|ˈhed tʃek|ˈɡeɪdʒ ˌkɔrnɚ ˌkrækɪŋ|UIC 712|ゲージコーナーに斜めに並ぶ細かい疲労き裂。曲線外軌に多い。米国ではgauge corner cracking (GCC)。|*Head checks* were found on the high rail of the curve.|曲線の外軌にヘッドチェックが見つかった。
+squat|squat|スクワット（頭頂面の黒点状損傷）|6|skwɒt|skwɑːt|UIC 712|頭頂面が黒くへこみ内部にき裂が進む損傷。日本の「シェリング」類似の現象として扱われることもある。|A *squat* can grow into a broken rail if ignored.|スクワットを放置するとレール折損に至ることがある。
+shelling|shelling|シェリング|6|ˈʃelɪŋ|ˈʃɛlɪŋ|JIS E 1001;UIC 712|頭頂面付近で内部き裂が発生し、表層がはく離する損傷。|*Shelling* appeared on the rail after years of heavy traffic.|長年の重い通過荷重でレールにシェリングが現れた。
+spalling|spalling|はく離（スポーリング）|6|ˈspɔːlɪŋ||UIC 712|表面の小片が欠け落ちる損傷。溶接部やノーズにも発生する。|*Spalling* was found on the crossing nose.|ノーズにはく離が見つかった。
+corrugation|corrugation|波状摩耗|6|ˌkɒrəˈɡeɪʃn|ˌkɔːrəˈɡeɪʃən|JIS E 1001;UIC 712|頭頂面に規則的な波形の凹凸ができる摩耗。騒音・振動の原因となり、削正で除去する。|Rail grinding removed the *corrugation*.|レール削正で波状摩耗が除去された。
+side wear|side wear|側摩耗（頭部側面摩耗）|5|ˈsaɪd weə|ˈsaɪd wɛr|UIC 712|曲線外軌のゲージ面がフランジ接触で摩耗すること。限度を超えると交換する。|*Side wear* on the outer rail is close to the limit.|外軌の側摩耗が限度に近づいている。
+vertical wear|head wear|頭部（上面）摩耗|5|ˌvɜːtɪkl ˈweə|ˈhɛd wɛr|UIC 712|頭頂面の高さ方向の摩耗。|We measure *vertical wear* with a rail profile gauge.|頭部摩耗はレール断面測定器で測る。
+rail flow|plastic flow|レールフロー|6|ˈreɪl fləʊ|ˌplæstɪk ˈfloʊ|JIS E 1001;UIC 712|重荷重で頭部の金属が側方へ押し出され、張り出す現象。|*Rail flow* on the field side was ground off.|外側に張り出したレールフローを削り取った。
+lipping|lipping|リッピング（頭部縁のはみ出し）|6|ˈlɪpɪŋ||UIC 712|レール端部や頭部縁で金属がはみ出す損傷。絶縁継目で短絡を起こすことがある。|*Lipping* at the insulated joint caused a track circuit failure.|絶縁継目のリッピングが軌道回路の故障を引き起こした。
+wheel burn|engine burn|空転きず（ホイールバーン）|6|ˈwiːl bɜːn|ˈɛndʒɪn bɝn|UIC 712|車輪の空転による局部的な加熱で生じる頭頂面のきず。|A *wheel burn* was found near the signal where trains start.|列車が発車する信号機付近で空転きずが見つかった。
+dipped joint|low joint|継目落ち|6|ˌdɪpt ˈdʒɔɪnt|ˌloʊ ˈdʒɔɪnt|JIS E 1001|継目部が周囲より下がった状態。衝撃と騒音が大きくなる。|The *dipped joint* was corrected by tamping.|継目落ちはつき固めで整正された。
+battered rail end|battered rail end|レール端部のつぶれ|6|ˌbætəd ˌreɪl ˈend|ˌbætɚd ˌreɪl ˈɛnd|UIC 712|車輪の打撃で継目部のレール端が変形・摩耗した状態。|*Battered rail ends* make a loud noise.|つぶれたレール端部は大きな音を立てる。
+bolt hole crack|bolt hole crack|ボルト穴き裂|6|ˈbəʊlt həʊl kræk|ˈboʊlt hoʊl kræk|UIC 712|継目のボルト穴から放射状に進む亀裂。折損の重要な前兆。|A *bolt hole crack* was found in the rail web.|レール腹部にボルト穴き裂が見つかった。
+weld defect|weld defect|溶接不良|6|ˈweld ˌdiːfekt|ˈwɛld ˌdiːfɛkt|EN 14730;EN 14587|溶接部の空洞・融合不良・き裂など。破断の原因となる。|A *weld defect* caused the rail to break in winter.|溶接不良が原因で冬にレールが破断した。
+track buckle|sun kink|座屈|6|ˈtræk ˌbʌkl|ˈsʌn kɪŋk|一般用語|高温でロングレールの圧縮軸力が道床抵抗を上回り、軌道が横に大きく曲がる現象。米国ではsun kink。|A *track buckle* forced the line to close on a hot afternoon.|暑い午後、座屈のため路線が閉鎖された。
+rail rollover|rail rollover|レール小返り|6|ˈreɪl ˌrəʊləʊvə|ˈreɪl ˌroʊloʊvɚ|JIS E 1001|横圧によりレールが外側に倒れ込む現象。軌間拡大・脱線につながる。|Strong lateral force can cause *rail rollover*.|大きな横圧はレール小返りを引き起こすことがある。
+wet bed|mud pumping|噴泥|6|ˌwet ˈbed|ˈmʌd ˌpʌmpɪŋ|JIS E 1001|路盤の細粒土が水と混じり、列車通過時に道床表面へ噴き上がる現象。英国ではwet bed / wet spot。|A *wet bed* forms where drainage is poor.|排水の悪い箇所に噴泥が発生する。
+voided sleeper|hanging tie|浮きまくらぎ|6|ˌvɔɪdɪd ˈsliːpə|ˌhæŋɪŋ ˈtaɪ|英国実務|まくらぎ下にすき間ができ、列車通過時に上下に動く状態。動的には大きな軌道狂いになる。|A *voided sleeper* moves up and down under each train.|浮きまくらぎは列車が通るたびに上下に動く。
+fouled ballast|fouled ballast|細粒化・汚損した道床|6|ˌfaʊld ˈbæləst||EN 13450|摩耗した砕石や泥が混じり、排水・弾性が失われた道床。|*Fouled ballast* holds water and causes settlement.|汚損した道床は水を保持し沈下を引き起こす。
+ballast degradation|ballast degradation|道床劣化|6|ˈbæləst ˌdeɡrəˈdeɪʃn|ˈbæləst ˌdɛɡrəˈdeɪʃən|EN 13450|砕石の摩耗・破砕・細粒化による性能低下。|*Ballast degradation* is faster under heavy axle loads.|重い軸重のもとでは道床劣化が早い。
+track settlement|track settlement|軌道沈下|6|ˌtræk ˈsetlmənt|ˌtræk ˈsɛtəlmənt|一般用語|道床・路盤の変形による軌道の沈み。軌道狂いの主な原因。|*Track settlement* is greatest near bridge abutments.|軌道沈下は橋台付近で最も大きい。
+cracked sleeper|cracked tie|ひび割れまくらぎ|5|ˌkrækt ˈsliːpə|ˌkrækt ˈtaɪ|EN 13230|ひびの入ったまくらぎ。締結力の低下や軌間拡大の原因になる。|Mark every *cracked sleeper* with white paint.|ひび割れまくらぎにはすべて白ペンキで印をつけてください。
+rotten sleeper|decayed tie|腐朽まくらぎ|6|ˌrɒtn ˈsliːpə|dɪˌkeɪd ˈtaɪ|EN 13145|腐朽した木まくらぎ。犬くぎの保持力が失われる。|*Rotten sleepers* cannot hold the spikes firmly.|腐朽まくらぎは犬くぎをしっかり保持できない。
+corrosion|corrosion|腐食|5|kəˈrəʊʒn|kəˈroʊʒən|一般用語|さびによる材料の劣化。トンネル・海岸・踏切のレール底部で問題になる。|*Corrosion* of the rail foot was found in the tunnel.|トンネル内でレール底部の腐食が見つかった。
+fatigue crack|fatigue crack|疲労き裂|6|fəˈtiːɡ kræk||一般用語|繰り返し荷重で徐々に進展する亀裂。|A *fatigue crack* grew slowly from the weld.|溶接部から疲労き裂がゆっくり進展した。
+loose fastening|loose fastening|締結装置の緩み|5|ˌluːs ˈfɑːsnɪŋ|ˌluːs ˈfæsənɪŋ|EN 13481|クリップ・ボルトが緩んだ状態。軌間拡大やレールの移動を招く。|Tighten any *loose fastening* you find.|緩んだ締結装置を見つけたら締めてください。
+missing component|missing component|部品欠落|5|ˌmɪsɪŋ kəmˈpəʊnənt|ˌmɪsɪŋ kəmˈpoʊnənt|一般用語|クリップ・パッド・ボルト等が無くなっている状態。|The patrol reported a *missing component* at the switch.|巡回で分岐器の部品欠落が報告された。
+frost heave|frost heave|凍上|6|ˈfrɒst hiːv|ˈfrɔːst hiːv|一般用語|地中の水分が凍って路盤が持ち上がる現象。寒冷地で高低狂いを生む。|*Frost heave* lifted the track by 20 mm.|凍上で軌道が20mm持ち上がった。
+scour|scour|洗掘|6|ˈskaʊə|ˈskaʊɚ|一般用語|流水が橋脚・橋台の基礎周りの土砂を削り取ること。橋梁倒壊の主要因。|*Scour* around the bridge pier was found after the flood.|洪水後、橋脚周りの洗掘が見つかった。
+landslip|landslide|土砂崩れ；のり面崩壊|5|ˈlændslɪp|ˈlændslaɪd|一般用語|斜面の崩壊。英国ではlandslip、米国ではlandslideが一般的。|A *landslip* blocked the line after the storm.|嵐の後、土砂崩れで線路がふさがった。
+rockfall|rockfall|落石|5|ˈrɒkfɔːl|ˈrɑːkfɔːl|一般用語|斜面からの岩の落下。落石検知装置や防護柵で対策する。|A *rockfall* damaged the rail in the cutting.|落石で切土区間のレールが損傷した。
+leaves on the line|leaves on the line|線路上の落ち葉（粘着低下）|5|ˌliːvz ɒn ðə ˈlaɪn|ˌliːvz ɑːn ðə ˈlaɪn|英国実務|秋に落ち葉がレール面で圧着し、空転・滑走を起こす英国の有名な問題。|*Leaves on the line* cause delays every autumn.|毎年秋に線路上の落ち葉が遅延を引き起こす。
+low adhesion|low adhesion|粘着低下|6|ˌləʊ ədˈhiːʒn|ˌloʊ ədˈhiːʒən|英国実務|車輪とレールの摩擦が小さくなり、空転・滑走が起きやすい状態。|Railhead treatment trains fight *low adhesion* in autumn.|レール面処理列車が秋の粘着低下に対処する。
+EOF

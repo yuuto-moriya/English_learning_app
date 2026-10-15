@@ -1,0 +1,43 @@
+# 安全・運転取扱い
+possession|track outage|線路閉鎖|6|pəˈzeʃn|ˈtræk ˌaʊtɪdʒ|JIS E 1001;英国実務|保守のため一定区間に列車を進入させない取扱い。英国ではpossession（線路の占有）、米国ではtrack outage / track and time などと言う。|We have a six-hour *possession* on Sunday night.|日曜の夜に6時間の線路閉鎖がある。
+line blockage|track and time|線路閉鎖（短時間・簡易）|6|ˈlaɪn ˌblɒkɪdʒ|ˌtræk ən ˈtaɪm|英国実務|英国で信号により列車の進入を止める比較的短時間の線路閉鎖。|A *line blockage* was taken to fix the broken clip.|折れたクリップを直すために線路閉鎖が取られた。
+protection|protection|防護|5|prəˈtekʃn|prəˈtɛkʃən|英国実務|作業区間に列車が進入しないよう、信号・合図・装置で安全を確保すること。|Set up *protection* before anyone goes on the track.|誰かが線路に入る前に防護を設定してください。
+lookout|watchman|列車見張員|5|ˈlʊkaʊt|ˈwɑːtʃmən|英国実務|接近する列車を監視し、作業員に退避を知らせる係員。|The *lookout* warned the team that a train was approaching.|列車見張員が列車の接近をチームに知らせた。
+position of safety|place of safety|待避位置|6|pəˌzɪʃn əv ˈseɪfti|ˌpleɪs əv ˈseɪfti|英国実務|列車通過時に作業員が退避する安全な場所（英国では線路から一定距離以上離れた場所）。|Move to a *position of safety* when you hear the warning.|警報が聞こえたら待避位置に移動してください。
+red zone|red zone|列車運行中の線路内作業（レッドゾーン）|6|ˈred zəʊn|ˈrɛd zoʊn|英国実務|英国で列車が走行中の線路で作業すること。見張員による防護が必要で、極力避ける。|*Red zone* working is now strictly limited.|レッドゾーンでの作業は現在厳しく制限されている。
+green zone|green zone|列車の来ない作業区域（グリーンゾーン）|6|ˈɡriːn zəʊn|ˈɡriːn zoʊn|英国実務|線路閉鎖等で列車が来ないことが保証された作業区域。|All renewals are done in a *green zone*.|すべての更新工事はグリーンゾーンで行われる。
+safe system of work|safe system of work|安全作業計画|6|ˌseɪf ˌsɪstəm əv ˈwɜːk|ˌseɪf ˌsɪstəm əv ˈwɝk|英国実務|作業ごとに定める防護方法・手順・責任者の計画（英国の略SSOW）。|The supervisor explained the *safe system of work*.|監督者が安全作業計画を説明した。
+safety briefing|job briefing|作業前安全ミーティング（KY）|5|ˈseɪfti ˌbriːfɪŋ|ˈdʒɑːb ˌbriːfɪŋ|英国実務|作業前に危険・手順・役割を確認するミーティング。日本の危険予知（KY）活動に相当。|Everyone must attend the *safety briefing* before work.|全員が作業前の安全ミーティングに出席しなければならない。
+toolbox talk|toolbox talk|ツールボックスミーティング|5|ˈtuːlbɒks tɔːk|ˈtuːlbɑːks tɔk|英国実務|現場で短時間に行う安全教育・打ち合わせ。|Today's *toolbox talk* is about working in the heat.|今日のツールボックスミーティングは暑熱下の作業についてだ。
+near miss|near miss|ヒヤリハット|5|ˌnɪə ˈmɪs|ˌnɪr ˈmɪs|一般用語|事故には至らなかったが危険だった事象。報告して再発を防ぐ。|Please report every *near miss*, however small.|どんなに小さくても、すべてのヒヤリハットを報告してください。
+hazard|hazard|危険源（ハザード）|5|ˈhæzəd|ˈhæzɚd|EN 50126|事故の原因となりうる状態・要因。リスクは危険源の発生頻度と影響の組み合わせ。|Identify each *hazard* before starting work.|作業開始前にそれぞれの危険源を特定してください。
+risk assessment|risk assessment|リスクアセスメント|5|ˈrɪsk əˌsesmənt|ˈrɪsk əˌsɛsmənt|EN 50126;CSM-RA|危険源を特定し、リスクを評価し、低減策を決める手順。|A *risk assessment* is required for night work near live lines.|活線近接の夜間作業にはリスクアセスメントが必要だ。
+personal protective equipment|personal protective equipment|保護具（PPE）|5|ˌpɜːsənl prəˌtektɪv ɪˈkwɪpmənt|ˌpɝsənəl prəˌtɛktɪv ɪˈkwɪpmənt|英国実務|ヘルメット・安全靴・高視認性衣服・保護眼鏡などの個人用保護具。略PPE。|Wear full *personal protective equipment* on site.|現場ではすべての保護具を着用してください。
+high-visibility clothing|high-visibility clothing|高視認性衣服|5|ˌhaɪ ˌvɪzəˈbɪləti ˈkləʊðɪŋ|ˌhaɪ ˌvɪzəˈbɪləti ˈkloʊðɪŋ|英国実務|目立つ色と反射材の作業服。英国では略して hi-vis（オレンジ色が標準）。|*High-visibility clothing* must be worn on or near the line.|線路上や線路近くでは高視認性衣服を着用しなければならない。
+temporary speed restriction|slow order|臨時速度制限（徐行）|6|ˌtemprəri ˈspiːd rɪˌstrɪkʃn|ˈsloʊ ˌɔrdɚ|英国実務|工事や軌道状態のため臨時に設ける速度制限。英国略TSR、緊急のものはESR。米国ではslow order。|A *temporary speed restriction* of 30 km/h is in place after tamping.|つき固め後に時速30kmの臨時速度制限が設定されている。
+emergency speed restriction|emergency slow order|緊急速度制限|6|ɪˌmɜːdʒənsi ˈspiːd rɪˌstrɪkʃn|ɪˌmɝdʒənsi ˈsloʊ ˌɔrdɚ|英国実務|予期しない欠陥に対し直ちに設定する速度制限（英国略ESR）。|An *emergency speed restriction* was imposed because of the twist fault.|平面性狂いのため緊急速度制限が課された。
+speed restriction|speed restriction|速度制限|5|ˈspiːd rɪˌstrɪkʃn|ˈspiːd rɪˌstrɪkʃən|英国実務|ある区間の通過速度を制限すること。|The *speed restriction* will be lifted tomorrow.|速度制限は明日解除される。
+derailment|derailment|脱線|5|dɪˈreɪlmənt|diːˈreɪlmənt|一般用語|車輪がレールから外れること。軌道・車両・運転の要因が組み合わさって起こる。|The *derailment* was caused by a broken rail.|その脱線はレール折損が原因だった。
+derailment quotient|derailment coefficient|脱線係数（Y/Q）|6|dɪˈreɪlmənt ˌkwəʊʃnt|diːˈreɪlmənt ˌkoʊɪˈfɪʃənt|JIS E 1001;一般用語|横圧Yと輪重Qの比。値が大きいほど乗り上がり脱線の危険が高い。|The *derailment quotient* stayed below the limit during the test.|試験中、脱線係数は限度以下にとどまった。
+derailer|derail|脱線器|6|dɪˈreɪlə|dɪˈreɪl|一般用語|側線から本線への逸走車両を故意に脱線させて本線を守る装置。|The *derailer* protects the main line from runaway wagons.|脱線器は逸走貨車から本線を守る。
+level crossing|grade crossing|踏切|4|ˌlevl ˈkrɒsɪŋ|ˈɡreɪd ˌkrɔːsɪŋ|一般用語|道路と鉄道が平面交差する箇所。英国level crossing、米国grade crossing（highway-rail crossing）。|The barriers at the *level crossing* came down.|踏切の遮断機が下りた。
+track circuit|track circuit|軌道回路|6|ˈtræk ˌsɜːkɪt|ˈtræk ˌsɝkɪt|一般用語|レールに電流を流し、列車の在線を検知する回路。保線作業での短絡に注意。|A metal bar across the rails can operate the *track circuit*.|レールを渡る金属棒は軌道回路を動作させることがある。
+axle counter|axle counter|計軸装置|6|ˈæksl ˌkaʊntə|ˈæksəl ˌkaʊntɚ|一般用語|区間に出入りする車軸を数えて在線を検知する装置。|The *axle counter* needs to be reset after the work.|作業後、計軸装置のリセットが必要だ。
+signal box|interlocking tower|信号扱所|5|ˈsɪɡnəl bɒks|ˌɪntɚˈlɑːkɪŋ ˌtaʊɚ|英国実務|信号・転てつ機を操作する建物。現在は集中化された運行管理センターに置き換えが進む。|Call the *signal box* before entering the track.|線路に入る前に信号扱所に電話してください。
+interlocking|interlocking|連動装置|6|ˌɪntəˈlɒkɪŋ|ˌɪntɚˈlɑːkɪŋ|一般用語|信号と転てつ機の矛盾した動作を防ぐ安全装置。|The *interlocking* prevents conflicting routes.|連動装置は競合する進路の設定を防ぐ。
+signaller|dispatcher|信号取扱者；運転指令|5|ˈsɪɡnələ|dɪˈspætʃɚ|英国実務|英国で信号を扱い列車を制御する係員（signaller）。米国では指令員（train dispatcher）が列車運行を管理する。|Ask the *signaller* for permission to go on the line.|線路に入る許可を信号取扱者に求めてください。
+control centre|operations control center|運行管理センター（指令所）|5|kənˈtrəʊl ˌsentə|ˌɑːpəˈreɪʃənz kənˈtroʊl ˌsɛntɚ|英国実務|列車運行や設備状態を集中監視・管理する拠点。|Report the broken rail to the *control centre* immediately.|レール折損を直ちに指令所へ報告してください。
+overhead line equipment|catenary|架線（電車線設備）|6|ˌəʊvəhed ˈlaɪn ɪˌkwɪpmənt|ˈkætənɛri|英国実務|列車に電力を供給する架空の電線と支持物。英国略OLE、米国ではcatenary。|Keep 2.75 m away from the *overhead line equipment*.|架線から2.75m以上離れてください。
+isolation|de-energization|き電停止（電源の切り離し）|6|ˌaɪsəˈleɪʃn|diːˌɛnɚdʒɪˈzeɪʃən|英国実務|作業のため架線・第三軌条の電源を切り離すこと。必ず接地（earthing）と組み合わせる。|Do not start work until the *isolation* is confirmed.|き電停止が確認されるまで作業を始めないでください。
+earthing|grounding|接地|6|ˈɜːθɪŋ|ˈɡraʊndɪŋ|英国実務|電源を切った架線を大地に接続し、誤送電や誘導電圧から作業員を守ること。英国earthing、米国grounding。|Apply *earthing* to the overhead line before work.|作業前に架線を接地してください。
+third rail|third rail|第三軌条|6|ˌθɜːd ˈreɪl|ˌθɝd ˈreɪl|一般用語|走行レールの横に置いた給電用のレール。触れると感電する。|Never step on the *third rail*.|決して第三軌条を踏まないでください。
+return current|return current|帰線電流|6|rɪˈtɜːn ˌkʌrənt|rɪˈtɝn ˌkɝənt|一般用語|電車に供給した電流がレールを通って変電所へ戻る電流。レール切断時は仮ボンドが必要。|Fit a temporary bond to carry the *return current*.|帰線電流を流すため仮ボンドを取り付けてください。
+hand signal|hand signal|手信号|5|ˈhænd ˌsɪɡnəl||英国実務|旗・灯・手で運転士や作業員に合図すること。|The flagman gave a *hand signal* to stop the train.|合図者が手信号で列車を止めた。
+red flag|red flag|赤旗|4|ˌred ˈflæɡ|ˌrɛd ˈflæɡ|英国実務|停止を示す合図に使う旗。夜間は赤色灯。|Hold up the *red flag* to stop the train.|赤旗を掲げて列車を止めてください。
+detonator|track torpedo|信号雷管|6|ˈdetəneɪtə|ˈtræk tɔrˌpiːdoʊ|英国実務|レール上に置き、車輪が踏むと破裂音で運転士に停止を知らせる装置。|Place *detonators* on the rail to protect the obstruction.|障害物を防護するためにレール上に信号雷管を置いてください。
+obstruction|obstruction|支障（線路支障物）|5|əbˈstrʌkʃn|əbˈstrʌkʃən|英国実務|列車の運転を妨げるもの（倒木・落石・置き忘れた工具など）。|Report any *obstruction* on the line at once.|線路上の支障物はただちに報告してください。
+handback|track release|線路閉鎖の解除|6|ˈhændbæk|ˈtræk rɪˌliːs|英国実務|作業終了後、線路を列車運行に戻すこと（英国では工事側から運行側へ「返却」）。|The *handback* was ten minutes late.|線路閉鎖の解除が10分遅れた。
+overrun|overrun|作業時間超過（線路閉鎖の延長）|6|ˈəʊvərʌn|ˈoʊvɚrʌn|英国実務|線路閉鎖の時間内に作業が終わらず、列車運行に影響すること。|The *overrun* delayed the first train by 20 minutes.|作業時間超過で始発列車が20分遅れた。
+competence|competency|技能資格|6|ˈkɒmpɪtəns|ˈkɑːmpɪtənsi|英国実務|特定の作業を行う資格・能力。英国ではカードで管理される。|Check that each worker has the right *competence*.|各作業員が適切な技能資格を持っているか確認してください。
+fatigue management|fatigue risk management|疲労管理|6|fəˈtiːɡ ˌmænɪdʒmənt|fəˈtiːɡ ˈrɪsk ˌmænɪdʒmənt|英国実務|夜間勤務などによる疲労が事故につながらないよう勤務時間を管理すること。|*Fatigue management* is essential for night shifts.|夜勤には疲労管理が不可欠だ。
+EOF

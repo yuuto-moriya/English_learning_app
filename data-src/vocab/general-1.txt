@@ -1,0 +1,550 @@
+# NGSL Group 1（入門 A1）  lemma|品詞|和訳|例文(英、*語*でマーク)|例文(和)
+the|det|その；（特定のものを指す定冠詞）|*The* train for Tokyo leaves at nine.|東京行きの電車は9時に出発します。
+be|v|〜である；いる、ある|She *is* a teacher at a local school.|彼女は地元の学校の先生です。
+and|conj|〜と…；そして|I bought bread *and* milk.|パンと牛乳を買いました。
+of|prep|〜の|This is a map *of* the city.|これはその街の地図です。
+to|prep|〜へ；〜に|I walk *to* the station every morning.|毎朝駅まで歩きます。
+a|det|1つの；ある|I have *a* question.|質問が1つあります。
+in|prep|〜の中に；〜に（場所・時）|My keys are *in* my bag.|鍵はかばんの中にあります。
+have|v|持っている；（経験・食事などを）する|We *have* a meeting at ten.|10時に会議があります。
+it|pron|それ|I lost my umbrella, but I found *it* later.|傘をなくしたが、後でそれを見つけた。
+you|pron|あなた（たち）|Can *you* help me?|手伝ってもらえますか。
+he|pron|彼は|*He* works at the city hall.|彼は市役所で働いています。
+for|prep|〜のために；〜の間|This gift is *for* you.|この贈り物はあなたへのものです。
+they|pron|彼らは；それらは|*They* live near the river.|彼らは川の近くに住んでいます。
+not|adv|〜でない|I am *not* ready yet.|まだ準備ができていません。
+that|det|あの；それ；（接続詞）〜ということ|I think *that* he is right.|彼は正しいと思います。
+we|pron|私たちは|*We* start work at eight.|私たちは8時に仕事を始めます。
+on|prep|〜の上に；〜に（日付）|The book is *on* the table.|本はテーブルの上にあります。
+with|prep|〜と一緒に；〜を使って|I went to the park *with* my dog.|犬と一緒に公園へ行きました。
+this|det|これ；この|*This* bag is very light.|このかばんはとても軽い。
+I|pron|私は|*I* like coffee.|私はコーヒーが好きです。
+do|v|する；（疑問文・否定文を作る）|What do you *do* on weekends?|週末は何をしますか。
+as|prep|〜として；〜のように|She works *as* an engineer.|彼女はエンジニアとして働いています。
+at|prep|〜で（地点）；〜に（時刻）|Let's meet *at* the station.|駅で会いましょう。
+she|pron|彼女は|*She* speaks three languages.|彼女は3か国語を話します。
+but|conj|しかし|It was cold, *but* we went out.|寒かったが、私たちは出かけた。
+from|prep|〜から|I am *from* Nagano.|私は長野出身です。
+by|prep|〜によって；〜のそばに；〜までに|Please finish it *by* Friday.|金曜日までに終えてください。
+will|aux|〜するだろう；〜するつもりだ|It *will* rain tomorrow.|明日は雨が降るでしょう。
+or|conj|または|Would you like tea *or* coffee?|紅茶とコーヒーのどちらがいいですか。
+say|v|言う|What did she *say*?|彼女は何と言いましたか。
+go|v|行く|I *go* to work by train.|私は電車で通勤しています。
+so|adv|とても；だから|I was *so* tired that I went to bed early.|とても疲れていたので早く寝た。
+all|det|すべての|*All* the seats are taken.|席はすべて埋まっています。
+if|conj|もし〜なら|*If* it rains, we will stay home.|もし雨なら家にいます。
+one|num|1；1つ|I have *one* brother.|兄弟が1人います。
+would|aux|〜だろう；〜したい（丁寧）|I *would* like a glass of water.|お水を1杯いただきたいです。
+about|prep|〜について；約|We talked *about* the plan.|私たちはその計画について話した。
+can|aux|〜できる|*Can* you swim?|泳げますか。
+which|det|どちら；どの|*Which* bus goes to the airport?|どのバスが空港へ行きますか。
+there|adv|そこに；（There is〜で）〜がある|*There* is a bank near here.|この近くに銀行があります。
+know|v|知っている|Do you *know* his phone number?|彼の電話番号を知っていますか。
+more|det|もっと多くの|We need *more* time.|もっと時間が必要です。
+get|v|手に入れる；〜になる；着く|I *got* a message from her.|彼女からメッセージを受け取った。
+who|pron|誰|*Who* is that man?|あの男性は誰ですか。
+like|v|好む；（前置詞）〜のような|I *like* reading books.|本を読むのが好きです。
+when|adv|いつ；〜するとき|*When* does the meeting start?|会議はいつ始まりますか。
+think|v|思う；考える|I *think* it's a good idea.|良い考えだと思います。
+make|v|作る；〜させる|She *made* lunch for us.|彼女は私たちに昼食を作ってくれた。
+time|n|時間；〜回|Do you have *time* now?|今お時間ありますか。
+see|v|見える；会う；分かる|I can *see* the mountains from here.|ここから山が見えます。
+what|pron|何|*What* is your name?|お名前は何ですか。
+up|adv|上へ；（動作の完了）|Please stand *up*.|立ってください。
+some|det|いくらかの|I need *some* help.|少し手伝いが必要です。
+other|adj|ほかの|Do you have any *other* questions?|ほかに質問はありますか。
+out|adv|外へ|Let's eat *out* tonight.|今夜は外食しよう。
+good|adj|良い；上手な|This is a *good* restaurant.|ここは良いレストランです。
+people|n|人々|Many *people* use this station.|多くの人がこの駅を利用します。
+year|n|年；1年|I visited London last *year*.|昨年ロンドンを訪れました。
+take|v|取る；（時間が）かかる；連れて行く|It *takes* ten minutes to walk there.|そこまで歩いて10分かかります。
+no|det|少しの〜もない；いいえ|There is *no* milk in the fridge.|冷蔵庫に牛乳がありません。
+well|adv|上手に；よく|She speaks English very *well*.|彼女はとても上手に英語を話します。
+because|conj|〜なので|I stayed home *because* I was sick.|具合が悪かったので家にいた。
+very|adv|とても|It is *very* hot today.|今日はとても暑い。
+just|adv|ちょうど；ただ〜だけ|I *just* arrived.|ちょうど着いたところです。
+come|v|来る|Please *come* to my office.|私のオフィスに来てください。
+could|aux|〜できた；〜していただけますか|*Could* you open the window?|窓を開けていただけますか。
+work|v|働く；機能する|The machine doesn't *work*.|その機械は動きません。
+use|v|使う|May I *use* your pen?|ペンを使ってもいいですか。
+than|conj|〜よりも|This train is faster *than* the bus.|この電車はバスより速い。
+now|adv|今|I'm busy *now*.|今は忙しいです。
+then|adv|その時；それから|Finish your work, and *then* go home.|仕事を終えて、それから帰りなさい。
+also|adv|〜もまた|She *also* plays the piano.|彼女はピアノも弾きます。
+into|prep|〜の中へ|He walked *into* the room.|彼は部屋に入ってきた。
+only|adv|ただ〜だけ|I *only* have five minutes.|5分しかありません。
+look|v|見る；〜に見える|*Look* at this picture.|この写真を見て。
+want|v|欲しい；〜したい|I *want* to learn English.|英語を学びたいです。
+give|v|与える|Please *give* me a call later.|後で電話をください。
+first|adj|最初の|This is my *first* visit to Japan.|今回が初めての来日です。
+new|adj|新しい|I bought a *new* phone.|新しい携帯電話を買いました。
+way|n|道；方法|Is this the *way* to the station?|これは駅への道ですか。
+find|v|見つける；分かる|I can't *find* my glasses.|眼鏡が見つかりません。
+over|prep|〜の上に；〜を越えて；〜以上|The plane flew *over* the city.|飛行機は街の上空を飛んだ。
+any|det|いくらかの；どんな〜でも|Do you have *any* questions?|何か質問はありますか。
+after|prep|〜の後に|Let's talk *after* lunch.|昼食後に話しましょう。
+day|n|日；昼間|Have a nice *day*!|良い一日を！
+where|adv|どこに|*Where* do you live?|どこに住んでいますか。
+thing|n|物；こと|I have many *things* to do today.|今日はやることがたくさんある。
+most|det|ほとんどの；最も|*Most* students passed the test.|ほとんどの学生が試験に合格した。
+should|aux|〜すべきだ|You *should* see a doctor.|医者に診てもらうべきです。
+need|v|必要とする|I *need* your help.|あなたの助けが必要です。
+much|det|たくさんの（数えられない名詞）|How *much* is this?|これはいくらですか。
+right|adj|正しい；右の|You are *right*.|あなたの言う通りです。
+how|adv|どのように；どれほど|*How* do you go to work?|どうやって通勤していますか。
+back|adv|後ろへ；元の場所へ|I'll be *back* in five minutes.|5分で戻ります。
+mean|v|意味する；〜するつもりである|What does this word *mean*?|この単語はどういう意味ですか。
+even|adv|〜でさえ|*Even* children can do it.|子どもでさえそれができる。
+may|aux|〜かもしれない；〜してもよい|*May* I come in?|入ってもいいですか。
+here|adv|ここに|Please sign *here*.|ここにサインしてください。
+many|det|多くの（数えられる名詞）|*Many* trains stop at this station.|多くの電車がこの駅に停まります。
+such|det|そのような|I've never seen *such* a beautiful view.|こんなに美しい景色は見たことがない。
+last|adj|最後の；この前の|I saw him *last* week.|先週彼に会った。
+child|n|子ども|The *child* is playing in the park.|その子は公園で遊んでいる。
+tell|v|伝える；教える|Can you *tell* me the way to the station?|駅への道を教えてもらえますか。
+really|adv|本当に|I *really* enjoyed the trip.|旅行を本当に楽しみました。
+call|v|電話する；呼ぶ|I'll *call* you tonight.|今夜電話します。
+before|prep|〜の前に|Wash your hands *before* dinner.|夕食の前に手を洗いなさい。
+company|n|会社；仲間|He works for a railway *company*.|彼は鉄道会社に勤めています。
+through|prep|〜を通り抜けて；〜を通じて|The train goes *through* a long tunnel.|電車は長いトンネルを通り抜ける。
+down|adv|下へ|Please sit *down*.|お座りください。
+show|v|見せる；示す|Could you *show* me your ticket?|切符を見せていただけますか。
+life|n|生活；人生；命|City *life* is very busy.|都会の生活はとても忙しい。
+man|n|男性；人|A *man* is waiting outside.|男性が外で待っています。
+change|v|変える；乗り換える|You need to *change* trains at Shinjuku.|新宿で電車を乗り換える必要があります。
+place|n|場所|This is a nice *place* to relax.|ここはくつろぐのに良い場所だ。
+long|adj|長い|It was a *long* day.|長い一日だった。
+between|prep|〜の間に|The shop is *between* the bank and the post office.|その店は銀行と郵便局の間にあります。
+feel|v|感じる|I *feel* much better today.|今日はずっと気分が良い。
+too|adv|〜もまた；あまりに〜すぎる|This coffee is *too* hot.|このコーヒーは熱すぎる。
+still|adv|まだ；それでも|Are you *still* at the office?|まだ会社にいるの？
+problem|n|問題|There is a *problem* with the signal.|信号に問題があります。
+write|v|書く|Please *write* your name here.|ここにお名前を書いてください。
+same|adj|同じ|We are in the *same* class.|私たちは同じクラスです。
+lot|n|たくさん（a lot of）|I have *a lot* of work today.|今日は仕事がたくさんある。
+great|adj|すばらしい；大きな|That's a *great* idea!|それはすばらしい考えだ！
+try|v|試す；努力する|*Try* this cake. It's delicious.|このケーキを食べてみて。おいしいよ。
+leave|v|去る；出発する；置いていく|The train *leaves* in five minutes.|電車は5分後に出発します。
+number|n|数；番号|What's your phone *number*?|電話番号は何番ですか。
+both|det|両方の|*Both* my parents work.|両親ともに働いています。
+own|adj|自分自身の|I want my *own* room.|自分の部屋が欲しい。
+part|n|部分；部品|This *part* of the city is quiet.|街のこの辺りは静かだ。
+point|n|点；要点|That's a good *point*.|それは良い指摘です。
+little|adj|小さい；少しの|I speak a *little* English.|英語を少し話します。
+help|v|助ける；手伝う|Can I *help* you?|何かお手伝いしましょうか。
+ask|v|尋ねる；頼む|May I *ask* a question?|質問してもいいですか。
+meet|v|会う；（基準などを）満たす|Nice to *meet* you.|はじめまして。
+start|v|始める；始まる|The meeting will *start* soon.|会議はまもなく始まります。
+talk|v|話す|Can we *talk* for a minute?|少し話せますか。
+something|pron|何か|I want *something* to drink.|何か飲み物が欲しい。
+put|v|置く|*Put* your bag here.|かばんをここに置いてください。
+another|det|もう1つの；別の|Would you like *another* cup of tea?|紅茶をもう1杯いかがですか。
+become|v|〜になる|She *became* a doctor.|彼女は医者になった。
+interest|n|興味；利子|I have an *interest* in history.|私は歴史に興味がある。
+country|n|国；田舎|Japan is a beautiful *country*.|日本は美しい国です。
+old|adj|古い；年をとった|This is an *old* bridge.|これは古い橋です。
+each|det|それぞれの|*Each* room has a window.|それぞれの部屋に窓がある。
+school|n|学校|My son walks to *school*.|息子は歩いて通学しています。
+late|adj|遅れた；遅い|Sorry, I'm *late*.|遅れてすみません。
+high|adj|高い|The mountain is very *high*.|その山はとても高い。
+different|adj|異なる|We have *different* opinions.|私たちは意見が異なる。
+off|adv|離れて；（電源が）切れて|Please turn *off* the lights.|電気を消してください。
+next|adj|次の|See you *next* week.|また来週。
+end|n|終わり；端|Turn left at the *end* of the street.|通りの突き当たりを左に曲がってください。
+live|v|住む；生きる|I *live* in Tokyo.|私は東京に住んでいます。
+why|adv|なぜ|*Why* are you laughing?|なぜ笑っているの？
+while|conj|〜する間に|I read a book *while* I waited.|待っている間に本を読んだ。
+world|n|世界|English is spoken all over the *world*.|英語は世界中で話されている。
+week|n|週|I go to the gym twice a *week*.|週に2回ジムに通っています。
+play|v|遊ぶ；（スポーツ・楽器を）する|Let's *play* tennis.|テニスをしよう。
+might|aux|〜かもしれない|It *might* snow tonight.|今夜は雪が降るかもしれない。
+must|aux|〜しなければならない|You *must* wear a helmet on site.|現場ではヘルメットを着用しなければならない。
+home|n|家；家庭|I'm going *home* now.|今から帰宅します。
+never|adv|決して〜ない|I have *never* been to Paris.|パリに行ったことはありません。
+include|v|含む|The price *includes* breakfast.|料金には朝食が含まれています。
+course|n|講座；進路；（of courseで）もちろん|I'm taking an English *course*.|英語の講座を受講しています。
+house|n|家|They live in a big *house*.|彼らは大きな家に住んでいる。
+report|n|報告（書）|Please send me the *report* by noon.|正午までに報告書を送ってください。
+group|n|集団；グループ|We work in small *groups*.|私たちは少人数のグループで作業します。
+case|n|場合；事例；箱|In that *case*, let's cancel the trip.|その場合は旅行を中止しよう。
+woman|n|女性|The *woman* at the desk can help you.|受付の女性が対応してくれます。
+around|prep|〜の周りに；約|We walked *around* the lake.|私たちは湖の周りを歩いた。
+book|n|本；（動詞）予約する|I *booked* a table for two.|2人分の席を予約した。
+family|n|家族|I have a large *family*.|私は大家族です。
+seem|v|〜のように見える|She *seems* tired today.|彼女は今日疲れているようだ。
+let|v|〜させる|*Let* me check my schedule.|予定を確認させてください。
+again|adv|再び|Could you say that *again*?|もう一度言っていただけますか。
+kind|n|種類；（形容詞）親切な|What *kind* of music do you like?|どんな種類の音楽が好きですか。
+keep|v|保つ；持ち続ける|Please *keep* the door closed.|ドアを閉めたままにしてください。
+hear|v|聞こえる；聞く|I can't *hear* you well.|よく聞こえません。
+system|n|システム；体系|The new booking *system* is easy to use.|新しい予約システムは使いやすい。
+every|det|毎〜；すべての|I check my email *every* morning.|毎朝メールを確認します。
+question|n|質問；問題|Can I ask you a *question*?|質問してもいいですか。
+during|prep|〜の間（ずっと）|Please don't talk *during* the test.|テスト中は話さないでください。
+always|adv|いつも|She is *always* on time.|彼女はいつも時間通りです。
+big|adj|大きい|That's a *big* dog.|大きな犬だね。
+set|v|置く；設定する|I *set* my alarm for six.|目覚ましを6時にセットした。
+small|adj|小さい|We live in a *small* town.|私たちは小さな町に住んでいます。
+study|v|勉強する；研究する|I *study* English every day.|毎日英語を勉強しています。
+follow|v|ついて行く；従う|Please *follow* me.|私についてきてください。
+begin|v|始める；始まる|The concert *begins* at seven.|コンサートは7時に始まります。
+important|adj|重要な|Safety is the most *important* thing.|安全が最も重要なことだ。
+since|prep|〜以来|I have lived here *since* 2015.|2015年からここに住んでいます。
+run|v|走る；運行する；運営する|The trains *run* every ten minutes.|電車は10分ごとに運行しています。
+under|prep|〜の下に|The cat is *under* the table.|猫はテーブルの下にいる。
+turn|v|曲がる；回す|*Turn* right at the next corner.|次の角を右に曲がってください。
+few|det|少数の（a fewで「いくつか」）|I have a *few* friends in London.|ロンドンに何人か友人がいます。
+bring|v|持ってくる；連れてくる|Please *bring* your passport.|パスポートを持ってきてください。
+early|adj|早い|I got up *early* this morning.|今朝は早く起きた。
+hand|n|手|Raise your *hand* if you know the answer.|答えが分かったら手を挙げてください。
+state|n|状態；州；国家|The house is in a good *state*.|その家は良い状態だ。
+move|v|動く；動かす；引っ越す|We *moved* to Osaka last year.|昨年大阪に引っ越しました。
+money|n|お金|I don't have much *money* with me.|手持ちのお金があまりない。
+fact|n|事実|In *fact*, I've never been there.|実は、そこに行ったことがない。
+however|adv|しかしながら|It was expensive. *However*, it was worth it.|高かった。しかし、その価値はあった。
+area|n|地域；領域|This *area* is famous for apples.|この地域はりんごで有名だ。
+provide|v|提供する|The hotel *provides* free Wi-Fi.|そのホテルは無料Wi-Fiを提供している。
+name|n|名前|May I have your *name*, please?|お名前を伺ってもよろしいですか。
+read|v|読む|I *read* the newspaper on the train.|電車の中で新聞を読みます。
+friend|n|友達|She is my best *friend*.|彼女は私の親友です。
+month|n|月；1か月|I'll visit you next *month*.|来月あなたを訪ねます。
+large|adj|大きい；広い|This is a *large* city.|ここは大きな都市だ。
+business|n|事業；仕事；商売|He runs a small *business*.|彼は小さな事業を経営している。
+without|prep|〜なしで|I can't live *without* coffee.|コーヒーなしでは生きられない。
+information|n|情報|For more *information*, visit our website.|詳しい情報はウェブサイトをご覧ください。
+open|v|開ける；開く|What time does the shop *open*?|その店は何時に開きますか。
+order|n|注文；順序；命令|Can I take your *order*?|ご注文をお伺いしましょうか。
+government|n|政府|The *government* announced a new plan.|政府は新しい計画を発表した。
+word|n|単語；言葉|I don't know this *word*.|この単語は知りません。
+issue|n|問題；（雑誌の）号|We need to discuss this *issue*.|この問題について話し合う必要がある。
+market|n|市場|We bought fresh fruit at the *market*.|市場で新鮮な果物を買った。
+pay|v|支払う|Can I *pay* by card?|カードで払えますか。
+build|v|建てる|They are *building* a new station.|新しい駅を建設中だ。
+hold|v|持つ；開催する|We will *hold* a meeting on Monday.|月曜日に会議を開きます。
+service|n|サービス；業務；（列車の）運行|The train *service* was suspended due to snow.|雪のため列車の運行が見合わされた。
+against|prep|〜に反対して；〜にもたれて|Most people voted *against* the plan.|ほとんどの人がその計画に反対票を投じた。
+believe|v|信じる|I *believe* you.|あなたを信じます。
+second|adj|2番目の；（名詞）秒|This is my *second* time here.|ここに来るのは2回目です。
+though|conj|〜だけれども|*Though* it was raining, we went out.|雨が降っていたけれど、出かけた。
+yes|int|はい|*Yes*, I understand.|はい、分かりました。
+love|v|愛する；大好きである|I *love* this song.|この歌が大好きです。
+increase|v|増える；増やす|The number of visitors *increased* this year.|今年は訪問者数が増えた。
+job|n|仕事；職|She got a new *job*.|彼女は新しい仕事に就いた。
+plan|n|計画|What's your *plan* for the weekend?|週末の予定は何ですか。
+result|n|結果|The test *results* were good.|試験の結果は良かった。
+away|adv|離れて；去って|The station is two kilometers *away*.|駅は2キロ離れています。
+example|n|例|Can you give me an *example*?|例を挙げてもらえますか。
+happen|v|起こる|What *happened* here?|ここで何が起きたのですか。
+offer|v|申し出る；提供する|They *offered* me a job.|彼らは私に仕事を提示した。
+young|adj|若い|He is too *young* to drive.|彼は運転するには若すぎる。
+close|v|閉める；閉まる|Please *close* the window.|窓を閉めてください。
+program|n|番組；プログラム；計画|This training *program* lasts three days.|この研修プログラムは3日間です。
+lead|v|導く；先頭に立つ|She *leads* the project team.|彼女はプロジェクトチームを率いている。
+buy|v|買う|I want to *buy* a new bike.|新しい自転車を買いたい。
+understand|v|理解する|I don't *understand* this sentence.|この文が理解できません。
+thank|v|感謝する|*Thank* you for your help.|手伝ってくれてありがとう。
+far|adv|遠くに|Is it *far* from here?|ここから遠いですか。
+today|n|今日|*Today* is my birthday.|今日は私の誕生日です。
+hour|n|1時間|The trip takes about an *hour*.|移動には約1時間かかります。
+student|n|学生；生徒|She is a university *student*.|彼女は大学生です。
+face|n|顔；（動詞）直面する|We *face* many challenges.|私たちは多くの課題に直面している。
+hope|v|望む；願う|I *hope* you feel better soon.|早く良くなるといいですね。
+idea|n|考え；アイデア|I have no *idea*.|全く分かりません。
+cost|n|費用；（動詞）（費用が）かかる|How much does it *cost*?|それはいくらかかりますか。
+less|det|より少ない|I want to spend *less* money.|お金をもっと使わないようにしたい。
+room|n|部屋；余地|Is there *room* for one more person?|もう1人分の余地はありますか。
+until|prep|〜まで（ずっと）|The shop is open *until* nine.|その店は9時まで開いている。
+reason|n|理由|What's the *reason* for the delay?|遅延の理由は何ですか。
+form|n|形；用紙|Please fill out this *form*.|この用紙に記入してください。
+spend|v|（お金を）使う；（時間を）過ごす|I *spent* the weekend with my family.|週末を家族と過ごした。
+head|n|頭；長|The *head* of the department is in a meeting.|部長は会議中です。
+car|n|車；（列車の）車両|The first *car* is for women only.|先頭車両は女性専用です。
+learn|v|学ぶ；身につける|I want to *learn* to cook.|料理を覚えたい。
+level|n|水準；レベル；高さ|What is your English *level*?|あなたの英語のレベルはどのくらいですか。
+person|n|人|She is a very kind *person*.|彼女はとても親切な人だ。
+experience|n|経験|Do you have any *experience* in sales?|営業の経験はありますか。
+once|adv|一度；かつて|I've been there *once*.|そこには一度行ったことがある。
+member|n|一員；メンバー|He is a *member* of the tennis club.|彼はテニス部の一員だ。
+enough|det|十分な|We have *enough* time.|十分な時間がある。
+bad|adj|悪い|The weather was *bad* yesterday.|昨日は天気が悪かった。
+city|n|都市；市|Kyoto is an old *city*.|京都は古い都市だ。
+night|n|夜|The work is done at *night*.|その作業は夜間に行われる。
+able|adj|〜できる（be able to）|Will you be *able* to come?|来られそうですか。
+support|v|支える；支持する|My family always *supports* me.|家族はいつも私を支えてくれる。
+whether|conj|〜かどうか|I don't know *whether* he will come.|彼が来るかどうか分からない。
+line|n|線；（鉄道の）路線；列|Take the Yamanote *Line* to Shibuya.|山手線で渋谷へ行ってください。
+present|n|贈り物；現在|This is a *present* for you.|これはあなたへの贈り物です。
+side|n|側；面|Please stand on the left *side*.|左側に立ってください。
+quite|adv|かなり|It's *quite* cold this morning.|今朝はかなり寒い。
+although|conj|〜だけれども|*Although* he was tired, he kept working.|疲れていたが、彼は働き続けた。
+sure|adj|確信して|Are you *sure*?|本当に？（確かですか）
+term|n|用語；期間；（複数で）条件|What does this technical *term* mean?|この専門用語はどういう意味ですか。
+least|adv|最も少なく（at leastで「少なくとも」）|It will take at *least* an hour.|少なくとも1時間はかかります。
+age|n|年齢；時代|What *age* is your son?|息子さんは何歳ですか。
+low|adj|低い|The bridge is very *low*.|その橋はとても低い。
+speak|v|話す|Do you *speak* Japanese?|日本語を話せますか。
+within|prep|〜以内に|Please reply *within* three days.|3日以内に返信してください。
+process|n|過程；手順|The application *process* is simple.|申請の手順は簡単です。
+public|adj|公共の；公の|Please use *public* transport.|公共交通機関をご利用ください。
+often|adv|しばしば|I *often* go jogging in the morning.|朝によくジョギングをします。
+train|n|列車；電車；（動詞）訓練する|The *train* was ten minutes late.|電車は10分遅れた。
+possible|adj|可能な|Is it *possible* to change my seat?|座席を変えることは可能ですか。
+actually|adv|実際に；実は|*Actually*, I've already finished it.|実は、もう終わらせました。
+rather|adv|むしろ；かなり|I'd *rather* stay at home.|むしろ家にいたい。
+view|n|眺め；見解|The *view* from the top is amazing.|頂上からの眺めはすばらしい。
+together|adv|一緒に|Let's have lunch *together*.|一緒に昼食をとりましょう。
+consider|v|よく考える；〜とみなす|Please *consider* my proposal.|私の提案を検討してください。
+price|n|価格|The *price* of fuel has gone up.|燃料の価格が上がった。
+parent|n|親|My *parents* live in Nagano.|両親は長野に住んでいます。
+hard|adj|難しい；硬い；（副詞）一生懸命に|She works very *hard*.|彼女はとても熱心に働く。
+party|n|パーティー；（契約の）当事者|We are having a *party* on Saturday.|土曜日にパーティーをします。
+local|adj|地元の；各駅停車の|Take the *local* train, not the express.|急行ではなく各駅停車に乗ってください。
+control|n|制御；管理；（動詞）制御する|The traffic *control* center manages all trains.|運行管理センターが全列車を管理している。
+already|adv|すでに|I've *already* had lunch.|もう昼食を済ませました。
+concern|n|心配；関心事|Safety is our main *concern*.|安全が私たちの最大の関心事です。
+product|n|製品|This *product* is made in Japan.|この製品は日本製です。
+lose|v|失う；負ける|Don't *lose* your ticket.|切符をなくさないでね。
+story|n|話；物語|Tell me a *story*.|お話をして。
+almost|adv|ほとんど|I'm *almost* done.|ほぼ終わりました。
+continue|v|続ける；続く|Please *continue*.|続けてください。
+stand|v|立つ；我慢する|Please *stand* behind the yellow line.|黄色い線の内側までお下がりください。
+whole|adj|全体の|I spent the *whole* day at home.|一日中家で過ごした。
+yet|adv|まだ（否定）；もう（疑問）|Have you finished *yet*?|もう終わりましたか。
+rate|n|割合；料金；速度|The unemployment *rate* fell last year.|昨年失業率が下がった。
+care|n|注意；世話；（動詞）気にかける|Handle the box with *care*.|箱は注意して扱ってください。
+expect|v|予期する；期待する|We *expect* heavy snow tonight.|今夜は大雪が予想される。
+effect|n|効果；影響|The medicine had a good *effect*.|薬はよく効いた。
+sort|n|種類；（動詞）分類する|What *sort* of work do you do?|どんな種類のお仕事をしていますか。
+ever|adv|これまでに|Have you *ever* been to Canada?|カナダに行ったことはありますか。
+anything|pron|何か；何でも|Is there *anything* I can do?|何かできることはありますか。
+cause|v|引き起こす；（名詞）原因|Heavy rain *caused* the delay.|大雨が遅延を引き起こした。
+fall|v|落ちる；倒れる；（名詞）秋|Be careful not to *fall*.|転ばないように気をつけて。
+deal|n|取引；（a great dealで）たくさん|We made a *deal* with the supplier.|私たちは納入業者と取引をまとめた。
+water|n|水|Can I have some *water*?|お水をもらえますか。
+send|v|送る|I'll *send* you the file.|ファイルを送ります。
+allow|v|許す；〜させておく|Smoking is not *allowed* here.|ここは禁煙です。
+soon|adv|すぐに；まもなく|The bus will come *soon*.|バスはまもなく来ます。
+watch|v|じっと見る；注意する|*Watch* your step.|足元に気をつけてください。
+base|n|基礎；拠点|Our *base* is in Nagano.|私たちの拠点は長野にあります。
+probably|adv|たぶん|It will *probably* rain tomorrow.|明日はたぶん雨だろう。
+suggest|v|提案する|I *suggest* we take a break.|休憩をとることを提案します。
+past|n|過去；（前置詞）〜を過ぎて|It's ten *past* seven.|7時10分です。
+power|n|力；電力；権力|There was a *power* failure last night.|昨夜停電があった。
+test|n|試験；検査|We will *test* the new system tomorrow.|明日新システムを試験します。
+visit|v|訪れる|I want to *visit* Kyoto.|京都を訪れたい。
+center|n|中心；センター|The hotel is in the *center* of the city.|そのホテルは市の中心部にある。
+grow|v|成長する；育てる|Children *grow* so fast.|子どもは成長が早い。
+nothing|pron|何も〜ない|There is *nothing* in the box.|箱には何も入っていない。
+return|v|戻る；返す|Please *return* the book by Friday.|金曜日までに本を返してください。
+mother|n|母|My *mother* is a nurse.|母は看護師です。
+walk|v|歩く|I *walk* my dog every evening.|毎晩犬を散歩させます。
+matter|n|事柄；問題；（動詞）重要である|It doesn't *matter*.|大したことではありません。
+mind|n|心；精神；（動詞）気にする|Do you *mind* if I open the window?|窓を開けてもかまいませんか。
+value|n|価値；値|This old coin has great *value*.|この古い硬貨には大きな価値がある。
+office|n|事務所；オフィス|I'll be in the *office* until six.|6時まで事務所にいます。
+record|n|記録；（動詞）記録する|Please keep a *record* of your work.|作業の記録をつけてください。
+stay|v|滞在する；とどまる|How long will you *stay* in Japan?|日本にはどのくらい滞在しますか。
+force|n|力；（動詞）強いる|The wind *force* was very strong.|風の力がとても強かった。
+stop|v|止まる；止める|The train *stops* at every station.|その電車は各駅に停まる。
+several|det|いくつかの|I've read the book *several* times.|その本は何度か読みました。
+light|n|光；明かり；（形容詞）軽い|Turn on the *light*, please.|明かりをつけてください。
+develop|v|発展させる；開発する|They *developed* a new app.|彼らは新しいアプリを開発した。
+remember|v|覚えている；思い出す|I can't *remember* his name.|彼の名前が思い出せない。
+bit|n|少し（a bit）|I'm a *bit* tired.|少し疲れています。
+share|v|共有する；分け合う|Let's *share* the cost.|費用を分担しよう。
+real|adj|本当の；現実の|Is that a *real* diamond?|それは本物のダイヤモンドですか。
+answer|n|答え；（動詞）答える|Please *answer* the phone.|電話に出てください。
+sit|v|座る|May I *sit* here?|ここに座ってもいいですか。
+figure|n|数字；図；人物|Look at *Figure* 3 on page ten.|10ページの図3を見てください。
+letter|n|手紙；文字|I wrote a *letter* to my grandmother.|祖母に手紙を書いた。
+decide|v|決める|I *decided* to study abroad.|留学することに決めた。
+language|n|言語|How many *languages* do you speak?|何か国語を話しますか。
+subject|n|科目；主題；件名|What's your favorite *subject*?|好きな科目は何ですか。
+class|n|授業；クラス；等級|The *class* starts at nine.|授業は9時に始まる。
+development|n|発展；開発|The *development* of the new line took ten years.|新路線の開発に10年かかった。
+town|n|町|I grew up in a small *town*.|私は小さな町で育った。
+half|n|半分|Cut the apple in *half*.|りんごを半分に切って。
+minute|n|分；ちょっとの間|Wait a *minute*, please.|少々お待ちください。
+food|n|食べ物|The *food* here is great.|ここの食べ物はすばらしい。
+break|v|壊す；壊れる；（名詞）休憩|Let's take a *break*.|休憩しましょう。
+clear|adj|明らかな；晴れた；澄んだ|Is that *clear*?|お分かりいただけましたか。
+future|n|未来；将来|What do you want to do in the *future*?|将来何をしたいですか。
+either|det|どちらかの；（否定で）〜もまた|You can take *either* road.|どちらの道を行ってもいいですよ。
+ago|adv|〜前に|I came here two years *ago*.|2年前にここに来ました。
+per|prep|〜につき|The speed limit is 30 km *per* hour.|制限速度は時速30キロです。
+remain|v|残る；〜のままである|Please *remain* seated.|座ったままでお待ちください。
+top|n|頂上；最上部|We reached the *top* of the mountain.|私たちは山頂に到着した。
+among|prep|〜の間で（3つ以上）|He is popular *among* students.|彼は学生の間で人気がある。
+win|v|勝つ；獲得する|Our team *won* the game.|私たちのチームが試合に勝った。
+color|n|色|What *color* is your car?|あなたの車は何色ですか。
+involve|v|含む；関わらせる|The job *involves* a lot of travel.|その仕事には出張が多く伴う。
+reach|v|到着する；届く|We *reached* the hotel at midnight.|真夜中にホテルに到着した。
+social|adj|社会の；社交の|She is very active on *social* media.|彼女はSNSでとても活発だ。
+period|n|期間；時代|The work will be done over a *period* of two weeks.|その作業は2週間かけて行われる。
+across|prep|〜を横切って；〜の向こう側に|The bank is *across* the street.|銀行は通りの向かい側にあります。
+note|n|メモ；注記；（動詞）注意する|I took *notes* during the meeting.|会議中にメモを取った。
+history|n|歴史|I'm interested in Japanese *history*.|日本の歴史に興味があります。
+create|v|創り出す|The new factory will *create* 500 jobs.|新工場は500人の雇用を生み出す。
+drive|v|運転する|Can you *drive*?|運転できますか。
+along|prep|〜に沿って|We walked *along* the river.|私たちは川沿いを歩いた。
+type|n|型；種類；（動詞）入力する|What *type* of rail is used here?|ここではどの種類のレールが使われていますか。
+sound|n|音；（動詞）〜に聞こえる|That *sounds* good.|それはいいですね。
+eye|n|目|She has blue *eyes*.|彼女は青い目をしている。
+music|n|音楽|I listen to *music* on the train.|電車の中で音楽を聴きます。
+game|n|試合；ゲーム|Did you watch the *game* last night?|昨夜の試合を見ましたか。
+political|adj|政治の|They discussed *political* issues.|彼らは政治問題について議論した。
+free|adj|自由な；無料の；暇な|Are you *free* this afternoon?|今日の午後は空いていますか。
+receive|v|受け取る|Did you *receive* my email?|私のメールを受け取りましたか。
+moment|n|瞬間；ちょっとの間|One *moment*, please.|少々お待ちください。
+sale|n|販売；特売|These shoes are on *sale*.|この靴はセール中です。
+policy|n|方針；政策|Our company has a strict safety *policy*.|当社には厳しい安全方針がある。
+further|adv|さらに；それ以上|For *further* details, please contact us.|さらに詳しくはお問い合わせください。
+body|n|体；団体|Exercise is good for your *body*.|運動は体に良い。
+require|v|必要とする；要求する|This job *requires* special skills.|この仕事には特別な技能が必要だ。
+wait|v|待つ|Please *wait* here.|ここでお待ちください。
+general|adj|一般的な；全体の|This is a *general* rule.|これは一般的な規則です。
+appear|v|現れる；〜のように見える|A rainbow *appeared* in the sky.|空に虹が現れた。
+toward|prep|〜の方へ；〜に向けて|He walked *toward* the station.|彼は駅の方へ歩いた。
+team|n|チーム|Our *team* inspects the track every week.|私たちのチームは毎週線路を点検している。
+easy|adj|簡単な|This question is *easy*.|この問題は簡単だ。
+individual|adj|個々の；（名詞）個人|Each *individual* has different needs.|一人ひとりが異なるニーズを持っている。
+full|adj|いっぱいの|The train was *full* this morning.|今朝の電車は満員だった。
+black|adj|黒い|I'd like *black* coffee.|ブラックコーヒーをください。
+sense|n|感覚；意味|That makes *sense*.|それは筋が通っている（なるほど）。
+perhaps|adv|ひょっとすると|*Perhaps* we should ask him.|ひょっとすると彼に聞くべきかもしれない。
+add|v|加える|*Add* some salt to the soup.|スープに塩を少し加えて。
+rule|n|規則|You must follow the safety *rules*.|安全規則に従わなければならない。
+pass|v|通り過ぎる；合格する；手渡す|Could you *pass* me the salt?|塩を取っていただけますか。
+produce|v|生産する|This factory *produces* rails.|この工場はレールを生産している。
+sell|v|売る|They *sell* fresh bread here.|ここでは焼きたてのパンを売っている。
+short|adj|短い；背が低い|It's a *short* walk from here.|ここから歩いてすぐです。
+agree|v|同意する|I *agree* with you.|あなたに賛成です。
+law|n|法律|It's against the *law*.|それは法律違反だ。
+everything|pron|すべてのこと|*Everything* is ready.|すべて準備ができています。
+research|n|研究；調査|She does *research* on climate change.|彼女は気候変動の研究をしている。
+cover|v|覆う；扱う；（費用を）まかなう|Snow *covered* the tracks.|雪が線路を覆った。
+paper|n|紙；新聞；論文|I need a piece of *paper*.|紙が1枚必要です。
+position|n|位置；職；立場|What *position* do you play?|どのポジションでプレーしていますか。
+near|prep|〜の近くに|Is there a convenience store *near* here?|この近くにコンビニはありますか。
+human|adj|人間の|Most accidents are caused by *human* error.|ほとんどの事故は人為的ミスが原因だ。
+computer|n|コンピューター|I use a *computer* at work.|仕事でコンピューターを使います。
+situation|n|状況|The *situation* is getting better.|状況は良くなってきている。
+staff|n|職員；スタッフ（集合的）|Our *staff* will help you.|当スタッフがお手伝いします。
+activity|n|活動|What *activities* do you enjoy?|どんな活動を楽しんでいますか。
+film|n|映画；フィルム|Let's see a *film* tonight.|今夜映画を見よう。
+morning|n|朝；午前|I go running every *morning*.|毎朝ランニングに行きます。
+war|n|戦争|The *war* ended in 1945.|戦争は1945年に終わった。
+account|n|口座；アカウント；説明|I opened a bank *account*.|銀行口座を開設した。
+shop|n|店|The *shop* closes at eight.|その店は8時に閉まる。
+major|adj|主要な；重大な|There was a *major* delay on the line.|その路線で大幅な遅延があった。
+someone|pron|誰か|*Someone* is knocking on the door.|誰かがドアをノックしている。
+above|prep|〜の上に；〜以上|The temperature is *above* 30 degrees.|気温は30度を超えている。
+design|n|設計；デザイン|I like the *design* of this chair.|この椅子のデザインが好きです。
+event|n|出来事；行事|The *event* was a big success.|そのイベントは大成功だった。
+special|adj|特別な|Today is a *special* day.|今日は特別な日です。
+sometimes|adv|ときどき|I *sometimes* work from home.|ときどき在宅勤務をします。
+condition|n|状態；条件|The track is in good *condition*.|線路は良好な状態です。
+carry|v|運ぶ；持ち歩く|This train *carries* about 1,000 passengers.|この列車は約1,000人の乗客を運ぶ。
+choose|v|選ぶ|You can *choose* any seat.|どの席を選んでもいいですよ。
+father|n|父|My *father* is a train driver.|父は電車の運転士です。
+decision|n|決定|We need to make a *decision* today.|今日中に決定する必要がある。
+table|n|テーブル；表|See the *table* below for details.|詳細は下の表をご覧ください。
+certain|adj|確かな；ある〜|I'm *certain* he will come.|彼はきっと来ると確信している。
+forward|adv|前へ|Please move *forward*.|前へお進みください。
+main|adj|主な|What is the *main* reason?|主な理由は何ですか。
+die|v|死ぬ；枯れる|The plants *died* because of the cold.|寒さで植物が枯れた。
+bear|v|耐える；（荷重を）支える；（名詞）熊|The bridge can *bear* heavy loads.|その橋は重い荷重に耐えられる。
+cut|v|切る；削減する|We need to *cut* costs.|コストを削減する必要がある。
+describe|v|描写する；説明する|Can you *describe* the problem?|問題を説明してもらえますか。
+himself|pron|彼自身|He fixed the bike *himself*.|彼は自分で自転車を直した。
+available|adj|利用できる；手が空いている|Is this seat *available*?|この席は空いていますか。
+especially|adv|特に|I love fruit, *especially* apples.|果物、特にりんごが大好きです。
+strong|adj|強い|We had *strong* winds last night.|昨夜は強い風が吹いた。
+rise|v|上がる；昇る|Prices continue to *rise*.|物価は上がり続けている。
+girl|n|少女；女の子|The *girl* is reading a book.|その少女は本を読んでいる。
+maybe|adv|たぶん；もしかしたら|*Maybe* we can meet tomorrow.|たぶん明日会えるかもしれない。
+community|n|地域社会；共同体|The station is important for the local *community*.|その駅は地域社会にとって重要だ。
+else|adv|ほかに|Anything *else*?|ほかに何かありますか。
+particular|adj|特定の；特別な|Is there any *particular* reason?|何か特別な理由がありますか。
+role|n|役割|Safety staff play an important *role*.|安全担当者は重要な役割を果たしている。
+join|v|参加する；加わる|Would you like to *join* us?|ご一緒しませんか。
+difficult|adj|難しい|This exam is very *difficult*.|この試験はとても難しい。
+please|adv|どうぞ；お願いします|*Please* be quiet.|静かにしてください。
+detail|n|詳細|Please send me the *details*.|詳細を送ってください。
+difference|n|違い|What's the *difference* between these two?|この2つの違いは何ですか。
+action|n|行動；措置|We must take *action* now.|今すぐ行動しなければならない。
+health|n|健康|Walking is good for your *health*.|歩くことは健康に良い。
+eat|v|食べる|What did you *eat* for lunch?|昼食に何を食べましたか。
+step|n|一歩；段階；（階段の）段|Mind the *step*.|段差にご注意ください。
+true|adj|本当の|Is it *true*?|それは本当ですか。
+phone|n|電話|Can I use your *phone*?|電話を借りてもいいですか。
+themselves|pron|彼ら自身|They built the house *themselves*.|彼らは自分たちで家を建てた。
+draw|v|描く；引く|Can you *draw* a map for me?|地図を描いてもらえますか。
+white|adj|白い|She wore a *white* dress.|彼女は白いドレスを着ていた。
+date|n|日付；デート|What's the *date* today?|今日は何日ですか。
+practice|n|練習；慣行|*Practice* makes perfect.|習うより慣れよ（練習が完璧を作る）。
+model|n|模型；型；手本|This is the latest *model*.|これは最新型です。
+raise|v|上げる；（資金を）集める；（問題を）提起する|*Raise* your hand if you have a question.|質問があれば手を挙げてください。
+customer|n|顧客|The *customer* is always right.|お客様は常に正しい。
+front|n|前部；正面|Let's meet in *front* of the station.|駅前で会いましょう。
+explain|v|説明する|Could you *explain* it again?|もう一度説明していただけますか。
+door|n|ドア；扉|Please mind the closing *doors*.|閉まるドアにご注意ください。
+outside|adv|外で|Let's eat *outside*.|外で食べよう。
+behind|prep|〜の後ろに|There is a garden *behind* the house.|家の裏に庭がある。
+economic|adj|経済の|The country is in an *economic* crisis.|その国は経済危機にある。
+site|n|現場；用地；サイト|Wear safety boots on *site*.|現場では安全靴を履いてください。
+approach|n|方法；接近；（動詞）近づく|We need a new *approach* to this problem.|この問題には新しい取り組み方が必要だ。
+teacher|n|教師|My English *teacher* is from Canada.|私の英語の先生はカナダ出身です。
+land|n|陸地；土地；（動詞）着陸する|The plane *landed* safely.|飛行機は無事着陸した。
+charge|n|料金；責任；充電|Who is in *charge* of this project?|このプロジェクトの責任者は誰ですか。
+finally|adv|ついに；最後に|We *finally* arrived home.|ついに家に着いた。
+sign|n|標識；兆し；（動詞）署名する|Please *sign* the contract here.|ここに契約書の署名をお願いします。
+two|num|2|I have *two* sisters.|姉妹が2人います。
+three|num|3|The meeting lasted *three* hours.|会議は3時間続いた。
+four|num|4|There are *four* seasons in Japan.|日本には四季がある。
+five|num|5|The shop opens at *five*.|その店は5時に開く。
+million|num|100万|The city has a population of two *million*.|その都市の人口は200万人だ。
+six|num|6|I get up at *six* every day.|毎日6時に起きます。
+hundred|num|100|About a *hundred* people came.|約100人が来た。
+ten|num|10|The train arrives in *ten* minutes.|電車は10分後に到着します。
+thousand|num|1,000|This bridge is a *thousand* years old.|この橋は千年前のものだ。
+seven|num|7|There are *seven* days in a week.|1週間は7日です。
+eight|num|8|The office opens at *eight*.|事務所は8時に開きます。
+nine|num|9|I have *nine* cousins.|いとこが9人います。
+billion|num|10億|The project cost three *billion* yen.|そのプロジェクトには30億円かかった。
+twenty|num|20|She is *twenty* years old.|彼女は20歳です。
+thirty|num|30|It takes *thirty* minutes by bus.|バスで30分かかります。
+fifty|num|50|*Fifty* people attended the meeting.|50人が会議に出席した。
+twelve|num|12|There are *twelve* months in a year.|1年は12か月です。
+fifteen|num|15|The break is *fifteen* minutes long.|休憩は15分です。
+nineteen|num|19|He was *nineteen* when he started working.|彼は19歳で働き始めた。
+forty|num|40|The train can carry *forty* cars of freight.|その列車は40両の貨車を牽引できる。
+zero|num|0；ゼロ|The temperature dropped below *zero*.|気温が氷点下に下がった。
+eighteen|num|18|You must be *eighteen* or older.|18歳以上である必要があります。
+eleven|num|11|The last train leaves at *eleven*.|終電は11時に出ます。
+sixteen|num|16|My daughter is *sixteen*.|娘は16歳です。
+sixty|num|60|There are *sixty* minutes in an hour.|1時間は60分だ。
+fourteen|num|14|The tour lasts *fourteen* days.|そのツアーは14日間だ。
+eighty|num|80|My grandfather is *eighty*.|祖父は80歳です。
+seventy|num|70|About *seventy* percent of the line is double track.|その路線の約70%が複線だ。
+seventeen|num|17|She moved to Tokyo at *seventeen*.|彼女は17歳で東京に引っ越した。
+thirteen|num|13|*Thirteen* people missed the last train.|13人が終電に乗り遅れた。
+ninety|num|90|The old bridge is *ninety* years old.|その古い橋は築90年だ。
+trillion|num|1兆|The national debt is over a thousand *trillion* yen.|国の借金は1000兆円を超えている。
+August|n|8月|Summer vacation starts in *August*.|夏休みは8月に始まる。
+July|n|7月|My birthday is in *July*.|私の誕生日は7月です。
+Monday|n|月曜日|The office is closed on *Monday*.|事務所は月曜日休みです。
+October|n|10月|The leaves turn red in *October*.|10月に葉が紅葉する。
+February|n|2月|*February* is the coldest month here.|ここでは2月が最も寒い月だ。
+January|n|1月|We go skiing in *January*.|1月にスキーに行きます。
+June|n|6月|It rains a lot in *June*.|6月は雨が多い。
+Friday|n|金曜日|Let's go out on *Friday* night.|金曜の夜に出かけよう。
+Saturday|n|土曜日|I work part-time on *Saturday*.|土曜日にアルバイトをしています。
+Sunday|n|日曜日|We usually relax on *Sunday*.|日曜日はたいていのんびりします。
+Wednesday|n|水曜日|The meeting is on *Wednesday*.|会議は水曜日です。
+Thursday|n|木曜日|The report is due on *Thursday*.|報告書の締め切りは木曜日です。
+April|n|4月|The new school year starts in *April*.|新学期は4月に始まる。
+December|n|12月|*December* is a busy month.|12月は忙しい月だ。
+November|n|11月|We had the first snow in *November*.|11月に初雪が降った。
+Tuesday|n|火曜日|I have English class on *Tuesday*.|火曜日に英語の授業がある。
+September|n|9月|The typhoon season peaks in *September*.|台風シーズンは9月にピークを迎える。

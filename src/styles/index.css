@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== デザイントークン（ライト / ダーク） ===== */
+:root {
+  --bg: #f7f4ef;
+  --surface: #ffffff;
+  --surface-2: #f1ece4;
+  --text: #1b1f27;
+  --muted: #687082;
+  --border: #e6dfd4;
+  --brand: #e8892b;
+  --brand-strong: #c96d12;
+  --brand-soft: #fdebd6;
+  --rail: #0f8a7e;
+  --rail-soft: #d7f2ee;
+  --biz: #7c5cd6;
+  --biz-soft: #ebe5fb;
+  --gen: #2f74d0;
+  --gen-soft: #dfeafb;
+  --ok: #16a34a;
+  --ng: #dc2626;
+  --warn: #d97706;
+  --shadow: 0 1px 2px rgb(20 20 40 / 0.06), 0 4px 16px rgb(20 20 40 / 0.06);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0d1424;
+  --surface: #151e33;
+  --surface-2: #1c2741;
+  --text: #e9edf5;
+  --muted: #9aa5bb;
+  --border: #26324d;
+  --brand: #f29a45;
+  --brand-strong: #ffb36b;
+  --brand-soft: #3a2a1a;
+  --rail: #2cc2b1;
+  --rail-soft: #12302e;
+  --biz: #a58bf0;
+  --biz-soft: #261f42;
+  --gen: #6aa5f5;
+  --gen-soft: #172a47;
+  --ok: #34d399;
+  --ng: #f87171;
+  --warn: #fbbf24;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 20px rgb(0 0 0 / 0.25);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-rail: var(--rail);
+  --color-rail-soft: var(--rail-soft);
+  --color-biz: var(--biz);
+  --color-biz-soft: var(--biz-soft);
+  --color-gen: var(--gen);
+  --color-gen-soft: var(--gen-soft);
+  --color-ok: var(--ok);
+  --color-ng: var(--ng);
+  --color-warn: var(--warn);
+  --shadow-card: var(--shadow);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", system-ui, sans-serif;
+  --font-ipa: "Lucida Grande", "Arial Unicode MS", "Segoe UI", "Noto Sans", sans-serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior-y: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.ipa {
+  font-family: var(--font-ipa);
+  letter-spacing: 0.01em;
+}
+
+/* ターゲット語のハイライト（例文中の *word*） */
+mark.hl {
+  background: transparent;
+  color: var(--brand-strong);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.96); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop {
+  animation: pop 0.22s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

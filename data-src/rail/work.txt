@@ -1,0 +1,49 @@
+# 保線作業・機械
+track maintenance|track maintenance|保線；軌道保守|4|ˌtræk ˈmeɪntənəns||JIS E 1001;EN 13306|線路を保守する業務全般（JIS「保線」）。英国ではpermanent way maintenance、米国ではmaintenance of way (MOW)。|*Track maintenance* is mostly done at night.|保線作業は主に夜間に行われる。
+maintenance of way|maintenance of way|保線（米国の部門名）|6|ˌmeɪntənəns əv ˈweɪ||英国実務|米国鉄道の保線部門・業務の呼称（MOW）。|He works in the *maintenance of way* department.|彼は保線部門で働いている。
+tamping|tamping|つき固め|5|ˈtæmpɪŋ||JIS E 1001;一般用語|まくらぎ下の道床バラストを突き固めて、高低・通り・水準を整正する作業。|*Tamping* corrects the track geometry.|つき固めで軌道狂いを整正する。
+tamping machine|tamper|マルチプルタイタンパ（マルタイ）|5|ˈtæmpɪŋ məˌʃiːn|ˈtæmpɚ|JIS E 1001|軌道をこう上・整正しながら複数のまくらぎを同時につき固める大型機械。日本の「マルタイ」。|The *tamping machine* can treat 1 km of track per hour.|マルタイは1時間に1kmの軌道を整備できる。
+tie tamper|tie tamper|タイタンパ|6|ˈtaɪ ˌtæmpə|ˈtaɪ ˌtæmpɚ|JIS E 1001|小型・手持ち式のつき固め機械。局部的な補修に使う。|Use a *tie tamper* to fix the dipped joint.|継目落ちの補修にはタイタンパを使ってください。
+tamping tine|tamping tool|タンピングツール（つき固め爪）|6|ˈtæmpɪŋ taɪn|ˈtæmpɪŋ tuːl|一般用語|道床に差し込み振動させて砕石を締め固める爪。摩耗したら交換する。|Replace the worn *tamping tines* before the shift.|勤務前に摩耗したつき固め爪を交換してください。
+design tamping|design tamping|設計線形に基づくつき固め|6|dɪˈzaɪn ˌtæmpɪŋ||英国実務|測量した設計線形に合わせて軌道を整正するつき固め。平滑化（smoothing）方式より精度が高い。|*Design tamping* restores the original alignment.|設計つき固めで本来の線形に戻す。
+lifting|track raising|軌道こう上|6|ˈlɪftɪŋ|ˈtræk ˌreɪzɪŋ|JIS E 1001|軌道を持ち上げて高さを整えること。つき固めと組み合わせて行う。|The *lifting* was limited to 40 mm per pass.|1回あたりのこう上量は40mmに制限された。
+lining|lining|通り整正|6|ˈlaɪnɪŋ||JIS E 1001|軌道を左右に移動して通り狂いを直すこと。JISの「曲線整正」もこれに含まれる。|*Lining* the curve improved the ride quality.|曲線の通りを整正して乗り心地が改善した。
+stoneblowing|pneumatic ballast injection|ストーンブロー（吹込み工法）|6|ˈstəʊnbləʊɪŋ|njuːˌmætɪk ˈbæləst ɪnˌdʒɛkʃən|英国実務|まくらぎ下に小粒の砕石を空気で吹き込んで高さを調整する英国発祥の工法。道床を乱さない。|*Stoneblowing* gives longer-lasting results than tamping on some sites.|一部の箇所ではストーンブローの方がつき固めより効果が長持ちする。
+ballast regulator|ballast regulator|バラストレギュレータ（道床整理機）|6|ˈbæləst ˌreɡjuleɪtə|ˈbæləst ˌrɛɡjəleɪtɚ|JIS E 1001|道床バラストを所定の断面に整形する機械。JISの「道床整理」に用いる。|The *ballast regulator* shapes the shoulder after tamping.|つき固め後にバラストレギュレータが道床肩を整形する。
+ballast profiling|ballast profiling|道床整理|6|ˈbæləst ˌprəʊfaɪlɪŋ|ˈbæləst ˌproʊfaɪlɪŋ|JIS E 1001|道床の断面を所定の形に整えること。|*Ballast profiling* keeps the shoulder at the correct width.|道床整理で道床肩を正しい幅に保つ。
+ballast sweeper|ballast broom|バラストスイーパ|6|ˈbæləst ˌswiːpə|ˈbæləst bruːm|JIS E 1001|まくらぎ上面やレール周りの余分なバラストを掃き取る機械。|The *ballast sweeper* cleared stones from the sleepers.|バラストスイーパがまくらぎ上の砕石を掃き取った。
+ballast cleaning|undercutting|道床交換（ふるい分け）|6|ˈbæləst ˌkliːnɪŋ|ˈʌndɚˌkʌtɪŋ|JIS E 1001|汚損した道床を掘り出し、ふるい分けて戻す（または新しい砕石に交換する）作業。|*Ballast cleaning* restores drainage and elasticity.|道床交換で排水性と弾性が回復する。
+ballast cleaner|undercutter|道床交換機（バラストクリーナ）|6|ˈbæləst ˌkliːnə|ˈʌndɚˌkʌtɚ|JIS E 1001|道床を連続的に掘削・ふるい分けする大型機械。|The *ballast cleaner* works at about 300 m per hour.|道床交換機は1時間に約300mの速度で作業する。
+dynamic track stabiliser|dynamic track stabilizer|ダイナミックトラックスタビライザ（DTS）|6|daɪˌnæmɪk ˌtræk ˈsteɪbəlaɪzə|daɪˌnæmɪk ˌtræk ˈsteɪbəlaɪzɚ|一般用語|軌道に振動と荷重を与えて道床を安定させ、つき固め後の横抵抗力を早く回復させる機械。|The *dynamic track stabiliser* allows a higher speed after tamping.|DTSによりつき固め後に高い速度で運転できる。
+rail grinding|rail grinding|レール削正|6|ˈreɪl ˌɡraɪndɪŋ||JIS E 1001;一般用語|砥石でレール頭部を削り、波状摩耗やRCFを除去し断面形状を整える作業。|*Rail grinding* extends the life of the rail.|レール削正はレールの寿命を延ばす。
+rail grinder|rail grinding train|レール削正車|6|ˈreɪl ˌɡraɪndə|ˈreɪl ˌɡraɪndɪŋ treɪn|一般用語|多数の砥石を持つ削正用の保守車両。|The *rail grinder* will work on this curve tonight.|今夜この曲線でレール削正車が作業する。
+rail milling|rail milling|レール削正（ミリング）|6|ˈreɪl ˌmɪlɪŋ||一般用語|回転刃で金属を削り取る削正方式。火花が少なく削正量が大きい。|*Rail milling* removes deep cracks in one pass.|ミリングは深い亀裂を1回で除去する。
+rail straightening|rail straightening|レール矯正|6|ˈreɪl ˌstreɪtnɪŋ|ˈreɪl ˌstreɪtənɪŋ|JIS E 1001|曲がったレールや溶接部の凹凸をまっすぐに直すこと。|*Rail straightening* is needed at the new weld.|新しい溶接部ではレール矯正が必要だ。
+re-railing|rail relay|レール交換|5|ˌriː ˈreɪlɪŋ|ˈreɪl ˌriːleɪ|一般用語|古いレールを新しいレールに取り替える作業。英国ではre-railing。|*Re-railing* on the curve is planned for next month.|その曲線のレール交換は来月に予定されている。
+rail transposing|rail transposing|レール振替|6|ˈreɪl trænsˌpəʊzɪŋ|ˈreɪl trænsˌpoʊzɪŋ|JIS E 1001|摩耗したレールの左右を入れ替えて寿命を延ばす作業。JIS参考英語は英 rail transferring／米 rail transposing。|*Rail transposing* lets us use the other side of the rail head.|レール振替でレール頭部の反対側を使えるようになる。
+sleeper renewal|tie renewal|まくらぎ交換|5|ˈsliːpə rɪˌnjuːəl|ˈtaɪ rɪˌnuːəl|JIS E 1001|劣化したまくらぎを交換する作業。|*Sleeper renewal* is done with a road-rail excavator.|まくらぎ交換は軌陸バックホーで行われる。
+track renewal|track renewal|軌道更新|5|ˈtræk rɪˌnjuːəl|ˈtræk rɪˌnuːəl|一般用語|レール・まくらぎ・道床をまとめて新しくする大規模工事。|The *track renewal* will take three weekends.|軌道更新には3回の週末がかかる。
+track renewal train|track renewal train|軌道更新列車（連続更新機）|6|ˈtræk rɪˌnjuːəl treɪn|ˈtræk rɪˌnuːəl treɪn|一般用語|旧まくらぎの撤去から新まくらぎの敷設まで連続的に行う機械編成。|The *track renewal train* replaces sleepers continuously.|軌道更新列車はまくらぎを連続的に交換する。
+on-track machine|maintenance-of-way equipment|保守用車（大型保線機械）|6|ˌɒn træk məˈʃiːn|ˌmeɪntənəns əv ˈweɪ ɪˌkwɪpmənt|英国実務|線路上を走行する保線用の機械の総称。英国の略OTM。|Every *on-track machine* must be inspected before use.|すべての保守用車は使用前に点検しなければならない。
+road-rail vehicle|hi-rail vehicle|軌陸車|6|ˌrəʊd ˈreɪl ˌviːəkl|ˈhaɪ reɪl ˌviːəkəl|JIS E 1001|道路と線路の両方を走行できる車両。英国の略RRV。|The *road-rail vehicle* got on the track at the level crossing.|軌陸車は踏切から線路に載線した。
+track motor car|track motor car|軌道モータカー|6|ˌtræk ˈməʊtə kɑː|ˌtræk ˈmoʊtɚ kɑr|JIS E 1001|資材運搬や作業員輸送に使う動力付きの保守用車。|The *track motor car* carried rails to the site.|軌道モータカーがレールを現場へ運んだ。
+trolley|push car|トロ（手押し台車）|5|ˈtrɒli|ˈpʊʃ kɑr|JIS E 1001|人力で押して資材を運ぶ軽量の台車。|Load the tools onto the *trolley*.|工具をトロに積んでください。
+track jack|track jack|ジャッキ（軌道用）|5|ˈtræk dʒæk||JIS E 1001|軌道を持ち上げる手動・油圧のジャッキ。|Use a *track jack* to lift the rail for the shim.|調整板を入れるためにジャッキでレールを持ち上げてください。
+rail saw|rail saw|レール切断機|6|ˈreɪl sɔː|ˈreɪl sɔ|JIS E 1001|レールを切断する機械（ディスクカッター等）。|Cut the rail with a *rail saw*, not a gas torch.|ガストーチではなくレール切断機でレールを切ってください。
+rail drill|rail drill|レール穿孔機|6|ˈreɪl drɪl||一般用語|継目板ボルトやボンド用の穴をレール腹部にあける機械。|Drill the bolt holes with a *rail drill*.|ボルト穴はレール穿孔機であけてください。
+impact wrench|impact wrench|ボルト緊解機（インパクトレンチ）|6|ˈɪmpækt rentʃ|ˈɪmpækt rɛntʃ|JIS E 1001|ボルトの締め付け・取り外しをする電動・空気工具。|Use the *impact wrench* to loosen the fishbolts.|インパクトレンチで継目板ボルトを緩めてください。
+rail threader|rail threader|レール山越器|6|ˈreɪl ˌθredə|ˈreɪl ˌθrɛdɚ|JIS E 1001|新しいレールを古いレールの上を越えて所定位置に移す器具。|The *rail threader* guides the new rail into position.|レール山越器が新しいレールを所定位置へ導く。
+rail heater|rail heater|レール加熱器|6|ˈreɪl ˌhiːtə|ˈreɪl ˌhiːtɚ|JIS E 1001|設定替の際にレールを加熱して伸ばす装置。|A *rail heater* was used because the rail was too cold.|レールが冷たすぎたためレール加熱器が使われた。
+gap adjuster|rail gap adjuster|遊間整正器|6|ˈɡæp əˌdʒʌstə|ˈreɪl ɡæp əˌdʒʌstɚ|JIS E 1001|レールを長手方向に移動させて遊間を正しく整える器具。|The *gap adjuster* moved the rail by 10 mm.|遊間整正器でレールを10mm移動させた。
+ultrasonic rail testing|ultrasonic rail inspection|超音波レール探傷|6|ˌʌltrəˌsɒnɪk ˈreɪl ˌtestɪŋ|ˌʌltrəˌsɑːnɪk ˈreɪl ɪnˌspɛkʃən|EN 16729;JIS E 1001|超音波でレール内部の亀裂を検出する検査（EN 16729）。JISの「レール探傷」。|*Ultrasonic rail testing* is done twice a year.|超音波レール探傷は年2回行われる。
+rail flaw detection|rail flaw detection|レール探傷|6|ˈreɪl flɔː dɪˌtekʃn|ˈreɪl flɔ dɪˌtɛkʃən|JIS E 1001;EN 16729|レールの傷を見つける検査全般（超音波・渦流・目視）。|The *rail flaw detection* car found two defects.|レール探傷車が2か所の欠陥を見つけた。
+eddy current testing|eddy current testing|渦流探傷|6|ˈedi ˌkʌrənt ˌtestɪŋ|ˈɛdi ˌkɝənt ˌtɛstɪŋ|EN 16729|表面近くのき裂（ヘッドチェック等）を検出する電磁的な検査方法。|*Eddy current testing* is good at finding surface cracks.|渦流探傷は表面き裂の発見に優れている。
+visual inspection|visual inspection|目視点検|5|ˌvɪʒuəl ɪnˈspekʃn|ˌvɪʒuːəl ɪnˈspɛkʃən|EN 13306|目で見て異常を確認する点検。巡回の基本。|*Visual inspection* found a broken clip.|目視点検で折れたクリップが見つかった。
+track patrol|track walking inspection|線路巡回（徒歩巡回）|5|ˈtræk pəˌtrəʊl|ˈtræk ˌwɔːkɪŋ ɪnˌspɛkʃən|英国実務|線路を歩いて状態を点検すること。英国ではpatrolling。|The *track patrol* starts at the station at 1 a.m.|線路巡回は午前1時に駅から始まる。
+cab ride|cab ride inspection|添乗点検|6|ˈkæb raɪd|ˈkæb raɪd ɪnˌspɛkʃən|英国実務|運転室に添乗して揺れや前方の線路状態を確認する点検。|A *cab ride* revealed a rough section near the bridge.|添乗点検で橋付近の揺れの大きい区間が分かった。
+maintenance window|work window|保守間合|6|ˈmeɪntənəns ˌwɪndəʊ|ˈwɝk ˌwɪndoʊ|JIS E 1001|列車が走らず保守作業ができる時間帯。英国ではengineering hours、白い時間帯をwhite periodとも言う。|The *maintenance window* is only three hours tonight.|今夜の保守間合はわずか3時間だ。
+engineering hours|track time|夜間保守時間帯|6|ˌendʒɪˈnɪərɪŋ ˌaʊəz|ˈtræk taɪm|英国実務|英国で列車運行がなく工事に使える時間帯（主に夜間）。|Most work is done during *engineering hours*.|ほとんどの作業は夜間保守時間帯に行われる。
+engineering train|work train|工事列車|6|ˌendʒɪˈnɪərɪŋ treɪn|ˈwɝk treɪn|英国実務|資材運搬などのための保線用列車。|The *engineering train* brought new ballast to the site.|工事列車が新しいバラストを現場へ運んだ。
+weed control|vegetation control|除草|5|ˈwiːd kənˌtrəʊl|ˌvɛdʒəˈteɪʃən kənˌtroʊl|一般用語|道床や線路脇の雑草を除去・抑制する作業。排水と点検性の維持に重要。|*Weed control* keeps the ballast free-draining.|除草により道床の排水性を保つ。
+vegetation management|vegetation management|沿線樹木管理|6|ˌvedʒəˈteɪʃn ˌmænɪdʒmənt|ˌvɛdʒəˈteɪʃən ˌmænɪdʒmənt|英国実務|倒木や落ち葉、視界不良を防ぐための沿線の樹木管理。|*Vegetation management* reduces the risk of fallen trees.|沿線樹木管理で倒木のリスクが減る。
+EOF

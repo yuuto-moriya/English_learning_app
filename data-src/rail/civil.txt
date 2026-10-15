@@ -1,0 +1,32 @@
+# 土木・構造物
+formation|subgrade|路盤|5|fɔːˈmeɪʃn|ˈsʌbɡreɪd|JIS E 1001;一般用語|軌道を支える土構造の上面部分。英国formation、米国subgrade / roadbed。|A weak *formation* causes repeated track faults.|弱い路盤は軌道狂いの再発を招く。
+subgrade|subgrade|路床（路盤下の地盤）|6|ˈsʌbɡreɪd||一般用語|路盤を支える地盤。英米で指す範囲が異なることがあるので文脈に注意。|The *subgrade* was strengthened with lime.|路床は石灰で強化された。
+blanket layer|subballast layer|ブランケット層（路盤上層）|6|ˈblæŋkɪt ˌleɪə|ˈsʌbbæləst ˌleɪɚ|英国実務|道床と路床の間に入れる砂などの層。細粒分の上昇（噴泥）を防ぐ。|A sand *blanket layer* stops mud pumping.|砂のブランケット層が噴泥を防ぐ。
+geotextile|geotextile|ジオテキスタイル（土木用シート）|6|ˌdʒiːəʊˈtekstaɪl|ˌdʒiːoʊˈtɛkstaɪl|一般用語|路盤の分離・補強・ろ過に使う合成繊維シート。|A *geotextile* separates the ballast from the clay.|ジオテキスタイルが道床と粘土を分離している。
+earthworks|earthworks|土構造物（盛土・切土）|5|ˈɜːθwɜːks|ˈɝθwɝks|TSI INF App.S|鉄道荷重を受ける土構造物と土留め構造物。TSIの定義語。|The *earthworks* were inspected after the heavy rain.|大雨の後、土構造物が点検された。
+embankment|fill|盛土|5|ɪmˈbæŋkmənt|fɪl|一般用語|土を盛って造った線路の基盤。米国ではfillとも言う。|Water seeped into the *embankment*.|盛土に水が浸透した。
+cutting|cut|切土|5|ˈkʌtɪŋ|kʌt|一般用語|地山を掘り下げて造った線路区間。米国ではcut。|Rocks can fall into the *cutting* after rain.|雨の後は切土区間に落石が起こりうる。
+slope|slope|のり面|5|sləʊp|sloʊp|一般用語|盛土・切土の斜面。崩壊を防ぐため植生や防護工で保護する。|The *slope* above the line was reinforced with soil nails.|線路の上ののり面は地山補強材で補強された。
+retaining wall|retaining wall|擁壁|5|rɪˈteɪnɪŋ wɔːl|rɪˈteɪnɪŋ wɔl|TSI INF App.S|土の崩壊を防ぐための壁。TSIの「土留め構造物」に含まれる。|Cracks were found in the *retaining wall*.|擁壁にひびが見つかった。
+drainage|drainage|排水|4|ˈdreɪnɪdʒ||一般用語|水を速やかに軌道から排除すること。「軌道保守の三原則は排水、排水、排水」と言われるほど重要。|Good *drainage* is the key to good track.|良好な排水が良い軌道の鍵だ。
+track drain|track drain|線路排水溝|5|ˈtræk dreɪn||一般用語|線路脇・線路下に設ける排水管・溝。|Clean the *track drain* before the rainy season.|梅雨の前に線路排水溝を清掃してください。
+cess|shoulder|線路脇（道床肩外側）の平坦部|6|ses|ˈʃoʊldɚ|英国実務|英国で道床肩と線路境界の間の平らな部分。排水や作業員の通路に使う。|Walk in the *cess*, not on the track.|線路上ではなく線路脇を歩いてください。
+culvert|culvert|カルバート（暗渠）|5|ˈkʌlvət|ˈkʌlvɚt|一般用語|線路の下を横断する水路やボックス構造物。|The *culvert* was blocked by debris.|カルバートががれきで詰まっていた。
+catch pit|catch basin|集水ます|6|ˈkætʃ pɪt|ˈkætʃ ˌbeɪsən|英国実務|排水管の途中に設けて土砂を沈殿させ、点検口にもなるます。|Empty the silt from the *catch pit*.|集水ますの泥を取り除いてください。
+bridge|bridge|橋梁|4|brɪdʒ||一般用語|鉄道が河川・道路・谷を越えるための構造物。|The *bridge* is inspected every two years.|その橋梁は2年ごとに点検される。
+underbridge|underpass|線路橋（線路が上を通る橋）|6|ˈʌndəbrɪdʒ|ˈʌndɚpæs|英国実務|英国で鉄道が上を通る橋（道路などが下をくぐる）。|A truck struck the *underbridge*.|トラックが線路橋に衝突した。
+overbridge|overpass|跨線橋|6|ˈəʊvəbrɪdʒ|ˈoʊvɚpæs|英国実務|英国で鉄道の上を道路などがまたぐ橋。|The new *overbridge* replaced the level crossing.|新しい跨線橋が踏切に置き換わった。
+viaduct|viaduct|高架橋|5|ˈvaɪədʌkt||一般用語|連続した多数の径間をもつ橋。新幹線の多くは高架橋上を走る。|The line runs on a long *viaduct* through the city.|その路線は市内を長い高架橋で走っている。
+girder|girder|桁（けた）|5|ˈɡɜːdə|ˈɡɝdɚ|一般用語|橋の主要な水平部材。|The steel *girder* was repainted last year.|鋼桁は昨年塗り替えられた。
+abutment|abutment|橋台|6|əˈbʌtmənt||一般用語|橋の両端で桁を支え、背面の土圧を受ける構造物。|Track settlement is common near the bridge *abutment*.|橋台付近では軌道沈下がよく起こる。
+pier|pier|橋脚|5|pɪə|pɪr|一般用語|橋の中間で桁を支える柱状の構造物。|Divers inspected the *pier* for scour.|潜水士が洗掘がないか橋脚を点検した。
+bridge bearing|bridge bearing|支承|6|ˈbrɪdʒ ˌbeərɪŋ|ˈbrɪdʒ ˌbɛrɪŋ|一般用語|桁と下部構造の間で荷重を伝え、伸縮・回転を許す装置。|A seized *bridge bearing* can crack the girder.|固着した支承は桁にひびを生じさせることがある。
+bridge deck|bridge deck|床版|6|ˈbrɪdʒ dek|ˈbrɪdʒ dɛk|一般用語|軌道を直接支える橋の床部分。|Water leaked through the *bridge deck*.|床版から水が漏れた。
+transition zone|transition zone|すりつけ区間（剛性変化部）|6|trænˈzɪʃn zəʊn|trænˈzɪʃən zoʊn|一般用語|土路盤と橋梁・トンネルとの境界部。剛性差による沈下を防ぐため特別な構造とする。|Extra tamping is needed in the *transition zone*.|すりつけ区間では追加のつき固めが必要だ。
+tunnel lining|tunnel lining|トンネル覆工|6|ˈtʌnl ˌlaɪnɪŋ|ˈtʌnəl ˌlaɪnɪŋ|一般用語|トンネル内面のコンクリート等の構造。ひび割れ・はく落を点検する。|Concrete fell from the *tunnel lining*.|トンネル覆工からコンクリートが落下した。
+portal|portal|坑口|6|ˈpɔːtl|ˈpɔrtəl|一般用語|トンネルの出入口。|Icicles formed at the tunnel *portal*.|トンネル坑口につららができた。
+rockfall fence|rockfall barrier|落石防護柵|6|ˈrɒkfɔːl fens|ˈrɑːkfɔːl ˌbæriɚ|一般用語|斜面からの落石を受け止める柵・ネット。|The *rockfall fence* stopped a large boulder.|落石防護柵が大きな岩を受け止めた。
+platform edge|platform edge|ホーム縁端|5|ˈplætfɔːm edʒ|ˈplætfɔrm ɛdʒ|TSI INF App.S|ホームの線路側の端。軌道との離れ（オフセット）と高さを管理する。|Track work can change the gap at the *platform edge*.|軌道作業でホーム縁端とのすき間が変わることがある。
+platform offset|platform offset|ホーム離れ|6|ˈplætfɔːm ˌɒfset|ˈplætfɔrm ˌɔːfsɛt|英国実務|線路中心（またはレール）からホーム縁端までの水平距離。|Check the *platform offset* after lining the track.|通り整正後にホーム離れを確認してください。
+usable length of platform|usable platform length|ホーム有効長|6|ˌjuːzəbl ˈleŋθ əv ˈplætfɔːm|ˌjuːzəbəl ˈplætfɔrm lɛŋθ|TSI INF App.S|列車が停車して乗降に使えるホームの最大連続長。TSIの定義語。|The *usable length of platform* must suit 12-car trains.|ホーム有効長は12両編成に対応しなければならない。
+EOF

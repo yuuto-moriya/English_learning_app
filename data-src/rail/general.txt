@@ -1,0 +1,41 @@
+# 線路一般・線形  en(英/EN)|us(米)|和訳|lv|IPA英|IPA米(空=自動)|出典(;区切り)|解説|例文EN|例文JA
+permanent way|track|軌道（保線の対象としての線路）|5|ˌpɜːmənənt ˈweɪ||英国実務|英国では保線を「permanent way（略 p-way）」と呼ぶ。米国ではtrack、保線部門はmaintenance of way (MOW)。|The *permanent way* team inspects the line every week.|保線チームは毎週線路を点検している。
+track|track|軌道；線路|4|træk||JIS E 1001;一般用語|路盤上の道床・まくらぎ・レール等から成る構造。lineは路線（ルート）、trackは個々の線路を指すことが多い。|The *track* between the two stations is double.|両駅間の線路は複線だ。
+line|line|線路；路線|4|laɪn||JIS E 1001|列車を走らせるための通路全体。「本線」はmain line、「支線」はbranch line。|The *line* will be closed for maintenance tonight.|今夜は保守のため線路が閉鎖される。
+main line|main track|本線|4|ˌmeɪn ˈlaɪn||JIS E 1001|列車の運転に常用される線路。米国の鉄道規則ではmain track。|Trains on the *main line* run every five minutes.|本線では5分おきに列車が走る。
+siding|side track|側線|4|ˈsaɪdɪŋ||JIS E 1001|本線以外の線路（留置線・待避線など）。JIS E 1001の参考英語は英 siding／米 side track。|The engineering train is stabled in the *siding*.|工事用列車は側線に留置されている。
+single track|single track|単線|4|ˌsɪŋɡl ˈtræk||一般用語|上下列車が1本の線路を共用する区間。|This branch line is *single track*.|この支線は単線だ。
+double track|double track|複線|4|ˌdʌbl ˈtræk||一般用語|上り線・下り線の2線がある区間。英国ではup line／down lineと呼ぶ。|The section was upgraded to *double track*.|その区間は複線化された。
+up line|up track|上り線|5|ˈʌp laɪn||英国実務|英国では原則ロンドン方向がup。日本の「上り」と同じ考え方。|Work is planned on the *up line* tonight.|今夜は上り線で作業が予定されている。
+down line|down track|下り線|5|ˈdaʊn laɪn||英国実務|英国ではロンドンから離れる方向がdown。|The *down line* remains open during the work.|作業中も下り線は開通したままだ。
+track gauge|track gage|軌間|5|ˈtræk ɡeɪdʒ|ˈtræk ɡeɪdʒ|TSI INF App.S;EN 13848-1;JIS E 1001|左右レール頭部内側面間の距離。TSIはレール面から0〜14mm下の範囲で測る最小距離と定義。JIS参考英語は英 gauge／米 gage。|The *track gauge* was measured at 1,437 mm.|軌間は1,437mmと測定された。
+nominal track gauge|nominal track gage|公称軌間|6|ˌnɒmɪnl ˈtræk ɡeɪdʒ|ˌnɑːmɪnl ˈtræk ɡeɪdʒ|TSI INF App.S|軌間を代表する単一の値。設計軌間（design track gauge）とは異なる場合がある。|The *nominal track gauge* in Europe is 1,435 mm.|欧州の公称軌間は1,435mmだ。
+standard gauge|standard gage|標準軌|4|ˌstændəd ˈɡeɪdʒ||JIS E 1001|1,435mmの軌間。新幹線・欧州の大半が採用。|The Shinkansen runs on *standard gauge* track.|新幹線は標準軌の線路を走る。
+narrow gauge|narrow gage|狭軌|4|ˌnærəʊ ˈɡeɪdʒ||JIS E 1001|標準軌より狭い軌間。日本の在来線の多くは1,067mm（3フィート6インチ）。|Most JR conventional lines are *narrow gauge*.|JR在来線の多くは狭軌だ。
+broad gauge|broad gage|広軌|5|ˌbrɔːd ˈɡeɪdʒ||JIS E 1001|標準軌より広い軌間（例：イベリア軌間1,668mm）。|Spain built its first lines in *broad gauge*.|スペインは最初の路線を広軌で建設した。
+gauge widening|gage widening|スラック|6|ˈɡeɪdʒ ˌwaɪdnɪŋ||JIS E 1001|急曲線で車輪が通りやすいよう軌間を拡げること。JISの「スラック」に相当（英語の"slack"は別の意味なので注意）。|*Gauge widening* is applied on curves with a small radius.|小半径の曲線にはスラックが付けられている。
+cant|superelevation|カント|5|kænt|ˌsuːpɚˌɛləˈveɪʃən|TSI INF App.S;EN 13848-1;JIS E 1001|曲線で外軌を内軌より高くした高低差。TSIは「水平に対する2本のレールの高さの差」と定義。JIS参考英語は英 cant／米 superelevation。|The *cant* on this curve is 105 mm.|この曲線のカントは105mmだ。
+cant deficiency|unbalanced superelevation|カント不足|6|ˈkænt dɪˌfɪʃnsi|ʌnˌbælənst ˌsuːpɚˌɛləˈveɪʃən|TSI INF App.S;EN 13803|実際のカントと、その速度での釣り合いカント（equilibrium cant）との差。超過遠心力の指標。|*Cant deficiency* limits the speed on this curve.|カント不足がこの曲線の速度を制限している。
+cant excess|excess superelevation|カント超過|6|ˈkænt ɪkˌses|ˈɛksɛs ˌsuːpɚˌɛləˈveɪʃən|EN 13803|低速列車に対しカントが過大な状態。内軌側に荷重が偏り摩耗の原因になる。|Slow freight trains cause *cant excess* on the inner rail.|低速の貨物列車は内軌側でカント超過を生じさせる。
+equilibrium cant|balanced superelevation|釣り合いカント|6|ˌiːkwɪˈlɪbriəm kænt|ˈbælənst ˌsuːpɚˌɛləˈveɪʃən|EN 13803|ある速度で遠心力と重力の合力が軌道面に垂直となるカント。|At this speed, the applied cant equals the *equilibrium cant*.|この速度では設定カントが釣り合いカントと等しい。
+curve radius|curve radius|曲線半径|4|ˈkɜːv ˌreɪdiəs||EN 13803|曲線の半径。米国ではdegree of curve（度数）で表すことも多い。|The minimum *curve radius* on this line is 400 m.|この路線の最小曲線半径は400mだ。
+transition curve|spiral|緩和曲線|5|trænˈzɪʃn kɜːv|ˈspaɪrəl|JIS E 1001;EN 13803|直線と円曲線の間で曲率とカントを徐々に変化させる曲線（主にクロソイド・3次放物線）。米国ではspiral。|The cant increases gradually along the *transition curve*.|カントは緩和曲線に沿って徐々に増加する。
+reverse curve|reverse curve|反向曲線|5|rɪˌvɜːs ˈkɜːv||TSI INF App.S;JIS E 1001|向きの異なる2つの曲線が接している（または近接する）線形。TSIでは「曲率の向きが反対の2つの隣接曲線」。|Long wagons can buffer-lock on a sharp *reverse curve*.|長い貨車は急な反向曲線で緩衝器が絡むことがある。
+compound curve|compound curve|複心曲線|5|ˌkɒmpaʊnd ˈkɜːv|ˌkɑːmpaʊnd ˈkɝv|JIS E 1001|同じ向きで半径の異なる曲線がつながったもの。|The junction uses a *compound curve* to fit the site.|その分岐部は用地に合わせて複心曲線を用いている。
+vertical curve|vertical curve|縦曲線|5|ˌvɜːtɪkl ˈkɜːv||JIS E 1001;EN 13803|勾配の変化点に設ける鉛直面内の曲線。|A *vertical curve* is placed where the gradient changes.|勾配が変わる地点には縦曲線が設けられている。
+gradient|grade|勾配|4|ˈɡreɪdiənt|ɡreɪd|EN 13803|線路の縦断方向の傾き。英国はgradient（例 1 in 40）、米国はgrade（%）で表すのが一般的。日本では‰（パーミル）。|The line climbs a *gradient* of 25 per mille.|その路線は25‰の勾配を上る。
+alignment|alignment|線形；通り|5|əˈlaɪnmənt||EN 13848-1;EN 13803|①路線の平面・縦断形状（線形）②軌道狂いの「通り」（左右方向の位置）。文脈で判断する。|The new *alignment* reduces the journey time.|新しい線形で所要時間が短縮される。
+plain line|plain track|一般区間（分岐器のない区間）|5|ˌpleɪn ˈlaɪn|ˌpleɪn ˈtræk|TSI INF App.S|分岐器（S&C）を含まない線路区間。TSIの定義語。|Tamping on *plain line* is faster than in switches.|一般区間のつき固めは分岐器内より速い。
+structure gauge|clearance envelope|建築限界|6|ˈstrʌktʃə ɡeɪdʒ|ˈklɪrəns ˌɛnvəloʊp|TSI INF App.S;EN 15273;JIS E 1001|線路に沿って構造物を置いてはならない空間。TSIの定義語。米国ではclearance envelope等と表現。|The new platform must not infringe the *structure gauge*.|新しいホームは建築限界を侵してはならない。
+loading gauge|clearance diagram|車両限界|6|ˈləʊdɪŋ ɡeɪdʒ|ˈklɪrəns ˌdaɪəɡræm|EN 15273;JIS E 1001|車両の断面寸法の限度。英国ではloading gauge、EN 15273ではvehicle gauge（車両ゲージ）の概念で扱う。|British trains are smaller because of the tight *loading gauge*.|英国の車両は厳しい車両限界のため小さい。
+distance between track centres|track centers|軌道中心間隔|6|ˈdɪstəns bɪˌtwiːn ˈtræk ˌsentəz|ˈtræk ˌsɛntɚz|TSI INF App.S;JIS E 1001|並行する2線の軌道中心線間の距離。TSIの定義語（英国綴りcentres）。|The *distance between track centres* is 4.0 m.|軌道中心間隔は4.0mだ。
+formation level|subgrade elevation|施工基面|6|fɔːˈmeɪʃn ˌlevl|ˈsʌbɡreɪd ˌɛləˈveɪʃən|JIS E 1001|路盤の高さの基準面。英国ではformation（路盤面）の高さ。|The *formation level* was raised by 300 mm.|施工基面が300mm上げられた。
+line speed|track speed|線路最高速度|5|ˈlaɪn spiːd|ˈtræk spiːd|TSI INF App.S|路線が設計された最高速度。TSIの定義語。|The *line speed* is 160 km/h on this section.|この区間の線路最高速度は時速160kmだ。
+permissible speed|maximum authorized speed|許容速度|5|pəˈmɪsəbl ˌspiːd|ˌmæksɪməm ˈɔθəraɪzd ˌspiːd|英国実務|その地点で列車が走行してよい最高速度。速度制限標識で示される。|The *permissible speed* through the junction is 40 mph.|分岐部の許容速度は時速40マイルだ。
+mileage|milepost|キロ程|5|ˈmaɪlɪdʒ|ˈmaɪlpoʊst|英国実務|線路上の位置を示す距離。英国はマイル＋チェーン（1 chain = 22 yd）、欧州・日本はkm。|Please report the *mileage* of the defect.|欠陥のキロ程を報告してください。
+lineside sign|wayside sign|線路諸標|5|ˌlaɪnsaɪd ˈsaɪn|ˌweɪsaɪd ˈsaɪn|JIS E 1001|キロ程標・勾配標・曲線標など、線路の維持管理・運転のための標識類。|Check that every *lineside sign* is clean and visible.|すべての線路諸標が清潔で見えることを確認してください。
+buffer stop|bumping post|車止め|4|ˈbʌfə stɒp|ˈbʌmpɪŋ poʊst|JIS E 1001|線路終端で車両の過走・逸走を止める設備。JIS参考英語は英 buffer stop／米 car stop。|The train stopped just before the *buffer stop*.|列車は車止めの直前で止まった。
+catch points|derail|安全側線・脱線転てつ器|6|ˈkætʃ pɔɪnts|dɪˈreɪl|JIS E 1001;英国実務|過走・逸走車両を本線から外す設備。日本の「安全側線」と目的は同じ。英国ではtrap points／catch points。|*Catch points* protect the main line from runaway wagons.|安全側線（脱線転てつ器）は逸走貨車から本線を守る。
+junction|junction|分岐点；接続駅|4|ˈdʒʌŋkʃn||一般用語|複数の路線が分岐・合流する地点。|The two lines meet at the *junction*.|2つの路線は分岐点で合流する。
+depot|yard|車両基地；保線基地|4|ˈdepəʊ|jɑːrd|一般用語|車両の留置・検修、または保守用車・資材の拠点。|The tampers return to the *depot* at dawn.|マルタイは夜明けに基地へ戻る。
+track layout|track layout|配線|5|ˈtræk ˌleɪaʊt||一般用語|駅などの線路の配置（分岐器・側線の配置）。|The new *track layout* adds a third platform.|新しい配線で3番目のホームが追加される。
