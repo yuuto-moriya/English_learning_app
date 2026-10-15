@@ -1,0 +1,70 @@
+import { ExternalLink } from 'lucide-react'
+import { PageHeader } from '@/components/Layout'
+import { Guide } from '@/components/Guide'
+import { Card, SectionTitle } from '@/components/ui'
+import { CREDITS, EVIDENCE } from '@/data/research'
+
+export default function Research() {
+  return (
+    <div>
+      <PageHeader title="学習法の根拠" subtitle="研究・論文とアプリへの反映" back />
+      <div className="space-y-3 px-4 pb-10">
+        <Guide pose="think" text="このアプリの学び方は、記憶と第二言語習得の研究にもとづいて設計しているワン。" />
+        {EVIDENCE.map((e, i) => (
+          <Card key={e.id}>
+            <p className="text-[11px] font-bold text-brand">根拠 {i + 1}</p>
+            <h2 className="text-[17px] font-extrabold">{e.title}</h2>
+            <p className="mt-2 text-[13.5px] leading-relaxed">{e.finding}</p>
+            <div className="mt-3 rounded-xl bg-brand-soft p-3">
+              <p className="text-[11px] font-bold text-brand-strong">アプリでの活用</p>
+              <p className="mt-0.5 text-[13px] leading-relaxed">{e.inApp}</p>
+            </div>
+            <ul className="mt-3 space-y-1.5">
+              {e.refs.map((r) => (
+                <li key={r.cite} className="text-[11px] leading-snug text-muted">
+                  {r.cite}
+                  {r.url && (
+                    <a href={r.url} target="_blank" rel="noreferrer" className="ml-1 inline-flex items-center gap-0.5 text-brand">
+                      <ExternalLink className="h-3 w-3" />
+                      DOI/URL
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+
+        <SectionTitle>保線用語の扱いについて</SectionTitle>
+        <Card>
+          <p className="text-[13px] leading-relaxed">
+            保線用語は、EU法令として公開されているTSI INF（Regulation (EU) No 1299/2014）付録Sの定義、EN規格（EN 13848、EN 13230、EN 13674、EN
+            13306 など）の規格名・用語体系、JIS E 1001（鉄道－線路用語）の日本語用語を参考に、英国表記（EN）・米国表記・日本語を対応づけて編集しました。
+            規格本文は著作権で保護されているため、定義は要約・意訳です。業務で用いる際は、必ず最新版の規格原文で確認してください。
+          </p>
+          <p className="mt-2 text-[12px] text-muted">
+            出典タグ：「一般用語」は特定の規格に定義がない一般的な鉄道英語、「英国実務」は英国の保線現場で使われる用語です。
+          </p>
+        </Card>
+
+        <SectionTitle>クレジット・ライセンス</SectionTitle>
+        <Card className="space-y-3">
+          {CREDITS.map((c) => (
+            <div key={c.name}>
+              <p className="text-[14px] font-bold">{c.name}</p>
+              <p className="text-[12px] text-muted">
+                {c.desc}
+                {c.url && (
+                  <a href={c.url} target="_blank" rel="noreferrer" className="ml-1 text-brand">
+                    リンク
+                  </a>
+                )}
+              </p>
+            </div>
+          ))}
+          <p className="text-[11px] text-muted">単語データ（data-src・src/data/vocab）はNGSL/BSL/TSLのライセンスに従いCC BY-SA 4.0で提供されます。</p>
+        </Card>
+      </div>
+    </div>
+  )
+}

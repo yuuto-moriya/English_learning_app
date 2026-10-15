@@ -106,8 +106,8 @@ export function previewIntervals(row: CardRow | undefined, retention = 0.9): Rec
 }
 
 export function humanizeDiff(ms: number): string {
+  if (ms < 60000) return '<1分'
   const min = Math.round(ms / 60000)
-  if (min < 1) return '<1分'
   if (min < 60) return `${min}分`
   const h = Math.round(min / 60)
   if (h < 24) return `${h}時間`
