@@ -6,13 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json && vite build",
+    "build": "tsc -p tsconfig.json && tsc -p api/tsconfig.json && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json && tsc -p api/tsconfig.json",
     "test": "vitest run",
     "data:build": "python3 scripts/build_vocab.py",
-    "pages:dev": "wrangler pages dev dist --compatibility-date=2026-10-01",
-    "pages:deploy": "npm run build && wrangler pages deploy dist"
+    "dev:vercel": "vercel dev"
   },
   "dependencies": {
     "dexie": "^4.4.6",
@@ -26,7 +25,6 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261015.1",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.0",
@@ -37,7 +35,6 @@
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
     "vite-plugin-pwa": "^2.0.0",
-    "vitest": "^5.0.4",
-    "wrangler": "^4.151.0"
+    "vitest": "^5.0.4"
   }
 }

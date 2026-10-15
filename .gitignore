@@ -1,8 +1,8 @@
 node_modules
 dist
 dev-dist
-.wrangler
-.dev.vars
+.vercel
+.env*.local
 *.log
 .DS_Store
 coverage

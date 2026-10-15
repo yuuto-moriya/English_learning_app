@@ -1,8 +1,8 @@
 # Azure（翻訳・発音評価）の設定手順
 
 Tetsu English の **翻訳**・**発音評価**・**音声入力** は、Microsoft Azure の
-**Azure AI Translator** と **Azure AI Speech** を、Cloudflare Pages Functions 経由で呼び出しています。
-この手順書では、両サービスを **無料枠（Free F0）** で作成し、Cloudflare Pages に設定するまでを説明します。
+**Azure AI Translator** と **Azure AI Speech** を、Vercel Functions（`/api/*`）経由で呼び出しています。
+この手順書では、両サービスを **無料枠（Free F0）** で作成し、Vercel に設定するまでを説明します。
 
 > 料金・上限・画面の名称は 2026年10月時点で確認した内容です（末尾の参考資料を参照）。
 > Azure の AI サービスは現在「Foundry Tools」というブランドの下にまとめられており、ポータルの表示名が変わることがあります。
@@ -18,8 +18,8 @@ Tetsu English の **翻訳**・**発音評価**・**音声入力** は、Microso
 ## 全体の構成
 
 ```
-iPhone（PWA） ──HTTPS──▶ Cloudflare Pages Functions（/api/*） ──▶ Azure AI Translator / Azure AI Speech
-                          └ APIキーはここ（暗号化された環境変数）にだけ保存。端末には送らない
+iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azure AI Translator / Azure AI Speech
+                          └ APIキーはここ（Vercel の環境変数）にだけ保存。端末には送らない
 ```
 
 | 環境変数 | 必須 | 内容 | 例 |
@@ -122,40 +122,39 @@ iPhone（PWA） ──HTTPS──▶ Cloudflare Pages Functions（/api/*） ─�
 > F0 のリソースは、作成済み・削除済み（論理削除で残っているもの）があると新しく作れないことがあります。
 > 作成できない場合は、既存の F0 リソースや「削除済みリソースの管理（Purge）」を確認してください。
 
-## 4. Cloudflare Pages に環境変数を設定する
+## 4. Vercel に環境変数を設定する
 
 ### ダッシュボードで設定（推奨）
 
-1. Cloudflare ダッシュボード → **Workers & Pages** → プロジェクト（`tetsu-english`）を選択
-2. **Settings → Variables and Secrets → Add**
-3. 変数名と値を入力し、**Encrypt** を選んで **Save**（APIキーとトークンは必ず暗号化＝シークレットにする）
-4. 必要に応じて **Production** と **Preview** の両方に設定します
-5. シークレットは「それを使うデプロイより前に」設定する必要があります。設定後に **再デプロイ** してください
-   （Deployments から最新のデプロイを再実行するか、新しいコミットを push）
+1. Vercel ダッシュボードでプロジェクトを開き、**Settings → Environment Variables**
+2. 変数名（Key）と値（Value）を入力します。APIキーとトークンは種類を **Secret** にします（保存後は値を表示できなくなります）
+3. 適用する環境（**Production** / **Preview** / **Development**）を選んで **Save**
+4. 環境変数の変更は **新しいデプロイにだけ反映** されます。**Deployments** から最新のデプロイを **Redeploy** するか、新しいコミットを push してください
 
-### コマンドで設定（Wrangler）
+初回の Import 時（**Configure Project** 画面の **Environment Variables**）に入力しておけば、最初のデプロイから使えます。
+
+### コマンドで設定（Vercel CLI）
 
 ```bash
-npx wrangler login
-npx wrangler pages secret put AZURE_TRANSLATOR_KEY    --project-name tetsu-english
-npx wrangler pages secret put AZURE_TRANSLATOR_REGION --project-name tetsu-english
-npx wrangler pages secret put AZURE_SPEECH_KEY        --project-name tetsu-english
-npx wrangler pages secret put AZURE_SPEECH_REGION     --project-name tetsu-english
-npx wrangler pages secret put APP_ACCESS_TOKEN        --project-name tetsu-english   # 任意
+npx vercel login
+npx vercel link                                    # プロジェクトと関連付け（初回のみ）
+npx vercel env add AZURE_TRANSLATOR_KEY production # 値は対話形式で入力
+npx vercel env add AZURE_TRANSLATOR_REGION production
+npx vercel env add AZURE_SPEECH_KEY production
+npx vercel env add AZURE_SPEECH_REGION production
+npx vercel env add APP_ACCESS_TOKEN production     # 任意
 ```
 
-> リポジトリの `wrangler.toml` には **秘密情報を書かないでください**（`[vars]` は平文でコミットされます）。
-> Wrangler 設定ファイルを使う Pages プロジェクトでは、ファイルに書いた項目はダッシュボードで編集できなくなります
-> （ファイルが正）。このリポジトリでは `name` / `pages_build_output_dir` / `compatibility_date` だけを書き、
-> 環境変数はすべてシークレットとして登録する運用にしています。
+> キーはリポジトリに **コミットしないでください**。`vercel.json` にも書きません。
 
 ### ローカル開発
 
 ```bash
-cp .dev.vars.example .dev.vars   # 値を書き換える（.dev.vars は .gitignore 済み）
-npm run build
-npx wrangler pages dev dist      # http://localhost:8788
+cp .env.example .env.local   # 値を書き換える（.env.local は .gitignore 済み）
+npx vercel dev               # http://localhost:3000（/api も動く）
 ```
+
+Vercel に登録した Development 用の値を使う場合、`vercel dev` は自動で読み込みます（`.env.local` は不要）。
 
 ## 5. アクセストークン（`APP_ACCESS_TOKEN`）を設定する
 
@@ -169,21 +168,21 @@ npx wrangler pages dev dist      # http://localhost:8788
    # または
    node -e "console.log(crypto.randomUUID() + crypto.randomUUID())"
    ```
-2. Cloudflare Pages に `APP_ACCESS_TOKEN` として **Encrypt** で登録し、再デプロイします。
+2. Vercel に `APP_ACCESS_TOKEN` として **Secret** で登録し、Redeploy します。
 3. iPhone のアプリで **設定 → クラウド機能（翻訳・発音評価）→ アクセストークン** に同じ文字列を入力します
    （トークンが必要な場合だけ入力欄が表示されます）。
    - トークンはその端末内（ブラウザのストレージ）に保存されます。ホーム画面に追加したアプリと Safari のタブでは保存先が
      別なので、実際に使う方（通常はホーム画面のアプリ）で入力してください。
 
 > これは「共有の合言葉」による簡易的な保護で、ユーザー認証ではありません。
-> トークンが漏れた場合は値を変更して再デプロイしてください。
+> トークンが漏れた場合は値を変更して Redeploy してください。
 
 ## 6. 動作を確認する
 
 ### `/api/health`
 
 ```bash
-curl https://<your-project>.pages.dev/api/health
+curl https://<your-project>.vercel.app/api/health
 # => {"translator":true,"speech":true,"tokenRequired":true}
 ```
 
@@ -192,7 +191,7 @@ curl https://<your-project>.pages.dev/api/health
 ### 翻訳 API
 
 ```bash
-curl -X POST https://<your-project>.pages.dev/api/translate \
+curl -X POST https://<your-project>.vercel.app/api/translate \
   -H 'Content-Type: application/json' \
   -H 'X-App-Token: <APP_ACCESS_TOKEN>' \
   -d '{"text":"軌道狂いを整正する","to":"en"}'
@@ -213,7 +212,7 @@ curl -X POST https://<your-project>.pages.dev/api/translate \
 | 502「翻訳APIエラー (401)」など | キーの誤り、またはリージョンがリソースの場所と一致していない |
 | 502「…無料枠または回数制限に達しました」 | F0 の月間無料枠・時間あたり上限・同時リクエスト数の上限に達した |
 | 422「音声を認識できませんでした」 | 無音・雑音が多い。静かな場所で、マイクに近づいてもう一度 |
-| 「サーバーに接続できません」 | オフライン、または `npm run dev`（Functions なし）で起動している |
+| 「サーバーに接続できません」 | オフライン、または `npm run dev`（API なし）で起動している |
 
 ## 7. Azure を設定しない場合
 
@@ -227,15 +226,21 @@ Azure がなくても、次の機能はそのまま使えます。
 ホーム画面に追加したアプリ（iOS のホーム画面 Web アプリでは SpeechRecognition が使えない）では
 **録音して聞き比べる自己評価** に切り替わります。翻訳と音声入力は使えません。
 
-## 8. 料金・上限のまとめ（Cloudflare 側）
+## 8. 料金・上限のまとめ（Vercel 側）
 
-| 項目 | 値 |
+Hobby プラン（無料）の主な上限（1か月あたり）です。
+
+| 項目 | 上限 |
 |---|---|
-| Pages Functions の課金 | Workers のリクエストとして数える |
-| 無料プランのリクエスト上限 | 1日100,000リクエスト（Workers と合算。毎日 0:00 UTC にリセット） |
-| 静的アセット（HTML/JS/画像） | 無料・無制限（Functions を呼ばないリクエスト） |
+| Function Invocations（`/api/*` の呼び出し） | 1,000,000 回 |
+| Active CPU | 4 CPU 時間 |
+| Fast Data Transfer | 100 GB |
+| Function の最大実行時間 | 300 秒（このアプリの音声 API は 30 秒に設定） |
 
-個人利用であれば、Cloudflare・Azure ともに無料枠の範囲で運用できる想定です。
+上限を超えると、その機能は 30 日経過するまで使えなくなります。
+Hobby プランは **個人・非商用の利用に限られます**。業務で使う場合は Pro プランにしてください。
+
+個人の学習用途であれば、Vercel・Azure ともに無料枠の範囲で運用できる想定です。
 
 ## 参考資料（2026年10月に確認）
 
@@ -251,6 +256,6 @@ Azure がなくても、次の機能はそのまま使えます。
 - Speech のクイックスタート（キーとエンドポイント）: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/get-started-speech-to-text>
 - 発音評価の課金（Microsoft Q&A）: <https://learn.microsoft.com/en-us/answers/questions/5608069/pricing-and-usage-of-pronunciation-assessment-feat>
 - Foundry リソースと F0（Microsoft Q&A）: <https://learn.microsoft.com/en-us/answers/questions/5644473/how-to-use-free-tier-requests-with-microsoft-found>
-- Cloudflare Pages Functions の環境変数・シークレット: <https://developers.cloudflare.com/pages/functions/bindings/>
-- Cloudflare Pages の Wrangler 設定: <https://developers.cloudflare.com/pages/functions/wrangler-configuration/>
-- Cloudflare Pages Functions の料金: <https://developers.cloudflare.com/pages/functions/pricing/>
+- Vercel の環境変数: <https://vercel.com/docs/environment-variables>
+- Vercel Functions（Node.js ランタイム）: <https://vercel.com/docs/functions/runtimes/node-js>
+- Vercel Hobby プランの上限: <https://vercel.com/docs/plans/hobby>

@@ -4,7 +4,7 @@
 > Tetsu English is an English-learning and translation PWA for a Japanese railway track-maintenance (保線) and EAM professional, designed for iPhone (add to home screen).
 > It combines 3,824 words (general NGSL / business BSL+TSL / rail & EAM glossary) with an evidence-based study session (retrieval practice + FSRS spaced repetition + interleaving),
 > listening, dictation, shadowing, Azure pronunciation assessment, 30 role-play dialogues, and an Azure-powered translator that flags rail terms (UK / US / JIS Japanese).
-> Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Cloudflare Pages + Pages Functions.
+> Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Vercel (static site + Vercel Functions).
 > A corgi guide, "Tetsu", is modeled procedurally in Blender.
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
 
@@ -20,7 +20,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - [ディレクトリ構成](#ディレクトリ構成)
 - [ローカル開発](#ローカル開発)
 - [テスト・品質チェック](#テスト品質チェック)
-- [デプロイ（Cloudflare Pages）](#デプロイcloudflare-pages)
+- [デプロイ（Vercel）](#デプロイvercel)
 - [Azure（翻訳・発音評価）の設定](#azure翻訳発音評価の設定)
 - [iPhone のホーム画面に追加する](#iphone-のホーム画面に追加する)
 - [データパイプラインと単語の追加](#データパイプラインと単語の追加)
@@ -82,10 +82,10 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 |---|---|
 | フロントエンド | React 19, TypeScript 7, Vite 8, React Router 8 |
 | スタイル・動き | Tailwind CSS v4, motion, lucide-react |
-| PWA | vite-plugin-pwa（Workbox, 自動更新） |
+| PWA | vite-plugin-pwa（Workbox, 更新はアプリ内の通知から） |
 | データ保存 | Dexie（IndexedDB）, zustand（設定） |
 | 復習スケジューラ | ts-fsrs（FSRS） |
-| サーバー | Cloudflare Pages Functions（`/functions/api`） |
+| ホスティング・API | Vercel（静的配信 + Vercel Functions `/api`） |
 | 外部 API | Azure AI Translator, Azure AI Speech（発音評価・音声認識） |
 | テスト | Vitest, fake-indexeddb, Playwright（スクリーンショット・E2E スクリプト） |
 | データ生成 | Python 3（`scripts/build_vocab.py`） |
@@ -103,12 +103,12 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   ├── rail/                  #   保線・EAM 用語集（11 サブカテゴリ）
 │   └── ipa/                   #   （任意）米音 IPA 辞書の置き場所
 ├── docs/                      # ドキュメント
-├── functions/api/             # Cloudflare Pages Functions
-│   ├── _middleware.ts         #   APP_ACCESS_TOKEN のチェック
+├── api/                      # Vercel Functions（エントリポイントのみ。処理は server/）
 │   ├── health.ts              #   GET  /api/health（Azure の設定状況）
 │   ├── translate.ts           #   POST /api/translate（Azure Translator）
 │   ├── pronunciation.ts       #   POST /api/pronunciation（Azure Speech 発音評価）
-│   └── stt.ts                 #   POST /api/stt（音声入力の文字起こし）
+│   ├── stt.ts                 #   POST /api/stt（音声入力の文字起こし）
+│   └── tsconfig.json          #   API 用の型チェック設定
 ├── public/
 │   ├── guide/                 # テツの表情・ポーズ画像（WebP）
 │   └── icons/                 # PWA アイコン
@@ -117,16 +117,19 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   ├── blender/               # テツのモデリング・レンダリング（corgi.py, postprocess.py）
 │   ├── screenshots.mjs        # iPhone サイズの画面スクリーンショット（ライト/ダーク）
 │   └── e2e-flow.mjs           # 主要フローの E2E 確認
-├── server/shared.ts           # Functions 共通処理（Azure 呼び出し・レスポンス正規化）
+├── server/                    # API の処理本体（Web 標準の Request/Response のみ使用）
+│   ├── handlers.ts            #   各 API の処理、APP_ACCESS_TOKEN のチェック
+│   ├── shared.ts              #   Azure 呼び出し・レスポンス正規化
+│   └── env.ts                 #   環境変数の読み込み
 ├── src/
 │   ├── components/            # 共通 UI（ガイド、発音チェック、単語情報など）
 │   ├── data/                  # 単語 JSON（生成物）、シーン会話、学習法の根拠
 │   ├── lib/                   # 学習セッション、FSRS、DB、用語検出、音声、設定
 │   ├── pages/                 # 画面（ホーム、学習、単語帳、練習、シーン、翻訳、設定…）
 │   └── styles/
-├── tests/                     # Vitest（データ整合性、学習ロジック、FSRS）
-├── .dev.vars.example          # ローカル用の環境変数の例
-├── wrangler.toml              # Cloudflare Pages 設定
+├── tests/                     # Vitest（データ整合性、学習ロジック、FSRS、用語検出、API）
+├── .env.example               # 環境変数の例（ローカルは .env.local にコピー）
+├── vercel.json                # Vercel 設定（SPA のルーティング、キャッシュ）
 ├── LICENSE                    # MIT
 └── DATA_LICENSE.md            # データ・素材のライセンス
 ```
@@ -140,20 +143,22 @@ npm install
 npm run dev            # http://localhost:5173
 ```
 
-`npm run dev`（Vite）では `/api/*`（翻訳・発音評価）は動きません。
-Functions を含めて試すときは、ビルドしてから Wrangler で起動します。
+`npm run dev`（Vite）では `/api/*`（翻訳・発音評価）は動きません。未設定でも単語学習・リスニング・シャドーイング・用語チェックは使えます。
+API を含めて試すときは Vercel CLI を使います（初回のみログインとプロジェクトのリンクが必要）。
 
 ```bash
-cp .dev.vars.example .dev.vars          # Azure のキー等を記入（.dev.vars は .gitignore 済み）
-npm run build && npx wrangler pages dev dist   # http://localhost:8788
+cp .env.example .env.local     # Azure のキー等を記入（.env.local は .gitignore 済み）
+npx vercel login
+npx vercel link                # Vercel 上のプロジェクトと関連付け
+npm run dev:vercel             # = vercel dev（http://localhost:3000、/api も動く）
 ```
 
-`npm run pages:dev` でも同じ `wrangler pages dev dist` を起動できます（事前に `npm run build` が必要）。
+Vercel に登録済みの環境変数を手元に取り込む場合は `npx vercel env pull .env.local` を使います。
 
 ## テスト・品質チェック
 
 ```bash
-npm run typecheck   # アプリ（tsconfig.json）と Functions（functions/tsconfig.json）の型チェック
+npm run typecheck   # アプリ（tsconfig.json）と API（api/tsconfig.json）の型チェック
 npm test            # Vitest（tests/*.test.ts）
 npm run build       # 型チェック + 本番ビルド（dist/）
 ```
@@ -169,45 +174,46 @@ node scripts/e2e-flow.mjs e2e-out             # オンボーディング → 学
 
 GitHub に push / Pull Request を作ると、`.github/workflows/ci.yml` で typecheck・test・build が実行されます。
 
-## デプロイ（Cloudflare Pages）
+## デプロイ（Vercel）
 
-### A. Git 連携（推奨）
+### 初回の設定
 
-1. このリポジトリを GitHub に push
-2. Cloudflare ダッシュボード → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** でリポジトリを選択
-3. ビルド設定
+1. [vercel.com](https://vercel.com) に GitHub アカウントでログイン
+2. **Add New… → Project** → **Import Git Repository** で `yuuto-moriya/English_learning_app` を選んで **Import**
+   （一覧に出ない場合は「Adjust GitHub App Permissions」で、このリポジトリへのアクセスを許可）
+3. 設定はそのままで構いません（`vercel.json` で指定済み）
 
    | 項目 | 値 |
    |---|---|
-   | Project name | `tetsu-english`（URL は `https://tetsu-english.pages.dev`） |
-   | Framework preset | None |
-   | Build command | `npm run build` |
-   | Build output directory | `dist` |
+   | Framework Preset | Vite |
+   | Build Command | `npm run build` |
+   | Output Directory | `dist` |
 
-   ビルド環境の Node.js のバージョンを固定したい場合は、環境変数 `NODE_VERSION=22` を追加します。
-4. **Settings → Variables and Secrets** で Azure のキーなどを **Encrypt（シークレット）** として登録し、再デプロイ
-   （詳しくは [docs/SETUP_AZURE.md](docs/SETUP_AZURE.md)）
-5. 以降は `main` に push するたびに自動でデプロイされます（PR ごとにプレビュー URL も作成）
+4. **Environment Variables** に Azure のキーなどを入れて **Deploy**
+   （あとから入れる場合は **Settings → Environment Variables** で追加し、**Deployments** から **Redeploy**。詳しくは [docs/SETUP_AZURE.md](docs/SETUP_AZURE.md)）
 
-`functions/` ディレクトリは Cloudflare が自動で Pages Functions としてデプロイします。
-`wrangler.toml` には `name` / `pages_build_output_dir` / `compatibility_date` だけを記載しています。
-このファイルに書いた項目はダッシュボードで編集できなくなるため、**秘密情報は書かず**、シークレットとして登録してください。
+### 以降の更新
 
-### B. コマンドで直接アップロード
+`main` に push するたびに自動で本番にデプロイされます。ほかのブランチや Pull Request にはプレビュー用の URL が作られます。
+
+- `api/*.ts` は Vercel Functions（Node.js）として自動でデプロイされます。処理本体は `server/` にあります。
+- `vercel.json` で、`/api/` 以外のパスをすべて `index.html` に送っています（React Router の画面を直接開いても 404 にならないように）。
+- アプリは新しいバージョンを検知すると「更新」ボタンを表示します。学習中は表示しません。
+
+### コマンドでデプロイする場合
 
 ```bash
-npx wrangler login
-npm run pages:deploy        # = npm run build && wrangler pages deploy dist
+npx vercel login
+npx vercel          # プレビュー環境へ
+npx vercel --prod   # 本番へ
 ```
 
-シークレットは `npx wrangler pages secret put <NAME> --project-name tetsu-english` でも登録できます。
-
-PWA は自動更新です。デプロイ後、アプリを開き直すと新しいバージョンに切り替わります。
+> Vercel の Hobby プラン（無料）は個人・非商用の利用が対象です。業務で使う場合は Pro プランを検討してください。
 
 ## Azure（翻訳・発音評価）の設定
 
 翻訳・発音評価・音声入力には Azure AI Translator と Azure AI Speech（どちらも無料の F0 プランあり）を使います。
-キーは Cloudflare Pages の暗号化された環境変数にだけ保存され、端末には送られません。
+キーは Vercel の環境変数（サーバー側）にだけ保存され、端末には送られません。
 
 | 環境変数 | 必須 | 内容 |
 |---|---|---|
@@ -218,11 +224,11 @@ PWA は自動更新です。デプロイ後、アプリを開き直すと新し�
 | `APP_ACCESS_TOKEN` | 任意（推奨） | 設定すると `/api/*` に `X-App-Token` が必要。アプリの設定画面で入力 |
 
 リソースの作り方・無料枠・確認方法は **[docs/SETUP_AZURE.md](docs/SETUP_AZURE.md)** を参照してください。
-設定後は `https://<project>.pages.dev/api/health` か、アプリの **設定 → クラウド機能 →「接続を確認」** で確認できます。
+設定後は `https://<project>.vercel.app/api/health` か、アプリの **設定 → クラウド機能 →「接続を確認」** で確認できます。
 
 ## iPhone のホーム画面に追加する
 
-1. iPhone の **Safari** でアプリの URL（例: `https://tetsu-english.pages.dev`）を開く
+1. iPhone の **Safari** でアプリの URL（例: `https://<project>.vercel.app`）を開く
 2. 共有ボタン（四角から上向き矢印）→ **ホーム画面に追加**（見当たらない場合は共有メニューを下にスクロール）
 3. 名前を確認して **追加**。以降はホーム画面のアイコンから全画面で起動します
 
@@ -291,7 +297,7 @@ npm run data:build   # [WARN]（列数・重複・例文の対象語）と [INFO
 npm test             # データの整合性テスト
 ```
 
-`data-src/` と、生成された `src/data/vocab/*.json` の両方をコミットします（Cloudflare のビルドでは Python を使わず、JSON をそのまま使います）。
+`data-src/` と、生成された `src/data/vocab/*.json` の両方をコミットします（Vercel のビルドでは Python を使わず、JSON をそのまま使います）。
 
 ## キャラクター「テツ」の再生成（Blender）
 
@@ -329,7 +335,7 @@ python scripts/blender/postprocess.py render-out
 
 | ファイル | 内容 |
 |---|---|
-| [docs/SETUP_AZURE.md](docs/SETUP_AZURE.md) | Azure Translator / Speech の作成、Cloudflare Pages への設定、アクセストークン、動作確認 |
+| [docs/SETUP_AZURE.md](docs/SETUP_AZURE.md) | Azure Translator / Speech の作成、Vercel への設定、アクセストークン、動作確認 |
 | [docs/RESEARCH.md](docs/RESEARCH.md) | 学習法のエビデンス（文献）と、アプリでの実装 |
 | [docs/RAIL_GLOSSARY.md](docs/RAIL_GLOSSARY.md) | 保線用語集の編集方針・出典タグ・著作権・追加方法 |
 | [DATA_LICENSE.md](DATA_LICENSE.md) | データ・素材のライセンスと出典 |

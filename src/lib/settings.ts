@@ -20,7 +20,7 @@ export interface Settings {
   voiceUK: string
   /** 自動で単語を読み上げる */
   autoPlay: boolean
-  /** Cloudflare Functions へのアクセストークン（任意） */
+  /** サーバーAPI（/api/*）へのアクセストークン（任意） */
   apiToken: string
   guide: boolean
   onboarded: boolean

@@ -186,7 +186,7 @@ export default function Settings() {
             接続を確認
           </Button>
           <p className="text-[11px] leading-relaxed text-muted">
-            APIキーはCloudflare Pagesの環境変数に保存され、端末には送られません。設定手順はリポジトリのREADMEを参照してください。未設定でも単語学習・リスニング・シャドーイング・用語チェックは利用できます。
+            APIキーはサーバー（Vercel）の環境変数に保存され、端末には送られません。設定手順はリポジトリのREADMEを参照してください。未設定でも単語学習・リスニング・シャドーイング・用語チェックは利用できます。
           </p>
         </Card>
 

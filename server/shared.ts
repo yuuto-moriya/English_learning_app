@@ -1,4 +1,4 @@
-/** Cloudflare Pages Functions 共通処理（Azure呼び出し・レスポンス正規化） */
+/** API 共通処理（Azure呼び出し・レスポンス正規化）。Web 標準 API のみ使用 */
 
 export interface Env {
   AZURE_TRANSLATOR_KEY?: string

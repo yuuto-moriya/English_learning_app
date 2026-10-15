@@ -1,6 +1,6 @@
 import { getSettings } from './settings'
 
-/** Cloudflare Pages Functions（/api/*）経由で Azure を呼ぶ。APIキーはサーバー側にのみ保存。 */
+/** Vercel Functions（/api/*）経由で Azure を呼ぶ。APIキーはサーバー側にのみ保存。 */
 
 export interface Health {
   translator: boolean
