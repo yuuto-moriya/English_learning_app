@@ -11,7 +11,8 @@ export interface Settings {
   retention: number
   /** 学習対象カテゴリ */
   studyCats: { general: boolean; business: boolean; rail: boolean }
-  /** 新出語の最大レベル（これ以下から出題） */
+  /** 新出語のレベル範囲（一般・ビジネス） */
+  minLevel: number
   maxLevel: number
   /** 読み上げ速度 */
   rate: number
@@ -30,6 +31,7 @@ const defaults: Settings = {
   dailyNew: 10,
   retention: 0.9,
   studyCats: { general: true, business: true, rail: true },
+  minLevel: 1,
   maxLevel: 3,
   rate: 0.95,
   voiceUS: '',
@@ -52,7 +54,7 @@ export const useSettings = create<Store>()(
       set: (patch) => set(patch),
       reset: () => set(defaults),
     }),
-    { name: 'tetsu-settings', version: 1 },
+    { name: 'tetsu-settings', version: 2, migrate: (s) => ({ ...defaults, ...(s as object) }) as Store },
   ),
 )
 

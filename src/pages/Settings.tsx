@@ -74,7 +74,7 @@ export default function Settings() {
             value={s.theme}
             onChange={setTheme}
             options={[
-              { value: 'system', label: '端末に合わせる' },
+              { value: 'system', label: '自動' },
               { value: 'light', label: 'ライト' },
               { value: 'dark', label: 'ダーク' },
             ]}
@@ -99,13 +99,13 @@ export default function Settings() {
                 value={String(s.retention)}
                 onChange={(v) => s.set({ retention: Number(v) })}
                 options={[
-                  { value: '0.85', label: '85%（復習少）' },
-                  { value: '0.9', label: '90%（推奨）' },
-                  { value: '0.95', label: '95%（復習多）' },
+                  { value: '0.85', label: '85%' },
+                  { value: '0.9', label: '90%★' },
+                  { value: '0.95', label: '95%' },
                 ]}
               />
             </div>
-            <p className="mt-1 text-[11px] text-muted">FSRSは、この確率で思い出せる直前に復習を予定します。</p>
+            <p className="mt-1 text-[11px] text-muted">FSRSは、この確率で思い出せる直前に復習を予定します（★推奨。高くすると復習回数が増えます）。</p>
           </div>
           <div>
             <p className="text-[15px]">学習するカテゴリ</p>
@@ -124,15 +124,24 @@ export default function Settings() {
             </div>
           </div>
           <div>
-            <p className="text-[15px]">一般・ビジネスの新出語レベル（上限）</p>
-            <div className="no-scrollbar mt-2 flex gap-2 overflow-x-auto">
+            <p className="text-[15px]">一般・ビジネスの新出語レベル</p>
+            <p className="mt-2 text-[12px] text-muted">下限</p>
+            <div className="no-scrollbar mt-1 flex gap-2 overflow-x-auto">
               {LEVELS.slice(0, 5).map((l) => (
-                <Chip key={l.lv} active={s.maxLevel === l.lv} onClick={() => s.set({ maxLevel: l.lv })}>
+                <Chip key={l.lv} active={s.minLevel === l.lv} onClick={() => s.set({ minLevel: l.lv, maxLevel: Math.max(s.maxLevel, l.lv) })}>
                   Lv{l.lv} {l.cefr}
                 </Chip>
               ))}
             </div>
-            <p className="mt-1 text-[11px] text-muted">低いレベルから順に出題します。保線用語はこの設定に関係なく出題されます。</p>
+            <p className="mt-2 text-[12px] text-muted">上限</p>
+            <div className="no-scrollbar mt-1 flex gap-2 overflow-x-auto">
+              {LEVELS.slice(0, 5).map((l) => (
+                <Chip key={l.lv} active={s.maxLevel === l.lv} onClick={() => s.set({ maxLevel: l.lv, minLevel: Math.min(s.minLevel, l.lv) })}>
+                  Lv{l.lv} {l.cefr}
+                </Chip>
+              ))}
+            </div>
+            <p className="mt-1 text-[11px] text-muted">範囲内の低いレベルから順に出題します。保線用語はこの設定に関係なく出題されます。</p>
           </div>
         </Card>
 

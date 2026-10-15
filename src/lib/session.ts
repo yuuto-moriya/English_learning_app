@@ -34,15 +34,23 @@ export function chooseType(row: CardRow | undefined, word: Word, seed: number): 
   return seed % 2 === 0 ? 'listen' : 'flip'
 }
 
-export function newWordPool(all: Word[], cards: Set<string>, s: Pick<Settings, 'studyCats' | 'maxLevel'>): Word[][] {
+const FUNCTION_POS = new Set(['det', 'pron', 'prep', 'conj', 'aux', 'int', 'num'])
+
+export function newWordPool(
+  all: Word[],
+  cards: Set<string>,
+  s: Pick<Settings, 'studyCats' | 'maxLevel'> & { minLevel?: number },
+): Word[][] {
   const groups: Record<Category, Word[]> = { general: [], business: [], rail: [] }
   for (const w of all) {
     if (cards.has(w.id)) continue
     if (!s.studyCats[w.cat]) continue
-    if (w.cat !== 'rail' && w.lv > s.maxLevel) continue
+    if (w.cat !== 'rail' && (w.lv > s.maxLevel || w.lv < (s.minLevel ?? 1))) continue
     groups[w.cat].push(w)
   }
-  const order = (a: Word, b: Word) => a.lv - b.lv || (a.rank ?? 9999) - (b.rank ?? 9999)
+  // 同じレベル内では内容語を先に、機能語（冠詞・前置詞など）は後回し
+  const fn = (w: Word) => (FUNCTION_POS.has(w.pos) ? 1 : 0)
+  const order = (a: Word, b: Word) => a.lv - b.lv || fn(a) - fn(b) || (a.rank ?? 9999) - (b.rank ?? 9999)
   groups.general.sort(order)
   groups.business.sort(order)
   groups.rail.sort((a, b) => a.lv - b.lv)

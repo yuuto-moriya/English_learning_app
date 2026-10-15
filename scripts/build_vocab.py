@@ -265,7 +265,7 @@ def build_rail(ipa: dict[str, str]):
                 print(f"[WARN] 保線用語の重複: {en}", file=sys.stderr)
                 continue
             seen.add(sid)
-            us_term = us or None
+            us_term = us if us and us.lower() != en.lower() else None
             us_ipa = ipa_us or ipa_for_phrase(us_term or en, ipa)
             if not us_ipa:
                 missing_ipa.append(us_term or en)

@@ -56,7 +56,8 @@ describe('Azure発音評価レスポンスの正規化', () => {
   })
   it('UTF-8のBase64化（日本語を含む参照文でも壊れない）', () => {
     expect(atob(toBase64Utf8('abc'))).toBe('abc')
-    expect(toBase64Utf8('軌道')).toBe(Buffer.from('軌道').toString('base64'))
+    const bin = atob(toBase64Utf8('軌道'))
+    expect(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)))).toBe('軌道')
   })
 })
 
@@ -91,7 +92,7 @@ describe('学習セッション', () => {
     expect(pool.map((g) => g.map((x) => x.id))).toEqual([['b'], ['r']])
   })
   it('インターリーブ', () => {
-    expect(interleave([[1, 2, 3], ['a'], ['x', 'y']])).toEqual([1, 'a', 'x', 2, 'y', 3])
+    expect(interleave<string | number>([[1, 2, 3], ['a'], ['x', 'y']])).toEqual([1, 'a', 'x', 2, 'y', 3])
   })
   it('客観問題の評価', () => {
     expect(objectiveGrade(false, 1000)).toBe(Rating.Again)

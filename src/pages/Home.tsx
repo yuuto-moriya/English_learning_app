@@ -51,6 +51,7 @@ export default function Home() {
     <div>
       <PageHeader title="Tetsu English" subtitle={dateStr} settings />
       <div className="px-4">
+        <Onboarding />
         <Guide pose={due > 0 || newLeft > 0 ? hello.pose : msg.pose} text={due > 0 || newLeft > 0 ? `${hello.text} ${msg.text}` : msg.text} />
 
         <Card className="mt-3">
@@ -154,5 +155,36 @@ function Quick({ to, icon, title, desc, color, wide }: { to: string; icon: React
         </div>
       </Card>
     </Link>
+  )
+}
+
+const LEVEL_PRESETS = [
+  { label: '入門', desc: '中学英語の復習から', min: 1, max: 2 },
+  { label: '初級', desc: 'TOEIC 〜450点', min: 2, max: 3 },
+  { label: '中級', desc: 'TOEIC 450〜650点', min: 3, max: 4 },
+  { label: '上級', desc: 'TOEIC 650点〜', min: 4, max: 5 },
+]
+
+function Onboarding() {
+  const s = useSettings()
+  if (s.onboarded) return null
+  return (
+    <Card className="mb-3 border-2 border-brand/40">
+      <p className="text-[15px] font-extrabold">はじめまして、案内役のテツだワン！</p>
+      <p className="mt-1 text-[13px] text-muted">いまの英語レベルを選んでね。新しく出る単語の範囲を合わせるよ（あとで設定から変更できます）。</p>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        {LEVEL_PRESETS.map((p) => (
+          <button
+            key={p.label}
+            onClick={() => s.set({ minLevel: p.min, maxLevel: p.max, onboarded: true })}
+            className="rounded-xl border border-line bg-surface-2 px-3 py-3 text-left active:scale-[0.98]"
+          >
+            <p className="text-[15px] font-bold">{p.label}</p>
+            <p className="text-[11px] text-muted">{p.desc}</p>
+          </button>
+        ))}
+      </div>
+      <p className="mt-3 text-[11px] text-muted">保線（鉄道）用語は、レベルに関係なく毎日少しずつ出題されます。</p>
+    </Card>
   )
 }

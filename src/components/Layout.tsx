@@ -100,7 +100,14 @@ export function PageHeader({
         </div>
       </div>
       <div className="pb-2">
-        <h1 className="text-[28px] font-extrabold leading-tight tracking-tight">{title}</h1>
+        <h1
+          className={cx(
+            'font-extrabold leading-tight tracking-tight',
+            typeof title === 'string' && title.length > 11 ? 'text-[22px]' : 'text-[28px]',
+          )}
+        >
+          {title}
+        </h1>
         {subtitle && <p className="mt-0.5 text-[13px] text-muted">{subtitle}</p>}
       </div>
     </header>
