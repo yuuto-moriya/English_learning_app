@@ -1,0 +1,22 @@
+# ローカル開発用の環境変数（`npm run build && npx wrangler pages dev dist` で読み込まれる）
+# 使い方: このファイルを .dev.vars にコピーして値を入れる（.dev.vars は .gitignore 済み）
+#   cp .dev.vars.example .dev.vars
+# 本番（Cloudflare Pages）では Settings > Variables and Secrets で「Encrypt」して登録してください。
+# 手順の詳細: docs/SETUP_AZURE.md
+
+# ── Azure AI Translator（翻訳） ──
+AZURE_TRANSLATOR_KEY="your-translator-key"
+# リソースを作成したリージョン（例: japaneast）。グローバルリソースの場合は global
+AZURE_TRANSLATOR_REGION="japaneast"
+# 任意。既定は https://api.cognitive.microsofttranslator.com
+# AZURE_TRANSLATOR_ENDPOINT="https://api.cognitive.microsofttranslator.com"
+
+# ── Azure AI Speech（発音評価・音声入力） ──
+AZURE_SPEECH_KEY="your-speech-key"
+AZURE_SPEECH_REGION="japaneast"
+# 任意。指定するとリージョンより優先（カスタムサブドメインのエンドポイント）
+# AZURE_SPEECH_ENDPOINT="https://<resource>.cognitiveservices.azure.com"
+
+# ── アクセス制限（任意） ──
+# 設定すると /api/* に X-App-Token ヘッダーが必要になる（アプリの設定画面で入力）
+# APP_ACCESS_TOKEN="change-me-to-a-long-random-string"

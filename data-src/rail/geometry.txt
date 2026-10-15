@@ -1,11 +1,11 @@
 # 軌道狂い・検測
 track geometry|track geometry|軌道形状（軌道狂いの総称）|5|ˈtræk dʒiˌɒmətri|ˈtræk dʒiˌɑːmətri|EN 13848-1|軌道の幾何学的形状（軌間・水準・高低・通り・平面性）。その乱れが「軌道狂い」。|*Track geometry* is measured every three months.|軌道形状は3か月ごとに測定される。
 track irregularity|track irregularity|軌道狂い|5|ˈtræk ɪˌreɡjəˈlærəti|ˈtræk ɪˌrɛɡjəˈlɛrəti|JIS E 1001|軌道の設計形状からのずれ。英語ではtrack geometry defect / fault ともいう。|*Track irregularity* increases after heavy rain.|大雨の後は軌道狂いが大きくなる。
-track geometry fault|track geometry defect|軌道狂い（個別の不良箇所）|5|ˈtræk dʒiˌɒmətri fɔːlt|ˈtræk dʒiˌɑːmətri ˈdiːfɛkt|EN 13848-5|基準を超えた軌道狂いの箇所。英国ではfault、米国ではdefect / exceptionと言うことが多い。|The recording car found three *track geometry faults*.|検測車が3か所の軌道狂いを検出した。
-gauge irregularity|gage deviation|軌間狂い|6|ˈɡeɪdʒ ɪˌreɡjəˈlærəti|ˈɡeɪdʒ ˌdiːviˈeɪʃən|JIS E 1001;EN 13848-1|所定の軌間に対する差。広がりすぎ（wide gauge）は脱線につながる。|Wide *gauge irregularity* was found on the curve.|曲線で軌間の広がり（軌間狂い）が見つかった。
+track geometry fault|track geometry defect|軌道狂い（個別の不良箇所）|5|ˈtræk dʒiˌɒmətri fɔːlt|ˈtræk dʒiˌɑːmətri ˈdiːfɛkt|英国実務|基準を超えた軌道狂いの箇所。英国ではfault、米国ではdefect / exceptionと言うことが多い。|The recording car found three *track geometry faults*.|検測車が3か所の軌道狂いを検出した。
+gauge irregularity|gage deviation|軌間狂い|6|ˈɡeɪdʒ ɪˌreɡjəˈlærəti|ˈɡeɪdʒ ˌdiːviˈeɪʃən|JIS E 1001;EN 13848-1|所定の軌間に対する差。広がりすぎ（wide gauge）は脱線につながる。|A *gauge irregularity* of +12 mm was found on the curve.|曲線で+12mmの軌間狂いが見つかった。
 cross level|cross level|水準（左右レールの高低差）|6|ˌkrɒs ˈlevl|ˌkrɔːs ˈlɛvəl|EN 13848-1;JIS E 1001|左右レール頭頂面の高さの差。曲線ではカントからのずれが水準狂い。|The *cross level* is within tolerance.|水準は許容範囲内だ。
 longitudinal level|surface|高低（狂い）|6|ˌlɒndʒɪˈtjuːdɪnl ˈlevl|ˈsɝfɪs|EN 13848-1;JIS E 1001|レールの長手方向の上下の凹凸。EN 13848-1の用語。米国ではsurface（profile）。|Tamping corrects the *longitudinal level* of the track.|つき固めで軌道の高低狂いを整正する。
-alignment irregularity|line deviation|通り狂い|6|əˈlaɪnmənt ɪˌreɡjəˈlærəti|ˈlaɪn ˌdiːviˈeɪʃən|EN 13848-1;JIS E 1001|レールの長手方向の左右の凹凸。EN 13848-1では単にalignment、米国ではline。|Poor *alignment irregularity* makes the ride rough.|通り狂いが大きいと乗り心地が悪くなる。
+alignment irregularity|line deviation|通り狂い|6|əˈlaɪnmənt ɪˌreɡjəˈlærəti|ˈlaɪn ˌdiːviˈeɪʃən|EN 13848-1;JIS E 1001|レールの長手方向の左右の凹凸。EN 13848-1では単にalignment、米国ではline。|Large *alignment irregularities* make the ride rough.|通り狂いが大きいと乗り心地が悪くなる。
 twist|warp|平面性狂い（ねじれ）|6|twɪst|wɔrp|TSI INF App.S;EN 13848-1;JIS E 1001|一定距離離れた2点の水準の差。TSIでは「所定距離離れた2つの水準の代数差」。脱線リスクに直結。米国ではwarp。|Excessive *twist* can lift a wheel off the rail.|過大な平面性狂いは車輪をレールから浮き上がらせることがある。
 combined irregularity|combined defect|複合狂い|6|kəmˌbaɪnd ɪˌreɡjəˈlærəti|kəmˌbaɪnd ˈdiːfɛkt|JIS E 1001|通りと水準など複数の狂いが組み合わさったもの。車両の揺れを増幅しやすい。|*Combined irregularity* caused heavy rolling of the train.|複合狂いが列車の大きなローリングを引き起こした。
 isolated defect|isolated defect|局所的な軌道狂い（単独欠陥）|6|ˌaɪsəleɪtɪd ˈdiːfekt|ˌaɪsəleɪtɪd ˈdiːfɛkt|TSI INF App.S;EN 13848-5|1か所に集中した軌道狂い。TSI・EN 13848-5で限界値（AL/IL/IAL）が設定される。|An *isolated defect* exceeded the intervention limit.|局所的な軌道狂いが介入限界を超えた。
@@ -13,7 +13,7 @@ alert limit|alert limit|注意値（AL）|6|əˈlɜːt ˌlɪmɪt|əˈlɝt ˌlɪm
 intervention limit|intervention limit|介入限界（IL・整備基準値）|6|ˌɪntəˈvenʃn ˌlɪmɪt|ˌɪntɚˈvɛnʃən ˌlɪmɪt|TSI INF App.S;EN 13848-5|次回検査までにIALに達しないよう是正保守が必要となる値（IL）。日本の整備基準値に近い概念。|We must repair defects above the *intervention limit* before the next inspection.|介入限界を超えた欠陥は次回検査までに補修しなければならない。
 immediate action limit|immediate action limit|即時対応限界（IAL）|6|ɪˌmiːdiət ˈækʃn ˌlɪmɪt|ɪˌmiːdiət ˈækʃən ˌlɪmɪt|TSI INF App.S;EN 13848-5|超えたら脱線リスクを許容レベルに下げる措置（徐行・線路閉鎖・補修）が直ちに必要な値（IAL）。|A twist above the *immediate action limit* requires a speed restriction at once.|即時対応限界を超えた平面性狂いには直ちに速度制限が必要だ。
 standard deviation|standard deviation|標準偏差（σ値）|5|ˌstændəd ˌdiːviˈeɪʃn|ˌstændɚd ˌdiːviˈeɪʃən|EN 13848-6|一定区間（例：200m）の軌道狂いのばらつきの指標。区間の軌道品質評価に使う。|The *standard deviation* of longitudinal level is used to plan tamping.|高低狂いの標準偏差はつき固め計画に使われる。
-track quality index|track quality index|軌道品質指数（TQI）|6|ˌtræk ˈkwɒləti ˌɪndeks|ˌtræk ˈkwɑːləti ˌɪndɛks|JIS E 1001|区間の軌道状態を数値化した指標。日本の軌道狂い指数（P値など）に相当する考え方。|The *track quality index* improved after tamping.|つき固め後に軌道品質指数が改善した。
+track quality index|track quality index|軌道品質指数（TQI）|6|ˌtræk ˈkwɒləti ˌɪndeks|ˌtræk ˈkwɑːləti ˌɪndɛks|EN 13848-6;一般用語|区間の軌道状態を数値化した指標（TQI）。EN 13848-6は標準偏差などを用いた軌道形状品質の評価方法を扱う。日本の軌道狂い指数（P値など）に相当する考え方。|The *track quality index* improved after tamping.|つき固め後に軌道品質指数が改善した。
 wavelength range|wavelength range|波長帯（D1/D2/D3）|6|ˈweɪvleŋθ reɪndʒ|ˈweɪvlɛŋθ reɪndʒ|EN 13848-1|EN 13848では高低・通りを波長帯で評価する。D1：3〜25m、D2：25〜70m、D3：70〜150m（高低）など。|High-speed lines must also be checked in the D3 *wavelength range*.|高速線ではD3の波長帯も確認しなければならない。
 track recording vehicle|track geometry car|軌道検測車|5|ˌtræk rɪˈkɔːdɪŋ ˌviːəkl|ˌtræk dʒiˈɑːmətri kɑr|EN 13848-2;JIS E 1001|走行しながら軌道形状を測定する車両（EN 13848-2）。英国ではTRV、日本ではマヤ車・East-iなど。|The *track recording vehicle* runs on this line every month.|軌道検測車は毎月この路線を走行する。
 track recording|track geometry measurement|軌道検測|5|ˌtræk rɪˈkɔːdɪŋ|ˌtræk dʒiˈɑːmətri ˌmɛʒɚmənt|EN 13848-2|車両や測定器による軌道形状の測定。|The latest *track recording* shows a dip near the bridge.|最新の軌道検測で橋の近くにくぼみが見られる。
@@ -25,13 +25,12 @@ chord|chord|弦|6|kɔːd|kɔrd|英国実務|正矢測定の基準となる2点�
 dip|low spot|局部的な沈下（くぼみ）|5|dɪp|ˈloʊ spɑːt|英国実務|軌道が局部的に沈んだ箇所。継目部では dipped joint という。|There is a *dip* in the track at the bridge end.|橋の端で線路がくぼんでいる。
 top|surface|高低（英国の現場用語）|6|tɒp|ˈsɝfɪs|英国実務|英国の現場で高低（longitudinal level）を指す口語。「top and line（高低と通り）」の形でよく使う。|The *top* of the track is poor after the frost.|霜の後で軌道の高低が悪くなっている。
 top and line|surface and line|高低と通り|6|ˌtɒp ən ˈlaɪn|ˌsɝfɪs ən ˈlaɪn|英国実務|つき固めで整正する2つの主要な狂い。英国の現場で頻用される表現。|The tamper restored the *top and line* of the track.|マルタイが軌道の高低と通りを整正した。
-gauge bar|track gauge|軌間ゲージ|5|ˈɡeɪdʒ bɑː|ˈtræk ɡeɪdʒ|JIS E 1001|軌間と水準を測る携帯用の測定器具。JISの「標準ゲージ」。|Check the gauge with a *gauge bar* every 5 m.|5mごとに軌間ゲージで軌間を確認してください。
+gauge bar|track gage|軌間ゲージ|5|ˈɡeɪdʒ bɑː|ˈtræk ɡeɪdʒ|JIS E 1001|軌間と水準（カント）を測る携帯用の測定器具（JISの「標準ゲージ」）。英国では一般にtrack gauge（カント計付き）と呼ぶ。|Check the gauge with a *gauge bar* every 5 m.|5mごとに軌間ゲージで軌間を確認してください。
 design value|design value|設計値|6|dɪˈzaɪn ˌvæljuː|dɪˈzaɪn ˌvæljuː|TSI INF App.S|製作・施工・保守の許容差を含まない理論値。TSIの定義語。|The *design value* of the cant is 150 mm.|カントの設計値は150mmだ。
 in service value|in service value|供用中の値|6|ɪn ˌsɜːvɪs ˈvæljuː|ɪn ˌsɝvɪs ˈvæljuː|TSI INF App.S|供用開始後の任意の時点で測定した値。TSIの定義語で、保守限度の判定に使う。|Compare each *in service value* with the maintenance limit.|供用中の各値を保守限度と比較してください。
-tolerance|tolerance|許容差|5|ˈtɒlərəns|ˈtɑːlərəns|EN 13848-5|設計値から許される差。施工時の許容差と保守限度は別に定められる。|The new track was laid within *tolerance*.|新しい線路は許容差内で敷設された。
+tolerance|tolerance|許容差|5|ˈtɒlərəns|ˈtɑːlərəns|一般用語|設計値から許される差。施工時の許容差と保守限度は別に定められる。|The new track was laid within *tolerance*.|新しい線路は許容差内で敷設された。
 equivalent conicity|equivalent conicity|等価踏面勾配|6|ɪˌkwɪvələnt kəʊˈnɪsəti|ɪˌkwɪvələnt koʊˈnɪsəti|TSI INF App.S|車輪とレールの接触形状を、同じ運動学的波長をもつ円すい踏面の勾配で表した値。走行安定性（蛇行動）に関係する。|High *equivalent conicity* can cause hunting at high speed.|等価踏面勾配が大きいと高速で蛇行動が起こることがある。
 hunting|hunting|蛇行動|6|ˈhʌntɪŋ||一般用語|輪軸・台車の左右の自励振動。高速域で乗り心地と安全性を損なう。|The train started *hunting* above 250 km/h.|その列車は時速250km以上で蛇行動を始めた。
 ride quality|ride quality|乗り心地|5|ˈraɪd ˌkwɒləti|ˈraɪd ˌkwɑːləti|一般用語|車内の振動加速度などで評価される乗り心地。軌道状態の重要な指標。|Passengers complained about poor *ride quality*.|乗客は乗り心地の悪さについて苦情を言った。
 axle box acceleration|axle box acceleration|軸箱加速度|6|ˈæksl bɒks əkˌseləˈreɪʃn|ˈæksəl bɑːks əkˌsɛləˈreɪʃən|一般用語|軸箱に付けた加速度計の値。短波長の凹凸やレール損傷の検出に使う。|*Axle box acceleration* helps us find short rail defects.|軸箱加速度は短い波長のレール欠陥の発見に役立つ。
-inertial measurement|inertial measurement|慣性正矢法による測定|6|ɪˈnɜːʃl ˌmeʒəmənt|ɪˈnɝʃəl ˌmɛʒɚmənt|EN 13848-2|加速度計とジャイロで弦長に依存せず軌道形状を求める測定方式。|Modern recording cars use *inertial measurement*.|最新の検測車は慣性測定方式を使っている。
-EOF
+inertial measurement|inertial measurement|慣性測定方式|6|ɪˈnɜːʃl ˌmeʒəmənt|ɪˈnɝʃəl ˌmɛʒɚmənt|EN 13848-2|加速度計とジャイロで慣性基準を作り、弦の長さに左右されずに軌道形状を求める測定方式。弦を使う正矢法と対比される。|Modern recording cars use *inertial measurement*.|最新の検測車は慣性測定方式を使っている。

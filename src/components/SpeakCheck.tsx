@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { Mic, Square, Play, Loader2, Info } from 'lucide-react'
 import { assessPronunciation, type PronResult, type PronWord, ApiError } from '@/lib/api'
 import { recorderAvailable, WavRecorder, type Recording } from '@/lib/recorder'
-import { compareWords, localRecognitionAvailable, startLocalRecognition, type LocalSession } from '@/lib/localSpeech'
+import {
+  compareWords,
+  isStandalone,
+  localRecognitionAvailable,
+  startLocalRecognition,
+  type LocalSession,
+} from '@/lib/localSpeech'
 import { useHealth } from '@/lib/hooks'
 import { bumpDaily, db } from '@/lib/db'
 import { speak, type Accent } from '@/lib/tts'
@@ -15,7 +21,8 @@ export function useSpeechEngine(): Engine | undefined {
   const h = useHealth()
   if (h === undefined) return undefined
   if (h?.speech) return 'azure'
-  if (localRecognitionAvailable()) return 'local'
+  // iOSのホーム画面アプリでは webkitSpeechRecognition があっても動かない
+  if (localRecognitionAvailable() && !isStandalone()) return 'local'
   return 'none'
 }
 
@@ -24,6 +31,28 @@ const ENGINE_LABEL: Record<Engine, string> = {
   local: '端末の音声認識（簡易判定）',
   none: '録音して聞き比べ（自己評価）',
 }
+
+/** 端末の音声認識のエラーコード → 表示メッセージ */
+function localErrorMessage(code: string): string {
+  switch (code) {
+    case 'not-allowed':
+      return 'マイク・音声認識の使用が許可されていません（設定 > Safari > マイク / 音声認識）。録音して聞き比べるモードに切り替えました'
+    case 'service-not-allowed':
+      return 'この環境では端末の音声認識を利用できないため、録音して聞き比べるモードに切り替えました'
+    case 'audio-capture':
+      return 'マイクを使用できません。他のアプリがマイクを使っていないか確認してください'
+    case 'network':
+      return '音声認識に接続できませんでした。通信状況を確認してください'
+    default:
+      return `音声認識でエラーが発生しました（${code}）`
+  }
+}
+
+function playUrl(url: string) {
+  new Audio(url).play().catch(() => undefined)
+}
+
+type RecState = 'idle' | 'starting' | 'recording' | 'scoring'
 
 /** 録音 → 発音評価 */
 export function SpeakCheck({
@@ -39,84 +68,172 @@ export function SpeakCheck({
   onScored?: (r: PronResult) => void
   compact?: boolean
 }) {
-  const engine = useSpeechEngine()
-  const [state, setState] = useState<'idle' | 'recording' | 'scoring'>('idle')
+  const detected = useSpeechEngine()
+  // 端末の音声認識が使えないと分かった場合は、以後「録音して聞き比べ」に切り替える
+  const [engineOverride, setEngineOverride] = useState<Engine | null>(null)
+  const engine = detected === undefined ? undefined : (engineOverride ?? detected)
+  const [state, setState] = useState<RecState>('idle')
   const [rec, setRec] = useState<Recording | null>(null)
   const [result, setResult] = useState<PronResult | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [level, setLevel] = useState(0)
   const recorder = useRef<WavRecorder | null>(null)
+  /** getUserMedia 待ちの録音（連打・アンマウント・文の切替でのリーク防止） */
+  const pending = useRef<WavRecorder | null>(null)
   const local = useRef<LocalSession | null>(null)
   const raf = useRef(0)
+  const alive = useRef(true)
+  /** 文（text）が変わるたびに増える。古い録音・採点の結果を捨てるために使う */
+  const session = useRef(0)
+  const stopRef = useRef<() => Promise<void>>(async () => undefined)
   const target = plain(text)
 
+  const isCurrent = (sid: number) => alive.current && session.current === sid
+
+  /** 進行中の録音・認識をすべて破棄する */
+  const abortAll = () => {
+    cancelAnimationFrame(raf.current)
+    pending.current?.cancel()
+    pending.current = null
+    recorder.current?.cancel()
+    recorder.current = null
+    local.current?.abort()
+    local.current = null
+  }
+
+  // 文が変わったら（RolePlayの「次へ」、「別の文にする」など）録音中でも破棄して初期状態へ
   useEffect(() => {
+    session.current++
+    abortAll()
+    setState('idle')
+    setLevel(0)
     setResult(null)
     setRec(null)
     setError(null)
-  }, [text])
-  useEffect(
-    () => () => {
-      cancelAnimationFrame(raf.current)
-      recorder.current?.cancel()
-      local.current?.stop()
-    },
-    [],
-  )
+  }, [text]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    alive.current = true
+    return () => {
+      alive.current = false
+      session.current++
+      abortAll()
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // 録音URLは差し替え時・アンマウント時に解放する
+  useEffect(() => {
+    if (!rec) return
+    return () => URL.revokeObjectURL(rec.url)
+  }, [rec])
 
   const lang = accent === 'en-GB' ? 'en-GB' : 'en-US'
 
-  const start = async () => {
-    setError(null)
-    setResult(null)
-    try {
-      if (engine === 'local') {
-        local.current = startLocalRecognition(lang)
-        setState('recording')
-        return
-      }
-      if (!recorderAvailable) throw new Error('この端末では録音できません')
-      const r = new WavRecorder()
-      r.onAutoStop = () => stop()
-      await r.start()
-      recorder.current = r
-      setState('recording')
-      const tick = () => {
-        setLevel(r.level())
-        raf.current = requestAnimationFrame(tick)
-      }
-      tick()
-    } catch (e) {
-      setError(e instanceof Error && e.name === 'NotAllowedError' ? 'マイクの使用を許可してください（設定 > Safari > マイク）' : String((e as Error).message ?? e))
-      setState('idle')
-    }
+  const handleLocalError = (e: unknown) => {
+    const code = e instanceof Error ? e.message : String(e)
+    if (code === 'aborted') return
+    setError(localErrorMessage(code))
+    if (code === 'service-not-allowed' || code === 'not-allowed') setEngineOverride('none')
   }
 
-  const finish = async (r: PronResult) => {
-    setResult(r)
-    onScored?.(r)
+  const start = async () => {
+    if (state !== 'idle' || pending.current || recorder.current || local.current) return
+    setError(null)
+    setResult(null)
+    const sid = session.current
+    if (engine === 'local') {
+      try {
+        const sess = startLocalRecognition(lang)
+        local.current = sess
+        setState('recording')
+        // 開始直後の失敗（権限なし・ホーム画面アプリ等）はすぐ表示して待機状態へ戻す
+        sess.result.catch((e: unknown) => {
+          if (local.current !== sess || !isCurrent(sid)) return
+          local.current = null
+          handleLocalError(e)
+          setState('idle')
+        })
+      } catch (e) {
+        local.current = null
+        setError(String((e as Error).message ?? e))
+        setState('idle')
+      }
+      return
+    }
+    if (!recorderAvailable) {
+      setError('この端末では録音できません')
+      return
+    }
+    const r = new WavRecorder()
+    pending.current = r
+    r.onAutoStop = () => void stopRef.current()
+    setState('starting')
+    try {
+      // r.start() はこのタップ処理の中で同期的に AudioContext を作る（iOS対策）
+      await r.start()
+    } catch (e) {
+      if (pending.current === r) pending.current = null
+      if (!isCurrent(sid)) return
+      setError(
+        e instanceof Error && e.name === 'NotAllowedError'
+          ? 'マイクの使用を許可してください（設定 > Safari > マイク）'
+          : String((e as Error).message ?? e),
+      )
+      setState('idle')
+      return
+    }
+    if (pending.current === r) pending.current = null
+    if (!isCurrent(sid)) {
+      // 待っている間にアンマウント／文の切替があった
+      r.cancel()
+      return
+    }
+    recorder.current = r
+    setState('recording')
+    const tick = () => {
+      setLevel(r.level())
+      raf.current = requestAnimationFrame(tick)
+    }
+    tick()
+  }
+
+  const finish = async (r: PronResult, sid: number) => {
+    if (isCurrent(sid)) {
+      setResult(r)
+      onScored?.(r)
+    }
     await db.speaking.add({ at: Date.now(), text: target, source, pron: r.pron, accuracy: r.accuracy, fluency: r.fluency, completeness: r.completeness })
     await bumpDaily({ speaking: 1, seconds: 30 })
   }
 
   const stop = async () => {
     cancelAnimationFrame(raf.current)
-    if (engine === 'local' && local.current) {
+    const sid = session.current
+    const sess = local.current
+    if (sess) {
+      local.current = null
       setState('scoring')
-      local.current.stop()
+      sess.stop()
       try {
-        const heard = await local.current.result
-        await finish(compareWords(target, heard))
+        const heard = await sess.result
+        if (!isCurrent(sid)) return
+        await finish(compareWords(target, heard), sid)
       } catch (e) {
-        setError(String((e as Error).message))
+        if (!isCurrent(sid)) return
+        handleLocalError(e)
       }
-      setState('idle')
+      if (isCurrent(sid)) setState('idle')
       return
     }
     const r = recorder.current
     if (!r) return
     recorder.current = null
+    setLevel(0)
     const recording = await r.stop()
+    if (!isCurrent(sid)) {
+      URL.revokeObjectURL(recording.url)
+      return
+    }
     setRec(recording)
     if (recording.seconds < 0.4) {
       setError('声が聞き取れませんでした。もう少し大きな声で話してみてください')
@@ -126,15 +243,20 @@ export function SpeakCheck({
     if (engine === 'azure') {
       setState('scoring')
       try {
-        await finish(await assessPronunciation(recording.wav, target, lang))
+        await finish(await assessPronunciation(recording.wav, target, lang), sid)
       } catch (e) {
-        setError(e instanceof ApiError ? e.message : '採点に失敗しました。通信状況を確認してください')
+        if (isCurrent(sid)) setError(e instanceof ApiError ? e.message : '採点に失敗しました。通信状況を確認してください')
       }
     } else {
       await bumpDaily({ speaking: 1, seconds: 20 })
     }
-    setState('idle')
+    if (isCurrent(sid)) setState('idle')
   }
+
+  // 28秒の自動停止タイマーからは常に最新の stop を呼ぶ
+  useEffect(() => {
+    stopRef.current = stop
+  })
 
   if (engine === undefined) return <div className="h-24 animate-pulse rounded-2xl bg-surface-2" />
 
@@ -153,16 +275,16 @@ export function SpeakCheck({
         ) : (
           <button
             onClick={start}
-            disabled={state === 'scoring'}
+            disabled={state !== 'idle'}
             className="flex h-20 w-20 items-center justify-center rounded-full bg-brand text-white shadow-lg active:scale-95 disabled:opacity-60"
             aria-label="録音開始"
           >
-            {state === 'scoring' ? <Loader2 className="h-8 w-8 animate-spin" /> : <Mic className="h-9 w-9" />}
+            {state === 'idle' ? <Mic className="h-9 w-9" /> : <Loader2 className="h-8 w-8 animate-spin" />}
           </button>
         )}
         {rec && state === 'idle' && (
           <button
-            onClick={() => new Audio(rec.url).play()}
+            onClick={() => playUrl(rec.url)}
             className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-2 text-ink"
             aria-label="自分の録音を再生"
           >
@@ -171,7 +293,13 @@ export function SpeakCheck({
         )}
       </div>
       <p className="text-center text-xs text-muted">
-        {state === 'recording' ? '話し終わったら停止ボタン' : state === 'scoring' ? '採点中…' : 'マイクを押して英文を読み上げよう'}
+        {state === 'recording'
+          ? '話し終わったら停止ボタン'
+          : state === 'scoring'
+            ? '採点中…'
+            : state === 'starting'
+              ? 'マイクを準備中…'
+              : 'マイクを押して英文を読み上げよう'}
       </p>
       {!compact && (
         <p className="flex items-center justify-center gap-1 text-center text-[11px] text-muted">
@@ -185,7 +313,7 @@ export function SpeakCheck({
           <p>録音を再生して、お手本と比べてみよう。リズム・強く読む語・語尾の音に注目！</p>
           <div className="mt-2 flex gap-2">
             <Button variant="secondary" onClick={() => speak(target, { accent })}>お手本</Button>
-            <Button variant="secondary" onClick={() => new Audio(rec.url).play()}>自分の声</Button>
+            <Button variant="secondary" onClick={() => playUrl(rec.url)}>自分の声</Button>
           </div>
           <p className="mt-2 text-[11px] text-muted">設定画面でAzure Speechを有効にすると自動採点できます。</p>
         </Card>

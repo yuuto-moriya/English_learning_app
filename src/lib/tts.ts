@@ -54,55 +54,94 @@ export interface SpeakOptions {
   onStart?: () => void
 }
 
-let current: SpeechSynthesisUtterance | null = null
+interface Pending {
+  u: SpeechSynthesisUtterance
+  finish: (ok: boolean) => void
+}
 
-export function speak(text: string, opts: SpeakOptions = {}): Promise<void> {
-  return new Promise((resolve) => {
-    if (!synth) return resolve()
-    const s = getSettings()
-    const accent = opts.accent ?? 'en-US'
+/** 再生中（または再生待ち）の発話。キャンセル時は false で確定させる */
+let current: Pending | null = null
+
+/**
+ * 現在の発話を「キャンセル」として確定させる。
+ * Safari は cancel() でも onend を発火させるため、cancel() より先に false で resolve しておく。
+ */
+function settleCurrent() {
+  const p = current
+  current = null
+  p?.finish(false)
+}
+
+function say(u: SpeechSynthesisUtterance, est: number, onStart?: () => void): Promise<boolean> {
+  return new Promise<boolean>((resolve) => {
+    if (!synth) return resolve(false)
+    settleCurrent()
     synth.cancel()
-    const u = new SpeechSynthesisUtterance(plain(text))
-    u.lang = accent
-    const v = pickVoice(accent, accent === 'en-US' ? s.voiceUS : s.voiceUK)
-    if (v) u.voice = v
-    u.rate = opts.rate ?? s.rate
-    u.pitch = 1
-    u.onstart = () => opts.onStart?.()
-    const done = () => {
-      if (current === u) current = null
-      resolve()
+    let settled = false
+    let started = false
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const finish = (ok: boolean) => {
+      if (settled) return
+      settled = true
+      clearTimeout(timer)
+      if (current?.u === u) current = null
+      resolve(ok)
     }
-    u.onend = done
-    u.onerror = done
-    current = u
+    u.onstart = () => {
+      started = true
+      onStart?.()
+    }
+    u.onend = () => finish(true)
+    u.onerror = () => finish(false)
+    current = { u, finish }
     synth.speak(u)
-    // iOSで長時間停止するバグ対策：念のためのタイムアウト
-    const est = Math.max(3000, plain(text).length * 140 / (u.rate || 1))
-    setTimeout(() => {
-      if (current === u && !synth.speaking) done()
-    }, est + 4000)
+    // iOSで onend が来ないまま止まるバグ対策：一定時間後に発話が終わっていれば確定させる。
+    // 発話が始まっていた（onstart済み）なら最後まで読めたとみなし、始まらなかった場合は失敗扱い。
+    // speaking のまま固まるケースもあるため、見積もりの3倍を上限に打ち切る。
+    const deadline = Date.now() + est * 3 + 10000
+    const check = () => {
+      if (settled) return
+      if (synth.speaking && Date.now() < deadline) timer = setTimeout(check, 2000)
+      else finish(started)
+    }
+    timer = setTimeout(check, est + 4000)
   })
 }
 
-export function speakJa(text: string, rate = 1): Promise<void> {
-  return new Promise((resolve) => {
-    if (!synth) return resolve()
-    synth.cancel()
-    const u = new SpeechSynthesisUtterance(text)
-    u.lang = 'ja-JP'
-    const v = voices.find((x) => x.lang.replace('_', '-') === 'ja-JP')
-    if (v) u.voice = v
-    u.rate = rate
-    u.onend = () => resolve()
-    u.onerror = () => resolve()
-    synth.speak(u)
-  })
+/**
+ * 英文を読み上げる。
+ * 戻り値: 最後まで読み上げた（onend）場合のみ true。エラー・キャンセル（別の speak / stopSpeaking）・
+ * 発話が始まらずタイムアウトした場合は false。結果を使わない呼び出し側はそのまま無視してよい。
+ */
+export function speak(text: string, opts: SpeakOptions = {}): Promise<boolean> {
+  if (!synth) return Promise.resolve(false)
+  const s = getSettings()
+  const accent = opts.accent ?? 'en-US'
+  const t = plain(text)
+  const u = new SpeechSynthesisUtterance(t)
+  u.lang = accent
+  const v = pickVoice(accent, accent === 'en-US' ? s.voiceUS : s.voiceUK)
+  if (v) u.voice = v
+  u.rate = opts.rate ?? s.rate
+  u.pitch = 1
+  const est = Math.max(3000, (t.length * 140) / (u.rate || 1))
+  return say(u, est, opts.onStart)
+}
+
+export function speakJa(text: string, rate = 1): Promise<boolean> {
+  if (!synth) return Promise.resolve(false)
+  const u = new SpeechSynthesisUtterance(text)
+  u.lang = 'ja-JP'
+  const v = voices.find((x) => x.lang.replace('_', '-') === 'ja-JP')
+  if (v) u.voice = v
+  u.rate = rate
+  const est = Math.max(3000, (text.length * 250) / (rate || 1))
+  return say(u, est)
 }
 
 export function stopSpeaking() {
+  settleCurrent()
   synth?.cancel()
-  current = null
 }
 
 export function isSpeaking(): boolean {

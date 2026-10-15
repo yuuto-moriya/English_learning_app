@@ -1,30 +1,31 @@
 # 分岐器（Switches and Crossings）
 switches and crossings|special trackwork|分岐器類（S&C）|6|ˌswɪtʃɪz ən ˈkrɒsɪŋz|ˌspɛʃəl ˈtrækwɝk|TSI INF App.S;EN 13232|分岐器・クロッシング等とそれらを結ぶレールで構成される軌道。TSIの定義語。英国では略してS&C。|*Switches and crossings* need more maintenance than plain line.|分岐器類は一般区間より多くの保守を必要とする。
 turnout|turnout|分岐器（片開き等の1組）|5|ˈtɜːnaʊt|ˈtɝnaʊt|JIS E 1001;EN 13232|1つの軌道を2つに分ける分岐器1組。英米とも使う。日本の「分岐器」に最も近い一般語。|The *turnout* leads trains into the siding.|その分岐器は列車を側線へ導く。
-points|switch|ポイント（分岐器のトングレール部）|5|pɔɪnts|swɪtʃ|EN 13232;英国実務|英国の日常語で分岐器（特に可動部）を指す。米国ではswitch。運転用語では「ポイント」。|The *points* failed to move because of ice.|氷のためポイントが転換しなかった。
-switch|switch panel|ポインター部（転てつ部）|6|swɪtʃ||TSI INF App.S;EN 13232|TSIでは基本レール2本とトングレール2本から成り、車両を線路から線路へ導く部分。英国では日常的にpointsとも言う。|The *switch* consists of two stock rails and two switch rails.|ポインター部は2本の基本レールと2本のトングレールで構成される。
+points|switch|ポイント（分岐器のトングレール部）|5|pɔɪnts|swɪtʃ|英国実務|英国の日常語で分岐器（特に可動部）を指す。米国ではswitch。運転用語では「ポイント」。|The *points* failed to move because of ice.|氷のためポイントが転換しなかった。
+switch||ポイント部（転てつ部）|6|swɪtʃ||TSI INF App.S;EN 13232|TSIの定義では、2本の基本レールと2本のトングレールから成り、車両を一方の線路から他方へ導く部分。英国では日常的にpointsとも言う。|The *switch* consists of two stock rails and two switch rails.|ポイント部は2本の基本レールと2本のトングレールで構成される。
 switch rail|switch point|トングレール|6|ˈswɪtʃ reɪl|ˈswɪtʃ pɔɪnt|EN 13232|先端が薄く削られた可動レール。基本レールに密着・離反して進路を変える。|The tip of the *switch rail* was chipped.|トングレールの先端が欠けていた。
 stock rail|stock rail|基本レール|6|ˈstɒk reɪl|ˈstɑːk reɪl|EN 13232|トングレールが密着する固定側のレール。|The switch rail must sit tightly against the *stock rail*.|トングレールは基本レールにしっかり密着していなければならない。
-switch toe|switch point|トングレール先端（ポイント先端）|6|ˈswɪtʃ təʊ|ˈswɪtʃ pɔɪnt|EN 13232|トングレールの最も細い先端部。ここに異物が挟まると密着不良になる。|Clear the ballast away from the *switch toe*.|トングレール先端からバラストを取り除いてください。
+switch toe|point of switch|トングレール先端（ポイント先端）|6|ˈswɪtʃ təʊ|ˌpɔɪnt əv ˈswɪtʃ|EN 13232|トングレールの最も細い先端部。ここに異物が挟まると密着不良になる。|Clear the ballast away from the *switch toe*.|トングレール先端からバラストを取り除いてください。
 switch heel|heel of switch|トングレール後端（ヒール）|6|ˈswɪtʃ hiːl|ˌhiːl əv ˈswɪtʃ|EN 13232|トングレールの固定側（回転中心側）の端。|Check the fastenings at the *switch heel*.|トングレール後端の締結を確認してください。
 crossing|frog|クロッシング|6|ˈkrɒsɪŋ|frɔːɡ|EN 13232|分岐器で左右のレールが交差する部分。米国ではfrog。英国のcrossingは「踏切（level crossing）」と区別。|The *crossing* nose is badly worn.|クロッシングのノーズがひどく摩耗している。
-common crossing|rigid frog|固定クロッシング|6|ˌkɒmən ˈkrɒsɪŋ|ˌrɪdʒɪd ˈfrɔːɡ|TSI INF App.S;EN 13232|1つのクロッシングノーズ（vee）と2本のウイングレールで構成される固定式の交差部。TSIの定義語。|A *common crossing* has a gap that causes impact.|固定クロッシングには衝撃の原因となる欠線部がある。
+common crossing|turnout frog|クロッシング（V字形の鋭角クロッシング）|6|ˌkɒmən ˈkrɒsɪŋ|ˈtɝnaʊt ˌfrɔːɡ|TSI INF App.S;EN 13232|TSIの定義語。分岐器・ダイヤモンドクロッシングで向かい合う2本の走行縁を交差させる部分で、1つのノーズ（vee）と2本のウイングレールから成る。可動ノーズ（swing nose）型も含む。鈍角クロッシング（obtuse crossing）と対比される。|A fixed *common crossing* has a gap that causes wheel impact.|固定式のクロッシングには車輪の衝撃の原因となる欠線部がある。
 crossing nose|point of frog|ノーズ（クロッシング先端）|6|ˈkrɒsɪŋ nəʊz|ˌpɔɪnt əv ˈfrɔːɡ|EN 13232|クロッシングのV字形の先端部。車輪の衝撃を受けやすい。|The *crossing nose* was repaired by welding.|ノーズは溶接で補修された。
 actual point|actual point of frog|実ノーズ先端（RP）|6|ˈæktʃuəl pɔɪnt|ˈæktʃuːəl pɔɪnt|TSI INF App.S|クロッシングのvee（ノーズ）の物理的な先端。TSIの定義語（RP）。理論交点（IP）と区別される。|The distance from the IP to the *actual point* is specified.|理論交点から実ノーズ先端までの距離が規定されている。
 intersection point|theoretical point of frog|理論交点（IP）|6|ˌɪntəˈsekʃn pɔɪnt|θiːəˌrɛtɪkəl ˌpɔɪnt əv ˈfrɔːɡ|TSI INF App.S|クロッシング中心で走行縁が理論上交わる点。TSIの定義語。|The *intersection point* is a theoretical reference point.|理論交点は理論上の基準点だ。
 wing rail|wing rail|翼レール（ウイングレール）|6|ˈwɪŋ reɪl||EN 13232|クロッシングのノーズ両側にあり、欠線部で車輪を支える・案内するレール。|The wheel is supported by the *wing rail* over the gap.|欠線部では車輪はウイングレールに支えられる。
 check rail|guard rail|ガードレール（分岐器）|6|ˈtʃek reɪl|ˈɡɑrd reɪl|TSI INF App.S;EN 13674-3|クロッシング欠線部で車輪の反対側を案内し、異線進入を防ぐレール。英国check rail、米国guard rail。|The *check rail* guides the wheel past the crossing nose.|ガードレールが車輪をノーズの先へ案内する。
 flangeway|flangeway|フランジウェイ（輪縁路）|6|ˈflændʒweɪ||TSI INF App.S|走行レールとガードレール・ウイングレールの間の車輪フランジが通る溝。幅と深さがTSIで定義される。|Ice in the *flangeway* can cause a derailment.|フランジウェイ内の氷は脱線の原因になりうる。
-free wheel passage|free wheel passage|バックゲージ等の通過寸法|6|ˌfriː ˈwiːl ˌpæsɪdʒ||TSI INF App.S|分岐器各部での車輪の通過を確保する寸法（ノーズ部、ガード入口、トングレール部）。TSIで限界値が定義される。|Measure the *free wheel passage* at the crossing nose.|ノーズ部の車輪通過寸法を測定してください。
-fixed nose protection|check gauge|ガード位置寸法（ノーズ防護）|6|ˌfɪkst nəʊz prəˈtekʃn|ˈtʃɛk ɡeɪdʒ|TSI INF App.S|クロッシングノーズとガードレールの間の寸法。車輪がノーズに当たらないよう管理する。|*Fixed nose protection* must be within the limits.|ノーズ防護寸法は限度内でなければならない。
+free wheel passage|free wheel passage|フリーホイールパッセージ（車輪通過寸法）|6|ˌfriː ˈwiːl ˌpæsɪdʒ||TSI INF App.S|分岐器で車輪の背面が当たらずに通過できるよう確保する寸法。TSIはトングレール部（in switches）、ノーズ部（at crossing nose）、ガード・ウイングレール入口部（at check rail/wing rail entry）の3種を定義し、限界値を定めている。|Measure the *free wheel passage* at the crossing nose.|ノーズ部のフリーホイールパッセージを測定してください。
+fixed nose protection|guard check gage|ノーズ防護寸法（バックゲージ）|6|ˌfɪkst nəʊz prəˈtekʃn|ˌɡɑrd ˈtʃɛk ɡeɪdʒ|TSI INF App.S|TSIの定義語で、クロッシングノーズとガードレール（check rail）の間の寸法。車輪の背面をガードで案内し、フランジがノーズ先端に当たらないよう管理する。英国の現場ではcheck gauge、日本のバックゲージに相当。米国FRAではguard check gage。|*Fixed nose protection* must be within the limits.|ノーズ防護寸法は限度内でなければならない。
 swing nose crossing|movable point frog|可動ノーズクロッシング|6|ˌswɪŋ nəʊz ˈkrɒsɪŋ|ˌmuːvəbl pɔɪnt ˈfrɔːɡ|TSI INF App.S;EN 13232|ノーズが可動し欠線部をなくすクロッシング。高速分岐器で使用。TSIでswing noseを定義。|High-speed turnouts have a *swing nose crossing*.|高速分岐器には可動ノーズクロッシングがある。
 diamond crossing|diamond|ダイヤモンドクロッシング|6|ˌdaɪəmənd ˈkrɒsɪŋ|ˈdaɪəmənd|EN 13232|2つの線路が平面交差する箇所。鈍角クロッシングを含む。|Trams cross the railway on a *diamond crossing*.|路面電車はダイヤモンドクロッシングで鉄道と交差する。
+obtuse crossing|center frog|鈍角クロッシング|6|əbˌtjuːs ˈkrɒsɪŋ|ˈsɛntɚ ˌfrɔːɡ|EN 13232|ダイヤモンドクロッシングの中央部で、走行縁が鈍角に交差するクロッシング。車輪が案内されない区間（unguided length）がある。米国ではcenter frog。|The *obtuse crossing* has a short unguided length.|鈍角クロッシングには短い無案内区間がある。
 crossover|crossover|渡り線|5|ˈkrɒsəʊvə|ˈkrɔːsoʊvɚ|一般用語|2つの分岐器で並行する2線を結ぶ線路。|Trains use the *crossover* to change tracks.|列車は渡り線を使って線路を変える。
 scissors crossover|double crossover|シーサスクロッシング|6|ˌsɪzəz ˈkrɒsəʊvə|ˌdʌbəl ˈkrɔːsoʊvɚ|一般用語|2組の渡り線を交差させたもの。終端駅で多用される。|The terminus has a *scissors crossover* before the platforms.|その終端駅にはホーム手前にシーサスクロッシングがある。
 through route|straight track|基準線（直線側）|6|ˈθruː ruːt|ˈstreɪt træk|TSI INF App.S|分岐器で線路の全体的な線形を継続する進路。TSIの定義語。|Trains on the *through route* can pass at full speed.|基準線側の列車は最高速度で通過できる。
 diverging route|diverging track|分岐線（曲線側）|6|daɪˌvɜːdʒɪŋ ˈruːt|daɪˌvɝdʒɪŋ ˈtræk|EN 13232|分岐器で基準線から分かれる進路。速度制限がかかることが多い。|The speed on the *diverging route* is limited to 45 km/h.|分岐線側の速度は時速45kmに制限されている。
 point machine|switch machine|転てつ機|6|ˈpɔɪnt məˌʃiːn|ˈswɪtʃ məˌʃiːn|一般用語|トングレールを転換・鎖錠する電気（油圧）装置。英国point machine、米国switch machine。|The *point machine* was replaced during the night.|夜間に転てつ機が交換された。
-facing point lock|switch lock|鎖錠装置|6|ˌfeɪsɪŋ pɔɪnt ˈlɒk|ˈswɪtʃ lɑːk|英国実務|対向分岐器のトングレールを所定位置に固定する装置。安全上極めて重要。|The *facing point lock* holds the switch rail in place.|鎖錠装置がトングレールを所定位置に保持する。
+facing point lock||鎖錠装置（FPL）|6|ˌfeɪsɪŋ pɔɪnt ˈlɒk|ˌfeɪsɪŋ pɔɪnt ˈlɑːk|英国実務|対向分岐器のトングレールを所定位置に固定する装置。安全上極めて重要。|The *facing point lock* holds the switch rail in place.|鎖錠装置がトングレールを所定位置に保持する。
 facing points|facing switch|対向分岐器|6|ˌfeɪsɪŋ ˈpɔɪnts|ˌfeɪsɪŋ ˈswɪtʃ|英国実務|列車がトングレール先端側から進入する分岐器。背向（trailing points）より安全上の管理が厳しい。|*Facing points* must be locked before a train passes.|対向分岐器は列車通過前に鎖錠されなければならない。
 trailing points|trailing switch|背向分岐器|6|ˌtreɪlɪŋ ˈpɔɪnts|ˌtreɪlɪŋ ˈswɪtʃ|英国実務|列車がクロッシング側から進入する分岐器。|The train passed over the *trailing points* at low speed.|列車は背向分岐器を低速で通過した。
 point heater|switch heater|分岐器融雪器（ポイントヒーター）|6|ˈpɔɪnt ˌhiːtə|ˈswɪtʃ ˌhiːtɚ|英国実務|降雪時にトングレール周りを加熱し、凍結・雪詰まりを防ぐ装置。|Turn on the *point heaters* before the snow starts.|雪が降り始める前に融雪器を入れてください。
@@ -34,5 +35,4 @@ residual switch opening|residual switch opening|密着不良（残留開口）|6
 turnout radius|turnout radius|分岐器の曲線半径|6|ˈtɜːnaʊt ˌreɪdiəs|ˈtɝnaʊt ˌreɪdiəs|EN 13232|分岐線側のリード曲線の半径。分岐側の通過速度を決める。|A larger *turnout radius* allows higher speed.|分岐器の半径が大きいほど高い速度で通過できる。
 crossing angle|frog angle|クロッシング角（番数）|6|ˈkrɒsɪŋ ˌæŋɡl|ˈfrɔːɡ ˌæŋɡəl|EN 13232|クロッシングで2本の走行縁がなす角。日本では「番数」（例：12番）、英国では1 in 12のように表す。|The *crossing angle* is 1 in 12.|クロッシング角は1/12（12番）だ。
 switch diamond|movable point crossing|可動ダイヤモンド|6|ˌswɪtʃ ˈdaɪəmənd|ˌmuːvəbl pɔɪnt ˈkrɔːsɪŋ|EN 13232|可動式の鈍角クロッシングを持つダイヤモンド。急角度の交差で使用。|The *switch diamond* has four switch rails.|可動ダイヤモンドには4本の可動レールがある。
-unguided length|unguarded length|欠線部（無案内区間）|6|ʌnˌɡaɪdɪd ˈleŋθ|ʌnˌɡɑrdɪd ˈlɛŋθ|TSI INF App.S|鈍角クロッシングで車輪が案内されない部分。TSIの定義語（unguided length of an obtuse crossing）。|The *unguided length* of the obtuse crossing is limited by the TSI.|鈍角クロッシングの無案内区間長はTSIで制限されている。
-EOF
+unguided length||欠線部（無案内区間）|6|ʌnˌɡaɪdɪd ˈleŋθ|ʌnˌɡaɪdɪd ˈlɛŋθ|TSI INF App.S;EN 13232|鈍角クロッシングで車輪が案内されない部分。TSIの定義語（unguided length of an obtuse crossing）で、EN 13232-3のunguided distanceを参照している。|The *unguided length* of the obtuse crossing is limited by the TSI.|鈍角クロッシングの無案内区間長はTSIで制限されている。

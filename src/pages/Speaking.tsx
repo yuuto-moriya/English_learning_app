@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { Eye, EyeOff, Repeat, Shuffle, Play } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
@@ -36,6 +36,8 @@ export default function Speaking() {
   const [showText, setShowText] = useState(true)
   const [guide, setGuide] = useState<GuideLine | null>(null)
   const standalone = useStandalone()
+  /** 「3回連続」再生の世代番号。他の操作・アンマウントで増やしてループを止める */
+  const runId = useRef(0)
 
   useEffect(() => {
     sentencePool(sources, level, Math.max(1, level - 2)).then((p) => {
@@ -43,9 +45,30 @@ export default function Speaking() {
       setCur((c) => c ?? shuffle(p)[0] ?? null)
     })
   }, [sources, level])
-  useEffect(() => () => stopSpeaking(), [])
+  useEffect(
+    () => () => {
+      runId.current++
+      stopSpeaking()
+    },
+    [],
+  )
+
+  /** 連続再生を止める（読み上げ中の音声も止める） */
+  const stopPlayback = () => {
+    runId.current++
+    stopSpeaking()
+  }
+
+  const repeat3 = async (text: string, accent: Accent) => {
+    const run = ++runId.current
+    for (let k = 0; k < 3; k++) {
+      const ok = await speak(text, { accent, rate })
+      if (!ok || runId.current !== run) break
+    }
+  }
 
   const nextSentence = () => {
+    stopPlayback()
     setCur(shuffle(pool)[0] ?? null)
     setStep(0)
     setGuide(null)
@@ -67,6 +90,7 @@ export default function Speaking() {
         <Segmented
           value={mode}
           onChange={(m) => {
+            stopPlayback()
             setMode(m)
             setStep(0)
           }}
@@ -122,19 +146,15 @@ export default function Speaking() {
               )}
               {jaVisible && cur.ja && <p className="mt-1 text-[13px] text-muted">{cur.ja}</p>}
             </div>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
+            {/* このエリアのボタン操作（お手本・ゆっくり等）は進行中の「3回連続」を止める */}
+            <div className="mt-3 flex flex-wrap items-center gap-2" onClickCapture={() => runId.current++}>
               <Button onClick={() => speak(cur.en, { accent: cur.accent, rate })}>
                 <Play className="h-4 w-4" />
                 お手本
               </Button>
               <SpeakButton text={cur.en} accent={cur.accent} rate={0.6} label="ゆっくり" />
               {mode === 'shadow' && (
-                <Button
-                  variant="secondary"
-                  onClick={async () => {
-                    for (let k = 0; k < 3; k++) await speak(cur.en, { accent: cur.accent, rate })
-                  }}
-                >
+                <Button variant="secondary" onClick={() => repeat3(cur.en, cur.accent)}>
                   <Repeat className="h-4 w-4" />
                   3回連続
                 </Button>
@@ -159,7 +179,13 @@ export default function Speaking() {
                 次のステップ
               </Button>
             ) : (
-              <Button className="flex-1" onClick={() => setMode('repeat')}>
+              <Button
+                className="flex-1"
+                onClick={() => {
+                  stopPlayback()
+                  setMode('repeat')
+                }}
+              >
                 発音チェックへ
               </Button>
             )}

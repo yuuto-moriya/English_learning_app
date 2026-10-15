@@ -12,7 +12,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // 学習中に勝手にリロードされないよう、更新はユーザーの操作で適用する（UpdateToast）
+      registerType: 'prompt',
       includeAssets: ['icons/*.png', 'guide/*.webp', 'favicon.png'],
       manifest: {
         name: 'Tetsu English — 英語学習＆翻訳',

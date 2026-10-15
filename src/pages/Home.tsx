@@ -4,7 +4,7 @@ import { BookOpenCheck, ChevronRight, Ear, Flame, GraduationCap, Keyboard, Langu
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { Button, Card, ProgressBar, ProgressRing, SectionTitle } from '@/components/ui'
-import { useCardsMap, useDueCount, useStreak, useToday } from '@/lib/hooks'
+import { useCardsMap, useDueCount, useNow, useStreak, useToday } from '@/lib/hooks'
 import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
 import { useSettings } from '@/lib/settings'
 import { useCategory } from '@/lib/vocab'
@@ -12,6 +12,7 @@ import { CATEGORIES } from '@/lib/types'
 
 export default function Home() {
   const nav = useNavigate()
+  const now = useNow()
   const dailyNew = useSettings((s) => s.dailyNew)
   const today = useToday()
   const due = useDueCount() ?? 0
@@ -22,7 +23,9 @@ export default function Home() {
   const newLeft = Math.max(0, dailyNew - learnedToday)
   const tip = useMemo(() => randomTip(), [])
 
-  const hello = useMemo(() => greeting(), [])
+  // 開きっぱなしでも時間帯・日付が変われば挨拶を更新する
+  const hour = new Date(now).getHours()
+  const hello = useMemo(() => greeting(new Date()), [hour]) // eslint-disable-line react-hooks/exhaustive-deps
   const msg = useMemo(() => {
     const s = streakMessage(streak)
     if (due > 0 || newLeft > 0) return dueMessage(due, newLeft)
@@ -45,7 +48,7 @@ export default function Home() {
   }, [all, cards])
 
   const minutes = Math.round((today?.seconds ?? 0) / 60)
-  const dateStr = new Date().toLocaleDateString('ja-JP', { month: 'long', day: 'numeric', weekday: 'short' })
+  const dateStr = new Date(now).toLocaleDateString('ja-JP', { month: 'long', day: 'numeric', weekday: 'short' })
 
   return (
     <div>

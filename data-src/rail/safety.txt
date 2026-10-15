@@ -12,13 +12,13 @@ toolbox talk|toolbox talk|ツールボックスミーティング|5|ˈtuːlbɒks
 near miss|near miss|ヒヤリハット|5|ˌnɪə ˈmɪs|ˌnɪr ˈmɪs|一般用語|事故には至らなかったが危険だった事象。報告して再発を防ぐ。|Please report every *near miss*, however small.|どんなに小さくても、すべてのヒヤリハットを報告してください。
 hazard|hazard|危険源（ハザード）|5|ˈhæzəd|ˈhæzɚd|EN 50126|事故の原因となりうる状態・要因。リスクは危険源の発生頻度と影響の組み合わせ。|Identify each *hazard* before starting work.|作業開始前にそれぞれの危険源を特定してください。
 risk assessment|risk assessment|リスクアセスメント|5|ˈrɪsk əˌsesmənt|ˈrɪsk əˌsɛsmənt|EN 50126;CSM-RA|危険源を特定し、リスクを評価し、低減策を決める手順。|A *risk assessment* is required for night work near live lines.|活線近接の夜間作業にはリスクアセスメントが必要だ。
-personal protective equipment|personal protective equipment|保護具（PPE）|5|ˌpɜːsənl prəˌtektɪv ɪˈkwɪpmənt|ˌpɝsənəl prəˌtɛktɪv ɪˈkwɪpmənt|英国実務|ヘルメット・安全靴・高視認性衣服・保護眼鏡などの個人用保護具。略PPE。|Wear full *personal protective equipment* on site.|現場ではすべての保護具を着用してください。
+personal protective equipment|personal protective equipment|保護具（PPE）|5|ˌpɜːsənl prəˌtektɪv ɪˈkwɪpmənt|ˌpɝsənəl prəˌtɛktɪv ɪˈkwɪpmənt|一般用語|ヘルメット・安全靴・高視認性衣服・保護眼鏡などの個人用保護具。略PPE。|Wear full *personal protective equipment* on site.|現場ではすべての保護具を着用してください。
 high-visibility clothing|high-visibility clothing|高視認性衣服|5|ˌhaɪ ˌvɪzəˈbɪləti ˈkləʊðɪŋ|ˌhaɪ ˌvɪzəˈbɪləti ˈkloʊðɪŋ|英国実務|目立つ色と反射材の作業服。英国では略して hi-vis（オレンジ色が標準）。|*High-visibility clothing* must be worn on or near the line.|線路上や線路近くでは高視認性衣服を着用しなければならない。
 temporary speed restriction|slow order|臨時速度制限（徐行）|6|ˌtemprəri ˈspiːd rɪˌstrɪkʃn|ˈsloʊ ˌɔrdɚ|英国実務|工事や軌道状態のため臨時に設ける速度制限。英国略TSR、緊急のものはESR。米国ではslow order。|A *temporary speed restriction* of 30 km/h is in place after tamping.|つき固め後に時速30kmの臨時速度制限が設定されている。
 emergency speed restriction|emergency slow order|緊急速度制限|6|ɪˌmɜːdʒənsi ˈspiːd rɪˌstrɪkʃn|ɪˌmɝdʒənsi ˈsloʊ ˌɔrdɚ|英国実務|予期しない欠陥に対し直ちに設定する速度制限（英国略ESR）。|An *emergency speed restriction* was imposed because of the twist fault.|平面性狂いのため緊急速度制限が課された。
 speed restriction|speed restriction|速度制限|5|ˈspiːd rɪˌstrɪkʃn|ˈspiːd rɪˌstrɪkʃən|英国実務|ある区間の通過速度を制限すること。|The *speed restriction* will be lifted tomorrow.|速度制限は明日解除される。
 derailment|derailment|脱線|5|dɪˈreɪlmənt|diːˈreɪlmənt|一般用語|車輪がレールから外れること。軌道・車両・運転の要因が組み合わさって起こる。|The *derailment* was caused by a broken rail.|その脱線はレール折損が原因だった。
-derailment quotient|derailment coefficient|脱線係数（Y/Q）|6|dɪˈreɪlmənt ˌkwəʊʃnt|diːˈreɪlmənt ˌkoʊɪˈfɪʃənt|JIS E 1001;一般用語|横圧Yと輪重Qの比。値が大きいほど乗り上がり脱線の危険が高い。|The *derailment quotient* stayed below the limit during the test.|試験中、脱線係数は限度以下にとどまった。
+derailment quotient|L/V ratio|脱線係数（Y/Q）|6|dɪˈreɪlmənt ˌkwəʊʃnt|ˌɛl ˈoʊvɚ ˈviː ˌreɪʃioʊ|JIS E 1001;一般用語|横圧Yと輪重Qの比（Y/Q）。値が大きいほど乗り上がり脱線の危険が高い。米国ではL/V ratio（lateral/vertical）と言う。|The *derailment quotient* stayed below the limit during the test.|試験中、脱線係数は限度以下にとどまった。
 derailer|derail|脱線器|6|dɪˈreɪlə|dɪˈreɪl|一般用語|側線から本線への逸走車両を故意に脱線させて本線を守る装置。|The *derailer* protects the main line from runaway wagons.|脱線器は逸走貨車から本線を守る。
 level crossing|grade crossing|踏切|4|ˌlevl ˈkrɒsɪŋ|ˈɡreɪd ˌkrɔːsɪŋ|一般用語|道路と鉄道が平面交差する箇所。英国level crossing、米国grade crossing（highway-rail crossing）。|The barriers at the *level crossing* came down.|踏切の遮断機が下りた。
 track circuit|track circuit|軌道回路|6|ˈtræk ˌsɜːkɪt|ˈtræk ˌsɝkɪt|一般用語|レールに電流を流し、列車の在線を検知する回路。保線作業での短絡に注意。|A metal bar across the rails can operate the *track circuit*.|レールを渡る金属棒は軌道回路を動作させることがある。
@@ -40,4 +40,3 @@ handback|track release|線路閉鎖の解除|6|ˈhændbæk|ˈtræk rɪˌliːs|�
 overrun|overrun|作業時間超過（線路閉鎖の延長）|6|ˈəʊvərʌn|ˈoʊvɚrʌn|英国実務|線路閉鎖の時間内に作業が終わらず、列車運行に影響すること。|The *overrun* delayed the first train by 20 minutes.|作業時間超過で始発列車が20分遅れた。
 competence|competency|技能資格|6|ˈkɒmpɪtəns|ˈkɑːmpɪtənsi|英国実務|特定の作業を行う資格・能力。英国ではカードで管理される。|Check that each worker has the right *competence*.|各作業員が適切な技能資格を持っているか確認してください。
 fatigue management|fatigue risk management|疲労管理|6|fəˈtiːɡ ˌmænɪdʒmənt|fəˈtiːɡ ˈrɪsk ˌmænɪdʒmənt|英国実務|夜間勤務などによる疲労が事故につながらないよう勤務時間を管理すること。|*Fatigue management* is essential for night shifts.|夜勤には疲労管理が不可欠だ。
-EOF

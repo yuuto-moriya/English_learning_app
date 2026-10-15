@@ -4,22 +4,22 @@ ballasted track|ballasted track|バラスト軌道|5|ˈbæləstɪd træk||JIS E 
 ballastless track|slab track|スラブ軌道；直結系軌道|6|ˈbæləstləs træk|ˈslæb træk|EN 16432;JIS E 1001|道床バラストを用いない軌道の総称（EN 16432）。日本のスラブ軌道はコンクリートスラブをてん充層で支える方式。|*Ballastless track* needs less maintenance but costs more to build.|直結系軌道は保守が少なくて済むが建設費が高い。
 slab track|slab track|スラブ軌道|5|ˈslæb træk||JIS E 1001|プレキャストのコンクリートスラブ上にレールを直接締結した軌道。新幹線で広く採用。|The Shinkansen uses *slab track* on viaducts.|新幹線は高架橋上でスラブ軌道を使っている。
 direct fixation track|direct fixation track|直結軌道|6|dəˌrekt fɪkˈseɪʃn træk|dəˌrɛkt fɪkˈseɪʃən træk|JIS E 1001|レールを鋼橋やコンクリート構造物に直接（または短まくらぎで）締結した軌道。|Tunnels often have *direct fixation track*.|トンネルでは直結軌道がよく使われる。
-embedded track|embedded track|舗装軌道；埋込み軌道|6|ɪmˈbedɪd træk||一般用語|路面電車や踏切など、レールを舗装に埋め込んだ軌道。|*Embedded track* is used at level crossings.|踏切では埋込み軌道が使われる。
+embedded track|embedded track|埋込み軌道（併用軌道・踏切部）|6|ɪmˈbedɪd træk||一般用語|路面電車の併用軌道や踏切など、レールを舗装面に埋め込んだ軌道。日本の「舗装軌道」（アスファルト路盤上の省力化軌道）とは別物なので注意。|*Embedded track* is used at level crossings.|踏切では埋込み軌道が使われる。
 sleeper|tie|まくらぎ|4|ˈsliːpə||EN 13230;JIS E 1001|レールを支え荷重を道床に分散する部材。JIS参考英語は英 sleeper／米 tie。分岐器用はbearer（分岐まくらぎ）。|A cracked *sleeper* must be replaced.|ひびの入ったまくらぎは交換しなければならない。
 concrete sleeper|concrete tie|コンクリートまくらぎ|4|ˌkɒŋkriːt ˈsliːpə|ˌkɑːnkriːt ˈtaɪ|EN 13230|多くはプレストレスト（PC）コンクリート製。EN 13230で規定。|*Concrete sleepers* last longer than wooden ones.|コンクリートまくらぎは木まくらぎより長持ちする。
 prestressed concrete sleeper|prestressed concrete tie|PCまくらぎ|5|ˌpriːstrest ˌkɒŋkriːt ˈsliːpə|ˌpriːstrɛst ˌkɑːnkriːt ˈtaɪ|EN 13230|PC鋼材で圧縮力を導入したコンクリートまくらぎ。|We install *prestressed concrete sleepers* on main lines.|本線にはPCまくらぎを敷設している。
 monoblock sleeper|monoblock tie|一体型まくらぎ|6|ˈmɒnəʊblɒk ˌsliːpə|ˈmɑːnoʊblɑːk ˌtaɪ|EN 13230|1本の一体のコンクリートでできたまくらぎ。twin-block（2ブロック式）と対比される。|The *monoblock sleeper* is the most common type in Japan.|一体型まくらぎは日本で最も一般的な形式だ。
 twin-block sleeper|two-block tie|2ブロックまくらぎ|6|ˌtwɪn blɒk ˈsliːpə|ˌtuː blɑːk ˈtaɪ|EN 13230|2つのコンクリートブロックを鋼材で連結したまくらぎ。フランスで多用。|France uses many *twin-block sleepers*.|フランスでは2ブロックまくらぎが多く使われている。
 wooden sleeper|wood tie|木まくらぎ|4|ˌwʊdn ˈsliːpə|ˌwʊd ˈtaɪ|EN 13145|EN 13145で規定される木製まくらぎ。防腐処理を施す。|*Wooden sleepers* are still used on some bridges.|一部の橋ではまだ木まくらぎが使われている。
-bearer|switch tie|分岐まくらぎ|6|ˈbeərə|ˈswɪtʃ taɪ|EN 13230|分岐器（S&C）に使う長さの異なるまくらぎ。英国ではbearer、米国ではswitch tie / headblock。|The switch is supported on long concrete *bearers*.|その分岐器は長いコンクリート分岐まくらぎで支えられている。
+bearer|switch tie|分岐まくらぎ|6|ˈbeərə|ˈswɪtʃ taɪ|EN 13230|分岐器（S&C）に使う長さの異なるまくらぎ。英国ではbearer、米国ではswitch tie（ポイント先端部の長いものはheadblock tie）。コンクリート製はEN 13230-4で規定。|The switch is supported on long concrete *bearers*.|その分岐器は長いコンクリート分岐まくらぎで支えられている。
 sleeper spacing|tie spacing|まくらぎ間隔|5|ˈsliːpə ˌspeɪsɪŋ|ˈtaɪ ˌspeɪsɪŋ|一般用語|まくらぎの中心間隔。欧州の主要線では約600mm。|The *sleeper spacing* is 600 mm.|まくらぎ間隔は600mmだ。
-under sleeper pad|tie pad|まくらぎ下面パッド|6|ˌʌndə ˈsliːpə pæd|ˈtaɪ pæd|一般用語|まくらぎ底面に貼る弾性材。道床の劣化を抑え、振動を低減する（略 USP）。|*Under sleeper pads* reduce ballast damage.|まくらぎ下面パッドは道床の損傷を減らす。
+under sleeper pad|under tie pad|まくらぎ下面パッド|6|ˌʌndə ˈsliːpə pæd|ˌʌndɚ ˈtaɪ pæd|EN 16730|まくらぎ底面に貼る弾性材（略 USP）。道床の劣化を抑え、振動を低減する。コンクリートまくらぎへの適用はEN 16730で規定。米国ではunder tie pad（UTP）。|*Under sleeper pads* reduce ballast damage.|まくらぎ下面パッドは道床の損傷を減らす。
 rail fastening system|rail fastening system|レール締結装置|5|ˈreɪl ˌfɑːsnɪŋ ˌsɪstəm|ˈreɪl ˌfæsənɪŋ ˌsɪstəm|EN 13481;EN 13146;JIS E 1001|レールをまくらぎ等に固定する部品一式。性能要件はEN 13481、試験方法はEN 13146。JIS参考英語は rail fastening。|The *rail fastening system* must resist rail creep.|レール締結装置はレールのふく進に抵抗しなければならない。
 rail clip|rail clip|レールクリップ（板ばね）|5|ˈreɪl klɪp||EN 13481|レール底部を弾性的に押さえる締結部品（例：パンドロールのeクリップ）。|Replace any broken *rail clip* immediately.|折れたレールクリップは直ちに交換してください。
 rail pad|tie pad|軌道パッド|5|ˈreɪl pæd|ˈtaɪ pæd|TSI INF App.S;EN 13481;JIS E 1001|レールとまくらぎ（またはタイプレート）の間に入れる弾性層。TSIの定義語。|A worn *rail pad* can increase noise.|摩耗した軌道パッドは騒音を増やすことがある。
 baseplate|tie plate|タイプレート|5|ˈbeɪspleɪt|ˈtaɪ pleɪt|JIS E 1001;EN 13481|レールとまくらぎの間に置く鋼板。JIS参考英語は英 base plate／米 tie plate。|The rail sits on a cast-iron *baseplate*.|レールは鋳鉄製のタイプレートの上に置かれている。
 insulator|insulator|絶縁材（締結装置）|5|ˈɪnsjuleɪtə|ˈɪnsəleɪtɚ|EN 13481|軌道回路のためにレールとクリップ間を電気的に絶縁する部品。|A missing *insulator* can cause a track circuit failure.|絶縁材の欠落は軌道回路の故障を引き起こすことがある。
-sleeper screw|lag screw|まくらぎねじ|6|ˈsliːpə skruː|ˈlæɡ skruː|EN 13481|タイプレートやクリップ座をまくらぎに固定するねじ。|Tighten each *sleeper screw* to the correct torque.|まくらぎねじは規定トルクで締めてください。
+sleeper screw|screw spike|ねじくぎ（まくらぎねじ）|6|ˈsliːpə skruː|ˈskruː spaɪk|EN 13481|タイプレートやクリップ座をまくらぎに固定するねじ。米国ではscrew spike。|Tighten each *sleeper screw* to the correct torque.|まくらぎねじは規定トルクで締めてください。
 dog spike|cut spike|犬くぎ|5|ˈdɒɡ spaɪk|ˈkʌt spaɪk|JIS E 1001|レールやタイプレートを木まくらぎに留める頭の曲がったくぎ。|Old lines still use *dog spikes* on wooden sleepers.|古い路線ではまだ木まくらぎに犬くぎが使われている。
 rail anchor|rail anchor|アンチクリーパ|6|ˈreɪl ˌæŋkə|ˈreɪl ˌæŋkɚ|JIS E 1001|レールの縦方向の移動（ふく進）を抑える部品。英国ではanti-creep deviceとも。|*Rail anchors* stop the rail from creeping downhill.|アンチクリーパはレールが坂の下へふく進するのを防ぐ。
 rail brace|rail brace|チョック（レール小返り防止）|6|ˈreɪl breɪs||JIS E 1001|曲線部でレールが外側へ倒れる（小返り）のを防ぐ部材。|*Rail braces* are fitted on sharp curves.|急曲線にはチョックが取り付けられている。
@@ -28,7 +28,7 @@ ballast|ballast|道床（バラスト）|4|ˈbæləst||EN 13450;JIS E 1001|ま�
 track ballast|track ballast|道床バラスト（砕石）|5|ˌtræk ˈbæləst||EN 13450;JIS E 1001|鉄道道床用の砕石。角張った形状でかみ合わせを確保する。|The *track ballast* must be hard and angular.|道床バラストは硬く角張っていなければならない。
 ballast depth|ballast depth|道床厚|5|ˈbæləst depθ||JIS E 1001|まくらぎ下面から路盤面までの道床の厚さ。|The *ballast depth* under the sleeper is 250 mm.|まくらぎ下の道床厚は250mmだ。
 ballast shoulder|ballast shoulder|道床肩|5|ˈbæləst ˌʃəʊldə|ˈbæləst ˌʃoʊldɚ|JIS E 1001|まくらぎ端より外側の道床部分。横抵抗力を確保する。JIS「道床肩幅」の参考英語は ballast shoulder width。|A wide *ballast shoulder* helps prevent buckling.|広い道床肩は座屈防止に役立つ。
-crib ballast|crib ballast|まくらぎ間の道床|6|ˈkrɪb ˌbæləst||英国実務|まくらぎとまくらぎの間を埋める道床（crib = まくらぎ間の空間）。|Fill the *crib ballast* after tamping.|つき固めの後、まくらぎ間の道床を補充してください。
+crib ballast|crib ballast|まくらぎ間の道床|6|ˈkrɪb ˌbæləst||一般用語|まくらぎとまくらぎの間を埋める道床（crib = まくらぎ間の空間。英米共通）。|The *crib ballast* was topped up after tamping.|つき固めの後、まくらぎ間の道床を補充した。
 sub-ballast|subballast|補助道床（路盤上層）|6|ˌsʌb ˈbæləst|ˌsʌb ˈbæləst|一般用語|道床と路盤の間の層。細粒の混入を防ぐ。英国ではblanket layer。|A layer of *sub-ballast* protects the formation.|補助道床の層が路盤を保護している。
 ballast resistance|ballast resistance|道床抵抗力|6|ˈbæləst rɪˌzɪstəns||JIS E 1001|まくらぎを動かそうとする力に対する道床の抵抗。横抵抗力（lateral resistance）は座屈防止に重要。|Tamping reduces *ballast resistance* for a short time.|つき固め直後は一時的に道床抵抗力が低下する。
 lateral resistance|lateral resistance|横抵抗力|6|ˌlætərəl rɪˈzɪstəns||一般用語|軌道を横方向に動かそうとする力への抵抗。ロングレールの座屈安定性に直結する。|Low *lateral resistance* can lead to track buckling.|横抵抗力が低いと座屈につながることがある。
@@ -39,5 +39,4 @@ track design|track design|軌道設計|6|ˈtræk dɪˌzaɪn||TSI INF App.S|断�
 EN line category|EN line category|ENの線路等級|6|ˌiː ˈen ˈlaɪn ˌkætəɡəri|ˌiː ˈɛn ˈlaɪn ˌkætəɡɔːri|TSI INF App.S;EN 15528|EN 15528による線路の荷重等級（A、B1、C2、D4など）。軸重と単位長さ質量で区分。|This line is classified as *EN line category* D4.|この路線はENの線路等級D4に分類されている。
 axle load|axle load|軸重|5|ˈæksl ləʊd|ˈæksəl loʊd|TSI INF App.S;JIS E 1001|1軸（輪軸）にかかる静的な荷重。TSIは「輪軸の静的鉛直輪重の和を重力加速度で割った値」と定義。|The bridge was designed for a 22.5-tonne *axle load*.|その橋は軸重22.5トンで設計された。
 wheel load|wheel load|輪重|6|ˈwiːl ləʊd|ˈwiːl loʊd|JIS E 1001|1つの車輪がレールに及ぼす鉛直力。記号Qで表すことが多い。|The *wheel load* was measured with strain gauges.|輪重はひずみゲージで測定された。
-lateral force|lateral force|横圧|6|ˌlætərəl ˈfɔːs|ˌlætərəl ˈfɔrs|JIS E 1001;TSI INF App.S|車輪がレールを横方向に押す力（記号Y）。TSIでは輪軸が軌道に及ぼす横力をdynamic lateral forceとして規定。|High *lateral force* on curves wears the outer rail.|曲線での大きな横圧は外軌を摩耗させる。
-EOF
+lateral force|lateral force|横圧|6|ˌlætərəl ˈfɔːs|ˌlætərəl ˈfɔrs|JIS E 1001;TSI INF App.S|車輪がレールを横方向に押す力（記号Y）。TSIは輪軸が軌道に横方向に及ぼす動的な力の総和をdynamic lateral force（動的横圧）と定義している。|High *lateral force* on curves wears the outer rail.|曲線での大きな横圧は外軌を摩耗させる。

@@ -27,8 +27,26 @@ export function localRecognitionAvailable(): boolean {
   return typeof window !== 'undefined' && !!ctor()
 }
 
+/**
+ * ホーム画面から起動したアプリ（standalone表示）か。
+ * iOSのホーム画面アプリでは webkitSpeechRecognition が存在しても動作しない。
+ */
+export function isStandalone(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    if (window.matchMedia?.('(display-mode: standalone)').matches) return true
+  } catch {
+    // matchMedia 非対応環境
+  }
+  return (navigator as Navigator & { standalone?: boolean }).standalone === true
+}
+
 export interface LocalSession {
+  /** 認識を終了して結果を確定させる */
   stop: () => void
+  /** 認識を破棄する（結果は使わない） */
+  abort: () => void
+  /** 認識結果。失敗時は Error(message = SpeechRecognition のエラーコード) で reject */
   result: Promise<string>
 }
 
@@ -54,7 +72,23 @@ export function startLocalRecognition(lang = 'en-US'): LocalSession {
     rec.onend = () => resolve(text)
   })
   rec.start()
-  return { stop: () => rec.stop(), result }
+  return {
+    stop: () => {
+      try {
+        rec.stop()
+      } catch {
+        // 既に終了している
+      }
+    },
+    abort: () => {
+      try {
+        rec.abort()
+      } catch {
+        // 既に終了している
+      }
+    },
+    result,
+  }
 }
 
 export function normalizeWords(s: string): string[] {

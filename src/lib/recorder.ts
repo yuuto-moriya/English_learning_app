@@ -15,6 +15,20 @@ export interface Recording {
 export const recorderAvailable =
   typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && typeof AudioContext !== 'undefined'
 
+function abortError(): Error {
+  const e = new Error('録音を中止しました')
+  e.name = 'AbortError'
+  return e
+}
+
+/** resume() が iOS で解決しないまま止まることがあるため、上限時間つきで待つ */
+function resumeWithTimeout(ctx: AudioContext, ms = 1500): Promise<void> {
+  return Promise.race([
+    ctx.resume().catch(() => undefined),
+    new Promise<void>((r) => setTimeout(r, ms)),
+  ])
+}
+
 export class WavRecorder {
   private ctx?: AudioContext
   private stream?: MediaStream
@@ -24,28 +38,49 @@ export class WavRecorder {
   private rate = 48000
   private lastLevel = 0
   private timer?: ReturnType<typeof setTimeout>
+  private cancelled = false
   onAutoStop?: () => void
 
+  /**
+   * 録音開始。必ずユーザーのタップ処理の中から（await を挟まずに）呼ぶこと。
+   * iOS では AudioContext をジェスチャー内で生成・resume しないと無音になるため、
+   * getUserMedia を待つ前に同期的に作成する。
+   * cancel() が先に呼ばれた場合や途中で失敗した場合は、マイクと AudioContext を解放して reject する。
+   */
   async start() {
     this.chunks = []
-    this.stream = await navigator.mediaDevices.getUserMedia({
-      audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-    })
-    this.ctx = new AudioContext()
-    if (this.ctx.state === 'suspended') await this.ctx.resume()
-    this.rate = this.ctx.sampleRate
-    this.source = this.ctx.createMediaStreamSource(this.stream)
-    this.node = this.ctx.createScriptProcessor(4096, 1, 1)
-    this.node.onaudioprocess = (e) => {
-      const data = new Float32Array(e.inputBuffer.getChannelData(0))
-      this.chunks.push(data)
-      let sum = 0
-      for (let i = 0; i < data.length; i += 8) sum += data[i] * data[i]
-      this.lastLevel = Math.min(1, Math.sqrt(sum / (data.length / 8)) * 4)
+    this.cancelled = false
+    try {
+      const ctx = new AudioContext()
+      this.ctx = ctx
+      // ジェスチャー内で resume を開始しておく（結果は後で待つ）
+      const resumed = ctx.state === 'running' ? Promise.resolve() : resumeWithTimeout(ctx)
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+      })
+      this.stream = stream
+      if (this.cancelled) throw abortError()
+      await resumed
+      // 許可ダイアログ等で中断（suspended/interrupted）された場合はもう一度だけ試す
+      if (ctx.state !== 'running') await resumeWithTimeout(ctx)
+      if (this.cancelled) throw abortError()
+      this.rate = ctx.sampleRate
+      this.source = ctx.createMediaStreamSource(stream)
+      this.node = ctx.createScriptProcessor(4096, 1, 1)
+      this.node.onaudioprocess = (e) => {
+        const data = new Float32Array(e.inputBuffer.getChannelData(0))
+        this.chunks.push(data)
+        let sum = 0
+        for (let i = 0; i < data.length; i += 8) sum += data[i] * data[i]
+        this.lastLevel = Math.min(1, Math.sqrt(sum / (data.length / 8)) * 4)
+      }
+      this.source.connect(this.node)
+      this.node.connect(ctx.destination)
+      this.timer = setTimeout(() => this.onAutoStop?.(), MAX_SECONDS * 1000)
+    } catch (e) {
+      this.cancel()
+      throw e
     }
-    this.source.connect(this.node)
-    this.node.connect(this.ctx.destination)
-    this.timer = setTimeout(() => this.onAutoStop?.(), MAX_SECONDS * 1000)
   }
 
   level(): number {
@@ -53,24 +88,37 @@ export class WavRecorder {
   }
 
   async stop(): Promise<Recording> {
-    clearTimeout(this.timer)
-    this.node?.disconnect()
-    this.source?.disconnect()
-    this.stream?.getTracks().forEach((t) => t.stop())
-    await this.ctx?.close().catch(() => undefined)
+    const ctx = this.ctx
+    this.release()
+    await ctx?.close().catch(() => undefined)
     const merged = merge(this.chunks)
+    this.chunks = []
     const pcm = downsample(merged, this.rate, TARGET_RATE)
     const trimmed = trimSilence(pcm)
     const wav = encodeWav(trimmed, TARGET_RATE)
     return { wav, url: URL.createObjectURL(wav), seconds: trimmed.length / TARGET_RATE }
   }
 
+  /** 録音を破棄してマイク・AudioContextを解放する（何度呼んでもよい。start() の途中でも可） */
   cancel() {
+    this.cancelled = true
+    const ctx = this.ctx
+    this.release()
+    this.chunks = []
+    ctx?.close().catch(() => undefined)
+  }
+
+  private release() {
     clearTimeout(this.timer)
+    this.timer = undefined
+    if (this.node) this.node.onaudioprocess = null
     this.node?.disconnect()
     this.source?.disconnect()
     this.stream?.getTracks().forEach((t) => t.stop())
-    this.ctx?.close().catch(() => undefined)
+    this.node = undefined
+    this.source = undefined
+    this.stream = undefined
+    this.ctx = undefined
   }
 }
 

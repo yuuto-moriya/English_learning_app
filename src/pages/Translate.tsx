@@ -12,6 +12,12 @@ import { useHealth } from '@/lib/hooks'
 import { WavRecorder } from '@/lib/recorder'
 
 type Dir = 'auto' | 'ja-en' | 'en-ja'
+type MicLang = 'ja-JP' | 'en-US'
+
+const MIC_LANGS: { value: MicLang; label: string }[] = [
+  { value: 'ja-JP', label: '日本語' },
+  { value: 'en-US', label: 'English' },
+]
 
 export default function Translate() {
   const health = useHealth()
@@ -23,9 +29,25 @@ export default function Translate() {
   const [error, setError] = useState<string | null>(null)
   const [hits, setHits] = useState<GlossaryHit[]>([])
   const [copied, setCopied] = useState(false)
+  const [copyFailed, setCopyFailed] = useState(false)
   const [recording, setRecording] = useState(false)
+  /** 音声入力の認識言語（自動判定時は日本語、英語→日本語では英語が既定） */
+  const [micLang, setMicLang] = useState<MicLang>('ja-JP')
   const rec = useRef<WavRecorder | null>(null)
+  /** マイク起動中（権限ダイアログ待ちなど）の連打で2つ目の録音を始めないためのフラグ */
+  const starting = useRef(false)
+  const mounted = useRef(true)
   const history = useLiveQuery(() => db.translations.orderBy('at').reverse().limit(30).toArray(), [])
+
+  // 画面を離れたら録音を破棄してマイクを解放
+  useEffect(() => {
+    mounted.current = true
+    return () => {
+      mounted.current = false
+      rec.current?.cancel()
+      rec.current = null
+    }
+  }, [])
 
   // 原文の専門用語をリアルタイムに検出（オフラインでも動作）
   useEffect(() => {
@@ -65,32 +87,73 @@ export default function Translate() {
     }
   }
 
-  const toggleMic = async () => {
-    if (recording && rec.current) {
-      const r = rec.current
-      rec.current = null
-      setRecording(false)
-      setBusy(true)
-      try {
-        const recording = await r.stop()
-        const lang = dir === 'en-ja' ? 'en-US' : 'ja-JP'
-        const text = await transcribe(recording.wav, lang)
-        setSrc((s) => (s ? s + ' ' : '') + text)
-      } catch (e) {
-        setError(e instanceof ApiError ? e.message : '音声入力に失敗しました')
-      } finally {
-        setBusy(false)
-      }
-      return
+  const changeDir = (d: Dir) => {
+    setDir(d)
+    if (d === 'en-ja') setMicLang('en-US')
+    else if (d === 'ja-en') setMicLang('ja-JP')
+  }
+
+  /** 録音を止めて文字起こし。state ではなく rec.current だけを見るので、自動停止から呼んでも古い値を掴まない */
+  const stopMic = async () => {
+    const r = rec.current
+    if (!r) return
+    rec.current = null
+    setRecording(false)
+    setBusy(true)
+    try {
+      const result = await r.stop()
+      URL.revokeObjectURL(result.url)
+      const text = await transcribe(result.wav, micLang)
+      if (mounted.current && text) setSrc((s) => ((s ? s + ' ' : '') + text).slice(0, 5000))
+    } catch (e) {
+      if (mounted.current) setError(e instanceof ApiError ? e.message : '音声入力に失敗しました')
+    } finally {
+      if (mounted.current) setBusy(false)
+    }
+  }
+  // 28秒の自動停止は、録音開始時点ではなく最新の stopMic を呼ぶ
+  const stopRef = useRef(stopMic)
+  useEffect(() => {
+    stopRef.current = stopMic
+  })
+
+  const startMic = async () => {
+    if (rec.current || starting.current) return
+    starting.current = true
+    setError(null)
+    const r = new WavRecorder()
+    r.onAutoStop = () => {
+      void stopRef.current()
     }
     try {
-      const r = new WavRecorder()
-      r.onAutoStop = () => toggleMic()
       await r.start()
+      if (!mounted.current) {
+        r.cancel()
+        return
+      }
       rec.current = r
       setRecording(true)
     } catch {
-      setError('マイクを使用できません')
+      r.cancel()
+      if (mounted.current) setError('マイクを使用できません')
+    } finally {
+      starting.current = false
+    }
+  }
+
+  const toggleMic = () => (rec.current ? stopMic() : startMic())
+
+  const copyOut = async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('clipboard unavailable')
+      await navigator.clipboard.writeText(out)
+      setCopyFailed(false)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch {
+      setCopied(false)
+      setCopyFailed(true)
+      setTimeout(() => setCopyFailed(false), 3000)
     }
   }
 
@@ -98,7 +161,7 @@ export default function Translate() {
     if (!out) return
     setSrc(out)
     setOut('')
-    setDir(outLang === 'en' ? 'en-ja' : 'ja-en')
+    changeDir(outLang === 'en' ? 'en-ja' : 'ja-en')
   }
 
   const tips = outLang === 'en' ? modalTips(out) : modalTips(src)
@@ -110,7 +173,7 @@ export default function Translate() {
       <div className="space-y-3 px-4 pb-8">
         <Segmented
           value={dir}
-          onChange={setDir}
+          onChange={changeDir}
           options={[
             { value: 'auto', label: '自動判定' },
             { value: 'ja-en', label: '日本語→英語' },
@@ -125,15 +188,37 @@ export default function Translate() {
             placeholder="翻訳したい文章を入力（例：明日の夜間、下り線で道床つき固めを行います。）"
             className="w-full resize-none rounded-t-2xl bg-transparent p-4 text-[16px] leading-relaxed outline-none"
           />
-          <div className="flex items-center gap-2 border-t border-line px-3 py-2">
+          <div className="flex flex-wrap items-center gap-2 border-t border-line px-3 py-2">
             {health?.speech && (
-              <button
-                onClick={toggleMic}
-                className={cx('flex h-10 w-10 items-center justify-center rounded-full', recording ? 'bg-ng text-white' : 'bg-surface-2 text-ink')}
-                aria-label="音声入力"
-              >
-                {recording ? <Square className="h-4 w-4 fill-current" /> : <Mic className="h-5 w-5" />}
-              </button>
+              <>
+                <button
+                  onClick={toggleMic}
+                  disabled={busy && !recording}
+                  className={cx(
+                    'flex h-10 w-10 items-center justify-center rounded-full disabled:opacity-40',
+                    recording ? 'bg-ng text-white' : 'bg-surface-2 text-ink',
+                  )}
+                  aria-label="音声入力"
+                >
+                  {recording ? <Square className="h-4 w-4 fill-current" /> : <Mic className="h-5 w-5" />}
+                </button>
+                <div className="flex rounded-full bg-surface-2 p-0.5" role="group" aria-label="音声入力の言語">
+                  {MIC_LANGS.map((l) => (
+                    <button
+                      key={l.value}
+                      onClick={() => setMicLang(l.value)}
+                      disabled={recording}
+                      aria-pressed={micLang === l.value}
+                      className={cx(
+                        'h-8 rounded-full px-2 text-[11px] font-semibold transition disabled:opacity-60',
+                        micLang === l.value ? 'bg-surface text-ink shadow-sm' : 'text-muted',
+                      )}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
             {src && (
               <button onClick={() => { setSrc(''); setOut('') }} className="rounded-full p-2 text-muted" aria-label="クリア">
@@ -175,11 +260,7 @@ export default function Translate() {
                 </>
               )}
               <button
-                onClick={async () => {
-                  await navigator.clipboard?.writeText(out)
-                  setCopied(true)
-                  setTimeout(() => setCopied(false), 1500)
-                }}
+                onClick={copyOut}
                 className="flex h-10 items-center gap-1 rounded-full bg-surface-2 px-3 text-xs font-semibold"
               >
                 {copied ? <Check className="h-4 w-4 text-ok" /> : <Copy className="h-4 w-4" />}
@@ -190,6 +271,11 @@ export default function Translate() {
                 入れ替え
               </button>
             </div>
+            {copyFailed && (
+              <p role="alert" className="mt-2 text-[12px] text-ng">
+                コピーできませんでした。訳文を長押しして選択・コピーしてください。
+              </p>
+            )}
           </Card>
         )}
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useParams } from 'react-router'
 import { Pause, Play, Languages, SkipForward, Lightbulb } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
@@ -23,11 +23,12 @@ export default function SceneDetail() {
   const [mode, setMode] = useState<'listen' | 'role'>('listen')
   const [showJa, setShowJa] = useState(true)
   const [playing, setPlaying] = useState<number | null>(null)
-  const cancel = useRef(false)
+  /** 通し再生の世代番号。停止・アンマウント・新しい再生で増やし、古いループを止める */
+  const runId = useRef(0)
 
   useEffect(
     () => () => {
-      cancel.current = true
+      runId.current++
       stopSpeaking()
     },
     [],
@@ -36,19 +37,24 @@ export default function SceneDetail() {
   if (!scene) return <Empty>シーンが見つかりません</Empty>
 
   const playAll = async () => {
-    cancel.current = false
+    const run = ++runId.current
     for (let i = 0; i < scene.lines.length; i++) {
-      if (cancel.current) break
       setPlaying(i)
-      await speak(scene.lines[i].en, { accent: voiceFor(scene, scene.lines[i].sp) })
+      const ok = await speak(scene.lines[i].en, { accent: voiceFor(scene, scene.lines[i].sp) })
+      if (!ok || runId.current !== run) break
       await new Promise((r) => setTimeout(r, 350))
+      if (runId.current !== run) break
     }
-    setPlaying(null)
+    if (runId.current === run) setPlaying(null)
   }
   const stopAll = () => {
-    cancel.current = true
+    runId.current++
     stopSpeaking()
     setPlaying(null)
+  }
+  /** 通し再生中に個別の読み上げボタンが押されたら、通し再生を止めてからその文を再生する */
+  const interruptPlayAll = (e: MouseEvent) => {
+    if (playing !== null && (e.target as Element).closest('button')) stopAll()
   }
   const roleName = (sp: string) => scene.roles.find((r) => r.id === sp)?.name ?? sp
 
@@ -64,7 +70,7 @@ export default function SceneDetail() {
         <SectionTitle>キーフレーズ</SectionTitle>
         <Card className="divide-y divide-line p-0">
           {scene.phrases.map((p, i) => (
-            <div key={i} className="flex items-start gap-3 p-3">
+            <div key={i} className="flex items-start gap-3 p-3" onClickCapture={interruptPlayAll}>
               <div className="flex-1">
                 <p className="text-[15px] font-semibold leading-snug">{p.en}</p>
                 <p className="text-[12.5px] text-muted">{p.ja}</p>
@@ -107,7 +113,7 @@ export default function SceneDetail() {
                 {showJa ? '和訳OFF' : '和訳ON'}
               </Button>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2" onClickCapture={interruptPlayAll}>
               {scene.lines.map((l, i) => {
                 const mine = l.sp === scene.roles[scene.roles.length - 1].id
                 return (
@@ -149,17 +155,37 @@ function RolePlay({ scene }: { scene: Scene }) {
   const [i, setI] = useState(-1)
   const [hint, setHint] = useState(false)
   const [guide, setGuide] = useState<GuideLine | null>(null)
+  /** 相手のセリフの再生に失敗・中断された行（自動で進まないので手動操作を出す） */
+  const [stalledAt, setStalledAt] = useState<number | null>(null)
+  const playRun = useRef(0)
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const line = scene.lines[i]
   const mine = line?.sp === role
 
+  /** 相手のセリフを再生し、最後まで読めたときだけ次へ進む */
+  const playPartner = (idx: number) => {
+    const l = scene.lines[idx]
+    if (!l) return
+    const run = ++playRun.current
+    clearTimeout(advanceTimer.current)
+    speak(l.en, { accent: voiceFor(scene, l.sp) }).then((ok) => {
+      if (playRun.current !== run) return
+      if (!ok) {
+        setStalledAt(idx)
+        return
+      }
+      advanceTimer.current = setTimeout(() => {
+        if (playRun.current === run) setI((x) => (x === idx ? x + 1 : x))
+      }, 400)
+    })
+  }
+
   useEffect(() => {
     if (!line || mine) return
-    let alive = true
-    speak(line.en, { accent: voiceFor(scene, line.sp) }).then(() => {
-      if (alive) setTimeout(() => alive && setI((x) => x + 1), 400)
-    })
+    playPartner(i)
     return () => {
-      alive = false
+      playRun.current++
+      clearTimeout(advanceTimer.current)
     }
   }, [i]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -185,7 +211,13 @@ function RolePlay({ scene }: { scene: Scene }) {
     return (
       <Card className="space-y-3 text-center">
         <Guide pose="celebrate" text="会話を最後までやりきったワン！役を交代してもう一度やると効果倍増！" />
-        <Button block onClick={() => setI(-1)}>
+        <Button
+          block
+          onClick={() => {
+            setStalledAt(null)
+            setI(-1)
+          }}
+        >
           もう一度
         </Button>
       </Card>
@@ -236,7 +268,33 @@ function RolePlay({ scene }: { scene: Scene }) {
             </div>
           </>
         ) : (
-          <p className="mt-1 text-[16px]">{line.en}</p>
+          <>
+            <p className="mt-1 text-[16px]">{line.en}</p>
+            {stalledAt === i && (
+              <div className="mt-3 flex gap-2">
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setStalledAt(null)
+                    playPartner(i)
+                  }}
+                >
+                  <Play className="h-4 w-4" />
+                  もう一度聞く
+                </Button>
+                <Button
+                  className="ml-auto"
+                  onClick={() => {
+                    setStalledAt(null)
+                    setI(i + 1)
+                  }}
+                >
+                  <SkipForward className="h-4 w-4" />
+                  次へ
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </Card>
     </div>

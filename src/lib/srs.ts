@@ -1,6 +1,6 @@
 import { createEmptyCard, fsrs, generatorParameters, Rating, State, type Card, type Grade } from 'ts-fsrs'
 import { bumpDaily, db, todayKey, type CardRow } from './db'
-import type { Word } from './types'
+import type { Category, Word } from './types'
 
 export { Rating, State }
 export type { Grade }
@@ -124,9 +124,22 @@ export function retrievability(row: CardRow, now = new Date()): number {
   return f.get_retrievability(rowToCard(row), now, false)
 }
 
-export async function dueCards(now = Date.now(), limit = 200): Promise<CardRow[]> {
-  const rows = await db.cards.where('due').belowOrEqual(now).limit(limit * 2).toArray()
-  return rows.filter((r) => !r.known).sort((a, b) => a.due - b.due).slice(0, limit)
+/**
+ * 期日の来た復習カード（期日の早い順）。
+ * 「知っている」と学習対象外カテゴリは limit の前に除外する
+ * （先に limit すると、除外対象が多いときに本来の復習が取りこぼされるため）。
+ */
+export async function dueCards(
+  now = Date.now(),
+  limit = 200,
+  cats?: Partial<Record<Category, boolean>>,
+): Promise<CardRow[]> {
+  return db.cards
+    .where('due')
+    .belowOrEqual(now)
+    .filter((r) => !r.known && (!cats || !!cats[r.cat]))
+    .limit(limit)
+    .toArray()
 }
 
 export async function newLearnedToday(): Promise<number> {
@@ -143,11 +156,16 @@ export function interleave<T>(groups: T[][]): T[] {
 }
 
 export async function markKnown(word: Pick<Word, 'id' | 'cat' | 'lv'>, known: boolean) {
-  const prev = await db.cards.get(word.id)
-  if (prev) {
-    await db.cards.update(word.id, { known })
-  } else {
-    const card = createEmptyCard(new Date())
-    await db.cards.put({ ...cardToRow(card, word), known, due: Number.MAX_SAFE_INTEGER })
-  }
+  await db.transaction('rw', db.cards, async () => {
+    const prev = await db.cards.get(word.id)
+    if (prev) {
+      // 一度も学習していない語の「知っている」を取り消したら行ごと消し、新出語の候補に戻す
+      // （残すと due=MAX_SAFE_INTEGER のまま復習にも新出にも出てこなくなる）
+      if (!known && prev.reps === 0) await db.cards.delete(word.id)
+      else await db.cards.update(word.id, { known })
+    } else if (known) {
+      const card = createEmptyCard(new Date())
+      await db.cards.put({ ...cardToRow(card, word), known, due: Number.MAX_SAFE_INTEGER })
+    }
+  })
 }

@@ -22,6 +22,39 @@ export function json(data: unknown, status = 200): Response {
 export const MAX_AUDIO_BYTES = 2 * 1024 * 1024
 export const MAX_TEXT_CHARS = 5000
 
+/** Content-Length が音声の上限を超えていれば、本文を読み込む前に拒否できるよう true を返す */
+export function audioTooLarge(request: Request): boolean {
+  const len = Number(request.headers.get('content-length') ?? '')
+  return Number.isFinite(len) && len > MAX_AUDIO_BYTES
+}
+
+/** リクエスト本文を ArrayBuffer で読む（切断などで読めなければ null） */
+export async function readAudio(request: Request): Promise<ArrayBuffer | null> {
+  try {
+    return await request.arrayBuffer()
+  } catch {
+    return null
+  }
+}
+
+/** Azure 等の外部APIを呼ぶ（DNS・接続失敗などで例外になったら null） */
+export async function fetchUpstream(url: string | URL, init: RequestInit): Promise<Response | null> {
+  try {
+    return await fetch(url, init)
+  } catch {
+    return null
+  }
+}
+
+/** 外部APIのJSON応答を読む（壊れたJSONなら undefined） */
+export async function upstreamJson<T>(res: Response): Promise<T | undefined> {
+  try {
+    return (await res.json()) as T
+  } catch {
+    return undefined
+  }
+}
+
 export function toBase64Utf8(s: string): string {
   const bytes = new TextEncoder().encode(s)
   let bin = ''

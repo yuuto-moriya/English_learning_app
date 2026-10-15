@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { Search, X } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
@@ -51,16 +51,19 @@ export default function Words() {
     })
   }, [words, q, lv, sub, status, cards])
 
-  const sentinel = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = sentinel.current
-    if (!el) return
-    const io = new IntersectionObserver((es) => {
-      if (es[0].isIntersecting) setLimit((l) => l + PAGE)
-    })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [filtered.length])
+  // 無限スクロール：番兵要素の付け外し（絞り込みで limit が戻ったときの再マウントを含む）に追従するため callback ref で監視する。
+  // limit が変わるたびに監視し直し、読み足したあとも番兵が見えたままなら続けて読み込む。
+  const sentinel = useCallback(
+    (el: HTMLDivElement | null) => {
+      if (!el) return
+      const io = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting)) setLimit((l) => l + PAGE)
+      })
+      io.observe(el)
+      return () => io.disconnect()
+    },
+    [limit], // eslint-disable-line react-hooks/exhaustive-deps
+  )
 
   return (
     <div>
@@ -81,7 +84,7 @@ export default function Words() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="英語・日本語で検索"
-            className="w-full rounded-xl border border-line bg-surface py-2.5 pl-9 pr-9 text-[15px] outline-none focus:border-brand"
+            className="w-full rounded-xl border border-line bg-surface py-2.5 pl-9 pr-9 text-[16px] outline-none focus:border-brand"
           />
           {q && (
             <button onClick={() => setQ('')} aria-label="クリア" className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-muted">

@@ -8,14 +8,15 @@ rail profile|rail section|レール断面形状|5|ˈreɪl ˌprəʊfaɪl|ˈreɪl 
 rail steel grade|rail steel grade|レール鋼種|6|ˈreɪl stiːl ˌɡreɪd||EN 13674-1|R260、R350HTなど強度・硬さによる区分。HTは熱処理（頭部硬化）を示す。|We use *rail steel grade* R350HT on sharp curves.|急曲線ではR350HT鋼種を使用している。
 head-hardened rail|head-hardened rail|頭部硬化レール（熱処理レール）|6|ˌhed ˈhɑːdnd ˌreɪl|ˌhɛd ˈhɑrdənd ˌreɪl|EN 13674-1|頭部を熱処理して耐摩耗性を高めたレール。曲線外軌に有効。|*Head-hardened rail* lasts longer on the outer rail of curves.|頭部硬化レールは曲線の外軌で長持ちする。
 standard-length rail|standard-length rail|定尺レール|5|ˌstændəd leŋθ ˈreɪl|ˌstændɚd lɛŋθ ˈreɪl|JIS E 1001|標準長さ（日本では25m等）のレール。継目で接続する。|The yard still has *standard-length rail* with fishplates.|その構内にはまだ継目板付きの定尺レールがある。
-continuous welded rail|continuous welded rail|ロングレール（CWR）|5|kənˌtɪnjuəs ˌweldɪd ˈreɪl|kənˌtɪnjuːəs ˌwɛldɪd ˈreɪl|JIS E 1001;英国実務|溶接で継目をなくした長いレール（JISでは200m以上）。略CWR。温度変化による軸力管理が重要。|*Continuous welded rail* gives a smoother and quieter ride.|ロングレールはより滑らかで静かな乗り心地をもたらす。
+jointed track|jointed rail|継目軌道（定尺レール区間）|5|ˌdʒɔɪntɪd ˈtræk|ˌdʒɔɪntɪd ˈreɪl|一般用語|継目板で定尺レールをつないだ軌道。ロングレール（CWR）と対比される。継目部の保守が多い。|*Jointed track* needs regular attention at every rail joint.|継目軌道は各レール継目で定期的な手入れが必要だ。
+continuous welded rail|continuous welded rail|ロングレール（CWR）|5|kənˌtɪnjuəs ˌweldɪd ˈreɪl|kənˌtɪnjuːəs ˌwɛldɪd ˈreɪl|JIS E 1001;一般用語|溶接で継目をなくした長いレール（JISでは200m以上）。略CWR。温度変化による軸力管理が重要。|*Continuous welded rail* gives a smoother and quieter ride.|ロングレールはより滑らかで静かな乗り心地をもたらす。
 transition rail|compromise rail|中継レール|6|trænˈzɪʃn reɪl|ˈkɑːmprəmaɪz reɪl|JIS E 1001|断面形状の異なるレールを接続するためのレール。米国ではcompromise rail。|A *transition rail* joins the 50 kg and 60 kg rails.|中継レールが50kgと60kgのレールを接続している。
 rail joint|rail joint|レール継目|5|ˈreɪl dʒɔɪnt||JIS E 1001|レールとレールの接続部。衝撃が大きく保守の弱点になりやすい。|The noise comes from a loose *rail joint*.|その音は緩んだレール継目から出ている。
 fishplate|joint bar|継目板|5|ˈfɪʃpleɪt|ˈdʒɔɪnt bɑːr|一般用語|レール継目で2本のレールをつなぐ板。米国ではjoint bar。|Two bolts on the *fishplate* were missing.|継目板のボルトが2本欠落していた。
 fishbolt|track bolt|継目板ボルト|6|ˈfɪʃbəʊlt|ˈtræk boʊlt|一般用語|継目板をレールに締め付けるボルト。米国ではtrack bolt。|Check the torque of every *fishbolt*.|すべての継目板ボルトのトルクを確認してください。
 joint gap|joint gap|レール遊間|6|ˈdʒɔɪnt ɡæp||JIS E 1001|継目部の前後のレール端の間隔。温度による伸縮を吸収する。|The *joint gap* closes in hot weather.|暑い日にはレール遊間が閉じる。
 insulated rail joint|insulated joint|絶縁継目|6|ˌɪnsjuleɪtɪd ˈreɪl dʒɔɪnt|ˌɪnsəleɪtɪd ˈdʒɔɪnt|JIS E 1001|軌道回路の境界でレールを電気的に絶縁する継目。英国ではIRJまたはIBJ（insulated block joint）。|A failed *insulated rail joint* caused a signal failure.|絶縁継目の不良が信号故障を引き起こした。
-glued insulated joint|bonded insulated joint|接着絶縁レール|6|ˌɡluːd ˌɪnsjuleɪtɪd ˈdʒɔɪnt|ˌbɑːndɪd ˌɪnsəleɪtɪd ˈdʒɔɪnt|一般用語|継目板を接着剤で固着した高強度の絶縁継目。ロングレール区間で用いる。|We replaced the old joint with a *glued insulated joint*.|古い継目を接着絶縁レールに交換した。
+glued insulated joint|bonded insulated joint|接着絶縁継目（接着絶縁レール）|6|ˌɡluːd ˌɪnsjuleɪtɪd ˈdʒɔɪnt|ˌbɑːndɪd ˌɪnsəleɪtɪd ˈdʒɔɪnt|一般用語|継目板を接着剤で固着した高強度の絶縁継目。ロングレール区間で用いる。|We replaced the old joint with a *glued insulated joint*.|古い継目を接着絶縁レールに交換した。
 adjustment switch|expansion joint|伸縮継目|6|əˈdʒʌstmənt swɪtʃ|ɪkˈspænʃən dʒɔɪnt|JIS E 1001;英国実務|ロングレール端部などで伸縮を吸収する継目。英国ではadjustment switch（breather switch）、米国ではexpansion joint。|An *adjustment switch* is fitted at the end of the bridge.|橋の端に伸縮継目が設置されている。
 guard rail|guard rail|ガードレール（脱線防止レール）|5|ˈɡɑːd reɪl|ˈɡɑrd reɪl|JIS E 1001|脱線防止または脱線車両の逸脱防止のため本線レール内側に敷くレール。分岐器のものは英国でcheck rail。|*Guard rails* are installed on the bridge to contain a derailed train.|脱線列車の逸脱を防ぐため橋にガードレールが設置されている。
 rail weld|rail weld|レール溶接部|5|ˈreɪl weld|ˈreɪl wɛld|JIS E 1001|レール同士を溶接した箇所。超音波探傷の重点箇所。|Every new *rail weld* must be tested by ultrasound.|すべての新しいレール溶接部は超音波で検査しなければならない。
@@ -29,12 +30,12 @@ rail creep|rail creep|レールふく進|6|ˈreɪl kriːp||JIS E 1001|列車の�
 rail expansion|rail expansion|レール伸縮|5|ˈreɪl ɪkˌspænʃn|ˈreɪl ɪkˌspænʃən|JIS E 1001|温度変化によるレールの伸び縮み。継目の遊間や伸縮継目で吸収する。|*Rail expansion* must be allowed for at the joints.|継目ではレール伸縮を考慮しなければならない。
 rail stressing|rail destressing|ロングレール設定替|6|ˈreɪl ˌstresɪŋ|ˈreɪl diːˌstrɛsɪŋ|JIS E 1001;英国実務|ロングレールの締結を解いて所定温度で再締結し、設定温度をやり直す作業。英国ではstressing、米国ではdestressing。|*Rail stressing* is carried out before summer.|夏の前にロングレール設定替を行う。
 rail tensor|rail puller|レール緊張器|6|ˈreɪl ˌtensə|ˈreɪl ˌpʊlɚ|JIS E 1001|設定替や溶接時にレールを引っ張って所定の長さ・軸力にする油圧機器。|A hydraulic *rail tensor* pulls the rail to length.|油圧式レール緊張器がレールを所定の長さまで引っ張る。
-running surface|running surface|レール踏面（頭頂面）|6|ˌrʌnɪŋ ˈsɜːfɪs|ˌrʌnɪŋ ˈsɝfɪs|TSI INF App.S;EN 13848-1|車輪が転がるレール頭頂面。軌間はこの面から下方の位置で測定する。|Measure the gauge 14 mm below the *running surface*.|軌間はレール踏面から14mm下で測定する。
-gauge face|gage face|ゲージ面（頭部内側面）|6|ˈɡeɪdʒ feɪs|ˈɡeɪdʒ feɪs|EN 13674-1|レール頭部の軌道内側の側面。車輪フランジが接触し、側摩耗が生じる。|Lubricate the *gauge face* on sharp curves.|急曲線ではゲージ面に塗油してください。
-gauge corner|gage corner|ゲージコーナー|6|ˈɡeɪdʒ ˌkɔːnə|ˈɡeɪdʒ ˌkɔrnɚ|EN 13674-1|頭頂面とゲージ面の間の角部。転がり疲労（ヘッドチェック）が発生しやすい。|Cracks often start at the *gauge corner*.|亀裂はゲージコーナーから発生することが多い。
+running surface|running surface|レール面（左右の頭頂面に接する面）|6|ˌrʌnɪŋ ˈsɜːfɪs|ˌrʌnɪŋ ˈsɝfɪs|EN 13848-1|EN 13848-1の定義では、軌道中心線に直角な直線が左右レールの頭頂面（running table）に接してできる面。軌間はこの面から0〜14mm下の範囲で測る（TSI）。|Measure the gauge 14 mm below the *running surface*.|軌間はレール踏面から14mm下で測定する。
+running table|top of rail|レール頭頂面|6|ˈrʌnɪŋ ˌteɪbl|ˌtɑːp əv ˈreɪl|EN 13848-1|レール頭部の上面で、車輪が転がる面（EN 13848-1の定義語）。米国ではtop of rail（略TOR）。左右の頭頂面に接する面がrunning surface（レール面）。|Grinding restores the shape of the *running table*.|削正でレール頭頂面の形状を回復する。
+gauge face|gage face|ゲージ面（頭部内側面）|6|ˈɡeɪdʒ feɪs|ˈɡeɪdʒ feɪs|EN 13848-1|レール頭部の軌道内側の側面（EN 13848-1の定義語）。車輪フランジが接触し、側摩耗が生じる。|Lubricate the *gauge face* on sharp curves.|急曲線ではゲージ面に塗油してください。
+gauge corner|gage corner|ゲージコーナー|6|ˈɡeɪdʒ ˌkɔːnə|ˈɡeɪdʒ ˌkɔrnɚ|一般用語|頭頂面とゲージ面の間の角部。転がり疲労（ヘッドチェック）が発生しやすい。|Cracks often start at the *gauge corner*.|亀裂はゲージコーナーから発生することが多い。
 field side|field side|レール外側（フィールド側）|6|ˈfiːld saɪd||一般用語|レール頭部の軌道外側の側面。gauge face（内側）の反対。|Lipping was found on the *field side* of the rail.|レール外側にリッピングが見つかった。
-running edge|gauge line|走行縁|6|ˌrʌnɪŋ ˈedʒ|ˈɡeɪdʒ laɪn|TSI INF App.S|車輪を案内するレール頭部の縁。分岐器の寸法は走行縁を基準に定義される。|The *running edge* guides the wheel flange.|走行縁が車輪フランジを案内する。
+running edge|gage line|走行縁|6|ˌrʌnɪŋ ˈedʒ|ˈɡeɪdʒ laɪn|一般用語|車輪を案内するレール頭部内側の縁（軌間を測る位置の線）。TSIやEN 13232では分岐器の寸法（ノーズ防護など）の基準として使われる。米国ではgage line（頭頂面から5/8インチ下）。|The *running edge* guides the wheel flange.|走行縁が車輪フランジを案内する。
 rail lubricator|rail lubricator|塗油器|6|ˈreɪl ˌluːbrɪkeɪtə|ˈreɪl ˌluːbrɪkeɪtɚ|一般用語|曲線のレール側面に潤滑剤を供給し、摩耗と騒音を減らす装置。|The *rail lubricator* reduces wear on the curve.|塗油器は曲線での摩耗を減らす。
 rail end|rail end|レール端部|5|ˈreɪl end|ˈreɪl ɛnd|一般用語|継目部のレールの端。打撃で損傷（端部つぶれ）しやすい。|The *rail end* was battered by heavy traffic.|レール端部が重い通過荷重でつぶれていた。
 rail bond|rail bond|レールボンド|6|ˈreɪl bɒnd|ˈreɪl bɑːnd|一般用語|継目部で電流を流すためにレール間を電気的につなぐ導線（信号・帰線用）。|A broken *rail bond* can affect the track circuit.|レールボンドの断線は軌道回路に影響することがある。
-EOF

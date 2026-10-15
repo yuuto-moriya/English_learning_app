@@ -53,22 +53,34 @@ export default function Study() {
     setPhase('question')
   }
 
+  // 連打・ダブルタップで同じ問題の復習が二重に記録されないようにする
+  const busy = useRef(false)
   const answer = async (correct: boolean, ms: number, opts: { grade?: Grade; answer?: string; typed?: boolean } = {}) => {
-    if (!item) return
-    const grade = opts.grade ?? objectiveGrade(correct, ms, opts.typed)
-    let nextStr: string | undefined
-    if (!item.retry) {
-      stats.current.total++
-      if (correct) stats.current.correct++
-      const row = await recordReview(item.word, grade, item.type, ms, settings.retention)
-      nextStr = humanizeDiff(row.due - Date.now())
-    }
-    stats.current.streak = correct ? stats.current.streak + 1 : 0
-    if (!correct) setQueue((q) => reinsert(q, idx, item))
-    setGuide(correct ? correctMessage(stats.current.streak) : wrongMessage())
-    setResult({ correct, grade, next: nextStr, answer: opts.answer })
+    if (!item || busy.current || phase !== 'question') return
+    busy.current = true
     setPhase('feedback')
-    if (settings.autoPlay) speak(item.word.ex[0]?.en ?? item.word.w, { accent: item.word.cat === 'rail' ? 'en-GB' : 'en-US' })
+    try {
+      const grade = opts.grade ?? objectiveGrade(correct, ms, opts.typed)
+      let nextStr: string | undefined
+      if (!item.retry) {
+        stats.current.total++
+        if (correct) stats.current.correct++
+        try {
+          const row = await recordReview(item.word, grade, item.type, ms, settings.retention)
+          nextStr = humanizeDiff(row.due - Date.now())
+        } catch (e) {
+          // 保存に失敗しても学習は続けられるようにする（フィードバックは表示する）
+          console.error(e)
+        }
+      }
+      stats.current.streak = correct ? stats.current.streak + 1 : 0
+      if (!correct) setQueue((q) => reinsert(q, idx, item))
+      setGuide(correct ? correctMessage(stats.current.streak) : wrongMessage())
+      setResult({ correct, grade, next: nextStr, answer: opts.answer })
+      if (settings.autoPlay) speak(item.word.ex[0]?.en ?? item.word.w, { accent: item.word.cat === 'rail' ? 'en-GB' : 'en-US' })
+    } finally {
+      busy.current = false
+    }
   }
 
   if (phase === 'loading') return <div className="p-8 text-center text-muted">準備中…</div>
@@ -173,17 +185,20 @@ export default function Study() {
 
 function Shell({ children, onClose, progress }: { children: React.ReactNode; onClose: () => void; progress?: { value: number; max: number } }) {
   return (
-    <div className="px-4 pt-safe">
-      <div className="sticky top-0 z-10 -mx-4 flex h-12 items-center gap-3 bg-bg/90 px-4 backdrop-blur">
-        <button onClick={onClose} aria-label="閉じる" className="rounded-full p-1 text-muted">
-          <X className="h-6 w-6" />
-        </button>
-        {progress && <ProgressBar value={progress.value} max={progress.max} className="flex-1" />}
-        {progress && (
-          <span className="text-xs font-semibold text-muted">
-            {progress.value + 1}/{progress.max}
-          </span>
-        )}
+    <div className="px-4">
+      {/* pt-safe はスクロールしても固定されるヘッダー側に付け、ステータスバー／Dynamic Island の下に潜らないようにする */}
+      <div className="sticky top-0 z-10 -mx-4 bg-bg/90 px-4 pt-safe backdrop-blur">
+        <div className="flex h-12 items-center gap-3">
+          <button onClick={onClose} aria-label="閉じる" className="rounded-full p-1 text-muted">
+            <X className="h-6 w-6" />
+          </button>
+          {progress && <ProgressBar value={progress.value} max={progress.max} className="flex-1" />}
+          {progress && (
+            <span className="text-xs font-semibold text-muted">
+              {progress.value + 1}/{progress.max}
+            </span>
+          )}
+        </div>
       </div>
       <div className="pb-8 pt-2">{children}</div>
     </div>

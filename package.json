@@ -11,7 +11,6 @@
     "typecheck": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json",
     "test": "vitest run",
     "data:build": "python3 scripts/build_vocab.py",
-    "data:check": "python3 scripts/check_data.py",
     "pages:dev": "wrangler pages dev dist --compatibility-date=2026-10-01",
     "pages:deploy": "npm run build && wrangler pages deploy dist"
   },

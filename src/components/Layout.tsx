@@ -2,6 +2,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router'
 import { BookOpen, ChevronLeft, Headphones, Home, Languages, MessagesSquare, Settings } from 'lucide-react'
 import { type ReactNode, Suspense, useEffect } from 'react'
 import { cx } from './ui'
+import { UpdateToast } from './UpdateToast'
 
 const TABS = [
   { to: '/', label: 'ホーム', icon: Home, end: true },
@@ -23,6 +24,7 @@ export function Layout() {
           <Outlet />
         </Suspense>
       </main>
+      <UpdateToast />
       <TabBar />
     </div>
   )

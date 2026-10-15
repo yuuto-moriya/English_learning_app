@@ -28,9 +28,10 @@ asset management|asset management|アセットマネジメント|6|ˈæset ˌmæ
 asset register|asset register|資産台帳|6|ˈæset ˌredʒɪstə|ˈæsɛt ˌrɛdʒɪstɚ|一般用語|資産の所在・属性・状態を記録した台帳。EAMの基礎データ。|Update the *asset register* after every renewal.|更新のたびに資産台帳を更新してください。
 asset hierarchy|asset hierarchy|資産階層（設備体系）|6|ˈæset ˈhaɪərɑːki|ˈæsɛt ˈhaɪɚɑrki|一般用語|路線→区間→設備→部品のように資産を階層的に整理した構造。|The *asset hierarchy* starts with the route and ends with components.|資産階層は路線から始まり部品で終わる。
 functional location|functional location|機能場所（SAP）|6|ˌfʌŋkʃənl ləʊˈkeɪʃn|ˌfʌŋkʃənəl loʊˈkeɪʃən|SAP EAM|SAP PM/EAMで設備を取り付ける「場所」を表す階層オブジェクト。設備（equipment）を付け外しできる。|Each switch is a *functional location* in SAP.|SAPでは各分岐器が機能場所として登録されている。
-work order|work order|作業指示（保全オーダ）|5|ˈwɜːk ˌɔːdə|ˈwɝk ˌɔrdɚ|SAP EAM;EN 13306|保全作業の内容・資材・工数・費用を管理する指示書。SAPでは保全オーダ。|Create a *work order* for the broken clip.|折れたクリップの作業指示を作成してください。
+work order|work order|作業指示（保全オーダ）|5|ˈwɜːk ˌɔːdə|ˈwɝk ˌɔrdɚ|SAP EAM|保全作業の内容・資材・工数・費用を管理する指示書。SAPでは保全オーダ。|Create a *work order* for the broken clip.|折れたクリップの作業指示を作成してください。
 maintenance notification|maintenance request|保全通知（不具合報告）|6|ˈmeɪntənəns ˌnəʊtɪfɪˌkeɪʃn|ˈmeɪntənəns rɪˌkwɛst|SAP EAM|SAP PM/EAMで不具合や作業依頼を記録する伝票。承認後に作業指示へ変換する。|The inspector raised a *maintenance notification* in the app.|検査員がアプリで保全通知を起票した。
 maintenance plan|maintenance plan|保全計画|5|ˈmeɪntənəns plæn||TSI INF App.S;EN 13306|保全の手順・周期をまとめた文書・計画。TSIではインフラ管理者の保全手順を定める文書群。|The *maintenance plan* sets the inspection intervals.|保全計画が点検周期を定めている。
+maintenance file|maintenance file|保守ファイル（保守関係書類）|6|ˈmeɪntənəns faɪl||TSI INF App.S|TSIの定義語。技術ファイル（technical file）のうち、使用条件・限度と保守の指示に関する部分。インフラ管理者の保全計画の前提となる。|The *maintenance file* sets out the limits of use for the track.|保守ファイルには軌道の使用限度が記載されている。
 maintenance strategy|maintenance strategy|保全戦略|6|ˈmeɪntənəns ˌstrætədʒi||EN 13306|保全の目的を達成するための方針（予防・事後・状態基準などの組み合わせ）。|Our *maintenance strategy* is shifting to condition-based.|当社の保全戦略は状態基準型へ移行している。
 criticality|criticality|重要度（クリティカリティ）|6|ˌkrɪtɪˈkæləti||一般用語|故障した場合の影響の大きさによる資産の重要性。保全の優先順位付けに使う。|Assets with high *criticality* are inspected more often.|重要度の高い資産はより頻繁に点検される。
 failure mode and effects analysis|failure mode and effects analysis|故障モード影響解析（FMEA）|6|ˌfeɪljə məʊd ənd ɪˌfekts əˈnæləsɪs|ˌfeɪljɚ moʊd ənd ɪˌfɛkts əˈnæləsɪs|一般用語|故障モードごとに影響と原因を分析し対策を決める手法。略FMEA。|We used *failure mode and effects analysis* to review the design.|設計の見直しに故障モード影響解析を用いた。
@@ -45,6 +46,5 @@ key performance indicator|key performance indicator|重要業績評価指標（K
 process mining|process mining|プロセスマイニング|6|ˈprəʊses ˌmaɪnɪŋ|ˈprɑːsɛs ˌmaɪnɪŋ|一般用語|ITシステムのイベントログから実際の業務プロセスを可視化・分析する手法。|*Process mining* showed long waiting times in the approval step.|プロセスマイニングで承認ステップの長い待ち時間が明らかになった。
 lead time|lead time|リードタイム|5|ˈliːd taɪm||一般用語|業務の開始から完了までの所要時間。|We cut the *lead time* from defect report to repair by half.|欠陥報告から補修までのリードタイムを半減した。
 as-is process|current-state process|現行（As-Is）プロセス|6|ˌæz ˈɪz ˌprəʊses|ˌkɝənt steɪt ˈprɑːsɛs|一般用語|現状の業務の流れ。改善後の姿はto-be process。|First, we mapped the *as-is process* of track inspection.|まず線路点検の現行プロセスを図示した。
-to-be process|future-state process|あるべき（To-Be）プロセス|6|ˌtə ˈbiː ˌprəʊses|ˌfjuːtʃɚ steɪt ˈprɑːsɛs|一般用語|改善後に目指す業務の流れ。|The *to-be process* removes two manual steps.|あるべきプロセスでは手作業のステップが2つなくなる。
+to-be process|future-state process|あるべき（To-Be）プロセス|6|ˌtuː ˈbiː ˌprəʊses|ˌfjuːtʃɚ steɪt ˈprɑːsɛs|一般用語|改善後に目指す業務の流れ。|The *to-be process* removes two manual steps.|あるべきプロセスでは手作業のステップが2つなくなる。
 bottleneck|bottleneck|ボトルネック|5|ˈbɒtlnek|ˈbɑːtəlnɛk|一般用語|全体の流れを制約している工程。|Material delivery is the *bottleneck* in night work.|夜間作業では資材の搬入がボトルネックだ。
-EOF

@@ -21,14 +21,14 @@ track buckle|sun kink|座屈|6|ˈtræk ˌbʌkl|ˈsʌn kɪŋk|一般用語|高温
 rail rollover|rail rollover|レール小返り|6|ˈreɪl ˌrəʊləʊvə|ˈreɪl ˌroʊloʊvɚ|JIS E 1001|横圧によりレールが外側に倒れ込む現象。軌間拡大・脱線につながる。|Strong lateral force can cause *rail rollover*.|大きな横圧はレール小返りを引き起こすことがある。
 wet bed|mud pumping|噴泥|6|ˌwet ˈbed|ˈmʌd ˌpʌmpɪŋ|JIS E 1001|路盤の細粒土が水と混じり、列車通過時に道床表面へ噴き上がる現象。英国ではwet bed / wet spot。|A *wet bed* forms where drainage is poor.|排水の悪い箇所に噴泥が発生する。
 voided sleeper|hanging tie|浮きまくらぎ|6|ˌvɔɪdɪd ˈsliːpə|ˌhæŋɪŋ ˈtaɪ|英国実務|まくらぎ下にすき間ができ、列車通過時に上下に動く状態。動的には大きな軌道狂いになる。|A *voided sleeper* moves up and down under each train.|浮きまくらぎは列車が通るたびに上下に動く。
-fouled ballast|fouled ballast|細粒化・汚損した道床|6|ˌfaʊld ˈbæləst||EN 13450|摩耗した砕石や泥が混じり、排水・弾性が失われた道床。|*Fouled ballast* holds water and causes settlement.|汚損した道床は水を保持し沈下を引き起こす。
-ballast degradation|ballast degradation|道床劣化|6|ˈbæləst ˌdeɡrəˈdeɪʃn|ˈbæləst ˌdɛɡrəˈdeɪʃən|EN 13450|砕石の摩耗・破砕・細粒化による性能低下。|*Ballast degradation* is faster under heavy axle loads.|重い軸重のもとでは道床劣化が早い。
+fouled ballast|fouled ballast|細粒化・汚損した道床|6|ˌfaʊld ˈbæləst||一般用語|摩耗した砕石や泥が混じり、排水・弾性が失われた道床。|*Fouled ballast* holds water and causes settlement.|汚損した道床は水を保持し沈下を引き起こす。
+ballast degradation|ballast degradation|道床劣化|6|ˈbæləst ˌdeɡrəˈdeɪʃn|ˈbæləst ˌdɛɡrəˈdeɪʃən|一般用語|砕石の摩耗・破砕・細粒化による性能低下。道床砕石の耐破砕性・耐摩耗性の要件はEN 13450で規定される。|*Ballast degradation* is faster under heavy axle loads.|重い軸重のもとでは道床劣化が早い。
 track settlement|track settlement|軌道沈下|6|ˌtræk ˈsetlmənt|ˌtræk ˈsɛtəlmənt|一般用語|道床・路盤の変形による軌道の沈み。軌道狂いの主な原因。|*Track settlement* is greatest near bridge abutments.|軌道沈下は橋台付近で最も大きい。
-cracked sleeper|cracked tie|ひび割れまくらぎ|5|ˌkrækt ˈsliːpə|ˌkrækt ˈtaɪ|EN 13230|ひびの入ったまくらぎ。締結力の低下や軌間拡大の原因になる。|Mark every *cracked sleeper* with white paint.|ひび割れまくらぎにはすべて白ペンキで印をつけてください。
-rotten sleeper|decayed tie|腐朽まくらぎ|6|ˌrɒtn ˈsliːpə|dɪˌkeɪd ˈtaɪ|EN 13145|腐朽した木まくらぎ。犬くぎの保持力が失われる。|*Rotten sleepers* cannot hold the spikes firmly.|腐朽まくらぎは犬くぎをしっかり保持できない。
+cracked sleeper|cracked tie|ひび割れまくらぎ|5|ˌkrækt ˈsliːpə|ˌkrækt ˈtaɪ|一般用語|ひびの入ったまくらぎ。締結力の低下や軌間拡大の原因になる。|Mark every *cracked sleeper* with white paint.|ひび割れまくらぎにはすべて白ペンキで印をつけてください。
+rotten sleeper|decayed tie|腐朽まくらぎ|6|ˌrɒtn ˈsliːpə|dɪˌkeɪd ˈtaɪ|一般用語|腐朽した木まくらぎ。犬くぎの保持力が失われる。|*Rotten sleepers* cannot hold the spikes firmly.|腐朽まくらぎは犬くぎをしっかり保持できない。
 corrosion|corrosion|腐食|5|kəˈrəʊʒn|kəˈroʊʒən|一般用語|さびによる材料の劣化。トンネル・海岸・踏切のレール底部で問題になる。|*Corrosion* of the rail foot was found in the tunnel.|トンネル内でレール底部の腐食が見つかった。
 fatigue crack|fatigue crack|疲労き裂|6|fəˈtiːɡ kræk||一般用語|繰り返し荷重で徐々に進展する亀裂。|A *fatigue crack* grew slowly from the weld.|溶接部から疲労き裂がゆっくり進展した。
-loose fastening|loose fastening|締結装置の緩み|5|ˌluːs ˈfɑːsnɪŋ|ˌluːs ˈfæsənɪŋ|EN 13481|クリップ・ボルトが緩んだ状態。軌間拡大やレールの移動を招く。|Tighten any *loose fastening* you find.|緩んだ締結装置を見つけたら締めてください。
+loose fastening|loose fastening|締結装置の緩み|5|ˌluːs ˈfɑːsnɪŋ|ˌluːs ˈfæsənɪŋ|一般用語|クリップ・ボルトが緩んだ状態。軌間拡大やレールの移動を招く。|Tighten any *loose fastening* you find.|緩んだ締結装置を見つけたら締めてください。
 missing component|missing component|部品欠落|5|ˌmɪsɪŋ kəmˈpəʊnənt|ˌmɪsɪŋ kəmˈpoʊnənt|一般用語|クリップ・パッド・ボルト等が無くなっている状態。|The patrol reported a *missing component* at the switch.|巡回で分岐器の部品欠落が報告された。
 frost heave|frost heave|凍上|6|ˈfrɒst hiːv|ˈfrɔːst hiːv|一般用語|地中の水分が凍って路盤が持ち上がる現象。寒冷地で高低狂いを生む。|*Frost heave* lifted the track by 20 mm.|凍上で軌道が20mm持ち上がった。
 scour|scour|洗掘|6|ˈskaʊə|ˈskaʊɚ|一般用語|流水が橋脚・橋台の基礎周りの土砂を削り取ること。橋梁倒壊の主要因。|*Scour* around the bridge pier was found after the flood.|洪水後、橋脚周りの洗掘が見つかった。
@@ -36,4 +36,3 @@ landslip|landslide|土砂崩れ；のり面崩壊|5|ˈlændslɪp|ˈlændslaɪd|�
 rockfall|rockfall|落石|5|ˈrɒkfɔːl|ˈrɑːkfɔːl|一般用語|斜面からの岩の落下。落石検知装置や防護柵で対策する。|A *rockfall* damaged the rail in the cutting.|落石で切土区間のレールが損傷した。
 leaves on the line|leaves on the line|線路上の落ち葉（粘着低下）|5|ˌliːvz ɒn ðə ˈlaɪn|ˌliːvz ɑːn ðə ˈlaɪn|英国実務|秋に落ち葉がレール面で圧着し、空転・滑走を起こす英国の有名な問題。|*Leaves on the line* cause delays every autumn.|毎年秋に線路上の落ち葉が遅延を引き起こす。
 low adhesion|low adhesion|粘着低下|6|ˌləʊ ədˈhiːʒn|ˌloʊ ədˈhiːʒən|英国実務|車輪とレールの摩擦が小さくなり、空転・滑走が起きやすい状態。|Railhead treatment trains fight *low adhesion* in autumn.|レール面処理列車が秋の粘着低下に対処する。
-EOF

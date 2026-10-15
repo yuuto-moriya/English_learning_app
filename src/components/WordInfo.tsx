@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import { Snail } from 'lucide-react'
 import type { Word } from '@/lib/types'
 import { RAIL_SUBS } from '@/lib/types'
+import { speak } from '@/lib/tts'
 import { CategoryBadge, LevelBadge, Marked, SpeakButton } from './ui'
 
 const POS_JA: Record<string, string> = {
@@ -82,10 +83,8 @@ function PronRow({
       <SpeakButton text={term} accent={accent} />
       <button
         aria-label="ゆっくり再生"
-        onClick={async () => {
-          const { speak } = await import('@/lib/tts')
-          speak(term, { accent, rate: 0.6 })
-        }}
+        // iOSではタップ処理の中で同期的に speak() しないと再生されないことがあるため、動的importは使わない
+        onClick={() => speak(term, { accent, rate: 0.6 })}
         className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-2 text-muted"
       >
         <Snail className="h-4 w-4" />

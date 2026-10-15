@@ -59,7 +59,7 @@ export function newWordPool(
 
 export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?: number } = {}): Promise<Item[]> {
   const maxDue = opts.maxDue ?? 50
-  const dueRows = await dueCards(Date.now(), maxDue)
+  const dueRows = await dueCards(Date.now(), maxDue, s.studyCats)
   const allCards = await db.cards.toArray()
   const cardSet = new Set(allCards.map((c) => c.id))
   const rowMap = new Map(allCards.map((c) => [c.id, c]))

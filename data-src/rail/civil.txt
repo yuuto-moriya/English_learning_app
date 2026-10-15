@@ -26,7 +26,6 @@ transition zone|transition zone|すりつけ区間（剛性変化部）|6|træn�
 tunnel lining|tunnel lining|トンネル覆工|6|ˈtʌnl ˌlaɪnɪŋ|ˈtʌnəl ˌlaɪnɪŋ|一般用語|トンネル内面のコンクリート等の構造。ひび割れ・はく落を点検する。|Concrete fell from the *tunnel lining*.|トンネル覆工からコンクリートが落下した。
 portal|portal|坑口|6|ˈpɔːtl|ˈpɔrtəl|一般用語|トンネルの出入口。|Icicles formed at the tunnel *portal*.|トンネル坑口につららができた。
 rockfall fence|rockfall barrier|落石防護柵|6|ˈrɒkfɔːl fens|ˈrɑːkfɔːl ˌbæriɚ|一般用語|斜面からの落石を受け止める柵・ネット。|The *rockfall fence* stopped a large boulder.|落石防護柵が大きな岩を受け止めた。
-platform edge|platform edge|ホーム縁端|5|ˈplætfɔːm edʒ|ˈplætfɔrm ɛdʒ|TSI INF App.S|ホームの線路側の端。軌道との離れ（オフセット）と高さを管理する。|Track work can change the gap at the *platform edge*.|軌道作業でホーム縁端とのすき間が変わることがある。
+platform edge|platform edge|ホーム縁端|5|ˈplætfɔːm edʒ|ˈplætfɔrm ɛdʒ|一般用語|ホームの線路側の端。軌道との離れ（オフセット）と高さを管理する。|Track work can change the gap at the *platform edge*.|軌道作業でホーム縁端とのすき間が変わることがある。
 platform offset|platform offset|ホーム離れ|6|ˈplætfɔːm ˌɒfset|ˈplætfɔrm ˌɔːfsɛt|英国実務|線路中心（またはレール）からホーム縁端までの水平距離。|Check the *platform offset* after lining the track.|通り整正後にホーム離れを確認してください。
 usable length of platform|usable platform length|ホーム有効長|6|ˌjuːzəbl ˈleŋθ əv ˈplætfɔːm|ˌjuːzəbəl ˈplætfɔrm lɛŋθ|TSI INF App.S|列車が停車して乗降に使えるホームの最大連続長。TSIの定義語。|The *usable length of platform* must suit 12-car trains.|ホーム有効長は12両編成に対応しなければならない。
-EOF
