@@ -13,7 +13,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.png', 'guide/*.webp', 'favicon.svg'],
+      includeAssets: ['icons/*.png', 'guide/*.webp', 'favicon.png'],
       manifest: {
         name: 'Tetsu English — 英語学習＆翻訳',
         short_name: 'Tetsu English',
