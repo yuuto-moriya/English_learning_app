@@ -16,7 +16,7 @@ export const EVIDENCE: Evidence[] = [
     inApp: '復習のタイミングをFSRSアルゴリズムで単語ごとに最適化。「忘れかけた頃」に自動で出題します（ホーム → 学習をはじめる）。',
     refs: [
       { cite: 'Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. Psychological Bulletin, 132(3), 354–380.' },
-      { cite: 'Kim, S. K., & Webb, S. (2022). The effects of spaced practice on second language learning: A meta-analysis. Language Learning.', url: 'https://doi.org/10.1111/lang.12479' },
+      { cite: 'Kim, S. K., & Webb, S. (2022). The effects of spaced practice on second language learning: A meta-analysis. Language Learning, 72(1), 269–319.', url: 'https://doi.org/10.1111/lang.12479' },
       { cite: 'Rogers, J., Nakata, T., & Chiu, M. M. (2025). Optimizing distributed practice online: A conceptual replication of Cepeda et al. (2009). Studies in Second Language Acquisition, 47(1), 417–439.', url: 'https://doi.org/10.1017/S0272263124000706' },
     ],
   },
@@ -61,7 +61,7 @@ export const EVIDENCE: Evidence[] = [
     inApp: '一般・ビジネス・保線の単語、復習と新出語を交互に混ぜて出題します。',
     refs: [
       { cite: 'Rohrer, D., & Taylor, K. (2007). The shuffling of mathematics problems improves learning. Instructional Science, 35(6), 481–498.' },
-      { cite: 'Nakata, T., & Suzuki, Y. (2019). Mixing grammar exercises facilitates long-term retention: Effects of blocking, interleaving, and increasing practice. The Modern Language Journal, 103, 629–647.', url: 'https://doi.org/10.1111/modl.12581' },
+      { cite: 'Nakata, T., & Suzuki, Y. (2019). Mixing grammar exercises facilitates long-term retention: Effects of blocking, interleaving, and increasing practice. The Modern Language Journal, 103(3), 629–647.', url: 'https://doi.org/10.1111/modl.12581' },
     ],
   },
   {
@@ -117,7 +117,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'agent',
     title: '学習を支えるキャラクター（教育エージェント）',
     finding: '画面上の案内キャラクター（pedagogical agent）を用いた学習は、43研究のメタ分析で小さいながら有意な学習効果を示した。また、能力ではなく努力やプロセスをほめる方が、困難に直面した際の意欲を保ちやすい。',
-    inApp: 'コーギーの「テツ」が場面に応じて案内・励ましを行います。正解時は努力を、不正解時は「思い出そうとしたこと」を肯定します。',
+    inApp: 'コーギーの「テツ」が場面に応じて案内・励ましを行います。正解時は努力を、不正解時は「思い出そうとしたこと」を肯定します。いろいろな犬種のなかまたち（リスニング・発音のモカ＝トイプードル、ビジネスのスミ＝フレンチブルドッグ、保線のキナコ＝柴犬、学習法の解説のユキ先生＝サモエド、翻訳のショコラ＝ダックスフンド）が各画面の案内を担当します。',
     refs: [
       { cite: 'Schroeder, N. L., Adesope, O. O., & Gilbert, R. B. (2013). How effective are pedagogical agents for learning? A meta-analytic review. Journal of Educational Computing Research, 49(1), 1–39.' },
       { cite: 'Mueller, C. M., & Dweck, C. S. (1998). Praise for intelligence can undermine children’s motivation and performance. Journal of Personality and Social Psychology, 75(1), 33–52.' },
@@ -141,5 +141,5 @@ export const CREDITS: { name: string; desc: string; url?: string }[] = [
   { name: 'ipa-dict (en_US)', desc: 'open-dict-data, MIT License（cmudict-ipa由来の米音IPA）', url: 'https://github.com/open-dict-data/ipa-dict' },
   { name: 'TSI INF Appendix S', desc: 'Commission Regulation (EU) No 1299/2014 の用語定義を要約（保線用語の定義の参考）', url: 'https://www.legislation.gov.uk/eur/2014/1299/annex/appendix/S' },
   { name: 'ts-fsrs', desc: 'open-spaced-repetition, MIT License（復習スケジューラ）', url: 'https://github.com/open-spaced-repetition/ts-fsrs' },
-  { name: 'Tetsu（コーギー）', desc: 'Blender（bpy）でプロシージャルにモデリング・レンダリングしたオリジナルキャラクター' },
+  { name: 'テツとなかまたち（犬のぬいぐるみ）', desc: 'Blender（bpy）でプロシージャルにモデリング・レンダリングしたオリジナルキャラクター（scripts/blender/）' },
 ]

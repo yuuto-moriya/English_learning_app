@@ -41,7 +41,7 @@ teach|v|教える|She *teaches* math at a high school.|彼女は高校で数学�
 field|n|野原；分野；現場|He is an expert in this *field*.|彼はこの分野の専門家だ。
 security|n|安全；警備；保障|*Security* checks take a long time.|保安検査には長い時間がかかる。
 air|n|空気；空|Let's get some fresh *air*.|新鮮な空気を吸いに行こう。
-benefit|n|利益；恩恵|The new line will *benefit* local people.|新路線は地元の人々に恩恵をもたらすだろう。
+benefit|n|利益；恩恵；（動詞）利益になる|The new line will *benefit* local people.|新路線は地元の人々に恩恵をもたらすだろう。
 trade|n|貿易；取引|Japan has strong *trade* links with Asia.|日本はアジアと強い貿易関係がある。
 risk|n|危険（性）；リスク|There is a *risk* of landslides after heavy rain.|大雨の後は土砂崩れの危険がある。
 news|n|ニュース；知らせ|I have good *news* for you.|あなたに良い知らせがあります。
@@ -228,7 +228,7 @@ tomorrow|n|明日|See you *tomorrow*.|また明日。
 director|n|取締役；監督；部長|She is the *director* of engineering.|彼女は技術部門の責任者だ。
 clearly|adv|はっきりと|Please speak *clearly*.|はっきり話してください。
 lack|n|不足；（動詞）欠いている|The project failed due to a *lack* of funds.|資金不足でプロジェクトは失敗した。
-review|n|見直し；批評|We will *review* the plan next week.|来週計画を見直します。
+review|n|見直し；批評；（動詞）見直す|We will *review* the plan next week.|来週計画を見直します。
 depend|v|頼る；〜次第である|It *depends* on the weather.|天気次第です。
 race|n|競走；人種|He won the *race*.|彼はレースに勝った。
 recognize|v|見分ける；認める|I didn't *recognize* you at first.|最初はあなただと気づかなかった。

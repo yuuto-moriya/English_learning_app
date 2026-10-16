@@ -186,7 +186,7 @@ export default function Translate() {
             onChange={(e) => setSrc(e.target.value.slice(0, 5000))}
             rows={5}
             placeholder="翻訳したい文章を入力（例：明日の夜間、下り線で道床つき固めを行います。）"
-            className="w-full resize-none rounded-t-2xl bg-transparent p-4 text-[16px] leading-relaxed outline-none"
+            className="w-full resize-none rounded-t-[22px] bg-transparent p-4 text-[16px] leading-relaxed outline-none"
           />
           <div className="flex flex-wrap items-center gap-2 border-t border-line px-3 py-2">
             {health?.speech && (
@@ -234,7 +234,7 @@ export default function Translate() {
         </Card>
 
         {error && (
-          <div className="flex gap-2 rounded-xl bg-warn/10 p-3 text-[13px]">
+          <div className="flex gap-2 rounded-2xl bg-warn/10 p-3 text-[13px]">
             <AlertTriangle className="h-4 w-4 shrink-0 text-warn" />
             <span>
               {error}{' '}
@@ -280,7 +280,7 @@ export default function Translate() {
         )}
 
         {tips.length > 0 && englishText && (
-          <Card className="space-y-1 border-rail/40">
+          <Card className="space-y-1 ring-rail/30">
             {tips.map((t) => (
               <p key={t} className="text-[12.5px]">⚖️ {t}</p>
             ))}
@@ -295,10 +295,10 @@ export default function Translate() {
         </SectionTitle>
         {hits.length === 0 ? (
           <Guide
-            pose="safety"
-            size={64}
-            compact
-            text="文章に保線用語があると、英国(EN)・米国の言い方とJISの日本語を並べて表示するワン。機械翻訳の訳語チェックに使ってね。"
+            who="chocola"
+            pose="greet"
+            size={72}
+            text="文章に保線用語があると、英国(EN)・米国の言い方とJISの日本語を並べて表示するよ。機械翻訳の訳語チェックに使ってね！"
           />
         ) : (
           <Card className="divide-y divide-line p-0">
@@ -323,7 +323,16 @@ export default function Translate() {
             <SectionTitle>履歴</SectionTitle>
             <div className="space-y-2">
               {history.map((h) => (
-                <Card key={h.id} className="p-3" onClick={() => { setSrc(h.src); setOut(h.out); setOutLang(h.to as 'en' | 'ja') }}>
+                <Card
+                  key={h.id}
+                  className="p-3"
+                  onClick={() => {
+                    setSrc(h.src)
+                    setOut(h.out)
+                    setOutLang(h.to as 'en' | 'ja')
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                >
                   <p className="line-clamp-2 text-[13px] text-muted">{h.src}</p>
                   <p className="mt-0.5 line-clamp-2 text-[14px] font-semibold">{h.out}</p>
                   <div className="mt-1 flex items-center justify-end gap-1">

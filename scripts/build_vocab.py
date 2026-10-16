@@ -311,6 +311,10 @@ def main():
     for name, data in (("general", general), ("business", business), ("rail", rail)):
         with open(OUT / f"{name}.json", "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    # ホーム画面の集計用（大きな単語データを読み込まずに語数を表示する）
+    with open(OUT / "counts.json", "w", encoding="utf-8") as f:
+        json.dump({"general": len(general), "business": len(business), "rail": len(rail)}, f)
+        f.write("\n")
     total = len(general) + len(business) + len(rail)
     print(f"general={len(general)} business={len(business)} rail={len(rail)} total={total} warnings={warnings}")
     if missing:

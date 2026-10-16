@@ -29,7 +29,7 @@ await page.screenshot({ path: `${OUT}/1-learn.png` })
 // 新出語3語を提示 → 想起テスト
 for (let i = 0; i < 3; i++) await page.getByRole('button', { name: '覚えた！次へ' }).click()
 check(await page.getByText('意味を選ぼう').isVisible(), '提示後に選択式の想起テスト')
-const options = page.locator('button.min-h-12')
+const options = page.locator('button[data-choice]')
 await options.first().waitFor()
 await options.nth(1).click()
 await page.waitForTimeout(400)

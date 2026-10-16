@@ -44,19 +44,19 @@ export default function Practice() {
     <div>
       <PageHeader title="練習" subtitle="リスニングとスピーキングを鍛える" settings />
       <div className="px-4">
-        <Guide pose="cheer" text="覚えた単語は「聞く・話す」で使うと定着するワン。1日5分からでOK！" />
+        <Guide who="moka" pose="greet" text="覚えた単語は「聞く・話す」で使うと定着するよ♪ リスニングと発音はモカがコーチするね。1日5分からでOK！" />
         <SectionTitle>メニュー</SectionTitle>
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {ITEMS.map(({ to, icon: Icon, color, title, desc, tag }) => (
-            <Link key={to} to={to}>
-              <Card className="mb-2 flex items-center gap-3 active:scale-[0.99] transition-transform">
-                <div className={`rounded-2xl p-3 ${color}`}>
+            <Link key={to} to={to} className="block">
+              <Card className="flex items-center gap-3.5 transition-transform active:scale-[0.98]">
+                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${color}`}>
                   <Icon className="h-6 w-6" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <p className="text-[16px] font-bold">{title}</p>
-                    <span className="rounded-md bg-surface-2 px-1.5 py-0.5 text-[10px] font-bold text-muted">{tag}</span>
+                    <p className="text-[16px] font-extrabold">{title}</p>
+                    <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[10px] font-bold text-muted">{tag}</span>
                   </div>
                   <p className="mt-0.5 text-[12.5px] leading-snug text-muted">{desc}</p>
                 </div>

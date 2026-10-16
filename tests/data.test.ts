@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import general from '../src/data/vocab/general.json'
 import business from '../src/data/vocab/business.json'
 import rail from '../src/data/vocab/rail.json'
+import counts from '../src/data/vocab/counts.json'
 import { SCENES } from '../src/data/scenes'
 import type { Word } from '../src/lib/types'
 
@@ -10,6 +11,10 @@ const all = [...(general as Word[]), ...(business as Word[]), ...(rail as Word[]
 describe('単語データ', () => {
   it('3,000語以上ある', () => {
     expect(all.length).toBeGreaterThanOrEqual(3000)
+  })
+
+  it('語数の集計（counts.json）が単語データと一致する（npm run data:build で再生成）', () => {
+    expect(counts).toEqual({ general: general.length, business: business.length, rail: rail.length })
   })
 
   it('IDが一意', () => {

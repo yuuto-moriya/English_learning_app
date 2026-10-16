@@ -79,20 +79,20 @@ export default function Words() {
           ]}
         />
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="英語・日本語で検索"
-            className="w-full rounded-xl border border-line bg-surface py-2.5 pl-9 pr-9 text-[16px] outline-none focus:border-brand"
+            className="w-full rounded-2xl bg-surface py-3 pl-10 pr-10 text-[16px] shadow-card outline-none ring-1 ring-ring focus:ring-2 focus:ring-brand"
           />
           {q && (
-            <button onClick={() => setQ('')} aria-label="クリア" className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-muted">
+            <button onClick={() => setQ('')} aria-label="クリア" className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-muted active:bg-surface-2">
               <X className="h-4 w-4" />
             </button>
           )}
         </div>
-        <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4">
+        <div className="no-scrollbar fade-x -mx-4 flex gap-2 overflow-x-auto px-4 py-0.5">
           <Chip active={lv === null} onClick={() => setLv(null)}>全レベル</Chip>
           {levels.map((l) => {
             const L = LEVELS.find((x) => x.lv === l)!
@@ -104,7 +104,7 @@ export default function Words() {
           })}
         </div>
         {cat === 'rail' && (
-          <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4">
+          <div className="no-scrollbar fade-x -mx-4 flex gap-2 overflow-x-auto px-4 py-0.5">
             <Chip active={sub === null} onClick={() => setSub(null)}>全分野</Chip>
             {Object.entries(RAIL_SUBS).map(([k, v]) => (
               <Chip key={k} active={sub === k} onClick={() => setSub(sub === k ? null : k)}>
@@ -113,7 +113,7 @@ export default function Words() {
             ))}
           </div>
         )}
-        <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4">
+        <div className="no-scrollbar fade-x -mx-4 flex gap-2 overflow-x-auto px-4 py-0.5">
           {(
             [
               ['all', 'すべて'],
@@ -129,7 +129,7 @@ export default function Words() {
         </div>
 
         {words && filtered.length === 0 && <Empty>該当する単語がありません</Empty>}
-        <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
+        <ul className="divide-y divide-line overflow-hidden rounded-[22px] bg-surface shadow-card ring-1 ring-ring">
           {filtered.slice(0, limit).map((w) => {
             const st = statusOf(cards?.get(w.id))
             return (
@@ -138,9 +138,9 @@ export default function Words() {
                   <span
                     className={cx(
                       'h-2 w-2 shrink-0 rounded-full',
-                      st === 'mastered' ? 'bg-ok' : st === 'learning' ? 'bg-warn' : st === 'known' ? 'bg-gen' : 'bg-line',
+                      st === 'mastered' ? 'bg-ok' : st === 'learning' ? 'bg-warn' : 'bg-surface-3',
                     )}
-                    title={st}
+                    title={STATUS_LABEL[st]}
                   />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-[16px] font-bold">
@@ -162,7 +162,9 @@ export default function Words() {
   )
 }
 
-function statusOf(c: CardRow | undefined): 'new' | 'learning' | 'mastered' | 'known' {
+const STATUS_LABEL = { new: '未学習', learning: '学習中', mastered: '定着' } as const
+
+function statusOf(c: CardRow | undefined): 'new' | 'learning' | 'mastered' {
   if (!c) return 'new'
   if (c.known) return 'mastered'
   if (c.stability >= 21) return 'mastered'

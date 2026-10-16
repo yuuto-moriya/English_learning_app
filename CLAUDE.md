@@ -37,4 +37,9 @@ Playwright の Chromium は `CHROMIUM_PATH` で指定できる。
 - 表示文言は日本語。E2E が使う文言を変えたら `scripts/e2e-flow.mjs` も直す
 - iPhone 幅（390px）、safe-area、ダークモード、standalone 表示を壊さない。入力欄は 16px 以上
 - API キー・トークンをコミットしない
-- ブランチ運用: `main` = 本番、`staging` = 検証環境（プレビュー URL に自動デプロイ）。作業は **`staging` から切ったブランチ** で行い、PR は `staging` 向けに出す。確認後、`staging` → `main` の PR で本番に反映する（`main` への push は本番デプロイになる）。`main` へ直接 push・PR しない
+- ブランチ運用（詳細は README の「ブランチ運用」）:
+  - `main` = 本番、`stg` = 検証環境（プレビュー URL に自動デプロイ）。`main` と `stg` へ直接 push しない
+  - 作業は **`stg` から切ったブランチ**（`feature/*` `fix/*` `docs/*` `chore/*`）で行い、PR は `stg` 向けに **Squash merge** で出す
+  - 確認後、`stg` → `main` の PR を **Merge commit** で出して本番に反映する（`main` へのマージは本番デプロイになる）
+  - 本番の緊急修正は `main` から `hotfix/*` を切って `main` へ PR し、マージ後に `main` を `stg` へ戻す
+  - `main` へ直接 PR するのは `hotfix/*` と `stg` だけ

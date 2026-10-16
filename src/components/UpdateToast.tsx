@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from 'react'
 import { useLocation } from 'react-router'
+import { isFocusMode } from '@/lib/routes'
 
 /**
  * PWAの更新通知。
@@ -45,13 +46,13 @@ export function UpdateToast() {
   const show = useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
   const { pathname } = useLocation()
   // 単語学習の最中は操作ボタンに重なるので出さない（終わってから表示）
-  if (!show || pathname.startsWith('/study')) return null
+  if (!show || isFocusMode(pathname)) return null
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(72px+env(safe-area-inset-bottom))] z-40 px-4">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(max(env(safe-area-inset-bottom),12px)+76px)] z-40 px-4">
       <div
         role="status"
         aria-live="polite"
-        className="pointer-events-auto mx-auto flex max-w-xl items-center gap-2 rounded-2xl border border-line bg-surface p-3 shadow-card animate-pop"
+        className="pointer-events-auto mx-auto flex max-w-md items-center gap-2 rounded-[20px] bg-surface p-3 shadow-float ring-1 ring-ring animate-pop"
       >
         <p className="min-w-0 flex-1 text-[13px] font-semibold">アプリの新しいバージョンがあります</p>
         <button
@@ -65,7 +66,7 @@ export function UpdateToast() {
             setNeedRefresh(false)
             void updateSW?.(true)
           }}
-          className="shrink-0 rounded-lg bg-brand px-3 py-2 text-[13px] font-bold text-white active:bg-brand-strong"
+          className="shrink-0 rounded-xl bg-brand-grad px-3.5 py-2 text-[13px] font-bold text-white shadow-glow"
         >
           更新
         </button>

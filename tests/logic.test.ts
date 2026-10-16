@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { normalizePronunciation, toBase64Utf8 } from '../server/shared'
-import { checkSpelling, chooseType, reinsert, newWordPool, type Item } from '../src/lib/session'
+import { MAX_RETRIES, checkSpelling, chooseType, reinsert, newWordPool, type Item } from '../src/lib/session'
 import { diffWords } from '../src/lib/sentences'
 import { compareWords } from '../src/lib/localSpeech'
 import { downsample, encodeWav } from '../src/lib/recorder'
@@ -74,8 +74,19 @@ describe('学習セッション', () => {
     const out = reinsert(q, 0, q[0], 3)
     expect(out.length).toBe(7)
     expect(out[4].word.id).toBe('a')
-    expect(out[4].retry).toBe(true)
+    expect(out[4].retry).toBe(1)
     expect(out[4].type).toBe('mc')
+  })
+  it('同じ語の再出題は上限（MAX_RETRIES）までで、問題数が際限なく増えない', () => {
+    let q: Item[] = ['a', 'b', 'c'].map((k) => ({ key: k, word: w(k), type: 'mc', isNew: false }))
+    let item = q[0]
+    for (let i = 0; i < 5; i++) {
+      const next = reinsert(q, 0, item, 1)
+      if (next === q) break
+      q = next
+      item = q[2]
+    }
+    expect(q.filter((x) => x.word.id === 'a').length).toBe(1 + MAX_RETRIES)
   })
   it('未学習・学習初期は選択問題、安定した語は産出問題を含む', () => {
     expect(chooseType(undefined, w('x'), 0)).toBe('mc')

@@ -75,7 +75,7 @@ export default function Study() {
       }
       stats.current.streak = correct ? stats.current.streak + 1 : 0
       if (!correct) setQueue((q) => reinsert(q, idx, item))
-      setGuide(correct ? correctMessage(stats.current.streak) : wrongMessage())
+      setGuide(correct ? correctMessage(stats.current.streak, item.word.cat === 'rail') : wrongMessage())
       setResult({ correct, grade, next: nextStr, answer: opts.answer })
       if (settings.autoPlay) speak(item.word.ex[0]?.en ?? item.word.w, { accent: item.word.cat === 'rail' ? 'en-GB' : 'en-US' })
     } finally {
@@ -163,18 +163,20 @@ export default function Study() {
       {phase === 'feedback' && result && item && (
         <div className="mt-4 animate-pop">
           {guide && <Guide pose={guide.pose} text={guide.text} size={72} compact />}
-          <Card className={cx('mt-3 border-2', result.correct ? 'border-ok/50' : 'border-ng/50')}>
+          <Card className={cx('mt-3 ring-2', result.correct ? 'ring-ok/50' : 'ring-ng/50')}>
             <div className="mb-3 flex items-center gap-2">
-              {result.correct ? <Check className="h-5 w-5 text-ok" /> : <X className="h-5 w-5 text-ng" />}
-              <span className={cx('font-bold', result.correct ? 'text-ok' : 'text-ng')}>{result.correct ? '正解' : '不正解'}</span>
-              {result.next && <span className="ml-auto text-xs text-muted">次回の復習：{result.next}後</span>}
+              <span className={cx('flex h-7 w-7 items-center justify-center rounded-full text-white', result.correct ? 'bg-ok' : 'bg-ng')}>
+                {result.correct ? <Check className="h-4 w-4" strokeWidth={3} /> : <X className="h-4 w-4" strokeWidth={3} />}
+              </span>
+              <span className={cx('text-[15px] font-extrabold', result.correct ? 'text-ok' : 'text-ng')}>{result.correct ? '正解！' : '不正解'}</span>
+              {result.next && <span className="ml-auto rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-semibold text-muted">次回の復習：{result.next}後</span>}
             </div>
             <WordHead word={item.word} />
             <div className="mt-3">
               <WordBody word={item.word} />
             </div>
           </Card>
-          <Button block className="sticky bottom-[calc(84px+env(safe-area-inset-bottom))] mt-4" onClick={next}>
+          <Button block className="sticky bottom-[calc(12px+env(safe-area-inset-bottom))] mt-4" onClick={next}>
             次へ
           </Button>
         </div>
@@ -187,15 +189,19 @@ function Shell({ children, onClose, progress }: { children: React.ReactNode; onC
   return (
     <div className="px-4">
       {/* pt-safe はスクロールしても固定されるヘッダー側に付け、ステータスバー／Dynamic Island の下に潜らないようにする */}
-      <div className="sticky top-0 z-10 -mx-4 bg-bg/90 px-4 pt-safe backdrop-blur">
-        <div className="flex h-12 items-center gap-3">
-          <button onClick={onClose} aria-label="閉じる" className="rounded-full p-1 text-muted">
-            <X className="h-6 w-6" />
+      <div className="sticky top-0 z-10 -mx-4 bg-bg/92 px-4 pt-safe backdrop-blur-xl">
+        <div className="flex h-14 items-center gap-3">
+          <button
+            onClick={onClose}
+            aria-label="閉じる"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-muted shadow-card ring-1 ring-ring active:scale-95"
+          >
+            <X className="h-5 w-5" />
           </button>
-          {progress && <ProgressBar value={progress.value} max={progress.max} className="flex-1" />}
+          {progress && <ProgressBar value={progress.value} max={progress.max} className="h-2.5 flex-1" />}
           {progress && (
-            <span className="text-xs font-semibold text-muted">
-              {progress.value + 1}/{progress.max}
+            <span className="min-w-10 text-right text-xs font-bold tabular-nums text-muted">
+              {Math.min(progress.value + 1, progress.max)}/{progress.max}
             </span>
           )}
         </div>
@@ -240,7 +246,7 @@ function ItemView({
   if (item.type === 'learn')
     return (
       <div>
-        <p className="mb-2 text-xs font-bold text-brand">NEW　新しい単語</p>
+        <p className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 text-[11px] font-extrabold text-brand-strong">NEW・新しい単語</p>
         <Card>
           <WordHead word={w} big />
           <div className="mt-4">
@@ -284,7 +290,7 @@ function ChoiceQ({
       <p className="mb-2 text-xs font-bold text-muted">
         {listen ? '🎧 聞こえた単語の意味は？' : item.retry ? 'もう一度！意味を選ぼう' : '意味を選ぼう'}
       </p>
-      <Card className="flex min-h-36 flex-col items-center justify-center gap-3">
+      <Card className="flex min-h-40 flex-col items-center justify-center gap-3">
         {listen && phase === 'question' ? (
           <div className="flex items-center gap-3">
             <SpeakButton text={w.w} accent={accent} size="lg" />
@@ -292,7 +298,7 @@ function ChoiceQ({
           </div>
         ) : (
           <>
-            <p className="text-center text-[30px] font-extrabold leading-tight">{w.w}</p>
+            <p className="text-center text-[32px] font-extrabold leading-tight tracking-tight">{w.w}</p>
             {w.ipa && <p className="ipa text-muted">/{w.cat === 'rail' && w.ipaUk ? w.ipaUk : w.ipa}/</p>}
             <SpeakButton text={w.w} accent={accent} />
           </>
@@ -305,16 +311,15 @@ function ChoiceQ({
           return (
             <button
               key={o.id}
+              data-choice
               disabled={phase !== 'question'}
               onClick={() => {
                 setPicked(o.id)
                 onAnswer(isAns, elapsed())
               }}
               className={cx(
-                'min-h-12 rounded-xl border bg-surface px-4 py-3 text-left text-[15px] font-semibold transition active:scale-[0.99]',
-                show && isAns && 'border-ok bg-ok/10',
-                show && picked === o.id && !isAns && 'border-ng bg-ng/10',
-                !show && 'border-line',
+                'min-h-13 rounded-2xl bg-surface px-4 py-3 text-left text-[15px] font-semibold shadow-card ring-1 transition active:scale-[0.98]',
+                show && isAns ? 'bg-ok/10 ring-2 ring-ok' : show && picked === o.id ? 'bg-ng/10 ring-2 ring-ng' : 'ring-ring',
               )}
             >
               {o.ja}
@@ -322,7 +327,7 @@ function ChoiceQ({
           )
         })}
         {phase === 'question' && (
-          <button onClick={() => onAnswer(false, elapsed())} className="mt-1 text-sm font-semibold text-muted">
+          <button onClick={() => onAnswer(false, elapsed())} className="mt-1 min-h-11 text-sm font-semibold text-muted">
             分からない
           </button>
         )}
@@ -379,7 +384,7 @@ function FlipQ({
               <button
                 key={g}
                 onClick={() => onAnswer(g !== Rating.Again, elapsed(), { grade: g })}
-                className={cx('flex flex-col items-center rounded-xl py-2.5 text-white active:scale-95', color)}
+                className={cx('flex flex-col items-center rounded-2xl py-2.5 text-white shadow-card transition active:scale-95', color)}
               >
                 <span className="text-[13px] font-bold">{label}</span>
                 <span className="text-[10px] opacity-90">{preview[g]}</span>
@@ -402,7 +407,7 @@ function TypeQ({
   phase: Phase
   result: { correct: boolean; answer?: string } | null
   elapsed: () => number
-  onAnswer: (correct: boolean, ms: number, opts?: { answer?: string; typed?: boolean }) => void
+  onAnswer: (correct: boolean, ms: number, opts?: { answer?: string; typed?: boolean; grade?: Grade }) => void
 }) {
   const w = item.word
   const [value, setValue] = useState('')
@@ -413,7 +418,8 @@ function TypeQ({
   const blanked = ex.en.replace(/\*[^*]+\*/, '_____')
   const submit = () => {
     const ok = checkSpelling(value, w, cloze ? target : undefined)
-    onAnswer(ok, elapsed(), { answer: value, typed: true })
+    // ヒントを見て正解した場合は「難しい」扱いにして、次回の間隔を短めにする
+    onAnswer(ok, elapsed(), { answer: value, typed: true, grade: ok && hint > 0 ? Rating.Hard : undefined })
   }
   return (
     <div>
@@ -456,8 +462,8 @@ function TypeQ({
           inputMode="text"
           placeholder="英語を入力"
           className={cx(
-            'w-full rounded-xl border bg-surface px-4 py-3 text-[18px] outline-none focus:border-brand',
-            result ? (result.correct ? 'border-ok' : 'border-ng') : 'border-line',
+            'w-full rounded-2xl bg-surface px-4 py-3.5 text-[18px] shadow-card outline-none ring-1 focus:ring-2',
+            result ? (result.correct ? 'ring-2 ring-ok' : 'ring-2 ring-ng') : 'ring-ring focus:ring-brand',
           )}
         />
         {phase === 'question' && (

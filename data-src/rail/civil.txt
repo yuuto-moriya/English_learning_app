@@ -14,7 +14,7 @@ cess|shoulder|線路脇（道床肩外側）の平坦部|6|ses|ˈʃoʊldɚ|英�
 culvert|culvert|カルバート（暗渠）|5|ˈkʌlvət|ˈkʌlvɚt|一般用語|線路の下を横断する水路やボックス構造物。|The *culvert* was blocked by debris.|カルバートががれきで詰まっていた。
 catch pit|catch basin|集水ます|6|ˈkætʃ pɪt|ˈkætʃ ˌbeɪsən|英国実務|排水管の途中に設けて土砂を沈殿させ、点検口にもなるます。|Empty the silt from the *catch pit*.|集水ますの泥を取り除いてください。
 bridge|bridge|橋梁|4|brɪdʒ||一般用語|鉄道が河川・道路・谷を越えるための構造物。|The *bridge* is inspected every two years.|その橋梁は2年ごとに点検される。
-underbridge|underpass|線路橋（線路が上を通る橋）|6|ˈʌndəbrɪdʒ|ˈʌndɚpæs|英国実務|英国で鉄道が上を通る橋（道路などが下をくぐる）。|A truck struck the *underbridge*.|トラックが線路橋に衝突した。
+underbridge|underpass|架道橋など（線路が上を通る橋）|6|ˈʌndəbrɪdʒ|ˈʌndɚpæs|英国実務|英国で鉄道が上を通る橋（道路などが下をくぐる）。道路をまたぐものは日本の架道橋にあたる。米国では道路側から見てunderpass、鉄道側ではrailroad bridgeとも言う。|A truck struck the *underbridge*.|トラックが架道橋に衝突した。
 overbridge|overpass|跨線橋|6|ˈəʊvəbrɪdʒ|ˈoʊvɚpæs|英国実務|英国で鉄道の上を道路などがまたぐ橋。|The new *overbridge* replaced the level crossing.|新しい跨線橋が踏切に置き換わった。
 viaduct|viaduct|高架橋|5|ˈvaɪədʌkt||一般用語|連続した多数の径間をもつ橋。新幹線の多くは高架橋上を走る。|The line runs on a long *viaduct* through the city.|その路線は市内を長い高架橋で走っている。
 girder|girder|桁（けた）|5|ˈɡɜːdə|ˈɡɝdɚ|一般用語|橋の主要な水平部材。|The steel *girder* was repainted last year.|鋼桁は昨年塗り替えられた。
