@@ -3,11 +3,12 @@ import { useSearchParams } from 'react-router'
 import { Eye, EyeOff, Repeat, Shuffle, Play } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
-import { SourcePicker, SpeedPicker } from '@/components/PracticeControls'
+import { defaultLevel, defaultSources, SourcePicker, SpeedPicker } from '@/components/PracticeControls'
 import { SpeakCheck } from '@/components/SpeakCheck'
-import { Button, Card, Segmented, SpeakButton, cx } from '@/components/ui'
+import { Button, Card, Segmented, cx } from '@/components/ui'
+import { Snail } from 'lucide-react'
 import { sentencePool, type Sentence, type Source } from '@/lib/sentences'
-import { speak, stopSpeaking, type Accent } from '@/lib/tts'
+import { speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { speakingMessage, type GuideLine } from '@/lib/guide'
 import { shuffle } from '@/lib/vocab'
 import { useStandalone } from '@/lib/hooks'
@@ -25,8 +26,8 @@ export default function Speaking() {
   const [params] = useSearchParams()
   const initialText = params.get('text')
   const [mode, setMode] = useState<'repeat' | 'shadow'>(params.get('mode') === 'shadow' ? 'shadow' : 'repeat')
-  const [sources, setSources] = useState<Source[]>(['scene'])
-  const [level, setLevel] = useState(3)
+  const [sources, setSources] = useState<Source[]>(() => defaultSources())
+  const [level, setLevel] = useState(defaultLevel)
   const [rate, setRate] = useState(0.85)
   const [pool, setPool] = useState<Sentence[]>([])
   const [cur, setCur] = useState<Sentence | null>(
@@ -90,7 +91,7 @@ export default function Speaking() {
 
   return (
     <div>
-      <PageHeader title={header} subtitle="お手本を聞いて、まねして話す" back="/practice" />
+      <PageHeader title={header} subtitle={mode === 'shadow' ? '聞こえた音を、すぐ後から追いかけて話す' : 'お手本を聞いて、まねして話す'} back="/practice" />
       <div className="space-y-3 px-4 pb-8">
         <Segmented
           value={mode}
@@ -105,12 +106,12 @@ export default function Speaking() {
           ]}
         />
         {guide ? (
-          <Guide pose={guide.pose} text={guide.text} size={72} />
+          <Guide pose={guide.pose} text={guide.text} size={56} />
         ) : (
           <Guide
             who="moka"
             pose={mode === 'shadow' ? 'think' : 'cheer'}
-            size={72}
+            size={56}
             text={
               mode === 'shadow'
                 ? 'イヤホン推奨だよ♪ 5つのステップで、聞こえた音をそのまま再現しよう。'
@@ -133,40 +134,51 @@ export default function Speaking() {
                     <button
                       key={s.title}
                       onClick={() => setStep(i)}
-                      className={cx('h-1.5 flex-1 rounded-full', i <= step ? 'bg-rail' : 'bg-surface-2')}
+                      className={cx('h-1 flex-1 rounded-full transition-colors', i <= step ? 'bg-ink' : 'bg-surface-3')}
                       aria-label={s.title}
                     />
                   ))}
                 </div>
-                <p className="mt-2 text-[13px] font-bold text-rail">
-                  STEP {step + 1}　{st.title}
+                <p className="mt-3 text-[13px] font-semibold">
+                  <span className="mr-2 tabular-nums text-muted">{step + 1}/5</span>
+                  {st.title}
                 </p>
-                <p className="text-[12px] text-muted">{st.desc}</p>
+                <p className="mt-0.5 text-[12.5px] leading-snug text-muted">{st.desc}</p>
               </div>
             )}
             <div className="min-h-16">
               {textVisible ? (
-                <p className="text-[19px] font-semibold leading-relaxed">{cur.en}</p>
+                <p className="en text-[22px] leading-snug">{cur.en}</p>
               ) : (
-                <p className="text-[15px] text-muted">（英文は隠れています）</p>
+                <p className="text-[14px] text-faint">英文は隠れています</p>
               )}
-              {jaVisible && cur.ja && <p className="mt-1 text-[13px] text-muted">{cur.ja}</p>}
+              {jaVisible && cur.ja && <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{cur.ja}</p>}
             </div>
             {/* このエリアのボタン操作（お手本・ゆっくり等）は進行中の「3回連続」を止める */}
             <div className="mt-3 flex flex-wrap items-center gap-2" onClickCapture={() => runId.current++}>
-              <Button onClick={() => speak(cur.en, { accent: cur.accent, rate })}>
-                <Play className="h-4 w-4" />
+              <Button
+                variant="ink"
+                size="sm"
+                onClick={() => {
+                  warmUpSpeech()
+                  speak(cur.en, { accent: cur.accent, rate })
+                }}
+              >
+                <Play className="h-3.5 w-3.5 fill-current" />
                 お手本
               </Button>
-              <SpeakButton text={cur.en} accent={cur.accent} rate={0.6} label="ゆっくり" />
+              <Button variant="outline" size="sm" onClick={() => speak(cur.en, { accent: cur.accent, rate: 0.6 })}>
+                <Snail className="h-4 w-4" strokeWidth={1.8} />
+                ゆっくり
+              </Button>
               {mode === 'shadow' && (
-                <Button variant="secondary" onClick={() => repeat3(cur.en, cur.accent)}>
-                  <Repeat className="h-4 w-4" />
+                <Button variant="outline" size="sm" onClick={() => repeat3(cur.en, cur.accent)}>
+                  <Repeat className="h-4 w-4" strokeWidth={1.8} />
                   3回連続
                 </Button>
               )}
               {mode === 'repeat' && (
-                <button onClick={() => setShowText((v) => !v)} className="ml-auto flex items-center gap-1 text-xs font-semibold text-muted">
+                <button onClick={() => setShowText((v) => !v)} className="ml-auto flex min-h-9 items-center gap-1 text-[12px] font-medium text-muted">
                   {showText ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   {showText ? '英文を隠す' : '英文を表示'}
                 </button>
@@ -181,11 +193,12 @@ export default function Speaking() {
               前へ
             </Button>
             {step < STEPS.length - 1 ? (
-              <Button className="flex-1" onClick={() => setStep((s) => s + 1)}>
+              <Button variant="ink" className="flex-1" onClick={() => setStep((s) => s + 1)}>
                 次のステップ
               </Button>
             ) : (
               <Button
+                variant="ink"
                 className="flex-1"
                 onClick={() => {
                   stopPlayback()
@@ -210,8 +223,8 @@ export default function Speaking() {
         </Button>
 
         {standalone && (
-          <p className="text-[11px] leading-relaxed text-muted">
-            ※ホーム画面アプリでは端末の音声認識が使えないため、自動採点にはAzure Speechの設定が必要です（設定画面を参照）。
+          <p className="px-1 text-[11.5px] leading-relaxed text-muted">
+            ホーム画面アプリでは端末の音声認識が使えないため、自動採点にはサーバーの Azure Speech の設定が必要です（設定画面を参照）。
           </p>
         )}
       </div>

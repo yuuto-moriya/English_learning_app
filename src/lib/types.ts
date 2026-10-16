@@ -46,11 +46,56 @@ export const LEVELS: { lv: Level; label: string; cefr: string; toeic: string }[]
   { lv: 6, label: '専門', cefr: 'ESP', toeic: '専門' },
 ]
 
-export const CATEGORIES: { key: Category; label: string; short: string; desc: string }[] = [
-  { key: 'general', label: '一般・日常', short: '一般', desc: 'NGSL（一般英語の約92%をカバーする高頻度語）' },
-  { key: 'business', label: 'ビジネス', short: 'ビジネス', desc: 'BSL/TSL（ビジネス・TOEIC頻出語）' },
-  { key: 'rail', label: '鉄道・保線', short: '保線', desc: 'EN規格・TSI・JISに基づく保線/設備管理用語' },
+/** コース（＝単語のカテゴリ）。オンボーディングで選び、出題・シーン・練習の既定に使う */
+export const CATEGORIES: {
+  key: Category
+  label: string
+  short: string
+  desc: string
+  source: string
+  /** シーン会話のグループ */
+  scene: SceneGroup
+  /** 文字色・背景色（Tailwind のクラス） */
+  text: string
+  soft: string
+  dot: string
+}[] = [
+  {
+    key: 'general',
+    label: '一般会話',
+    short: '一般',
+    desc: '日常の会話・旅行・暮らしで使う高頻度の英語',
+    source: 'NGSL（一般英語の約92%をカバーする高頻度語）',
+    scene: 'daily',
+    text: 'text-gen',
+    soft: 'bg-gen-soft',
+    dot: 'bg-gen',
+  },
+  {
+    key: 'business',
+    label: 'ビジネス',
+    short: 'ビジネス',
+    desc: '会議・メール・電話・交渉などの仕事の英語',
+    source: 'BSL / TSL（ビジネス・TOEIC 頻出語）',
+    scene: 'business',
+    text: 'text-biz',
+    soft: 'bg-biz-soft',
+    dot: 'bg-biz',
+  },
+  {
+    key: 'rail',
+    label: '保線',
+    short: '保線',
+    desc: '鉄道保線・設備管理（EAM）の専門用語と現場の英語',
+    source: 'EN 規格・TSI・JIS に基づく保線／設備管理用語',
+    scene: 'rail',
+    text: 'text-rail',
+    soft: 'bg-rail-soft',
+    dot: 'bg-rail',
+  },
 ]
+
+export const catMeta = (c: Category) => CATEGORIES.find((x) => x.key === c)!
 
 export const RAIL_SUBS: Record<string, string> = {
   general: '線路一般・線形',

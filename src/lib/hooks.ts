@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useEffect, useState, useSyncExternalStore } from 'react'
-import { db, getStreak, todayKey, type CardRow } from './db'
+import { db, getStreak, shiftDay, todayKey, type CardRow, type DailyRow } from './db'
 import { getHealth, type Health } from './api'
 import { useSettings } from './settings'
 
@@ -98,4 +98,23 @@ export function useStandalone() {
         (navigator as unknown as { standalone?: boolean }).standalone === true),
   )
   return s
+}
+
+/** 直近 n 日の学習記録（古い順。記録のない日は undefined） */
+export function useRecentDays(n: number): { date: string; row?: DailyRow }[] | undefined {
+  const today = todayKey(new Date(useNow()))
+  const from = shiftDay(today, -(n - 1))
+  const rows = useLiveQuery(() => db.daily.where('date').between(from, today, true, true).toArray(), [from, today])
+  if (!rows) return undefined
+  const map = new Map(rows.map((r) => [r.date, r]))
+  return Array.from({ length: n }, (_, i) => {
+    const date = shiftDay(from, i)
+    return { date, row: map.get(date) }
+  })
+}
+
+/** 保存（★）した単語の ID */
+export function useMarks(): Set<string> | undefined {
+  const rows = useLiveQuery(() => db.marks.toArray(), [])
+  return rows ? new Set(rows.map((r) => r.id)) : undefined
 }

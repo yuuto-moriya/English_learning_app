@@ -93,6 +93,15 @@ export function splitMarked(s: string): { t: string; hl: boolean }[] {
   return out
 }
 
+/** 和訳の読み上げ用：最初の意味だけにし、括弧書きと「〜」を除く */
+export function jaForSpeech(ja: string): string {
+  return ja
+    .split('；')[0]
+    .replace(/（[^）]*）|\([^)]*\)/g, '')
+    .replace(/[〜~]/g, '')
+    .trim()
+}
+
 /** 例文中のターゲット語（最初のマーク） */
 export function markedTarget(s: string): string | null {
   const m = /\*([^*]+)\*/.exec(s)

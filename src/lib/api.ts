@@ -5,6 +5,8 @@ import { getSettings } from './settings'
 export interface Health {
   translator: boolean
   speech: boolean
+  /** 高品質音声（Azure ニューラル音声） */
+  tts?: boolean
   tokenRequired: boolean
 }
 
@@ -15,6 +17,14 @@ function headers(extra: Record<string, string> = {}) {
   const token = getSettings().apiToken
   if (token) h['X-App-Token'] = token
   return h
+}
+
+export const apiHeaders = () => headers()
+
+/** 読み上げ音声の URL（同じ文・声・速度なら同じ URL になり、CDN と端末のキャッシュが効く） */
+export function ttsUrl(text: string, voice: string, ratePct: number): string {
+  const q = new URLSearchParams({ v: voice, r: String(ratePct), t: text })
+  return `/api/tts?${q}`
 }
 
 export class ApiError extends Error {

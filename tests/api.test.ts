@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { guard, handleHealth, handlePronunciation, handleStt, handleTranslate } from '../server/handlers.js'
+import { guard, handleHealth, handlePronunciation, handleStt, handleTranslate, handleTts } from '../server/handlers.js'
+import { buildSsml } from '../server/shared.js'
 import type { Env } from '../server/shared.js'
 
 const ENV: Env = {
@@ -29,7 +30,7 @@ describe('guard', () => {
   it('health はトークンなしでも見られる', async () => {
     const env = { ...ENV, APP_ACCESS_TOKEN: 'secret' }
     const res = await guard(new Request('https://app.example/api/health'), env, () => handleHealth(env), { public: true })
-    expect(await res.json()).toEqual({ translator: true, speech: true, tokenRequired: true })
+    expect(await res.json()).toEqual({ translator: true, speech: true, tts: true, tokenRequired: true })
   })
 
   it('想定外の例外は JSON の 500 になる', async () => {
@@ -100,5 +101,49 @@ describe('speech', () => {
     vi.stubGlobal('fetch', vi.fn(async () => Response.json({ RecognitionStatus: 'Success', DisplayText: '明日の夜間作業' })))
     const res = await handleStt(post('/api/stt?lang=ja-JP', wav()), ENV)
     expect(await res.json()).toEqual({ text: '明日の夜間作業' })
+  })
+})
+
+describe('tts', () => {
+  const get = (q: string) => new Request(`https://app.example/api/tts?${q}`)
+
+  it('SSML で Azure を呼び、MP3 を長期キャッシュ付きで返す', async () => {
+    const fetchMock = vi.fn(async (_url: string | URL, _init?: RequestInit) => new Response(new Uint8Array(4000), { headers: { 'Content-Type': 'audio/mpeg' } }))
+    vi.stubGlobal('fetch', fetchMock)
+    const res = await handleTts(get('v=en-GB-SoniaNeural&r=-15&t=Fish+%26+chips+%3Cplease%3E'), ENV)
+    expect(res.status).toBe(200)
+    expect(res.headers.get('content-type')).toBe('audio/mpeg')
+    expect(res.headers.get('cache-control')).toContain('immutable')
+    const [url, init] = fetchMock.mock.calls[0]
+    expect(String(url)).toBe('https://japaneast.tts.speech.microsoft.com/cognitiveservices/v1')
+    const h = init!.headers as Record<string, string>
+    expect(h['X-Microsoft-OutputFormat']).toBe('audio-24khz-48kbitrate-mono-mp3')
+    expect(init!.body).toBe(buildSsml('Fish & chips <please>', 'en-GB-SoniaNeural', -15))
+    expect(String(init!.body)).toContain('Fish &amp; chips &lt;please&gt;')
+    expect(String(init!.body)).toContain('xml:lang="en-GB"')
+    expect(String(init!.body)).toContain('rate="-15%"')
+  })
+
+  it('カスタムドメインのエンドポイントを使う', async () => {
+    const fetchMock = vi.fn(async () => new Response(new Uint8Array(4000)))
+    vi.stubGlobal('fetch', fetchMock)
+    await handleTts(get('v=en-US-AvaNeural&r=0&t=Hello'), { AZURE_SPEECH_KEY: 'k', AZURE_SPEECH_ENDPOINT: 'https://my.cognitiveservices.azure.com/' })
+    expect(String((fetchMock.mock.calls[0] as unknown[])[0])).toBe('https://my.cognitiveservices.azure.com/tts/cognitiveservices/v1')
+  })
+
+  it('許可していない声・不正な速度・長すぎる文は 4xx、未設定は 503', async () => {
+    expect((await handleTts(get('v=en-US-Evil&r=0&t=Hi'), ENV)).status).toBe(400)
+    expect((await handleTts(get('v=en-US-AvaNeural&r=7&t=Hi'), ENV)).status).toBe(400)
+    expect((await handleTts(get('v=en-US-AvaNeural&r=80&t=Hi'), ENV)).status).toBe(400)
+    expect((await handleTts(get('v=en-US-AvaNeural&r=0&t='), ENV)).status).toBe(400)
+    expect((await handleTts(get(`v=en-US-AvaNeural&r=0&t=${'a'.repeat(401)}`), ENV)).status).toBe(413)
+    expect((await handleTts(get('v=en-US-AvaNeural&r=0&t=Hi'), {})).status).toBe(503)
+  })
+
+  it('Azure のエラー（無料枠超過など）はキャッシュしない JSON の 502', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('quota', { status: 429 })))
+    const res = await handleTts(get('v=en-US-AvaNeural&r=0&t=Hi'), ENV)
+    expect(res.status).toBe(502)
+    expect(res.headers.get('cache-control')).toBe('no-store')
   })
 })

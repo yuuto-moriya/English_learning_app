@@ -1,19 +1,22 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Play, RotateCcw } from 'lucide-react'
+import { Check, Play, RotateCcw, Snail } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
-import { SourcePicker, SpeedPicker } from '@/components/PracticeControls'
-import { Button, Card, ProgressBar, cx } from '@/components/ui'
+import { defaultLevel, defaultSources, SourcePicker, SpeedPicker } from '@/components/PracticeControls'
+import { BottomBar, Button, Card, ProgressBar, Toggle, cx } from '@/components/ui'
 import { jaDistractors, pickRound, sentencePool, type Sentence, type Source } from '@/lib/sentences'
-import { speak, stopSpeaking } from '@/lib/tts'
+import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily } from '@/lib/db'
 import { correctMessage, wrongMessage, type GuideLine } from '@/lib/guide'
 import { shuffle } from '@/lib/vocab'
+import { useSettings } from '@/lib/settings'
 
 export default function Listening() {
-  const [sources, setSources] = useState<Source[]>(['general', 'scene'])
-  const [level, setLevel] = useState(3)
+  const [sources, setSources] = useState<Source[]>(() => defaultSources())
+  const [level, setLevel] = useState(defaultLevel)
   const [rate, setRate] = useState(0.85)
+  const vary = useSettings((s) => s.varyVoices)
+  const setSettings = useSettings((s) => s.set)
   const [pool, setPool] = useState<Sentence[]>([])
   const [round, setRound] = useState<Sentence[]>([])
   const [i, setI] = useState(0)
@@ -35,14 +38,20 @@ export default function Listening() {
   const cur = round[i]
   const options = useMemo(() => (cur ? shuffle([cur.ja, ...jaDistractors(cur, pool)]) : []), [cur, pool])
   const done = started && i >= round.length
+  const voice = vary ? 'random' : 'main'
+
+  useEffect(() => {
+    prefetchSpeech(round.slice(i + 1, i + 3).map((s) => ({ text: s.en, accent: s.accent, rate })))
+  }, [round, i, rate])
 
   const play = (r = rate) => {
     if (!cur) return
     setPlays((p) => p + 1)
-    speak(cur.en, { accent: cur.accent, rate: r })
+    speak(cur.en, { accent: cur.accent, rate: r, voice })
   }
 
   const start = () => {
+    warmUpSpeech()
     const r = pickRound(pool, 10)
     setRound(r)
     setI(0)
@@ -51,7 +60,7 @@ export default function Listening() {
     setGuide(null)
     setStarted(true)
     setPlays(1)
-    if (r[0]) speak(r[0].en, { accent: r[0].accent, rate })
+    if (r[0]) speak(r[0].en, { accent: r[0].accent, rate, voice })
   }
 
   const choose = (ja: string) => {
@@ -69,81 +78,98 @@ export default function Listening() {
     setPicked(null)
     setGuide(null)
     setPlays(1)
-    if (round[n]) speak(round[n].en, { accent: round[n].accent, rate })
+    if (round[n]) speak(round[n].en, { accent: round[n].accent, rate, voice })
   }
 
   return (
     <div>
-      <PageHeader title="リスニング" subtitle="聞いて意味を選ぶ（10問）" back="/practice" />
+      <PageHeader title="リスニング" subtitle="文字を見ずに聞いて、意味を選ぶ（10問）" back="/practice" />
       <div className="space-y-3 px-4 pb-8">
         {!started || done ? (
           <>
             {done ? (
               <Guide
                 pose={score >= 8 ? 'celebrate' : score >= 5 ? 'happy' : 'cheer'}
-                text={`${round.length}問中${score}問正解！${score >= 8 ? '耳が育ってるワン！' : '聞き取れなかった文はディクテーションで確認しよう。'}`}
+                text={`${round.length}問中${score}問正解！${score >= 8 ? '耳が育ってるワン！' : '聞き取れなかった文はディクテーションで確かめよう。'}`}
               />
             ) : (
-              <Guide who="moka" pose="think" text="まず文字を見ずに聞いて、意味をつかむ練習だよ♪ 聞き取れなければ速度を下げてね。" />
+              <Guide who="moka" pose="think" text="まず文字を見ずに聞いて、意味をつかもう♪ 聞き取れなければ速度を下げてね。" />
             )}
             <Card className="space-y-4">
               <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />
               <SpeedPicker rate={rate} onRate={setRate} />
-              <p className="text-xs text-muted">対象の文：{pool.length.toLocaleString()}文</p>
+              <Toggle
+                label="いろいろな声で聞く"
+                desc="毎回ちがう話者の声で再生します。初めて聞く声でも聞き取れる力につながります"
+                checked={vary}
+                onChange={(v) => setSettings({ varyVoices: v })}
+              />
+              <p className="text-[12px] text-muted">対象の文：{pool.length.toLocaleString()}文</p>
             </Card>
-            <Button block onClick={start} disabled={pool.length < 4}>
-              {done ? <RotateCcw className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+            <Button block size="lg" onClick={start} disabled={pool.length < 4}>
+              {done ? <RotateCcw className="h-[18px] w-[18px]" /> : <Play className="h-[18px] w-[18px]" />}
               {done ? 'もう一度' : 'スタート'}
             </Button>
           </>
         ) : (
           cur && (
-            <>
-              <ProgressBar value={i} max={round.length} />
-              <Card className="flex flex-col items-center gap-3 py-6">
+            <div className={cx(picked && 'pb-40')}>
+              <ProgressBar value={i} max={round.length} className="h-[5px]" />
+              <div className="flex flex-col items-center gap-4 py-9">
                 <button
                   onClick={() => play()}
-                  className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-grad text-white shadow-glow transition active:scale-95"
+                  className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-ink text-bg transition active:scale-95"
                   aria-label="再生"
                 >
-                  <Play className="h-9 w-9 translate-x-0.5" />
+                  <Play className="h-9 w-9 translate-x-0.5 fill-current" strokeWidth={1.5} />
                 </button>
-                <div className="flex gap-2">
-                  <Button variant="secondary" className="min-h-9 py-1 text-xs" onClick={() => play(0.65)}>
+                <div className="flex items-center gap-3">
+                  <Button variant="outline" size="sm" onClick={() => play(0.65)}>
+                    <Snail className="h-4 w-4" strokeWidth={1.8} />
                     ゆっくり
                   </Button>
-                  <span className="self-center text-xs text-muted">再生 {plays}回</span>
+                  <span className="text-[12px] tabular-nums text-muted">再生 {plays}回</span>
                 </div>
                 {picked && (
-                  <div className="mt-2 w-full animate-pop rounded-xl bg-surface-2 p-3 text-center">
-                    <p className="text-[16px] font-semibold">{cur.en}</p>
+                  <div className="mt-1 w-full animate-rise text-center">
+                    <p className="en text-[20px] leading-snug">{cur.en}</p>
                   </div>
                 )}
-              </Card>
-              <div className="grid gap-2">
-                {options.map((o) => (
-                  <button
-                    key={o}
-                    onClick={() => choose(o)}
-                    disabled={!!picked}
-                    className={cx(
-                      'min-h-13 rounded-2xl bg-surface px-4 py-3 text-left text-[14px] font-semibold leading-snug shadow-card ring-1 transition active:scale-[0.98]',
-                      picked && o === cur.ja ? 'bg-ok/10 ring-2 ring-ok' : picked === o ? 'bg-ng/10 ring-2 ring-ng' : 'ring-ring',
-                    )}
-                  >
-                    {o}
-                  </button>
-                ))}
+              </div>
+              <div className="space-y-2">
+                {options.map((o) => {
+                  const isAns = o === cur.ja
+                  return (
+                    <button
+                      key={o}
+                      onClick={() => choose(o)}
+                      disabled={!!picked}
+                      className={cx(
+                        'flex min-h-[54px] w-full items-center gap-2 rounded-[14px] border px-4 py-3 text-left text-[14.5px] leading-snug transition active:scale-[0.99]',
+                        picked && isAns
+                          ? 'border-ok bg-ok-soft'
+                          : picked === o
+                            ? 'animate-shake border-ng bg-ng-soft'
+                            : picked
+                              ? 'border-line bg-surface opacity-50'
+                              : 'border-line bg-surface',
+                      )}
+                    >
+                      <span className="flex-1">{o}</span>
+                      {picked && isAns && <Check className="h-4 w-4 shrink-0 text-ok" strokeWidth={2.6} />}
+                    </button>
+                  )
+                })}
               </div>
               {picked && (
-                <>
-                  {guide && <Guide pose={guide.pose} text={guide.text} size={64} compact />}
-                  <Button block onClick={next}>
-                    次へ
+                <BottomBar tone={picked === cur.ja ? 'ok' : 'ng'}>
+                  {guide && <p className="mb-3 text-[14px] leading-relaxed">{guide.text}</p>}
+                  <Button block size="lg" variant="ink" onClick={next}>
+                    {i + 1 >= round.length ? '結果を見る' : '次へ'}
                   </Button>
-                </>
+                </BottomBar>
               )}
-            </>
+            </div>
           )
         )}
       </div>

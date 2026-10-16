@@ -72,6 +72,27 @@ export function speechUrl(env: Env, lang: string, detailed: boolean): string {
 
 export const ALLOWED_LANGS = new Set(['en-US', 'en-GB', 'ja-JP'])
 
+/** 音声合成（ニューラル音声）の URL。カスタムドメインがあればそちらを使う */
+export function ttsEndpoint(env: Env): string {
+  return env.AZURE_SPEECH_ENDPOINT
+    ? `${env.AZURE_SPEECH_ENDPOINT.replace(/\/$/, '')}/tts/cognitiveservices/v1`
+    : `https://${env.AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`
+}
+
+export function escapeXml(s: string): string {
+  return s.replace(/[<>&'"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[c]!)
+}
+
+/** 読み上げ用の SSML。速度は % で指定（-50〜+50） */
+export function buildSsml(text: string, voice: string, ratePct: number): string {
+  const lang = voice.slice(0, 5)
+  const rate = `${ratePct >= 0 ? '+' : ''}${ratePct}%`
+  return (
+    `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="${lang}">` +
+    `<voice name="${voice}"><prosody rate="${rate}">${escapeXml(text)}</prosody></voice></speak>`
+  )
+}
+
 interface AzurePhoneme {
   Phoneme?: string
   AccuracyScore?: number

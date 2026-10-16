@@ -100,6 +100,40 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
   return out
 }
 
+/** 苦手な語：忘れたことがある、または FSRS の難易度が高い（10段階で7以上） */
+export function isWeak(r: CardRow | undefined): boolean {
+  return !!r && !r.known && r.reps > 0 && (r.lapses >= 1 || r.difficulty >= 7)
+}
+
+/**
+ * 苦手な語・保存した語だけの集中練習（復習の予定は変えない）。
+ * 期日前に解いた結果で FSRS の予定を動かすと最適な間隔からずれるため、記録は日々の学習量だけにする。
+ */
+export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<Item[]> {
+  const rows = await db.cards.toArray()
+  const rowMap = new Map(rows.map((r) => [r.id, r]))
+  let ids: string[]
+  if (kind === 'weak') {
+    ids = rows
+      .filter(isWeak)
+      .sort((a, b) => b.lapses - a.lapses || b.difficulty - a.difficulty)
+      .slice(0, limit)
+      .map((r) => r.id)
+  } else {
+    ids = (await db.marks.orderBy('at').reverse().toArray()).map((m) => m.id).slice(0, limit)
+  }
+  const out: Item[] = []
+  let seed = Math.floor(Math.random() * 1000)
+  for (const id of ids) {
+    const w = await getWord(id)
+    if (!w) continue
+    const row = rowMap.get(id)
+    // 苦手な語は意味の想起（選択・音声）を中心に、安定してきた語は産出も混ぜる
+    out.push({ key: `x-${id}`, word: w, type: row ? chooseType(row, w, seed++) : 'mc', isNew: false })
+  }
+  return out
+}
+
 /** 不正解の語を数問後に再挿入（セッション内の繰り返し想起）。上限（MAX_RETRIES）に達したら入れない */
 export function reinsert(queue: Item[], index: number, item: Item, gap = 4): Item[] {
   const n = (item.retry ?? 0) + 1

@@ -1,11 +1,10 @@
-import { Link } from 'react-router'
 import { Snail } from 'lucide-react'
 import type { Word } from '@/lib/types'
 import { RAIL_SUBS } from '@/lib/types'
 import { speak } from '@/lib/tts'
-import { CategoryBadge, LevelBadge, Marked, SpeakButton } from './ui'
+import { CategoryBadge, LevelBadge, Marked, SpeakButton, Tag } from './ui'
 
-const POS_JA: Record<string, string> = {
+export const POS_JA: Record<string, string> = {
   n: '名詞',
   v: '動詞',
   adj: '形容詞',
@@ -19,34 +18,50 @@ const POS_JA: Record<string, string> = {
   num: '数詞',
 }
 
+function SlowButton({ text, accent }: { text: string; accent: 'en-US' | 'en-GB' }) {
+  return (
+    <button
+      aria-label="ゆっくり再生"
+      // iOSではタップ処理の中で同期的に speak() しないと再生されないことがあるため、動的importは使わない
+      onClick={(e) => {
+        e.stopPropagation()
+        speak(text, { accent, rate: 0.6 })
+      }}
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-surface-2 text-muted transition active:scale-90"
+    >
+      <Snail className="h-[17px] w-[17px]" strokeWidth={1.8} />
+    </button>
+  )
+}
+
 /** 見出し語・発音記号・音声（英米） */
 export function WordHead({ word, big }: { word: Word; big?: boolean }) {
   const isRail = word.cat === 'rail'
   return (
     <div>
-      <div className="flex flex-wrap items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
         <CategoryBadge cat={word.cat} />
         <LevelBadge lv={word.lv} />
-        {word.sub && <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[11px] font-semibold text-muted">{RAIL_SUBS[word.sub]}</span>}
-        {!isRail && <span className="text-[11px] text-muted">{POS_JA[word.pos] ?? word.pos}</span>}
+        {word.sub && <span className="text-[12px] text-muted">{RAIL_SUBS[word.sub]}</span>}
+        {!isRail && <span className="text-[12px] text-muted">{POS_JA[word.pos] ?? word.pos}</span>}
       </div>
       {isRail ? (
-        <div className="mt-2 space-y-2">
-          <PronRow flag="🇬🇧" tag="英/EN" term={word.w} ipa={word.ipaUk} accent="en-GB" big={big} />
+        <div className="mt-3 space-y-3">
+          <PronRow tag="UK・EN" term={word.w} ipa={word.ipaUk} accent="en-GB" big={big} />
           {word.us ? (
-            <PronRow flag="🇺🇸" tag="米" term={word.us} ipa={word.ipa} accent="en-US" big={false} />
+            <PronRow tag="US" term={word.us} ipa={word.ipa} accent="en-US" />
           ) : (
-            word.ipa && <PronRow flag="🇺🇸" tag="米" term={word.w} ipa={word.ipa} accent="en-US" big={false} sameTerm />
+            word.ipa && <PronRow tag="US" term={word.w} ipa={word.ipa} accent="en-US" sameTerm />
           )}
         </div>
       ) : (
-        <div className="mt-2 flex items-center gap-3">
+        <div className="mt-3 flex items-center gap-3">
           <div className="min-w-0 flex-1">
-            <p className={big ? 'text-[34px] font-extrabold leading-tight tracking-tight' : 'text-2xl font-extrabold'}>{word.w}</p>
-            {word.ipa && <p className="ipa text-[15px] text-muted">/{word.ipa}/</p>}
+            <p className={big ? 'en text-[42px] font-medium leading-[1.05] tracking-tight' : 'en text-[30px] font-medium leading-tight'}>{word.w}</p>
+            {word.ipa && <p className="ipa mt-1.5 text-[15px] text-muted">/{word.ipa}/</p>}
           </div>
-          <SpeakButton text={word.w} size="lg" />
-          <SpeakButton text={word.w} rate={0.6} label="ゆっくり" />
+          <SpeakButton text={word.w} size={big ? 'lg' : 'md'} />
+          <SlowButton text={word.w} accent="en-US" />
         </div>
       )}
     </div>
@@ -54,7 +69,6 @@ export function WordHead({ word, big }: { word: Word; big?: boolean }) {
 }
 
 function PronRow({
-  flag,
   tag,
   term,
   ipa,
@@ -62,7 +76,6 @@ function PronRow({
   big,
   sameTerm,
 }: {
-  flag: string
   tag: string
   term: string
   ipa?: string
@@ -73,22 +86,15 @@ function PronRow({
   return (
     <div className="flex items-center gap-3">
       <div className="min-w-0 flex-1">
-        <p className="text-[11px] font-bold text-muted">
-          {flag} {tag}
-          {sameTerm && '（同じ表記）'}
+        <p className="flex items-center gap-1.5">
+          <Tag>{tag}</Tag>
+          {sameTerm && <span className="text-[11.5px] text-muted">同じつづり</span>}
         </p>
-        {!sameTerm && <p className={big ? 'text-[28px] font-extrabold leading-tight' : 'text-xl font-bold'}>{term}</p>}
-        {ipa && <p className="ipa text-[14px] text-muted">/{ipa}/</p>}
+        {!sameTerm && <p className={big ? 'en mt-1 text-[34px] font-medium leading-[1.1] tracking-tight' : 'en mt-1 text-[24px] font-medium leading-tight'}>{term}</p>}
+        {ipa && <p className="ipa mt-1 text-[14px] text-muted">/{ipa}/</p>}
       </div>
       <SpeakButton text={term} accent={accent} />
-      <button
-        aria-label="ゆっくり再生"
-        // iOSではタップ処理の中で同期的に speak() しないと再生されないことがあるため、動的importは使わない
-        onClick={() => speak(term, { accent, rate: 0.6 })}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-2 text-muted transition active:scale-90"
-      >
-        <Snail className="h-4 w-4" />
-      </button>
+      <SlowButton text={term} accent={accent} />
     </div>
   )
 }
@@ -96,48 +102,39 @@ function PronRow({
 /** 意味・例文・解説 */
 export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: boolean }) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {!hideMeaning && (
         <div>
-          <p className="text-[12px] font-bold text-muted">意味</p>
-          <p className="mt-0.5 text-[18px] font-bold leading-snug">{word.ja}</p>
-          {word.jis && <p className="mt-1 text-xs text-muted">JIS用語：{word.jis}</p>}
+          <p className="text-[20px] font-semibold leading-snug">{word.ja}</p>
+          {word.jis && <p className="mt-1 text-[12.5px] text-muted">JIS 用語：{word.jis}</p>}
         </div>
       )}
       {word.ex.map((e, i) => (
-        <div key={i} className="rounded-2xl bg-surface-2 p-3.5">
+        <div key={i} className="border-l-2 border-line-strong pl-3.5">
           <div className="flex items-start gap-2">
-            <p className="flex-1 text-[16px] leading-relaxed">
+            <p className="en flex-1 text-[18px] leading-[1.45]">
               <Marked text={e.en} />
             </p>
             <SpeakButton text={e.en} accent={word.cat === 'rail' ? 'en-GB' : 'en-US'} size="sm" />
           </div>
-          <p className="mt-1 text-[13px] text-muted">{e.ja}</p>
+          <p className="mt-1 text-[13px] leading-relaxed text-muted">{e.ja}</p>
         </div>
       ))}
       {word.note && (
         <div>
-          <p className="text-[12px] font-bold text-muted">解説</p>
-          <p className="mt-0.5 text-[14px] leading-relaxed">{word.note}</p>
+          <p className="text-[12px] font-semibold text-muted">解説</p>
+          <p className="mt-1 text-[14px] leading-relaxed">{word.note}</p>
         </div>
       )}
       {word.refs && word.refs.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {word.refs.map((r) => (
-            <span key={r} className="rounded-full bg-surface-2 px-2.5 py-0.5 text-[11px] font-semibold text-muted">
+            <span key={r} className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted">
               {r}
             </span>
           ))}
         </div>
       )}
     </div>
-  )
-}
-
-export function WordLink({ word }: { word: Word }) {
-  return (
-    <Link to={`/words/${word.id}`} className="text-sm font-semibold text-brand">
-      詳しく見る
-    </Link>
   )
 }

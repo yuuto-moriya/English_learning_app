@@ -1,20 +1,21 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useParams } from 'react-router'
-import { Pause, Play, Languages, SkipForward, Lightbulb, Target } from 'lucide-react'
+import { Lightbulb, Pause, Play, SkipForward, Target } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SpeakCheck } from '@/components/SpeakCheck'
-import { Button, Card, Empty, Segmented, SpeakButton, SectionTitle, cx } from '@/components/ui'
+import { Button, Card, Empty, Segmented, SectionTitle, SpeakButton, Toggle, cx } from '@/components/ui'
 import { getScene } from '@/data/scenes'
-import { speak, stopSpeaking, type Accent } from '@/lib/tts'
+import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent, type VoiceRole } from '@/lib/tts'
 import { speakingMessage, type GuideLine } from '@/lib/guide'
 import type { Scene } from '@/lib/types'
 
-function voiceFor(scene: Scene, sp: string): Accent {
-  // 話者ごとに英米の音声を分け、両方の発音に触れられるようにする
+/** 話者ごとの声。英米の音声を分けて両方の発音に触れられるようにし、高品質音声では話者の性別も変える */
+function voiceFor(scene: Scene, sp: string): { accent: Accent; voice: VoiceRole } {
   const base: Accent = scene.group === 'rail' ? 'en-GB' : 'en-US'
   const other: Accent = base === 'en-US' ? 'en-GB' : 'en-US'
-  return sp === scene.roles[0].id ? base : other
+  const first = sp === scene.roles[0].id
+  return { accent: first ? base : other, voice: first ? 'main' : 'alt' }
 }
 
 export default function SceneDetail() {
@@ -26,13 +27,13 @@ export default function SceneDetail() {
   /** 通し再生の世代番号。停止・アンマウント・新しい再生で増やし、古いループを止める */
   const runId = useRef(0)
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    if (scene) prefetchSpeech(scene.lines.map((l) => ({ text: l.en, ...voiceFor(scene, l.sp) })))
+    return () => {
       runId.current++
       stopSpeaking()
-    },
-    [],
-  )
+    }
+  }, [scene])
 
   if (!scene)
     return (
@@ -45,10 +46,11 @@ export default function SceneDetail() {
     )
 
   const playAll = async () => {
+    warmUpSpeech()
     const run = ++runId.current
     for (let i = 0; i < scene.lines.length; i++) {
       setPlaying(i)
-      const ok = await speak(scene.lines[i].en, { accent: voiceFor(scene, scene.lines[i].sp) })
+      const ok = await speak(scene.lines[i].en, voiceFor(scene, scene.lines[i].sp))
       if (!ok || runId.current !== run) break
       await new Promise((r) => setTimeout(r, 350))
       if (runId.current !== run) break
@@ -65,34 +67,34 @@ export default function SceneDetail() {
     if (playing !== null && (e.target as Element).closest('button')) stopAll()
   }
   const roleName = (sp: string) => scene.roles.find((r) => r.id === sp)?.name ?? sp
+  const phraseVoice = voiceFor(scene, scene.roles[0].id)
 
   return (
     <div>
-      <PageHeader title={`${scene.emoji} ${scene.title}`} subtitle={scene.titleEn} back="/scenes" />
-      <div className="space-y-3 px-4 pb-8">
-        <Card className="flex items-start gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-strong">
-            <Target className="h-5 w-5" />
-          </span>
+      <PageHeader title={scene.title} back="/scenes" />
+      <div className="px-4 pb-10">
+        <p className="en -mt-3 px-1 text-[17px] italic text-muted">{scene.titleEn}</p>
+        <Card className="mt-4 flex items-start gap-3">
+          <Target className="mt-0.5 h-5 w-5 shrink-0 text-brand" strokeWidth={1.8} />
           <div>
-            <p className="text-[12px] font-bold text-muted">この場面のゴール</p>
-            <p className="mt-0.5 text-[15px] font-bold leading-snug">{scene.goal}</p>
+            <p className="text-[12px] font-medium text-muted">この場面のゴール</p>
+            <p className="mt-0.5 text-[15px] font-medium leading-snug">{scene.goal}</p>
           </div>
         </Card>
 
         <SectionTitle>キーフレーズ</SectionTitle>
-        <Card className="divide-y divide-line p-0">
+        <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
           {scene.phrases.map((p, i) => (
-            <div key={i} className="flex items-start gap-3 p-3" onClickCapture={interruptPlayAll}>
-              <div className="flex-1">
-                <p className="text-[15px] font-semibold leading-snug">{p.en}</p>
-                <p className="text-[12.5px] text-muted">{p.ja}</p>
-                {p.note && <p className="mt-0.5 text-[11px] text-rail">💡 {p.note}</p>}
+            <div key={i} className={cx('flex items-start gap-3 py-3 pl-4 pr-3', i > 0 && 'hairline-t')} onClickCapture={interruptPlayAll}>
+              <div className="min-w-0 flex-1">
+                <p className="en text-[18px] leading-snug">{p.en}</p>
+                <p className="mt-0.5 text-[13px] text-muted">{p.ja}</p>
+                {p.note && <p className="mt-1 text-[12px] leading-snug text-muted">― {p.note}</p>}
               </div>
-              <SpeakButton text={p.en} accent={scene.group === 'rail' ? 'en-GB' : 'en-US'} size="sm" />
+              <SpeakButton text={p.en} {...phraseVoice} size="sm" />
             </div>
           ))}
-        </Card>
+        </div>
 
         <SectionTitle>会話</SectionTitle>
         <Segmented
@@ -108,55 +110,54 @@ export default function SceneDetail() {
         />
 
         {mode === 'listen' ? (
-          <>
-            <div className="flex gap-2">
+          <div className="mt-3 space-y-3">
+            <div className="flex items-center gap-3">
               {playing === null ? (
-                <Button className="flex-1" onClick={playAll}>
-                  <Play className="h-4 w-4" />
-                  会話を通して再生
+                <Button variant="ink" className="flex-1" onClick={playAll}>
+                  <Play className="h-4 w-4 fill-current" />
+                  会話を通して聞く
                 </Button>
               ) : (
-                <Button variant="secondary" className="flex-1" onClick={stopAll}>
-                  <Pause className="h-4 w-4" />
+                <Button variant="outline" className="flex-1" onClick={stopAll}>
+                  <Pause className="h-4 w-4 fill-current" />
                   停止
                 </Button>
               )}
-              <Button variant="secondary" onClick={() => setShowJa((v) => !v)} aria-label="和訳の表示切替">
-                <Languages className="h-4 w-4" />
-                {showJa ? '和訳OFF' : '和訳ON'}
-              </Button>
             </div>
-            <div className="space-y-2" onClickCapture={interruptPlayAll}>
+            <Toggle label="和訳を表示" checked={showJa} onChange={setShowJa} />
+            <div className="space-y-2.5" onClickCapture={interruptPlayAll}>
               {scene.lines.map((l, i) => {
                 const mine = l.sp === scene.roles[scene.roles.length - 1].id
                 return (
-                  <div key={i} className={cx('flex gap-2', mine && 'flex-row-reverse')}>
+                  <div key={i} className={cx('flex items-end gap-2', mine && 'flex-row-reverse')}>
                     <div
                       className={cx(
-                        'max-w-[85%] rounded-[20px] px-3.5 py-2.5 shadow-card transition',
-                        mine ? 'rounded-tr-md bg-brand-soft' : 'rounded-tl-md bg-surface ring-1 ring-ring',
-                        playing === i && 'ring-2 ring-brand',
+                        'max-w-[84%] rounded-[18px] px-3.5 py-2.5 transition-shadow',
+                        mine ? 'rounded-br-[6px] bg-brand-soft' : 'rounded-bl-[6px] bg-surface-2',
+                        playing === i && 'shadow-[0_0_0_2px_var(--brand)]',
                       )}
                     >
-                      <p className="text-[11px] font-bold text-muted">{roleName(l.sp)}</p>
-                      <p className="text-[15px] leading-snug">{l.en}</p>
-                      {showJa && <p className="mt-0.5 text-[12px] text-muted">{l.ja}</p>}
+                      <p className="text-[11px] font-semibold text-muted">{roleName(l.sp)}</p>
+                      <p className="en mt-0.5 text-[17px] leading-snug">{l.en}</p>
+                      {showJa && <p className="mt-1 text-[12.5px] leading-snug text-muted">{l.ja}</p>}
                     </div>
-                    <SpeakButton text={l.en} accent={voiceFor(scene, l.sp)} size="sm" className="self-center" />
+                    <SpeakButton text={l.en} {...voiceFor(scene, l.sp)} size="sm" />
                   </div>
                 )
               })}
             </div>
-          </>
+          </div>
         ) : (
-          <RolePlay scene={scene} />
+          <div className="mt-3">
+            <RolePlay scene={scene} />
+          </div>
         )}
 
         {scene.tip && (
-          <Card className="flex gap-3">
-            <Lightbulb className="h-5 w-5 shrink-0 text-warn" />
-            <p className="text-[13px] leading-relaxed">{scene.tip}</p>
-          </Card>
+          <div className="mt-6 flex gap-3 rounded-[18px] bg-surface-2 p-4">
+            <Lightbulb className="h-5 w-5 shrink-0 text-warn" strokeWidth={1.8} />
+            <p className="text-[13.5px] leading-relaxed">{scene.tip}</p>
+          </div>
         )}
       </div>
     </div>
@@ -181,7 +182,7 @@ function RolePlay({ scene }: { scene: Scene }) {
     if (!l) return
     const run = ++playRun.current
     clearTimeout(advanceTimer.current)
-    speak(l.en, { accent: voiceFor(scene, l.sp) }).then((ok) => {
+    speak(l.en, voiceFor(scene, l.sp)).then((ok) => {
       if (playRun.current !== run) return
       if (!ok) {
         setStalledAt(idx)
@@ -204,28 +205,30 @@ function RolePlay({ scene }: { scene: Scene }) {
 
   if (i < 0)
     return (
-      <Card className="space-y-3">
-        <p className="text-[13px] font-bold text-muted">あなたの役を選んでください</p>
+      <Card className="space-y-4">
+        <p className="text-[13px] font-medium text-muted">あなたの役</p>
         <Segmented value={role} onChange={setRole} options={scene.roles.map((r) => ({ value: r.id, label: r.name }))} />
-        <p className="text-[12px] text-muted">相手のセリフは自動で再生されます。自分の番では日本語を見て英語で言ってみよう（ヒントで英文表示）。</p>
+        <p className="text-[12.5px] leading-relaxed text-muted">相手のセリフは自動で再生されます。自分の番では日本語を見て英語で言ってみよう（ヒントで英文を表示）。</p>
         <Button
           block
+          variant="ink"
           onClick={() => {
-            speak(' ')
+            warmUpSpeech()
             setI(0)
           }}
         >
-          ロールプレイ開始
+          ロールプレイを始める
         </Button>
       </Card>
     )
 
   if (!line)
     return (
-      <Card className="space-y-3 text-center">
+      <Card className="space-y-4 text-center">
         <Guide pose="celebrate" text="会話を最後までやりきったワン！役を交代してもう一度やると効果倍増！" />
         <Button
           block
+          variant="ink"
           onClick={() => {
             setStalledAt(null)
             setI(-1)
@@ -239,35 +242,37 @@ function RolePlay({ scene }: { scene: Scene }) {
   return (
     <div className="space-y-2">
       {scene.lines.slice(0, i).map((l, k) => (
-        <div key={k} className={cx('text-[13px]', l.sp === role ? 'text-right text-brand-strong' : 'text-muted')}>
-          <b>{l.sp === role ? 'You' : scene.roles.find((r) => r.id === l.sp)?.name}:</b> {l.en}
+        <div key={k} className={cx('text-[13px] leading-snug', l.sp === role ? 'text-right text-ink' : 'text-muted')}>
+          <span className="font-semibold">{l.sp === role ? 'You' : scene.roles.find((r) => r.id === l.sp)?.name}:</span> <span className="en text-[15px]">{l.en}</span>
         </div>
       ))}
-      <Card className={cx(mine && 'border-2 border-brand/40')}>
-        <p className="text-[11px] font-bold text-muted">{mine ? 'あなたの番' : scene.roles.find((r) => r.id === line.sp)?.name}</p>
+      <Card className={cx('mt-3', mine && 'border-ink')}>
+        <p className="text-[11.5px] font-semibold text-muted">{mine ? 'あなたの番' : scene.roles.find((r) => r.id === line.sp)?.name}</p>
         {mine ? (
           <>
-            <p className="mt-1 text-[16px] font-semibold">{line.ja}</p>
+            <p className="mt-1 text-[17px] font-medium leading-snug">{line.ja}</p>
             {hint ? (
-              <p className="mt-2 text-[15px] text-brand-strong">{line.en}</p>
+              <p className="en mt-2 text-[18px] text-brand-strong">{line.en}</p>
             ) : (
-              <button onClick={() => setHint(true)} className="mt-2 text-sm font-semibold text-brand">
+              <button onClick={() => setHint(true)} className="mt-2 min-h-9 text-[13px] font-medium text-brand">
                 ヒント（英文を表示）
               </button>
             )}
-            <div className="mt-3">
+            <div className="mt-4">
               <SpeakCheck
                 text={line.en}
-                accent={voiceFor(scene, line.sp)}
+                accent={voiceFor(scene, line.sp).accent}
                 source={`scene:${scene.id}`}
                 compact
                 onScored={(r) => setGuide(speakingMessage(r.pron))}
               />
             </div>
-            {guide && <Guide pose={guide.pose} text={guide.text} size={56} compact className="mt-2" />}
-            <div className="mt-3 flex gap-2">
-              <SpeakButton text={line.en} accent={voiceFor(scene, line.sp)} label="お手本" />
+            {guide && <Guide pose={guide.pose} text={guide.text} size={48} compact className="mt-3" />}
+            <div className="mt-4 flex gap-2">
+              <SpeakButton text={line.en} {...voiceFor(scene, line.sp)} label="お手本" />
               <Button
+                variant="ink"
+                size="sm"
                 className="ml-auto"
                 onClick={() => {
                   setHint(false)
@@ -275,35 +280,38 @@ function RolePlay({ scene }: { scene: Scene }) {
                   setI(i + 1)
                 }}
               >
-                <SkipForward className="h-4 w-4" />
                 次へ
+                <SkipForward className="h-4 w-4" />
               </Button>
             </div>
           </>
         ) : (
           <>
-            <p className="mt-1 text-[16px]">{line.en}</p>
+            <p className="en mt-1 text-[18px] leading-snug">{line.en}</p>
             {stalledAt === i && (
               <div className="mt-3 flex gap-2">
                 <Button
-                  variant="secondary"
+                  variant="outline"
+                  size="sm"
                   onClick={() => {
                     setStalledAt(null)
                     playPartner(i)
                   }}
                 >
-                  <Play className="h-4 w-4" />
+                  <Play className="h-3.5 w-3.5 fill-current" />
                   もう一度聞く
                 </Button>
                 <Button
+                  variant="ink"
+                  size="sm"
                   className="ml-auto"
                   onClick={() => {
                     setStalledAt(null)
                     setI(i + 1)
                   }}
                 >
-                  <SkipForward className="h-4 w-4" />
                   次へ
+                  <SkipForward className="h-4 w-4" />
                 </Button>
               </div>
             )}

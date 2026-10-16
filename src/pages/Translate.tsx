@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowDownUp, Copy, Check, Loader2, Mic, Square, Star, Trash2, X, BookMarked, AlertTriangle } from 'lucide-react'
+import { ArrowDownUp, Copy, Check, Loader2, Mic, Scale, Square, Star, Trash2, X, AlertTriangle } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
-import { Button, Card, Segmented, SpeakButton, SectionTitle, cx } from '@/components/ui'
+import { Button, Card, Segmented, SpeakButton, SectionTitle, Tag, cx } from '@/components/ui'
 import { ApiError, transcribe, translate } from '@/lib/api'
 import { db } from '@/lib/db'
 import { findTerms, hasJapanese, modalTips, type GlossaryHit } from '@/lib/glossary'
@@ -169,7 +169,7 @@ export default function Translate() {
 
   return (
     <div>
-      <PageHeader title="翻訳" subtitle="日本語 ⇄ 英語・保線用語チェック付き" settings />
+      <PageHeader title="翻訳" subtitle="日本語と英語を相互に翻訳。保線の専門用語は英米の言い方とJISを並べて確認" settings />
       <div className="space-y-3 px-4 pb-8">
         <Segmented
           value={dir}
@@ -180,15 +180,15 @@ export default function Translate() {
             { value: 'en-ja', label: '英語→日本語' },
           ]}
         />
-        <Card className="p-0">
+        <Card className="p-0 focus-within:border-line-strong">
           <textarea
             value={src}
             onChange={(e) => setSrc(e.target.value.slice(0, 5000))}
             rows={5}
             placeholder="翻訳したい文章を入力（例：明日の夜間、下り線で道床つき固めを行います。）"
-            className="w-full resize-none rounded-t-[22px] bg-transparent p-4 text-[16px] leading-relaxed outline-none"
+            className="w-full resize-none rounded-t-[18px] bg-transparent p-4 text-[16px] leading-relaxed outline-none placeholder:text-faint"
           />
-          <div className="flex flex-wrap items-center gap-2 border-t border-line px-3 py-2">
+          <div className="flex flex-wrap items-center gap-2 px-3 py-2 hairline-t">
             {health?.speech && (
               <>
                 <button
@@ -196,7 +196,7 @@ export default function Translate() {
                   disabled={busy && !recording}
                   className={cx(
                     'flex h-10 w-10 items-center justify-center rounded-full disabled:opacity-40',
-                    recording ? 'bg-ng text-white' : 'bg-surface-2 text-ink',
+                    recording ? 'bg-ng text-white' : 'border border-line-strong text-ink',
                   )}
                   aria-label="音声入力"
                 >
@@ -225,8 +225,8 @@ export default function Translate() {
                 <X className="h-5 w-5" />
               </button>
             )}
-            <span className="ml-auto text-[11px] text-muted">{src.length}/5000</span>
-            <Button onClick={run} disabled={!src.trim() || busy}>
+            <span className="ml-auto text-[11px] tabular-nums text-faint">{src.length}/5000</span>
+            <Button variant="ink" size="sm" className="min-h-10 px-4" onClick={run} disabled={!src.trim() || busy}>
               {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
               翻訳
             </Button>
@@ -234,7 +234,7 @@ export default function Translate() {
         </Card>
 
         {error && (
-          <div className="flex gap-2 rounded-2xl bg-warn/10 p-3 text-[13px]">
+          <div className="flex gap-2 rounded-[14px] bg-warn-soft p-3 text-[13px]">
             <AlertTriangle className="h-4 w-4 shrink-0 text-warn" />
             <span>
               {error}{' '}
@@ -248,26 +248,26 @@ export default function Translate() {
         )}
 
         {out && (
-          <Card className="animate-pop">
+          <Card className="animate-rise">
             <div className="flex items-start gap-2">
-              <p className="flex-1 whitespace-pre-wrap text-[17px] leading-relaxed">{out}</p>
+              <p className={cx('flex-1 whitespace-pre-wrap leading-relaxed', outLang === 'en' ? 'en text-[19px]' : 'text-[17px]')}>{out}</p>
             </div>
             <div className="mt-3 flex items-center gap-2">
               {outLang === 'en' && (
                 <>
-                  <SpeakButton text={out} />
-                  <SpeakButton text={out} accent="en-GB" label="英国音" />
+                  <SpeakButton text={out} label="米国" />
+                  <SpeakButton text={out} accent="en-GB" label="英国" />
                 </>
               )}
               <button
                 onClick={copyOut}
-                className="flex h-10 items-center gap-1 rounded-full bg-surface-2 px-3 text-xs font-semibold"
+                className="flex h-8 items-center gap-1 rounded-full border border-line-strong px-3 text-[12px] font-semibold"
               >
-                {copied ? <Check className="h-4 w-4 text-ok" /> : <Copy className="h-4 w-4" />}
+                {copied ? <Check className="h-3.5 w-3.5 text-ok" /> : <Copy className="h-3.5 w-3.5" />}
                 コピー
               </button>
-              <button onClick={swap} className="ml-auto flex h-10 items-center gap-1 rounded-full bg-surface-2 px-3 text-xs font-semibold">
-                <ArrowDownUp className="h-4 w-4" />
+              <button onClick={swap} className="ml-auto flex h-8 items-center gap-1 rounded-full border border-line-strong px-3 text-[12px] font-semibold">
+                <ArrowDownUp className="h-3.5 w-3.5" />
                 入れ替え
               </button>
             </div>
@@ -280,42 +280,45 @@ export default function Translate() {
         )}
 
         {tips.length > 0 && englishText && (
-          <Card className="space-y-1 ring-rail/30">
+          <Card className="space-y-1.5">
             {tips.map((t) => (
-              <p key={t} className="text-[12.5px]">⚖️ {t}</p>
+              <p key={t} className="flex gap-2 text-[12.5px] leading-relaxed">
+                <Scale className="mt-0.5 h-4 w-4 shrink-0 text-rail" strokeWidth={1.8} />
+                {t}
+              </p>
             ))}
           </Card>
         )}
 
-        <SectionTitle>
-          <span className="inline-flex items-center gap-1">
-            <BookMarked className="h-3.5 w-3.5" />
-            検出した保線用語（{hits.length}）
-          </span>
-        </SectionTitle>
+        <SectionTitle>検出した保線用語（{hits.length}）</SectionTitle>
         {hits.length === 0 ? (
           <Guide
             who="chocola"
             pose="greet"
-            size={72}
             text="文章に保線用語があると、英国(EN)・米国の言い方とJISの日本語を並べて表示するよ。機械翻訳の訳語チェックに使ってね！"
           />
         ) : (
-          <Card className="divide-y divide-line p-0">
-            {hits.map((h) => (
-              <Link key={h.word.id} to={`/words/${h.word.id}`} className="flex items-center gap-3 p-3 active:bg-surface-2">
+          <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
+            {hits.map((h, k) => (
+              <Link key={h.word.id} to={`/words/${h.word.id}`} className={cx('flex items-center gap-3 py-3 pl-4 pr-3 active:bg-surface-2', k > 0 && 'hairline-t')}>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[14px] font-bold">
-                    🇬🇧 {h.word.w}
-                    {h.word.us && <span className="ml-2 font-semibold text-muted">🇺🇸 {h.word.us}</span>}
+                  <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                    <Tag>UK</Tag>
+                    <span className="en text-[17px] font-medium">{h.word.w}</span>
+                    {h.word.us && (
+                      <>
+                        <Tag>US</Tag>
+                        <span className="en text-[17px] text-muted">{h.word.us}</span>
+                      </>
+                    )}
                   </p>
-                  <p className="text-[12.5px] text-muted">{h.word.ja}</p>
-                  {h.word.refs && <p className="mt-0.5 truncate text-[10.5px] text-rail">{h.word.refs.join(' / ')}</p>}
+                  <p className="mt-0.5 text-[13px] text-muted">{h.word.ja}</p>
+                  {h.word.refs && <p className="mt-0.5 truncate text-[11px] text-faint">{h.word.refs.join(' / ')}</p>}
                 </div>
-                <span className="shrink-0 rounded-md bg-rail-soft px-1.5 py-0.5 text-[10px] font-bold text-rail">「{h.matched}」</span>
+                <span className="shrink-0 rounded-md bg-rail-soft px-1.5 py-0.5 text-[11px] font-semibold text-rail">「{h.matched}」</span>
               </Link>
             ))}
-          </Card>
+          </div>
         )}
 
         {history && history.length > 0 && (
@@ -334,7 +337,7 @@ export default function Translate() {
                   }}
                 >
                   <p className="line-clamp-2 text-[13px] text-muted">{h.src}</p>
-                  <p className="mt-0.5 line-clamp-2 text-[14px] font-semibold">{h.out}</p>
+                  <p className="mt-0.5 line-clamp-2 text-[14px] font-medium">{h.out}</p>
                   <div className="mt-1 flex items-center justify-end gap-1">
                     <button
                       onClick={(e) => {

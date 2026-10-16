@@ -15,6 +15,11 @@ const SceneDetail = lazy(() => import('./pages/SceneDetail'))
 const Translate = lazy(() => import('./pages/Translate'))
 const Settings = lazy(() => import('./pages/Settings'))
 const Research = lazy(() => import('./pages/Research'))
+const Welcome = lazy(() => import('./pages/Welcome'))
+const Stats = lazy(() => import('./pages/Stats'))
+const Sounds = lazy(() => import('./pages/Sounds'))
+const Compose = lazy(() => import('./pages/Compose'))
+const AudioReview = lazy(() => import('./pages/AudioReview'))
 
 const router = createBrowserRouter([
   {
@@ -29,11 +34,16 @@ const router = createBrowserRouter([
       { path: 'practice/listening', element: <Listening /> },
       { path: 'practice/dictation', element: <Dictation /> },
       { path: 'practice/speaking', element: <Speaking /> },
+      { path: 'practice/sounds', element: <Sounds /> },
+      { path: 'practice/compose', element: <Compose /> },
+      { path: 'practice/audio', element: <AudioReview /> },
       { path: 'scenes', element: <Scenes /> },
       { path: 'scenes/:id', element: <SceneDetail /> },
       { path: 'translate', element: <Translate /> },
       { path: 'settings', element: <Settings /> },
       { path: 'research', element: <Research /> },
+      { path: 'welcome', element: <Welcome /> },
+      { path: 'stats', element: <Stats /> },
       { path: '*', element: <Home /> },
     ],
   },
