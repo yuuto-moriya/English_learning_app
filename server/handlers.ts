@@ -12,7 +12,9 @@ import {
   MAX_AUDIO_BYTES,
   MAX_TEXT_CHARS,
   normalizePronunciation,
+  PHONEME_RE,
   readAudio,
+  SINGLE_WORD_RE,
   speechUrl,
   toBase64Utf8,
   ttsEndpoint,
@@ -228,6 +230,9 @@ export async function handleTts(request: Request, env: Env): Promise<Response> {
   if (!text) return json({ error: 'テキストが空です' }, 400)
   if (text.length > MAX_TTS_CHARS) return json({ error: `${MAX_TTS_CHARS}文字以内にしてください` }, 413)
   if (!Number.isInteger(rate) || rate < -50 || rate > 50 || rate % 5 !== 0) return json({ error: '速度が不正です' }, 400)
+  const ph = url.searchParams.get('p') || undefined
+  if (ph && !(voice.startsWith('en-US') && PHONEME_RE.test(ph) && SINGLE_WORD_RE.test(text)))
+    return json({ error: '発音の指定が不正です' }, 400)
 
   const res = await fetchUpstream(ttsEndpoint(env), {
     method: 'POST',
@@ -237,7 +242,7 @@ export async function handleTts(request: Request, env: Env): Promise<Response> {
       'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
       'User-Agent': 'tetsu-english',
     },
-    body: buildSsml(text, voice, rate),
+    body: buildSsml(text, voice, rate, ph),
   })
   if (!res) return json({ error: '音声APIに接続できませんでした' }, 502)
   if (!res.ok) {

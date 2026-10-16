@@ -22,8 +22,10 @@ function headers(extra: Record<string, string> = {}) {
 export const apiHeaders = () => headers()
 
 /** 読み上げ音声の URL（同じ文・声・速度なら同じ URL になり、CDN と端末のキャッシュが効く） */
-export function ttsUrl(text: string, voice: string, ratePct: number): string {
+/** ph: 単語の発音の指定（IPA。品詞で読みが変わる語だけ） */
+export function ttsUrl(text: string, voice: string, ratePct: number, ph?: string): string {
   const q = new URLSearchParams({ v: voice, r: String(ratePct), t: text })
+  if (ph) q.set('p', ph)
   return `/api/tts?${q}`
 }
 

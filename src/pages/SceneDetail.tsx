@@ -5,14 +5,14 @@ import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SpeakCheck } from '@/components/SpeakCheck'
 import { Button, Card, Empty, Segmented, SectionTitle, SpeakButton, Toggle, cx } from '@/components/ui'
-import { getScene } from '@/data/scenes'
+import { getScene, sceneAccent } from '@/data/scenes'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent, type VoiceRole } from '@/lib/tts'
 import { speakingMessage, type GuideLine } from '@/lib/guide'
 import type { Scene } from '@/lib/types'
 
 /** 話者ごとの声。英米の音声を分けて両方の発音に触れられるようにし、高品質音声では話者の性別も変える */
 function voiceFor(scene: Scene, sp: string): { accent: Accent; voice: VoiceRole } {
-  const base: Accent = scene.group === 'rail' ? 'en-GB' : 'en-US'
+  const base: Accent = sceneAccent(scene)
   const other: Accent = base === 'en-US' ? 'en-GB' : 'en-US'
   const first = sp === scene.roles[0].id
   return { accent: first ? base : other, voice: first ? 'main' : 'alt' }

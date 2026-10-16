@@ -83,13 +83,26 @@ export function escapeXml(s: string): string {
   return s.replace(/[<>&'"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[c]!)
 }
 
-/** 読み上げ用の SSML。速度は % で指定（-50〜+50） */
-export function buildSsml(text: string, voice: string, ratePct: number): string {
+/** 発音指定に使える IPA（学習者向け表記の記号）。単語1つ分 */
+export const PHONEME_RE = /^[a-zɑɒɔəɛɪʊʌɝɚæðθŋʃʒɡˈˌː]{1,40}$/u
+export const SINGLE_WORD_RE = /^[A-Za-z][A-Za-z'-]{0,39}$/
+
+/** 学習者向け IPA を Azure の en-US 音素（IPA）表記に寄せる：r → ɹ、長音記号は付けない */
+export function azureIpa(ipa: string): string {
+  return ipa.replace(/r/g, 'ɹ').replace(/ː/g, '')
+}
+
+/**
+ * 読み上げ用の SSML。速度は % で指定（-50〜+50）。
+ * ph（IPA）があれば単語の発音を指定する（live を「リヴ」と読ませるなど、品詞で読みが変わる語のため）
+ */
+export function buildSsml(text: string, voice: string, ratePct: number, ph?: string): string {
   const lang = voice.slice(0, 5)
   const rate = `${ratePct >= 0 ? '+' : ''}${ratePct}%`
+  const body = ph ? `<phoneme alphabet="ipa" ph="${escapeXml(azureIpa(ph))}">${escapeXml(text)}</phoneme>` : escapeXml(text)
   return (
     `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="${lang}">` +
-    `<voice name="${voice}"><prosody rate="${rate}">${escapeXml(text)}</prosody></voice></speak>`
+    `<voice name="${voice}"><prosody rate="${rate}">${body}</prosody></voice></speak>`
   )
 }
 

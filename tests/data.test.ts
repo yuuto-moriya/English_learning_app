@@ -43,6 +43,18 @@ describe('単語データ', () => {
     expect((rail as Word[]).filter((w) => !w.ipaUk).map((w) => w.id)).toEqual([])
   })
 
+  it('品詞で読みが変わる語は、その品詞の発音になっている', () => {
+    const ipa = (w: string) => all.find((x) => x.w === w)?.ipa
+    expect(ipa('live')).toBe('lɪv') // 動詞（住む）。形容詞の laɪv ではない
+    expect(ipa('read')).toBe('riːd')
+    expect(ipa('use')).toBe('juːz')
+    expect(ipa('close')).toBe('kloʊz')
+    expect(ipa('increase')).toBe('ɪnˈkriːs') // 動詞は後ろに強勢
+    expect(ipa('record')).toBe('ˈrɛkɚd') // 名詞は前に強勢
+    expect(ipa('separate')).toBe('ˈsɛpɚət') // 形容詞
+    expect(all.filter((w) => w.ipa?.includes('hw')).map((w) => w.w)).toEqual([])
+  })
+
   it('保線用語には出典タグとサブカテゴリがある', () => {
     for (const w of rail as Word[]) {
       expect(w.refs?.length, w.id).toBeGreaterThan(0)
@@ -60,6 +72,16 @@ describe('シーン会話データ', () => {
     for (const g of ['daily', 'business', 'rail'] as const) {
       expect(SCENES.filter((s) => s.group === g).length).toBeGreaterThanOrEqual(8)
     }
+  })
+  it('ID が重複せず、接頭辞がグループと一致する', () => {
+    const prefix = { daily: 'd-', business: 'b-', rail: 'r-' }
+    expect(new Set(SCENES.map((s) => s.id)).size).toBe(SCENES.length)
+    for (const s of SCENES) expect(s.id.startsWith(prefix[s.group]), s.id).toBe(true)
+  })
+  it('日常・ビジネスの場面に保線の専門語が入っていない（保線はコースで選ぶ）', () => {
+    const railish = /\b(track|tracks|rail|rails|railway|sleepers?|tamp\w*|possession|ballast|grinding)\b/i
+    for (const s of SCENES.filter((x) => x.group !== 'rail'))
+      for (const t of [...s.phrases, ...s.lines]) expect(railish.test(t.en), `${s.id}: ${t.en}`).toBe(false)
   })
   it('会話の話者がrolesに含まれる', () => {
     for (const s of SCENES) {

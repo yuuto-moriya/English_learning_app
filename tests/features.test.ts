@@ -6,6 +6,8 @@ import { ratePercent, voiceQuality } from '../src/lib/tts'
 import { jaForSpeech } from '../src/lib/vocab'
 import { CONTRASTS } from '../src/data/minimalPairs'
 import { EVIDENCE } from '../src/data/research'
+import { SCENES, sceneAccent } from '../src/data/scenes'
+import { sentencePool } from '../src/lib/sentences'
 import type { CardRow } from '../src/lib/db'
 
 const card = (extra: Partial<CardRow>): CardRow => ({
@@ -123,6 +125,24 @@ describe('聞き分けの最小対語', () => {
   it('読み方が2通りある語（音声合成が読み違えるおそれ）を含まない', () => {
     const homographs = new Set(['lead', 'live', 'close', 'row', 'read', 'wind', 'bow', 'tear', 'wound', 'bass', 'minute', 'object'])
     for (const c of CONTRASTS) for (const p of c.pairs) for (const w of p) expect(homographs.has(w), `${c.id}:${w}`).toBe(false)
+  })
+})
+
+describe('練習の文（シーン会話）', () => {
+  const sceneOf = new Map(SCENES.flatMap((sc) => sc.lines.map((l) => [l.en, sc] as const)))
+  it('一緒に選んだコースの場面だけを使う', async () => {
+    const pool = (await sentencePool(['general', 'scene'], 6)).filter((s) => s.src === 'scene')
+    expect(pool.length).toBeGreaterThan(0)
+    for (const s of pool) expect(sceneOf.get(s.en)?.group, s.en).toBe('daily')
+  })
+  it('シーン会話だけを選んだときはすべての場面', async () => {
+    const groups = new Set((await sentencePool(['scene'], 6)).map((s) => sceneOf.get(s.en)?.group))
+    expect(groups).toEqual(new Set(['daily', 'business', 'rail']))
+  })
+  it('発音は舞台に合わせる（英国の駅は英国の発音）', () => {
+    expect(sceneAccent(SCENES.find((s) => s.id === 'd-station')!)).toBe('en-GB')
+    expect(sceneAccent(SCENES.find((s) => s.id === 'd-cafe')!)).toBe('en-US')
+    expect(sceneAccent(SCENES.find((s) => s.id === 'r-briefing')!)).toBe('en-GB')
   })
 })
 

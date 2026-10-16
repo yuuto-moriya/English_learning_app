@@ -1,13 +1,13 @@
 import { useLiveQuery } from 'dexie-react-hooks'
-import { useEffect, useState, useSyncExternalStore } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { db, getStreak, shiftDay, todayKey, type CardRow, type DailyRow } from './db'
 import { getHealth, type Health } from './api'
 import { useSettings } from './settings'
 
 export function useCardsMap(): Map<string, CardRow> | undefined {
   const rows = useLiveQuery(() => db.cards.toArray(), [])
-  if (!rows) return undefined
-  return new Map(rows.map((r) => [r.id, r]))
+  // 描画のたびに Map を作り直すと、これを依存にした絞り込み（単語帳の数千語）が毎回やり直しになる
+  return useMemo(() => (rows ? new Map(rows.map((r) => [r.id, r])) : undefined), [rows])
 }
 
 /**
@@ -116,5 +116,5 @@ export function useRecentDays(n: number): { date: string; row?: DailyRow }[] | u
 /** 保存（★）した単語の ID */
 export function useMarks(): Set<string> | undefined {
   const rows = useLiveQuery(() => db.marks.toArray(), [])
-  return rows ? new Set(rows.map((r) => r.id)) : undefined
+  return useMemo(() => (rows ? new Set(rows.map((r) => r.id)) : undefined), [rows])
 }

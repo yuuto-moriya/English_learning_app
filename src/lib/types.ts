@@ -22,6 +22,8 @@ export interface Word {
   ipa?: string
   /** 英音IPA（保線用語） */
   ipaUk?: string
+  /** 品詞で読みが変わる語（live, record など）の、この品詞での米音。単語だけを高品質音声で読むときに指定する */
+  say?: string
   /** 米国表記（保線用語で英国表記と異なる場合） */
   us?: string
   /** JIS等の日本語用語 */
@@ -128,6 +130,8 @@ export type SceneGroup = 'daily' | 'business' | 'rail'
 export interface Scene {
   id: string
   group: SceneGroup
+  /** 舞台の土地の発音（最初の話者がこの発音で話す）。省略時は保線＝英国、それ以外＝米国 */
+  accent?: 'en-US' | 'en-GB'
   title: string
   titleEn: string
   lv: Level

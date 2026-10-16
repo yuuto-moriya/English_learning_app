@@ -11,7 +11,7 @@ const PAGES = [
   ['home', '/'],
   ['words-rail', '/words?cat=rail'],
   ['word-detail', '/words/r-track-gauge'],
-  ['word-detail-general', '/words/g-reservation'],
+  ['word-detail-general', '/words/g-record'],
   ['study', '/study'],
   ['practice', '/practice'],
   ['listening', '/practice/listening'],

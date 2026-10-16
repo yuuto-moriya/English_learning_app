@@ -60,6 +60,50 @@ OVERRIDE_US = {
     # 辞書にない保線用語の構成語
     "ballasted": "ˈbæləstɪd", "flangeway": "ˈflændʒweɪ", "spalling": "ˈspɔlɪŋ", "lipping": "ˈlɪpɪŋ",
     "subgrade": "ˈsʌbɡreɪd", "abutment": "əˈbʌtmənt", "maintainability": "meɪnˌteɪnəˈbɪləti",
+    # 辞書の最初の発音が強調形・旧来形・誤りのもの（一般米語の標準的な発音にそろえる）
+    "most": "moʊst", "last": "læst", "next": "nɛkst", "ear": "ɪr", "aisle": "aɪl", "ruin": "ˈruːɪn",
+    "new": "nuː", "news": "nuːz", "due": "duː", "duty": "ˈduːti", "tuesday": "ˈtuːzdeɪ", "tube": "tuːb",
+    "effect": "ɪˈfɛkt", "effective": "ɪˈfɛktɪv", "effectively": "ɪˈfɛktɪvli", "effectiveness": "ɪˈfɛktɪvnəs",
+    "emerge": "ɪˈmɝdʒ", "emotion": "ɪˈmoʊʃən", "emotional": "ɪˈmoʊʃənəl", "emergency": "ɪˈmɝdʒənsi",
+    "eleven": "ɪˈlɛvən", "museum": "mjuːˈziːəm", "yourself": "jɚˈsɛlf", "umbrella": "ʌmˈbrɛlə",
+    "extraordinary": "ɪkˈstrɔrdəˌnɛri", "evaluate": "ɪˈvæljuːˌeɪt", "evaluation": "ɪˌvæljuːˈeɪʃən",
+    "inquiry": "ɪnˈkwaɪri", "route": "ruːt", "trial": "ˈtraɪəl", "fuel": "ˈfjuːəl", "dial": "ˈdaɪəl",
+    "via": "ˈvaɪə", "buffet": "bəˈfeɪ", "presenter": "prɪˈzɛntɚ", "abuse": "əˈbjuːs",
+    "genuine": "ˈdʒɛnjuːɪn", "differently": "ˈdɪfrəntli", "duration": "dʊˈreɪʃən", "everyday": "ˈɛvriːˌdeɪ",
+    "coworker": "ˈkoʊˌwɝkɚ", "sightsee": "ˈsaɪtˌsiː",
+}
+
+# 品詞で発音が変わる語（名詞と動詞で強勢や音が違う）。辞書の最初の発音が別の品詞のものを直す
+OVERRIDE_POS = {
+    ("live", "v"): "lɪv", ("use", "v"): "juːz", ("read", "v"): "riːd", ("close", "v"): "kloʊz",
+    ("lead", "v"): "liːd", ("wind", "n"): "wɪnd", ("wound", "n"): "wuːnd", ("tear", "v"): "tɛr",
+    ("excuse", "n"): "ɪkˈskjuːs", ("excuse", "v"): "ɪkˈskjuːz",
+    ("increase", "v"): "ɪnˈkriːs", ("decrease", "v"): "dɪˈkriːs", ("produce", "v"): "prəˈduːs",
+    ("conduct", "v"): "kənˈdʌkt", ("transfer", "v"): "trænsˈfɝ", ("refuse", "v"): "rɪˈfjuːz",
+    ("recall", "v"): "rɪˈkɔl", ("suspect", "v"): "səˈspɛkt", ("permit", "v"): "pɚˈmɪt",
+    ("import", "v"): "ɪmˈpɔrt", ("export", "v"): "ɪkˈspɔrt", ("reject", "v"): "rɪˈdʒɛkt",
+    ("construct", "v"): "kənˈstrʌkt", ("update", "v"): "ˌʌpˈdeɪt", ("upgrade", "v"): "ˌʌpˈɡreɪd",
+    ("convert", "v"): "kənˈvɝt", ("transform", "v"): "trænsˈfɔrm", ("impress", "v"): "ɪmˈprɛs",
+    ("attribute", "v"): "əˈtrɪbjuːt", ("extract", "v"): "ɪkˈstrækt", ("combine", "v"): "kəmˈbaɪn",
+    ("exploit", "v"): "ɪkˈsplɔɪt", ("rewrite", "v"): "ˌriːˈraɪt", ("present", "v"): "prɪˈzɛnt",
+    ("record", "v"): "rɪˈkɔrd", ("object", "v"): "əbˈdʒɛkt", ("project", "v"): "prəˈdʒɛkt",
+    ("separate", "adj"): "ˈsɛpɚət", ("appropriate", "adj"): "əˈproʊpriːət", ("moderate", "adj"): "ˈmɑdɚət",
+    ("adequate", "adj"): "ˈædəkwət", ("perfect", "adj"): "ˈpɝfɪkt", ("upset", "adj"): "ˌʌpˈsɛt",
+    ("inside", "adv"): "ˌɪnˈsaɪd", ("refund", "n"): "ˈriːfʌnd", ("subordinate", "n"): "səˈbɔrdənət",
+    ("duplicate", "n"): "ˈduːpləkət", ("affiliate", "n"): "əˈfɪliːət", ("estimate", "n"): "ˈɛstəmət",
+    ("overhead", "n"): "ˈoʊvɚˌhɛd", ("offset", "v"): "ˌɔfˈsɛt",
+}
+
+
+# 品詞で読みが変わる語。単語だけを高品質音声で読むとき、この発音を指定する（Word.say）
+HOMOGRAPHS = {
+    "live", "read", "use", "close", "lead", "wind", "wound", "tear", "row", "bow", "minute", "object",
+    "present", "record", "project", "subject", "content", "contract", "progress", "desert", "conduct",
+    "permit", "produce", "increase", "decrease", "refuse", "excuse", "separate", "estimate", "associate",
+    "graduate", "appropriate", "moderate", "advocate", "duplicate", "delegate", "subordinate", "affiliate",
+    "attribute", "conflict", "contrast", "protest", "survey", "transfer", "transport", "import", "export",
+    "reject", "recall", "suspect", "convert", "extract", "update", "upgrade", "compound", "discount",
+    "refund", "defect", "abuse", "perfect", "upset", "house", "entrance", "overhead", "offset", "insult",
 }
 
 
@@ -75,7 +119,8 @@ def syllables(ipa: str) -> int:
 
 def normalize_us(ipa: str) -> str:
     """cmudict-ipa の表記を学習者向けの一般米語表記に整える"""
-    s = ipa.replace("ɫ", "l").replace("ɹ", "r")
+    # which/when などの hw は現代の一般米語では w
+    s = ipa.replace("ɫ", "l").replace("ɹ", "r").replace("hw", "w")
     out = []
     for i, c in enumerate(s):
         if c == "ə" and stressed(s, i):
@@ -91,11 +136,16 @@ def normalize_us(ipa: str) -> str:
     r = "".join(out)
     if syllables(r) <= 1:
         r = r.replace("ˈ", "").replace("ˌ", "")
+    # 第1強勢が2つある表記（ˈfɪfˈtin など）は、前を第2強勢にする
+    while r.count("ˈ") > 1:
+        r = r.replace("ˈ", "ˌ", 1)
     return r
 
 
-def us_ipa(word: str, d: dict[str, str]) -> str | None:
+def us_ipa(word: str, d: dict[str, str], pos: str | None = None) -> str | None:
     key = word.lower()
+    if (key, pos) in OVERRIDE_POS:
+        return OVERRIDE_POS[(key, pos)]
     if key in OVERRIDE_US:
         return OVERRIDE_US[key]
     if key in d:
@@ -202,7 +252,8 @@ def build_general_business(ipa: dict[str, str]):
                 "ja": ja,
                 "lv": lvl,
                 "cat": "general",
-                "ipa": us_ipa(lemma, ipa),
+                "ipa": us_ipa(lemma, ipa, pos),
+                "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
                 "ex": [{"en": en2, "ja": jx}],
                 "rank": rank,
             }
@@ -237,7 +288,8 @@ def build_general_business(ipa: dict[str, str]):
                 "ja": ja,
                 "lv": lv_item,
                 "cat": "business",
-                "ipa": us_ipa(lemma, ipa),
+                "ipa": us_ipa(lemma, ipa, pos),
+                "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
                 "ex": [{"en": en2, "ja": jx}],
                 "rank": rank,
                 "refs": [source],

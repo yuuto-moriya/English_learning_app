@@ -140,6 +140,18 @@ describe('tts', () => {
     expect((await handleTts(get('v=en-US-AvaNeural&r=0&t=Hi'), {})).status).toBe(503)
   })
 
+  it('品詞で読みが変わる語は発音（IPA）を指定できる（米国の声・単語1つだけ）', async () => {
+    const fetchMock = vi.fn(async (_url: string | URL, _init?: RequestInit) => new Response(new Uint8Array(4000)))
+    vi.stubGlobal('fetch', fetchMock)
+    const ok = await handleTts(get('v=en-US-AvaNeural&r=0&t=record&p=' + encodeURIComponent('ˈrɛkɚd')), ENV)
+    expect(ok.status).toBe(200)
+    expect(String(fetchMock.mock.calls[0][1]!.body)).toContain('<phoneme alphabet="ipa" ph="ˈɹɛkɚd">record</phoneme>')
+    // 文・英国の声・記号以外の文字は受け付けない
+    expect((await handleTts(get('v=en-US-AvaNeural&r=0&t=I+live&p=lɪv'), ENV)).status).toBe(400)
+    expect((await handleTts(get('v=en-GB-SoniaNeural&r=0&t=live&p=lɪv'), ENV)).status).toBe(400)
+    expect((await handleTts(get('v=en-US-AvaNeural&r=0&t=live&p=' + encodeURIComponent('"/><x')), ENV)).status).toBe(400)
+  })
+
   it('Azure のエラー（無料枠超過など）はキャッシュしない JSON の 502', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => new Response('quota', { status: 429 })))
     const res = await handleTts(get('v=en-US-AvaNeural&r=0&t=Hi'), ENV)

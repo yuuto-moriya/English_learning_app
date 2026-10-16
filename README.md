@@ -2,8 +2,9 @@
 
 > **English summary**
 > Tetsu English is an English-learning and translation PWA for a Japanese railway track-maintenance (保線) and EAM professional, designed for iPhone (add to home screen).
-> It combines 3,824 words (general NGSL / business BSL+TSL / rail & EAM glossary) with an evidence-based study session (retrieval practice + FSRS spaced repetition + interleaving),
-> listening, dictation, shadowing, Azure pronunciation assessment, 30 role-play dialogues, and an Azure-powered translator that flags rail terms (UK / US / JIS Japanese).
+> Learners first choose their courses (everyday English / business / rail maintenance), then study 3,824 words (general NGSL / business BSL+TSL / rail & EAM glossary) in an evidence-based session (retrieval practice + FSRS spaced repetition + interleaving).
+> Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, Azure pronunciation assessment, 32 role-play dialogues,
+> neural text-to-speech (Azure, cached on the device, falling back to the device voice), and an Azure-powered translator that flags rail terms (UK / US / JIS Japanese).
 > Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Vercel (static site + Vercel Functions).
 > A corgi guide, "Tetsu", and four animal friends are modeled procedurally in Blender.
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
@@ -40,7 +41,9 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 - すべての語に **和訳・米音 IPA・例文（英日）**。保線用語は **英音 IPA、英国表記／米国表記、JIS 用語、解説、出典タグ** 付き
 - レベルは 6 段階：入門（A1）／初級（A2）／中級（B1）／中上級（B2）／上級（C1）／専門
-- 初回起動時のオンボーディングで、自分に合ったレベルを選択
+- 初回起動時に **学ぶコース（一般会話・ビジネス・保線）**、レベル（目安から選ぶか、2分のレベル診断）、学習プラン（いつ・1日何分）を選択。あとから設定で変更できます
+- 新出語・練習の例文・シーンの既定は、選んだコースに合わせます（保線を選ばなければ保線用語は出ません）
+- 単語帳では「苦手（忘れたことがある語）」「保存した単語（★）」で絞り込み、その語だけを集中練習できます
 
 ### 学習セッション（エビデンスに基づく設計）
 
@@ -48,21 +51,27 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - **分散学習（FSRS）**：ts-fsrs で単語ごとに次回の復習日を決定。目標保持率（85/90/95%）を設定可能
 - **段階的な難易度**：記憶の安定度に応じて 選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋め
 - **インターリーブ**：カテゴリや復習／新出語を混ぜて出題
-- 1日の目標・連続学習日数・進捗のシンプルな習慣化（ランキング等の競争要素なし）
+- 終わったら、正答率・覚えた語・まちがえた語のまとめを表示
+- 1日の目安（分）・連続学習日数・12週間の学習記録と、7日先までの復習予定（ランキング等の競争要素なし）
 
 根拠となる研究と実装の対応は [docs/RESEARCH.md](docs/RESEARCH.md) にまとめています（アプリ内の「学習法の根拠」画面と同じ内容）。
 
 ### リスニング・スピーキング
 
-- **リスニングクイズ**、**ディクテーション**（読み上げは端末の音声合成。米音・英音を選択可能）
+- **読み上げ**：Azure のニューラル音声（米国6・英国3の声）。一度聞いた音声は端末に保存して次からはすぐ・オフラインでも再生。未設定・オフライン時は端末の音声（高品質な声を自動で選択）。品詞で読みが変わる語（live, record など）は、その品詞の発音で読みます
+- **リスニングクイズ**、**ディクテーション**（米音・英音。毎回ちがう声で聞くことも可能）
+- **聞き分け**：L/R・B/V・S/TH など日本語話者が苦手な8種類の音の対立を、最小対語と複数の声で（高変動音声訓練：HVPT）
+- **瞬間英作文**：学習した単語の例文を、日本語から英語ですぐ言う。言えなかった文はもう一度
+- **耳で復習**：「和訳 → 考える間 → 英語 → 例文」を流す、画面を見ない復習（通勤中など）
 - **シャドーイング**：「聞く → つぶやく → 意味確認 → 同時読み → シャドーイング」の 5 ステップコーチ
 - **発音チェック**：Azure AI Speech の発音評価で、文・単語・音素ごとのスコアと誤りを表示
   - Azure 未設定時は、Safari のタブでは端末の音声認識による簡易判定、ホーム画面アプリ（iOS では SpeechRecognition 非対応）では録音して聞き比べる自己評価に切り替え
 
-### シーン別会話（30本）
+### シーン別会話（32本）
 
-- 日常・ビジネス・保線の各 10 本。「この場面のゴール」→ キーフレーズ → 聞いて理解 → ロールプレイ
-- 保線では、作業前の安全ミーティング、指令への線路閉鎖の連絡、軌道検測データのレビュー、EN 規格と JIS の違いの議論、EAM 導入ワークショップなど実務に直結する場面
+- 日常 10・ビジネス 10・保線 12。「この場面のゴール」→ キーフレーズ → 聞いて理解 → ロールプレイ
+- 日常・ビジネスは一般の場面（自己紹介・ホテル・会議・交渉・苦情対応など）。保線では、作業前の安全ミーティング、指令への線路閉鎖の連絡、軌道検測データのレビュー、EN 規格と JIS の違いの議論、EAM 導入ワークショップ、夜間工事の苦情対応など実務に直結する場面
+- 話者ごとに声（米・英）を変えて読み上げます。英国が舞台の場面は英国の発音
 
 ### 翻訳
 
@@ -74,19 +83,19 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 - 学習データはすべて **端末内（IndexedDB）** に保存。設定画面から JSON で書き出し・読み込み（機種変更時のバックアップ）
 - ダークモード、オフライン対応（Service Worker）
-- Azure を設定しなくても、単語学習・リスニング・ディクテーション・シャドーイング・シーン会話・保線用語チェックは利用可能
+- Azure を設定しなくても、単語学習・リスニング・ディクテーション・シャドーイング・聞き分け・瞬間英作文・耳で復習・シーン会話・保線用語チェックは利用可能（読み上げは端末の音声）
 
 ## 技術スタック
 
 | 分類 | 使用技術 |
 |---|---|
 | フロントエンド | React 19, TypeScript 7, Vite 8, React Router 8 |
-| スタイル・動き | Tailwind CSS v4（アニメーションは CSS のみ）, lucide-react |
+| スタイル・動き | Tailwind CSS v4（アニメーションは CSS のみ、View Transitions）, lucide-react, Newsreader（英語の書体。同梱） |
 | PWA | vite-plugin-pwa（Workbox, 更新はアプリ内の通知から） |
 | データ保存 | Dexie（IndexedDB）, zustand（設定） |
 | 復習スケジューラ | ts-fsrs（FSRS） |
 | ホスティング・API | Vercel（静的配信 + Vercel Functions `/api`） |
-| 外部 API | Azure AI Translator, Azure AI Speech（発音評価・音声認識） |
+| 外部 API | Azure AI Translator, Azure AI Speech（発音評価・音声認識・ニューラル音声の読み上げ） |
 | テスト | Vitest, fake-indexeddb, Playwright（スクリーンショット・E2E スクリプト） |
 | データ生成 | Python 3（`scripts/build_vocab.py`） |
 | キャラクター | Blender（bpy）+ Pillow |
@@ -108,6 +117,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   ├── translate.ts           #   POST /api/translate（Azure Translator）
 │   ├── pronunciation.ts       #   POST /api/pronunciation（Azure Speech 発音評価）
 │   ├── stt.ts                 #   POST /api/stt（音声入力の文字起こし）
+│   ├── tts.ts                 #   GET  /api/tts（ニューラル音声の読み上げ。MP3 を長期キャッシュ）
 │   └── tsconfig.json          #   API 用の型チェック設定
 ├── public/
 │   ├── guide/                 # キャラクターの表情・ポーズ画像（WebP）
@@ -123,9 +133,10 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   └── env.ts                 #   環境変数の読み込み
 ├── src/
 │   ├── components/            # 共通 UI（ガイド、発音チェック、単語情報など）
-│   ├── data/                  # 単語 JSON（生成物）、シーン会話、学習法の根拠
+│   ├── assets/fonts/          # Newsreader（英語の書体、OFL）
+│   ├── data/                  # 単語 JSON（生成物）、シーン会話、聞き分けの最小対語、学習法の根拠
 │   ├── lib/                   # 学習セッション、FSRS、DB、用語検出、音声、設定
-│   ├── pages/                 # 画面（ホーム、学習、単語帳、練習、シーン、翻訳、設定…）
+│   ├── pages/                 # 画面（はじめての設定、ホーム、学習、単語帳、練習、聞き分け、瞬間英作文、耳で復習、学習記録、シーン、翻訳、設定…）
 │   └── styles/
 ├── tests/                     # Vitest（データ整合性、学習ロジック、FSRS、用語検出、API）
 ├── .env.example               # 環境変数の例（ローカルは .env.local にコピー）
@@ -234,7 +245,7 @@ npx vercel --prod   # 本番へ
 
 ## Azure（翻訳・発音評価）の設定
 
-翻訳・発音評価・音声入力には Azure AI Translator と Azure AI Speech（どちらも無料の F0 プランあり）を使います。
+翻訳・発音評価・音声入力・高品質な読み上げには Azure AI Translator と Azure AI Speech（どちらも無料の F0 プランあり）を使います。読み上げは Speech と同じキーで動きます。
 キーは Vercel の環境変数（サーバー側）にだけ保存され、端末には送られません。
 
 | 環境変数 | 必須 | 内容 |
@@ -256,9 +267,9 @@ npx vercel --prod   # 本番へ
 
 使い方のポイント:
 
-- 初回起動でレベルを選ぶと学習を始められます。単語データはアプリに同梱されているので、オフラインでも学習できます
+- 初回起動でコース・レベル・学習プランを選ぶと学習を始められます。単語データはアプリに同梱されているので、オフラインでも学習できます
 - 発音チェック・音声入力ではマイクの使用を許可してください
-- より自然な読み上げには、iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で高品質（拡張・プレミアム）音声をダウンロードします
+- Azure Speech を設定していれば、読み上げは自動でニューラル音声になります。端末の音声を使うとき（未設定・オフライン）は、iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で高品質（拡張・プレミアム）音声をダウンロードすると自然になります
 - 学習データはその端末内にだけ保存されます。**Safari のタブとホーム画面のアプリでは保存先が別** なので、普段使う方（ホーム画面）で学習してください
 - 機種変更や念のためのバックアップは、**設定 → データ → 書き出し**（JSON）→ 新しい端末で **読み込み**
 - `APP_ACCESS_TOKEN` を設定している場合は、ホーム画面のアプリの設定画面でトークンを入力します
@@ -291,6 +302,10 @@ npm run data:build
 ```
 
 `scripts/.cache/en_US.txt` がない場合は `data-src/ipa/en_US.tsv`（同じタブ区切り形式）を読み込みます。
+
+辞書の最初の発音が品詞と合わない語（live の動詞 /lɪv/、record の名詞 /ˈrɛkɚd/ など）や、強調形・旧来形の発音（which の /hw/ など）は、
+`scripts/build_vocab.py` の `OVERRIDE_POS`（品詞ごと）と `OVERRIDE_US` で直しています。品詞で読みが変わる語には `say`（その品詞の発音）を付け、
+単語だけをニューラル音声で読むときに発音を指定します。
 
 ### 一般語・ビジネス語を追加・修正する
 
@@ -355,6 +370,7 @@ python scripts/blender/postprocess.py render-out
 | ソースコード | [MIT](LICENSE)（© 2026 yuuto-moriya） |
 | NGSL / BSL / TSL と、それに基づく一般・ビジネス語データ | CC BY-SA 4.0（Browne, Culligan & Phillips, <https://www.newgeneralservicelist.com/>） |
 | 米音 IPA | MIT（open-dict-data/ipa-dict、cmudict-ipa 由来） |
+| 英語の書体 Newsreader | SIL Open Font License 1.1（Production Type） |
 | 保線・EAM 用語集 | 本プロジェクトのオリジナル編集物（MIT）。規格本文は転載していません |
 | キャラクターの画像・アイコン | 本プロジェクトのオリジナル（MIT） |
 

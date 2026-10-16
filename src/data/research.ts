@@ -134,11 +134,7 @@ export const EVIDENCE: Evidence[] = [
       { cite: 'Sailer, M., & Homner, L. (2020). The gamification of learning: A meta-analysis. Educational Psychology Review, 32(1), 77–112.', url: 'https://doi.org/10.1007/s10648-019-09498-w' },
     ],
   },
-]
-
-
-/** 2026-10 の改修で追加した機能の根拠 */
-EVIDENCE.push(
+  // ───── 2026-10 の改修で追加した機能の根拠 ─────
   {
     id: 'hvpt',
     title: '聞き分けトレーニング（高変動音声訓練：HVPT）',
@@ -201,7 +197,7 @@ EVIDENCE.push(
       { cite: 'Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. Advances in Experimental Social Psychology, 38, 69–119.', url: 'https://doi.org/10.1016/S0065-2601(06)38002-1' },
     ],
   },
-)
+]
 
 export const CREDITS: { name: string; desc: string; url?: string }[] = [
   { name: 'NGSL 1.2 / BSL 1.2 / TSL 1.2', desc: 'Browne, Culligan & Phillips — CC BY-SA 4.0（単語リスト）', url: 'https://www.newgeneralservicelist.com/' },

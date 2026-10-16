@@ -1,4 +1,4 @@
-import { plain } from './vocab'
+import { plain, sayHint } from './vocab'
 import { getSettings } from './settings'
 import { getHealth, ttsUrl, apiHeaders } from './api'
 
@@ -104,8 +104,8 @@ function remember(key: string, p: Promise<string>) {
   }
 }
 
-async function loadAudio(text: string, voice: string, pct: number): Promise<string> {
-  const url = ttsUrl(text, voice, pct)
+async function loadAudio(text: string, voice: string, pct: number, ph?: string): Promise<string> {
+  const url = ttsUrl(text, voice, pct, ph)
   let cache: Cache | undefined
   try {
     cache = await caches.open(CACHE_NAME)
@@ -127,14 +127,28 @@ async function loadAudio(text: string, voice: string, pct: number): Promise<stri
   return URL.createObjectURL(blob)
 }
 
-function audioFor(text: string, voice: string, pct: number): Promise<string> {
-  const key = `${voice}|${pct}|${text}`
+function audioFor(text: string, voice: string, pct: number, ph?: string): Promise<string> {
+  const key = `${voice}|${pct}|${text}|${ph ?? ''}`
   const hit = mem.get(key)
   if (hit) return hit
-  const p = loadAudio(text, voice, pct)
+  const p = loadAudio(text, voice, pct, ph)
   remember(key, p)
   p.catch(() => mem.delete(key))
   return p
+}
+
+/**
+ * 品詞で読みが変わる語（live, record など）を単語だけで読むときは、その品詞の発音を指定する。
+ * 米国の声だけ（発音は米音）。サーバーが指定を受け付けなかったら以後は使わない。
+ */
+let phonemeOk = true
+function neuralAudio(text: string, accent: Accent, voice: string, pct: number): Promise<string> {
+  const ph = phonemeOk && accent === 'en-US' ? sayHint(text) : undefined
+  if (!ph) return audioFor(text, voice, pct)
+  return audioFor(text, voice, pct, ph).catch((e: unknown) => {
+    if (e instanceof Error && e.message === 'tts 400') phonemeOk = false
+    return audioFor(text, voice, pct)
+  })
 }
 
 /** これから読む文を先に取得しておく（高品質音声のときだけ。再生はしない） */
@@ -146,7 +160,8 @@ export function prefetchSpeech(items: { text: string; accent?: Accent; voice?: V
     if (!t || t.length > 400) continue
     // random は再生時に声が変わるので先読みしない
     if (it.voice === 'random') continue
-    audioFor(t, neuralVoice(it.accent ?? 'en-US', it.voice), ratePercent(it.rate ?? s.rate)).catch(() => undefined)
+    const accent = it.accent ?? 'en-US'
+    neuralAudio(t, accent, neuralVoice(accent, it.voice), ratePercent(it.rate ?? s.rate)).catch(() => undefined)
   }
 }
 
@@ -387,7 +402,7 @@ export function speak(text: string, opts: SpeakOptions = {}): Promise<boolean> {
   synth?.cancel()
   if (neuralEnabled() && t.length <= 400) {
     const { waiting, release } = holdCurrent()
-    const run = audioFor(t, neuralVoice(accent, opts.voice), ratePercent(rate)).then(
+    const run = neuralAudio(t, accent, neuralVoice(accent, opts.voice), ratePercent(rate)).then(
       (url) => {
         if (my !== seq) return false
         release()

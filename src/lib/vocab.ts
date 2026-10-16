@@ -10,6 +10,13 @@ const loaders: Record<Category, () => Promise<{ default: unknown }>> = {
 const cache: Partial<Record<Category, Word[]>> = {}
 const byId = new Map<string, Word>()
 const pending: Partial<Record<Category, Promise<Word[]>>> = {}
+/** 品詞で読みが変わる見出し語 → その品詞の発音（読み込んだカテゴリの分だけ） */
+const sayHints = new Map<string, string>()
+
+/** 単語だけを読むときの発音の指定（live → lɪv など）。該当しなければ undefined */
+export function sayHint(text: string): string | undefined {
+  return sayHints.get(text.trim().toLowerCase())
+}
 
 export function catOfId(id: string): Category {
   if (id.startsWith('r-')) return 'rail'
@@ -23,7 +30,10 @@ export async function loadCategory(cat: Category): Promise<Word[]> {
     pending[cat] = loaders[cat]().then((m) => {
       const list = m.default as Word[]
       cache[cat] = list
-      for (const w of list) byId.set(w.id, w)
+      for (const w of list) {
+        byId.set(w.id, w)
+        if (w.say) sayHints.set(w.w.toLowerCase(), w.say)
+      }
       return list
     })
   }

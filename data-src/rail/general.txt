@@ -1,6 +1,6 @@
 # 線路一般・線形  en(英/EN)|us(米)|和訳|lv|IPA英|IPA米(空=自動)|出典(;区切り)|解説|例文EN|例文JA
 permanent way|track|軌道（保線の対象としての線路）|5|ˌpɜːmənənt ˈweɪ||英国実務|英国では保線を「permanent way（略 p-way）」と呼ぶ。米国ではtrack、保線部門はmaintenance of way (MOW)。|The *permanent way* team inspects the line every week.|保線チームは毎週線路を点検している。
-track|track|軌道；線路|4|træk||JIS E 1001;一般用語|路盤上の道床・まくらぎ・レール等から成る構造。lineは路線（ルート）、trackは個々の線路を指すことが多い。|The *track* between the two stations is double.|両駅間の線路は複線だ。
+track|track|軌道；線路|4|træk||JIS E 1001;一般用語|路盤上の道床・まくらぎ・レール等から成る構造。lineは路線（ルート）、trackは個々の線路を指すことが多い。|The *track* between these two stations was renewed last year.|この2駅間の線路は昨年更新された。
 line|line|線路；路線|4|laɪn||JIS E 1001|列車を走らせるための通路全体。「本線」はmain line、「支線」はbranch line。|The *line* will be closed for maintenance tonight.|今夜は保守のため線路が閉鎖される。
 main line|main track|本線|4|ˌmeɪn ˈlaɪn||JIS E 1001|列車の運転に常用される線路。米国の鉄道規則ではmain track。|Trains on the *main line* run every five minutes.|本線では5分おきに列車が走る。
 siding|side track|側線|4|ˈsaɪdɪŋ||JIS E 1001|本線以外の線路（留置線・待避線など）。JIS E 1001の参考英語は英 siding／米 side track。|The engineering train is stabled in the *siding*.|工事用列車は側線に留置されている。
