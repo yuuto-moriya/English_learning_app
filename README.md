@@ -194,9 +194,29 @@ GitHub に push / Pull Request を作ると、`.github/workflows/ci.yml` で typ
 
 ### 以降の更新
 
-`main` に push するたびに自動で本番にデプロイされます。`staging` ブランチは検証環境で、push のたびにプレビュー用の固定 URL にデプロイされます。ほかのブランチや Pull Request にもプレビュー用の URL が作られます。
+`main` にマージするたびに自動で本番にデプロイされます。`stg` ブランチは検証環境で、push のたびにプレビュー用の固定 URL（`english-learning-app-git-stg-<チーム名>.vercel.app`）にデプロイされます。ほかのブランチや Pull Request にもプレビュー用の URL が作られます。
 
-ブランチ運用: 修正は `staging` から切ったブランチで行い、`staging` へ PR → 確認後に `staging` から `main` へ PR で本番へ反映します。
+#### ブランチ運用
+
+```
+main (本番)   ──●───────────────●──   stg からの PR のみ（Merge commit）
+                ↑               ↑
+stg  (検証)   ──●──●──●──●──●──●──   機能ブランチからの PR のみ（Squash merge）
+                   ↑  ↗
+feature/*          ●──●
+```
+
+| ブランチ | 役割 | デプロイ先 | 変更方法 |
+|---|---|---|---|
+| `main` | 本番 | Production | `stg` からの PR（Merge commit） |
+| `stg` | 検証 | Preview（固定 URL） | 作業ブランチからの PR（Squash merge） |
+| `feature/*` `fix/*` `docs/*` `chore/*` | 個別の作業 | PR ごとの Preview | `stg` から切って `stg` へ PR |
+| `hotfix/*` | 本番の緊急修正 | PR ごとの Preview | `main` から切って `main` へ PR。マージ後に `main` を `stg` へ戻す |
+
+- 作業は必ず `stg` から切ります。`main` と `stg` へ直接 push しません。
+- 作業ブランチ → `stg` は **Squash merge**（1 機能 1 コミット）、`stg` → `main` は **Merge commit**（履歴がずれないように squash しない）。
+- マージ済みのブランチは削除します（GitHub の「Automatically delete head branches」を有効にする）。
+- リリースしたら `main` にタグ（`v1.2.0` など）を付けます。
 
 - `api/*.ts` は Vercel Functions（Node.js）として自動でデプロイされます。処理本体は `server/` にあります。
 - `vercel.json` で、`/api/` 以外のパスをすべて `index.html` に送っています（React Router の画面を直接開いても 404 にならないように）。
