@@ -194,7 +194,9 @@ GitHub に push / Pull Request を作ると、`.github/workflows/ci.yml` で typ
 
 ### 以降の更新
 
-`main` に push するたびに自動で本番にデプロイされます。ほかのブランチや Pull Request にはプレビュー用の URL が作られます。
+`main` に push するたびに自動で本番にデプロイされます。`staging` ブランチは検証環境で、push のたびにプレビュー用の固定 URL にデプロイされます。ほかのブランチや Pull Request にもプレビュー用の URL が作られます。
+
+ブランチ運用: 修正は `staging` から切ったブランチで行い、`staging` へ PR → 確認後に `staging` から `main` へ PR で本番へ反映します。
 
 - `api/*.ts` は Vercel Functions（Node.js）として自動でデプロイされます。処理本体は `server/` にあります。
 - `vercel.json` で、`/api/` 以外のパスをすべて `index.html` に送っています（React Router の画面を直接開いても 404 にならないように）。
