@@ -335,6 +335,7 @@ python scripts/blender/postprocess.py render-out
 
 | ファイル | 内容 |
 |---|---|
+| [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | オーナーの要件と決定事項（機能追加・変更の前に読む） |
 | [docs/SETUP_AZURE.md](docs/SETUP_AZURE.md) | Azure Translator / Speech の作成、Vercel への設定、アクセストークン、動作確認 |
 | [docs/RESEARCH.md](docs/RESEARCH.md) | 学習法のエビデンス（文献）と、アプリでの実装 |
 | [docs/RAIL_GLOSSARY.md](docs/RAIL_GLOSSARY.md) | 保線用語集の編集方針・出典タグ・著作権・追加方法 |
