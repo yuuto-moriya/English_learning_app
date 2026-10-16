@@ -295,7 +295,7 @@ export default function Translate() {
         </SectionTitle>
         {hits.length === 0 ? (
           <Guide
-            who="bolt"
+            who="kinako"
             pose="greet"
             size={72}
             text="文章に保線用語があると、英国(EN)・米国の言い方とJISの日本語を並べて表示するぞ。機械翻訳の訳語チェックに使ってくれ。"

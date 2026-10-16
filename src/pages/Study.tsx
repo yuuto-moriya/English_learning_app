@@ -75,7 +75,7 @@ export default function Study() {
       }
       stats.current.streak = correct ? stats.current.streak + 1 : 0
       if (!correct) setQueue((q) => reinsert(q, idx, item))
-      setGuide(correct ? correctMessage(stats.current.streak) : wrongMessage())
+      setGuide(correct ? correctMessage(stats.current.streak, item.word.cat === 'rail') : wrongMessage())
       setResult({ correct, grade, next: nextStr, answer: opts.answer })
       if (settings.autoPlay) speak(item.word.ex[0]?.en ?? item.word.w, { accent: item.word.cat === 'rail' ? 'en-GB' : 'en-US' })
     } finally {

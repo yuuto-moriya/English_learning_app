@@ -9,8 +9,8 @@ import { LEVELS, type SceneGroup } from '@/lib/types'
 
 const INTRO: Record<SceneGroup, { who: CharId; pose: Pose; text: string }> = {
   daily: { who: 'tetsu', pose: 'greet', text: '旅行や日常で「すぐ使える」会話だワン。まずは聞いて、次にロールプレイ！' },
-  business: { who: 'penta', pose: 'greet', text: '会議・電話・交渉…ビジネスの決まり文句は、丸ごと覚えると強いですペン。' },
-  rail: { who: 'bolt', pose: 'cheer', text: '保線現場と鉄道ビジネスの英会話だ。安全に関わる交信は必ず復唱（repeat back）だぞ！' },
+  business: { who: 'sumi', pose: 'greet', text: '会議・電話・交渉…ビジネスの決まり文句は、丸ごと覚えると強いですよ。' },
+  rail: { who: 'kinako', pose: 'cheer', text: '保線現場と鉄道ビジネスの英会話だ。安全に関わる交信は必ず復唱（repeat back）だぞ！' },
 }
 
 const TINT: Record<SceneGroup, string> = {

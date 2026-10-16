@@ -2,8 +2,9 @@
 キャラクター共通のモデリング・レンダリング部品（Blender / bpy）。
 
 - 形はプリミティブ（楕円体・カプセル・曲線）の組み合わせで作り、サブディビジョンでなめらかにする
-- 質感は「やわらかいクレイ（粘土）」調：粗めの拡散反射＋わずかなシーン（毛並みのふんわり感）
-- 輪郭線は描かない。大きなエリアライト3灯＋接地影（シャドウキャッチャー）で立体感を出す
+- 質感は「ふわふわのぬいぐるみ」：起毛した布地（シーン＋細かい凹凸）に、短い毛（ヘアパーティクル）を密に生やす
+- 目・鼻はつやのあるプラスチック、口は刺しゅう糸のようなつや消し
+- 輪郭線は描かない。大きなエリアライト3灯で立体感を出す
 """
 from __future__ import annotations
 
@@ -12,7 +13,6 @@ import random
 from pathlib import Path
 
 import bpy
-import bmesh  # noqa: E402  (bpy を先に読み込む必要がある)
 from mathutils import Euler, Vector
 
 # ───────────── 共通カラー（リニア値） ─────────────
@@ -22,9 +22,6 @@ EYE_HL = (1.0, 1.0, 1.0, 1)
 BLUSH = (1.0, 0.32, 0.36, 1)
 TONGUE = (0.95, 0.24, 0.30, 1)
 MOUTH = (0.20, 0.03, 0.04, 1)
-HELMET = (1.0, 0.62, 0.02, 1)
-VEST = (0.55, 0.85, 0.02, 1)      # 高視認性の蛍光イエローグリーン
-REFLECT = (0.92, 0.94, 0.96, 1)
 BRAND = (0.85, 0.20, 0.04, 1)     # アプリのブランド（オレンジ）
 TEAL = (0.0, 0.32, 0.27, 1)       # 保線（レール）カラー
 CONFETTI = [(0.95, 0.25, 0.30, 1), (0.20, 0.55, 0.95, 1), (1.0, 0.75, 0.10, 1), (0.25, 0.75, 0.45, 1), (0.60, 0.40, 0.95, 1)]
@@ -37,9 +34,37 @@ def reset():
     _mats.clear()
 
 
-def mat(color, rough=0.62, sheen=0.25, emission=0.0, metallic=0.0, coat=0.0, name: str | None = None):
-    key = name or f"m{tuple(round(c, 3) for c in color)}-{rough}-{sheen}-{emission}-{metallic}-{coat}"
+def _plush(color, key):
+    """ぬいぐるみの布地：起毛の光沢（シーン）と細かい凹凸。名前の末尾 -plush の素材には add_fuzz() で毛を生やす"""
+    m = bpy.data.materials.new(key)
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes.get("Principled BSDF")
+    b.inputs["Base Color"].default_value = color
+    b.inputs["Roughness"].default_value = 0.95
+    b.inputs["Sheen Weight"].default_value = 1.0
+    b.inputs["Sheen Roughness"].default_value = 0.35
+    b.inputs["Sheen Tint"].default_value = (1, 0.97, 0.94, 1)
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 180.0
+    noise.inputs["Detail"].default_value = 10.0
+    noise.inputs["Roughness"].default_value = 0.75
+    bump = nt.nodes.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = 0.7
+    bump.inputs["Distance"].default_value = 0.012
+    nt.links.new(noise.outputs["Fac"], bump.inputs["Height"])
+    nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
+    return m
+
+
+def mat(color, rough=0.62, sheen=0.25, emission=0.0, metallic=0.0, coat=0.0, name: str | None = None, fuzz=True):
+    """素材。つやのない布の部分（rough > 0.3）は、既定でぬいぐるみの起毛素材にする"""
+    plush = fuzz and rough > 0.3 and emission == 0 and metallic == 0
+    key = name or f"m{tuple(round(c, 3) for c in color)}-{rough}-{sheen}-{emission}-{metallic}-{coat}{'-plush' if plush else ''}"
     if key in _mats:
+        return _mats[key]
+    if plush:
+        _mats[key] = _plush(color, key)
         return _mats[key]
     m = bpy.data.materials.new(key)
     m.use_nodes = True
@@ -57,6 +82,11 @@ def mat(color, rough=0.62, sheen=0.25, emission=0.0, metallic=0.0, coat=0.0, nam
         b.inputs["Emission Strength"].default_value = emission
     _mats[key] = m
     return m
+
+
+def thread(color):
+    """刺しゅう糸（口・まゆ・縫い目）：つや消しで毛は生やさない"""
+    return mat(color, rough=0.9, sheen=0.0, fuzz=False)
 
 
 def glossy(color):
@@ -270,55 +300,47 @@ def sweat(loc, scale=1.0):
 
 
 def bubbles(points):
-    m = mat(WHITE, rough=0.5, sheen=0.0)
+    m = mat(WHITE, rough=0.5, sheen=0.0, fuzz=False)
     for (x, y, z), r in points:
         ball((x, y, z), (r, r * 0.6, r), m)
 
 
 # ───────────── 小物 ─────────────
-def helmet(parent, z, rx, ry, rz, color=HELMET, emblem_y=None):
-    """作業用ヘルメット（ドーム＋つば＋中央の稜線）"""
-    me = bpy.data.meshes.new("helmet")
-    bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=48, v_segments=24, radius=1.0)
-    bmesh.ops.delete(bm, geom=[v for v in bm.verts if v.co.z < -0.02], context="VERTS")
-    bm.to_mesh(me)
-    bm.free()
-    hm = bpy.data.objects.new("helmet", me)
-    bpy.context.collection.objects.link(hm)
-    hm.location = (0, 0, z)
-    hm.scale = (rx, ry, rz)
-    sol = hm.modifiers.new("t", "SOLIDIFY")
-    sol.thickness = 0.04
-    m = mat(color, rough=0.28, sheen=0.0, coat=0.8)
-    _finish(hm, m, parent, 2)
-    # つば（前が少し長い）
-    bpy.ops.mesh.primitive_cylinder_add(vertices=64, radius=1.0, depth=0.05)
-    br = bpy.context.active_object
-    br.location = (0, -ry * 0.10, z + 0.01)
-    br.scale = (rx * 1.10, ry * 1.18, 1)
-    bv = br.modifiers.new("b", "BEVEL")
-    bv.width = 0.02
-    bv.segments = 4
-    _finish(br, m, parent, 0)
-    ball((0, 0, z + rz * 0.96), (0.07, ry * 0.85, 0.06), m, parent)
-    if emblem_y is not None:
-        # 正面の緑十字（安全標識）
-        g = mat((0.0, 0.42, 0.12, 1), rough=0.4, sheen=0.0)
-        zc = z + rz * 0.52
-        yc = -ry * 0.86
-        box((0, yc, zc), (0.20, 0.03, 0.07), g, parent, rot=(-30, 0, 0), bevel=0.3)
-        box((0, yc, zc), (0.07, 0.03, 0.20), g, parent, rot=(-30, 0, 0), bevel=0.3)
-    return hm
+def glasses(parent, x, y, z, r, color=(0.06, 0.05, 0.05, 1)):
+    """丸メガネ（左右のレンズ枠とブリッジ）"""
+    m = mat(color, rough=0.25, sheen=0.0, metallic=0.6)
+    for s in (-1, 1):
+        torus((s * x, y, z), r, r * 0.11, m, parent, rot=(90, 0, 0))
+    capsule((-x + r * 0.95, y - 0.01, z + r * 0.15), (x - r * 0.95, y - 0.01, z + r * 0.15), r * 0.09, m, parent)
 
 
-def hivis_vest(parent, z, rx, ry, rz, front_y):
-    """高視認性ベスト（反射テープ2本）"""
-    ball((0, 0, z), (rx, ry, rz), mat(VEST, rough=0.55, sheen=0.1), parent)
-    tape = glow(REFLECT, 0.25)
-    for dz in (-0.10, 0.10):
-        torus((0, 0, z + dz * rz / 0.5), 1.0, 0.035, tape, parent, scale=(rx * 1.01, ry * 1.01, 1.0))
-    return tape
+def add_fuzz(length=0.03, density=3000, radius=0.004):
+    """ぬいぐるみの起毛：起毛素材（-plush）のメッシュに、短い毛（ヘアパーティクル）を密に生やす"""
+    for o in list(bpy.context.scene.objects):
+        if o.type != "MESH" or not o.data.materials:
+            continue
+        m = o.data.materials[0]
+        if m is None or not m.name.endswith("-plush"):
+            continue
+        dims = o.dimensions
+        area = max(0.02, (dims.x * dims.y + dims.y * dims.z + dims.x * dims.z) * 2 * 0.52)
+        mod = o.modifiers.new("fuzz", "PARTICLE_SYSTEM")
+        st = mod.particle_system.settings
+        st.type = "HAIR"
+        st.count = max(80, int(area * density))
+        st.hair_length = length
+        st.use_advanced_hair = True
+        st.brownian_factor = length * 0.25
+        st.factor_random = length * 0.3
+        st.child_type = "INTERPOLATED"
+        st.child_percent = 6
+        st.rendered_child_count = 6
+        st.child_length = 1.0
+        st.roughness_2 = length * 0.4
+        st.root_radius = 1.0
+        st.tip_radius = 0.1
+        st.radius_scale = radius
+        st.material = 1
 
 
 def necktie(parent, top, length, width, color):
@@ -365,7 +387,7 @@ def setup_scene(size=640, samples=64, cam_loc=(1.4, -7.4, 2.5), target=(0.0, 0.0
     world.use_nodes = True
     bg = world.node_tree.nodes["Background"]
     bg.inputs[0].default_value = (0.96, 0.95, 0.93, 1)
-    bg.inputs[1].default_value = 0.35
+    bg.inputs[1].default_value = 0.45
 
     cam_data = bpy.data.cameras.new("cam")
     cam_data.lens = lens

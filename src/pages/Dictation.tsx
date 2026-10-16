@@ -79,7 +79,7 @@ export default function Dictation() {
                 text={`平均${avg}点！聞き取れなかった語は、音がつながったり弱く発音される所が多いワン。`}
               />
             ) : (
-              <Guide who="pico" pose="think" text="書き取ると「聞こえたつもり」の音がはっきりするピ。何度再生してもOK！" />
+              <Guide who="moka" pose="think" text="書き取ると「聞こえたつもり」の音がはっきりするよ♪ 何度再生してもOK！" />
             )}
             <Card className="space-y-4">
               <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />

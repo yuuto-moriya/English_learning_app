@@ -84,7 +84,7 @@ export default function Listening() {
                 text={`${round.length}問中${score}問正解！${score >= 8 ? '耳が育ってるワン！' : '聞き取れなかった文はディクテーションで確認しよう。'}`}
               />
             ) : (
-              <Guide who="pico" pose="think" text="まず文字を見ずに聞いて、意味をつかむ練習だピ。聞き取れなければ速度を下げてね。" />
+              <Guide who="moka" pose="think" text="まず文字を見ずに聞いて、意味をつかむ練習だよ♪ 聞き取れなければ速度を下げてね。" />
             )}
             <Card className="space-y-4">
               <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />

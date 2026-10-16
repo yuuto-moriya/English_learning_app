@@ -9,6 +9,7 @@ import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
 import { useSettings } from '@/lib/settings'
 import VOCAB_COUNTS from '@/data/vocab/counts.json'
 import { CATEGORIES } from '@/lib/types'
+import { CHARACTERS } from '@/lib/characters'
 
 export default function Home() {
   const nav = useNavigate()
@@ -144,12 +145,12 @@ export default function Home() {
           <p className="mt-4 text-[11px] text-muted">全{stats.total.toLocaleString()}語・定着＝次回の復習まで21日以上空いた語</p>
         </Card>
 
-        <SectionTitle>ホー先生のワンポイント</SectionTitle>
+        <SectionTitle>{CHARACTERS[tip.who].name}のワンポイント</SectionTitle>
         <Card onClick={() => nav('/research')} className="relative overflow-hidden">
           <div className="flex items-center gap-3">
-            {guideOn && <CharImage who="hoo" pose="cheer" size={76} className="-my-1 -ml-1" />}
+            {guideOn && <CharImage who={tip.who} pose="cheer" size={76} className="-my-1 -ml-1" />}
             <div className="min-w-0 flex-1">
-              <p className="text-[14px] leading-relaxed">{tip}</p>
+              <p className="text-[14px] leading-relaxed">{tip.text}</p>
               <p className="mt-1.5 flex items-center text-[12px] font-bold text-brand">
                 学習法の根拠を見る
                 <ChevronRight className="h-4 w-4" />

@@ -9,7 +9,7 @@ export default function Research() {
     <div>
       <PageHeader title="学習法の根拠" subtitle="研究・論文とアプリへの反映" back />
       <div className="space-y-3 px-4 pb-10">
-        <Guide who="hoo" pose="greet" text="このアプリの学び方は、記憶と第二言語習得の研究にもとづいて設計しておるのじゃホー。" />
+        <Guide who="yuki" pose="greet" text="このアプリの学び方は、記憶と第二言語習得の研究にもとづいて設計しておるのじゃ。" />
         {EVIDENCE.map((e, i) => (
           <Card key={e.id}>
             <div className="flex items-center gap-2">

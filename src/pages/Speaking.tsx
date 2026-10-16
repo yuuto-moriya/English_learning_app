@@ -108,13 +108,13 @@ export default function Speaking() {
           <Guide pose={guide.pose} text={guide.text} size={72} />
         ) : (
           <Guide
-            who="pico"
+            who="moka"
             pose={mode === 'shadow' ? 'think' : 'cheer'}
             size={72}
             text={
               mode === 'shadow'
-                ? 'イヤホン推奨だピ。5つのステップで、聞こえた音をそのまま再現しよう。'
-                : '強く読む語とリズムをまねするのがコツだピ。まずお手本を2回聞こう！'
+                ? 'イヤホン推奨だよ♪ 5つのステップで、聞こえた音をそのまま再現しよう。'
+                : '強く読む語とリズムをまねするのがコツだよ♪ まずお手本を2回聞こう！'
             }
           />
         )}

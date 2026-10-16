@@ -44,7 +44,7 @@ export default function Practice() {
     <div>
       <PageHeader title="練習" subtitle="リスニングとスピーキングを鍛える" settings />
       <div className="px-4">
-        <Guide who="pico" pose="greet" text="覚えた単語は「聞く・話す」で使うと定着するピ。リスニングと発音はボクがコーチするよ。1日5分からでOK！" />
+        <Guide who="moka" pose="greet" text="覚えた単語は「聞く・話す」で使うと定着するよ♪ リスニングと発音はモカがコーチするね。1日5分からでOK！" />
         <SectionTitle>メニュー</SectionTitle>
         <div className="space-y-2.5">
           {ITEMS.map(({ to, icon: Icon, color, title, desc, tag }) => (

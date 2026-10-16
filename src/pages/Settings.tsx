@@ -108,7 +108,7 @@ export default function Settings() {
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-extrabold">
                     {c.name}
-                    <span className="ml-1.5 text-[11px] font-semibold text-muted">{c.animal}</span>
+                    <span className="ml-1.5 text-[11px] font-semibold text-muted">コーギー（{c.coat}）</span>
                   </p>
                   <p className={`text-[11px] font-bold ${c.tint}`}>{c.role}</p>
                   <p className="mt-0.5 text-[12px] leading-snug text-muted">{c.intro}</p>

@@ -9,7 +9,7 @@
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
 
 一般・ビジネス・鉄道保線（設備管理/EAM を含む）の英語を、**学習**から**実務での翻訳**までひとつで扱えるアプリです。
-iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーの「テツ」で、リスニング・発音はインコの「ピコ」、ビジネスはペンギンの「ペンタ」、保線はビーバーの「ボルト」、学習法の解説はフクロウの「ホー先生」が担当します。
+iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーのぬいぐるみ「テツ」で、色違いのコーギーのなかまたち（リスニング・発音のモカ、ビジネスのスミ、保線のキナコ、学習法の解説のユキ先生）が各画面を案内します。
 
 ---
 
@@ -303,13 +303,12 @@ npm test             # データの整合性テスト
 
 ## キャラクターの再生成（Blender）
 
-案内役のテツ（コーギー）と、なかまたち（ピコ＝インコ、ペンタ＝ペンギン、ボルト＝ビーバー、ホー先生＝フクロウ）は、Blender（bpy）を Python モジュールとして使い、プロシージャルにモデリング・レンダリングしています。
+案内役のテツと、色違いのなかまたち（モカ＝セーブル、スミ＝トライカラー、キナコ＝フォーン、ユキ先生＝ブルーマール）は、どれもコーギーのぬいぐるみです。Blender（bpy）を Python モジュールとして使い、プロシージャルにモデリングし、起毛はヘアパーティクルで表現しています。
 
 | ファイル | 内容 |
 |---|---|
-| `scripts/blender/kit.py` | 共通部品（楕円体・カプセル・目・ヘルメットなど）、ライト・カメラ、レンダリング設定 |
-| `scripts/blender/corgi.py` | テツ（8ポーズ：greet / happy / celebrate / think / cheer / sleep / safety / oops） |
-| `scripts/blender/cast.py` | なかまたち（各4ポーズ：greet / happy / think / cheer） |
+| `scripts/blender/kit.py` | 共通部品（楕円体・カプセル・目・メガネ・起毛など）、ぬいぐるみの布地、ライト・カメラ、レンダリング設定 |
+| `scripts/blender/corgi.py` | コーギーのぬいぐるみ。毛色（COATS）と小物（CHARACTERS）でテツ（8ポーズ）となかまたち（各4ポーズ）を作り分け |
 | `scripts/blender/render.py` | レンダリングの実行（透過 PNG） |
 | `scripts/blender/postprocess.py` | WebP・アプリアイコンへの変換 |
 
@@ -319,7 +318,7 @@ pip install bpy pillow        # bpy は対応する Python のバージョンが
 
 # 1) レンダリング（透過 PNG: <キャラ>-<ポーズ>.png と tetsu-icon.png）
 python scripts/blender/render.py render-out --size 768 --samples 64
-#    一部だけ: --only tetsu-happy,pico-greet
+#    一部だけ: --only tetsu-happy,moka-greet
 
 # 2) アプリ用アセットに変換
 python scripts/blender/postprocess.py render-out
