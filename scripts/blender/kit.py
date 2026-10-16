@@ -228,9 +228,11 @@ def arc(cx, y, cz, rx, rz, a0, a1, n=12, depth=0.0):
     return pts
 
 
-def sparkle_eye(parent, x, y, z, w, h, look=(0.0, 0.0)):
-    """キラキラした大きな目（黒目＋ハイライト2つ）"""
-    ball((x + look[0], y, z + look[1]), (w, w * 0.55, h), glossy(INK), parent)
+def sparkle_eye(parent, x, y, z, w, h, look=(0.0, 0.0), iris=None):
+    """キラキラした大きな目（黒目＋ハイライト2つ）。iris を渡すと虹彩の色つき（黒い毛の犬でも目が見えるように）"""
+    ball((x + look[0], y, z + look[1]), (w, w * 0.55, h), glossy(iris or INK), parent)
+    if iris is not None:
+        ball((x + look[0], y - w * 0.12, z + look[1] - h * 0.05), (w * 0.55, w * 0.48, h * 0.58), glossy(INK), parent)
     hl = glow(EYE_HL, 2.0)
     ball((x + look[0] - w * 0.30, y - w * 0.52, z + look[1] + h * 0.35), (w * 0.34, w * 0.12, h * 0.30), hl, parent)
     ball((x + look[0] + w * 0.30, y - w * 0.52, z + look[1] - h * 0.40), (w * 0.15, w * 0.08, h * 0.13), hl, parent)
@@ -314,7 +316,7 @@ def glasses(parent, x, y, z, r, color=(0.06, 0.05, 0.05, 1)):
     capsule((-x + r * 0.95, y - 0.01, z + r * 0.15), (x - r * 0.95, y - 0.01, z + r * 0.15), r * 0.09, m, parent)
 
 
-def add_fuzz(length=0.03, density=3000, radius=0.004):
+def add_fuzz(length=0.03, density=3000, radius=0.004, curl=0.0):
     """ぬいぐるみの起毛：起毛素材（-plush）のメッシュに、短い毛（ヘアパーティクル）を密に生やす"""
     for o in list(bpy.context.scene.objects):
         if o.type != "MESH" or not o.data.materials:
@@ -341,6 +343,12 @@ def add_fuzz(length=0.03, density=3000, radius=0.004):
         st.tip_radius = 0.1
         st.radius_scale = radius
         st.material = 1
+        if curl > 0:
+            # トイプードルのくるくる毛
+            st.kink = "CURL"
+            st.kink_amplitude = curl
+            st.kink_frequency = 7.0
+            st.kink_shape = 0.0
 
 
 def necktie(parent, top, length, width, color):
