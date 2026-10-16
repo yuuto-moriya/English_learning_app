@@ -40,8 +40,8 @@
 | UI | 白いカード＋浮かぶタブバー、ブランドはオレンジのグラデーション、単語学習中はタブバーを隠す（集中モード） | 2026-10 にオーナーの依頼でモダンなデザインに刷新 |
 | 英語の基準 | **米国英語** が基本。保線用語は **英国（EN）・米国表記を併記** | |
 | 学習データの保存 | **端末内のみ**（IndexedDB）。アカウント・サーバー保存なし | 機種変更はバックアップ／復元で対応 |
-| ホスティング | **Vercel**（GitHub 連携。`main` への push で本番、`staging` への push で検証環境に自動デプロイ） | 2026-10 に Cloudflare Pages から変更 |
-| ブランチ運用 | `main` = 本番、`staging` = 検証。修正は `staging` から切ったブランチで行い、`staging` へ PR → 確認後 `staging` から `main` へ PR | 環境を `main` と `staging` で切り分ける |
+| ホスティング | **Vercel**（GitHub 連携。`main` へのマージで本番、`stg` への push で検証環境に自動デプロイ） | 2026-10 に Cloudflare Pages から変更 |
+| ブランチ運用 | `main` = 本番、`stg` = 検証。修正は `stg` から切った `feature/*` 等で行い、`stg` へ PR（Squash）→ 確認後 `stg` から `main` へ PR（Merge commit）。緊急修正は `hotfix/*` を `main` から切る。詳細は README | 環境を `main` と `stg` で切り分ける。2026-10 に `staging` を `stg` に改名し、運用を明文化 |
 | API | Vercel Functions（`api/`）。処理本体は `server/` | API キーはサーバーの環境変数にだけ置く |
 | リポジトリ | GitHub `yuuto-moriya/English_learning_app` | 成果物はすべてここで管理 |
 
