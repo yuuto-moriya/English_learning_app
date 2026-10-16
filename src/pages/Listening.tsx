@@ -24,7 +24,11 @@ export default function Listening() {
   const [plays, setPlays] = useState(0)
 
   useEffect(() => {
-    sentencePool(sources, level, Math.max(1, level - 2)).then(setPool)
+    let alive = true
+    sentencePool(sources, level, Math.max(1, level - 2)).then((p) => alive && setPool(p))
+    return () => {
+      alive = false
+    }
   }, [sources, level])
   useEffect(() => () => stopSpeaking(), [])
 
@@ -80,12 +84,10 @@ export default function Listening() {
                 text={`${round.length}問中${score}問正解！${score >= 8 ? '耳が育ってるワン！' : '聞き取れなかった文はディクテーションで確認しよう。'}`}
               />
             ) : (
-              <Guide pose="think" text="まず文字を見ずに聞いて、意味をつかむ練習だワン。聞き取れなければ速度を下げてね。" />
+              <Guide who="pico" pose="think" text="まず文字を見ずに聞いて、意味をつかむ練習だピ。聞き取れなければ速度を下げてね。" />
             )}
-            <Card className="space-y-3">
-              <p className="text-[13px] font-bold text-muted">出題範囲</p>
+            <Card className="space-y-4">
               <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />
-              <p className="text-[13px] font-bold text-muted">再生速度</p>
               <SpeedPicker rate={rate} onRate={setRate} />
               <p className="text-xs text-muted">対象の文：{pool.length.toLocaleString()}文</p>
             </Card>
@@ -101,7 +103,7 @@ export default function Listening() {
               <Card className="flex flex-col items-center gap-3 py-6">
                 <button
                   onClick={() => play()}
-                  className="flex h-20 w-20 items-center justify-center rounded-full bg-brand text-white shadow-lg active:scale-95"
+                  className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-grad text-white shadow-glow transition active:scale-95"
                   aria-label="再生"
                 >
                   <Play className="h-9 w-9 translate-x-0.5" />
@@ -125,10 +127,8 @@ export default function Listening() {
                     onClick={() => choose(o)}
                     disabled={!!picked}
                     className={cx(
-                      'min-h-12 rounded-xl border bg-surface px-4 py-3 text-left text-[14px] font-semibold leading-snug',
-                      picked && o === cur.ja && 'border-ok bg-ok/10',
-                      picked === o && o !== cur.ja && 'border-ng bg-ng/10',
-                      !picked && 'border-line',
+                      'min-h-13 rounded-2xl bg-surface px-4 py-3 text-left text-[14px] font-semibold leading-snug shadow-card ring-1 transition active:scale-[0.98]',
+                      picked && o === cur.ja ? 'bg-ok/10 ring-2 ring-ok' : picked === o ? 'bg-ng/10 ring-2 ring-ng' : 'ring-ring',
                     )}
                   >
                     {o}

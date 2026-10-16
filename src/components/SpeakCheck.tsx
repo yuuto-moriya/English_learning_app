@@ -269,14 +269,19 @@ export function SpeakCheck({
             className="relative flex h-20 w-20 items-center justify-center rounded-full bg-ng text-white shadow-lg active:scale-95"
             aria-label="録音停止"
           >
-            <span className="absolute inset-0 animate-ping rounded-full bg-ng/40" style={{ transform: `scale(${1 + level * 0.4})` }} />
+            {/* 入力音量に合わせて広がる輪（animate-ping は transform を上書きするので、音量表示とは別の要素にする） */}
+            <span
+              className="absolute inset-0 rounded-full bg-ng/30 transition-transform duration-100"
+              style={{ transform: `scale(${1 + Math.min(1, level) * 0.5})` }}
+            />
+            <span className="absolute inset-0 animate-ping rounded-full bg-ng/25" />
             <Square className="relative h-8 w-8 fill-current" />
           </button>
         ) : (
           <button
             onClick={start}
             disabled={state !== 'idle'}
-            className="flex h-20 w-20 items-center justify-center rounded-full bg-brand text-white shadow-lg active:scale-95 disabled:opacity-60"
+            className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-grad text-white shadow-glow transition active:scale-95 disabled:opacity-60"
             aria-label="録音開始"
           >
             {state === 'idle' ? <Mic className="h-9 w-9" /> : <Loader2 className="h-8 w-8 animate-spin" />}
@@ -307,7 +312,7 @@ export function SpeakCheck({
           {ENGINE_LABEL[engine]}
         </p>
       )}
-      {error && <p className="rounded-xl bg-ng/10 p-3 text-sm text-ng">{error}</p>}
+      {error && <p className="rounded-2xl bg-ng/10 p-3 text-sm text-ng">{error}</p>}
       {engine === 'none' && rec && !result && (
         <Card className="text-sm">
           <p>録音を再生して、お手本と比べてみよう。リズム・強く読む語・語尾の音に注目！</p>
@@ -362,7 +367,7 @@ export function PronResultView({ result, accent }: { result: PronResult; accent:
               speak(w.word, { accent })
             }}
             className={cx(
-              'rounded-lg border px-2 py-1 text-[14px] font-semibold',
+              'rounded-xl border px-2 py-1 text-[14px] font-semibold',
               w.error === 'Omission' ? 'border-line text-muted line-through' : w.error === 'Insertion' ? 'border-dashed border-line text-muted' : 'border-line',
               w.error !== 'Omission' && color(w.accuracy),
             )}
@@ -372,7 +377,7 @@ export function PronResultView({ result, accent }: { result: PronResult; accent:
         ))}
       </div>
       {sel && sel.phonemes.length > 0 && (
-        <div className="mt-3 rounded-xl bg-surface-2 p-3">
+        <div className="mt-3 rounded-2xl bg-surface-2 p-3">
           <p className="text-[12px] font-bold text-muted">「{sel.word}」の音素ごとの評価</p>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {sel.phonemes.map((p, i) => (

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useParams } from 'react-router'
-import { Pause, Play, Languages, SkipForward, Lightbulb } from 'lucide-react'
+import { Pause, Play, Languages, SkipForward, Lightbulb, Target } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SpeakCheck } from '@/components/SpeakCheck'
@@ -34,7 +34,15 @@ export default function SceneDetail() {
     [],
   )
 
-  if (!scene) return <Empty>シーンが見つかりません</Empty>
+  if (!scene)
+    return (
+      <div>
+        <PageHeader title="シーン会話" back="/scenes" />
+        <div className="px-4">
+          <Empty>シーンが見つかりません</Empty>
+        </div>
+      </div>
+    )
 
   const playAll = async () => {
     const run = ++runId.current
@@ -62,9 +70,14 @@ export default function SceneDetail() {
     <div>
       <PageHeader title={`${scene.emoji} ${scene.title}`} subtitle={scene.titleEn} back="/scenes" />
       <div className="space-y-3 px-4 pb-8">
-        <Card>
-          <p className="text-[12px] font-bold text-muted">この場面のゴール</p>
-          <p className="mt-0.5 text-[15px] font-semibold">{scene.goal}</p>
+        <Card className="flex items-start gap-3">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-strong">
+            <Target className="h-5 w-5" />
+          </span>
+          <div>
+            <p className="text-[12px] font-bold text-muted">この場面のゴール</p>
+            <p className="mt-0.5 text-[15px] font-bold leading-snug">{scene.goal}</p>
+          </div>
         </Card>
 
         <SectionTitle>キーフレーズ</SectionTitle>
@@ -120,8 +133,8 @@ export default function SceneDetail() {
                   <div key={i} className={cx('flex gap-2', mine && 'flex-row-reverse')}>
                     <div
                       className={cx(
-                        'max-w-[85%] rounded-2xl border px-3 py-2 transition',
-                        mine ? 'rounded-tr-sm border-brand/30 bg-brand-soft' : 'rounded-tl-sm border-line bg-surface',
+                        'max-w-[85%] rounded-[20px] px-3.5 py-2.5 shadow-card transition',
+                        mine ? 'rounded-tr-md bg-brand-soft' : 'rounded-tl-md bg-surface ring-1 ring-ring',
                         playing === i && 'ring-2 ring-brand',
                       )}
                     >

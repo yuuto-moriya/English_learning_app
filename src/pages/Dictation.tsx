@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Play, RotateCcw, Eye } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
@@ -22,18 +22,22 @@ export default function Dictation() {
   const [started, setStarted] = useState(false)
 
   useEffect(() => {
-    sentencePool(sources, level, Math.max(1, level - 2)).then(setPool)
+    let alive = true
+    sentencePool(sources, level, Math.max(1, level - 2)).then((p) => alive && setPool(p))
+    return () => {
+      alive = false
+    }
   }, [sources, level])
   useEffect(() => () => stopSpeaking(), [])
 
   const cur = round[i]
   const done = started && i >= round.length
 
+  // 書き取りやすい長さ（12語以内）の文から出題する
+  const shortPool = useMemo(() => pool.filter((s) => s.en.split(' ').length <= 12), [pool])
+
   const start = () => {
-    const r = pickRound(
-      pool.filter((s) => s.en.split(' ').length <= 12),
-      5,
-    )
+    const r = pickRound(shortPool, 5)
     setRound(r)
     setI(0)
     setTotal(0)
@@ -69,19 +73,19 @@ export default function Dictation() {
       <div className="space-y-3 px-4 pb-8">
         {!started || done ? (
           <>
-            <Guide
-              pose={done ? (avg >= 80 ? 'celebrate' : 'cheer') : 'think'}
-              text={
-                done
-                  ? `平均${avg}点！聞き取れなかった語は、音がつながったり弱く発音される所が多いワン。`
-                  : '書き取ると「聞こえたつもり」の音がはっきりするワン。何度再生してもOK！'
-              }
-            />
-            <Card className="space-y-3">
+            {done ? (
+              <Guide
+                pose={avg >= 80 ? 'celebrate' : 'cheer'}
+                text={`平均${avg}点！聞き取れなかった語は、音がつながったり弱く発音される所が多いワン。`}
+              />
+            ) : (
+              <Guide who="pico" pose="think" text="書き取ると「聞こえたつもり」の音がはっきりするピ。何度再生してもOK！" />
+            )}
+            <Card className="space-y-4">
               <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />
               <SpeedPicker rate={rate} onRate={setRate} />
             </Card>
-            <Button block onClick={start} disabled={pool.length < 5}>
+            <Button block onClick={start} disabled={shortPool.length < 5}>
               {done ? <RotateCcw className="h-5 w-5" /> : <Play className="h-5 w-5" />}
               {done ? 'もう一度' : 'スタート'}
             </Button>
@@ -93,7 +97,7 @@ export default function Dictation() {
               <Card className="flex items-center gap-3">
                 <button
                   onClick={() => speak(cur.en, { accent: cur.accent, rate })}
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand text-white active:scale-95"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-grad text-white shadow-glow transition active:scale-95"
                   aria-label="再生"
                 >
                   <Play className="h-7 w-7 translate-x-0.5" />
@@ -122,7 +126,7 @@ export default function Dictation() {
                 autoCorrect="off"
                 spellCheck={false}
                 placeholder="聞こえた英文を入力…"
-                className="w-full rounded-xl border border-line bg-surface p-3 text-[16px] outline-none focus:border-brand"
+                className="w-full rounded-2xl bg-surface p-3.5 text-[16px] shadow-card outline-none ring-1 ring-ring focus:ring-2 focus:ring-brand"
               />
               {!result ? (
                 <div className="flex gap-2">
@@ -142,12 +146,13 @@ export default function Dictation() {
                       {result.score}点
                     </p>
                   </div>
-                  <p className="text-[16px] leading-loose">
+                  {/* 語と語の間で折り返せるよう flex-wrap にする（span を空白なしで並べると1行に収まらずはみ出す） */}
+                  <p className="flex flex-wrap gap-x-1.5 gap-y-1 text-[16px] leading-relaxed">
                     {result.tokens.map((t, k) => (
                       <span
                         key={k}
                         className={cx(
-                          'mr-1 rounded px-0.5',
+                          'rounded px-0.5',
                           t.kind === 'match' && 'text-ok',
                           t.kind === 'missing' && 'bg-ng/15 font-bold text-ng underline decoration-dotted',
                           t.kind === 'extra' && 'text-muted line-through',

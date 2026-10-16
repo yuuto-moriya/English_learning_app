@@ -5,11 +5,11 @@
 > It combines 3,824 words (general NGSL / business BSL+TSL / rail & EAM glossary) with an evidence-based study session (retrieval practice + FSRS spaced repetition + interleaving),
 > listening, dictation, shadowing, Azure pronunciation assessment, 30 role-play dialogues, and an Azure-powered translator that flags rail terms (UK / US / JIS Japanese).
 > Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Vercel (static site + Vercel Functions).
-> A corgi guide, "Tetsu", is modeled procedurally in Blender.
+> A corgi guide, "Tetsu", and four animal friends are modeled procedurally in Blender.
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
 
 一般・ビジネス・鉄道保線（設備管理/EAM を含む）の英語を、**学習**から**実務での翻訳**までひとつで扱えるアプリです。
-iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーの「テツ」です。
+iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーの「テツ」で、リスニング・発音はインコの「ピコ」、ビジネスはペンギンの「ペンタ」、保線はビーバーの「ボルト」、学習法の解説はフクロウの「ホー先生」が担当します。
 
 ---
 
@@ -24,7 +24,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - [Azure（翻訳・発音評価）の設定](#azure翻訳発音評価の設定)
 - [iPhone のホーム画面に追加する](#iphone-のホーム画面に追加する)
 - [データパイプラインと単語の追加](#データパイプラインと単語の追加)
-- [キャラクター「テツ」の再生成（Blender）](#キャラクターテツの再生成blender)
+- [キャラクターの再生成（Blender）](#キャラクターの再生成blender)
 - [ライセンス](#ライセンス)
 - [ドキュメント](#ドキュメント)
 
@@ -81,7 +81,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 | 分類 | 使用技術 |
 |---|---|
 | フロントエンド | React 19, TypeScript 7, Vite 8, React Router 8 |
-| スタイル・動き | Tailwind CSS v4, motion, lucide-react |
+| スタイル・動き | Tailwind CSS v4（アニメーションは CSS のみ）, lucide-react |
 | PWA | vite-plugin-pwa（Workbox, 更新はアプリ内の通知から） |
 | データ保存 | Dexie（IndexedDB）, zustand（設定） |
 | 復習スケジューラ | ts-fsrs（FSRS） |
@@ -110,11 +110,11 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   ├── stt.ts                 #   POST /api/stt（音声入力の文字起こし）
 │   └── tsconfig.json          #   API 用の型チェック設定
 ├── public/
-│   ├── guide/                 # テツの表情・ポーズ画像（WebP）
+│   ├── guide/                 # キャラクターの表情・ポーズ画像（WebP）
 │   └── icons/                 # PWA アイコン
 ├── scripts/
 │   ├── build_vocab.py         # data-src → src/data/vocab/*.json
-│   ├── blender/               # テツのモデリング・レンダリング（corgi.py, postprocess.py）
+│   ├── blender/               # キャラクターのモデリング・レンダリング（kit / corgi / cast / render / postprocess）
 │   ├── screenshots.mjs        # iPhone サイズの画面スクリーンショット（ライト/ダーク）
 │   └── e2e-flow.mjs           # 主要フローの E2E 確認
 ├── server/                    # API の処理本体（Web 標準の Request/Response のみ使用）
@@ -301,25 +301,33 @@ npm test             # データの整合性テスト
 
 `data-src/` と、生成された `src/data/vocab/*.json` の両方をコミットします（Vercel のビルドでは Python を使わず、JSON をそのまま使います）。
 
-## キャラクター「テツ」の再生成（Blender）
+## キャラクターの再生成（Blender）
 
-テツは `scripts/blender/corgi.py` で Blender（bpy）を Python モジュールとして使い、プロシージャルにモデリング・レンダリングしています。
+案内役のテツ（コーギー）と、なかまたち（ピコ＝インコ、ペンタ＝ペンギン、ボルト＝ビーバー、ホー先生＝フクロウ）は、Blender（bpy）を Python モジュールとして使い、プロシージャルにモデリング・レンダリングしています。
+
+| ファイル | 内容 |
+|---|---|
+| `scripts/blender/kit.py` | 共通部品（楕円体・カプセル・目・ヘルメットなど）、ライト・カメラ、レンダリング設定 |
+| `scripts/blender/corgi.py` | テツ（8ポーズ：greet / happy / celebrate / think / cheer / sleep / safety / oops） |
+| `scripts/blender/cast.py` | なかまたち（各4ポーズ：greet / happy / think / cheer） |
+| `scripts/blender/render.py` | レンダリングの実行（透過 PNG） |
+| `scripts/blender/postprocess.py` | WebP・アプリアイコンへの変換 |
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install bpy pillow        # bpy は対応する Python のバージョンが限られます（PyPI の bpy のページで確認）
 
-# 1) レンダリング（透過 PNG: greet / happy / celebrate / think / cheer / sleep / safety / oops / icon）
-python scripts/blender/corgi.py render-out --size 640 --samples 48
-#    一部のポーズだけ: --only happy,think
+# 1) レンダリング（透過 PNG: <キャラ>-<ポーズ>.png と tetsu-icon.png）
+python scripts/blender/render.py render-out --size 768 --samples 64
+#    一部だけ: --only tetsu-happy,pico-greet
 
 # 2) アプリ用アセットに変換
 python scripts/blender/postprocess.py render-out
-#    → public/guide/tetsu-<pose>.webp（512px, 透過）
+#    → public/guide/<キャラ>-<ポーズ>.webp（384px, 透過）
 #    → public/icons/icon-192.png, icon-512.png, icon-512-maskable.png, apple-touch-icon.png, public/favicon.png
 ```
 
-色（毛色・スカーフ・ヘルメットなど）は `corgi.py` 冒頭の `COL` で変更できます。
+画面での使い分け（どのキャラが話すか）は `src/lib/characters.ts` と各ページの `<Guide who="…">` で決めています。
 
 ## ライセンス
 
@@ -329,7 +337,7 @@ python scripts/blender/postprocess.py render-out
 | NGSL / BSL / TSL と、それに基づく一般・ビジネス語データ | CC BY-SA 4.0（Browne, Culligan & Phillips, <https://www.newgeneralservicelist.com/>） |
 | 米音 IPA | MIT（open-dict-data/ipa-dict、cmudict-ipa 由来） |
 | 保線・EAM 用語集 | 本プロジェクトのオリジナル編集物（MIT）。規格本文は転載していません |
-| テツの画像・アイコン | 本プロジェクトのオリジナル（MIT） |
+| キャラクターの画像・アイコン | 本プロジェクトのオリジナル（MIT） |
 
 詳しくは [DATA_LICENSE.md](DATA_LICENSE.md) を参照してください。
 

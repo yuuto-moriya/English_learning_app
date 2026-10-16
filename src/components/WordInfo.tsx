@@ -27,7 +27,7 @@ export function WordHead({ word, big }: { word: Word; big?: boolean }) {
       <div className="flex flex-wrap items-center gap-1.5">
         <CategoryBadge cat={word.cat} />
         <LevelBadge lv={word.lv} />
-        {word.sub && <span className="rounded-md bg-surface-2 px-1.5 py-0.5 text-[11px] font-semibold text-muted">{RAIL_SUBS[word.sub]}</span>}
+        {word.sub && <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[11px] font-semibold text-muted">{RAIL_SUBS[word.sub]}</span>}
         {!isRail && <span className="text-[11px] text-muted">{POS_JA[word.pos] ?? word.pos}</span>}
       </div>
       {isRail ? (
@@ -85,7 +85,7 @@ function PronRow({
         aria-label="ゆっくり再生"
         // iOSではタップ処理の中で同期的に speak() しないと再生されないことがあるため、動的importは使わない
         onClick={() => speak(term, { accent, rate: 0.6 })}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-2 text-muted"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-2 text-muted transition active:scale-90"
       >
         <Snail className="h-4 w-4" />
       </button>
@@ -105,7 +105,7 @@ export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: bool
         </div>
       )}
       {word.ex.map((e, i) => (
-        <div key={i} className="rounded-xl bg-surface-2 p-3">
+        <div key={i} className="rounded-2xl bg-surface-2 p-3.5">
           <div className="flex items-start gap-2">
             <p className="flex-1 text-[16px] leading-relaxed">
               <Marked text={e.en} />
@@ -124,7 +124,7 @@ export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: bool
       {word.refs && word.refs.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {word.refs.map((r) => (
-            <span key={r} className="rounded-md border border-line px-2 py-0.5 text-[11px] font-semibold text-muted">
+            <span key={r} className="rounded-full bg-surface-2 px-2.5 py-0.5 text-[11px] font-semibold text-muted">
               {r}
             </span>
           ))}

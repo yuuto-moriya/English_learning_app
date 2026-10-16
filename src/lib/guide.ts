@@ -4,7 +4,9 @@
  * - 間違いを学習の機会として扱う（誤りからの学習・高確信度エラーの訂正）
  * - 学習科学の根拠を短く添えて、やり方への納得感（自律性）を高める（自己決定理論）
  */
-export type Pose = 'greet' | 'happy' | 'celebrate' | 'think' | 'cheer' | 'sleep' | 'safety' | 'oops'
+import type { Pose } from './characters'
+
+export type { Pose }
 
 export interface GuideLine {
   pose: Pose

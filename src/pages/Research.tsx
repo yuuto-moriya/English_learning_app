@@ -9,13 +9,15 @@ export default function Research() {
     <div>
       <PageHeader title="学習法の根拠" subtitle="研究・論文とアプリへの反映" back />
       <div className="space-y-3 px-4 pb-10">
-        <Guide pose="think" text="このアプリの学び方は、記憶と第二言語習得の研究にもとづいて設計しているワン。" />
+        <Guide who="hoo" pose="greet" text="このアプリの学び方は、記憶と第二言語習得の研究にもとづいて設計しておるのじゃホー。" />
         {EVIDENCE.map((e, i) => (
           <Card key={e.id}>
-            <p className="text-[11px] font-bold text-brand">根拠 {i + 1}</p>
-            <h2 className="text-[17px] font-extrabold">{e.title}</h2>
+            <div className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gen-soft text-[12px] font-extrabold tabular-nums text-gen">{i + 1}</span>
+              <h2 className="text-[17px] font-extrabold leading-snug">{e.title}</h2>
+            </div>
             <p className="mt-2 text-[13.5px] leading-relaxed">{e.finding}</p>
-            <div className="mt-3 rounded-xl bg-brand-soft p-3">
+            <div className="mt-3 rounded-2xl bg-brand-soft p-3">
               <p className="text-[11px] font-bold text-brand-strong">アプリでの活用</p>
               <p className="mt-0.5 text-[13px] leading-relaxed">{e.inApp}</p>
             </div>

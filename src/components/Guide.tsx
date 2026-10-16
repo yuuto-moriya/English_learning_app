@@ -1,27 +1,53 @@
-import { AnimatePresence, motion } from 'motion/react'
-import type { Pose } from '@/lib/guide'
+import { CHARACTERS, charSrc, type CharId, type Pose } from '@/lib/characters'
 import { useSettings } from '@/lib/settings'
 import { cx } from './ui'
 
-export const POSE_SRC: Record<Pose, string> = {
-  greet: '/guide/tetsu-greet.webp',
-  happy: '/guide/tetsu-happy.webp',
-  celebrate: '/guide/tetsu-celebrate.webp',
-  think: '/guide/tetsu-think.webp',
-  cheer: '/guide/tetsu-cheer.webp',
-  sleep: '/guide/tetsu-sleep.webp',
-  safety: '/guide/tetsu-safety.webp',
-  oops: '/guide/tetsu-oops.webp',
+export type { CharId, Pose }
+
+/** キャラクター画像（3Dレンダリング） */
+export function CharImage({
+  who = 'tetsu',
+  pose,
+  size = 88,
+  className,
+  float,
+}: {
+  who?: CharId
+  pose: Pose
+  size?: number
+  className?: string
+  float?: boolean
+}) {
+  // key でポーズが変わるたびに作り直し、CSS アニメーションで出し直す（動きのライブラリは使わない）
+  return (
+    <img
+      key={`${who}-${pose}`}
+      src={charSrc(who, pose)}
+      alt={CHARACTERS[who].name}
+      width={size}
+      height={size}
+      decoding="async"
+      className={cx(
+        'shrink-0 select-none drop-shadow-[0_6px_10px_rgb(16_24_40/0.12)]',
+        float ? 'animate-[char-in_0.35s_cubic-bezier(.2,1.4,.4,1)_both,float_3.2s_ease-in-out_0.4s_infinite]' : 'animate-[char-in_0.35s_cubic-bezier(.2,1.4,.4,1)_both]',
+        className,
+      )}
+      style={{ width: size, height: size }}
+      draggable={false}
+    />
+  )
 }
 
-/** 案内役コーギー「テツ」と吹き出し */
+/** キャラクターと吹き出し（既定は案内役テツ） */
 export function Guide({
+  who = 'tetsu',
   pose,
   text,
   size = 88,
   className,
   compact,
 }: {
+  who?: CharId
   pose: Pose
   text: string
   size?: number
@@ -30,36 +56,20 @@ export function Guide({
 }) {
   const enabled = useSettings((s) => s.guide)
   if (!enabled) return null
+  const c = CHARACTERS[who]
   return (
-    <div className={cx('flex items-end gap-2', className)}>
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={pose}
-          src={POSE_SRC[pose]}
-          alt="テツ"
-          width={size}
-          height={size}
-          initial={{ scale: 0.85, opacity: 0, y: 6 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ type: 'spring', stiffness: 380, damping: 22 }}
-          className="shrink-0 select-none drop-shadow-sm"
-          style={{ width: size, height: size }}
-          draggable={false}
-        />
-      </AnimatePresence>
-      <motion.div
+    <div className={cx('flex items-end gap-1.5', className)}>
+      <CharImage who={who} pose={pose} size={size} />
+      <div
         key={text}
-        initial={{ opacity: 0, x: -6 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.25 }}
         className={cx(
-          'relative mb-3 flex-1 rounded-2xl rounded-bl-sm border border-line bg-surface px-3.5 py-2.5 text-[14px] leading-relaxed shadow-card',
-          compact && 'py-2 text-[13px]',
+          'relative mb-3 flex-1 animate-[bubble-in_0.25s_ease-out_both] rounded-[20px] rounded-bl-md bg-surface px-3.5 py-2.5 shadow-card ring-1 ring-ring',
+          compact && 'py-2',
         )}
       >
-        {text}
-      </motion.div>
+        {!compact && <p className={cx('text-[11px] font-extrabold', c.tint)}>{c.name}</p>}
+        <p className={cx('leading-relaxed', compact ? 'text-[13px]' : 'text-[14px]')}>{text}</p>
+      </div>
     </div>
   )
 }

@@ -16,7 +16,15 @@ export default function WordDetail() {
   const card = useLiveQuery(() => (id ? db.cards.get(id) : undefined), [id])
   const logs = useLiveQuery(() => (id ? db.logs.where('wordId').equals(id).reverse().limit(5).toArray() : []), [id])
 
-  if (word === null) return <Empty>単語が見つかりません</Empty>
+  if (word === null)
+    return (
+      <div>
+        <PageHeader title="単語帳" back="/words" />
+        <div className="px-4">
+          <Empty>単語が見つかりません</Empty>
+        </div>
+      </div>
+    )
   if (!word) return <div className="p-8 text-center text-muted">読み込み中…</div>
 
   const r = card && card.reps > 0 ? retrievability(card) : null
@@ -32,7 +40,7 @@ export default function WordDetail() {
         </Card>
 
         <Card>
-          <p className="text-[13px] font-bold text-muted">学習状況</p>
+          <p className="text-[15px] font-extrabold">学習状況</p>
           {card && card.reps > 0 ? (
             <div className="mt-2 grid grid-cols-3 gap-2 text-center">
               <div>
