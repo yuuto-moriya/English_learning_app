@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { CheckCircle2, ChevronRight, Download, Upload, XCircle, RefreshCw, Trash2 } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
+import { CharImage } from '@/components/Guide'
 import { Button, Card, Chip, Segmented, SectionTitle, Toggle } from '@/components/ui'
+import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, useSettings, type Theme } from '@/lib/settings'
 import { listVoices, speak, ttsAvailable } from '@/lib/tts'
 import { getHealth, type Health } from '@/lib/api'
@@ -39,11 +41,25 @@ export default function Settings() {
 
   const doExport = async () => {
     const json = await exportAll()
+    const name = `tetsu-english-backup-${new Date().toISOString().slice(0, 10)}.json`
     const blob = new Blob([json], { type: 'application/json' })
+    // iPhone のホーム画面アプリではダウンロードリンクが使えないことがあるため、共有シート（ファイルに保存）を優先
+    const f = new File([blob], name, { type: 'application/json' })
+    if (navigator.canShare?.({ files: [f] })) {
+      try {
+        await navigator.share({ files: [f], title: 'Tetsu English バックアップ' })
+        setMsg('バックアップを書き出しました')
+        return
+      } catch (e) {
+        if ((e as Error).name === 'AbortError') return
+      }
+    }
+    const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = URL.createObjectURL(blob)
-    a.download = `tetsu-english-backup-${new Date().toISOString().slice(0, 10)}.json`
+    a.href = url
+    a.download = name
     a.click()
+    setTimeout(() => URL.revokeObjectURL(url), 10_000)
     setMsg('バックアップを書き出しました')
   }
 
@@ -53,7 +69,7 @@ export default function Settings() {
       setMsg('バックアップを読み込みました。アプリを再読み込みします…')
       setTimeout(() => location.reload(), 800)
     } catch (e) {
-      setMsg(String((e as Error).message))
+      setMsg(e instanceof SyntaxError ? 'ファイルを読み込めませんでした（JSON形式ではありません）' : String((e as Error).message))
     }
   }
 
@@ -79,7 +95,27 @@ export default function Settings() {
               { value: 'dark', label: 'ダーク' },
             ]}
           />
-          <Toggle label="案内役のテツを表示" checked={s.guide} onChange={(v) => s.set({ guide: v })} />
+          <Toggle label="キャラクターを表示" checked={s.guide} onChange={(v) => s.set({ guide: v })} />
+        </Card>
+
+        <SectionTitle>なかまたち</SectionTitle>
+        <Card className="divide-y divide-line p-0">
+          {CAST_ORDER.map((id) => {
+            const c = CHARACTERS[id]
+            return (
+              <div key={id} className="flex items-center gap-3 px-3 py-2.5">
+                <CharImage who={id} pose="greet" size={60} />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[15px] font-extrabold">
+                    {c.name}
+                    <span className="ml-1.5 text-[11px] font-semibold text-muted">{c.breed}</span>
+                  </p>
+                  <p className={`text-[11px] font-bold ${c.tint}`}>{c.role}</p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-muted">{c.intro}</p>
+                </div>
+              </div>
+            )
+          })}
         </Card>
 
         <SectionTitle>学習</SectionTitle>
@@ -117,7 +153,15 @@ export default function Settings() {
                   ['rail', '保線'],
                 ] as const
               ).map(([k, v]) => (
-                <Chip key={k} active={s.studyCats[k]} onClick={() => s.set({ studyCats: { ...s.studyCats, [k]: !s.studyCats[k] } })}>
+                <Chip
+                  key={k}
+                  active={s.studyCats[k]}
+                  onClick={() => {
+                    const next = { ...s.studyCats, [k]: !s.studyCats[k] }
+                    // すべて外すと学習する単語がなくなるので、最低1つは残す
+                    if (Object.values(next).some(Boolean)) s.set({ studyCats: next })
+                  }}
+                >
                   {v}
                 </Chip>
               ))}
@@ -126,20 +170,20 @@ export default function Settings() {
           <div>
             <p className="text-[15px]">一般・ビジネスの新出語レベル</p>
             <p className="mt-2 text-[12px] text-muted">下限</p>
-            <div className="no-scrollbar mt-1 flex gap-2 overflow-x-auto">
-              {LEVELS.slice(0, 5).map((l) => (
-                <Chip key={l.lv} active={s.minLevel === l.lv} onClick={() => s.set({ minLevel: l.lv, maxLevel: Math.max(s.maxLevel, l.lv) })}>
-                  Lv{l.lv} {l.cefr}
-                </Chip>
-              ))}
+            <div className="mt-1">
+              <Segmented
+                value={String(s.minLevel)}
+                onChange={(v) => s.set({ minLevel: Number(v), maxLevel: Math.max(s.maxLevel, Number(v)) })}
+                options={LEVELS.slice(0, 5).map((l) => ({ value: String(l.lv), label: l.cefr }))}
+              />
             </div>
             <p className="mt-2 text-[12px] text-muted">上限</p>
-            <div className="no-scrollbar mt-1 flex gap-2 overflow-x-auto">
-              {LEVELS.slice(0, 5).map((l) => (
-                <Chip key={l.lv} active={s.maxLevel === l.lv} onClick={() => s.set({ maxLevel: l.lv, minLevel: Math.min(s.minLevel, l.lv) })}>
-                  Lv{l.lv} {l.cefr}
-                </Chip>
-              ))}
+            <div className="mt-1">
+              <Segmented
+                value={String(s.maxLevel)}
+                onChange={(v) => s.set({ maxLevel: Number(v), minLevel: Math.min(s.minLevel, Number(v)) })}
+                options={LEVELS.slice(0, 5).map((l) => ({ value: String(l.lv), label: l.cefr }))}
+              />
             </div>
             <p className="mt-1 text-[11px] text-muted">範囲内の低いレベルから順に出題します。保線用語はこの設定に関係なく出題されます。</p>
           </div>
@@ -177,7 +221,7 @@ export default function Settings() {
                 type="password"
                 autoComplete="off"
                 placeholder="管理者が設定したトークン"
-                className="mt-1 w-full rounded-xl border border-line bg-surface px-3 py-2 text-[16px] outline-none focus:border-brand"
+                className="mt-1 w-full rounded-2xl bg-surface-2 px-3.5 py-2.5 text-[16px] outline-none focus:ring-2 focus:ring-brand"
               />
             </div>
           )}
@@ -218,7 +262,7 @@ export default function Settings() {
             <ChevronRight className="h-5 w-5 text-muted" />
           </Link>
         </Card>
-        <p className="mt-4 text-center text-[11px] text-muted">Tetsu English v0.1.0</p>
+        <p className="mt-4 text-center text-[11px] text-muted">Tetsu English v{__APP_VERSION__}</p>
       </div>
     </div>
   )
@@ -265,7 +309,7 @@ function VoiceSelect({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="min-w-0 flex-1 rounded-xl border border-line bg-surface px-3 py-2 text-[16px]"
+          className="min-w-0 flex-1 rounded-2xl bg-surface-2 px-3 py-2.5 text-[16px] outline-none focus:ring-2 focus:ring-brand"
         >
           <option value="">自動（おすすめ）</option>
           {voices.map((v) => (

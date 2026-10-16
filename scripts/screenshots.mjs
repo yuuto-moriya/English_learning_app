@@ -29,6 +29,18 @@ for (const scheme of ['light', 'dark']) {
   const errors = []
   page.on('pageerror', (e) => errors.push(`${e.message}`))
   page.on('console', (m) => m.type() === 'error' && !m.text().includes('/api/') && errors.push(m.text()))
+  // オンボーディング済みの状態（ホームのヒーローカード）も撮る
+  await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+  await page.evaluate(() => {
+    const raw = localStorage.getItem('tetsu-settings')
+    const s = raw ? JSON.parse(raw) : { state: {}, version: 2 }
+    s.state = { ...s.state, onboarded: true }
+    localStorage.setItem('tetsu-settings', JSON.stringify(s))
+  })
+  await page.reload({ waitUntil: 'networkidle' })
+  await page.waitForTimeout(700)
+  await page.screenshot({ path: `${OUT}/${scheme}-home-onboarded.png`, fullPage: false })
+  await page.evaluate(() => localStorage.removeItem('tetsu-settings'))
   for (const [name, path] of PAGES) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' })
     await page.waitForTimeout(700)

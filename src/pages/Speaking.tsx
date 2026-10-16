@@ -40,10 +40,15 @@ export default function Speaking() {
   const runId = useRef(0)
 
   useEffect(() => {
+    let alive = true
     sentencePool(sources, level, Math.max(1, level - 2)).then((p) => {
+      if (!alive) return
       setPool(p)
       setCur((c) => c ?? shuffle(p)[0] ?? null)
     })
+    return () => {
+      alive = false
+    }
   }, [sources, level])
   useEffect(
     () => () => {
@@ -103,17 +108,18 @@ export default function Speaking() {
           <Guide pose={guide.pose} text={guide.text} size={72} />
         ) : (
           <Guide
+            who="moka"
             pose={mode === 'shadow' ? 'think' : 'cheer'}
             size={72}
             text={
               mode === 'shadow'
-                ? 'イヤホン推奨だワン。5つのステップで、聞こえた音をそのまま再現しよう。'
-                : '強く読む語とリズムをまねするのがコツ。まずお手本を2回聞こう！'
+                ? 'イヤホン推奨だよ♪ 5つのステップで、聞こえた音をそのまま再現しよう。'
+                : '強く読む語とリズムをまねするのがコツだよ♪ まずお手本を2回聞こう！'
             }
           />
         )}
 
-        <Card className="space-y-3">
+        <Card className="space-y-4">
           <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />
           <SpeedPicker rate={rate} onRate={setRate} />
         </Card>

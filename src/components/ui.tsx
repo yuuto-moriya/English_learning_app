@@ -13,8 +13,8 @@ export function Card({ children, className, onClick }: { children: ReactNode; cl
     <div
       onClick={onClick}
       className={cx(
-        'rounded-2xl border border-line bg-surface p-4 shadow-card',
-        onClick && 'cursor-pointer active:scale-[0.99] transition-transform',
+        'rounded-[22px] bg-surface p-4 shadow-card ring-1 ring-ring',
+        onClick && 'cursor-pointer transition-transform active:scale-[0.985]',
         className,
       )}
     >
@@ -33,17 +33,18 @@ export function Button({
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: BtnVariant; block?: boolean }) {
   const styles: Record<BtnVariant, string> = {
-    primary: 'bg-brand text-white shadow-sm active:bg-brand-strong',
-    secondary: 'bg-surface-2 text-ink border border-line',
-    ghost: 'bg-transparent text-ink',
-    danger: 'bg-ng text-white',
-    rail: 'bg-rail text-white',
+    primary:
+      'bg-brand-grad text-white shadow-glow [text-shadow:0_1px_1px_rgb(150_50_0/0.25)] disabled:bg-none disabled:bg-surface-3 disabled:text-muted disabled:shadow-none disabled:[text-shadow:none]',
+    secondary: 'bg-surface-2 text-ink active:bg-surface-3 disabled:opacity-50',
+    ghost: 'bg-transparent text-ink active:bg-surface-2 disabled:opacity-50',
+    danger: 'bg-ng text-white disabled:opacity-50',
+    rail: 'bg-rail text-white disabled:opacity-50',
   }
   return (
     <button
       {...rest}
       className={cx(
-        'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[15px] font-semibold transition active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100',
+        'inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-[15px] font-bold transition active:scale-[0.97] disabled:active:scale-100',
         styles[variant],
         block && 'w-full',
         className,
@@ -69,8 +70,8 @@ export function Chip({
     <button
       onClick={onClick}
       className={cx(
-        'shrink-0 rounded-full border px-3 py-1.5 text-sm font-medium transition',
-        active ? 'border-brand bg-brand text-white' : 'border-line bg-surface text-muted',
+        'shrink-0 whitespace-nowrap rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition active:scale-95',
+        active ? 'bg-ink text-bg shadow-sm' : 'bg-surface text-muted ring-1 ring-line',
         className,
       )}
     >
@@ -89,7 +90,7 @@ export function Segmented<T extends string>({
   onChange: (v: T) => void
 }) {
   return (
-    <div className="flex rounded-xl bg-surface-2 p-1" role="tablist">
+    <div className="flex rounded-2xl bg-surface-2 p-1" role="tablist">
       {options.map((o) => (
         <button
           key={o.value}
@@ -97,8 +98,8 @@ export function Segmented<T extends string>({
           aria-selected={value === o.value}
           onClick={() => onChange(o.value)}
           className={cx(
-            'flex-1 rounded-lg px-2 py-2 text-sm font-semibold transition',
-            value === o.value ? 'bg-surface text-ink shadow-sm' : 'text-muted',
+            'min-h-9 flex-1 rounded-xl px-1.5 py-2 text-[13px] font-bold transition',
+            value === o.value ? 'bg-surface text-ink shadow-card' : 'text-muted',
           )}
         >
           {o.label}
@@ -108,29 +109,51 @@ export function Segmented<T extends string>({
   )
 }
 
-export function ProgressBar({ value, max, className, color = 'bg-brand' }: { value: number; max: number; className?: string; color?: string }) {
+export function ProgressBar({ value, max, className, color = 'bg-brand-grad' }: { value: number; max: number; className?: string; color?: string }) {
   const pct = max ? Math.min(100, (value / max) * 100) : 0
   return (
-    <div className={cx('h-2 overflow-hidden rounded-full bg-surface-2', className)}>
+    <div
+      className={cx('h-2 overflow-hidden rounded-full bg-surface-3', className)}
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={max}
+      aria-valuenow={value}
+    >
       <div className={cx('h-full rounded-full transition-all duration-500', color)} style={{ width: `${pct}%` }} />
     </div>
   )
 }
 
-export function ProgressRing({ value, max, size = 76, children }: { value: number; max: number; size?: number; children?: ReactNode }) {
-  const r = (size - 10) / 2
+export function ProgressRing({
+  value,
+  max,
+  size = 76,
+  children,
+  track = 'var(--surface-3)',
+  stroke = 'var(--brand)',
+  width = 8,
+}: {
+  value: number
+  max: number
+  size?: number
+  children?: ReactNode
+  track?: string
+  stroke?: string
+  width?: number
+}) {
+  const r = (size - width - 2) / 2
   const c = 2 * Math.PI * r
   const pct = max ? Math.min(1, value / max) : 0
   return (
-    <div className="relative" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} stroke="var(--surface-2)" strokeWidth={8} fill="none" />
+    <div className="relative shrink-0" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90" aria-hidden>
+        <circle cx={size / 2} cy={size / 2} r={r} stroke={track} strokeWidth={width} fill="none" />
         <circle
           cx={size / 2}
           cy={size / 2}
           r={r}
-          stroke="var(--brand)"
-          strokeWidth={8}
+          stroke={stroke}
+          strokeWidth={width}
           fill="none"
           strokeLinecap="round"
           strokeDasharray={c}
@@ -151,13 +174,13 @@ const catStyle: Record<Category, string> = {
 const catLabel: Record<Category, string> = { general: '一般', business: 'ビジネス', rail: '保線' }
 
 export function CategoryBadge({ cat }: { cat: Category }) {
-  return <span className={cx('rounded-md px-1.5 py-0.5 text-[11px] font-bold', catStyle[cat])}>{catLabel[cat]}</span>
+  return <span className={cx('rounded-full px-2 py-0.5 text-[11px] font-bold', catStyle[cat])}>{catLabel[cat]}</span>
 }
 
 export function LevelBadge({ lv }: { lv: Level }) {
   const L = LEVELS.find((l) => l.lv === lv)!
   return (
-    <span className="rounded-md bg-surface-2 px-1.5 py-0.5 text-[11px] font-bold text-muted">
+    <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[11px] font-bold text-muted">
       Lv{lv} {L.cefr}
     </span>
   )
@@ -190,8 +213,8 @@ export function SpeakButton({
         setBusy(false)
       }}
       className={cx(
-        'inline-flex shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-strong transition active:scale-95',
-        label ? 'h-auto w-auto gap-1 px-3 py-1.5 text-xs font-bold' : dim,
+        'inline-flex shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-strong transition active:scale-90',
+        label ? 'h-auto min-h-8 w-auto gap-1 px-3 py-1.5 text-xs font-bold' : dim,
         className,
       )}
     >
@@ -212,15 +235,15 @@ export function Marked({ text, className }: { text: string; className?: string }
 
 export function SectionTitle({ children, action }: { children: ReactNode; action?: ReactNode }) {
   return (
-    <div className="mb-2 mt-6 flex items-center justify-between px-1">
-      <h2 className="text-[13px] font-bold uppercase tracking-wider text-muted">{children}</h2>
+    <div className="mb-2.5 mt-7 flex items-center justify-between px-0.5">
+      <h2 className="text-[17px] font-extrabold tracking-tight">{children}</h2>
       {action}
     </div>
   )
 }
 
 export function Empty({ children }: { children: ReactNode }) {
-  return <div className="rounded-2xl border border-dashed border-line p-6 text-center text-sm text-muted">{children}</div>
+  return <div className="rounded-[22px] border border-dashed border-line p-6 text-center text-sm text-muted">{children}</div>
 }
 
 export function Toggle({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label: string }) {
@@ -231,9 +254,9 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={cx('relative h-7 w-12 rounded-full transition', checked ? 'bg-ok' : 'bg-surface-2 border border-line')}
+        className={cx('relative h-[30px] w-[50px] shrink-0 rounded-full transition', checked ? 'bg-ok' : 'bg-surface-3')}
       >
-        <span className={cx('absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-all', checked ? 'left-[22px]' : 'left-0.5')} />
+        <span className={cx('absolute top-[2px] h-[26px] w-[26px] rounded-full bg-white shadow transition-all', checked ? 'left-[22px]' : 'left-[2px]')} />
       </button>
     </label>
   )

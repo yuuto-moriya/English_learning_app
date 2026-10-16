@@ -4,7 +4,9 @@
  * - 間違いを学習の機会として扱う（誤りからの学習・高確信度エラーの訂正）
  * - 学習科学の根拠を短く添えて、やり方への納得感（自律性）を高める（自己決定理論）
  */
-export type Pose = 'greet' | 'happy' | 'celebrate' | 'think' | 'cheer' | 'sleep' | 'safety' | 'oops'
+import type { Pose } from './characters'
+
+export type { Pose }
 
 export interface GuideLine {
   pose: Pose
@@ -30,9 +32,11 @@ export function dueMessage(due: number, newLeft: number): GuideLine {
   return { pose: 'happy', text: `新しい単語があと${newLeft}語。例文ごと覚えると使える英語になるワン。` }
 }
 
-export function correctMessage(streak: number): GuideLine {
+export function correctMessage(streak: number, rail = false): GuideLine {
   if (streak >= 10) return { pose: 'celebrate', text: `${streak}問連続正解！集中力がすごいワン！` }
   if (streak >= 5) return { pose: 'happy', text: pick(['いい調子！思い出す努力が記憶を強くしてるワン。', 'その調子！ちゃんと積み上がってるワン。']) }
+  // 保線用語に正解したときは「指差確認」のポーズで
+  if (rail) return { pose: 'safety', text: pick(['ヨシ！保線用語もバッチリだワン。', '指差確認、ヨシ！正確に覚えてるワン。']) }
   return { pose: 'happy', text: pick(['正解！', 'ナイス！', 'バッチリだワン！', 'よく思い出せたね！']) }
 }
 
@@ -66,21 +70,23 @@ export function streakMessage(streak: number): GuideLine | null {
 }
 
 export const SAFETY_TIPS: string[] = [
-  '線路閉鎖は possession（英）、待避は move to a position of safety。安全の英語は最優先で覚えようワン。',
-  '規格の shall は「しなければならない」、should は「望ましい」。翻訳で混ぜないでね。',
-  '英国の sleeper は米国では tie。英米両方の言い方を知っておくと会議で困らないワン。',
-  '数値の報告は単位まではっきり：twenty millimetres、four hundred metres。',
+  '線路閉鎖は possession（英）、待避は move to a position of safety。安全の英語は最優先で覚えるんだぞ。',
+  '規格の shall は「しなければならない」、should は「望ましい」。翻訳で混ぜないようにな。',
+  '英国の sleeper は米国では tie だ。英米両方の言い方を知っておくと会議で困らないぞ。',
+  '数値の報告は単位まではっきり：twenty millimetres、four hundred metres。これが現場の基本だぞ。',
 ]
 
 export const LEARNING_TIPS: string[] = [
-  '見て覚えるより「思い出す」方が記憶に残るワン（テスト効果）。',
-  '一度にまとめてより、間隔を空けて復習した方が長く覚えていられるワン（分散学習）。',
-  '単語は例文ごと音で覚えると、聞き取りと会話でも使えるワン。',
-  '1回で完璧を目指さなくてOK。何度か出会ううちに定着するワン。',
-  'お手本の音声をまねするシャドーイングは、聞き取り力アップに効果的だワン。',
-  '一般・ビジネス・保線を混ぜて復習すると、使い分けの力がつくワン（インターリーブ）。',
+  '見て覚えるより「思い出す」方が記憶に残るのじゃ（テスト効果）。',
+  '一度にまとめてより、間隔を空けて復習した方が長く覚えていられるのじゃ（分散学習）。',
+  '単語は例文ごと音で覚えると、聞き取りと会話でも使えるのじゃ。',
+  '1回で完璧を目指さなくてよい。何度か出会ううちに定着するのじゃ。',
+  'お手本の音声をまねするシャドーイングは、聞き取り力アップに効果的なのじゃ。',
+  '一般・ビジネス・保線を混ぜて復習すると、使い分けの力がつくのじゃ（インターリーブ）。',
 ]
 
-export function randomTip(): string {
-  return pick([...LEARNING_TIPS, ...SAFETY_TIPS])
+/** ホームのワンポイント。学習法はユキ先生、保線の安全・英語はキナコが話す */
+export function randomTip(): { who: 'yuki' | 'kinako'; text: string } {
+  const all = [...LEARNING_TIPS.map((text) => ({ who: 'yuki' as const, text })), ...SAFETY_TIPS.map((text) => ({ who: 'kinako' as const, text }))]
+  return pick(all)
 }

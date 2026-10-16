@@ -20,8 +20,12 @@ export interface Item {
   word: Word
   type: QType
   isNew: boolean
-  retry?: boolean
+  /** セッション内の再出題の回数（1回目の再出題で1） */
+  retry?: number
 }
+
+/** 同じ語をセッション内で再出題する上限。何度も間違えたときに問題数が際限なく増えないようにする */
+export const MAX_RETRIES = 2
 
 export function chooseType(row: CardRow | undefined, word: Word, seed: number): QType {
   if (!row || row.reps < 2 || row.state === State.Learning || row.state === State.Relearning) return 'mc'
@@ -96,11 +100,13 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
   return out
 }
 
-/** 不正解の語を数問後に再挿入（セッション内の繰り返し想起） */
+/** 不正解の語を数問後に再挿入（セッション内の繰り返し想起）。上限（MAX_RETRIES）に達したら入れない */
 export function reinsert(queue: Item[], index: number, item: Item, gap = 4): Item[] {
+  const n = (item.retry ?? 0) + 1
+  if (n > MAX_RETRIES) return queue
   const q = queue.slice()
   const pos = Math.min(q.length, index + 1 + gap)
-  q.splice(pos, 0, { ...item, key: `${item.key}-r${index}`, type: item.type === 'flip' ? 'flip' : 'mc', retry: true })
+  q.splice(pos, 0, { ...item, key: `${item.key}-r${index}`, type: item.type === 'flip' ? 'flip' : 'mc', retry: n })
   return q
 }
 

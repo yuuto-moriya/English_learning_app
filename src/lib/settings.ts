@@ -62,6 +62,8 @@ export function applyTheme(theme: Theme) {
   const dark =
     theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
   document.documentElement.classList.toggle('dark', dark)
+  // ステータスバー（Safari のツールバー）の色を背景色に合わせる
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0a0d13' : '#f4f5f8')
   try {
     localStorage.setItem('theme', theme)
   } catch {

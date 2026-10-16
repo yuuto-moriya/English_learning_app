@@ -2,7 +2,7 @@
 goods|n|商品；貨物|*Goods* trains run mainly at night.|貨物列車は主に夜間に運行する。
 inventory|n|在庫（目録）|We keep an *inventory* of all spare parts.|すべての予備部品の在庫目録を管理している。
 transaction|n|取引|Each *transaction* is recorded in the system.|各取引はシステムに記録される。
-lease|n|リース；賃貸借契約|We *lease* the machines instead of buying them.|機械は購入せずにリースしている。
+lease|n|リース；賃貸借契約|We signed a five-year *lease* for the machines.|機械について5年間のリース契約を結んだ。
 distribution|n|流通；配布；分布|The *distribution* of defects is shown on the map.|欠陥の分布が地図に示されている。
 premium|n|保険料；割増金|The insurance *premium* went up this year.|今年は保険料が上がった。
 client|n|顧客；依頼人|We have a meeting with a *client* at two.|2時に顧客と打ち合わせがある。
