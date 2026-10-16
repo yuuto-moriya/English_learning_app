@@ -37,4 +37,4 @@ Playwright の Chromium は `CHROMIUM_PATH` で指定できる。
 - 表示文言は日本語。E2E が使う文言を変えたら `scripts/e2e-flow.mjs` も直す
 - iPhone 幅（390px）、safe-area、ダークモード、standalone 表示を壊さない。入力欄は 16px 以上
 - API キー・トークンをコミットしない
-- 作業は `main` から切ったブランチで行い、PR にする（`main` への push は本番デプロイになる）
+- ブランチ運用: `main` = 本番、`staging` = 検証環境（プレビュー URL に自動デプロイ）。作業は **`staging` から切ったブランチ** で行い、PR は `staging` 向けに出す。確認後、`staging` → `main` の PR で本番に反映する（`main` への push は本番デプロイになる）。`main` へ直接 push・PR しない
