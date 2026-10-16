@@ -38,7 +38,7 @@ Tetsu English の学習機能は、認知心理学・第二言語習得研究で
 **文献**
 
 - Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. Psychological Bulletin, 132(3), 354–380.
-- Kim, S. K., & Webb, S. (2022). The effects of spaced practice on second language learning: A meta-analysis. Language Learning. <https://doi.org/10.1111/lang.12479>
+- Kim, S. K., & Webb, S. (2022). The effects of spaced practice on second language learning: A meta-analysis. Language Learning, 72(1), 269–319. <https://doi.org/10.1111/lang.12479>
 - Rogers, J., Nakata, T., & Chiu, M. M. (2025). Optimizing distributed practice online: A conceptual replication of Cepeda et al. (2009). Studies in Second Language Acquisition, 47(1), 417–439. <https://doi.org/10.1017/S0272263124000706>
 
 <a id="2-fsrs"></a>
@@ -112,7 +112,7 @@ ts-fsrsを採用。目標保持率（85/90/95%）を設定でき、各評価ボ�
 **文献**
 
 - Rohrer, D., & Taylor, K. (2007). The shuffling of mathematics problems improves learning. Instructional Science, 35(6), 481–498.
-- Nakata, T., & Suzuki, Y. (2019). Mixing grammar exercises facilitates long-term retention: Effects of blocking, interleaving, and increasing practice. The Modern Language Journal, 103, 629–647. <https://doi.org/10.1111/modl.12581>
+- Nakata, T., & Suzuki, Y. (2019). Mixing grammar exercises facilitates long-term retention: Effects of blocking, interleaving, and increasing practice. The Modern Language Journal, 103(3), 629–647. <https://doi.org/10.1111/modl.12581>
 
 <a id="6-wordlists"></a>
 ## 6. 高頻度語から学ぶ（語彙リスト）
@@ -210,9 +210,9 @@ Azure Speechの発音評価で、文・単語・音素ごとにスコアと誤�
 
 **アプリでの実装**
 
-コーギーの「テツ」が場面に応じて案内・励ましを行います。正解時は努力を、不正解時は「思い出そうとしたこと」を肯定します。
+コーギーの「テツ」が場面に応じて案内・励ましを行います。正解時は努力を、不正解時は「思い出そうとしたこと」を肯定します。リスニング・発音はインコの「ピコ」、ビジネスはペンギンの「ペンタ」、保線はビーバーの「ボルト」、学習法の解説はフクロウの「ホー先生」が担当します。
 
-実装箇所: `src/lib/guide.ts` / `src/components/Guide.tsx`
+実装箇所: `src/lib/guide.ts` / `src/lib/characters.ts` / `src/components/Guide.tsx`
 
 **文献**
 

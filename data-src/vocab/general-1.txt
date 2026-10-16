@@ -330,7 +330,7 @@ probably|adv|たぶん|It will *probably* rain tomorrow.|明日はたぶん雨�
 suggest|v|提案する|I *suggest* we take a break.|休憩をとることを提案します。
 past|n|過去；（前置詞）〜を過ぎて|It's ten *past* seven.|7時10分です。
 power|n|力；電力；権力|There was a *power* failure last night.|昨夜停電があった。
-test|n|試験；検査|We will *test* the new system tomorrow.|明日新システムを試験します。
+test|n|試験；検査；（動詞）試す・検査する|We will *test* the new system tomorrow.|明日新システムを試験します。
 visit|v|訪れる|I want to *visit* Kyoto.|京都を訪れたい。
 center|n|中心；センター|The hotel is in the *center* of the city.|そのホテルは市の中心部にある。
 grow|v|成長する；育てる|Children *grow* so fast.|子どもは成長が早い。
