@@ -5,6 +5,10 @@ import { getSettings } from './settings'
 export interface Health {
   translator: boolean
   speech: boolean
+  /** 高品質音声（Azure ニューラル音声） */
+  tts?: boolean
+  /** リアルタイムの音声認識・音声翻訳（同時通訳） */
+  realtime?: boolean
   tokenRequired: boolean
 }
 
@@ -15,6 +19,16 @@ function headers(extra: Record<string, string> = {}) {
   const token = getSettings().apiToken
   if (token) h['X-App-Token'] = token
   return h
+}
+
+export const apiHeaders = () => headers()
+
+/** 読み上げ音声の URL（同じ文・声・速度なら同じ URL になり、CDN と端末のキャッシュが効く） */
+/** ph: 単語の発音の指定（IPA。品詞で読みが変わる語だけ） */
+export function ttsUrl(text: string, voice: string, ratePct: number, ph?: string): string {
+  const q = new URLSearchParams({ v: voice, r: String(ratePct), t: text })
+  if (ph) q.set('p', ph)
+  return `/api/tts?${q}`
 }
 
 export class ApiError extends Error {
@@ -96,6 +110,17 @@ export async function assessPronunciation(wav: Blob, reference: string, lang = '
   })
   await ensureOk(res)
   return { ...((await res.json()) as Omit<PronResult, 'engine'>), engine: 'azure' }
+}
+
+/** 同時通訳・リアルタイム音声入力用の一時トークン（有効10分。8分は使い回す） */
+let tokenCache: { at: number; token: string; region: string } | null = null
+export async function getSpeechToken(force = false): Promise<{ token: string; region: string }> {
+  if (!force && tokenCache && Date.now() - tokenCache.at < 8 * 60_000) return tokenCache
+  const res = await fetch('/api/speech-token', { headers: headers() })
+  await ensureOk(res)
+  const j = (await res.json()) as { token: string; region: string }
+  tokenCache = { at: Date.now(), ...j }
+  return j
 }
 
 export async function transcribe(wav: Blob, lang: 'en-US' | 'ja-JP'): Promise<string> {

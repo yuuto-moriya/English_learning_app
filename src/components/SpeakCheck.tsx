@@ -266,7 +266,7 @@ export function SpeakCheck({
         {state === 'recording' ? (
           <button
             onClick={stop}
-            className="relative flex h-20 w-20 items-center justify-center rounded-full bg-ng text-white shadow-lg active:scale-95"
+            className="relative flex h-[76px] w-[76px] items-center justify-center rounded-full bg-ng text-white active:scale-95"
             aria-label="録音停止"
           >
             {/* 入力音量に合わせて広がる輪（animate-ping は transform を上書きするので、音量表示とは別の要素にする） */}
@@ -274,30 +274,29 @@ export function SpeakCheck({
               className="absolute inset-0 rounded-full bg-ng/30 transition-transform duration-100"
               style={{ transform: `scale(${1 + Math.min(1, level) * 0.5})` }}
             />
-            <span className="absolute inset-0 animate-ping rounded-full bg-ng/25" />
-            <Square className="relative h-8 w-8 fill-current" />
+            <Square className="relative h-7 w-7 fill-current" />
           </button>
         ) : (
           <button
             onClick={start}
             disabled={state !== 'idle'}
-            className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-grad text-white shadow-glow transition active:scale-95 disabled:opacity-60"
+            className="flex h-[76px] w-[76px] items-center justify-center rounded-full bg-brand text-on-brand transition active:scale-95 disabled:opacity-60"
             aria-label="録音開始"
           >
-            {state === 'idle' ? <Mic className="h-9 w-9" /> : <Loader2 className="h-8 w-8 animate-spin" />}
+            {state === 'idle' ? <Mic className="h-8 w-8" strokeWidth={1.8} /> : <Loader2 className="h-7 w-7 animate-spin" />}
           </button>
         )}
         {rec && state === 'idle' && (
           <button
             onClick={() => playUrl(rec.url)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-2 text-ink"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-line-strong text-ink active:scale-95"
             aria-label="自分の録音を再生"
           >
-            <Play className="h-5 w-5" />
+            <Play className="h-5 w-5" strokeWidth={1.8} />
           </button>
         )}
       </div>
-      <p className="text-center text-xs text-muted">
+      <p className="text-center text-[12px] text-muted">
         {state === 'recording'
           ? '話し終わったら停止ボタン'
           : state === 'scoring'
@@ -312,16 +311,20 @@ export function SpeakCheck({
           {ENGINE_LABEL[engine]}
         </p>
       )}
-      {error && <p className="rounded-2xl bg-ng/10 p-3 text-sm text-ng">{error}</p>}
+      {error && <p className="rounded-[14px] bg-ng-soft p-3 text-[13px] text-ng">{error}</p>}
       {engine === 'none' && rec && !result && (
-        <Card className="text-sm">
-          <p>録音を再生して、お手本と比べてみよう。リズム・強く読む語・語尾の音に注目！</p>
-          <div className="mt-2 flex gap-2">
-            <Button variant="secondary" onClick={() => speak(target, { accent })}>お手本</Button>
-            <Button variant="secondary" onClick={() => playUrl(rec.url)}>自分の声</Button>
+        <div className="rounded-[14px] bg-surface-2 p-3.5 text-[13.5px]">
+          <p className="leading-relaxed">録音を再生して、お手本と比べてみよう。リズム・強く読む語・語尾の音に注目！</p>
+          <div className="mt-3 flex gap-2">
+            <Button variant="outline" size="sm" onClick={() => speak(target, { accent })}>
+              お手本
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => playUrl(rec.url)}>
+              自分の声
+            </Button>
           </div>
-          <p className="mt-2 text-[11px] text-muted">設定画面でAzure Speechを有効にすると自動採点できます。</p>
-        </Card>
+          <p className="mt-2 text-[11.5px] text-muted">サーバーに Azure Speech を設定すると自動で採点できます。</p>
+        </div>
       )}
       {result && <PronResultView result={result} accent={accent} />}
     </div>
@@ -339,11 +342,11 @@ export function PronResultView({ result, accent }: { result: PronResult; accent:
     ['抑揚・リズム', result.prosody],
   ]
   return (
-    <Card className="animate-pop">
-      <div className="flex items-center gap-4">
+    <Card className="animate-rise">
+      <div className="flex items-center gap-5">
         <div className="text-center">
-          <p className={cx('text-4xl font-extrabold', color(result.pron))}>{Math.round(result.pron)}</p>
-          <p className="text-[11px] text-muted">総合</p>
+          <p className={cx('text-[40px] font-semibold leading-none tabular-nums', color(result.pron))}>{Math.round(result.pron)}</p>
+          <p className="mt-1.5 text-[11.5px] text-muted">総合</p>
         </div>
         <div className="flex-1 space-y-1.5">
           {rows
@@ -352,7 +355,7 @@ export function PronResultView({ result, accent }: { result: PronResult; accent:
               <div key={k} className="flex items-center gap-2">
                 <span className="w-20 text-[11px] text-muted">{k}</span>
                 <ProgressBar value={v ?? 0} max={100} className="flex-1" color={bar(v ?? 0)} />
-                <span className="w-7 text-right text-[11px] font-bold">{Math.round(v ?? 0)}</span>
+                <span className="w-7 text-right text-[11.5px] font-semibold tabular-nums">{Math.round(v ?? 0)}</span>
               </div>
             ))}
         </div>
@@ -367,7 +370,7 @@ export function PronResultView({ result, accent }: { result: PronResult; accent:
               speak(w.word, { accent })
             }}
             className={cx(
-              'rounded-xl border px-2 py-1 text-[14px] font-semibold',
+              'en rounded-[10px] border px-2 py-0.5 text-[17px] font-medium',
               w.error === 'Omission' ? 'border-line text-muted line-through' : w.error === 'Insertion' ? 'border-dashed border-line text-muted' : 'border-line',
               w.error !== 'Omission' && color(w.accuracy),
             )}
@@ -377,18 +380,18 @@ export function PronResultView({ result, accent }: { result: PronResult; accent:
         ))}
       </div>
       {sel && sel.phonemes.length > 0 && (
-        <div className="mt-3 rounded-2xl bg-surface-2 p-3">
-          <p className="text-[12px] font-bold text-muted">「{sel.word}」の音素ごとの評価</p>
+        <div className="mt-3 rounded-[14px] bg-surface-2 p-3">
+          <p className="text-[12px] font-semibold text-muted">「{sel.word}」の音ごとの評価</p>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {sel.phonemes.map((p, i) => (
-              <span key={i} className={cx('ipa rounded-md bg-surface px-1.5 py-0.5 text-[13px] font-bold', color(p.score))}>
+              <span key={i} className={cx('ipa rounded-md bg-surface px-1.5 py-0.5 text-[14px] font-semibold', color(p.score))}>
                 {p.p} <span className="text-[10px] opacity-70">{Math.round(p.score)}</span>
               </span>
             ))}
           </div>
         </div>
       )}
-      <p className="mt-3 text-[11px] text-muted">単語をタップすると音声と音素ごとの評価を確認できます。緑≧80、黄≧60、赤＜60。</p>
+      <p className="mt-3 text-[11.5px] leading-relaxed text-muted">単語をタップすると、お手本の音声と音ごとの評価を確認できます。緑 80以上・黄 60以上・赤 60未満。</p>
     </Card>
   )
 }

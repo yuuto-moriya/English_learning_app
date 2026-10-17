@@ -3,20 +3,20 @@ vacation|n|休暇|I'm on *vacation* next week.|来週は休暇中です。
 memo|n|社内連絡；メモ|Please read the *memo* from HR.|人事部からの連絡を読んでください。
 reservation|n|予約|I have a *reservation* under the name Moriya.|守屋の名前で予約しています。
 refund|n|払い戻し|Can I get a *refund* for this ticket?|この切符の払い戻しはできますか。
-workshop|n|研修会；作業場|We held a safety *workshop* yesterday.|昨日安全研修会を開いた。
+workshop|n|研修会；作業場|We held a sales *workshop* yesterday.|昨日、営業研修会を開いた。
 downtown|adv|中心街へ|Let's go *downtown* for lunch.|昼食は中心街へ行こう。
 deadline|n|締め切り|The *deadline* for the report is Friday.|報告書の締め切りは金曜日です。
 brochure|n|パンフレット|Please take a *brochure*.|パンフレットをお持ちください。
 noon|n|正午|The meeting ends at *noon*.|会議は正午に終わります。
 clerk|n|事務員；店員|Ask the *clerk* at the counter.|窓口の係員にお尋ねください。
 enclose|v|同封する|I have *enclosed* a copy of the invoice.|請求書の写しを同封しました。
-seminar|n|セミナー|I attended a *seminar* on asset management.|アセットマネジメントのセミナーに参加した。
+seminar|n|セミナー|I attended a *seminar* on digital marketing.|デジタルマーケティングのセミナーに参加した。
 technician|n|技術者；技能員|A *technician* will fix the machine.|技術者が機械を修理します。
 traveler|n|旅行者|Business *travelers* often use this lounge.|出張者はよくこのラウンジを利用する。
 caller|n|電話をかけてきた人|The *caller* didn't leave a message.|電話の相手は伝言を残さなかった。
 subway|n|（米）地下鉄|Take the *subway* to the airport.|地下鉄で空港へ行ってください。
 luggage|n|手荷物|Please keep your *luggage* with you.|お荷物はお手元に置いてください。
-shipment|n|発送（品）|The *shipment* of rails arrived today.|レールの発送品が今日届いた。
+shipment|n|発送（品）|The *shipment* of new laptops arrived today.|新しいノートパソコンの荷物が今日届いた。
 waiter|n|ウェイター|The *waiter* brought the menu.|ウェイターがメニューを持ってきた。
 cafeteria|n|社員食堂；カフェテリア|Let's have lunch in the *cafeteria*.|社員食堂で昼食にしよう。
 chef|n|料理長|The *chef* recommends the fish.|料理長のおすすめは魚料理です。
@@ -25,21 +25,21 @@ reception|n|受付；歓迎会|Please check in at *reception*.|受付で手続�
 correctly|adv|正しく|Make sure the form is filled in *correctly*.|用紙が正しく記入されているか確認してください。
 notify|v|通知する|Please *notify* us of any changes.|変更があればお知らせください。
 preview|n|下見；プレビュー|Click *preview* to check the layout.|プレビューをクリックしてレイアウトを確認してください。
-attendant|n|係員；添乗員|Ask the station *attendant* for help.|駅係員に助けを求めてください。
+attendant|n|係員；添乗員|The flight *attendant* brought me a blanket.|客室乗務員が毛布を持ってきてくれた。
 convenient|adj|都合のよい；便利な|What time is *convenient* for you?|何時がご都合よろしいですか。
-outdoor|adj|屋外の|Track work is *outdoor* work.|保線作業は屋外の仕事だ。
+outdoor|adj|屋外の|The hotel has an *outdoor* pool.|そのホテルには屋外プールがある。
 suitcase|n|スーツケース|My *suitcase* is too heavy.|スーツケースが重すぎる。
-destination|n|目的地；行き先|Check the *destination* on the front of the train.|列車の前面に表示された行き先を確認してください。
+destination|n|目的地；行き先|What is your final *destination*?|最終目的地はどちらですか。
 occupation|n|職業|Please write your *occupation* here.|ここにご職業を書いてください。
 postpone|v|延期する|The meeting was *postponed* until Monday.|会議は月曜日に延期された。
-umbrella|n|傘|Don't forget your *umbrella*.|傘を忘れないでください。
+umbrella|n|傘|I left my *umbrella* on the train.|電車に傘を忘れた。
 cellphone|n|携帯電話|Please switch your *cellphone* to silent mode.|携帯電話をマナーモードにしてください。
-compact|adj|小型の|This is a *compact* measuring device.|これは小型の測定機器だ。
+compact|adj|小型の|This *compact* camera fits in your pocket.|この小型カメラはポケットに入る。
 receptionist|n|受付係|The *receptionist* will give you a visitor pass.|受付係が来訪者パスをお渡しします。
 dentist|n|歯科医|I have to see the *dentist*.|歯医者に行かなければならない。
-depart|v|出発する|The train *departs* from platform 2.|列車は2番線から発車します。
+depart|v|出発する|Our flight *departs* at 10:30.|私たちの便は10時30分に出発する。
 reschedule|v|予定を変更する|Can we *reschedule* the meeting?|会議の日程を変更できますか。
-renovation|n|改修|The station is closed for *renovation*.|駅は改修工事のため閉鎖されている。
+renovation|n|改修|The museum is closed for *renovation*.|博物館は改修工事のため閉館している。
 dine|v|食事をする|We *dined* with the client last night.|昨夜顧客と夕食をとった。
 passport|n|旅券|Please show your *passport*.|パスポートを提示してください。
 coworker|n|同僚|My *coworkers* are very helpful.|同僚はとても協力的だ。
@@ -50,7 +50,7 @@ keyboard|n|キーボード|The *keyboard* is not working.|キーボードが動�
 admission|n|入場（料）；入学|*Admission* is free for children.|子どもは入場無料です。
 laptop|n|ノートパソコン|I take my *laptop* to every meeting.|すべての会議にノートパソコンを持参する。
 underline|v|下線を引く；強調する|*Underline* the key words.|重要な語に下線を引きなさい。
-electrical|adj|電気の|There is an *electrical* fault in the signal box.|信号扱所で電気故障がある。
+electrical|adj|電気の|There is an *electrical* problem in the meeting room.|会議室で電気系統の不具合がある。
 airplane|n|飛行機|The *airplane* was full.|飛行機は満席だった。
 attendee|n|出席者|There were 50 *attendees* at the seminar.|セミナーには50人の出席者がいた。
 cruise|n|船旅|They went on a *cruise*.|彼らは船旅に出かけた。
@@ -58,7 +58,7 @@ birthday|n|誕生日|Happy *birthday*!|誕生日おめでとう！
 comprehension|n|理解（力）|This test checks your listening *comprehension*.|このテストはリスニングの理解力を測る。
 mall|n|ショッピングモール|There is a *mall* next to the station.|駅の隣にショッピングモールがある。
 medication|n|薬（物療法）|Are you taking any *medication*?|何か薬を服用していますか。
-recycle|v|再利用する|Old rails are *recycled* into new steel.|古いレールは新しい鋼に再利用される。
+recycle|v|再利用する|We *recycle* paper and plastic bottles.|紙とペットボトルをリサイクルしている。
 sandwich|n|サンドイッチ|I'll have a *sandwich* for lunch.|昼食はサンドイッチにする。
 fitness|n|健康；フィットネス|The hotel has a *fitness* center.|そのホテルにはフィットネスセンターがある。
 inconvenience|n|不便|We apologize for any *inconvenience*.|ご不便をおかけしますことをおわびします。
@@ -66,25 +66,25 @@ banquet|n|宴会|The *banquet* will be held at the hotel.|宴会はホテルで�
 closet|n|クローゼット|Hang your coat in the *closet*.|コートはクローゼットに掛けてください。
 folder|n|フォルダー|Save the file in the shared *folder*.|ファイルを共有フォルダーに保存してください。
 photocopy|n|コピー|Please make a *photocopy* of this page.|このページをコピーしてください。
-renovate|v|改修する|They *renovated* the old station building.|彼らは古い駅舎を改修した。
+renovate|v|改修する|They *renovated* the old office building.|彼らは古いオフィスビルを改修した。
 sunny|adj|晴れた|It will be *sunny* tomorrow.|明日は晴れるでしょう。
 calendar|n|カレンダー；予定表|I'll put it in my *calendar*.|予定表に入れておきます。
 donation|n|寄付|Thank you for your *donation*.|ご寄付ありがとうございます。
-shortly|adv|まもなく|The train will arrive *shortly*.|列車はまもなく到着します。
+shortly|adv|まもなく|The manager will be with you *shortly*.|担当者がまもなく参ります。
 snack|n|軽食|Let's have a *snack*.|軽く何か食べよう。
 copier|n|コピー機|The *copier* is out of toner.|コピー機のトナーが切れている。
 beverage|n|飲料|Food and *beverages* are not allowed.|飲食物の持ち込みは禁止です。
 hungry|adj|空腹の|I'm *hungry*. Let's eat.|おなかがすいた。食べよう。
 recipient|n|受取人|Check the *recipient* before you send the email.|メールを送る前に宛先を確認してください。
 aisle|n|通路|Would you like a window or an *aisle* seat?|窓側と通路側、どちらの席がよろしいですか。
-inspect|v|点検する；検査する|We *inspect* the points every morning.|毎朝分岐器を点検している。
+inspect|v|点検する；検査する|Please *inspect* the goods when they arrive.|商品が届いたら検品してください。
 mechanic|n|整備士|The *mechanic* checked the engine.|整備士がエンジンを点検した。
 soccer|n|サッカー|My son plays *soccer*.|息子はサッカーをしている。
 sweater|n|セーター|Wear a *sweater* under your jacket.|上着の下にセーターを着なさい。
 ingredient|n|材料；成分|What are the *ingredients* of this dish?|この料理の材料は何ですか。
 rewrite|v|書き直す|Please *rewrite* this paragraph.|この段落を書き直してください。
 itinerary|n|旅程（表）|I'll send you the *itinerary* for the trip.|出張の旅程表をお送りします。
-architect|n|建築家|The *architect* designed the new station.|その建築家が新駅を設計した。
+architect|n|建築家|The *architect* designed the new office building.|その建築家が新しいオフィスビルを設計した。
 convenience|n|便利さ|Please reply at your earliest *convenience*.|ご都合がつき次第ご返信ください。
 indoor|adj|屋内の|The training is held at an *indoor* facility.|研修は屋内施設で行われる。
 baggage|n|手荷物|Where can I pick up my *baggage*?|手荷物はどこで受け取れますか。
@@ -95,10 +95,10 @@ lab|n|研究室；実験室|The samples are in the *lab*.|試料は検査室に�
 submission|n|提出（物）|The *submission* deadline is May 1.|提出期限は5月1日だ。
 bulletin|n|掲示；会報|Check the *bulletin* board for updates.|最新情報は掲示板を確認してください。
 gym|n|ジム|I go to the *gym* after work.|仕事の後にジムへ行く。
-highway|n|幹線道路|The *highway* runs parallel to the railway.|幹線道路は鉄道と並行している。
-jewelry|n|宝石類|Remove *jewelry* before using the machine.|機械を使う前に装身具を外してください。
+highway|n|幹線道路|There was heavy traffic on the *highway*.|幹線道路は交通量が多かった。
+jewelry|n|宝石類|This shop sells handmade *jewelry*.|この店は手作りのアクセサリーを売っている。
 overtime|n|残業|I worked *overtime* last night.|昨夜は残業した。
-battery|n|電池；バッテリー|Charge the radio *battery* before the shift.|勤務前に無線機のバッテリーを充電してください。
+battery|n|電池；バッテリー|My laptop *battery* is almost dead.|ノートパソコンのバッテリーがもうすぐ切れる。
 donate|v|寄付する|We *donated* old computers to a school.|古いパソコンを学校に寄付した。
 skim|v|ざっと読む|*Skim* the report before the meeting.|会議の前に報告書にざっと目を通しておいてください。
 briefcase|n|書類かばん|He left his *briefcase* on the train.|彼は電車に書類かばんを忘れた。
@@ -113,21 +113,21 @@ cartridge|n|カートリッジ|The printer needs a new ink *cartridge*.|プリ�
 cloudy|adj|曇った|It's *cloudy* today.|今日は曇りだ。
 photographer|n|写真家|A *photographer* took pictures of the ceremony.|写真家が式典の写真を撮った。
 shopper|n|買い物客|The mall is full of *shoppers*.|モールは買い物客でいっぱいだ。
-tag|n|札；タグ|Attach a *tag* to each defective part.|不良部品には札を付けてください。
+tag|n|札；タグ|Attach a name *tag* to your bag.|かばんに名札を付けてください。
 announcer|n|アナウンサー|The *announcer* read the news.|アナウンサーがニュースを読んだ。
 password|n|パスワード|Don't share your *password*.|パスワードを他人に教えないでください。
 stadium|n|競技場|The *stadium* holds 50,000 people.|その競技場は5万人収容できる。
-terminal|n|終点；ターミナル；端末|This train terminates at Tokyo, the *terminal* station.|この列車は終着駅の東京止まりです。
+terminal|n|終点；ターミナル；端末|Our flight leaves from *Terminal* 2.|私たちの便は第2ターミナルから出発する。
 weekday|n|平日|The office is open on *weekdays*.|事務所は平日に開いている。
-cart|n|カート|Push the *cart* to the depot.|カートを基地まで押していってください。
+cart|n|カート|You can use a free luggage *cart*.|無料の荷物用カートを使えます。
 delicious|adj|おいしい|This curry is *delicious*.|このカレーはおいしい。
 ink|n|インク|Sign in black *ink*.|黒インクで署名してください。
-supervise|v|監督する|She *supervises* the night crew.|彼女は夜間作業班を監督している。
+supervise|v|監督する|She *supervises* the new staff.|彼女は新人スタッフを監督している。
 waitress|n|ウェイトレス|The *waitress* took our order.|ウェイトレスが注文を取った。
 cleaner|n|清掃員；洗剤|The *cleaners* come at night.|清掃員は夜に来る。
 shuttle|n|シャトル便|A *shuttle* bus runs to the airport.|空港までシャトルバスが運行している。
 stationery|n|文房具|Order *stationery* from the office manager.|文房具は総務担当者に注文してください。
-subscribe|v|購読する；申し込む|I *subscribe* to a railway magazine.|鉄道雑誌を定期購読している。
+subscribe|v|購読する；申し込む|I *subscribe* to a business magazine.|ビジネス誌を定期購読している。
 alike|adj|似ている|The two reports look *alike*.|2つの報告書はよく似ている。
 flavor|n|風味；味|What *flavor* do you want?|何味がいいですか。
 picnic|n|ピクニック|Let's have a *picnic* in the park.|公園でピクニックをしよう。
@@ -135,28 +135,28 @@ recipe|n|作り方；レシピ|Can you give me the *recipe*?|作り方を教え�
 refreshment|n|軽い飲食物|*Refreshments* will be served after the meeting.|会議後に軽食をご用意しています。
 sofa|n|ソファー|Please have a seat on the *sofa*.|ソファーにおかけください。
 accommodate|v|収容する；対応する|The hall can *accommodate* 300 people.|ホールは300人を収容できる。
-affordable|adj|手頃な価格の|We want *affordable* fares for everyone.|誰もが利用しやすい運賃を目指している。
+affordable|adj|手頃な価格の|We offer *affordable* prices for students.|学生向けに手頃な価格を提供しています。
 annoy|v|いらいらさせる|The noise *annoys* the neighbors.|その騒音は近所の人をいらだたせている。
 commute|v|通勤する；（名詞）通勤|My *commute* takes an hour.|通勤に1時間かかる。
 paperwork|n|書類仕事|I have a lot of *paperwork* to do.|書類仕事がたくさんある。
 quit|v|やめる|He *quit* his job last month.|彼は先月仕事を辞めた。
 flu|n|インフルエンザ|She is off work with the *flu*.|彼女はインフルエンザで休んでいる。
 captain|n|機長；船長；主将|This is your *captain* speaking.|こちらは機長です。
-installation|n|設置；取り付け|The *installation* of the new signals took a week.|新しい信号の設置には1週間かかった。
+installation|n|設置；取り付け|The *installation* of the new software took an hour.|新しいソフトウェアのインストールに1時間かかった。
 trainer|n|指導者；トレーナー|Our *trainer* explained the procedure.|指導員が手順を説明した。
 complimentary|adj|無料の；賞賛の|Breakfast is *complimentary*.|朝食は無料です。
-hike|n|ハイキング；値上げ|There will be a fare *hike* in April.|4月に運賃の値上げがある。
-midnight|n|午前0時|The work starts at *midnight*.|作業は午前0時に始まる。
+hike|n|ハイキング；値上げ|There will be a price *hike* in April.|4月に値上げがある。
+midnight|n|午前0時|The store is open until *midnight*.|その店は深夜0時まで営業している。
 rainy|adj|雨の|It's the *rainy* season.|今は梅雨だ。
 relocate|v|移転する|The office will *relocate* to Osaka.|事務所は大阪に移転する。
-trainee|n|研修生|The *trainees* are learning to use the gauge.|研修生はゲージの使い方を学んでいる。
+trainee|n|研修生|The *trainees* are learning to use the new system.|研修生は新しいシステムの使い方を学んでいる。
 unhappy|adj|不満な|Customers were *unhappy* with the delay.|顧客は遅れに不満だった。
-verify|v|検証する；確認する|Please *verify* the measurements.|測定値を検証してください。
+verify|v|検証する；確認する|Please *verify* your email address.|メールアドレスを確認してください。
 courier|n|宅配便業者|I'll send the documents by *courier*.|書類を宅配便で送ります。
 incomplete|adj|不完全な|The application is *incomplete*.|申込書に不備がある。
 questionnaire|n|アンケート|Please fill in this *questionnaire*.|このアンケートにご記入ください。
 dock|n|波止場；荷積み場|The truck is at the loading *dock*.|トラックは荷積み場にいる。
-lamp|n|ランプ；照明|Use a *lamp* when working at night.|夜間作業時は照明を使ってください。
+lamp|n|ランプ；照明|Turn on the desk *lamp*.|机のライトをつけてください。
 lately|adv|最近|Have you been busy *lately*?|最近忙しいですか。
 presenter|n|発表者|The *presenter* answered our questions.|発表者が私たちの質問に答えた。
 seldom|adv|めったに〜ない|He *seldom* takes a day off.|彼はめったに休まない。
@@ -168,17 +168,17 @@ bookstore|n|書店|There is a *bookstore* in the station.|駅の中に書店が�
 cater|v|料理を提供する；応える|The hotel will *cater* the event.|ホテルがそのイベントの料理を提供する。
 dental|adj|歯の|I have a *dental* appointment.|歯医者の予約がある。
 lounge|n|ラウンジ|Wait in the *lounge*.|ラウンジでお待ちください。
-painter|n|塗装工；画家|The *painters* are working on the bridge.|塗装工が橋で作業している。
+painter|n|塗装工；画家|The *painters* are working on the office walls.|塗装工がオフィスの壁を塗っている。
 patron|n|常連客；後援者|The museum thanks its *patrons*.|美術館は後援者に感謝している。
 prescription|n|処方箋|You need a *prescription* for this medicine.|この薬には処方箋が必要だ。
 salad|n|サラダ|I'll have a green *salad*.|グリーンサラダをください。
-stack|v|積み重ねる|*Stack* the sleepers neatly.|まくらぎをきちんと積み重ねてください。
+stack|v|積み重ねる|*Stack* the chairs after the meeting.|会議の後で椅子を積み重ねてください。
 salesperson|n|販売員|The *salesperson* showed us the new model.|販売員が新モデルを見せてくれた。
 garbage|n|ごみ|Take out the *garbage*.|ごみを出してください。
 omit|v|省く|Don't *omit* any steps.|どの手順も省略しないでください。
 spite|n|悪意（in spite ofで「〜にもかかわらず」）|In *spite* of the rain, we finished the work.|雨にもかかわらず作業を終えた。
 bathroom|n|浴室；トイレ|Where is the *bathroom*?|トイレはどこですか。
-cab|n|タクシー；運転室|The driver's *cab* has a radio.|運転室には無線機がある。
+cab|n|タクシー；運転室|Let's take a *cab* to the hotel.|ホテルまでタクシーで行こう。
 correspondence|n|通信；文書のやり取り|Keep all *correspondence* with the supplier.|納入業者とのやり取りはすべて保存してください。
 ladder|n|はしご|Hold the *ladder* for me.|はしごを押さえていて。
 photography|n|写真撮影|*Photography* is not allowed here.|ここは撮影禁止です。
@@ -186,10 +186,10 @@ sculpture|n|彫刻|There is a *sculpture* in front of the station.|駅前に彫�
 anniversary|n|記念日|The company celebrates its 50th *anniversary*.|会社は創立50周年を祝う。
 buffet|n|ビュッフェ|Breakfast is a *buffet*.|朝食はビュッフェ形式です。
 defective|adj|欠陥のある|Return any *defective* parts to the supplier.|不良品は納入業者に返品してください。
-leak|n|漏れ|There is a water *leak* in the tunnel.|トンネル内で漏水がある。
+leak|n|漏れ|There is a water *leak* in the ceiling.|天井から水漏れしている。
 occupancy|n|占有（率）|Hotel *occupancy* is high this month.|今月はホテルの稼働率が高い。
 proficiency|n|熟達|English *proficiency* is required for this position.|この職には英語の運用能力が求められる。
-renewal|n|更新|Track *renewal* is planned for next year.|軌道更新は来年に計画されている。
+renewal|n|更新|Your contract is due for *renewal* next month.|あなたの契約は来月更新の時期です。
 urgent|adj|緊急の|This is an *urgent* message.|これは緊急の伝言です。
 basketball|n|バスケットボール|He plays *basketball*.|彼はバスケットボールをする。
 delete|v|削除する|Don't *delete* the original data.|元データを削除しないでください。
@@ -198,7 +198,7 @@ textbook|n|教科書|Open your *textbook* to page 30.|教科書の30ページを
 accurately|adv|正確に|Record the data *accurately*.|データを正確に記録してください。
 cabin|n|客室；小屋|The *cabin* crew served drinks.|客室乗務員が飲み物を配った。
 conductor|n|車掌；指揮者|The *conductor* checked our tickets.|車掌が切符を確認した。
-inspector|n|検査員|The track *inspector* walks the line every week.|線路検査員は毎週線路を巡回する。
+inspector|n|検査員|A health *inspector* visited the restaurant.|衛生検査官がレストランを訪れた。
 intern|n|実習生|We have two *interns* this summer.|この夏は実習生が2人いる。
 semester|n|学期|The *semester* starts in April.|学期は4月に始まる。
 confirmation|n|確認（書）|You will receive a *confirmation* email.|確認メールが届きます。
@@ -214,15 +214,15 @@ transit|n|輸送；乗り継ぎ|Public *transit* is good in this city.|この都
 wallet|n|財布|I left my *wallet* at home.|財布を家に忘れた。
 cashier|n|レジ係|Pay the *cashier*, please.|レジ係にお支払いください。
 casual|adj|くだけた；普段着の|Friday is *casual* day.|金曜日はカジュアルデーだ。
-drill|n|訓練；ドリル|We have an emergency *drill* every month.|毎月緊急訓練がある。
+drill|n|訓練；ドリル|We have a fire *drill* twice a year.|年に2回、火災訓練がある。
 lane|n|車線；小道|The left *lane* is closed.|左車線は閉鎖されている。
-poster|n|ポスター|Put up the safety *poster* in the break room.|休憩室に安全ポスターを貼ってください。
+poster|n|ポスター|Put up the *poster* in the break room.|休憩室にポスターを貼ってください。
 promptly|adv|迅速に；時間通りに|The meeting will start *promptly* at nine.|会議は9時ちょうどに始まります。
 vacancy|n|空き；欠員|Do you have any *vacancies*?|空室はありますか。
 bench|n|ベンチ|Sit on the *bench* and wait.|ベンチに座って待ってください。
 directory|n|名簿；案内板|Check the staff *directory* for her number.|職員名簿で彼女の番号を調べてください。
 housekeeper|n|客室係；家政婦|The *housekeeper* cleaned the room.|客室係が部屋を掃除した。
-internship|n|インターンシップ|She did an *internship* at a railway company.|彼女は鉄道会社でインターンシップをした。
+internship|n|インターンシップ|She did an *internship* at a bank.|彼女は銀行でインターンシップをした。
 knowledgeable|adj|知識の豊富な|The guide was very *knowledgeable*.|ガイドはとても博識だった。
 organizer|n|主催者|The *organizer* thanked everyone.|主催者は全員に感謝した。
 overdue|adj|期限を過ぎた|The payment is two weeks *overdue*.|支払いは2週間遅れている。
@@ -230,4 +230,4 @@ subscriber|n|購読者；加入者|The service has 10,000 *subscribers*.|その�
 booklet|n|小冊子|Read the safety *booklet* carefully.|安全小冊子をよく読んでください。
 enroll|v|登録する；入学する|I *enrolled* in an English course.|英語講座に申し込んだ。
 frustrate|v|いらだたせる|The delays *frustrated* passengers.|遅延は乗客をいらだたせた。
-garment|n|衣服|High-visibility *garments* must be worn on the track.|線路上では高視認性の衣服を着用しなければならない。
+garment|n|衣服|This factory makes *garments* for export.|この工場は輸出用の衣料品を作っている。

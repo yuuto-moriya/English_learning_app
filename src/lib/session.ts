@@ -2,7 +2,7 @@ import { State } from 'ts-fsrs'
 import type { CardRow } from './db'
 import { db } from './db'
 import { dueCards, interleave, newLearnedToday } from './srs'
-import type { Category, Word } from './types'
+import { ALL_CATS, type Category, type Word } from './types'
 import { getWord, loadCategory } from './vocab'
 import type { Settings } from './settings'
 
@@ -45,11 +45,13 @@ export function newWordPool(
   cards: Set<string>,
   s: Pick<Settings, 'studyCats' | 'maxLevel'> & { minLevel?: number },
 ): Word[][] {
-  const groups: Record<Category, Word[]> = { general: [], business: [], rail: [] }
+  const groups: Record<Category, Word[]> = { general: [], business: [], it: [], rail: [] }
   for (const w of all) {
     if (cards.has(w.id)) continue
     if (!s.studyCats[w.cat]) continue
-    if (w.cat !== 'rail' && (w.lv > s.maxLevel || w.lv < (s.minLevel ?? 1))) continue
+    // IT・鉄道は専門のコースなので、レベルの範囲に関係なく基本の語（低いレベル）から順に出す
+    const specialist = w.cat === 'rail' || w.cat === 'it'
+    if (!specialist && (w.lv > s.maxLevel || w.lv < (s.minLevel ?? 1))) continue
     groups[w.cat].push(w)
   }
   // 同じレベル内では内容語を先に、機能語（冠詞・前置詞など）は後回し
@@ -57,8 +59,9 @@ export function newWordPool(
   const order = (a: Word, b: Word) => a.lv - b.lv || fn(a) - fn(b) || (a.rank ?? 9999) - (b.rank ?? 9999)
   groups.general.sort(order)
   groups.business.sort(order)
+  groups.it.sort((a, b) => a.lv - b.lv)
   groups.rail.sort((a, b) => a.lv - b.lv)
-  return [groups.general, groups.business, groups.rail].filter((g) => g.length > 0)
+  return ALL_CATS.map((c) => groups[c]).filter((g) => g.length > 0)
 }
 
 export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?: number } = {}): Promise<Item[]> {
@@ -71,7 +74,7 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
   const learned = await newLearnedToday()
   const newCount = opts.extra ? 5 : Math.max(0, s.dailyNew - learned)
 
-  const cats = (['general', 'business', 'rail'] as Category[]).filter((c) => s.studyCats[c])
+  const cats = ALL_CATS.filter((c) => s.studyCats[c])
   const lists = await Promise.all(cats.map((c) => loadCategory(c)))
   const pool = interleave(newWordPool(lists.flat(), cardSet, s))
   const fresh = pool.slice(0, newCount)
@@ -97,6 +100,40 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
     for (const w of chunk) out.push({ key: `t-${w.id}`, word: w, type: 'mc', isNew: true })
   }
   while (di < dueMixed.length) out.push(dueMixed[di++])
+  return out
+}
+
+/** 苦手な語：忘れたことがある、または FSRS の難易度が高い（10段階で7以上） */
+export function isWeak(r: CardRow | undefined): boolean {
+  return !!r && !r.known && r.reps > 0 && (r.lapses >= 1 || r.difficulty >= 7)
+}
+
+/**
+ * 苦手な語・保存した語だけの集中練習（復習の予定は変えない）。
+ * 期日前に解いた結果で FSRS の予定を動かすと最適な間隔からずれるため、記録は日々の学習量だけにする。
+ */
+export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<Item[]> {
+  const rows = await db.cards.toArray()
+  const rowMap = new Map(rows.map((r) => [r.id, r]))
+  let ids: string[]
+  if (kind === 'weak') {
+    ids = rows
+      .filter(isWeak)
+      .sort((a, b) => b.lapses - a.lapses || b.difficulty - a.difficulty)
+      .slice(0, limit)
+      .map((r) => r.id)
+  } else {
+    ids = (await db.marks.orderBy('at').reverse().toArray()).map((m) => m.id).slice(0, limit)
+  }
+  const out: Item[] = []
+  let seed = Math.floor(Math.random() * 1000)
+  for (const id of ids) {
+    const w = await getWord(id)
+    if (!w) continue
+    const row = rowMap.get(id)
+    // 苦手な語は意味の想起（選択・音声）を中心に、安定してきた語は産出も混ぜる
+    out.push({ key: `x-${id}`, word: w, type: row ? chooseType(row, w, seed++) : 'mc', isNew: false })
+  }
   return out
 }
 

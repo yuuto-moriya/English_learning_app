@@ -1,0 +1,80 @@
+# IT（レベル3：B1）— 職場のIT・パソコンとスマホの操作・社内ヘルプデスク
+# 書式: lemma|品詞|和訳|例文(英)|例文(和)[|米音IPA（辞書にない語だけ）]
+username|n|ユーザー名|Enter your *username* and password to sign in.|ユーザー名とパスワードを入力してサインインしてください。|ˈjuːzɚˌneɪm
+sign in|v|サインインする；ログインする|You need to *sign in* with your company account.|会社のアカウントでサインインする必要があります。
+sign out|v|サインアウトする；ログアウトする|Always *sign out* when you use a shared computer.|共用のパソコンを使うときは必ずサインアウトしてください。
+upload|v|アップロードする|Please *upload* the file to the shared folder.|ファイルを共有フォルダにアップロードしてください。|ˈʌpˌloʊd
+uninstall|v|アンインストールする（削除する）|*Uninstall* the old version before you install the new one.|新しいバージョンを入れる前に、古いバージョンをアンインストールしてください。|ˌʌnɪnˈstɔl
+backup|n|バックアップ|We make a *backup* of all our data every night.|毎晩すべてのデータのバックアップを取っている。|ˈbækˌʌp
+browser|n|ブラウザ|Clear your *browser* cache and try again.|ブラウザのキャッシュを消去して、もう一度試してください。
+search engine|n|検索エンジン|Most visitors find our site through a *search engine*.|ほとんどの訪問者は検索エンジン経由で当社のサイトを見つける。
+smartphone|n|スマートフォン|You can approve the request on your *smartphone*.|その申請はスマートフォンで承認できます。|ˈsmɑrtˌfoʊn
+app|n|アプリ|Download the *app* and sign in with your email address.|アプリをダウンロードして、メールアドレスでサインインしてください。
+icon|n|アイコン|Tap the gear *icon* to open the settings.|歯車のアイコンをタップして設定を開いてください。
+tab|n|（ブラウザの）タブ|I have too many *tabs* open in my browser.|ブラウザでタブを開きすぎている。
+scroll|v|スクロールする|*Scroll* down to the bottom of the page.|ページの一番下までスクロールしてください。
+swipe|v|スワイプする|*Swipe* left to delete the message.|左にスワイプするとメッセージを削除できます。
+copy and paste|v|コピー＆ペーストする|You can *copy and paste* the link into the chat.|リンクをチャットにコピー＆ペーストできます。
+shortcut|n|ショートカット（キー操作）|Ctrl+Z is a useful *shortcut* for undoing a mistake.|Ctrl+Zは操作を取り消す便利なショートカットだ。|ˈʃɔrtˌkʌt
+Wi-Fi|n|Wi-Fi（無線LAN）|The *Wi-Fi* in the meeting room is very slow.|会議室のWi-Fiがとても遅い。|ˈwaɪˌfaɪ
+router|n|ルーター|Try restarting the *router*.|ルーターを再起動してみてください。|ˈraʊtɚ
+charger|n|充電器|Can I borrow your phone *charger*?|スマホの充電器を借りてもいいですか。
+screenshot|n|スクリーンショット（画面の画像）|Please send me a *screenshot* of the error.|エラーのスクリーンショットを送ってください。|ˈskriːnˌʃɑt
+scanner|n|スキャナー|Use the *scanner* to make a PDF of the contract.|スキャナーで契約書をPDFにしてください。
+operating system|n|オペレーティングシステム（OS）|Update your *operating system* to the latest version.|OSを最新バージョンに更新してください。
+restart|v|再起動する|*Restart* your computer to finish the update.|更新を完了するために、パソコンを再起動してください。
+troubleshoot|v|（問題の原因を調べて）解決する|The IT team is *troubleshooting* the printer problem.|ITチームがプリンターの問題を調べて対応している。
+error message|n|エラーメッセージ|What does the *error message* say?|エラーメッセージには何と書いてありますか。
+bug|n|バグ；（プログラムの）不具合|We found a *bug* in the payment screen.|支払い画面にバグが見つかった。
+glitch|n|（ちょっとした）不具合|A *glitch* in the app logged everyone out.|アプリの不具合で全員がログアウトされた。
+hacker|n|ハッカー（不正に侵入する人）|*Hackers* stole thousands of passwords.|ハッカーが何千ものパスワードを盗んだ。
+spam|n|迷惑メール（スパム）|This email went straight into the *spam* folder.|このメールはそのまま迷惑メールのフォルダに入った。
+phishing|n|フィッシング（偽のメールなどで情報を盗む詐欺）|Do not click links in *phishing* emails.|フィッシングメールのリンクはクリックしないでください。|ˈfɪʃɪŋ
+malware|n|マルウェア（悪意のあるソフト）|The *malware* was hidden in an email attachment.|マルウェアはメールの添付ファイルに隠されていた。|ˈmælˌwɛr
+antivirus software|n|ウイルス対策ソフト|Keep your *antivirus software* up to date.|ウイルス対策ソフトは常に最新にしておいてください。|ˌæntiˈvaɪrəs ˈsɔftˌwɛr
+cloud storage|n|クラウドストレージ（ネット上の保存場所）|Save your work to *cloud storage*, not only to your laptop.|作業はノートパソコンだけでなく、クラウドストレージにも保存してください。
+hard drive|n|ハードディスク|My *hard drive* is almost full.|ハードディスクがほぼいっぱいだ。
+USB drive|n|USBメモリ|Personal *USB drives* are not allowed in the office.|社内では私物のUSBメモリは使用禁止です。
+desktop|n|デスクトップ（パソコンの画面）|There are too many files on your *desktop*.|デスクトップにファイルが多すぎますよ。|ˈdɛskˌtɑp
+touchscreen|n|タッチスクリーン|The *touchscreen* doesn't respond when it's wet.|濡れているとタッチスクリーンが反応しない。|ˈtʌtʃˌskriːn
+notification|n|通知|Turn off *notifications* during the meeting.|会議中は通知をオフにしてください。
+wireless|adj|無線の；ワイヤレスの|We use *wireless* headsets for online meetings.|オンライン会議ではワイヤレスのヘッドセットを使っている。
+Bluetooth|n|Bluetooth（近距離無線）|Connect the keyboard via *Bluetooth*.|キーボードをBluetoothで接続してください。|ˈbluːˌtuːθ
+sync|v|同期する|My phone *syncs* my calendar with my laptop.|スマホがカレンダーをノートパソコンと同期している。|sɪŋk
+offline|adj|オフラインの（ネットにつながっていない）|You can read saved pages in *offline* mode.|保存したページはオフラインモードで読めます。|ˈɔfˌlaɪn
+IT department|n|IT部門；情報システム部|Contact the *IT department* if you forget your password.|パスワードを忘れたら情報システム部に連絡してください。
+help desk|n|ヘルプデスク（IT の問い合わせ窓口）|I called the *help desk* about my email problem.|メールの不具合についてヘルプデスクに電話した。
+technical support|n|技術サポート|*Technical support* is available 24 hours a day.|技術サポートは24時間受け付けています。
+user-friendly|adj|使いやすい|The new system is much more *user-friendly*.|新しいシステムはずっと使いやすい。|ˌjuːzɚˈfrɛndli
+click|v|クリックする|*Click* the blue button to continue.|青いボタンをクリックして先に進んでください。
+double-click|v|ダブルクリックする|*Double-click* the file to open it.|ファイルをダブルクリックして開いてください。|ˌdʌbəlˈklɪk
+drop-down menu|n|ドロップダウンメニュー（選択肢の一覧）|Choose your country from the *drop-down menu*.|ドロップダウンメニューから国を選んでください。|ˈdrɑpˌdaʊn ˈmɛnjuː
+pop-up|n|ポップアップ（前面に出る小さな画面）|Close the *pop-up* and try again.|ポップアップを閉じて、もう一度試してください。|ˈpɑˌpʌp
+checkbox|n|チェックボックス|Tick the *checkbox* to accept the terms.|チェックボックスにチェックを入れて規約に同意してください。|ˈtʃɛkˌbɑks
+settings|n|設定（画面）|You can change the language in *Settings*.|言語は「設定」で変更できます。
+homepage|n|トップページ（ホームページ）|The *homepage* shows our latest news.|トップページには最新のお知らせが表示される。|ˈhoʊmˌpeɪdʒ
+web page|n|ウェブページ|This *web page* takes a long time to load.|このウェブページは読み込みに時間がかかる。
+URL|n|URL（ウェブのアドレス）|Copy the *URL* and send it to me.|URLをコピーして私に送ってください。
+QR code|n|QRコード|Scan the *QR code* to join the meeting.|QRコードを読み取って会議に参加してください。
+password manager|n|パスワード管理ソフト|A *password manager* creates strong passwords for you.|パスワード管理ソフトが強いパスワードを作ってくれる。
+video call|n|ビデオ通話|Let's have a quick *video call* this afternoon.|今日の午後、少しビデオ通話をしましょう。
+mute|v|ミュートにする（音を消す）|Please *mute* your microphone when you are not speaking.|話していないときはマイクをミュートにしてください。
+screen sharing|n|画面共有|*Screen sharing* is turned off for guests.|ゲストは画面共有ができない設定になっている。
+headset|n|ヘッドセット|My *headset* keeps disconnecting.|ヘッドセットの接続が何度も切れる。
+webcam|n|ウェブカメラ|I think your *webcam* is turned off.|ウェブカメラがオフになっているようですよ。|ˈwɛbˌkæm
+file sharing|n|ファイル共有|*File sharing* with people outside the company needs approval.|社外の人とのファイル共有には承認が必要です。
+cursor|n|カーソル|Move the *cursor* to the top of the page.|カーソルをページの一番上に移動してください。
+font|n|フォント（書体）|Use a larger *font* for the title.|タイトルにはもっと大きいフォントを使ってください。
+pixel|n|画素（ピクセル）|The image is 1,000 *pixels* wide.|その画像は幅1,000ピクセルだ。
+gigabyte|n|ギガバイト|The video file is about two *gigabytes*.|その動画ファイルは約2ギガバイトある。|ˈɡɪɡəˌbaɪt
+cyberattack|n|サイバー攻撃|The hospital's system was hit by a *cyberattack*.|その病院のシステムはサイバー攻撃を受けた。|ˈsaɪbɚəˌtæk
+data breach|n|情報漏えい|The *data breach* affected 10,000 customers.|その情報漏えいは1万人の顧客に影響した。
+chatbot|n|チャットボット（自動で応答するプログラム）|The *chatbot* answers simple questions automatically.|チャットボットが簡単な質問に自動で答える。|ˈtʃætˌbɑt
+social media|n|ソーシャルメディア；SNS|We announce new products on *social media*.|新製品はSNSで発表している。
+zip file|n|ZIPファイル（圧縮したファイル）|I'll send the photos as a *zip file*.|写真はZIPファイルにまとめて送ります。
+fingerprint|n|指紋|You can unlock the laptop with your *fingerprint*.|ノートパソコンのロックは指紋で解除できる。
+e-commerce|n|電子商取引；ネット通販|*E-commerce* sales grew by 20% last year.|昨年、ネット通販の売上は20%伸びた。|ˌiːˈkɑmɚs
+log file|n|ログファイル（動作の記録）|Check the *log file* to see what happened.|何が起きたかはログファイルで確認してください。
+printer driver|n|プリンタードライバ|Install the latest *printer driver* to fix the problem.|問題を直すには最新のプリンタードライバをインストールしてください。
+storage space|n|空き容量；保存容量|My phone is running out of *storage space*.|スマホの空き容量が足りなくなってきた。
+reset|v|（パスワードや設定を）リセットする；初期化する|I need to *reset* my password.|パスワードをリセットする必要がある。

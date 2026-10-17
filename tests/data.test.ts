@@ -2,11 +2,12 @@ import { describe, expect, it } from 'vitest'
 import general from '../src/data/vocab/general.json'
 import business from '../src/data/vocab/business.json'
 import rail from '../src/data/vocab/rail.json'
+import itWords from '../src/data/vocab/it.json'
 import counts from '../src/data/vocab/counts.json'
 import { SCENES } from '../src/data/scenes'
 import type { Word } from '../src/lib/types'
 
-const all = [...(general as Word[]), ...(business as Word[]), ...(rail as Word[])]
+const all = [...(general as Word[]), ...(business as Word[]), ...(itWords as Word[]), ...(rail as Word[])]
 
 describe('単語データ', () => {
   it('3,000語以上ある', () => {
@@ -14,7 +15,7 @@ describe('単語データ', () => {
   })
 
   it('語数の集計（counts.json）が単語データと一致する（npm run data:build で再生成）', () => {
-    expect(counts).toEqual({ general: general.length, business: business.length, rail: rail.length })
+    expect(counts).toEqual({ general: general.length, business: business.length, it: itWords.length, rail: rail.length })
   })
 
   it('IDが一意', () => {
@@ -43,10 +44,34 @@ describe('単語データ', () => {
     expect((rail as Word[]).filter((w) => !w.ipaUk).map((w) => w.id)).toEqual([])
   })
 
+  it('品詞で読みが変わる語は、その品詞の発音になっている', () => {
+    const ipa = (w: string) => all.find((x) => x.w === w)?.ipa
+    expect(ipa('live')).toBe('lɪv') // 動詞（住む）。形容詞の laɪv ではない
+    expect(ipa('read')).toBe('riːd')
+    expect(ipa('use')).toBe('juːz')
+    expect(ipa('close')).toBe('kloʊz')
+    expect(ipa('increase')).toBe('ɪnˈkriːs') // 動詞は後ろに強勢
+    expect(ipa('record')).toBe('ˈrɛkɚd') // 名詞は前に強勢
+    expect(ipa('separate')).toBe('ˈsɛpɚət') // 形容詞
+    expect(all.filter((w) => w.ipa?.includes('hw')).map((w) => w.w)).toEqual([])
+  })
+
   it('保線用語には出典タグとサブカテゴリがある', () => {
     for (const w of rail as Word[]) {
       expect(w.refs?.length, w.id).toBeGreaterThan(0)
       expect(w.sub, w.id).toBeTruthy()
+    }
+  })
+
+  it('IT の単語：200語以上、ほかのコースと重複なし、全語に例文と和訳', () => {
+    expect(itWords.length).toBeGreaterThanOrEqual(200)
+    // IT の見出し語は、ほかのコース（一般・ビジネス・鉄道）と重ならない
+    const others = new Set(all.filter((w) => w.cat !== 'it').map((w) => w.w.toLowerCase()))
+    expect((itWords as Word[]).filter((w) => others.has(w.w.toLowerCase())).map((w) => w.w)).toEqual([])
+    for (const w of itWords as Word[]) {
+      expect(w.id.startsWith('i-'), w.id).toBe(true)
+      expect(w.ex[0]?.en.includes('*'), w.id).toBe(true)
+      expect(w.ex[0]?.ja.length, w.id).toBeGreaterThan(0)
     }
   })
 
@@ -57,9 +82,19 @@ describe('単語データ', () => {
 
 describe('シーン会話データ', () => {
   it('日常・ビジネス・保線がそれぞれ8場面以上', () => {
-    for (const g of ['daily', 'business', 'rail'] as const) {
+    for (const g of ['daily', 'business', 'it', 'rail'] as const) {
       expect(SCENES.filter((s) => s.group === g).length).toBeGreaterThanOrEqual(8)
     }
+  })
+  it('ID が重複せず、接頭辞がグループと一致する', () => {
+    const prefix = { daily: 'd-', business: 'b-', it: 'i-', rail: 'r-' }
+    expect(new Set(SCENES.map((s) => s.id)).size).toBe(SCENES.length)
+    for (const s of SCENES) expect(s.id.startsWith(prefix[s.group]), s.id).toBe(true)
+  })
+  it('日常・ビジネス・IT の場面に保線の専門語が入っていない（鉄道はコースで選ぶ）', () => {
+    const railish = /\b(track|tracks|rail|rails|railway|sleepers?|tamp\w*|possession|ballast|grinding)\b/i
+    for (const s of SCENES.filter((x) => x.group !== 'rail'))
+      for (const t of [...s.phrases, ...s.lines]) expect(railish.test(t.en), `${s.id}: ${t.en}`).toBe(false)
   })
   it('会話の話者がrolesに含まれる', () => {
     for (const s of SCENES) {

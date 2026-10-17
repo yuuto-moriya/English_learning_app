@@ -11,16 +11,33 @@ const PAGES = [
   ['home', '/'],
   ['words-rail', '/words?cat=rail'],
   ['word-detail', '/words/r-track-gauge'],
+  ['word-detail-general', '/words/g-record'],
   ['study', '/study'],
   ['practice', '/practice'],
   ['listening', '/practice/listening'],
+  ['sounds', '/practice/sounds'],
+  ['compose', '/practice/compose'],
+  ['audio', '/practice/audio'],
   ['speaking', '/practice/speaking?mode=shadow'],
   ['scenes', '/scenes'],
   ['scene-detail', '/scenes/r-recording-review'],
   ['translate', '/translate'],
+  ['interpreter', '/translate/live'],
+  ['stats', '/stats'],
   ['settings', '/settings'],
   ['research', '/research'],
 ]
+
+/** オンボーディング済み（4コースすべて・使い方ツアーは見終えた）の設定を書き込む */
+async function onboard(page, extra = {}) {
+  await page.evaluate((extra) => {
+    const raw = localStorage.getItem('tetsu-settings')
+    const s = raw ? JSON.parse(raw) : { state: {}, version: 4 }
+    s.state = { ...s.state, onboarded: true, tourDone: true, studyCats: { general: true, business: true, it: true, rail: true }, ...extra }
+    s.version = 4
+    localStorage.setItem('tetsu-settings', JSON.stringify(s))
+  }, extra)
+}
 
 const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {})
 for (const scheme of ['light', 'dark']) {
@@ -28,31 +45,63 @@ for (const scheme of ['light', 'dark']) {
   const page = await ctx.newPage()
   const errors = []
   page.on('pageerror', (e) => errors.push(`${e.message}`))
-  page.on('console', (m) => m.type() === 'error' && !m.text().includes('/api/') && errors.push(m.text()))
-  // オンボーディング済みの状態（ホームのヒーローカード）も撮る
+  page.on('console', (m) => m.type() === 'error' && !m.text().includes('/api/') && !m.text().includes('404') && errors.push(m.text()))
+
+  // はじめての起動（コース → レベル → プラン）
   await page.goto(BASE + '/', { waitUntil: 'networkidle' })
-  await page.evaluate(() => {
-    const raw = localStorage.getItem('tetsu-settings')
-    const s = raw ? JSON.parse(raw) : { state: {}, version: 2 }
-    s.state = { ...s.state, onboarded: true }
-    localStorage.setItem('tetsu-settings', JSON.stringify(s))
-  })
-  await page.reload({ waitUntil: 'networkidle' })
+  await page.waitForTimeout(600)
+  await page.screenshot({ path: `${OUT}/${scheme}-welcome-course.png` })
+  await page.getByRole('button', { name: /ビジネス/ }).first().click()
+  await page.getByRole('button', { name: '次へ' }).click()
+  await page.waitForTimeout(400)
+  await page.screenshot({ path: `${OUT}/${scheme}-welcome-level.png` })
+  await page.getByRole('button', { name: /中級/ }).click()
+  await page.getByRole('button', { name: '次へ' }).click()
+  await page.waitForTimeout(400)
+  await page.screenshot({ path: `${OUT}/${scheme}-welcome-plan.png` })
+
+  // 使い方ツアー（ホーム）の最初と「モード」の説明
+  await onboard(page, { tourDone: false })
+  await page.goto(BASE + '/', { waitUntil: 'networkidle' })
   await page.waitForTimeout(700)
-  await page.screenshot({ path: `${OUT}/${scheme}-home-onboarded.png`, fullPage: false })
-  await page.evaluate(() => localStorage.removeItem('tetsu-settings'))
+  await page.screenshot({ path: `${OUT}/${scheme}-tour-1.png` })
+  await page.getByRole('button', { name: '次へ' }).click()
+  await page.waitForTimeout(700)
+  await page.screenshot({ path: `${OUT}/${scheme}-tour-mode.png` })
+
+  await onboard(page)
   for (const [name, path] of PAGES) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' })
     await page.waitForTimeout(700)
     if (name === 'study') {
       const start = page.getByRole('button', { name: 'スタート' })
       if (await start.isVisible().catch(() => false)) {
+        await page.screenshot({ path: `${OUT}/${scheme}-study-start.png`, fullPage: false })
         await start.click()
         await page.waitForTimeout(600)
       }
     }
     await page.screenshot({ path: `${OUT}/${scheme}-${name}.png`, fullPage: false })
+    if (name === 'interpreter') {
+      await page.getByRole('tab', { name: '会話' }).click()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-interpreter-talk.png` })
+    }
+    if (name === 'scenes') {
+      await page.getByRole('tab', { name: 'IT' }).click()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-scenes-it.png` })
+    }
+    if (name === 'settings') {
+      await page.getByText('英語の発音（国・地域）').scrollIntoViewIfNeeded()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-settings-voice.png` })
+    }
   }
+  // ホームの下の方も撮る
+  await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+  await page.waitForTimeout(500)
+  await page.screenshot({ path: `${OUT}/${scheme}-home-full.png`, fullPage: true })
   if (errors.length) console.log(scheme, 'errors:', errors)
   await ctx.close()
 }

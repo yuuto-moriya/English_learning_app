@@ -1,6 +1,6 @@
 # Azure（翻訳・発音評価）の設定手順
 
-Tetsu English の **翻訳**・**発音評価**・**音声入力** は、Microsoft Azure の
+Tetsu English の **翻訳**・**発音評価**・**音声入力**・**高品質な読み上げ（ニューラル音声）**・**同時通訳** は、Microsoft Azure の
 **Azure AI Translator** と **Azure AI Speech** を、Vercel Functions（`/api/*`）経由で呼び出しています。
 この手順書では、両サービスを **無料枠（Free F0）** で作成し、Vercel に設定するまでを説明します。
 
@@ -28,7 +28,7 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
 | `AZURE_TRANSLATOR_REGION` | 翻訳に必須 | Translator リソースの場所（リージョン） | `japaneast` |
 | `AZURE_TRANSLATOR_ENDPOINT` | 任意 | 翻訳エンドポイント。既定は `https://api.cognitive.microsofttranslator.com` | — |
 | `AZURE_SPEECH_KEY` | 音声に必須 | Speech リソースのキー | `def456…` |
-| `AZURE_SPEECH_REGION` | 音声に必須※ | Speech リソースの場所（リージョン） | `japaneast` |
+| `AZURE_SPEECH_REGION` | 音声に必須※ | Speech リソースの場所（リージョン）。**同時通訳・リアルタイムの音声入力には必須** | `japaneast` |
 | `AZURE_SPEECH_ENDPOINT` | 任意※ | Speech リソースのエンドポイント。指定するとリージョンより優先 | `https://<resource>.cognitiveservices.azure.com` |
 | `APP_ACCESS_TOKEN` | 任意（推奨） | 設定すると `/api/*` の利用に `X-App-Token` ヘッダーが必要になる | 長いランダム文字列 |
 
@@ -81,7 +81,7 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
 
 無料枠を超えると Azure が 403 / 429 を返し、アプリには「翻訳APIの無料枠または回数制限に達しました」と表示されます。
 
-## 3. Azure AI Speech（発音評価・音声入力）を作成する
+## 3. Azure AI Speech（発音評価・音声入力・読み上げ）を作成する
 
 1. ポータル上部の検索で「Speech」と入力し、Marketplace の **Speech**（音声サービス / Azure AI Speech）を選んで「作成」。
    - **「Foundry」「AI Services」と書かれたマルチサービスのリソースは選ばないでください**（F0 がありません）。
@@ -105,6 +105,25 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
 `https://<リージョン>.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1` を呼び出します
 （音声テキスト変換の **REST API for short audio**）。リージョンの指定で 401 / 404 になる場合は、エンドポイントを設定してください。
 
+**読み上げ（`GET /api/tts`）も同じキーで動きます。** 追加の設定は不要です。
+`AZURE_SPEECH_ENDPOINT` があれば `<エンドポイント>/tts/cognitiveservices/v1` を、なければ
+`https://<リージョン>.tts.speech.microsoft.com/cognitiveservices/v1` を呼び出します（テキスト読み上げの REST API）。
+
+- 声はサーバーの許可リスト（`server/handlers.ts` の `TTS_VOICES`）にあるものだけ使えます：
+  米国 Ava / Andrew / Emma / Brian / Jenny / Guy、英国 Sonia / Ryan / Libby、日本語 Nanami（「耳で復習」の和訳）
+- 1回の読み上げは 400 文字まで。速度は −50〜+50% を 5% 刻み（同じ文・声・速度なら同じ音声になり、キャッシュが効く）
+- 返す音声は MP3（24kHz・48kbps）。`Cache-Control: immutable` を付けるので Vercel の CDN と端末（Cache Storage）に保存され、
+  同じ文の2回目以降は Azure を呼びません。品詞で読みが変わる語（live, record など）は発音（IPA）を指定して読ませます
+- サーバーに送るのは読み上げる英文だけです（学習の記録は送りません）。Azure が使えないとき・オフラインのときは、自動で端末の音声合成に切り替わります
+- 声はアメリカ・イギリス・オーストラリア・カナダ・アイルランド・インド・ニュージーランド・南アフリカの8つの発音から選べます（アプリの 設定 → 音声）
+
+**同時通訳・リアルタイムの音声入力（`GET /api/speech-token`）も同じキーで動きます。** `AZURE_SPEECH_REGION` を必ず設定してください。
+
+- サーバーが `https://<リージョン>.api.cognitive.microsoft.com/sts/v1.0/issueToken`（カスタムドメインがあれば `<エンドポイント>/sts/v1.0/issueToken`）から
+  **有効期限10分の一時トークン**を取得してアプリに渡します。キーそのものは端末に渡しません
+- アプリはそのトークンで、ブラウザの Speech SDK から Azure に直接つなぎ、話している途中から文字起こしと訳（音声翻訳）を受け取ります。音声は Vercel を通りません。長く話し続けるときはトークンを途中で更新します
+- リージョンが未設定（カスタムドメインだけ）のときは、同時通訳は「端末の音声認識＋翻訳 API」（Safari のタブ・Chrome）か「録音して文字起こし」で動きます
+
 ### 音声の無料枠と上限
 
 | 項目 | 値 |
@@ -114,9 +133,13 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
 | F0 の同時リクエスト数 | 1（変更不可） |
 | REST API for short audio の音声長 | 最大60秒 |
 | 発音評価の音声長 | **30秒以内** |
+| 読み上げ（ニューラル音声）の無料枠 | **月50万文字**（Free F0。料金ページで最新を確認） |
+| 同時通訳（音声翻訳）・リアルタイム音声入力 | 音声の時間で数えます（Free F0 の無料枠は料金ページで確認。会話の合間はマイクを止めると節約できます） |
+| 読み上げの回数制限（F0） | 短い時間に多く呼ぶと 429 になります（クォータと制限のページで確認）。アプリは先読みを 12 件までに抑え、一度取得した音声は再利用します |
 | このアプリの録音上限 | 28秒・2MB（`src/lib/recorder.ts` の `MAX_SECONDS`、`server/shared.ts` の `MAX_AUDIO_BYTES`） |
 
 目安として、1回5秒の発音チェックなら月5時間で約3,600回使えます。
+読み上げは、単語（約8文字）と例文（約50文字）を1語あたり約60文字とすると、月50万文字で約8,000語分です（聞いたことのある音声は端末と CDN のキャッシュから再生されるので、実際の消費はもっと少なくなります）。
 無料枠を超えると「音声APIの無料枠または回数制限に達しました」と表示されます。
 
 > F0 のリソースは、作成済み・削除済み（論理削除で残っているもの）があると新しく作れないことがあります。
@@ -183,10 +206,24 @@ Vercel に登録した Development 用の値を使う場合、`vercel dev` は�
 
 ```bash
 curl https://<your-project>.vercel.app/api/health
-# => {"translator":true,"speech":true,"tokenRequired":true}
+# => {"translator":true,"speech":true,"tts":true,"realtime":true,"tokenRequired":true}
 ```
 
-`translator` / `speech` が `false` の場合は、変数名の誤り・未設定・再デプロイ忘れを確認してください。
+`translator` / `speech` / `tts` / `realtime` が `false` の場合は、変数名の誤り・未設定・再デプロイ忘れを確認してください（`tts` は Speech のキーがあれば `true`、`realtime` はキーとリージョンの両方があれば `true`）。
+
+### 同時通訳のトークン
+
+```bash
+curl -H 'X-App-Token: <APP_ACCESS_TOKEN>' https://<your-project>.vercel.app/api/speech-token
+# => {"token":"eyJ…","region":"japaneast","expiresIn":540}
+```
+
+### 読み上げ API
+
+```bash
+curl -o hello.mp3 -H 'X-App-Token: <APP_ACCESS_TOKEN>' \
+  'https://<your-project>.vercel.app/api/tts?v=en-US-AvaNeural&r=0&t=Hello'
+```
 
 ### 翻訳 API
 
@@ -200,8 +237,10 @@ curl -X POST https://<your-project>.vercel.app/api/translate \
 ### アプリの設定画面
 
 1. **設定 → クラウド機能（翻訳・発音評価）** で「接続を確認」を押す
-2. 「翻訳（Azure Translator）」「発音評価・音声入力（Azure Speech）」の両方にチェックが付けば OK
+2. 「翻訳（Azure Translator）」「発音評価・音声入力（Azure Speech）」「高品質音声（Azure ニューラル音声）」にチェックが付けば OK
 3. **練習 → 発音チェック** で、採点方式が「Azure発音評価（単語・音素ごとに採点）」になっていることを確認
+4. **設定 → 音声** の「読み上げ」が「高品質を優先」になっていれば、単語・例文・会話がニューラル音声で読み上げられます
+5. **翻訳 → 同時通訳** で、空欄の説明に「Azure の音声翻訳で、話している途中から訳します」と出ていれば、リアルタイムの音声翻訳が使えます
 
 ### よくあるエラー
 
@@ -218,7 +257,7 @@ curl -X POST https://<your-project>.vercel.app/api/translate \
 
 Azure がなくても、次の機能はそのまま使えます。
 
-- 単語学習（FSRS）、単語帳、リスニングクイズ、ディクテーション、シャドーイング（読み上げは端末の音声合成）
+- 単語学習（FSRS）、単語帳、リスニングクイズ、ディクテーション、シャドーイング、聞き分け、瞬間英作文、耳で復習（読み上げは端末の音声合成）
 - シーン別会話・ロールプレイ
 - 保線用語グロッサリー（オフラインの用語検出）
 
@@ -235,7 +274,7 @@ Hobby プラン（無料）の主な上限（1か月あたり）です。
 | Function Invocations（`/api/*` の呼び出し） | 1,000,000 回 |
 | Active CPU | 4 CPU 時間 |
 | Fast Data Transfer | 100 GB |
-| Function の最大実行時間 | 300 秒（このアプリの音声 API は 30 秒に設定） |
+| Function の最大実行時間 | 300 秒（このアプリは発音評価・音声入力を 30 秒、読み上げを 15 秒、一時トークンを 10 秒に設定） |
 
 上限を超えると、その機能は 30 日経過するまで使えなくなります。
 Hobby プランは **個人・非商用の利用に限られます**。業務で使う場合は Pro プランにしてください。
@@ -254,6 +293,10 @@ Hobby プランは **個人・非商用の利用に限られます**。業務で
 - Speech の REST API for short audio（60秒／発音評価30秒）: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-speech-to-text-short>
 - Speech のクォータと制限: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-services-quotas-and-limits>
 - Speech のクイックスタート（キーとエンドポイント）: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/get-started-speech-to-text>
+- テキスト読み上げの REST API: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-text-to-speech>
+- 音声翻訳（Speech SDK・JavaScript）: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/get-started-speech-translation>
+- 一時トークン（issueToken）での認証: <https://learn.microsoft.com/en-us/azure/ai-services/authentication>
+- SSML の発音指定（phoneme）: <https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-pronunciation>
 - 発音評価の課金（Microsoft Q&A）: <https://learn.microsoft.com/en-us/answers/questions/5608069/pricing-and-usage-of-pronunciation-assessment-feat>
 - Foundry リソースと F0（Microsoft Q&A）: <https://learn.microsoft.com/en-us/answers/questions/5644473/how-to-use-free-tier-requests-with-microsoft-found>
 - Vercel の環境変数: <https://vercel.com/docs/environment-variables>

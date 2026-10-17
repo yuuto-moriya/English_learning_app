@@ -15,14 +15,14 @@ export interface GuideLine {
 
 const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)]
 
-export function greeting(now = new Date(), name = ''): GuideLine {
+export function greeting(now = new Date(), name = ''): GuideLine & { title: string } {
   const h = now.getHours()
   const you = name ? `${name}さん` : ''
-  if (h < 5) return { pose: 'sleep', text: `夜勤おつかれさまだワン…${you}。5分だけ復習して、しっかり休もうね。` }
-  if (h < 11) return { pose: 'greet', text: pick([`おはよう${you}！朝の10分は記憶のゴールデンタイムだワン。`, `おはようだワン！今日もひとつずつ積み上げよう。`]) }
-  if (h < 17) return { pose: 'greet', text: pick([`こんにちは${you}！すきま時間に復習しよう。`, `お昼休みに5問だけ、どうかな？`]) }
-  if (h < 22) return { pose: 'greet', text: pick([`おかえり${you}！今日の復習が待ってるワン。`, `今日もおつかれさま。寝る前の復習は定着に効くワン！`]) }
-  return { pose: 'sleep', text: '寝る前に少しだけ復習すると、睡眠中に記憶が整理されやすいワン。' }
+  if (h < 5) return { title: 'おつかれさまです', pose: 'sleep', text: `夜おそくまでおつかれさまだワン${you ? '、' + you : ''}。5分だけ復習して、しっかり休もうね。` }
+  if (h < 11) return { title: 'おはようございます', pose: 'greet', text: pick([`おはよう${you}！朝の10分で今日の復習を済ませよう。`, 'おはようだワン！今日もひとつずつ積み上げよう。']) }
+  if (h < 17) return { title: 'こんにちは', pose: 'greet', text: pick([`こんにちは${you}！すきま時間に復習しよう。`, 'お昼休みに5問だけ、どうかな？']) }
+  if (h < 22) return { title: 'こんばんは', pose: 'greet', text: pick([`おかえり${you}！今日の復習が待ってるワン。`, '今日もおつかれさま。寝る前の復習は定着に効くワン！']) }
+  return { title: 'こんばんは', pose: 'sleep', text: '寝る前に少しだけ復習すると、睡眠中に記憶が整理されやすいワン。' }
 }
 
 export function dueMessage(due: number, newLeft: number): GuideLine {
@@ -82,11 +82,41 @@ export const LEARNING_TIPS: string[] = [
   '単語は例文ごと音で覚えると、聞き取りと会話でも使えるのじゃ。',
   '1回で完璧を目指さなくてよい。何度か出会ううちに定着するのじゃ。',
   'お手本の音声をまねするシャドーイングは、聞き取り力アップに効果的なのじゃ。',
-  '一般・ビジネス・保線を混ぜて復習すると、使い分けの力がつくのじゃ（インターリーブ）。',
+  'いくつかのコースや問題の形を混ぜて復習すると、使い分けの力がつくのじゃ（インターリーブ）。',
+  '同じ語をいろいろな人の声で聞くと、初めて聞く声でも聞き取りやすくなるのじゃ。',
+  '「いつ・どこで学ぶか」を先に決めておくと、続けやすくなるのじゃ（実行意図）。',
 ]
 
-/** ホームのワンポイント。学習法はユキ先生、保線の安全・英語はキナコが話す */
-export function randomTip(): { who: 'yuki' | 'kinako'; text: string } {
-  const all = [...LEARNING_TIPS.map((text) => ({ who: 'yuki' as const, text })), ...SAFETY_TIPS.map((text) => ({ who: 'kinako' as const, text }))]
+export const DAILY_TIPS: string[] = [
+  '"How are you?" には "Good, thanks. And you?" と聞き返すのが自然だワン。',
+  'お店で頼むときは "Can I get …?" や "Could I have …?" が自然だワン。',
+  '聞き取れなかったら "Sorry?" や "Could you say that again?" で大丈夫。聞き返すのも会話の技術だワン。',
+  '別れぎわは "See you." のほかに "Have a good day!" も使えるワン。',
+]
+
+export const BUSINESS_TIPS: string[] = [
+  '依頼は "Could you …?"、希望は "I\'d like to …"。"I want to …" より丁寧に聞こえますよ。',
+  '「3日以内に」は within three days、「（今から）3日後に」は in three days。期限の言い方は正確に。',
+  '会議で確認するときは "Just to confirm, …" から始めると、要点を言い直しやすいですよ。',
+  'メールの結びは "Best regards," が無難です。社外の初対面なら "Kind regards," もよく使います。',
+]
+
+export const IT_TIPS: string[] = [
+  'IT 用語はカタカナ語と同じでも、強く読む位置に注意（例：deBUG、anaLYtics）。router は米国では「ラウター」に近く聞こえます。',
+  '障害の報告は「何が・いつから・影響・今の対応・次の報告時刻」の順。"We\'re looking into it."（調査中です）も便利ですよ。',
+  'コードレビューの指摘は "Could you …?" や "What do you think about …?" で。命令形より角が立ちません。',
+  '略語は1文字ずつ読むもの（API、VPN）と、単語として読むもの（SaaS「サース」）があります。',
+]
+
+/** ホームのワンポイント。学習法はユキ先生、コースに応じてテツ・スミ・キナコが話す */
+export function randomTip(cats: { general?: boolean; business?: boolean; it?: boolean; rail?: boolean } = { general: true }): {
+  who: 'yuki' | 'kinako' | 'sumi' | 'tetsu'
+  text: string
+} {
+  const all: { who: 'yuki' | 'kinako' | 'sumi' | 'tetsu'; text: string }[] = LEARNING_TIPS.map((text) => ({ who: 'yuki' as const, text }))
+  if (cats.general) all.push(...DAILY_TIPS.map((text) => ({ who: 'tetsu' as const, text })))
+  if (cats.business) all.push(...BUSINESS_TIPS.map((text) => ({ who: 'sumi' as const, text })))
+  if (cats.it) all.push(...IT_TIPS.map((text) => ({ who: 'sumi' as const, text })))
+  if (cats.rail) all.push(...SAFETY_TIPS.map((text) => ({ who: 'kinako' as const, text })))
   return pick(all)
 }

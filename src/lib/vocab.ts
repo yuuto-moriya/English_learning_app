@@ -1,19 +1,28 @@
 import { useEffect, useState } from 'react'
-import type { Category, Word } from './types'
+import { ALL_CATS, type Category, type Word } from './types'
 
 const loaders: Record<Category, () => Promise<{ default: unknown }>> = {
   general: () => import('../data/vocab/general.json'),
   business: () => import('../data/vocab/business.json'),
+  it: () => import('../data/vocab/it.json'),
   rail: () => import('../data/vocab/rail.json'),
 }
 
 const cache: Partial<Record<Category, Word[]>> = {}
 const byId = new Map<string, Word>()
 const pending: Partial<Record<Category, Promise<Word[]>>> = {}
+/** 品詞で読みが変わる見出し語 → その品詞の発音（読み込んだカテゴリの分だけ） */
+const sayHints = new Map<string, string>()
+
+/** 単語だけを読むときの発音の指定（live → lɪv など）。該当しなければ undefined */
+export function sayHint(text: string): string | undefined {
+  return sayHints.get(text.trim().toLowerCase())
+}
 
 export function catOfId(id: string): Category {
   if (id.startsWith('r-')) return 'rail'
   if (id.startsWith('b-')) return 'business'
+  if (id.startsWith('i-')) return 'it'
   return 'general'
 }
 
@@ -23,7 +32,10 @@ export async function loadCategory(cat: Category): Promise<Word[]> {
     pending[cat] = loaders[cat]().then((m) => {
       const list = m.default as Word[]
       cache[cat] = list
-      for (const w of list) byId.set(w.id, w)
+      for (const w of list) {
+        byId.set(w.id, w)
+        if (w.say) sayHints.set(w.w.toLowerCase(), w.say)
+      }
       return list
     })
   }
@@ -31,8 +43,8 @@ export async function loadCategory(cat: Category): Promise<Word[]> {
 }
 
 export async function loadAll(): Promise<Word[]> {
-  const [g, b, r] = await Promise.all([loadCategory('general'), loadCategory('business'), loadCategory('rail')])
-  return [...g, ...b, ...r]
+  const lists = await Promise.all(ALL_CATS.map((c) => loadCategory(c)))
+  return lists.flat()
 }
 
 export async function getWord(id: string): Promise<Word | undefined> {
@@ -91,6 +103,15 @@ export function splitMarked(s: string): { t: string; hl: boolean }[] {
   }
   if (last < s.length) out.push({ t: s.slice(last), hl: false })
   return out
+}
+
+/** 和訳の読み上げ用：最初の意味だけにし、括弧書きと「〜」を除く */
+export function jaForSpeech(ja: string): string {
+  return ja
+    .split('；')[0]
+    .replace(/（[^）]*）|\([^)]*\)/g, '')
+    .replace(/[〜~]/g, '')
+    .trim()
 }
 
 /** 例文中のターゲット語（最初のマーク） */

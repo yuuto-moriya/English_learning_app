@@ -9,8 +9,10 @@
 | 一般語・ビジネス語の和訳・例文と、それを含むビルド成果物 | `data-src/vocab/*.txt`, `src/data/vocab/general.json`, `src/data/vocab/business.json` | **CC BY-SA 4.0**（上記リストの派生データとして） |
 | 米音IPA（発音記号） | ビルド時に `scripts/.cache/en_US.txt` から取り込み → `src/data/vocab/*.json` | **MIT**（open-dict-data/ipa-dict、cmudict-ipa 由来） |
 | 保線・設備管理用語集 | `data-src/rail/*.txt`, `src/data/vocab/rail.json` | 本プロジェクトのオリジナル編集物（MIT） |
+| IT 用語集 | `data-src/vocab/it-*.txt`, `src/data/vocab/it.json` | 本プロジェクトのオリジナル編集物（MIT）。外部の語彙リストは使っていません |
 | 案内キャラクター「テツ」の画像・アイコン | `public/guide/*.webp`, `public/icons/*.png`, `public/favicon.png`, `scripts/blender/*` | 本プロジェクトのオリジナル（MIT） |
-| シーン別会話・学習法の解説文 | `src/data/scenes.ts`, `src/data/research.ts` | 本プロジェクトのオリジナル（MIT） |
+| シーン別会話・学習法の解説文・聞き分けの最小対語 | `src/data/scenes.ts`, `src/data/research.ts`, `src/data/minimalPairs.ts` | 本プロジェクトのオリジナル（MIT） |
+| 英語の書体 Newsreader | `src/assets/fonts/*.woff2`, `src/assets/fonts/OFL.txt` | **SIL Open Font License 1.1**（Production Type） |
 
 ## NGSL / BSL / TSL（CC BY-SA 4.0）
 
@@ -50,9 +52,15 @@ EU 法令の再利用は Commission Decision 2011/833/EU に基づき認めら�
 
 ## キャラクター画像（オリジナル）
 
-コーギーの「テツ」は、`scripts/blender/corgi.py` で Blender（bpy）を使ってプロシージャルに
+コーギーの「テツ」となかまたちは、`scripts/blender/dogs.py`（共通部品は `kit.py`）で Blender（bpy）を使ってプロシージャルに
 モデリング・レンダリングし、`scripts/blender/postprocess.py` で WebP / PNG に変換した
 本プロジェクトのオリジナルキャラクターです。画像・生成スクリプトともに MIT License で提供します。
+
+## 書体 Newsreader（SIL Open Font License 1.1）
+
+英語の見出し語・例文に使っている書体 Newsreader（Production Type）は、ラテン文字のサブセット（可変フォント、標準・イタリック）を
+WOFF2 でアプリに同梱しています。ライセンス全文は `src/assets/fonts/OFL.txt` にあります。
+書体は改変しておらず、単体での販売はしていません。出典: <https://github.com/productiontype/Newsreader>
 
 ## 依存ライブラリ
 
@@ -61,5 +69,5 @@ npm パッケージ（React, Dexie, ts-fsrs ほか）は、それぞれのライ
 
 ## 外部サービス
 
-翻訳・音声認識・発音評価の結果は Microsoft Azure（Azure AI Translator / Azure AI Speech）が生成します。
+翻訳・音声認識・発音評価の結果と、高品質音声（ニューラル音声）の読み上げは Microsoft Azure（Azure AI Translator / Azure AI Speech）が生成します。
 利用にあたっては Microsoft の利用規約・製品条件が適用されます。

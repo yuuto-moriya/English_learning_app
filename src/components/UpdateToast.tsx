@@ -48,16 +48,16 @@ export function UpdateToast() {
   // 単語学習の最中は操作ボタンに重なるので出さない（終わってから表示）
   if (!show || isFocusMode(pathname)) return null
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(max(env(safe-area-inset-bottom),12px)+76px)] z-40 px-4">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(max(env(safe-area-inset-bottom),10px)+70px)] z-40 px-4">
       <div
         role="status"
         aria-live="polite"
-        className="pointer-events-auto mx-auto flex max-w-md items-center gap-2 rounded-[20px] bg-surface p-3 shadow-float ring-1 ring-ring animate-pop"
+        className="glass pointer-events-auto mx-auto flex max-w-md items-center gap-2 rounded-[18px] border border-line p-2.5 pl-4 shadow-float animate-rise"
       >
-        <p className="min-w-0 flex-1 text-[13px] font-semibold">アプリの新しいバージョンがあります</p>
+        <p className="min-w-0 flex-1 text-[13px] font-medium">新しいバージョンがあります</p>
         <button
           onClick={() => setNeedRefresh(false)}
-          className="shrink-0 rounded-lg px-3 py-2 text-[13px] font-semibold text-muted"
+          className="shrink-0 rounded-[10px] px-3 py-2 text-[13px] font-medium text-muted"
         >
           あとで
         </button>
@@ -66,7 +66,7 @@ export function UpdateToast() {
             setNeedRefresh(false)
             void updateSW?.(true)
           }}
-          className="shrink-0 rounded-xl bg-brand-grad px-3.5 py-2 text-[13px] font-bold text-white shadow-glow"
+          className="shrink-0 rounded-[10px] bg-ink px-3.5 py-2 text-[13px] font-semibold text-bg"
         >
           更新
         </button>

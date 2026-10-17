@@ -1,0 +1,98 @@
+# IT（レベル4：B2）— 開発・運用・プロジェクトの基本
+# 書式: lemma|品詞|和訳|例文(英)|例文(和)[|米音IPA（辞書にない語だけ）]
+source code|n|ソースコード|The *source code* is kept in a private repository.|ソースコードは非公開のリポジトリで管理されている。
+repository|n|リポジトリ（ファイルと変更履歴の保管場所）|Clone the *repository* to your laptop.|リポジトリを自分のノートパソコンにクローンしてください。
+version control|n|バージョン管理|*Version control* lets us go back to any earlier version.|バージョン管理があれば、以前のどの版にも戻せる。
+pull request|n|プルリクエスト（変更の取り込み依頼）|I opened a *pull request* for the login fix.|ログインの修正のプルリクエストを出した。
+code review|n|コードレビュー（コードの相互確認）|Every change needs a *code review* before it is merged.|すべての変更は、取り込む前にコードレビューが必要だ。
+merge conflict|n|マージの競合（コンフリクト）|I fixed the *merge conflict* in the settings file.|設定ファイルのマージの競合を解消した。
+deploy|v|デプロイする（本番環境などに配置して使えるようにする）|We *deploy* new code to production every Tuesday.|毎週火曜日に新しいコードを本番環境にデプロイしている。
+deployment|n|デプロイ（配置）|The *deployment* failed because one setting was missing.|設定が1つ足りなかったため、デプロイに失敗した。
+production environment|n|本番環境|Never test new code in the *production environment*.|新しいコードを本番環境で試してはいけない。
+staging environment|n|ステージング環境（本番前の検証環境）|Please check the change in the *staging environment* first.|まずステージング環境で変更を確認してください。
+debug|v|デバッグする（不具合を見つけて直す）|It took two days to *debug* the problem.|その問題をデバッグするのに2日かかった。|diːˈbʌɡ
+unit test|n|単体テスト|Write a *unit test* for each new function.|新しい関数ごとに単体テストを書いてください。
+test case|n|テストケース（試験項目）|We added ten *test cases* for the new feature.|新機能に10件のテストケースを追加した。
+bug report|n|不具合報告（バグ報告）|Please include the steps to reproduce it in your *bug report*.|バグ報告には再現手順を書いてください。
+user story|n|ユーザーストーリー（利用者の視点で書いた要件）|Each *user story* describes something the user wants to do.|各ユーザーストーリーは、利用者がしたいことを表している。
+sprint|n|スプリント（短く区切った開発期間）|We work in two-week *sprints*.|私たちは2週間のスプリント単位で作業している。
+stand-up meeting|n|朝会（短い定例ミーティング）|In the *stand-up meeting*, everyone shares their progress.|朝会では全員が進捗を共有する。|ˈstændˌʌp ˈmiːtɪŋ
+retrospective|n|振り返り（ふりかえり会）|In the *retrospective*, we talked about what went well.|振り返り会では、うまくいったことを話し合った。|ˌrɛtrəˈspɛktɪv
+agile|adj|アジャイルの（短い周期で開発と改善をくり返す）|Our team takes an *agile* approach to development.|私たちのチームはアジャイルな開発手法を採っている。
+roadmap|n|ロードマップ（今後の計画の道筋）|The product *roadmap* shows our plans for next year.|製品ロードマップには来年の計画が示されている。|ˈroʊdˌmæp
+wireframe|n|ワイヤーフレーム（画面の骨組み図）|The designer shared a *wireframe* of the new screen.|デザイナーが新しい画面のワイヤーフレームを共有した。|ˈwaɪɚˌfreɪm
+user interface|n|ユーザーインターフェース（UI）|The *user interface* should be simple and clear.|ユーザーインターフェースはシンプルで分かりやすくあるべきだ。
+user experience|n|ユーザー体験（UX）|Slow pages create a poor *user experience*.|表示の遅いページはユーザー体験を損なう。
+front end|n|フロントエンド（画面側）|She works on the *front end* of the website.|彼女はウェブサイトのフロントエンドを担当している。
+back end|n|バックエンド（サーバー側）|The *back end* processes all the orders.|バックエンドがすべての注文を処理している。
+dependency|n|依存関係（依存するソフト）|Update all *dependencies* before the release.|リリース前に、依存しているパッケージをすべて更新してください。
+configuration|n|設定；構成|A wrong *configuration* caused the outage.|設定の誤りが障害の原因だった。
+open-source|adj|オープンソースの|We use many *open-source* tools.|私たちは多くのオープンソースのツールを使っている。
+programming language|n|プログラミング言語|Python is a popular *programming language*.|Pythonは人気のあるプログラミング言語だ。
+script|n|スクリプト（簡単なプログラム）|I wrote a *script* to rename the files automatically.|ファイル名を自動で変えるスクリプトを書いた。
+API|n|API（ソフト同士をつなぐ仕組み）|Our app gets weather data through an *API*.|当社のアプリはAPI経由で天気のデータを取得している。
+cloud computing|n|クラウドコンピューティング|*Cloud computing* lets us add servers in minutes.|クラウドコンピューティングなら、数分でサーバーを追加できる。
+virtual machine|n|仮想マシン|Each developer has their own *virtual machine*.|開発者はそれぞれ自分の仮想マシンを持っている。
+latency|n|遅延（レイテンシ）|Users in Europe experience higher *latency*.|欧州の利用者には、より大きな遅延が出ている。|ˈleɪtənsi
+outage|n|（システムの）障害；停止|The *outage* lasted about two hours.|障害は約2時間続いた。|ˈaʊtɪdʒ
+monitoring|n|監視|Our *monitoring* tools alert us when a server slows down.|サーバーが遅くなると監視ツールが知らせてくれる。
+encryption|n|暗号化|All customer data is protected by *encryption*.|顧客データはすべて暗号化で保護されている。
+encrypt|v|暗号化する|*Encrypt* the file before you send it.|送る前にファイルを暗号化してください。|ɪnˈkrɪpt
+authentication|n|認証（本人確認）|The app uses fingerprint *authentication*.|そのアプリは指紋認証を使っている。
+two-factor authentication|n|二要素認証|*Two-factor authentication* makes your account much safer.|二要素認証でアカウントの安全性が大きく高まる。|ˈtuːˌfæktɚ ɔˌθɛntəˈkeɪʃən
+firewall|n|ファイアウォール（不正な通信を遮る仕組み）|The *firewall* blocks traffic from unknown sources.|ファイアウォールが不明な送信元からの通信を遮断する。
+vulnerability|n|脆弱性（セキュリティ上の弱点）|The update fixes a serious *vulnerability*.|その更新は深刻な脆弱性を修正する。
+security patch|n|セキュリティパッチ（修正プログラム）|Install the *security patch* as soon as possible.|セキュリティパッチをできるだけ早く適用してください。
+access rights|n|アクセス権|New staff get their *access rights* on their first day.|新入社員には初日にアクセス権が付与される。
+administrator|n|管理者|Ask the system *administrator* to unlock your account.|アカウントのロック解除はシステム管理者に依頼してください。
+workaround|n|回避策|Until we fix the bug, please use this *workaround*.|バグを直すまでは、この回避策を使ってください。|ˈwɝkəˌraʊnd
+root cause|n|根本原因|We are still looking for the *root cause* of the failure.|障害の根本原因をまだ調べている。
+data migration|n|データ移行|The *data migration* took the whole weekend.|データ移行に週末をまるごと使った。
+legacy system|n|レガシーシステム（古くからある既存のシステム）|We plan to replace the *legacy system* by 2028.|2028年までにレガシーシステムを置き換える予定だ。
+scalable|adj|拡張しやすい（スケーラブルな）|We need a *scalable* system that can handle growth.|成長に対応できる、拡張しやすいシステムが必要だ。|ˈskeɪləbəl
+bandwidth|n|帯域幅（通信容量）|Video calls use a lot of *bandwidth*.|ビデオ通話は多くの帯域を使う。|ˈbændˌwɪdθ
+data center|n|データセンター|Our servers are in a *data center* in Osaka.|当社のサーバーは大阪のデータセンターにある。|ˈdeɪtə ˈsɛntɚ
+go live|v|稼働を始める（本番公開する）|The new website will *go live* on Monday.|新しいウェブサイトは月曜日に公開される。
+rollout|n|展開；導入（段階的な公開）|The *rollout* to all offices will take a month.|全事業所への展開には1か月かかる。|ˈroʊlˌaʊt
+beta version|n|ベータ版（正式版の前の試用版）|You can try the *beta version* before the official release.|正式リリースの前にベータ版を試せます。
+release notes|n|リリースノート（変更点の説明）|Read the *release notes* to see what has changed.|何が変わったかはリリースノートを読んでください。
+cache|n|キャッシュ（一時的に保存したデータ）|Clearing the *cache* fixed the display problem.|キャッシュを消去したら表示の問題が直った。|kæʃ
+domain name|n|ドメイン名|We registered a new *domain name* for the campaign.|キャンペーン用に新しいドメイン名を登録した。
+IP address|n|IPアドレス|Each device on the network has its own *IP address*.|ネットワーク上の機器には、それぞれIPアドレスがある。
+VPN|n|VPN（暗号化した専用の通信路）|Connect to the *VPN* when you work from home.|在宅勤務のときはVPNに接続してください。
+remote access|n|リモートアクセス（社外からの接続）|*Remote access* is allowed only through the VPN.|リモートアクセスはVPN経由でのみ許可されている。
+data entry|n|データ入力|Automation has cut the time we spend on *data entry*.|自動化でデータ入力にかかる時間が減った。
+machine learning|n|機械学習|We use *machine learning* to predict customer demand.|機械学習で顧客の需要を予測している。
+artificial intelligence|n|人工知能（AI）|*Artificial intelligence* can summarize long reports.|人工知能は長い報告書を要約できる。
+generative AI|n|生成AI|We use *generative AI* to draft emails.|メールの下書きに生成AIを使っている。
+data analysis|n|データ分析|*Data analysis* showed that most errors happen at night.|データ分析の結果、エラーの大半は夜間に起きていた。
+macro|n|マクロ（操作を自動で実行する手順）|I created a *macro* to format the report.|報告書の書式を整えるマクロを作った。|ˈmækroʊ
+firmware|n|ファームウェア（機器に組み込まれたソフト）|Update the router's *firmware* to fix the problem.|問題を直すにはルーターのファームウェアを更新してください。|ˈfɝmˌwɛr
+dashboard|n|ダッシュボード（情報をまとめて表示する画面）|The *dashboard* shows sales in real time.|ダッシュボードには売上がリアルタイムで表示される。|ˈdæʃˌbɔrd
+analytics|n|分析（アクセス解析など）|Our web *analytics* show that most users visit on weekdays.|ウェブのアクセス解析によると、ほとんどの利用者は平日に訪れる。|ˌænəˈlɪtɪks
+real-time|adj|リアルタイムの（即時の）|The app gives *real-time* updates on delivery status.|そのアプリは配送状況をリアルタイムで知らせる。
+syntax|n|構文（プログラムの文法）|The code won't run because of a *syntax* error.|構文エラーのためコードが動かない。|ˈsɪnˌtæks
+plug-in|n|プラグイン（追加の機能）|Install the *plug-in* to open this type of file.|この種類のファイルを開くにはプラグインをインストールしてください。|ˈplʌɡˌɪn
+responsive design|n|レスポンシブデザイン（画面の大きさに合わせる設計）|With *responsive design*, the site works well on phones too.|レスポンシブデザインにより、サイトはスマホでも使いやすい。
+accessibility|n|アクセシビリティ（だれでも使いやすいこと）|We improved *accessibility* for users with poor eyesight.|視力の弱い利用者のためにアクセシビリティを改善した。
+usability|n|使いやすさ（ユーザビリティ）|We ran a *usability* test with five users.|5人の利用者でユーザビリティテストを行った。|ˌjuːzəˈbɪləti
+requirements definition|n|要件定義|*Requirements definition* is the most important phase of the project.|要件定義はプロジェクトで最も重要な工程だ。
+specification document|n|仕様書|The *specification document* explains how each screen works.|仕様書には各画面の動きが説明されている。
+help desk ticket|n|問い合わせチケット（対応依頼の記録）|I've opened a *help desk ticket* for your laptop problem.|ノートパソコンの不具合について問い合わせチケットを登録しました。
+service request|n|サービス要求（ITへの作業依頼）|Submit a *service request* to get a new monitor.|新しいモニターが必要なら、サービス要求を出してください。
+device driver|n|デバイスドライバ（機器を動かすためのソフト）|Install the latest *device driver* for the scanner.|スキャナー用の最新のデバイスドライバをインストールしてください。
+log in|v|ログインする|I can't *log in* to the system this morning.|今朝はシステムにログインできない。
+hotfix|n|緊急修正（ホットフィックス）|We released a *hotfix* for the login problem.|ログインの不具合を直す緊急修正をリリースした。|ˈhɑtˌfɪks
+rollback|n|切り戻し（前の版に戻すこと）|If the update fails, we will do a *rollback*.|更新に失敗したら切り戻しを行う。|ˈroʊlˌbæk
+uptime|n|稼働時間（稼働率）|The service had 99.9% *uptime* last year.|そのサービスの昨年の稼働率は99.9%だった。|ˈʌpˌtaɪm
+proof of concept|n|概念実証（PoC：実現できるかの検証）|We ran a *proof of concept* before buying the system.|システムを購入する前に概念実証を行った。
+cybersecurity|n|サイバーセキュリティ|*Cybersecurity* training is required for all staff.|全社員にサイバーセキュリティ研修が義務付けられている。|ˌsaɪbɚsɪˈkjʊrəti
+personal data|n|個人データ（個人情報）|*Personal data* must be stored securely.|個人データは安全に保管しなければならない。
+access control|n|アクセス制御|Strict *access control* protects customer records.|厳格なアクセス制御で顧客の記録を守っている。
+command line|n|コマンドライン（文字で命令を入力する画面）|Run this script from the *command line*.|このスクリプトはコマンドラインから実行してください。
+timeout|n|タイムアウト（時間切れ）|The request failed with a *timeout* error.|リクエストはタイムアウトエラーで失敗した。|ˈtaɪmˌaʊt
+sandbox|n|サンドボックス（隔離された試験環境）|Test the new tool in a *sandbox* first.|新しいツールはまずサンドボックスで試してください。|ˈsændˌbɑks
+data loss|n|データ消失|Regular backups prevent *data loss*.|定期的なバックアップでデータ消失を防ぐ。
+user acceptance testing|n|受け入れテスト（UAT：利用者による確認）|*User acceptance testing* starts next week.|受け入れテストは来週始まる。
+cutover|n|（新システムへの）切り替え|The *cutover* to the new system happened overnight.|新システムへの切り替えは夜間に行われた。|ˈkʌtˌoʊvɚ
+digital transformation|n|デジタルトランスフォーメーション（DX）|*Digital transformation* is more than buying new software.|DXは新しいソフトを買うことだけではない。

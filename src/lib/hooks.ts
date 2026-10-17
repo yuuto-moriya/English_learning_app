@@ -1,13 +1,13 @@
 import { useLiveQuery } from 'dexie-react-hooks'
-import { useEffect, useState, useSyncExternalStore } from 'react'
-import { db, getStreak, todayKey, type CardRow } from './db'
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
+import { db, getStreak, shiftDay, todayKey, type CardRow, type DailyRow } from './db'
 import { getHealth, type Health } from './api'
 import { useSettings } from './settings'
 
 export function useCardsMap(): Map<string, CardRow> | undefined {
   const rows = useLiveQuery(() => db.cards.toArray(), [])
-  if (!rows) return undefined
-  return new Map(rows.map((r) => [r.id, r]))
+  // 描画のたびに Map を作り直すと、これを依存にした絞り込み（単語帳の数千語）が毎回やり直しになる
+  return useMemo(() => (rows ? new Map(rows.map((r) => [r.id, r])) : undefined), [rows])
 }
 
 /**
@@ -98,4 +98,45 @@ export function useStandalone() {
         (navigator as unknown as { standalone?: boolean }).standalone === true),
   )
   return s
+}
+
+/** 直近 n 日の学習記録（古い順。記録のない日は undefined） */
+export function useRecentDays(n: number): { date: string; row?: DailyRow }[] | undefined {
+  const today = todayKey(new Date(useNow()))
+  const from = shiftDay(today, -(n - 1))
+  const rows = useLiveQuery(() => db.daily.where('date').between(from, today, true, true).toArray(), [from, today])
+  if (!rows) return undefined
+  const map = new Map(rows.map((r) => [r.date, r]))
+  return Array.from({ length: n }, (_, i) => {
+    const date = shiftDay(from, i)
+    return { date, row: map.get(date) }
+  })
+}
+
+/** 保存（★）した単語の ID */
+export function useMarks(): Set<string> | undefined {
+  const rows = useLiveQuery(() => db.marks.toArray(), [])
+  return useMemo(() => (rows ? new Set(rows.map((r) => r.id)) : undefined), [rows])
+}
+
+/** active のあいだ画面を消さない（対応ブラウザのみ）。アプリに戻ったら取り直す */
+export function useWakeLock(active: boolean) {
+  useEffect(() => {
+    type Lock = { release: () => Promise<void> }
+    const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<Lock> } }
+    let lock: Lock | null = null
+    const acquire = () => {
+      if (!active || !nav.wakeLock || document.visibilityState !== 'visible') return
+      nav.wakeLock
+        .request('screen')
+        .then((l) => (lock = l))
+        .catch(() => undefined)
+    }
+    acquire()
+    document.addEventListener('visibilitychange', acquire)
+    return () => {
+      document.removeEventListener('visibilitychange', acquire)
+      void lock?.release().catch(() => undefined)
+    }
+  }, [active])
 }
