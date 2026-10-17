@@ -19,7 +19,10 @@ type Phase = 'idle' | 'prompt' | 'think' | 'answer' | 'example'
  * 忘れかけている語（想起確率の低い順）を優先。学習した語が少ないときは、これから学ぶ語を聞く。
  */
 async function buildList(n = 20): Promise<{ words: Word[]; preview: boolean }> {
-  const rows = (await db.cards.toArray()).filter((r) => r.reps > 0 && !r.known)
+  const s = getSettings()
+  const all = await db.cards.toArray()
+  // 選んでいるコースの、学習した語（「知っている」にした語は除く）
+  const rows = all.filter((r) => r.reps > 0 && !r.known && s.studyCats[r.cat])
   const now = new Date()
   const ranked = rows
     .map((r) => ({ r, p: retrievability(r, now) }))
@@ -27,9 +30,9 @@ async function buildList(n = 20): Promise<{ words: Word[]; preview: boolean }> {
     .slice(0, n)
   const words = (await Promise.all(ranked.map((x) => getWord(x.r.id)))).filter(Boolean) as Word[]
   if (words.length >= 5) return { words, preview: false }
-  const s = getSettings()
   const lists = await Promise.all(selectedCats(s).map((c) => loadCategory(c)))
-  const ids = new Set(rows.map((r) => r.id))
+  // これから学ぶ語の候補から、学習した語と「知っている」にした語を除く
+  const ids = new Set(all.map((r) => r.id))
   const fresh = interleave(newWordPool(lists.flat(), ids, s)).slice(0, n)
   return { words: [...words, ...fresh].slice(0, n), preview: true }
 }

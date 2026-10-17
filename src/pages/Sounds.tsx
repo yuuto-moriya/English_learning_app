@@ -279,7 +279,7 @@ function Round({ contrasts, mode, onExit }: { contrasts: Contrast[]; mode: Sound
     playCue(good ? 'correct' : 'wrong')
     if (good) setCorrect((c) => c + 1)
     else setMissed((ms) => [...ms, t])
-    bumpDaily({ listening: 1, correct: good ? 1 : 0, seconds: mode === 'sentence' ? 10 : 6 })
+    bumpDaily({ listening: 1, seconds: mode === 'sentence' ? 10 : 6 })
   }
   const heard = mode === 'same' ? `${t.pair[t.answer]} → ${t.pair[t.second]}` : null
 

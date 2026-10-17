@@ -115,6 +115,27 @@ export function jaForSpeech(ja: string): string {
 }
 
 /** 例文中のターゲット語（最初のマーク） */
+/**
+ * 選択問題・書く問題に出す和訳。単語の画面ではすべての意味を見せるが、問題では答えの手がかりにならないよう整える。
+ * - 英語の入ったかっこを取る（「頼る（rely on）」→「頼る」。英語がそのまま答えになるため）
+ * - 別の品詞の意味（「本；（動詞）予約する」の「（動詞）予約する」）と、英語のかっこで始まる別の語の意味（（March）3月）は出さない
+ * - 意味は最初の2つまで（選択肢の長さをそろえ、長さで見当がつかないように）
+ */
+export function quizGloss(ja: string): string {
+  const parts = ja
+    .split('；')
+    .map((p) => p.trim())
+    .filter((p) => p && !/^（[^）]*詞）/.test(p) && !/^（[^）]*[A-Za-z][^）]*）/.test(p))
+    .map((p) => p.replace(/（[^）]*[A-Za-z][^）]*）/g, '').trim())
+    .filter(Boolean)
+  return (parts.length ? parts : [ja]).slice(0, 2).join('；')
+}
+
+/** 和訳（問題用に整えたもの）に見出し語がそのまま入っている（API → 「API（…）」など）。意味を選ぶ・書く問題では答えが見えてしまう */
+export function glossRevealsWord(w: { w: string; ja: string }): boolean {
+  return quizGloss(w.ja).toLowerCase().includes(w.w.toLowerCase())
+}
+
 export function markedTarget(s: string): string | null {
   const m = /\*([^*]+)\*/.exec(s)
   return m ? m[1] : null
@@ -129,3 +150,9 @@ export function shuffle<T>(arr: T[], rnd = Math.random): T[] {
   return a
 }
 
+
+/** 過去形・過去分詞が -ed でない不規則動詞か（表示で目立たせる） */
+export function isIrregularVerb(vf: string[] | undefined): boolean {
+  if (!vf) return false
+  return [vf[1], vf[2]].some((f) => !f.split(' / ')[0].endsWith('ed'))
+}

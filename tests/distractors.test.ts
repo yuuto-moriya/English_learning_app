@@ -20,7 +20,7 @@ const words = general as Word[]
 describe('選択肢の難しさ', () => {
   it('学習者のレベルと覚え具合で決まる', () => {
     expect(wordTier({ learnerLevel: 1 })).toBe(1)
-    expect(wordTier({ learnerLevel: 3, stability: 1 })).toBe(1)
+    expect(wordTier({ learnerLevel: 3, stability: 1 })).toBe(2)
     expect(wordTier({ learnerLevel: 5 })).toBe(2)
     expect(wordTier({ learnerLevel: 2, stability: 10 })).toBe(2)
     expect(wordTier({ learnerLevel: 5, stability: 10 })).toBe(3)
@@ -52,6 +52,9 @@ describe('意味の重なり・綴りの近さ', () => {
     expect(meaningOverlap('ファイル', 'ファイル名')).toBe(true)
     expect(meaningOverlap('借りる', '貸す')).toBe(false)
     expect(meaningOverlap('静かな', 'かなり')).toBe(false)
+    expect(meaningOverlap('競争相手', '対戦相手')).toBe(true)
+    // 曜日・色などは前が1文字なので別の意味（まぎらわしい選択肢として使える）
+    expect(meaningOverlap('月曜日', '火曜日')).toBe(false)
   })
 
   it('綴りの近さ', () => {
@@ -90,11 +93,31 @@ describe('単語のダミー', () => {
     expect(c3).toBeGreaterThan(c2)
   })
 
-  it('綴りが似た語を選ぶ（quite → quiet / white / write など）', () => {
-    const quite = words.find((w) => w.w === 'quite')!
+  it('むずかしいときは綴りが似た語（品詞も同じ）を選ぶ（adapt → adopt、quiet → quite ではなく quit など）', () => {
+    const adapt = words.find((w) => w.w === 'adapt')!
     const forms = new Set<string>()
-    for (let k = 0; k < 20; k++) for (const d of wordDistractors(quite, words, 3)) if (d.kind === 'form') forms.add(d.word.w)
-    expect([...forms].some((w) => ['quiet', 'white', 'write', 'quit'].includes(w))).toBe(true)
+    for (let k = 0; k < 20; k++) for (const d of wordDistractors(adapt, words, 3)) if (d.kind === 'form') forms.add(d.word.w)
+    expect(forms.has('adopt')).toBe(true)
+    for (const w of forms) expect(words.find((x) => x.w === w)!.pos).toBe('v')
+  })
+
+  it('選択肢は正解と品詞をそろえる', () => {
+    let same = 0
+    let total = 0
+    for (const w of sample)
+      for (const d of wordDistractors(w, words, 2)) {
+        total++
+        if (d.word.pos === w.pos) same++
+      }
+    expect(same / total).toBeGreaterThan(0.95)
+  })
+
+  it('意味の近い語を使う（月曜日 → ほかの曜日、犬 → ほかの動物）', () => {
+    const monday = words.find((w) => w.w === 'Monday')!
+    expect(wordDistractors(monday, words, 3).filter((d) => d.word.ja.endsWith('曜日')).length).toBeGreaterThanOrEqual(2)
+    const dog = words.find((w) => w.w === 'dog')!
+    const animals = ['猫', '馬', '鳥', '魚', '豚', 'ネズミ', '牛']
+    expect(wordDistractors(dog, words, 2).filter((d) => animals.some((a) => d.word.ja.startsWith(a))).length).toBeGreaterThanOrEqual(1)
   })
 
   it('保線用語は同じ分類の語を使う', () => {
@@ -124,5 +147,23 @@ describe('例文のダミー（リスニング）', () => {
   it('似た例文の数は難しさの数まで', () => {
     for (const t of sample)
       for (const tier of [1, 2, 3] as const) expect(sentenceDistractors(t, pool, tier).filter((x) => x.kind === 'close').length).toBeLessThanOrEqual(tier)
+  })
+})
+
+describe('音だけで答える問題の選択肢', () => {
+  it('同じ発音の語（week と weak など）は入れない', () => {
+    const week = words.find((w) => w.w === 'week')!
+    const weak = words.find((w) => w.w === 'weak')
+    expect(weak).toBeDefined()
+    for (let k = 0; k < 30; k++)
+      for (const d of wordDistractors(week, words, 3, { listen: true })) expect(d.word.ipa?.replace(/[ˈˌ]/g, '')).not.toBe(week.ipa?.replace(/[ˈˌ]/g, ''))
+  })
+})
+
+describe('上位語・下位語を選択肢にしない', () => {
+  it('sleeper と concrete sleeper', () => {
+    const pool = rail as Word[]
+    const sleeper = pool.find((w) => w.w === 'sleeper')!
+    for (let k = 0; k < 20; k++) for (const d of wordDistractors(sleeper, pool, 3)) expect(d.word.w.toLowerCase().includes('sleeper')).toBe(false)
   })
 })

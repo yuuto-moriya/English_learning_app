@@ -5,7 +5,7 @@ import { Guide } from '@/components/Guide'
 import { defaultLevel, defaultSources, SourcePicker, SpeedPicker } from '@/components/PracticeControls'
 import { FeedbackBar, ListenButton, ResultCard, SessionShell, SlowButton, SLOW_RATE } from '@/components/Session'
 import { Button, Card, cx } from '@/components/ui'
-import { diffWords, pickRound, sentencePool, type DiffToken, type Sentence, type Source } from '@/lib/sentences'
+import { diffWords, learnedIds, pickRound, sentencePool, type DiffToken, type Sentence, type Source } from '@/lib/sentences'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily } from '@/lib/db'
 import { play } from '@/lib/sounds'
@@ -23,9 +23,17 @@ export default function Dictation() {
   const [total, setTotal] = useState(0)
   const [started, setStarted] = useState(false)
 
+  /** 学習した語（覚えた語の例文から先に出す） */
+  const [learned, setLearned] = useState<Set<string>>(new Set())
+  const [loaded, setLoaded] = useState(false)
   useEffect(() => {
     let alive = true
-    sentencePool(sources, level, Math.max(1, level - 2)).then((p) => alive && setPool(p))
+    Promise.all([sentencePool(sources, level, Math.max(1, level - 2)), learnedIds()]).then(([p, l]) => {
+      if (!alive) return
+      setPool(p)
+      setLearned(l)
+      setLoaded(true)
+    })
     return () => {
       alive = false
     }
@@ -44,7 +52,7 @@ export default function Dictation() {
 
   const start = () => {
     warmUpSpeech()
-    const r = pickRound(shortPool, 5)
+    const r = pickRound(shortPool, 5, learned)
     setRound(r)
     setI(0)
     setTotal(0)
@@ -172,6 +180,9 @@ export default function Dictation() {
           <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />
           <SpeedPicker rate={rate} onRate={setRate} />
         </Card>
+        {loaded && shortPool.length < 5 && (
+          <p className="px-1 text-[12.5px] leading-relaxed text-muted">出題できる文が足りません。出題範囲を増やすか、レベルを上げてください。</p>
+        )}
         <Button block size="lg" onClick={start} disabled={shortPool.length < 5}>
           {done && <RotateCcw className="h-[18px] w-[18px]" />}
           {done ? 'もう一度' : 'はじめる'}

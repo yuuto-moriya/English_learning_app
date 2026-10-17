@@ -5,17 +5,19 @@ import { shuffle } from './vocab'
 /**
  * 選択式の問題の「まちがいの選択肢（ダミー）」を選ぶ。
  *
- * ランダムに選ぶと、正解とまったく関係のない選択肢になり、なんとなくでも当たってしまう。
- * そこで「正解に似た選択肢」を混ぜる。似ている数（＝難しさ）は学習者のレベルと、その語の覚え具合で決める。
- * - 単語：綴り・音が似た語（adapt / adopt）、同じ分野・同じ品詞でよく使う語
+ * ランダムに選ぶと、正解とまったく関係のない選択肢になり、なんとなくでも当たってしまう。そこで：
+ * - どの選択肢も、正解と品詞・和訳の形（〜する・〜い・名詞…）をそろえる（形だけで見分けられないように）
+ * - 意味の近い語（犬 → 猫・馬、月曜日 → 火曜日、安い → 高価な）を混ぜる。WordNet から事前に計算した near
+ * - むずかしいときは、綴り・音が似た語（adapt / adopt、quite / quiet）も混ぜる
  * - 例文：正解と同じ単語を含む例文、同じ場面の例文
+ * 似た選択肢の多さ（＝難しさ）は学習者のレベルと、その語の覚え具合で決める。
  *
- * ただし「どちらも正解に見える」選択肢は作らない。意味が重なる語（類義語・同じ語の仲間）は除く。
+ * ただし「どちらも正解に見える」選択肢は作らない。意味が重なる語（類義語・同じ語の仲間・上位語）は除く。
  * 適度に難しい問題の方が記憶に残る（望ましい困難：Bjork, 1994）。もっともらしい誤答の選択肢は、
  * 正解だけでなく関連する知識の想起も促す（Little et al., 2012）。
  */
 
-/** 難しさ。1=やさしい 2=ふつう 3=むずかしい（＝3つのダミーのうち、似た選択肢の数） */
+/** 難しさ。1=やさしい 2=ふつう 3=むずかしい */
 export type Tier = 1 | 2 | 3
 
 export const TIER_LABEL: Record<Tier, string> = { 1: 'やさしい', 2: 'ふつう', 3: 'むずかしい' }
@@ -29,12 +31,13 @@ export const familiarity = (stability?: number): 0 | 1 | 2 => (!stability || sta
 /**
  * 単語の問題の難しさ（行：覚え具合、列：学習者のレベル帯）
  *              入門・初級  中級・中上級  上級・専門
- * 覚えたて      やさしい    やさしい      ふつう
+ * 覚えたて      やさしい    ふつう        ふつう
  * 定着しつつある ふつう      ふつう        むずかしい
  * 定着          ふつう      むずかしい    むずかしい
+ * やさしい＝意味の近い語1つ、ふつう＝2つ、むずかしい＝2つ＋綴りが似た語。残りも品詞と和訳の形をそろえる
  */
 const TIER_TABLE: Tier[][] = [
-  [1, 1, 2],
+  [1, 2, 2],
   [2, 2, 3],
   [2, 3, 3],
 ]
@@ -70,7 +73,7 @@ function glossParts(ja: string): string[] {
   return parts
 }
 
-/** 漢字・カタカナが2文字以上続けて共通するか（影響する／影響力、ファイル／ファイル名） */
+/** 漢字・カタカナが2文字以上続けて共通するか */
 function commonRun(a: string, b: string, min = 2): boolean {
   for (let i = 0; i + min <= a.length; i++) {
     const s = a.slice(i, i + min)
@@ -79,19 +82,46 @@ function commonRun(a: string, b: string, min = 2): boolean {
   return false
 }
 
-/** 意味が重なる（両方とも正解に見えるおそれがある） */
+/**
+ * 意味が重なる（両方とも正解に見えるおそれがある）。scripts/build_neighbors.py の meaning_overlap と同じ判定
+ * - 意味のまとまりが同じ（維持；保守 と 保守）
+ * - 一方のまとまり全体が、もう一方に含まれる（影響 と 影響力、ファイル と ファイル名）
+ * - 2文字以上の語で終わりが同じ（競争相手 と 対戦相手）。月曜日・火曜日のように前が1文字なら別の意味として扱う
+ */
 export function meaningOverlap(a: string, b: string): boolean {
   if (a === b) return true
   const pa = glossParts(a)
-  const pb = new Set(glossParts(b))
-  if (pa.some((p) => pb.has(p))) return true
-  return commonRun(a, b)
+  const pb = glossParts(b)
+  const sb = new Set(pb)
+  if (pa.some((p) => sb.has(p))) return true
+  for (const x of pa)
+    for (const y of pb) {
+      const [short, long] = x.length <= y.length ? [x, y] : [y, x]
+      // 漢字・カタカナの2文字以上、またはひらがなを含む3文字以上の意味が、もう一方に丸ごと入っている（まくらぎ と コンクリートまくらぎ）
+      if ((short.length >= 3 || (short.length >= 2 && [...short].every((c) => KANJI_KATA.test(c)))) && long.includes(short)) return true
+      let k = 0
+      while (k < Math.min(x.length, y.length) && x[x.length - 1 - k] === y[y.length - 1 - k] && KANJI_KATA.test(x[x.length - 1 - k])) k++
+      if (k >= 2 && x.length - k >= 2 && y.length - k >= 2) return true
+    }
+  return false
 }
 
-/** 漢字を1字でも共有するか（似た選択肢には、意味の近さを疑われないよう漢字を共有しない語だけを使う） */
+/** 漢字を1字でも共有するか（綴りが似た語は「意味は別」の選択肢なので、漢字を共有しない語だけを使う） */
 function sharesKanji(a: string, b: string): boolean {
   for (const c of a) if (/[㐀-鿿]/.test(c) && b.includes(c)) return true
   return commonRun(a, b)
+}
+
+/**
+ * 和訳の形：v＝動詞（〜する・〜る・〜く…）、a＝形容詞（〜い・〜な）、x＝「〜」で始まる（前置詞・助動詞など）、n＝名詞ほか。
+ * 選択肢の形がそろっていないと、日本語の形だけで正解の見当がついてしまう（例：be の「〜である」に「私たちは」）
+ */
+export function glossForm(ja: string): 'v' | 'a' | 'x' | 'n' {
+  const first = ja.replace(/[（(][^）)]*[）)]/g, '').split(/[；;、,]/)[0].trim()
+  if (first.startsWith('〜')) return 'x'
+  if (/(する|させる|される|[うくぐすつぬぶむる])$/.test(first)) return 'v'
+  if (/[いな]$/.test(first)) return 'a'
+  return 'n'
 }
 
 // ───────── 綴りの近さ ─────────
@@ -133,56 +163,103 @@ function sameFamily(a: string, b: string): boolean {
 
 // ───────── 単語のダミー ─────────
 
-export type DistractorKind = 'form' | 'field' | 'random'
+/** near＝意味の近い語、form＝綴りが似た語、field＝同じ分野・同じ品詞で頻度が近い語、random＝品詞と和訳の形が同じ語 */
+export type DistractorKind = 'near' | 'form' | 'field' | 'random'
+
+const idMaps = new WeakMap<Word[], Map<string, Word>>()
+function byId(pool: Word[]): Map<string, Word> {
+  let m = idMaps.get(pool)
+  if (!m) idMaps.set(pool, (m = new Map(pool.map((w) => [w.id, w]))))
+  return m
+}
+
+/** 難しさごとの選択肢の組み立て（3つのダミーの種類） */
+const PLAN: Record<Tier, DistractorKind[]> = {
+  1: ['near', 'random', 'random'],
+  2: ['near', 'near', 'random'],
+  3: ['near', 'near', 'form'],
+}
+
+/** 発音記号から強勢記号を除いたもの（同音異義語の判定用） */
+const bareIpa = (ipa?: string) => (ipa ?? '').replace(/[ˈˌ]/g, '')
+
+/** 見出し語の一方がもう一方を語として含む（sleeper と concrete sleeper、rail と guard rail）。下位語・上位語になりやすい */
+function containsWord(a: string, b: string): boolean {
+  const x = ` ${a.toLowerCase()} `
+  const y = ` ${b.toLowerCase()} `
+  return x.includes(y) || y.includes(x)
+}
 
 /**
- * 単語の意味を選ぶ問題のダミーを n 個選ぶ。tier の数だけ「似た選択肢」を混ぜ、残りはランダム。
- * 似た選択肢は「綴り・音が似た語」と「同じ分野・同じ品詞でよく使う語」を交互に使う。
+ * 単語の意味を選ぶ問題のダミーを3つ選ぶ。
+ * listen（音だけを聞いて答える問題）のときは、同じ発音の語（week と weak、by と buy）を入れない（聞いただけでは区別できないため）
  */
-export function wordDistractors(target: Word, pool: Word[], tier: Tier, n = 3): { word: Word; kind: DistractorKind }[] {
-  const base = pool.filter((w) => w.id !== target.id && w.w.toLowerCase() !== target.w.toLowerCase() && !meaningOverlap(target.ja, w.ja))
+export function wordDistractors(target: Word, pool: Word[], tier: Tier, opts: { listen?: boolean } = {}): { word: Word; kind: DistractorKind }[] {
+  const shape = glossForm(target.ja)
+  const sound = bareIpa(target.ipa)
+  const ok = (w: Word) =>
+    w.id !== target.id &&
+    w.w.toLowerCase() !== target.w.toLowerCase() &&
+    !containsWord(target.w, w.w) &&
+    !meaningOverlap(target.ja, w.ja) &&
+    !(opts.listen && sound && bareIpa(w.ipa) === sound)
+  // 副詞の和訳（素早く・ゆっくりと・完全に）は形がまちまちなので、品詞だけをそろえる
+  const sameKind = (w: Word) => w.pos === target.pos && (target.pos === 'adv' || glossForm(w.ja) === shape)
+  const base = pool.filter(ok)
+
+  // 意味の近い語（近い順の上位から、毎回同じにならないよう少し混ぜる）
+  const ids = byId(pool)
+  const near = shuffle(
+    (target.near ?? [])
+      .map((id) => ids.get(id))
+      .filter((w): w is Word => !!w && ok(w))
+      .slice(0, 4),
+  )
+
+  // 綴り・音が似た語（漢字を共有しない＝意味は別。品詞は正解と同じものだけ、和訳の形も同じものを先に）
   const close = base.filter((w) => Math.abs(w.lv - target.lv) <= 2 && !sharesKanji(target.ja, w.ja))
+  const form = shuffle(
+    close
+      .filter((w) => w.pos === target.pos && !sameFamily(target.w, w.w))
+      .map((w) => ({ w, s: formSimilarity(target.w, w.w) + (sameKind(w) ? 0.2 : 0) }))
+      .filter((x) => x.s >= 0.5)
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 4),
+  ).map((x) => x.w)
 
-  // 綴り・音が似た語（似ている順に上位から、毎回同じにならないよう少し混ぜる）
-  const form = close
-    .filter((w) => !sameFamily(target.w, w.w))
-    .map((w) => ({ w, s: formSimilarity(target.w, w.w) }))
-    .filter((x) => x.s >= 0.5)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, 6)
-  const formPick = shuffle(form.slice(0, 4)).map((x) => x.w)
-
-  // 同じ分野（保線の分類）・同じ品詞で、レベルと使われる頻度が近い語
+  // 同じ分野（保線の分類）・同じ品詞で、レベルと使われる頻度が近い語（意味の近い語が足りないとき）
   const field = shuffle(
     close.filter(
       (w) =>
-        w.pos === target.pos &&
+        sameKind(w) &&
         (target.sub ? w.sub === target.sub : Math.abs(w.lv - target.lv) <= 1 && (target.rank === undefined || w.rank === undefined || Math.abs(w.rank - target.rank) <= 400)),
     ),
   )
 
+  // 品詞と和訳の形が同じ、レベルの近い語（足りなければ品詞だけ・レベルだけで）
+  const lvNear = base.filter((w) => Math.abs(w.lv - target.lv) <= 1)
+  const sameShape = lvNear.filter(sameKind)
+  const samePos = lvNear.filter((w) => w.pos === target.pos)
+  const random = shuffle(sameShape.length >= 6 ? sameShape : samePos.length >= 6 ? samePos : lvNear.length >= 3 ? lvNear : base)
+
   const out: { word: Word; kind: DistractorKind }[] = []
-  const used = new Set<string>()
-  const take = (w: Word | undefined, kind: DistractorKind) => {
-    if (!w || used.has(w.id) || out.some((o) => meaningOverlap(o.word.ja, w.ja))) return false
-    used.add(w.id)
+  const take = (w: Word, kind: DistractorKind) => {
+    if (out.some((o) => o.word.id === w.id || meaningOverlap(o.word.ja, w.ja))) return false
     out.push({ word: w, kind })
     return true
   }
-  for (let k = 0; k < Math.min(tier, n); k++) {
-    const order: [Word[], DistractorKind][] = k % 2 === 0 ? [[formPick, 'form'], [field, 'field']] : [[field, 'field'], [formPick, 'form']]
-    let ok = false
-    for (const [list, kind] of order) {
-      for (const w of list) if ((ok = take(w, kind))) break
-      if (ok) break
-    }
+  const sources: Record<DistractorKind, [Word[], DistractorKind][]> = {
+    near: [[near, 'near'], [field, 'field'], [random, 'random']],
+    form: [[form, 'form'], [near, 'near'], [field, 'field'], [random, 'random']],
+    field: [[field, 'field'], [random, 'random']],
+    random: [[random, 'random'], [base, 'random']],
   }
-  // 残りはランダム（レベルが近く、できれば同じ品詞）
-  const near = base.filter((w) => Math.abs(w.lv - target.lv) <= 1)
-  const samePos = near.filter((w) => w.pos === target.pos)
-  for (const w of shuffle(samePos.length >= n * 3 ? samePos : near.length >= n ? near : base)) {
-    if (out.length >= n) break
-    take(w, 'random')
+  for (const want of PLAN[tier]) {
+    let done = false
+    for (const [list, kind] of sources[want]) {
+      for (const w of list) if ((done = take(w, kind))) break
+      if (done) break
+    }
   }
   return out
 }

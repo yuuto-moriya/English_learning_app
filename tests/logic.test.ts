@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { normalizePronunciation, toBase64Utf8 } from '../server/shared'
 import { MAX_RETRIES, checkSpelling, chooseType, reinsert, newWordPool, type Item } from '../src/lib/session'
-import { diffWords } from '../src/lib/sentences'
+import { diffWords, pickRound } from '../src/lib/sentences'
 import { compareWords } from '../src/lib/localSpeech'
 import { downsample, encodeWav } from '../src/lib/recorder'
 import { humanizeDiff, interleave, objectiveGrade, Rating } from '../src/lib/srs'
-import { splitMarked, markedTarget } from '../src/lib/vocab'
+import { splitMarked, markedTarget, isIrregularVerb } from '../src/lib/vocab'
+import general from '../src/data/vocab/general.json'
 import type { Word } from '../src/lib/types'
 import type { CardRow } from '../src/lib/db'
 
@@ -118,6 +119,30 @@ describe('学習セッション', () => {
     expect(objectiveGrade(false, 1000)).toBe(Rating.Again)
     expect(objectiveGrade(true, 3000)).toBe(Rating.Good)
     expect(objectiveGrade(true, 20000)).toBe(Rating.Hard)
+    // 入力する問題は打つ時間がかかるので、20秒でも「思い出せた」
+    expect(objectiveGrade(true, 20000, true)).toBe(Rating.Good)
+    expect(objectiveGrade(true, 30000, true)).toBe(Rating.Hard)
+  })
+  it('和訳に見出し語が入っている語は、答えが見えない形式（カード）にする', () => {
+    const api = w('API', { ja: 'API（ソフト同士をつなぐ仕組み）' })
+    expect(chooseType(undefined, api, 0)).toBe('flip')
+    const stable = { reps: 6, state: 2, stability: 40 } as CardRow
+    for (const s of [0, 1, 2, 3, 4, 5]) expect(['flip']).toContain(chooseType(stable, api, s))
+  })
+  it('和訳が同じ語がほかにある語は、和訳から書く問題にしない（例文の穴埋めにする）', () => {
+    const stable = { reps: 6, state: 2, stability: 40 } as CardRow
+    const types = new Set([0, 1, 2, 3, 4, 5].map((s) => chooseType(stable, w('apple'), s, true)))
+    expect(types.has('spell')).toBe(false)
+    expect(types.has('cloze')).toBe(true)
+  })
+  it('ビジネスなど、範囲のレベルに語がないコースは、いちばん近いレベルの語を出す', () => {
+    const words = [w('g1', { lv: 1 }), w('b3', { lv: 3, cat: 'business' }), w('b4', { lv: 4, cat: 'business' })]
+    const pool = newWordPool(words, new Set(), {
+      studyCats: { general: true, business: true, it: false, rail: false },
+      minLevel: 1,
+      maxLevel: 2,
+    })
+    expect(pool.map((g) => g.map((x) => x.id))).toEqual([['g1'], ['b3']])
   })
   it('間隔の表示', () => {
     expect(humanizeDiff(30_000)).toBe('<1分')
@@ -158,5 +183,38 @@ describe('録音（WAV）', () => {
   })
   it('48kHz→16kHzのダウンサンプル', () => {
     expect(downsample(new Float32Array(48000), 48000, 16000).length).toBe(16000)
+  })
+})
+
+describe('練習の文の選び方', () => {
+  const s = (id: string, wordId?: string) => ({ en: id, ja: id, lv: 1, src: 'general' as const, accent: 'en-US' as const, wordId })
+  it('学習した語の例文を先に、次にシーン会話、最後にほかの例文', () => {
+    const pool = [s('x1', 'w-x'), s('l1', 'w-l'), s('scene'), s('l2', 'w-l2'), s('x2', 'w-y')]
+    const r = pickRound(pool, 3, new Set(['w-l', 'w-l2']))
+    expect(new Set(r.slice(0, 2).map((x) => x.en))).toEqual(new Set(['l1', 'l2']))
+    expect(r[2].en).toBe('scene')
+  })
+})
+
+describe('動詞の変化形', () => {
+  it('過去形・過去分詞が -ed でない動詞を不規則とする', () => {
+    expect(isIrregularVerb(['goes', 'went', 'gone', 'going'])).toBe(true)
+    expect(isIrregularVerb(['studies', 'studied', 'studied', 'studying'])).toBe(false)
+    expect(isIrregularVerb(undefined)).toBe(false)
+  })
+  it('一般の動詞のほとんどに変化形があり、基本の不規則動詞は正しい', () => {
+    const verbs = (general as Word[]).filter((x) => x.pos === 'v')
+    expect(verbs.filter((x) => x.vf).length / verbs.length).toBeGreaterThan(0.95)
+    const vf = (id: string) => (general as Word[]).find((x) => x.id === id)?.vf
+    expect(vf('g-go')).toEqual(['goes', 'went', 'gone', 'going'])
+    expect(vf('g-run')).toEqual(['runs', 'ran', 'run', 'running'])
+    expect(vf('g-stop')?.[1]).toBe('stopped')
+    for (const x of verbs) if (x.vf) expect(x.vf.length, x.id).toBe(4)
+  })
+  it('レベルは頻度（NGSL）だけでなく CEFR-J にも寄せる（bread・cat は入門〜初級、極端なずれがない）', () => {
+    const lv = (id: string) => (general as Word[]).find((x) => x.id === id)?.lv
+    expect(lv('g-bread')).toBeLessThanOrEqual(2)
+    expect(lv('g-cat')).toBeLessThanOrEqual(2)
+    expect(lv('g-government')).toBeGreaterThanOrEqual(2)
   })
 })

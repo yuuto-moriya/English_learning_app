@@ -59,8 +59,8 @@ export function cardToRow(card: Card, word: Pick<Word, 'id' | 'cat' | 'lv'>, pre
 /** 客観問題（選択・入力）の結果からFSRSの評価を決める */
 export function objectiveGrade(correct: boolean, ms: number, typed = false): Grade {
   if (!correct) return Rating.Again
-  if (typed && ms < 6000) return Rating.Good
-  if (ms > 12000) return Rating.Hard
+  // 入力する問題は、iPhone で打つ時間がかかるので長めに見る（正しく書けたのに「難しい」にならないように）
+  if (ms > (typed ? 25000 : 12000)) return Rating.Hard
   return Rating.Good
 }
 
@@ -86,7 +86,8 @@ export async function recordReview(
   await bumpDaily({
     reviews: 1,
     newLearned: isNew ? 1 : 0,
-    correct: grade >= Rating.Good ? 1 : 0,
+    // 「難しい」は思い出せた（正解）。セッションのまとめと同じ数え方にする
+    correct: grade !== Rating.Again ? 1 : 0,
     seconds: Math.min(60, Math.round(ms / 1000)),
   })
   return row

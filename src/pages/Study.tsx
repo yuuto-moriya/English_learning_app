@@ -6,12 +6,12 @@ import { BottomBar, Button, SpeakButton, Tag, cx } from '@/components/ui'
 import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell as Shell, SlowButton, SLOW_RATE, scoreCaption, TierBadge } from '@/components/Session'
 import { WordBody, WordHead } from '@/components/WordInfo'
 import { buildDrill, buildSession, checkSpelling, MAX_RETRIES, reinsert, type Item } from '@/lib/session'
-import { objectiveGrade, previewIntervals, Rating, recordReview, humanizeDiff, type Grade } from '@/lib/srs'
+import { markKnown, objectiveGrade, previewIntervals, Rating, recordReview, humanizeDiff, type Grade } from '@/lib/srs'
 import { bumpDaily, db, toggleMark, type CardRow } from '@/lib/db'
 import { accentFor, useSettings, getSettings } from '@/lib/settings'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { correctMessage, sessionDoneMessage, wrongMessage, type GuideLine } from '@/lib/guide'
-import { loadCategory, markedTarget, shuffle, plain } from '@/lib/vocab'
+import { loadCategory, markedTarget, quizGloss, shuffle, plain } from '@/lib/vocab'
 import { wordDistractors, wordTier, type Tier } from '@/lib/distractors'
 import { useMarks } from '@/lib/hooks'
 import type { Word } from '@/lib/types'
@@ -64,7 +64,14 @@ export default function Study() {
     prefetchSpeech(ahead.flatMap((i) => [{ text: i.word.w, accent: accentOf(i.word) }, { text: i.word.ex[0]?.en ?? '', accent: accentOf(i.word) }]))
   }, [idx, queue])
 
+  /** いまの問題を出した時刻（新しい単語の提示にかかった時間を学習時間に入れる） */
+  const shownAt = useRef(Date.now())
+  useEffect(() => {
+    shownAt.current = Date.now()
+  }, [idx])
+
   const next = () => {
+    if (item?.type === 'learn') void bumpDaily({ seconds: Math.min(60, Math.round((Date.now() - shownAt.current) / 1000)) }).catch(console.error)
     setResult(null)
     setGuide(null)
     if (idx + 1 >= queue.length) {
@@ -88,6 +95,8 @@ export default function Study() {
     try {
       const grade = opts.grade ?? objectiveGrade(correct, ms, opts.typed)
       let nextStr: string | undefined
+      // 出し直しの問題も、かかった時間は学習時間に入れる（FSRS には記録しない）
+      if (item.retry) await bumpDaily({ seconds: Math.min(60, Math.round(ms / 1000)) }).catch(console.error)
       if (!item.retry) {
         stats.current.total++
         if (correct) stats.current.correct++
@@ -106,7 +115,7 @@ export default function Study() {
       }
       stats.current.streak = correct ? stats.current.streak + 1 : 0
       if (!correct) setQueue((q) => reinsert(q, idx, item))
-      setGuide(correct ? correctMessage(stats.current.streak, item.word.cat === 'rail') : wrongMessage())
+      setGuide(correct ? correctMessage(stats.current.streak, item.word.cat === 'rail') : wrongMessage((item.retry ?? 0) < MAX_RETRIES))
       setResult({ correct, grade, next: nextStr, answer: opts.answer })
       if (settings.autoPlay) speak(item.word.ex[0]?.en ?? item.word.w, { accent: accentOf(item.word) })
     } finally {
@@ -177,7 +186,8 @@ export default function Study() {
               // iOSでは最初の読み上げをタップ操作内で行う必要がある
               warmUpSpeech()
               const first = queue[0]
-              if (settings.autoPlay && first.type !== 'listen') speak(first.word.w, { accent: accentOf(first.word) })
+              // 単語を見せる問題（提示・選択・カード）だけ読み上げる。書く問題で答えを言ってしまわないように
+              if (settings.autoPlay && (first.type === 'learn' || first.type === 'mc' || first.type === 'flip')) speak(first.word.w, { accent: accentOf(first.word) })
               stats.current.started = Date.now()
               setPhase('question')
             }}
@@ -194,7 +204,7 @@ export default function Study() {
   return (
     <Shell onClose={() => nav('/')} progress={{ value: idx, max: queue.length }}>
       <div className={cx(learn || phase === 'feedback' ? 'pb-44' : 'pb-8')}>
-        {item && <ItemView key={item.key} item={item} phase={phase} result={result} onAnswer={answer} />}
+        {item && <ItemView key={item.key} item={item} phase={phase} result={result} onAnswer={answer} drill={drill} />}
         {phase === 'feedback' && result && item && (
           <div className="mt-6 animate-rise">
             {guide && <Guide pose={guide.pose} text={guide.text} size={52} compact />}
@@ -210,9 +220,24 @@ export default function Study() {
       {learn && phase === 'question' && (
         <BottomBar>
           <p className="mb-2.5 text-center text-[12px] text-muted">例文を一度、声に出して読んでから進もう</p>
-          <Button block size="lg" variant="ink" onClick={next}>
-            覚えた・次へ
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={() => {
+                // もう知っている語は出題しない（この回のテストも外す）
+                if (!item) return
+                void markKnown(item.word, true)
+                setQueue((q) => q.filter((x, k) => k <= idx || x.word.id !== item.word.id))
+                next()
+              }}
+            >
+              知っている
+            </Button>
+            <Button block size="lg" variant="ink" className="flex-1" onClick={next}>
+              覚えた・次へ
+            </Button>
+          </div>
         </BottomBar>
       )}
       {phase === 'feedback' && result && item && (
@@ -334,7 +359,19 @@ function useStartTime(dep: unknown) {
 
 type AnswerFn = (correct: boolean, ms: number, opts?: { grade?: Grade; answer?: string; typed?: boolean }) => void
 
-function ItemView({ item, phase, result, onAnswer }: { item: Item; phase: Phase; result: { correct: boolean; answer?: string } | null; onAnswer: AnswerFn }) {
+function ItemView({
+  item,
+  phase,
+  result,
+  onAnswer,
+  drill,
+}: {
+  item: Item
+  phase: Phase
+  result: { correct: boolean; answer?: string } | null
+  onAnswer: AnswerFn
+  drill: boolean
+}) {
   const elapsed = useStartTime(item.key)
   const w = item.word
   const autoPlay = useSettings((s) => s.autoPlay)
@@ -362,7 +399,8 @@ function ItemView({ item, phase, result, onAnswer }: { item: Item; phase: Phase;
     )
 
   if (item.type === 'mc' || item.type === 'listen') return <ChoiceQ item={item} phase={phase} elapsed={elapsed} onAnswer={onAnswer} />
-  if (item.type === 'flip') return <FlipQ item={item} phase={phase} elapsed={elapsed} onAnswer={onAnswer} />
+  // 集中練習と出し直しの答えは FSRS に記録しないので、次の復習までの間隔は出さない
+  if (item.type === 'flip') return <FlipQ item={item} phase={phase} elapsed={elapsed} onAnswer={onAnswer} showIntervals={!drill && !item.retry} />
   return <TypeQ item={item} phase={phase} result={result} elapsed={elapsed} onAnswer={onAnswer} />
 }
 
@@ -381,13 +419,14 @@ function ChoiceQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase;
   const [tier, setTier] = useState<Tier | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
   const vary = useSettings((s) => s.varyVoices)
-  const learnerLevel = useSettings((s) => s.maxLevel)
+  // 学習者のレベルは「はじめるレベル」（下限）で見る。上限で見ると、初級（2〜3）が中級あつかいになる
+  const learnerLevel = useSettings((s) => s.minLevel)
   useEffect(() => {
     // 選択肢の難しさ：学習者のレベルと、この語の覚え具合（記憶の安定度）で決める
     Promise.all([loadCategory(w.cat), db.cards.get(w.id)]).then(([pool, row]) => {
       const t = wordTier({ learnerLevel, stability: row?.stability, retry: item.retry })
       setTier(t)
-      setOptions(shuffle([w, ...wordDistractors(w, pool, t).map((d) => d.word)]))
+      setOptions(shuffle([w, ...wordDistractors(w, pool, t, { listen: item.type === 'listen' }).map((d) => d.word)]))
     })
   }, [w]) // eslint-disable-line react-hooks/exhaustive-deps
   const listen = item.type === 'listen'
@@ -424,7 +463,7 @@ function ChoiceQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase;
               onAnswer(o.id === w.id, elapsed())
             }}
           >
-            {o.ja}
+            {quizGloss(o.ja)}
           </ChoiceButton>
         ))}
         {phase === 'question' && (
@@ -437,7 +476,19 @@ function ChoiceQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase;
   )
 }
 
-function FlipQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase; elapsed: () => number; onAnswer: AnswerFn }) {
+function FlipQ({
+  item,
+  phase,
+  elapsed,
+  onAnswer,
+  showIntervals,
+}: {
+  item: Item
+  phase: Phase
+  elapsed: () => number
+  onAnswer: AnswerFn
+  showIntervals: boolean
+}) {
   const w = item.word
   const [shown, setShown] = useState(false)
   const [row, setRow] = useState<CardRow | undefined>()
@@ -482,7 +533,7 @@ function FlipQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase; e
                 className="flex flex-col items-center gap-0.5 rounded-[14px] border border-line bg-surface py-3 transition active:scale-95"
               >
                 <span className={cx('text-[13px] font-semibold', color)}>{label}</span>
-                <span className="text-[11px] tabular-nums text-muted">{preview[g]}</span>
+                {showIntervals && <span className="text-[11px] tabular-nums text-muted">{preview[g]}</span>}
               </button>
             ))}
           </div>
@@ -525,12 +576,12 @@ function TypeQ({
           <p className="mt-2 text-[13px] text-muted">{ex.ja}</p>
           <p className="mt-3 text-[13px]">
             <span className="text-muted">意味：</span>
-            {w.ja}
+            {quizGloss(w.ja)}
           </p>
         </>
       ) : (
         <>
-          <p className="text-[24px] font-semibold leading-snug">{w.ja}</p>
+          <p className="text-[24px] font-semibold leading-snug">{quizGloss(w.ja)}</p>
           <p className="mt-2 text-[13px] text-muted">{ex.ja}</p>
         </>
       )}
