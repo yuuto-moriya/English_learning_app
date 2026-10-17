@@ -25,7 +25,7 @@ function useDeviceVoices() {
 }
 
 /**
- * 英語の発音（国・地域）と声の選択。iPhone の「読み上げコンテンツ → 声 → 英語」のように国ごとに選べる。
+ * 英語の発音（国・地域）と声の選択。iPhone の「リーダーと読み上げ → 声 → 英語」のように国ごとに選べる。
  * neural = 高品質音声（Azure）を使うとき。使わないときは端末に入っている声から選ぶ。
  */
 export function AccentPicker({ neural }: { neural: boolean }) {
