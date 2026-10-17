@@ -175,6 +175,11 @@ check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シ�
 
 // 発音（国・地域）の選択
 await page.goto(BASE + '/settings')
+await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).waitFor({ timeout: 5000 })
+check(await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).isVisible(), '設定に高音質の声の入れ方と、いまの声の状態を表示')
+await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).click()
+await page.getByText('「英語」をタップし').waitFor({ timeout: 5000 })
+check(await page.getByText('「英語」をタップし').isVisible(), '高音質の声の手順を開ける')
 await page.getByRole('button', { name: /^オーストラリア/ }).first().click()
 await page.waitForTimeout(200)
 check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.accent === 'en-AU'), '読み上げの発音をオーストラリアに変更')

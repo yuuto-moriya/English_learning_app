@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { bumpDaily, db, exportAll, importAll, shiftDay, todayKey, toggleMark } from '../src/lib/db'
 import { buildDrill, isWeak } from '../src/lib/session'
 import { ratePercent, voiceQuality } from '../src/lib/tts'
+import { voiceStatus } from '../src/components/VoiceGuide'
 import { jaForSpeech } from '../src/lib/vocab'
 import { CONTRASTS } from '../src/data/minimalPairs'
 import { EVIDENCE } from '../src/data/research'
@@ -76,6 +77,15 @@ describe('読み上げの声', () => {
     expect(jaForSpeech('〜である；いる、ある')).toBe('である')
     expect(jaForSpeech('（米）地下鉄')).toBe('地下鉄')
     expect(jaForSpeech('まくらぎ')).toBe('まくらぎ')
+  })
+})
+
+describe('声の状態の案内', () => {
+  it('高品質音声（サーバー）が使えるときは良好、端末の声は品質で案内を変える', () => {
+    expect(voiceStatus(true, undefined).tone).toBe('good')
+    expect(voiceStatus(false, { name: 'Ava (Premium)', quality: 100 })).toMatchObject({ tone: 'good', title: expect.stringContaining('Ava') })
+    expect(voiceStatus(false, { name: 'Samantha', quality: 50 }).tone).toBe('warn')
+    expect(voiceStatus(false, undefined).title).toContain('見つかりません')
   })
 })
 

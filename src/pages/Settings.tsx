@@ -8,6 +8,7 @@ import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
 import { AccentPicker } from '@/components/AccentPicker'
+import { VoiceGuide } from '@/components/VoiceGuide'
 import { formatRate, VoiceVarietyToggles } from '@/components/PracticeControls'
 import { getHealth, type Health } from '@/lib/api'
 import { db, exportAll, importAll } from '@/lib/db'
@@ -269,12 +270,8 @@ export default function Settings() {
                 : '高品質音声はサーバーの Azure Speech が未設定のため使えません。端末の音声で読み上げます。'}
             </p>
           </div>
+          <VoiceGuide neural={neuralOk && s.voiceEngine === 'auto'} />
           <AccentPicker neural={neuralOk && s.voiceEngine === 'auto'} />
-          {(!neuralOk || s.voiceEngine === 'device') && (
-            <p className="text-[11.5px] leading-relaxed text-muted">
-              iPhone では「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で、名前に「拡張」「プレミアム」と付いた声をダウンロードすると自然な発音になります（おすすめ：Ava、Zoe、Evan、Daniel など）。
-            </p>
-          )}
           <div>
             <div className="flex justify-between text-[15px]">
               <span>読み上げ速度</span>
