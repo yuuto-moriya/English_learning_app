@@ -121,13 +121,16 @@ export default function Translate() {
     void (outLang === 'en' ? speak(out) : speakJa(out))
   }, [out, busy, outLang])
 
+  // 鉄道（保線）は付帯のコース：選んでいるときだけ、専門用語の検出（と規格英語のヒント）を出す
+  const railOn = s.studyCats.rail
   // 原文の専門用語をリアルタイムに検出（オフラインでも動作）
   useEffect(() => {
+    if (!railOn) return setHits([])
     const t = setTimeout(() => {
       findTerms(`${src}\n${out}`).then(setHits)
     }, 250)
     return () => clearTimeout(t)
-  }, [src, out])
+  }, [src, out, railOn])
 
   const resolveDir = (): { from: 'ja' | 'en'; to: 'ja' | 'en' } => {
     if (dir === 'ja-en') return { from: 'ja', to: 'en' }
@@ -288,14 +291,14 @@ export default function Translate() {
     changeDir(outLang === 'en' ? 'en-ja' : 'ja-en')
   }
 
-  const tips = outLang === 'en' ? modalTips(out) : modalTips(src)
+  const tips = !railOn ? [] : outLang === 'en' ? modalTips(out) : modalTips(src)
   const englishText = outLang === 'en' ? out : src
 
   return (
     <div>
       <PageHeader
         title="翻訳"
-        subtitle="入力しても、話しても訳せます。保線の専門用語は英米の言い方とJISを並べて確認"
+        subtitle="日本語と英語を、入力しても話しても訳せます。訳はそのまま読み上げて発音も確認できます"
         settings
         right={
           <button aria-label="翻訳画面の使い方" onClick={() => setHelp(true)} className={cx(iconBtn, 'text-muted')}>
@@ -303,7 +306,7 @@ export default function Translate() {
           </button>
         }
       />
-      {help && <Tour steps={TRANSLATE_TOUR} onDone={() => setHelp(false)} />}
+      {help && <Tour steps={railOn ? TRANSLATE_TOUR : TRANSLATE_TOUR.filter((x) => x.target !== 'glossary')} onDone={() => setHelp(false)} />}
       <div className="space-y-3 px-4 pb-8">
         <Segmented
           value={dir}
@@ -334,7 +337,7 @@ export default function Translate() {
             value={src}
             onChange={(e) => setSrc(e.target.value.slice(0, 5000))}
             rows={5}
-            placeholder="翻訳したい文章を入力（例：明日の夜間、下り線で道床つき固めを行います。）"
+            placeholder="翻訳したい文章を入力（例：明日の会議は10時からです。資料を事前に送ってください。）"
             className="w-full resize-none rounded-t-[18px] bg-transparent p-4 text-[16px] leading-relaxed outline-none placeholder:text-faint"
           />
           <div className="flex flex-wrap items-center gap-2 px-3 py-2 hairline-t">
@@ -469,10 +472,12 @@ export default function Translate() {
           </Card>
         )}
 
-        <div data-tour="glossary">
-          <SectionTitle>検出した保線用語（{hits.length}）</SectionTitle>
-        </div>
-        {hits.length === 0 ? (
+        {railOn && (
+          <div data-tour="glossary">
+            <SectionTitle>検出した保線用語（{hits.length}）</SectionTitle>
+          </div>
+        )}
+        {!railOn ? null : hits.length === 0 ? (
           <Guide
             who="chocola"
             pose="greet"
@@ -494,7 +499,7 @@ export default function Translate() {
                     )}
                   </p>
                   <p className="mt-0.5 text-[13px] text-muted">{h.word.ja}</p>
-                  {h.word.refs && <p className="mt-0.5 truncate text-[11px] text-faint">{h.word.refs.join(' / ')}</p>}
+                  {h.word.refs && <p className="mt-0.5 text-[11px] leading-snug text-faint">{h.word.refs.join(' / ')}</p>}
                 </div>
                 <span className="shrink-0 rounded-md bg-rail-soft px-1.5 py-0.5 text-[11px] font-semibold text-rail">「{h.matched}」</span>
               </Link>

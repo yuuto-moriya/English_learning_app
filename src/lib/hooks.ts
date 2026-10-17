@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { db, getStreak, shiftDay, todayKey, type CardRow, type DailyRow } from './db'
 import { getHealth, type Health } from './api'
 import { useSettings } from './settings'
+import { ALL_CATS } from './types'
 
 export function useCardsMap(): Map<string, CardRow> | undefined {
   const rows = useLiveQuery(() => db.cards.toArray(), [])
@@ -69,6 +70,23 @@ export function useDueCount() {
         .belowOrEqual(now)
         .filter((r) => !r.known && !!cats[r.cat])
         .count(),
+    [now, cats],
+  )
+}
+
+/** 選んでいないコースで、復習の時期が来た単語の数（そのコースの復習は止まっている） */
+export function useOtherDueCount() {
+  const now = useNow()
+  const cats = useSettings((s) => s.studyCats)
+  return useLiveQuery(
+    () =>
+      ALL_CATS.every((c) => cats[c])
+        ? 0
+        : db.cards
+            .where('due')
+            .belowOrEqual(now)
+            .filter((r) => !r.known && !cats[r.cat])
+            .count(),
     [now, cats],
   )
 }

@@ -125,11 +125,30 @@ await page.getByRole('button', { name: 'ロールプレイを始める' }).click
 await page.waitForTimeout(500)
 check(await page.locator('text=Supervisor').first().isVisible(), 'ロールプレイ開始')
 
-// モードの切り替え（ホーム）：タップでそのモードだけに。シーンの最初のタブも合わせる
+// モードの切り替え（ホーム）：「すべて」と「組み合わせる」、タップでそのモードだけに。シーンの最初のタブも合わせる
 await page.goto(BASE + '/')
-await page.getByRole('group', { name: '学ぶモード' }).getByRole('button', { name: 'IT' }).click()
-const mode = await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
+const modeGroup = page.getByRole('group', { name: '学ぶモード' })
+const studyCats = () => page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
+await modeGroup.getByRole('button', { name: 'すべて', exact: true }).click()
+let mode = await studyCats()
+check(mode.general && mode.business && mode.it && mode.rail, 'モードを「すべて」に切り替え')
+check(await modeGroup.getByText('すべてのコースから出題').isVisible(), '「すべて」の状態を文で表示')
+check(
+  (await modeGroup.getByRole('button', { name: 'すべて', exact: true }).getAttribute('aria-pressed')) === 'true' &&
+    (await modeGroup.getByRole('button', { name: 'IT', exact: true }).getAttribute('aria-pressed')) === 'false',
+  '「すべて」のときは「すべて」だけが選択中',
+)
+await modeGroup.getByRole('button', { name: '組み合わせる' }).click()
+await modeGroup.getByRole('button', { name: '鉄道', exact: true }).click()
+await modeGroup.getByRole('button', { name: 'ビジネス', exact: true }).click()
+await modeGroup.getByRole('button', { name: '完了' }).click()
+mode = await studyCats()
+check(mode.general && mode.it && !mode.business && !mode.rail, '組み合わせでコースを外す')
+check(await modeGroup.getByText('一般＋ITから出題').isVisible(), '組み合わせの状態を文で表示')
+await modeGroup.getByRole('button', { name: 'IT', exact: true }).click()
+mode = await studyCats()
 check(mode.it && !mode.general && !mode.rail && !mode.business, 'モードを IT に切り替え')
+check(await modeGroup.getByText('ITだけを出題').isVisible(), '1つのモードの状態を文で表示')
 await page.goto(BASE + '/scenes')
 await page.getByText('朝会で進捗を報告する').waitFor({ timeout: 5000 })
 check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シーンが IT モードの場面で開く')

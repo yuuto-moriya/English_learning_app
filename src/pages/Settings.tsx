@@ -82,6 +82,26 @@ export default function Settings() {
     <div>
       <PageHeader title="設定" back />
       <div className="px-4 pb-12">
+        {/* 長い画面なので、見たい項目へすぐ移れるようにする */}
+        <nav aria-label="設定の項目" className="fade-x -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1">
+          {[
+            ['courses', 'コース'],
+            ['study', '学習'],
+            ['voice', '音声'],
+            ['display', '表示'],
+            ['help', 'ヘルプ'],
+            ['cloud', 'クラウド'],
+            ['data', 'データ'],
+          ].map(([id, label]) => (
+            <button
+              key={id}
+              onClick={() => document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
+              className="min-h-9 shrink-0 rounded-full border border-line-strong bg-surface px-3.5 text-[13px] font-medium text-ink active:scale-95"
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
         <SectionTitle>
           <span id="courses" className="scroll-mt-24">学習するコース</span>
         </SectionTitle>
@@ -118,7 +138,9 @@ export default function Settings() {
         </Card>
         <p className="mt-2 px-1 text-[11.5px] leading-relaxed text-muted">選んだコースの単語が新しく出題され、練習とシーン会話の最初の選択にもなります。外したコースの復習は止まります（記録は残ります）。</p>
 
-        <SectionTitle>学習</SectionTitle>
+        <SectionTitle>
+          <span id="study" className="scroll-mt-24">学習</span>
+        </SectionTitle>
         <Card className="space-y-5">
           <div>
             <p className="text-[15px]">学習する時間帯</p>
@@ -212,14 +234,16 @@ export default function Settings() {
                 options={LEVELS.slice(0, 5).map((l) => ({ value: String(l.lv), label: l.cefr }))}
               />
             </div>
-            <Link to="/welcome?step=check" className="mt-3 flex items-center gap-0.5 text-[13px] font-medium text-brand">
+            <Link to="/welcome?step=check" className="mt-1 flex min-h-10 items-center gap-0.5 text-[13px] font-medium text-brand">
               レベルを診断し直す
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
         </Card>
 
-        <SectionTitle>音声</SectionTitle>
+        <SectionTitle>
+          <span id="voice" className="scroll-mt-24">音声</span>
+        </SectionTitle>
         <Card className="space-y-4">
           {!ttsAvailable && !neuralOk && <p className="text-[13px] text-ng">この端末は音声合成に対応していません</p>}
           <div>
@@ -282,7 +306,9 @@ export default function Settings() {
           <Toggle label="効果音" desc="正解・不正解、録音の開始・終了などを音でお知らせします" checked={s.sounds} onChange={(v) => s.set({ sounds: v })} />
         </Card>
 
-        <SectionTitle>表示</SectionTitle>
+        <SectionTitle>
+          <span id="display" className="scroll-mt-24">表示</span>
+        </SectionTitle>
         <Card className="space-y-3">
           <Segmented
             value={s.theme}
@@ -296,7 +322,9 @@ export default function Settings() {
           <Toggle label="キャラクターを表示" checked={s.guide} onChange={(v) => s.set({ guide: v })} />
         </Card>
 
-        <SectionTitle>ヘルプ</SectionTitle>
+        <SectionTitle>
+          <span id="help" className="scroll-mt-24">ヘルプ</span>
+        </SectionTitle>
         <Card className="space-y-2">
           <p className="text-[13px] leading-relaxed text-muted">モードの切り替え・学習・練習・翻訳と同時通訳など、主な機能をホーム画面で順番に案内します。</p>
           <Button
@@ -331,7 +359,9 @@ export default function Settings() {
           })}
         </div>
 
-        <SectionTitle>クラウド機能</SectionTitle>
+        <SectionTitle>
+          <span id="cloud" className="scroll-mt-24">クラウド機能</span>
+        </SectionTitle>
         <Card className="space-y-3">
           <ApiRow label="翻訳（Azure Translator）" ok={health?.translator} loading={health === undefined} />
           <ApiRow label="発音評価・音声入力（Azure Speech）" ok={health?.speech} loading={health === undefined} />
@@ -368,7 +398,9 @@ export default function Settings() {
           </p>
         </Card>
 
-        <SectionTitle>データ</SectionTitle>
+        <SectionTitle>
+          <span id="data" className="scroll-mt-24">データ</span>
+        </SectionTitle>
         <Card className="space-y-3">
           <p className="text-[12.5px] leading-relaxed text-muted">学習データはこの端末内（IndexedDB）にだけ保存されます。機種変更のときはバックアップを使ってください。</p>
           <div className="grid grid-cols-2 gap-2">

@@ -1,76 +1,142 @@
-import { useState } from 'react'
-import { Layers } from 'lucide-react'
+import { useEffect, useId, useState, type ReactNode } from 'react'
+import { Check } from 'lucide-react'
+import { useOtherDueCount } from '@/lib/hooks'
+import { everyCat, MODE_LABEL, modeCaption, modeState, onlyCat, toggleCat, type StudyCats } from '@/lib/mode'
 import { useSettings } from '@/lib/settings'
-import { ALL_CATS, CATEGORIES, type Category } from '@/lib/types'
+import { CATEGORIES, type Category } from '@/lib/types'
 import { cx } from './ui'
 
-const MODE_LABEL: Record<Category, string> = { general: '一般', business: 'ビジネス', it: 'IT', rail: '鉄道' }
-
-/** いま学んでいるモード（コース）の名前。例：「IT」「一般＋鉄道」 */
-export function modeName(cats: Category[]): string {
-  return cats.map((c) => MODE_LABEL[c]).join('＋')
-}
-
 /**
- * 学ぶモードの切り替え（一般・ビジネス・IT・鉄道）。
- * タップでそのモードだけに切り替える。「組み合わせ」をオンにすると、いくつでも同時に選べる。
- * 新しい単語・復習・練習の例文・シーンの最初のタブがモードに合わせて変わる。
+ * 学ぶモード（コース）の切り替え。
+ * ふだんのタップは「そのモードだけ」への切り替えで、塗りつぶし＝いまのモード。「すべて」で全コース。
+ * 「組み合わせる」を押すと、タップでコースを足したり外したりできる。色つき＋チェック＝含まれているコース。
+ * 色だけに頼らないよう、状態は下の一文（読み上げにも届く）でも伝える。
  */
 export function ModeSwitcher({ className }: { className?: string }) {
-  const s = useSettings()
-  // 「組み合わせ」は使うときだけオンにする（ふだんのタップは、そのモードへの切り替え）
-  const [multi, setMulti] = useState(false)
+  const studyCats = useSettings((s) => s.studyCats)
+  const set = useSettings((s) => s.set)
+  const otherDue = useOtherDueCount() ?? 0
+  const [editing, setEditing] = useState(false)
+  // 最後の1つを外そうとしたときの案内
+  const [hint, setHint] = useState(false)
+  const captionId = useId()
+  const m = modeState(studyCats)
 
-  const choose = (c: Category) => {
-    const on = s.studyCats[c]
-    let next: Record<Category, boolean>
-    if (multi) {
-      next = { ...s.studyCats, [c]: !on }
-      // すべて外すと学ぶ単語がなくなるので、最低1つは残す
-      if (!ALL_CATS.some((k) => next[k])) return
-    } else {
-      next = { general: false, business: false, it: false, rail: false, [c]: true }
-    }
-    s.set({ studyCats: next })
+  useEffect(() => {
+    if (!hint) return
+    const t = setTimeout(() => setHint(false), 2500)
+    return () => clearTimeout(t)
+  }, [hint])
+
+  const apply = (next: StudyCats) => {
+    set({ studyCats: next })
+    setHint(false)
     try {
-      // シーンの最初のタブも新しいモードに合わせる
       sessionStorage.removeItem('scene-group')
     } catch {
       /* noop */
     }
   }
+  const choose = (c: Category) => {
+    if (!editing) return apply(onlyCat(c))
+    const next = toggleCat(studyCats, c)
+    if (next) apply(next)
+    else setHint(true)
+  }
+
+  const caption = editing ? (hint ? '1つ以上選んでください' : '出題するコースをタップ（いくつでも）') : modeCaption(m)
 
   return (
-    <div data-tour="mode" className={cx('flex items-center gap-1.5', className)} role="group" aria-label="学ぶモード">
-      {CATEGORIES.map((c) => {
-        const on = s.studyCats[c.key]
-        return (
-          <button
-            key={c.key}
-            aria-pressed={on}
-            onClick={() => choose(c.key)}
-            className={cx(
-              'flex min-h-9 items-center gap-1.5 rounded-full border px-3 text-[13px] font-semibold transition active:scale-95',
-              on ? 'border-ink bg-ink text-bg' : 'border-line-strong bg-surface text-muted',
-            )}
-          >
-            <span className={cx('h-1.5 w-1.5 rounded-full', c.dot)} />
-            {MODE_LABEL[c.key]}
-          </button>
-        )
-      })}
-      <button
-        aria-pressed={multi}
-        aria-label="組み合わせて選ぶ"
-        title="組み合わせて選ぶ"
-        onClick={() => setMulti(!multi)}
-        className={cx(
-          'ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition active:scale-95',
-          multi ? 'border-brand bg-brand-soft text-brand' : 'border-line-strong text-muted',
-        )}
-      >
-        <Layers className="h-4 w-4" strokeWidth={1.9} />
-      </button>
+    <div data-tour="mode" className={className} role="group" aria-label="学ぶモード" aria-describedby={captionId}>
+      <div className="no-scrollbar flex items-center gap-1 overflow-x-auto">
+        <Chip
+          pressed={m.kind === 'all'}
+          look={m.kind !== 'all' ? 'off' : editing ? 'included' : 'filled'}
+          soft="bg-surface-2"
+          dashed={editing}
+          onClick={() => apply(everyCat())}
+        >
+          すべて
+        </Chip>
+        {CATEGORIES.map((c) => {
+          const inc = studyCats[c.key]
+          const filled = !editing && m.kind === 'single' && m.cat === c.key
+          return (
+            <Chip
+              key={c.key}
+              pressed={editing ? inc : filled}
+              look={filled ? 'filled' : inc ? 'included' : 'off'}
+              soft={c.soft}
+              dashed={editing}
+              onClick={() => choose(c.key)}
+              icon={
+                inc && !filled ? (
+                  <Check className={cx('h-3 w-3', c.text)} strokeWidth={3.2} />
+                ) : (
+                  <span className={cx('h-1.5 w-1.5 rounded-full', c.dot)} />
+                )
+              }
+            >
+              {MODE_LABEL[c.key]}
+            </Chip>
+          )
+        })}
+      </div>
+      <div className="mt-1.5 flex items-center gap-2 pl-1">
+        <div id={captionId} className="min-w-0 flex-1">
+          <p aria-live="polite" className={cx('text-[12.5px] font-medium leading-snug', editing ? 'text-brand' : 'text-ink/80')}>{caption}</p>
+          {!editing && otherDue > 0 && (
+            <p className="text-[11.5px] leading-snug text-muted">ほかのコースの復習 {otherDue}語は止まっています</p>
+          )}
+        </div>
+        <button
+          onClick={() => {
+            setEditing(!editing)
+            setHint(false)
+          }}
+          className={cx(
+            '-my-1 min-h-9 shrink-0 rounded-full px-3 text-[13px] font-semibold transition active:scale-95',
+            editing ? 'bg-ink text-bg' : 'text-brand active:bg-brand-soft',
+          )}
+        >
+          {editing ? '完了' : m.kind === 'combo' ? '変更' : '組み合わせる'}
+        </button>
+      </div>
     </div>
+  )
+}
+
+/** filled＝いまのモード、included＝含まれているコース、off＝選んでいない。dashed＝組み合わせ中（足せる） */
+function Chip({
+  pressed,
+  look,
+  soft,
+  dashed,
+  icon,
+  onClick,
+  children,
+}: {
+  pressed: boolean
+  look: 'filled' | 'included' | 'off'
+  soft: string
+  dashed?: boolean
+  icon?: ReactNode
+  onClick: () => void
+  children: ReactNode
+}) {
+  return (
+    <button
+      aria-pressed={pressed}
+      onClick={onClick}
+      className={cx(
+        'flex min-h-9 shrink-0 items-center gap-1 rounded-full border px-[9px] text-[13px] font-semibold transition active:scale-95',
+        look === 'filled' && 'border-ink bg-ink text-bg',
+        look === 'included' && cx('border-transparent text-ink', soft),
+        look === 'off' && cx('border-line-strong bg-surface text-muted', dashed && 'border-dashed'),
+      )}
+    >
+      {icon && <span className="flex h-3 w-3 shrink-0 items-center justify-center">{icon}</span>}
+      {children}
+    </button>
   )
 }

@@ -316,7 +316,7 @@ function Summary({
                   </span>
                   <button className="min-w-0 flex-1 text-left" onClick={() => nav(`/words/${o.word.id}`)}>
                     <p className="en truncate text-[17px] font-medium">{o.word.w}</p>
-                    <p className="truncate text-[12px] text-muted">{o.word.ja}</p>
+                    <p className="line-clamp-2 text-[12px] text-muted">{o.word.ja}</p>
                   </button>
                   {!drill && o.next && <span className="shrink-0 text-[11.5px] tabular-nums text-muted">{o.next}後</span>}
                   <MarkButton id={o.word.id} />
