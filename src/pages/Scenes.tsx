@@ -11,10 +11,11 @@ import { getSettings, selectedCats } from '@/lib/settings'
 const INTRO: Record<SceneGroup, { who: CharId; pose: Pose; text: string }> = {
   daily: { who: 'tetsu', pose: 'greet', text: '旅行や毎日の暮らしで「すぐ使える」会話だワン。まず聞いて、次にロールプレイ！' },
   business: { who: 'sumi', pose: 'greet', text: '会議・電話・交渉…ビジネスの決まり文句は、丸ごと覚えると強いですよ。' },
+  it: { who: 'sumi', pose: 'think', text: '朝会・コードレビュー・障害対応…IT の現場は短く正確に伝えるのがコツです。' },
   rail: { who: 'kinako', pose: 'cheer', text: '保線現場と鉄道ビジネスの英会話だ。安全に関わる交信は必ず復唱（repeat back）だぞ！' },
 }
 
-const GROUP_LABEL: Record<SceneGroup, string> = { daily: '日常会話', business: 'ビジネス', rail: '保線・鉄道' }
+const GROUP_LABEL: Record<SceneGroup, string> = { daily: '日常', business: 'ビジネス', it: 'IT', rail: '鉄道' }
 
 function initialGroup(): SceneGroup {
   try {
@@ -46,7 +47,7 @@ export default function Scenes() {
               /* noop */
             }
           }}
-          options={(['daily', 'business', 'rail'] as SceneGroup[]).map((g) => ({ value: g, label: GROUP_LABEL[g] }))}
+          options={(['daily', 'business', 'it', 'rail'] as SceneGroup[]).map((g) => ({ value: g, label: GROUP_LABEL[g] }))}
         />
         <Guide who={intro.who} pose={intro.pose} text={intro.text} />
         <div className="overflow-hidden rounded-[18px] border border-line bg-surface">

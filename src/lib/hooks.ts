@@ -118,3 +118,25 @@ export function useMarks(): Set<string> | undefined {
   const rows = useLiveQuery(() => db.marks.toArray(), [])
   return useMemo(() => (rows ? new Set(rows.map((r) => r.id)) : undefined), [rows])
 }
+
+/** active のあいだ画面を消さない（対応ブラウザのみ）。アプリに戻ったら取り直す */
+export function useWakeLock(active: boolean) {
+  useEffect(() => {
+    type Lock = { release: () => Promise<void> }
+    const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<Lock> } }
+    let lock: Lock | null = null
+    const acquire = () => {
+      if (!active || !nav.wakeLock || document.visibilityState !== 'visible') return
+      nav.wakeLock
+        .request('screen')
+        .then((l) => (lock = l))
+        .catch(() => undefined)
+    }
+    acquire()
+    document.addEventListener('visibilitychange', acquire)
+    return () => {
+      document.removeEventListener('visibilitychange', acquire)
+      void lock?.release().catch(() => undefined)
+    }
+  }, [active])
+}

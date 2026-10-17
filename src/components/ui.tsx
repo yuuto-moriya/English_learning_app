@@ -10,9 +10,10 @@ export function cx(...c: (string | false | null | undefined)[]) {
 }
 
 /** 面。区切りは影ではなく細い罫線で表す */
-export function Card({ children, className, onClick }: { children: ReactNode; className?: string; onClick?: () => void }) {
+export function Card({ children, className, onClick, tour }: { children: ReactNode; className?: string; onClick?: () => void; tour?: string }) {
   return (
     <div
+      data-tour={tour}
       onClick={onClick}
       className={cx(
         'rounded-[18px] border border-line bg-surface p-4',
@@ -252,7 +253,7 @@ export function Tag({ children, className }: { children: ReactNode; className?: 
 
 export function SpeakButton({
   text,
-  accent = 'en-US',
+  accent,
   rate,
   label,
   size = 'md',

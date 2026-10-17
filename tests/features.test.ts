@@ -8,6 +8,7 @@ import { CONTRASTS } from '../src/data/minimalPairs'
 import { EVIDENCE } from '../src/data/research'
 import { SCENES, sceneAccent } from '../src/data/scenes'
 import { sentencePool } from '../src/lib/sentences'
+import { accentFor, migrateSettings } from '../src/lib/settings'
 import type { CardRow } from '../src/lib/db'
 
 const card = (extra: Partial<CardRow>): CardRow => ({
@@ -137,12 +138,33 @@ describe('練習の文（シーン会話）', () => {
   })
   it('シーン会話だけを選んだときはすべての場面', async () => {
     const groups = new Set((await sentencePool(['scene'], 6)).map((s) => sceneOf.get(s.en)?.group))
-    expect(groups).toEqual(new Set(['daily', 'business', 'rail']))
+    expect(groups).toEqual(new Set(['daily', 'business', 'it', 'rail']))
   })
   it('発音は舞台に合わせる（英国の駅は英国の発音）', () => {
     expect(sceneAccent(SCENES.find((s) => s.id === 'd-station')!)).toBe('en-GB')
     expect(sceneAccent(SCENES.find((s) => s.id === 'd-cafe')!)).toBe('en-US')
     expect(sceneAccent(SCENES.find((s) => s.id === 'r-briefing')!)).toBe('en-GB')
+  })
+})
+
+describe('設定の移行（国・地域の発音、IT コース）', () => {
+  it('v3 の米国・英国の声を、発音ごとの声に移す。IT は追加でオフ', () => {
+    const v3 = { onboarded: true, studyCats: { general: true, business: false, rail: true }, voiceUS: 'Ava (Premium)', voiceUK: '', neuralUS: 'en-US-AndrewNeural', neuralUK: 'en-GB-RyanNeural' }
+    const s = migrateSettings(v3, 3)
+    expect(s.deviceVoice['en-US']).toBe('Ava (Premium)')
+    expect(s.deviceVoice['en-GB']).toBeUndefined()
+    expect(s.neural['en-GB']).toBe('en-GB-RyanNeural')
+    expect(s.studyCats).toEqual({ general: true, business: false, it: false, rail: true })
+    expect('voiceUS' in s).toBe(false)
+    expect(s.accent).toBe('en-US')
+    expect(s.railAccent).toBe('en-GB')
+    expect(s.tourDone).toBe(false)
+  })
+  it('鉄道は railAccent、それ以外は選んだ発音', () => {
+    const s = { accent: 'en-AU', railAccent: 'en-GB' } as const
+    expect(accentFor('it', s)).toBe('en-AU')
+    expect(accentFor('general', s)).toBe('en-AU')
+    expect(accentFor('rail', s)).toBe('en-GB')
   })
 })
 

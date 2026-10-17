@@ -7,6 +7,7 @@ import { Button, Card, ProgressBar, cx } from '@/components/ui'
 import { diffWords, pickRound, sentencePool, type DiffToken, type Sentence, type Source } from '@/lib/sentences'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily } from '@/lib/db'
+import { play } from '@/lib/sounds'
 
 export default function Dictation() {
   const [sources, setSources] = useState<Source[]>(() => defaultSources(false))
@@ -56,6 +57,7 @@ export default function Dictation() {
   const check = () => {
     if (!cur) return
     const r = diffWords(cur.en, text)
+    play(r.score >= 80 ? 'correct' : 'wrong')
     setResult(r)
     setTotal((t) => t + r.score)
     bumpDaily({ listening: 1, seconds: 40 })

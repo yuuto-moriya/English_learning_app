@@ -1,5 +1,7 @@
 import { SCENES, sceneAccent } from '@/data/scenes'
 import { catMeta, type Category } from './types'
+import { accentFor } from './settings'
+import type { Accent } from './accents'
 import { loadCategory, plain, shuffle } from './vocab'
 
 export type Source = Category | 'scene'
@@ -9,7 +11,7 @@ export interface Sentence {
   ja: string
   lv: number
   src: Source
-  accent: 'en-US' | 'en-GB'
+  accent: Accent
   wordId?: string
 }
 
@@ -38,7 +40,7 @@ export async function sentencePool(sources: Source[], maxLv: number, minLv = 1):
       for (const e of w.ex) {
         const p = plain(e.en)
         if (wc(p) < 4 || wc(p) > 18) continue
-        out.push({ en: p, ja: e.ja, lv: w.lv, src, accent: src === 'rail' ? 'en-GB' : 'en-US', wordId: w.id })
+        out.push({ en: p, ja: e.ja, lv: w.lv, src, accent: accentFor(src), wordId: w.id })
       }
     }
   }

@@ -6,7 +6,7 @@ import { Button, Chip, Empty, Segmented, SpeakButton, cx } from '@/components/ui
 import { useCardsMap, useMarks } from '@/lib/hooks'
 import { useCategory } from '@/lib/vocab'
 import { CATEGORIES, LEVELS, RAIL_SUBS, type Category } from '@/lib/types'
-import { selectedCats, useSettings } from '@/lib/settings'
+import { accentFor, selectedCats, useSettings } from '@/lib/settings'
 import { isWeak } from '@/lib/session'
 import type { CardRow } from '@/lib/db'
 
@@ -97,7 +97,7 @@ export default function Words() {
         <Segmented
           value={cat}
           onChange={(v) => setParam('cat', v)}
-          options={CATEGORIES.map((c) => ({ value: c.key, label: c.label }))}
+          options={CATEGORIES.map((c) => ({ value: c.key, label: c.short }))}
         />
         <div className="relative">
           <Search className="pointer-events-none absolute left-3.5 top-1/2 h-[17px] w-[17px] -translate-y-1/2 text-faint" strokeWidth={1.9} />
@@ -188,7 +188,7 @@ export default function Words() {
                     </div>
                     {marks?.has(w.id) && <Star className="h-3.5 w-3.5 shrink-0 fill-warn text-warn" />}
                   </Link>
-                  <SpeakButton text={w.w} accent={w.cat === 'rail' ? 'en-GB' : 'en-US'} size="sm" />
+                  <SpeakButton text={w.w} accent={accentFor(w.cat)} size="sm" />
                 </li>
               )
             })}

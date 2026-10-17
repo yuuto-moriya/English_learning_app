@@ -15,6 +15,7 @@ import {
   PHONEME_RE,
   readAudio,
   SINGLE_WORD_RE,
+  speechTokenUrl,
   speechUrl,
   toBase64Utf8,
   ttsEndpoint,
@@ -49,6 +50,8 @@ export function handleHealth(env: Env): Response {
     translator: !!(env.AZURE_TRANSLATOR_KEY && env.AZURE_TRANSLATOR_REGION),
     speech: !!(env.AZURE_SPEECH_KEY && (env.AZURE_SPEECH_REGION || env.AZURE_SPEECH_ENDPOINT)),
     tts: !!(env.AZURE_SPEECH_KEY && (env.AZURE_SPEECH_REGION || env.AZURE_SPEECH_ENDPOINT)),
+    // リアルタイムの音声認識・音声翻訳（同時通訳）は、ブラウザから Azure へ直接つなぐのでリージョンが必要
+    realtime: !!(env.AZURE_SPEECH_KEY && env.AZURE_SPEECH_REGION),
     tokenRequired: !!env.APP_ACCESS_TOKEN,
   })
 }
@@ -212,6 +215,18 @@ export const TTS_VOICES = new Set([
   'en-GB-SoniaNeural',
   'en-GB-RyanNeural',
   'en-GB-LibbyNeural',
+  'en-AU-NatashaNeural',
+  'en-AU-WilliamNeural',
+  'en-CA-ClaraNeural',
+  'en-CA-LiamNeural',
+  'en-IE-EmilyNeural',
+  'en-IE-ConnorNeural',
+  'en-IN-NeerjaNeural',
+  'en-IN-PrabhatNeural',
+  'en-NZ-MollyNeural',
+  'en-NZ-MitchellNeural',
+  'en-ZA-LeahNeural',
+  'en-ZA-LukeNeural',
   'ja-JP-NanamiNeural',
 ])
 export const MAX_TTS_CHARS = 400
@@ -264,4 +279,27 @@ export async function handleTts(request: Request, env: Env): Promise<Response> {
       'CDN-Cache-Control': 'public, max-age=31536000, immutable',
     },
   })
+}
+
+/**
+ * GET /api/speech-token — 同時通訳・リアルタイム音声入力用の、有効期限10分の一時トークン。
+ * ブラウザの Speech SDK はこのトークンで Azure に直接つなぐ（音声はサーバーを通らない）。キーそのものは返さない。
+ */
+export async function handleSpeechToken(env: Env): Promise<Response> {
+  if (!env.AZURE_SPEECH_KEY || !env.AZURE_SPEECH_REGION) {
+    return json({ error: 'リアルタイム音声（Azure Speech のリージョン）が未設定です' }, 503)
+  }
+  const res = await fetchUpstream(speechTokenUrl(env), {
+    method: 'POST',
+    // 本文は空（fetch は POST の空本文に Content-Length: 0 を付ける）
+    headers: { 'Ocp-Apim-Subscription-Key': env.AZURE_SPEECH_KEY },
+  })
+  if (!res) return json({ error: '音声APIに接続できませんでした' }, 502)
+  if (!res.ok) {
+    const quota = res.status === 403 || res.status === 429
+    return json({ error: quota ? '音声APIの無料枠または回数制限に達しました' : `音声APIエラー (${res.status})` }, 502)
+  }
+  const token = (await res.text()).trim()
+  if (!token) return json({ error: 'トークンを取得できませんでした' }, 502)
+  return json({ token, region: env.AZURE_SPEECH_REGION, expiresIn: 540 })
 }

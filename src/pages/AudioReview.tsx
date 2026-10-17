@@ -6,7 +6,7 @@ import { Button, Card, ProgressBar, Segmented, Toggle, cx } from '@/components/u
 import { bumpDaily, db } from '@/lib/db'
 import { retrievability } from '@/lib/srs'
 import { newWordPool } from '@/lib/session'
-import { getSettings, selectedCats } from '@/lib/settings'
+import { accentFor, getSettings, selectedCats } from '@/lib/settings'
 import { prefetchSpeech, speak, speakJa, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { getWord, jaForSpeech, loadCategory, plain } from '@/lib/vocab'
 import { interleave } from '@/lib/srs'
@@ -85,7 +85,7 @@ export default function AudioReview() {
 
   const words = list?.words ?? []
   const w = words[idx]
-  const accent = (x: Word) => (x.cat === 'rail' ? 'en-GB' : 'en-US')
+  const accent = (x: Word) => accentFor(x.cat)
 
   const run = async (from: number) => {
     const my = ++runId.current

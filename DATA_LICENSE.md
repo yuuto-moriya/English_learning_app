@@ -9,6 +9,7 @@
 | 一般語・ビジネス語の和訳・例文と、それを含むビルド成果物 | `data-src/vocab/*.txt`, `src/data/vocab/general.json`, `src/data/vocab/business.json` | **CC BY-SA 4.0**（上記リストの派生データとして） |
 | 米音IPA（発音記号） | ビルド時に `scripts/.cache/en_US.txt` から取り込み → `src/data/vocab/*.json` | **MIT**（open-dict-data/ipa-dict、cmudict-ipa 由来） |
 | 保線・設備管理用語集 | `data-src/rail/*.txt`, `src/data/vocab/rail.json` | 本プロジェクトのオリジナル編集物（MIT） |
+| IT 用語集 | `data-src/vocab/it-*.txt`, `src/data/vocab/it.json` | 本プロジェクトのオリジナル編集物（MIT）。外部の語彙リストは使っていません |
 | 案内キャラクター「テツ」の画像・アイコン | `public/guide/*.webp`, `public/icons/*.png`, `public/favicon.png`, `scripts/blender/*` | 本プロジェクトのオリジナル（MIT） |
 | シーン別会話・学習法の解説文・聞き分けの最小対語 | `src/data/scenes.ts`, `src/data/research.ts`, `src/data/minimalPairs.ts` | 本プロジェクトのオリジナル（MIT） |
 | 英語の書体 Newsreader | `src/assets/fonts/*.woff2`, `src/assets/fonts/OFL.txt` | **SIL Open Font License 1.1**（Production Type） |

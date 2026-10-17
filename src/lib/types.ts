@@ -1,4 +1,9 @@
-export type Category = 'general' | 'business' | 'rail'
+import type { Accent } from './accents'
+
+export type Category = 'general' | 'business' | 'it' | 'rail'
+
+/** コースの並び（一般 → ビジネス → IT → 鉄道） */
+export const ALL_CATS: Category[] = ['general', 'business', 'it', 'rail']
 
 /** 例文。英文中の学習対象語は *word* のようにアスタリスクで囲む */
 export interface Example {
@@ -7,7 +12,7 @@ export interface Example {
 }
 
 export interface Word {
-  /** g-0001 / b-0001 / r-0001 */
+  /** g-<語> / b-<語> / i-<語> / r-<語> */
   id: string
   /** 見出し語（保線用語はEN規格に沿った英国表記） */
   w: string
@@ -85,9 +90,20 @@ export const CATEGORIES: {
     dot: 'bg-biz',
   },
   {
+    key: 'it',
+    label: 'IT',
+    short: 'IT',
+    desc: 'パソコン・システム開発・運用・セキュリティ・AI の英語',
+    source: 'IT の現場でよく使う用語（本アプリで編集）',
+    scene: 'it',
+    text: 'text-it',
+    soft: 'bg-it-soft',
+    dot: 'bg-it',
+  },
+  {
     key: 'rail',
-    label: '保線',
-    short: '保線',
+    label: '鉄道（保線）',
+    short: '鉄道',
     desc: '鉄道保線・設備管理（EAM）の専門用語と現場の英語',
     source: 'EN 規格・TSI・JIS に基づく保線／設備管理用語',
     scene: 'rail',
@@ -125,13 +141,13 @@ export interface Phrase {
   note?: string
 }
 
-export type SceneGroup = 'daily' | 'business' | 'rail'
+export type SceneGroup = 'daily' | 'business' | 'it' | 'rail'
 
 export interface Scene {
   id: string
   group: SceneGroup
   /** 舞台の土地の発音（最初の話者がこの発音で話す）。省略時は保線＝英国、それ以外＝米国 */
-  accent?: 'en-US' | 'en-GB'
+  accent?: Accent
   title: string
   titleEn: string
   lv: Level

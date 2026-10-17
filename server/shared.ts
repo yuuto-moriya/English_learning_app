@@ -70,6 +70,13 @@ export function speechUrl(env: Env, lang: string, detailed: boolean): string {
   return `${base}?${q}`
 }
 
+/** 一時トークンの発行先（カスタムドメインがあればそちら） */
+export function speechTokenUrl(env: Env): string {
+  return env.AZURE_SPEECH_ENDPOINT
+    ? `${env.AZURE_SPEECH_ENDPOINT.replace(/\/$/, '')}/sts/v1.0/issueToken`
+    : `https://${env.AZURE_SPEECH_REGION}.api.cognitive.microsoft.com/sts/v1.0/issueToken`
+}
+
 export const ALLOWED_LANGS = new Set(['en-US', 'en-GB', 'ja-JP'])
 
 /** 音声合成（ニューラル音声）の URL。カスタムドメインがあればそちらを使う */

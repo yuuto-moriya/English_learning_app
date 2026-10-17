@@ -13,6 +13,7 @@ type Step = 'course' | 'level' | 'check' | 'plan'
 const SAMPLES: Record<Category, string> = {
   general: 'Could I have the menu, please?',
   business: "Let's move on to the next item on the agenda.",
+  it: 'Could you review my pull request?',
   rail: 'The possession has been granted.',
 }
 
@@ -39,7 +40,7 @@ export default function Welcome() {
   const s = useSettings()
   const [step, setStep] = useState<Step>((params.get('step') as Step) || 'course')
   const [cats, setCats] = useState<Record<Category, boolean>>(() =>
-    s.onboarded ? s.studyCats : { general: true, business: false, rail: false },
+    s.onboarded ? { ...s.studyCats } : { general: true, business: false, it: false, rail: false },
   )
   const [range, setRange] = useState<{ min: number; max: number } | null>(s.onboarded ? { min: s.minLevel, max: s.maxLevel } : null)
   const [when, setWhen] = useState<PlanWhen>(s.planWhen)
@@ -158,8 +159,10 @@ export default function Welcome() {
           <Button variant="outline" block className="mt-3" onClick={() => setStep('check')}>
             2分でレベルを診断する
           </Button>
-          {cats.rail && (
-            <p className="mt-4 text-[12px] leading-relaxed text-muted">保線の専門用語は、このレベルとは別に、基本の用語から順に出題します。</p>
+          {(cats.rail || cats.it) && (
+            <p className="mt-4 text-[12px] leading-relaxed text-muted">
+              {cats.it && cats.rail ? 'IT と鉄道（保線）' : cats.it ? 'IT' : '鉄道（保線）'}の専門用語は、このレベルとは別に、基本の用語から順に出題します。
+            </p>
           )}
           <div className="mt-auto pb-[max(env(safe-area-inset-bottom),20px)] pt-6">
             <Button block size="lg" variant="ink" disabled={!range} onClick={() => setStep('plan')}>

@@ -7,6 +7,7 @@ import { CONTRASTS, type Contrast } from '@/data/minimalPairs'
 import { isNeuralActive, NEURAL_VOICES, speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { bumpDaily } from '@/lib/db'
 import { shuffle } from '@/lib/vocab'
+import { play as playCue } from '@/lib/sounds'
 
 const ROUND = 12
 const STORE = 'tetsu-sounds'
@@ -205,6 +206,7 @@ function Round({ contrasts, onExit }: { contrasts: Contrast[]; onExit: (score: n
               onClick={() => {
                 setChoice(k)
                 const good = k === t.answer
+                playCue(good ? 'correct' : 'wrong')
                 if (good) setCorrect((c) => c + 1)
                 bumpDaily({ listening: 1, correct: good ? 1 : 0, seconds: 6 })
               }}

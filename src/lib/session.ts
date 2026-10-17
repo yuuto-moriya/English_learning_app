@@ -2,7 +2,7 @@ import { State } from 'ts-fsrs'
 import type { CardRow } from './db'
 import { db } from './db'
 import { dueCards, interleave, newLearnedToday } from './srs'
-import type { Category, Word } from './types'
+import { ALL_CATS, type Category, type Word } from './types'
 import { getWord, loadCategory } from './vocab'
 import type { Settings } from './settings'
 
@@ -45,11 +45,13 @@ export function newWordPool(
   cards: Set<string>,
   s: Pick<Settings, 'studyCats' | 'maxLevel'> & { minLevel?: number },
 ): Word[][] {
-  const groups: Record<Category, Word[]> = { general: [], business: [], rail: [] }
+  const groups: Record<Category, Word[]> = { general: [], business: [], it: [], rail: [] }
   for (const w of all) {
     if (cards.has(w.id)) continue
     if (!s.studyCats[w.cat]) continue
-    if (w.cat !== 'rail' && (w.lv > s.maxLevel || w.lv < (s.minLevel ?? 1))) continue
+    // IT・鉄道は専門のコースなので、レベルの範囲に関係なく基本の語（低いレベル）から順に出す
+    const specialist = w.cat === 'rail' || w.cat === 'it'
+    if (!specialist && (w.lv > s.maxLevel || w.lv < (s.minLevel ?? 1))) continue
     groups[w.cat].push(w)
   }
   // 同じレベル内では内容語を先に、機能語（冠詞・前置詞など）は後回し
@@ -57,8 +59,9 @@ export function newWordPool(
   const order = (a: Word, b: Word) => a.lv - b.lv || fn(a) - fn(b) || (a.rank ?? 9999) - (b.rank ?? 9999)
   groups.general.sort(order)
   groups.business.sort(order)
+  groups.it.sort((a, b) => a.lv - b.lv)
   groups.rail.sort((a, b) => a.lv - b.lv)
-  return [groups.general, groups.business, groups.rail].filter((g) => g.length > 0)
+  return ALL_CATS.map((c) => groups[c]).filter((g) => g.length > 0)
 }
 
 export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?: number } = {}): Promise<Item[]> {
@@ -71,7 +74,7 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
   const learned = await newLearnedToday()
   const newCount = opts.extra ? 5 : Math.max(0, s.dailyNew - learned)
 
-  const cats = (['general', 'business', 'rail'] as Category[]).filter((c) => s.studyCats[c])
+  const cats = ALL_CATS.filter((c) => s.studyCats[c])
   const lists = await Promise.all(cats.map((c) => loadCategory(c)))
   const pool = interleave(newWordPool(lists.flat(), cardSet, s))
   const fresh = pool.slice(0, newCount)

@@ -101,14 +101,22 @@ export const BUSINESS_TIPS: string[] = [
   'メールの結びは "Best regards," が無難です。社外の初対面なら "Kind regards," もよく使います。',
 ]
 
+export const IT_TIPS: string[] = [
+  'IT 用語はカタカナ語と同じでも、強く読む位置に注意（例：deBUG、anaLYtics）。router は米国では「ラウター」に近く聞こえます。',
+  '障害の報告は「何が・いつから・影響・今の対応・次の報告時刻」の順。"We\'re looking into it."（調査中です）も便利ですよ。',
+  'コードレビューの指摘は "Could you …?" や "What do you think about …?" で。命令形より角が立ちません。',
+  '略語は1文字ずつ読むもの（API、VPN）と、単語として読むもの（SaaS「サース」）があります。',
+]
+
 /** ホームのワンポイント。学習法はユキ先生、コースに応じてテツ・スミ・キナコが話す */
-export function randomTip(cats: { general?: boolean; business?: boolean; rail?: boolean } = { general: true }): {
+export function randomTip(cats: { general?: boolean; business?: boolean; it?: boolean; rail?: boolean } = { general: true }): {
   who: 'yuki' | 'kinako' | 'sumi' | 'tetsu'
   text: string
 } {
   const all: { who: 'yuki' | 'kinako' | 'sumi' | 'tetsu'; text: string }[] = LEARNING_TIPS.map((text) => ({ who: 'yuki' as const, text }))
   if (cats.general) all.push(...DAILY_TIPS.map((text) => ({ who: 'tetsu' as const, text })))
   if (cats.business) all.push(...BUSINESS_TIPS.map((text) => ({ who: 'sumi' as const, text })))
+  if (cats.it) all.push(...IT_TIPS.map((text) => ({ who: 'sumi' as const, text })))
   if (cats.rail) all.push(...SAFETY_TIPS.map((text) => ({ who: 'kinako' as const, text })))
   return pick(all)
 }

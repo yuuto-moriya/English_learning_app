@@ -9,6 +9,8 @@ import { sentencePool, type Sentence } from '@/lib/sentences'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily, db } from '@/lib/db'
 import { getWord, plain, shuffle } from '@/lib/vocab'
+import { accentFor } from '@/lib/settings'
+import { play } from '@/lib/sounds'
 
 const ROUND = 10
 const THINK_MS = 8000
@@ -28,7 +30,7 @@ async function buildRound(): Promise<Sentence[]> {
     const en = plain(e.en)
     const n = en.split(/\s+/).length
     if (n < 4 || n > 14) continue
-    out.push({ en, ja: e.ja, lv: w.lv, src: w.cat, accent: w.cat === 'rail' ? 'en-GB' : 'en-US', wordId: w.id })
+    out.push({ en, ja: e.ja, lv: w.lv, src: w.cat, accent: accentFor(w.cat), wordId: w.id })
     if (out.length >= ROUND) break
   }
   if (out.length < ROUND) {
@@ -76,6 +78,7 @@ export default function Compose() {
   const rate = (r: Rate) => {
     if (!cur || !round) return
     setTally((t) => ({ ...t, [r]: t[r] + 1 }))
+    if (r !== 'miss') play('correct')
     bumpDaily({ speaking: 1, seconds: Math.min(60, Math.round((Date.now() - shownAt) / 1000)) })
     // 言えなかった文は、この回の最後にもう一度出す（その場で正しく言えるまで繰り返す＝連続再学習）
     if (r === 'miss' && round.filter((s) => s.en === cur.en).length < 2) setRound([...round, cur])

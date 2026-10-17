@@ -10,12 +10,15 @@ import { bumpDaily } from '@/lib/db'
 import { correctMessage, wrongMessage, type GuideLine } from '@/lib/guide'
 import { shuffle } from '@/lib/vocab'
 import { useSettings } from '@/lib/settings'
+import { ACCENTS, accentInfo } from '@/lib/accents'
+import { play as playCue } from '@/lib/sounds'
 
 export default function Listening() {
   const [sources, setSources] = useState<Source[]>(() => defaultSources())
   const [level, setLevel] = useState(defaultLevel)
   const [rate, setRate] = useState(0.85)
   const vary = useSettings((s) => s.varyVoices)
+  const mix = useSettings((s) => s.mixAccents)
   const setSettings = useSettings((s) => s.set)
   const [pool, setPool] = useState<Sentence[]>([])
   const [round, setRound] = useState<Sentence[]>([])
@@ -52,7 +55,8 @@ export default function Listening() {
 
   const start = () => {
     warmUpSpeech()
-    const r = pickRound(pool, 10)
+    // いろいろな国の英語を混ぜるときは、1問ごとに発音（国・地域）を選び直す
+    const r = pickRound(pool, 10).map((x) => (mix ? { ...x, accent: ACCENTS[Math.floor(Math.random() * ACCENTS.length)].id } : x))
     setRound(r)
     setI(0)
     setScore(0)
@@ -67,6 +71,7 @@ export default function Listening() {
     if (picked || !cur) return
     setPicked(ja)
     const ok = ja === cur.ja
+    playCue(ok ? 'correct' : 'wrong')
     if (ok) setScore((s) => s + 1)
     setGuide(ok ? correctMessage(0) : wrongMessage())
     bumpDaily({ listening: 1, correct: ok ? 1 : 0, seconds: 15 })
@@ -104,6 +109,12 @@ export default function Listening() {
                 checked={vary}
                 onChange={(v) => setSettings({ varyVoices: v })}
               />
+              <Toggle
+                label="いろいろな国の英語で聞く"
+                desc="アメリカ・イギリス・オーストラリア・インドなど、1問ごとに国の発音を変えます"
+                checked={mix}
+                onChange={(v) => setSettings({ mixAccents: v })}
+              />
               <p className="text-[12px] text-muted">対象の文：{pool.length.toLocaleString()}文</p>
             </Card>
             <Button block size="lg" onClick={start} disabled={pool.length < 4}>
@@ -133,6 +144,7 @@ export default function Listening() {
                 {picked && (
                   <div className="mt-1 w-full animate-rise text-center">
                     <p className="en text-[20px] leading-snug">{cur.en}</p>
+                    <p className="mt-1 text-[12px] text-muted">{accentInfo(cur.accent).label}の発音</p>
                   </div>
                 )}
               </div>

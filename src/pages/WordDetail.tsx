@@ -8,6 +8,7 @@ import { db, toggleMark } from '@/lib/db'
 import { humanizeDiff, markKnown, retrievability } from '@/lib/srs'
 import { useWord, plain } from '@/lib/vocab'
 import { useMarks } from '@/lib/hooks'
+import { accentFor } from '@/lib/settings'
 
 export default function WordDetail() {
   const { id } = useParams()
@@ -79,7 +80,7 @@ export default function WordDetail() {
           </Button>
           <Button
             variant="secondary"
-            onClick={() => nav(`/practice/speaking?text=${encodeURIComponent(plain(word.ex[0]?.en ?? word.w))}&accent=${word.cat === 'rail' ? 'en-GB' : 'en-US'}`)}
+            onClick={() => nav(`/practice/speaking?text=${encodeURIComponent(plain(word.ex[0]?.en ?? word.w))}&accent=${accentFor(word.cat)}`)}
           >
             <Mic className="h-4 w-4" strokeWidth={1.9} />
             発音練習

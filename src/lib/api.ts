@@ -7,6 +7,8 @@ export interface Health {
   speech: boolean
   /** 高品質音声（Azure ニューラル音声） */
   tts?: boolean
+  /** リアルタイムの音声認識・音声翻訳（同時通訳） */
+  realtime?: boolean
   tokenRequired: boolean
 }
 
@@ -108,6 +110,17 @@ export async function assessPronunciation(wav: Blob, reference: string, lang = '
   })
   await ensureOk(res)
   return { ...((await res.json()) as Omit<PronResult, 'engine'>), engine: 'azure' }
+}
+
+/** 同時通訳・リアルタイム音声入力用の一時トークン（有効10分。8分は使い回す） */
+let tokenCache: { at: number; token: string; region: string } | null = null
+export async function getSpeechToken(force = false): Promise<{ token: string; region: string }> {
+  if (!force && tokenCache && Date.now() - tokenCache.at < 8 * 60_000) return tokenCache
+  const res = await fetch('/api/speech-token', { headers: headers() })
+  await ensureOk(res)
+  const j = (await res.json()) as { token: string; region: string }
+  tokenCache = { at: Date.now(), ...j }
+  return j
 }
 
 export async function transcribe(wav: Blob, lang: 'en-US' | 'ja-JP'): Promise<string> {

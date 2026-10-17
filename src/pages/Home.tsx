@@ -3,13 +3,15 @@ import { Link, Navigate, useNavigate } from 'react-router'
 import { ArrowRight, BarChart3, ChevronRight, Ear, Mic, PencilLine, Radio, RotateCcw, Waves } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
+import { ModeSwitcher } from '@/components/ModeSwitcher'
+import { HOME_TOUR, Tour } from '@/components/Tour'
 import { Button, Card, List, ListRow, ProgressBar, RouteProgress, SectionTitle, cx } from '@/components/ui'
 import { useCardsMap, useDueCount, useNow, useRecentDays, useStreak, useToday } from '@/lib/hooks'
 import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
 import { PLAN_LABEL, selectedCats, useSettings } from '@/lib/settings'
 import { isActiveDay } from '@/lib/db'
 import VOCAB_COUNTS from '@/data/vocab/counts.json'
-import { CATEGORIES } from '@/lib/types'
+import { ALL_CATS, CATEGORIES, type Category } from '@/lib/types'
 import { CHARACTERS } from '@/lib/characters'
 import { loadCategory } from '@/lib/vocab'
 
@@ -51,11 +53,10 @@ export default function Home() {
 
   const stats = useMemo(() => {
     // 語数は集計済みの counts.json を使い、ホームでは大きな単語データを読み込まない
-    const byCat = {
-      general: { total: VOCAB_COUNTS.general, learned: 0, mastered: 0 },
-      business: { total: VOCAB_COUNTS.business, learned: 0, mastered: 0 },
-      rail: { total: VOCAB_COUNTS.rail, learned: 0, mastered: 0 },
-    }
+    const byCat = Object.fromEntries(ALL_CATS.map((c) => [c, { total: VOCAB_COUNTS[c], learned: 0, mastered: 0 }])) as Record<
+      Category,
+      { total: number; learned: number; mastered: number }
+    >
     let mastered = 0
     if (cards)
       for (const c of cards.values()) {
@@ -80,9 +81,11 @@ export default function Home() {
   return (
     <div>
       <PageHeader eyebrow={dateStr} title={hello.title} settings />
+      {!s.tourDone && <Tour steps={HOME_TOUR} onDone={() => s.set({ tourDone: true })} />}
       <div className="px-4">
+        <ModeSwitcher className="mb-3" />
         {/* 今日の学習 */}
-        <Card className="p-5">
+        <Card className="p-5" tour="today">
           <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
               <p className="text-[13px] font-medium text-muted">今日の学習</p>
@@ -120,7 +123,7 @@ export default function Home() {
         </Card>
 
         {/* 今週 */}
-        <Link to="/stats" viewTransition className="mt-3 block">
+        <Link to="/stats" viewTransition className="mt-3 block" data-tour="week">
           <Card className="flex items-center gap-4 py-3.5">
             <div className="shrink-0">
               <p className="text-[22px] font-semibold leading-none tabular-nums">

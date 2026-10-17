@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import type { Category, Word } from './types'
+import { ALL_CATS, type Category, type Word } from './types'
 
 const loaders: Record<Category, () => Promise<{ default: unknown }>> = {
   general: () => import('../data/vocab/general.json'),
   business: () => import('../data/vocab/business.json'),
+  it: () => import('../data/vocab/it.json'),
   rail: () => import('../data/vocab/rail.json'),
 }
 
@@ -21,6 +22,7 @@ export function sayHint(text: string): string | undefined {
 export function catOfId(id: string): Category {
   if (id.startsWith('r-')) return 'rail'
   if (id.startsWith('b-')) return 'business'
+  if (id.startsWith('i-')) return 'it'
   return 'general'
 }
 
@@ -41,8 +43,8 @@ export async function loadCategory(cat: Category): Promise<Word[]> {
 }
 
 export async function loadAll(): Promise<Word[]> {
-  const [g, b, r] = await Promise.all([loadCategory('general'), loadCategory('business'), loadCategory('rail')])
-  return [...g, ...b, ...r]
+  const lists = await Promise.all(ALL_CATS.map((c) => loadCategory(c)))
+  return lists.flat()
 }
 
 export async function getWord(id: string): Promise<Word | undefined> {

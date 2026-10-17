@@ -38,6 +38,15 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,webp,png,svg,json,woff2}'],
+        // 同時通訳用の Speech SDK は通信が必要な機能でしか使わないので、オフライン用の事前保存から外す（初回の通信量を抑える）
+        globIgnores: ['**/microsoft.cognitiveservices.speech.sdk-*.js'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.includes('/assets/microsoft.cognitiveservices.speech.sdk-'),
+            handler: 'CacheFirst',
+            options: { cacheName: 'speech-sdk', expiration: { maxEntries: 2 } },
+          },
+        ],
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
         navigateFallbackDenylist: [/^\/api\//],
       },

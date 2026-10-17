@@ -1,43 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { Check, CheckCircle2, ChevronRight, Download, RefreshCw, Trash2, Upload, XCircle } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
 import { Button, Card, Segmented, SectionTitle, Toggle, cx } from '@/components/ui'
 import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
-import { listVoices, NEURAL_VOICES, refreshNeural, speak, ttsAvailable, voiceQuality, warmUpSpeech, type Accent } from '@/lib/tts'
+import { refreshNeural, ttsAvailable } from '@/lib/tts'
+import { AccentPicker } from '@/components/AccentPicker'
 import { getHealth, type Health } from '@/lib/api'
 import { db, exportAll, importAll } from '@/lib/db'
 import { CATEGORIES, LEVELS } from '@/lib/types'
 
-const SAMPLE: Record<Accent, string> = {
-  'en-US': 'Could you send me the agenda before the meeting?',
-  'en-GB': 'The track inspection starts at midnight.',
-}
-
 export default function Settings() {
   const s = useSettings()
+  const nav = useNavigate()
   const { hash } = useLocation()
-  const [voicesUS, setVoicesUS] = useState<SpeechSynthesisVoice[]>([])
-  const [voicesUK, setVoicesUK] = useState<SpeechSynthesisVoice[]>([])
   const [health, setHealth] = useState<Health | null | undefined>(undefined)
   const [msg, setMsg] = useState<string | null>(null)
   const file = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    const load = () => {
-      setVoicesUS(listVoices('en-US'))
-      setVoicesUK(listVoices('en-GB'))
-    }
-    load()
-    const t = setTimeout(load, 800)
-    window.speechSynthesis?.addEventListener?.('voiceschanged', load)
     getHealth(true).then(setHealth)
-    return () => {
-      clearTimeout(t)
-      window.speechSynthesis?.removeEventListener?.('voiceschanged', load)
-    }
   }, [])
 
   // ホームの「コースを変更」から来たときは、その項目までスクロール
@@ -250,20 +234,11 @@ export default function Settings() {
                 : '高品質音声はサーバーの Azure Speech が未設定のため使えません。端末の音声で読み上げます。'}
             </p>
           </div>
-          {neuralOk && s.voiceEngine === 'auto' && (
-            <>
-              <NeuralSelect accent="en-US" label="米国英語の声" value={s.neuralUS} onChange={(v) => s.set({ neuralUS: v })} />
-              <NeuralSelect accent="en-GB" label="英国英語の声" value={s.neuralUK} onChange={(v) => s.set({ neuralUK: v })} />
-            </>
-          )}
+          <AccentPicker neural={neuralOk && s.voiceEngine === 'auto'} />
           {(!neuralOk || s.voiceEngine === 'device') && (
-            <>
-              <VoiceSelect label="米国英語の声（端末）" voices={voicesUS} value={s.voiceUS} onChange={(v) => s.set({ voiceUS: v })} accent="en-US" />
-              <VoiceSelect label="英国英語の声（端末）" voices={voicesUK} value={s.voiceUK} onChange={(v) => s.set({ voiceUK: v })} accent="en-GB" />
-              <p className="text-[11.5px] leading-relaxed text-muted">
-                iPhone では「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で、名前に「拡張」「プレミアム」と付いた声をダウンロードすると自然な発音になります（おすすめ：Ava、Zoe、Evan、Daniel など）。
-              </p>
-            </>
+            <p className="text-[11.5px] leading-relaxed text-muted">
+              iPhone では「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で、名前に「拡張」「プレミアム」と付いた声をダウンロードすると自然な発音になります（おすすめ：Ava、Zoe、Evan、Daniel など）。
+            </p>
           )}
           <div>
             <div className="flex justify-between text-[15px]">
@@ -288,6 +263,13 @@ export default function Settings() {
             checked={s.varyVoices}
             onChange={(v) => s.set({ varyVoices: v })}
           />
+          <Toggle
+            label="リスニングでいろいろな国の英語を混ぜる"
+            desc="アメリカ・イギリス・オーストラリア・インドなどの発音を混ぜて出題します"
+            checked={s.mixAccents}
+            onChange={(v) => s.set({ mixAccents: v })}
+          />
+          <Toggle label="効果音" desc="正解・不正解、録音の開始・終了などを音でお知らせします" checked={s.sounds} onChange={(v) => s.set({ sounds: v })} />
         </Card>
 
         <SectionTitle>表示</SectionTitle>
@@ -302,6 +284,21 @@ export default function Settings() {
             ]}
           />
           <Toggle label="キャラクターを表示" checked={s.guide} onChange={(v) => s.set({ guide: v })} />
+        </Card>
+
+        <SectionTitle>ヘルプ</SectionTitle>
+        <Card className="space-y-2">
+          <p className="text-[13px] leading-relaxed text-muted">モードの切り替え・学習・練習・翻訳と同時通訳など、主な機能をホーム画面で順番に案内します。</p>
+          <Button
+            block
+            variant="secondary"
+            onClick={() => {
+              s.set({ tourDone: false })
+              nav('/', { viewTransition: true })
+            }}
+          >
+            使い方ガイドをもう一度見る
+          </Button>
         </Card>
 
         <SectionTitle>なかまたち</SectionTitle>
@@ -420,78 +417,3 @@ function ApiRow({ label, ok, loading }: { label: string; ok?: boolean; loading: 
   )
 }
 
-function NeuralSelect({ accent, label, value, onChange }: { accent: Accent; label: string; value: string; onChange: (v: string) => void }) {
-  return (
-    <div>
-      <p className="text-[13px] font-medium">{label}</p>
-      <div className="mt-1.5 flex gap-2">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          aria-label={label}
-          className="min-w-0 flex-1 rounded-[12px] bg-surface-2 px-3 py-2.5 text-[16px] outline-none focus:ring-2 focus:ring-ink/15"
-        >
-          {NEURAL_VOICES[accent].map((v) => (
-            <option key={v.id} value={v.id}>
-              {v.name}（{v.gender === 'F' ? '女性' : '男性'}）
-            </option>
-          ))}
-        </select>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            warmUpSpeech()
-            speak(SAMPLE[accent], { accent })
-          }}
-        >
-          試聴
-        </Button>
-      </div>
-    </div>
-  )
-}
-
-function VoiceSelect({
-  label,
-  voices,
-  value,
-  onChange,
-  accent,
-}: {
-  label: string
-  voices: SpeechSynthesisVoice[]
-  value: string
-  onChange: (v: string) => void
-  accent: Accent
-}) {
-  return (
-    <div>
-      <p className="text-[13px] font-medium">{label}</p>
-      <div className="mt-1.5 flex gap-2">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          aria-label={label}
-          className="min-w-0 flex-1 rounded-[12px] bg-surface-2 px-3 py-2.5 text-[16px] outline-none focus:ring-2 focus:ring-ink/15"
-        >
-          <option value="">自動（品質の高い声）</option>
-          {voices.map((v) => (
-            <option key={v.name} value={v.name}>
-              {v.name}
-              {voiceQuality(v) >= 85 ? '（高品質）' : ''}
-            </option>
-          ))}
-        </select>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            warmUpSpeech()
-            speak(SAMPLE[accent], { accent })
-          }}
-        >
-          試聴
-        </Button>
-      </div>
-    </div>
-  )
-}

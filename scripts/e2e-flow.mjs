@@ -1,4 +1,4 @@
-// 主要フローの動作確認（はじめての設定 → 学習セッション → 単語帳 → 練習 → シーン → 翻訳の用語検出 → 設定）
+// 主要フローの動作確認（はじめての設定 → 使い方ツアー → 学習セッション → 単語帳 → 練習 → シーン → 翻訳・同時通訳 → モード切り替え → 設定）
 // 使い方: npx vite preview --port 4173 & CHROMIUM_PATH=... node scripts/e2e-flow.mjs <出力dir>
 import { chromium, devices } from '@playwright/test'
 import { mkdirSync } from 'node:fs'
@@ -27,6 +27,19 @@ await page.getByRole('button', { name: /中級/ }).click()
 await page.getByRole('button', { name: '次へ' }).click()
 await page.getByRole('button', { name: '帰り道' }).click()
 await page.getByRole('button', { name: 'はじめる' }).click()
+
+// 使い方ツアー：最初の1回だけ表示。最後まで進める
+await page.getByText('使い方を30秒でご案内します').waitFor()
+check(true, '初回は使い方ツアーを表示')
+let steps = 1
+while (await page.getByRole('button', { name: '次へ' }).isVisible().catch(() => false)) {
+  await page.getByRole('button', { name: '次へ' }).click()
+  steps++
+  await page.waitForTimeout(150)
+}
+check(steps >= 8 && (await page.getByText('準備OK！').isVisible()), `ツアーを最後まで進められる（${steps}ステップ）`)
+await page.getByRole('dialog').getByRole('button', { name: 'はじめる' }).click()
+check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.tourDone === true), 'ツアーを見終えたことが保存される')
 await page.getByRole('button', { name: /学習をはじめる/ }).waitFor()
 check(await page.getByText('帰り道に10分').isVisible(), 'ホームに学習プラン（実行意図）を表示')
 const cats = await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
@@ -60,6 +73,8 @@ await page.goto(BASE + '/words/r-sleeper')
 await page.getByText('tie', { exact: true }).first().waitFor({ timeout: 5000 })
 check(await page.getByText('tie', { exact: true }).first().isVisible(), '保線語の米国表記（sleeper/tie）')
 await page.getByRole('button', { name: '単語を保存' }).click()
+// 保存（IndexedDB への書き込み）が終わってから移動する
+await page.getByRole('button', { name: '保存を取り消す' }).waitFor()
 await page.goto(BASE + '/words?cat=rail&status=marked')
 await page.getByText('sleeper', { exact: true }).waitFor({ timeout: 5000 })
 check(await page.getByRole('button', { name: /保存した単語を練習する/ }).isVisible(), '保存した単語の一覧と集中練習')
@@ -93,12 +108,37 @@ check(await page.getByText('track gauge', { exact: true }).isVisible(), '翻訳�
 check(await page.getByText('cant', { exact: true }).isVisible(), '翻訳画面で「カント」を検出')
 await page.screenshot({ path: `${OUT}/5-glossary.png`, fullPage: true })
 
+// 翻訳画面のヘルプと同時通訳
+await page.getByRole('button', { name: '翻訳画面の使い方' }).click()
+check(await page.getByRole('dialog').getByText('同時通訳').first().isVisible(), '翻訳画面のヘルプ（ツアー）')
+await page.getByRole('button', { name: 'スキップ' }).click()
+await page.getByRole('link', { name: /同時通訳/ }).click()
+await page.getByRole('tab', { name: '会話' }).click()
+check(await page.getByRole('button', { name: '日本語で話す' }).isVisible(), '同時通訳の会話モード（日本語／英語のボタン）')
+check(await page.getByRole('button', { name: 'Speak English' }).isVisible(), '同時通訳の英語ボタン')
+await page.screenshot({ path: `${OUT}/6-interpreter.png` })
+
 // シーンのロールプレイ開始
 await page.goto(BASE + '/scenes/r-briefing')
 await page.getByRole('tab', { name: 'ロールプレイ' }).click()
 await page.getByRole('button', { name: 'ロールプレイを始める' }).click()
 await page.waitForTimeout(500)
 check(await page.locator('text=Supervisor').first().isVisible(), 'ロールプレイ開始')
+
+// モードの切り替え（ホーム）：タップでそのモードだけに。シーンの最初のタブも合わせる
+await page.goto(BASE + '/')
+await page.getByRole('group', { name: '学ぶモード' }).getByRole('button', { name: 'IT' }).click()
+const mode = await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
+check(mode.it && !mode.general && !mode.rail && !mode.business, 'モードを IT に切り替え')
+await page.goto(BASE + '/scenes')
+await page.getByText('朝会で進捗を報告する').waitFor({ timeout: 5000 })
+check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シーンが IT モードの場面で開く')
+
+// 発音（国・地域）の選択
+await page.goto(BASE + '/settings')
+await page.getByRole('button', { name: /^オーストラリア/ }).first().click()
+await page.waitForTimeout(200)
+check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.accent === 'en-AU'), '読み上げの発音をオーストラリアに変更')
 
 // ダークモード切替
 await page.goto(BASE + '/settings')

@@ -47,6 +47,7 @@ function TabBar() {
             to={to}
             end={end}
             viewTransition
+            data-tour={`tab-${to === '/' ? 'home' : to.slice(1)}`}
             className={({ isActive }) =>
               cx(
                 'flex min-h-[52px] flex-col items-center justify-center gap-[3px] rounded-[24px] text-[10px] font-semibold tracking-wide transition-colors duration-200',
@@ -135,7 +136,7 @@ export function PageHeader({
           <div className="flex w-[84px] items-center justify-end gap-2">
             {right}
             {settings && (
-              <NavLink to="/settings" viewTransition aria-label="設定" className={cx(iconBtn, 'text-muted')}>
+              <NavLink to="/settings" viewTransition aria-label="設定" data-tour="settings" className={cx(iconBtn, 'text-muted')}>
                 <Settings className="h-[18px] w-[18px]" strokeWidth={1.8} />
               </NavLink>
             )}

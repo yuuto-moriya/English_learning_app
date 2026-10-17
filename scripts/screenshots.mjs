@@ -22,20 +22,21 @@ const PAGES = [
   ['scenes', '/scenes'],
   ['scene-detail', '/scenes/r-recording-review'],
   ['translate', '/translate'],
+  ['interpreter', '/translate/live'],
   ['stats', '/stats'],
   ['settings', '/settings'],
   ['research', '/research'],
 ]
 
-/** オンボーディング済み（3コースすべて）の設定を書き込む */
-async function onboard(page) {
-  await page.evaluate(() => {
+/** オンボーディング済み（4コースすべて・使い方ツアーは見終えた）の設定を書き込む */
+async function onboard(page, extra = {}) {
+  await page.evaluate((extra) => {
     const raw = localStorage.getItem('tetsu-settings')
-    const s = raw ? JSON.parse(raw) : { state: {}, version: 3 }
-    s.state = { ...s.state, onboarded: true, studyCats: { general: true, business: true, rail: true } }
-    s.version = 3
+    const s = raw ? JSON.parse(raw) : { state: {}, version: 4 }
+    s.state = { ...s.state, onboarded: true, tourDone: true, studyCats: { general: true, business: true, it: true, rail: true }, ...extra }
+    s.version = 4
     localStorage.setItem('tetsu-settings', JSON.stringify(s))
-  })
+  }, extra)
 }
 
 const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {})
@@ -59,6 +60,15 @@ for (const scheme of ['light', 'dark']) {
   await page.waitForTimeout(400)
   await page.screenshot({ path: `${OUT}/${scheme}-welcome-plan.png` })
 
+  // 使い方ツアー（ホーム）の最初と「モード」の説明
+  await onboard(page, { tourDone: false })
+  await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+  await page.waitForTimeout(700)
+  await page.screenshot({ path: `${OUT}/${scheme}-tour-1.png` })
+  await page.getByRole('button', { name: '次へ' }).click()
+  await page.waitForTimeout(700)
+  await page.screenshot({ path: `${OUT}/${scheme}-tour-mode.png` })
+
   await onboard(page)
   for (const [name, path] of PAGES) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' })
@@ -72,6 +82,21 @@ for (const scheme of ['light', 'dark']) {
       }
     }
     await page.screenshot({ path: `${OUT}/${scheme}-${name}.png`, fullPage: false })
+    if (name === 'interpreter') {
+      await page.getByRole('tab', { name: '会話' }).click()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-interpreter-talk.png` })
+    }
+    if (name === 'scenes') {
+      await page.getByRole('tab', { name: 'IT' }).click()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-scenes-it.png` })
+    }
+    if (name === 'settings') {
+      await page.getByText('英語の発音（国・地域）').scrollIntoViewIfNeeded()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-settings-voice.png` })
+    }
   }
   // ホームの下の方も撮る
   await page.goto(BASE + '/', { waitUntil: 'networkidle' })

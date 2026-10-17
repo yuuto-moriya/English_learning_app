@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { Category } from './types'
+import { ALL_CATS, type Category } from './types'
+import { isAccent, type Accent } from './accents'
 
 export type Theme = 'system' | 'light' | 'dark'
 
@@ -28,13 +29,24 @@ export interface Settings {
   /** 読み上げ速度 */
   rate: number
   voiceEngine: VoiceEngine
-  voiceUS: string
-  voiceUK: string
-  /** 高品質音声（Azure ニューラル音声）の声 */
-  neuralUS: string
-  neuralUK: string
+  /** 英語の発音（国・地域）。一般・ビジネス・IT の読み上げに使う */
+  accent: Accent
+  /** 鉄道（保線）の読み上げの発音。保線用語は EN 規格（英国表記）が基本なので既定はイギリス */
+  railAccent: Accent
+  /** 発音ごとの高品質音声（Azure ニューラル音声）の声 ID */
+  neural: Partial<Record<Accent, string>>
+  /** 発音ごとの端末の声（SpeechSynthesisVoice.name） */
+  deviceVoice: Partial<Record<Accent, string>>
   /** リスニング練習で毎回ちがう声にする（話者の多様性） */
   varyVoices: boolean
+  /** リスニング練習でいろいろな国の英語を混ぜる */
+  mixAccents: boolean
+  /** 効果音（正解・不正解・録音の開始と終了など） */
+  sounds: boolean
+  /** 翻訳・同時通訳で、訳を自動で読み上げる */
+  speakTranslation: boolean
+  /** はじめての人向けの使い方ツアーを見終えた */
+  tourDone: boolean
   /** 自動で単語を読み上げる */
   autoPlay: boolean
   /** サーバーAPI（/api/*）へのアクセストークン（任意） */
@@ -49,20 +61,42 @@ const defaults: Settings = {
   dailyMinutes: 10,
   planWhen: 'free',
   retention: 0.9,
-  studyCats: { general: true, business: false, rail: false },
+  studyCats: { general: true, business: false, it: false, rail: false },
   minLevel: 1,
   maxLevel: 3,
   rate: 0.95,
   voiceEngine: 'auto',
-  voiceUS: '',
-  voiceUK: '',
-  neuralUS: 'en-US-AvaNeural',
-  neuralUK: 'en-GB-SoniaNeural',
+  accent: 'en-US',
+  railAccent: 'en-GB',
+  neural: {},
+  deviceVoice: {},
   varyVoices: true,
+  mixAccents: false,
+  sounds: true,
+  speakTranslation: true,
+  tourDone: false,
   autoPlay: true,
   apiToken: '',
   guide: true,
   onboarded: false,
+}
+
+/** 古い版の設定を今の形に直す（persist の migrate。テストからも使う） */
+export function migrateSettings(s: unknown, version: number): Settings {
+  const prev = (s ?? {}) as Partial<Settings> & { voiceUS?: string; voiceUK?: string; neuralUS?: string; neuralUK?: string }
+  const next = { ...defaults, ...prev } as Settings & Record<string, unknown>
+  // v2 以前に使っていた人は、これまでどおり3コースすべてを学習していた
+  if (version < 3 && prev.onboarded && !prev.studyCats) next.studyCats = { general: true, business: true, it: false, rail: true }
+  next.studyCats = { ...defaults.studyCats, ...next.studyCats }
+  if (version < 4) {
+    // v3 までの「米国・英国の声」を、発音ごとの声に移す
+    next.neural = { 'en-US': prev.neuralUS || undefined, 'en-GB': prev.neuralUK || undefined }
+    next.deviceVoice = { 'en-US': prev.voiceUS || undefined, 'en-GB': prev.voiceUK || undefined }
+    for (const k of ['voiceUS', 'voiceUK', 'neuralUS', 'neuralUK']) delete next[k]
+  }
+  if (!isAccent(next.accent)) next.accent = defaults.accent
+  if (!isAccent(next.railAccent)) next.railAccent = defaults.railAccent
+  return next
 }
 
 interface Store extends Settings {
@@ -79,14 +113,8 @@ export const useSettings = create<Store>()(
     }),
     {
       name: 'tetsu-settings',
-      version: 3,
-      migrate: (s, version) => {
-        const prev = (s ?? {}) as Partial<Settings>
-        const next = { ...defaults, ...prev } as Store
-        // v2 以前に使っていた人は、これまでどおり3コースすべてを学習していた
-        if (version < 3 && prev.onboarded && !prev.studyCats) next.studyCats = { general: true, business: true, rail: true }
-        return next
-      },
+      version: 4,
+      migrate: (s, version) => migrateSettings(s, version) as Store,
     },
   ),
 )
@@ -108,9 +136,14 @@ export function getSettings(): Settings {
   return useSettings.getState()
 }
 
-/** 選んでいるコース（カテゴリ）。並びは 一般 → ビジネス → 保線 */
+/** 選んでいるコース（カテゴリ）。並びは 一般 → ビジネス → IT → 鉄道 */
 export function selectedCats(s: Pick<Settings, 'studyCats'>): Category[] {
-  return (['general', 'business', 'rail'] as Category[]).filter((c) => s.studyCats[c])
+  return ALL_CATS.filter((c) => s.studyCats[c])
+}
+
+/** そのコースの読み上げの発音（鉄道は railAccent、それ以外は accent） */
+export function accentFor(cat: Category | undefined, s: Pick<Settings, 'accent' | 'railAccent'> = getSettings()): Accent {
+  return cat === 'rail' ? s.railAccent : s.accent
 }
 
 export const PLAN_LABEL: Record<PlanWhen, string> = {

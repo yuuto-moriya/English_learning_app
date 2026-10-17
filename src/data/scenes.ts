@@ -1,4 +1,6 @@
 import type { Scene } from '@/lib/types'
+import { accentFor } from '@/lib/settings'
+import type { Accent } from '@/lib/accents'
 
 /**
  * シチュエーション別会話。
@@ -624,6 +626,256 @@ export const SCENES: Scene[] = [
     ],
     tip: '英国式の日付は 24 October、米国式は October 24。国際メールでは月を英語で書くと誤解がありません。',
   },
+  // ───────────── IT ─────────────
+  {
+    id: 'i-helpdesk',
+    group: 'it',
+    title: 'ヘルプデスクに問い合わせる',
+    titleEn: 'Calling the IT Help Desk',
+    lv: 2,
+    emoji: '🎧',
+    goal: '困っていることと、試したことを順に説明できる',
+    roles: [
+      { id: 'A', name: 'Help desk' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: "I can't sign in to my email.", ja: 'メールにサインインできません。' },
+      { en: 'It says my password is wrong.', ja: 'パスワードが違うと表示されます。' },
+      { en: "I've already restarted my laptop.", ja: 'ノートパソコンはもう再起動しました。' },
+      { en: 'Could you reset my password?', ja: 'パスワードをリセットしていただけますか。' },
+      { en: 'It works now. Thanks for your help.', ja: '使えるようになりました。ありがとうございました。' },
+    ],
+    lines: [
+      { sp: 'A', en: 'IT help desk, this is Alex. How can I help?', ja: 'ITヘルプデスクのアレックスです。どうされましたか。' },
+      { sp: 'B', en: "Hi, I can't sign in to my email. It says my password is wrong.", ja: 'すみません、メールにサインインできません。パスワードが違うと表示されます。' },
+      { sp: 'A', en: 'I see. Have you changed your password recently?', ja: 'なるほど。最近パスワードを変更しましたか。' },
+      { sp: 'B', en: "Yes, last week. I've already restarted my laptop, but it didn't help.", ja: 'はい、先週です。ノートパソコンはもう再起動しましたが、だめでした。' },
+      { sp: 'A', en: 'Your account is locked after five failed attempts. Let me unlock it for you.', ja: '5回続けて失敗したので、アカウントがロックされています。ロックを解除しますね。' },
+      { sp: 'B', en: 'Thank you. Could you also reset my password?', ja: 'ありがとうございます。パスワードもリセットしていただけますか。' },
+      { sp: 'A', en: "Sure. I've sent a reset link to your phone. Please try again.", ja: 'はい。リセット用のリンクをスマホに送りました。もう一度試してください。' },
+      { sp: 'B', en: 'It works now. Thanks for your help.', ja: '使えるようになりました。ありがとうございました。' },
+    ],
+    tip: '「何が起きたか → 表示されたメッセージ → 自分で試したこと」の順に伝えると、早く解決します。',
+  },
+  {
+    id: 'i-standup',
+    group: 'it',
+    title: '朝会で進捗を報告する',
+    titleEn: 'Daily Stand-up',
+    lv: 3,
+    emoji: '⏱️',
+    goal: '昨日やったこと・今日やること・困っていることを短く言える',
+    roles: [
+      { id: 'A', name: 'Scrum master' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: 'Yesterday I finished the login screen.', ja: '昨日はログイン画面を仕上げました。' },
+      { en: "Today I'm going to work on the tests.", ja: '今日はテストに取りかかります。' },
+      { en: "I'm blocked by the API issue.", ja: 'APIの問題で作業が止まっています。' },
+      { en: 'Can we talk about it after the stand-up?', ja: '朝会のあとで相談できますか。' },
+      { en: "That's all from me.", ja: '私からは以上です。' },
+    ],
+    lines: [
+      { sp: 'A', en: "Good morning, everyone. Let's keep it short. Yuto, you're first.", ja: 'おはようございます。手短にいきましょう。ユウトさんからどうぞ。' },
+      { sp: 'B', en: 'Yesterday I finished the login screen and opened a pull request.', ja: '昨日はログイン画面を仕上げて、プルリクエストを出しました。' },
+      { sp: 'B', en: "Today I'm going to write unit tests for the payment feature.", ja: '今日は支払い機能の単体テストを書きます。' },
+      { sp: 'A', en: 'Great. Is anything blocking you?', ja: 'いいですね。何か作業が止まっていることはありますか。' },
+      { sp: 'B', en: "Yes. I'm blocked by an API issue. The test server returns an error.", ja: 'はい。APIの問題で止まっています。テスト用のサーバーがエラーを返すんです。' },
+      { sp: 'A', en: "Okay. Let's talk about it with Priya after the stand-up.", ja: '分かりました。朝会のあとでプリヤさんと話しましょう。' },
+      { sp: 'B', en: "Thanks. That's all from me.", ja: 'ありがとうございます。私からは以上です。' },
+    ],
+    tip: '朝会は「Yesterday → Today → Blocker（妨げになっていること）」の3点だけ。細かい相談は終わってから。',
+  },
+  {
+    id: 'i-code-review',
+    group: 'it',
+    title: 'コードレビューで意見を伝える',
+    titleEn: 'Giving Code Review Feedback',
+    lv: 4,
+    emoji: '🔍',
+    goal: '指摘をやわらかく伝え、理由と代案を示せる',
+    roles: [
+      { id: 'A', name: 'Teammate' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: 'Overall, this looks good.', ja: '全体としては良さそうです。' },
+      { en: 'Could you add a test for this case?', ja: 'このケースのテストを追加してもらえますか。' },
+      { en: 'What do you think about renaming this function?', ja: 'この関数の名前を変えるのはどうでしょう。' },
+      { en: 'This might cause a problem when the list is empty.', ja: 'リストが空のときに問題が起きるかもしれません。' },
+      { en: "I'll approve it after that.", ja: 'それが済んだら承認します。' },
+    ],
+    lines: [
+      { sp: 'A', en: 'Thanks for reviewing my pull request. Any comments?', ja: 'プルリクエストを見てくれてありがとう。何か気になる点はありますか。' },
+      { sp: 'B', en: 'Overall, this looks good. The code is easy to read.', ja: '全体としては良さそうです。コードが読みやすいですね。' },
+      { sp: 'B', en: 'But this might cause a problem when the list is empty.', ja: 'ただ、リストが空のときに問題が起きるかもしれません。' },
+      { sp: 'A', en: "Oh, you're right. I didn't think about that edge case.", ja: 'あ、本当だ。その特殊なケースは考えていませんでした。' },
+      { sp: 'B', en: 'Could you add a check and a test for it?', ja: 'そのチェックとテストを追加してもらえますか。' },
+      { sp: 'B', en: "Also, what do you think about renaming this function? 'getData' is a bit vague.", ja: 'それと、この関数の名前を変えるのはどうでしょう。「getData」だと少しあいまいなので。' },
+      { sp: 'A', en: "Good point. I'll call it 'getActiveUsers'.", ja: 'いい指摘ですね。「getActiveUsers」にします。' },
+      { sp: 'B', en: "Great. I'll approve it after that.", ja: 'いいですね。それが済んだら承認します。' },
+    ],
+    tip: '指摘は命令形より "Could you ~?" や "What do you think about ~?" で。良い点を先に言うと受け入れてもらいやすくなります。',
+  },
+  {
+    id: 'i-outage',
+    group: 'it',
+    title: 'システム障害を報告する',
+    titleEn: 'Reporting an Outage',
+    lv: 4,
+    emoji: '🚨',
+    goal: '影響範囲・原因・対応・次の報告時刻を簡潔に伝えられる',
+    roles: [
+      { id: 'A', name: 'Manager' },
+      { id: 'B', name: 'You (on call)' },
+    ],
+    phrases: [
+      { en: 'The website has been down since 9:10.', ja: 'ウェブサイトは9時10分から停止しています。' },
+      { en: 'About 30% of users are affected.', ja: '利用者の約30%に影響が出ています。' },
+      { en: "We're rolling back the last deployment.", ja: '直前のデプロイを切り戻しています。' },
+      { en: "We don't know the root cause yet.", ja: '根本原因はまだ分かっていません。' },
+      { en: "I'll send the next update at 10 o'clock.", ja: '次の報告は10時に送ります。' },
+    ],
+    lines: [
+      { sp: 'A', en: 'I heard there is a problem. What is happening?', ja: '問題が起きていると聞きました。何が起きていますか。' },
+      { sp: 'B', en: 'The online shop has been down since 9:10. Customers cannot place orders.', ja: 'オンラインショップが9時10分から停止しています。お客様が注文できません。' },
+      { sp: 'A', en: 'How many users are affected?', ja: 'どれくらいの利用者に影響していますか。' },
+      { sp: 'B', en: 'About 30% of users, mainly on the mobile app.', ja: '利用者の約30%で、主にスマホのアプリです。' },
+      { sp: 'A', en: 'Do we know the cause?', ja: '原因は分かっていますか。' },
+      { sp: 'B', en: "Not yet. But it started right after this morning's deployment, so we're rolling it back now.", ja: 'まだです。ただ、今朝のデプロイの直後に始まったので、いま切り戻しています。' },
+      { sp: 'A', en: 'Okay. Please keep me informed.', ja: '分かりました。随時知らせてください。' },
+      { sp: 'B', en: "I'll send the next update at 10 o'clock, even if nothing changes.", ja: '変化がなくても、次の報告は10時に送ります。' },
+    ],
+    tip: '障害報告は「何が・いつから・どのくらいの影響・今の対応・次の報告時刻」。原因が分からなくても、分かっていることを先に伝えます。',
+  },
+  {
+    id: 'i-requirements',
+    group: 'it',
+    title: 'お客様から要件を聞き取る',
+    titleEn: 'Gathering Requirements',
+    lv: 4,
+    emoji: '📝',
+    goal: '目的・利用者・優先順位を質問して確認できる',
+    roles: [
+      { id: 'A', name: 'Client' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: 'What problem are you trying to solve?', ja: 'どんな課題を解決したいのですか。' },
+      { en: 'Who will use the system?', ja: 'システムを使うのはどなたですか。' },
+      { en: 'Is that a must-have or a nice-to-have?', ja: 'それは必須ですか、それともあると良い機能ですか。' },
+      { en: 'Let me make sure I understand.', ja: '理解が合っているか確認させてください。' },
+      { en: "I'll send you a summary by Friday.", ja: '金曜日までに要点をまとめてお送りします。' },
+    ],
+    lines: [
+      { sp: 'B', en: 'Thank you for your time today. First, what problem are you trying to solve?', ja: '本日はお時間をいただきありがとうございます。まず、どんな課題を解決したいのですか。' },
+      { sp: 'A', en: 'Our staff record inspections on paper, and it takes days to enter the data.', ja: '社員が点検の記録を紙に書いていて、データの入力に何日もかかるんです。' },
+      { sp: 'B', en: 'I see. Who will use the new system?', ja: 'なるほど。新しいシステムを使うのはどなたですか。' },
+      { sp: 'A', en: 'About fifty inspectors, mostly on tablets, and the office team.', ja: '主にタブレットを使う約50人の点検担当者と、事務所のチームです。' },
+      { sp: 'B', en: 'Do they need to work offline?', ja: 'オフラインで作業する必要はありますか。' },
+      { sp: 'A', en: 'Yes, some sites have no signal.', ja: 'はい、電波の届かない現場もあります。' },
+      { sp: 'B', en: 'Is that a must-have or a nice-to-have?', ja: 'それは必須ですか、それともあると良い機能ですか。' },
+      { sp: 'A', en: "It's a must-have.", ja: '必須です。' },
+      { sp: 'B', en: "Let me make sure I understand: offline input on tablets is essential. I'll send you a summary by Friday.", ja: '確認させてください。タブレットでのオフライン入力は必須ということですね。金曜日までに要点をまとめてお送りします。' },
+    ],
+    tip: '"must-have"（必須）と "nice-to-have"（あると良い）を分けて聞くと、優先順位がはっきりします。最後に要点を言い直して確認しましょう。',
+  },
+  {
+    id: 'i-explain',
+    group: 'it',
+    title: '技術をやさしく説明する',
+    titleEn: 'Explaining Tech Simply',
+    lv: 4,
+    emoji: '💡',
+    goal: '専門用語を使わずに、たとえを使って説明できる',
+    roles: [
+      { id: 'A', name: 'Sales manager' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: 'In simple terms, ...', ja: '簡単に言うと…' },
+      { en: "It's like renting instead of buying.", ja: '買うのではなく借りるようなものです。' },
+      { en: 'The main benefit is that ...', ja: '主な利点は…ということです。' },
+      { en: 'Does that make sense?', ja: 'お分かりいただけますか。' },
+      { en: 'Let me give you an example.', ja: '例を挙げますね。' },
+    ],
+    lines: [
+      { sp: 'A', en: 'Everyone talks about "the cloud". What is it, exactly?', ja: 'みんな「クラウド」と言うけれど、正確には何なんですか。' },
+      { sp: 'B', en: "In simple terms, it means using someone else's computers over the internet.", ja: '簡単に言うと、インターネット経由でほかの会社のコンピューターを使うことです。' },
+      { sp: 'B', en: "It's like renting a car instead of buying one.", ja: '車を買うのではなく、借りるようなものです。' },
+      { sp: 'A', en: 'So why is that better?', ja: 'それで、なぜそのほうがいいんですか。' },
+      { sp: 'B', en: 'The main benefit is that we only pay for what we use, and we can add more quickly.', ja: '主な利点は、使った分だけ払えばよく、すぐに増やせることです。' },
+      { sp: 'B', en: 'Let me give you an example. During a sale, we can add servers in minutes.', ja: '例を挙げますね。セールの期間中は、数分でサーバーを増やせます。' },
+      { sp: 'B', en: 'Does that make sense?', ja: 'お分かりいただけましたか。' },
+      { sp: 'A', en: 'Yes, that makes it much clearer. Thanks!', ja: 'はい、ずっと分かりやすくなりました。ありがとう！' },
+    ],
+    tip: '技術者以外には "In simple terms" → たとえ（It\'s like ~）→ 相手にとっての利点、の順で。最後に "Does that make sense?" で確認します。',
+  },
+  {
+    id: 'i-phishing',
+    group: 'it',
+    title: '不審なメールを報告する',
+    titleEn: 'Reporting a Suspicious Email',
+    lv: 3,
+    emoji: '🎣',
+    goal: '何を受け取り、何をしてしまったかを正確に伝えられる',
+    roles: [
+      { id: 'A', name: 'Security team' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: 'I received a suspicious email.', ja: '不審なメールを受け取りました。' },
+      { en: 'It asked me to update my bank details.', ja: '銀行口座の情報を更新するよう求められました。' },
+      { en: "I didn't click the link.", ja: 'リンクはクリックしていません。' },
+      { en: 'I opened the attachment by mistake.', ja: 'うっかり添付ファイルを開いてしまいました。' },
+      { en: 'Should I change my password?', ja: 'パスワードを変えたほうがいいですか。' },
+    ],
+    lines: [
+      { sp: 'B', en: 'Hello, I want to report a suspicious email.', ja: 'すみません、不審なメールを報告したいのですが。' },
+      { sp: 'A', en: 'Thank you for reporting it. What did the email say?', ja: '報告ありがとうございます。メールにはどんなことが書いてありましたか。' },
+      { sp: 'B', en: 'It looked like it came from our bank. It asked me to update my details.', ja: '当社の取引銀行から来たように見えました。登録情報を更新するように書かれていました。' },
+      { sp: 'A', en: 'Did you click the link or open any attachments?', ja: 'リンクをクリックしたり、添付ファイルを開いたりしましたか。' },
+      { sp: 'B', en: "I didn't click the link, but I opened the PDF by mistake.", ja: 'リンクはクリックしていませんが、うっかりPDFを開いてしまいました。' },
+      { sp: 'A', en: "Okay. Please disconnect your laptop from the network now. We'll scan it.", ja: '分かりました。すぐにノートパソコンをネットワークから切り離してください。こちらでスキャンします。' },
+      { sp: 'B', en: 'Should I change my password?', ja: 'パスワードを変えたほうがいいですか。' },
+      { sp: 'A', en: "Yes, but from a different device. And please don't delete the email. We need it.", ja: 'はい、ただし別の端末から変更してください。それと、メールは削除しないでください。調査に使います。' },
+    ],
+    tip: '開いてしまっても、すぐ正直に報告するのがいちばんの対策です。"by mistake"（うっかり）を使うと事実を伝えやすくなります。',
+  },
+  {
+    id: 'i-cloud-migration',
+    group: 'it',
+    title: 'クラウド移行の打ち合わせ',
+    titleEn: 'Planning a Cloud Migration',
+    lv: 5,
+    emoji: '☁️',
+    goal: '移行の方針・リスク・切り替え計画を議論できる',
+    roles: [
+      { id: 'A', name: 'Cloud architect' },
+      { id: 'B', name: 'You' },
+    ],
+    phrases: [
+      { en: 'We want to move our on-premises servers to the cloud.', ja: '自社内のサーバーをクラウドに移したいと考えています。' },
+      { en: 'What is the biggest risk?', ja: '最大のリスクは何ですか。' },
+      { en: 'Can we migrate in phases?', ja: '段階的に移行できますか。' },
+      { en: 'How long will the downtime be?', ja: '停止時間はどのくらいになりますか。' },
+      { en: 'We need a rollback plan.', ja: '切り戻しの計画が必要です。' },
+    ],
+    lines: [
+      { sp: 'B', en: 'We want to move our on-premises servers to the cloud by next spring.', ja: '来年の春までに、自社内のサーバーをクラウドに移したいと考えています。' },
+      { sp: 'A', en: 'Understood. Can we migrate in phases, starting with the less critical systems?', ja: '承知しました。重要度の低いシステムから、段階的に移行できますか。' },
+      { sp: 'B', en: 'Yes. The maintenance system is the most important, so it should go last.', ja: 'はい。保守管理システムが最も重要なので、最後にすべきです。' },
+      { sp: 'A', en: 'Agreed. What is your biggest concern?', ja: '同感です。いちばんの懸念は何ですか。' },
+      { sp: 'B', en: 'Data migration. We have twenty years of records, and we cannot lose any of them.', ja: 'データ移行です。20年分の記録があり、1件も失うわけにはいきません。' },
+      { sp: 'A', en: 'We can run the old and new systems in parallel for a month and compare the data.', ja: '新旧のシステムを1か月並行稼働させて、データを照合できます。' },
+      { sp: 'B', en: 'Good. How long will the downtime be for the final cutover?', ja: 'いいですね。最後の切り替えでの停止時間はどのくらいになりますか。' },
+      { sp: 'A', en: 'About four hours, overnight. And we will prepare a rollback plan in case anything goes wrong.', ja: '夜間に約4時間です。何か問題があった場合に備えて、切り戻しの計画も用意します。' },
+    ],
+    tip: '"in phases"（段階的に）、"in parallel"（並行して）、"in case ~"（〜の場合に備えて）は計画の説明でよく使う表現です。',
+  },
+
   // ───────────── 保線現場・鉄道ビジネス ─────────────
   {
     id: 'r-briefing',
@@ -990,9 +1242,9 @@ export const SCENES: Scene[] = [
   },
 ]
 
-/** シーンの基本の発音（舞台の土地。保線は英国、それ以外は米国） */
-export function sceneAccent(scene: Scene): 'en-US' | 'en-GB' {
-  return scene.accent ?? (scene.group === 'rail' ? 'en-GB' : 'en-US')
+/** シーンの基本の発音（舞台の土地が決まっていればその発音。なければ設定の発音：鉄道は railAccent、それ以外は accent） */
+export function sceneAccent(scene: Scene): Accent {
+  return scene.accent ?? accentFor(scene.group === 'rail' ? 'rail' : undefined)
 }
 
 export function scenesByGroup(group: Scene['group']) {

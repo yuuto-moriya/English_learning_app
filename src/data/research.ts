@@ -108,7 +108,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'tblt',
     title: 'タスク中心の言語指導（TBLT）',
     finding: '実際の場面・目的のあるタスクを中心にした指導プログラムは、さまざまな学習成果に大きな効果（d = 0.93）を示した。',
-    inApp: 'シーン会話は「この場面のゴール」を設定し、キーフレーズ → 聞いて理解 → ロールプレイの流れで練習します。保線現場・規格の議論など実務に直結する場面を用意しました。',
+    inApp: 'シーン会話は「この場面のゴール」を設定し、キーフレーズ → 聞いて理解 → ロールプレイの流れで練習します。IT の障害報告やコードレビュー、保線現場・規格の議論など、実務に直結する場面を用意しました。',
     refs: [
       { cite: 'Bryfonski, L., & McKay, T. H. (2019). TBLT implementation and evaluation: A meta-analysis. Language Teaching Research, 23(5), 603–632.', url: 'https://doi.org/10.1177/1362168817744389' },
     ],
@@ -195,6 +195,18 @@ export const EVIDENCE: Evidence[] = [
     inApp: '最初の設定で、学習する時間帯（朝の通勤・昼休み・帰り道・寝る前など）と1日の目安の分数を決め、ホームに毎日表示します。',
     refs: [
       { cite: 'Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. Advances in Experimental Social Psychology, 38, 69–119.', url: 'https://doi.org/10.1016/S0065-2601(06)38002-1' },
+    ],
+  },
+  {
+    id: 'accents',
+    title: 'いろいろな話し方に慣れる（多様なアクセント）',
+    finding:
+      '英語を母語とする聞き手を対象とした研究で、訛りのある英語を複数の話者で聞いておくと、初めて聞く話者の同じ訛りも聞き取りやすくなった。いくつもの異なる訛りを聞いた場合は、聞いたことのない訛りにも慣れが広がった。英語は国や地域で発音が大きく違うため、学習者もさまざまな話し方に触れておくことが、実際の会話での聞き取りに役立つと考えられる。',
+    inApp:
+      '読み上げの発音を、アメリカ・イギリス・オーストラリア・カナダ・アイルランド・インド・ニュージーランド・南アフリカから選べます（設定 → 音声）。リスニングで「いろいろな国の英語で聞く」をオンにすると、1問ごとに国の発音を変えて出題します。',
+    refs: [
+      { cite: 'Bradlow, A. R., & Bent, T. (2008). Perceptual adaptation to non-native speech. Cognition, 106(2), 707–729.' },
+      { cite: 'Baese-Berk, M. M., Bradlow, A. R., & Wright, B. A. (2013). Accent-independent adaptation to foreign accented speech. The Journal of the Acoustical Society of America, 133(3), EL174–EL180.' },
     ],
   },
 ]

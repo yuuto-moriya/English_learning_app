@@ -9,6 +9,8 @@ import { Button, Card, Segmented, cx } from '@/components/ui'
 import { Snail } from 'lucide-react'
 import { sentencePool, type Sentence, type Source } from '@/lib/sentences'
 import { speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
+import { isAccent } from '@/lib/accents'
+import { getSettings } from '@/lib/settings'
 import { speakingMessage, type GuideLine } from '@/lib/guide'
 import { shuffle } from '@/lib/vocab'
 import { useStandalone } from '@/lib/hooks'
@@ -31,7 +33,7 @@ export default function Speaking() {
   const [rate, setRate] = useState(0.85)
   const [pool, setPool] = useState<Sentence[]>([])
   const [cur, setCur] = useState<Sentence | null>(
-    initialText ? { en: initialText, ja: '', lv: 0, src: 'general', accent: (params.get('accent') as Accent) ?? 'en-US' } : null,
+    initialText ? { en: initialText, ja: '', lv: 0, src: 'general', accent: isAccent(params.get('accent')) ? (params.get('accent') as Accent) : getSettings().accent } : null,
   )
   const [step, setStep] = useState(0)
   const [showText, setShowText] = useState(true)

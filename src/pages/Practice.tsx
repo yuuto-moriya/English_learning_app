@@ -1,6 +1,7 @@
 import { AudioLines, Ear, Keyboard, Mic, PencilLine, Radio, Waves } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
+import { ModeSwitcher } from '@/components/ModeSwitcher'
 import { List, ListRow, SectionTitle } from '@/components/ui'
 
 export default function Practice() {
@@ -8,6 +9,7 @@ export default function Practice() {
     <div>
       <PageHeader title="練習" subtitle="覚えた単語を、聞いて・話して使える英語にする" settings />
       <div className="px-4">
+        <ModeSwitcher className="mb-3" />
         <Guide who="moka" pose="greet" text="聞く・話すで使うと定着するよ♪ 1日5分からでOK！" />
 
         <SectionTitle>聞く</SectionTitle>
@@ -27,7 +29,7 @@ export default function Practice() {
 
         <p className="mt-5 px-1 text-[12px] leading-relaxed text-muted">
           おすすめの順番：はじめはリスニング → 聞き分け → ディクテーション。慣れてきたら瞬間英作文 → シャドーイング → 発音チェック。
-          保線の例文は英国英語の音声で再生されます。
+          練習の例文は、上のモードに合わせて出題します。読み上げの発音（国・地域）は設定で変えられます（鉄道の例文ははじめはイギリスの発音）。
         </p>
       </div>
     </div>

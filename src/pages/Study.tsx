@@ -7,17 +7,18 @@ import { WordBody, WordHead } from '@/components/WordInfo'
 import { buildDrill, buildSession, checkSpelling, MAX_RETRIES, reinsert, type Item } from '@/lib/session'
 import { objectiveGrade, previewIntervals, Rating, recordReview, humanizeDiff, type Grade } from '@/lib/srs'
 import { bumpDaily, db, toggleMark, type CardRow } from '@/lib/db'
-import { useSettings, getSettings } from '@/lib/settings'
+import { accentFor, useSettings, getSettings } from '@/lib/settings'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { correctMessage, sessionDoneMessage, wrongMessage, type GuideLine } from '@/lib/guide'
 import { distractors, loadCategory, markedTarget, shuffle, plain } from '@/lib/vocab'
 import { useMarks } from '@/lib/hooks'
 import type { Word } from '@/lib/types'
+import { play } from '@/lib/sounds'
 
 type Phase = 'loading' | 'start' | 'question' | 'feedback' | 'done' | 'empty'
 type Mode = 'normal' | 'extra' | 'weak' | 'marked'
 
-const accentOf = (w: Word): Accent => (w.cat === 'rail' ? 'en-GB' : 'en-US')
+const accentOf = (w: Word): Accent => accentFor(w.cat)
 
 interface Outcome {
   word: Word
@@ -81,6 +82,7 @@ export default function Study() {
     if (!item || busy.current || phase !== 'question') return
     busy.current = true
     setPhase('feedback')
+    play(correct ? 'correct' : 'wrong')
     try {
       const grade = opts.grade ?? objectiveGrade(correct, ms, opts.typed)
       let nextStr: string | undefined
@@ -280,6 +282,7 @@ function Summary({
   drill: boolean
 }) {
   const nav = useNavigate()
+  useEffect(() => play('complete'), [])
   const rate = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0
   const sorted = [...outcomes].sort((a, b) => Number(a.correct) - Number(b.correct))
   return (

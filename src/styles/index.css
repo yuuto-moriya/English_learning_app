@@ -49,6 +49,8 @@
   --biz-soft: #eeeafa;
   --gen: #2e67d1;
   --gen-soft: #e6eefb;
+  --it: #b0357a;
+  --it-soft: #f8e6ef;
   --ok: #1c9454;
   --ok-soft: #e3f4ea;
   --ng: #d43a3a;
@@ -82,6 +84,8 @@
   --biz-soft: #261f3e;
   --gen: #82abff;
   --gen-soft: #172541;
+  --it: #f28ac0;
+  --it-soft: #3a1a2b;
   --ok: #45d38f;
   --ok-soft: #12301f;
   --ng: #ff6b6b;
@@ -115,6 +119,8 @@
   --color-biz-soft: var(--biz-soft);
   --color-gen: var(--gen);
   --color-gen-soft: var(--gen-soft);
+  --color-it: var(--it);
+  --color-it-soft: var(--it-soft);
   --color-ok: var(--ok);
   --color-ok-soft: var(--ok-soft);
   --color-ng: var(--ng);

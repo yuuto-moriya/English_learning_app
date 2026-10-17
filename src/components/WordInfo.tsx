@@ -1,8 +1,9 @@
 import { Snail } from 'lucide-react'
 import type { Word } from '@/lib/types'
 import { RAIL_SUBS } from '@/lib/types'
-import { speak } from '@/lib/tts'
+import { speak, type Accent } from '@/lib/tts'
 import { CategoryBadge, LevelBadge, Marked, SpeakButton, Tag } from './ui'
+import { accentFor } from '@/lib/settings'
 
 export const POS_JA: Record<string, string> = {
   n: '名詞',
@@ -18,7 +19,7 @@ export const POS_JA: Record<string, string> = {
   num: '数詞',
 }
 
-function SlowButton({ text, accent }: { text: string; accent: 'en-US' | 'en-GB' }) {
+function SlowButton({ text, accent }: { text: string; accent: Accent }) {
   return (
     <button
       aria-label="ゆっくり再生"
@@ -60,8 +61,8 @@ export function WordHead({ word, big }: { word: Word; big?: boolean }) {
             <p className={big ? 'en text-[42px] font-medium leading-[1.05] tracking-tight' : 'en text-[30px] font-medium leading-tight'}>{word.w}</p>
             {word.ipa && <p className="ipa mt-1.5 text-[15px] text-muted">/{word.ipa}/</p>}
           </div>
-          <SpeakButton text={word.w} size={big ? 'lg' : 'md'} />
-          <SlowButton text={word.w} accent="en-US" />
+          <SpeakButton text={word.w} accent={accentFor(word.cat)} size={big ? 'lg' : 'md'} />
+          <SlowButton text={word.w} accent={accentFor(word.cat)} />
         </div>
       )}
     </div>
@@ -79,7 +80,7 @@ function PronRow({
   tag: string
   term: string
   ipa?: string
-  accent: 'en-US' | 'en-GB'
+  accent: Accent
   big?: boolean
   sameTerm?: boolean
 }) {
@@ -115,7 +116,7 @@ export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: bool
             <p className="en flex-1 text-[18px] leading-[1.45]">
               <Marked text={e.en} />
             </p>
-            <SpeakButton text={e.en} accent={word.cat === 'rail' ? 'en-GB' : 'en-US'} size="sm" />
+            <SpeakButton text={e.en} accent={accentFor(word.cat)} size="sm" />
           </div>
           <p className="mt-1 text-[13px] leading-relaxed text-muted">{e.ja}</p>
         </div>

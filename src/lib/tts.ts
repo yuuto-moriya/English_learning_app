@@ -1,6 +1,10 @@
 import { plain, sayHint } from './vocab'
 import { getSettings } from './settings'
 import { getHealth, ttsUrl, apiHeaders } from './api'
+import { accentInfo, NEURAL_VOICES, type Accent, type NeuralVoice } from './accents'
+import { preferPlayback } from './audioSession'
+
+export { NEURAL_VOICES, type NeuralVoice }
 
 /**
  * 読み上げ。2つの方式を自動で使い分ける。
@@ -13,7 +17,7 @@ import { getHealth, ttsUrl, apiHeaders } from './api'
  * 話者を変えて聞く（voice: 'random'）と、同じ語を複数の声で聞けるので聞き取りの汎化に役立つ
  * （Barcroft & Sommers, 2005 / 高変動音声訓練）。
  */
-export type Accent = 'en-US' | 'en-GB'
+export type { Accent } from './accents'
 /** main = 既定の声、alt = もう一人の話者（会話の相手役）、random = 毎回ちがう声 */
 export type VoiceRole = 'main' | 'alt' | 'random'
 
@@ -26,28 +30,6 @@ export interface SpeakOptions {
 
 // ───────── ニューラル音声（Azure） ─────────
 
-export interface NeuralVoice {
-  id: string
-  name: string
-  gender: 'F' | 'M'
-}
-
-/** サーバー側の許可リスト（server/handlers.ts の TTS_VOICES）と同じもの */
-export const NEURAL_VOICES: Record<Accent, NeuralVoice[]> = {
-  'en-US': [
-    { id: 'en-US-AvaNeural', name: 'Ava', gender: 'F' },
-    { id: 'en-US-AndrewNeural', name: 'Andrew', gender: 'M' },
-    { id: 'en-US-EmmaNeural', name: 'Emma', gender: 'F' },
-    { id: 'en-US-BrianNeural', name: 'Brian', gender: 'M' },
-    { id: 'en-US-JennyNeural', name: 'Jenny', gender: 'F' },
-    { id: 'en-US-GuyNeural', name: 'Guy', gender: 'M' },
-  ],
-  'en-GB': [
-    { id: 'en-GB-SoniaNeural', name: 'Sonia', gender: 'F' },
-    { id: 'en-GB-RyanNeural', name: 'Ryan', gender: 'M' },
-    { id: 'en-GB-LibbyNeural', name: 'Libby', gender: 'F' },
-  ],
-}
 const NEURAL_JA = 'ja-JP-NanamiNeural'
 
 let neuralAvailable: boolean | null = null
@@ -75,9 +57,8 @@ export function isNeuralActive(): boolean {
 }
 
 function neuralVoice(accent: Accent, role: VoiceRole = 'main'): string {
-  const list = NEURAL_VOICES[accent]
-  const s = getSettings()
-  const mainId = accent === 'en-US' ? s.neuralUS : s.neuralUK
+  const list = NEURAL_VOICES[accent] ?? NEURAL_VOICES['en-US']
+  const mainId = getSettings().neural?.[accent]
   const main = list.find((v) => v.id === mainId) ?? list[0]
   if (role === 'alt') return (list.find((v) => v.gender !== main.gender) ?? list[1] ?? main).id
   if (role === 'random') return list[Math.floor(Math.random() * list.length)].id
@@ -160,7 +141,7 @@ export function prefetchSpeech(items: { text: string; accent?: Accent; voice?: V
     if (!t || t.length > 400) continue
     // random は再生時に声が変わるので先読みしない
     if (it.voice === 'random') continue
-    const accent = it.accent ?? 'en-US'
+    const accent = it.accent ?? s.accent
     neuralAudio(t, accent, neuralVoice(accent, it.voice), ratePercent(it.rate ?? s.rate)).catch(() => undefined)
   }
 }
@@ -184,12 +165,8 @@ let unlocked = false
 /** タップ操作の中で呼ぶ：音声の再生を許可してもらう（iOS Safari は操作なしの再生を止める） */
 export function primeAudio() {
   if (typeof window === 'undefined') return
-  try {
-    const nav = navigator as Navigator & { audioSession?: { type: string } }
-    if (nav.audioSession && nav.audioSession.type !== 'playback') nav.audioSession.type = 'playback'
-  } catch {
-    /* noop */
-  }
+  // 消音スイッチがオンでも読み上げが聞こえるように（マイクを使っている間は変えない）
+  preferPlayback()
   if (unlocked) return
   const a = el()
   if (!a.src || a.src === SILENT_WAV || a.paused) {
@@ -309,8 +286,17 @@ export function listVoices(accent: Accent | 'ja-JP'): SpeechSynthesisVoice[] {
     .sort((a, b) => voiceQuality(b) - voiceQuality(a) || a.name.localeCompare(b.name))
 }
 
+/** その発音の端末の声。なければ近い発音の声（オーストラリア → イギリスなど） */
+export function voicesFor(accent: Accent): SpeechSynthesisVoice[] {
+  for (const a of [accent, ...accentInfo(accent).fallback]) {
+    const list = listVoices(a)
+    if (list.length) return list
+  }
+  return []
+}
+
 export function pickVoice(accent: Accent, preferred?: string, role: VoiceRole = 'main'): SpeechSynthesisVoice | undefined {
-  const list = listVoices(accent)
+  const list = voicesFor(accent)
   const main = (preferred && list.find((x) => x.name === preferred)) || list[0]
   if (role === 'main' || list.length < 2) return main
   const good = list.filter((v) => voiceQuality(v) >= 50 && v !== main)
@@ -360,8 +346,8 @@ function speakDevice(t: string, accent: Accent, rate: number, opts: SpeakOptions
   if (!synth) return Promise.resolve(false)
   const s = getSettings()
   const u = new SpeechSynthesisUtterance(t)
-  u.lang = accent
-  const v = pickVoice(accent, accent === 'en-US' ? s.voiceUS : s.voiceUK, opts.voice)
+  const v = pickVoice(accent, s.deviceVoice?.[accent], opts.voice)
+  u.lang = v?.lang.replace('_', '-') ?? accent
   if (v) u.voice = v
   u.rate = rate
   u.pitch = 1
@@ -395,7 +381,7 @@ export function speak(text: string, opts: SpeakOptions = {}): Promise<boolean> {
   const t = plain(text).trim()
   if (!t) return Promise.resolve(false)
   const s = getSettings()
-  const accent = opts.accent ?? 'en-US'
+  const accent = opts.accent ?? s.accent
   const rate = opts.rate ?? s.rate
   const my = ++seq
   settleCurrent()

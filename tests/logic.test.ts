@@ -95,12 +95,21 @@ describe('学習セッション', () => {
     expect(types.has('cloze') || types.has('spell')).toBe(true)
   })
   it('新出語はカテゴリ設定と上限レベルで絞り込み、低レベルから並ぶ', () => {
-    const words = [w('a', { lv: 3, rank: 5 }), w('b', { lv: 1, rank: 9 }), w('c', { lv: 5 }), w('r', { cat: 'rail', lv: 6 }), w('z', { cat: 'business', lv: 3 })]
+    const words = [
+      w('a', { lv: 3, rank: 5 }),
+      w('b', { lv: 1, rank: 9 }),
+      w('c', { lv: 5 }),
+      w('r', { cat: 'rail', lv: 6 }),
+      w('z', { cat: 'business', lv: 3 }),
+      w('i5', { cat: 'it', lv: 5 }),
+      w('i3', { cat: 'it', lv: 3 }),
+    ]
     const pool = newWordPool(words, new Set(['a']), {
-      studyCats: { general: true, business: false, rail: true },
-      maxLevel: 3,
+      studyCats: { general: true, business: false, it: true, rail: true },
+      maxLevel: 2,
     })
-    expect(pool.map((g) => g.map((x) => x.id))).toEqual([['b'], ['r']])
+    // IT・鉄道は専門のコースなので、レベルの上限に関係なく低いレベルから出る
+    expect(pool.map((g) => g.map((x) => x.id))).toEqual([['b'], ['i3', 'i5'], ['r']])
   })
   it('インターリーブ', () => {
     expect(interleave<string | number>([[1, 2, 3], ['a'], ['x', 'y']])).toEqual([1, 'a', 'x', 2, 'y', 3])

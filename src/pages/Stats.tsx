@@ -5,7 +5,7 @@ import { Card, Metric, ProgressBar, SectionTitle, cx } from '@/components/ui'
 import { useCardsMap, useNow, useRecentDays, useStreak } from '@/lib/hooks'
 import { db, isActiveDay, shiftDay, todayKey, type DailyRow } from '@/lib/db'
 import { selectedCats, useSettings } from '@/lib/settings'
-import { CATEGORIES } from '@/lib/types'
+import { ALL_CATS, CATEGORIES, type Category } from '@/lib/types'
 import VOCAB_COUNTS from '@/data/vocab/counts.json'
 
 const WEEKS = 12
@@ -79,11 +79,10 @@ export default function Stats() {
   }, [days])
 
   const byCat = useMemo(() => {
-    const o = {
-      general: { learned: 0, mastered: 0, total: VOCAB_COUNTS.general },
-      business: { learned: 0, mastered: 0, total: VOCAB_COUNTS.business },
-      rail: { learned: 0, mastered: 0, total: VOCAB_COUNTS.rail },
-    }
+    const o = Object.fromEntries(ALL_CATS.map((c) => [c, { learned: 0, mastered: 0, total: VOCAB_COUNTS[c] }])) as Record<
+      Category,
+      { learned: number; mastered: number; total: number }
+    >
     for (const c of cards?.values() ?? []) {
       if (c.known || c.reps > 0) o[c.cat].learned++
       if (c.known || c.stability >= 21) o[c.cat].mastered++

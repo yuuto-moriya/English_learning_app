@@ -71,6 +71,7 @@ OVERRIDE_US = {
     "via": "ˈvaɪə", "buffet": "bəˈfeɪ", "presenter": "prɪˈzɛntɚ", "abuse": "əˈbjuːs",
     "genuine": "ˈdʒɛnjuːɪn", "differently": "ˈdɪfrəntli", "duration": "dʊˈreɪʃən", "everyday": "ˈɛvriːˌdeɪ",
     "coworker": "ˈkoʊˌwɝkɚ", "sightsee": "ˈsaɪtˌsiː",
+    "printer": "ˈprɪntɚ", "center": "ˈsɛntɚ", "interface": "ˈɪntɚˌfeɪs", "neural": "ˈnʊrəl",
 }
 
 # 品詞で発音が変わる語（名詞と動詞で強勢や音が違う）。辞書の最初の発音が別の品詞のものを直す
@@ -92,6 +93,7 @@ OVERRIDE_POS = {
     ("inside", "adv"): "ˌɪnˈsaɪd", ("refund", "n"): "ˈriːfʌnd", ("subordinate", "n"): "səˈbɔrdənət",
     ("duplicate", "n"): "ˈduːpləkət", ("affiliate", "n"): "əˈfɪliːət", ("estimate", "n"): "ˈɛstəmət",
     ("overhead", "n"): "ˈoʊvɚˌhɛd", ("offset", "v"): "ˌɔfˈsɛt",
+    ("reset", "v"): "riːˈsɛt",
 }
 
 
@@ -146,6 +148,8 @@ def us_ipa(word: str, d: dict[str, str], pos: str | None = None) -> str | None:
     key = word.lower()
     if (key, pos) in OVERRIDE_POS:
         return OVERRIDE_POS[(key, pos)]
+    if acronym_ipa(word):
+        return acronym_ipa(word)
     if key in OVERRIDE_US:
         return OVERRIDE_US[key]
     if key in d:
@@ -156,10 +160,29 @@ def us_ipa(word: str, d: dict[str, str], pos: str | None = None) -> str | None:
 TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z'\-]*")
 
 
+# 略語（API, VPN, USB…）は1文字ずつ読む。最後の文字に第1強勢
+LETTER_US = {
+    "a": "eɪ", "b": "biː", "c": "siː", "d": "diː", "e": "iː", "f": "ɛf", "g": "dʒiː", "h": "eɪtʃ", "i": "aɪ",
+    "j": "dʒeɪ", "k": "keɪ", "l": "ɛl", "m": "ɛm", "n": "ɛn", "o": "oʊ", "p": "piː", "q": "kjuː", "r": "ɑr",
+    "s": "ɛs", "t": "tiː", "u": "juː", "v": "viː", "w": "ˈdʌbəljuː", "x": "ɛks", "y": "waɪ", "z": "ziː",
+}
+
+
+def acronym_ipa(tok: str) -> str | None:
+    if not (2 <= len(tok) <= 5 and tok.isalpha() and tok.isupper()):
+        return None
+    letters = [LETTER_US[c] for c in tok.lower()]
+    letters = [x.replace("ˈ", "") for x in letters]
+    return "".join("ˌ" + x for x in letters[:-1]) + "ˈ" + letters[-1]
+
+
 def ipa_for_phrase(phrase: str, d: dict[str, str]) -> str | None:
     parts = []
     for tok in TOKEN_RE.findall(phrase):
         key = tok.lower()
+        if acronym_ipa(tok):
+            parts.append(acronym_ipa(tok))
+            continue
         if key in OVERRIDE_US:
             parts.append(OVERRIDE_US[key])
             continue
@@ -298,6 +321,50 @@ def build_general_business(ipa: dict[str, str]):
     return general, business, warnings
 
 
+def build_it(ipa: dict[str, str], taken: set[str]):
+    """IT（data-src/vocab/it-N.txt → レベル N）。一般・ビジネス・保線と同じ見出し語は入れない"""
+    it = []
+    seen = set()
+    warnings = 0
+    for path in sorted((SRC / "vocab").glob("it-*.txt")):
+        lvl = int(path.stem.split("-")[1])
+        rows = []
+        with open(path, encoding="utf-8") as f:
+            for no, line in enumerate(f, 1):
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                cols = [c.strip() for c in line.split("|")]
+                if len(cols) not in (5, 6):
+                    print(f"[WARN] {path.name}:{no} 列数 {len(cols)}: {line[:80]}", file=sys.stderr)
+                    warnings += 1
+                    continue
+                rows.append(cols + [""] * (6 - len(cols)))
+        for lemma, pos, ja, en, jx, ipa_override in rows:
+            key = lemma.lower()
+            if key in seen or key in taken:
+                print(f"[WARN] 重複(IT): {lemma}", file=sys.stderr)
+                warnings += 1
+                continue
+            seen.add(key)
+            en2, ok = ensure_marked(en, lemma)
+            if not ok:
+                warnings += 1
+                print(f"[WARN] 例文に見出し語がない: {lemma}: {en}", file=sys.stderr)
+            item = {
+                "id": f"i-{slug(lemma)}",
+                "w": lemma,
+                "pos": pos,
+                "ja": ja,
+                "lv": lvl,
+                "cat": "it",
+                "ipa": ipa_override or us_ipa(lemma, ipa, pos),
+                "ex": [{"en": en2, "ja": jx}],
+            }
+            it.append({k: v for k, v in item.items() if v is not None})
+    return it, warnings
+
+
 RAIL_FILES = [
     "general", "structure", "rail", "snc", "geometry", "defect", "work", "safety", "civil", "eam", "standard",
 ]
@@ -359,19 +426,22 @@ def main():
     ipa = load_ipa()
     general, business, warnings = build_general_business(ipa)
     rail, missing = build_rail(ipa)
+    taken = {w["w"].lower() for w in general + business + rail}
+    it, it_warn = build_it(ipa, taken)
+    warnings += it_warn
     OUT.mkdir(parents=True, exist_ok=True)
-    for name, data in (("general", general), ("business", business), ("rail", rail)):
+    for name, data in (("general", general), ("business", business), ("it", it), ("rail", rail)):
         with open(OUT / f"{name}.json", "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
     # ホーム画面の集計用（大きな単語データを読み込まずに語数を表示する）
     with open(OUT / "counts.json", "w", encoding="utf-8") as f:
-        json.dump({"general": len(general), "business": len(business), "rail": len(rail)}, f)
+        json.dump({"general": len(general), "business": len(business), "it": len(it), "rail": len(rail)}, f)
         f.write("\n")
-    total = len(general) + len(business) + len(rail)
-    print(f"general={len(general)} business={len(business)} rail={len(rail)} total={total} warnings={warnings}")
+    total = len(general) + len(business) + len(it) + len(rail)
+    print(f"general={len(general)} business={len(business)} it={len(it)} rail={len(rail)} total={total} warnings={warnings}")
     if missing:
         print(f"[INFO] 米音IPAなし（要手動）: {len(missing)} 件: {', '.join(missing[:30])}")
-    no_ipa = [w['w'] for w in general + business if 'ipa' not in w]
+    no_ipa = [w['w'] for w in general + business + it if 'ipa' not in w]
     if no_ipa:
         print(f"[INFO] IPAなし(一般/ビジネス): {len(no_ipa)} 件: {', '.join(no_ipa[:40])}")
 

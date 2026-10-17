@@ -5,7 +5,8 @@ import { Chip, Segmented } from './ui'
 export const SOURCES: { key: Source; label: string }[] = [
   { key: 'general', label: '一般会話' },
   { key: 'business', label: 'ビジネス' },
-  { key: 'rail', label: '保線' },
+  { key: 'it', label: 'IT' },
+  { key: 'rail', label: '鉄道' },
   { key: 'scene', label: 'シーン会話' },
 ]
 
