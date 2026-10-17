@@ -20,9 +20,9 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['icons/*.png', 'guide/*.webp', 'favicon.png'],
       manifest: {
-        name: 'Tetsu English — 英語学習＆翻訳',
-        short_name: 'Tetsu English',
-        description: '一般・ビジネス・保線の英単語、リスニング、スピーキング、シーン別会話、翻訳をひとつに。',
+        name: 'Michi — 英語学習と翻訳',
+        short_name: 'Michi',
+        description: '一般・ビジネス・IT・鉄道の英単語、リスニング、スピーキング、シーン別会話、翻訳と同時通訳をひとつに。',
         lang: 'ja',
         start_url: '/',
         scope: '/',

@@ -76,6 +76,7 @@ export class AppDB extends Dexie {
   marks!: EntityTable<MarkRow, 'id'>
 
   constructor() {
+    // データベース名は旧アプリ名のまま（変えると端末に保存した学習履歴が読めなくなる）
     super('tetsu-english')
     this.version(1).stores({
       cards: 'id, cat, lv, due, state, addedAt',
@@ -133,6 +134,7 @@ export async function getStreak(): Promise<number> {
 
 export async function exportAll(): Promise<string> {
   const data = {
+    // バックアップの識別子は旧アプリ名のまま（以前に書き出したファイルも読み込めるように）
     app: 'tetsu-english',
     version: 1,
     exportedAt: new Date().toISOString(),

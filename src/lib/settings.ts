@@ -146,6 +146,25 @@ export function accentFor(cat: Category | undefined, s: Pick<Settings, 'accent' 
   return cat === 'rail' ? s.railAccent : s.accent
 }
 
+/** 1日の学習時間の目安の選択肢（分）。最大2時間 */
+export const MINUTE_CHOICES = [5, 10, 15, 20, 30, 45, 60, 90, 120]
+
+/**
+ * 学習時間の目安から1日の新出語数を決める。FSRS（保持率90%）では、新出語1語につき
+ * しばらくの間は1日あたり数回分の復習が積み上がるため、1分あたり約0.6語にしておく。
+ * 長い時間を選んでも新出語は30語まで（それ以上は翌日以降の復習が増えすぎる）。残りの時間は復習と練習に使う。
+ */
+export const MAX_NEW_PER_DAY = 30
+export const newPerDay = (minutes: number) => Math.min(MAX_NEW_PER_DAY, Math.max(3, Math.round(minutes * 0.6)))
+
+/** 分を「15分」「1時間」「1時間30分」の形に */
+export function formatMinutes(m: number): string {
+  if (m < 60) return `${m}分`
+  const h = Math.floor(m / 60)
+  const r = m % 60
+  return r ? `${h}時間${r}分` : `${h}時間`
+}
+
 export const PLAN_LABEL: Record<PlanWhen, string> = {
   morning: '朝の通勤・始業前',
   lunch: '昼休み',

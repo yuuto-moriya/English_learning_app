@@ -5,7 +5,7 @@ import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
 import { Button, Card, Segmented, SectionTitle, Toggle, cx } from '@/components/ui'
 import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
-import { applyTheme, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
+import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
 import { AccentPicker } from '@/components/AccentPicker'
 import { getHealth, type Health } from '@/lib/api'
@@ -38,13 +38,13 @@ export default function Settings() {
 
   const doExport = async () => {
     const json = await exportAll()
-    const name = `tetsu-english-backup-${new Date().toISOString().slice(0, 10)}.json`
+    const name = `michi-backup-${new Date().toISOString().slice(0, 10)}.json`
     const blob = new Blob([json], { type: 'application/json' })
     // iPhone のホーム画面アプリではダウンロードリンクが使えないことがあるため、共有シート（ファイルに保存）を優先
     const f = new File([blob], name, { type: 'application/json' })
     if (navigator.canShare?.({ files: [f] })) {
       try {
-        await navigator.share({ files: [f], title: 'Tetsu English バックアップ' })
+        await navigator.share({ files: [f], title: 'Michi のバックアップ' })
         setMsg('バックアップを書き出しました')
         return
       } catch (e) {
@@ -140,13 +140,21 @@ export default function Settings() {
           </div>
           <div>
             <p className="text-[15px]">1日の目安</p>
-            <div className="mt-2">
-              <Segmented
-                size="sm"
-                value={String(s.dailyMinutes)}
-                onChange={(v) => s.set({ dailyMinutes: Number(v) })}
-                options={[5, 10, 15, 20, 30].map((m) => ({ value: String(m), label: `${m}分` }))}
-              />
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {MINUTE_CHOICES.map((m) => (
+                <button
+                  key={m}
+                  aria-pressed={s.dailyMinutes === m}
+                  // 目安の時間に合わせて、1日の新しい単語もおすすめの数にする（下で個別に変えられる）
+                  onClick={() => s.set({ dailyMinutes: m, dailyNew: newPerDay(m) })}
+                  className={cx(
+                    'min-h-9 rounded-full border px-3 text-[13px] tabular-nums transition',
+                    s.dailyMinutes === m ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink',
+                  )}
+                >
+                  {formatMinutes(m)}
+                </button>
+              ))}
             </div>
           </div>
           <div>
@@ -164,7 +172,9 @@ export default function Settings() {
               aria-label="1日の新しい単語"
               className="mt-2 w-full accent-[var(--brand)]"
             />
-            <p className="text-[11.5px] leading-relaxed text-muted">新しい語を増やすと、翌日以降の復習も増えます。10分なら6語前後が続けやすい目安です。</p>
+            <p className="text-[11.5px] leading-relaxed text-muted">
+              新しい語を増やすと、翌日以降の復習も増えます。10分なら6語前後が続けやすい目安です。長い時間を選んだときも新しい単語は30語までにして、残りの時間は復習や練習にあてるのがおすすめです。
+            </p>
           </div>
           <div>
             <p className="text-[15px]">目標の記憶保持率</p>
@@ -390,7 +400,7 @@ export default function Settings() {
             <ChevronRight className="h-[18px] w-[18px] text-faint" />
           </Link>
         </div>
-        <p className="mt-6 text-center text-[11px] text-faint">Tetsu English v{__APP_VERSION__}</p>
+        <p className="mt-6 text-center text-[11px] text-faint">Michi v{__APP_VERSION__}</p>
       </div>
     </div>
   )

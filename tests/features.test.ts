@@ -8,7 +8,7 @@ import { CONTRASTS } from '../src/data/minimalPairs'
 import { EVIDENCE } from '../src/data/research'
 import { SCENES, sceneAccent } from '../src/data/scenes'
 import { sentencePool } from '../src/lib/sentences'
-import { accentFor, migrateSettings } from '../src/lib/settings'
+import { accentFor, formatMinutes, MINUTE_CHOICES, migrateSettings, newPerDay } from '../src/lib/settings'
 import type { CardRow } from '../src/lib/db'
 
 const card = (extra: Partial<CardRow>): CardRow => ({
@@ -34,6 +34,24 @@ describe('読み上げの声', () => {
   it('おもちゃ用の声は使わない（負の値）', () => {
     for (const n of ['Albert', 'Bad News', 'Bells', 'Zarvox', 'Whisper', 'Grandma']) expect(voiceQuality(v(n)), n).toBeLessThan(0)
     expect(voiceQuality(v('Eddy', 'com.apple.eloquence.en-US.Eddy'))).toBeLessThan(0)
+  })
+  it('日本語の iPhone で名前が日本語になった遊び用の声も使わない（Samantha は残す）', () => {
+    const jp = [
+      ['オルガン', 'com.apple.speech.synthesis.voice.Organ'],
+      ['ささやき声', 'com.apple.speech.synthesis.voice.Whisper'],
+      ['スーパースター', 'com.apple.speech.synthesis.voice.Superstar'],
+      ['トリノイド', 'com.apple.speech.synthesis.voice.Trinoids'],
+      ['ベル', 'com.apple.speech.synthesis.voice.Bells'],
+      ['震え', 'com.apple.speech.synthesis.voice.Wobble'],
+      ['道化', 'com.apple.speech.synthesis.voice.Jester'],
+    ]
+    for (const [name, uri] of jp) {
+      expect(voiceQuality(v(name, uri)), name).toBeLessThan(0)
+      // 名前が想定外の訳でも、ID で見分けられる
+      expect(voiceQuality(v('（不明な名前）', uri)), uri).toBeLessThan(0)
+    }
+    expect(voiceQuality(v('Samantha', 'com.apple.voice.compact.en-US.Samantha'))).toBeGreaterThanOrEqual(0)
+    expect(voiceQuality(v('Fred', 'com.apple.speech.synthesis.voice.Fred'))).toBeLessThan(0)
   })
   it('Premium > Enhanced > 標準の声 > 旧式の声', () => {
     const premium = voiceQuality(v('Ava (Premium)', 'com.apple.voice.premium.en-US.Ava'))
@@ -159,6 +177,16 @@ describe('設定の移行（国・地域の発音、IT コース）', () => {
     expect(s.accent).toBe('en-US')
     expect(s.railAccent).toBe('en-GB')
     expect(s.tourDone).toBe(false)
+  })
+  it('1日の目安は最大2時間。新しい単語は30語まで', () => {
+    expect(Math.max(...MINUTE_CHOICES)).toBe(120)
+    expect(formatMinutes(15)).toBe('15分')
+    expect(formatMinutes(60)).toBe('1時間')
+    expect(formatMinutes(90)).toBe('1時間30分')
+    expect(formatMinutes(120)).toBe('2時間')
+    expect(newPerDay(10)).toBe(6)
+    expect(newPerDay(120)).toBe(30)
+    expect(newPerDay(5)).toBe(3)
   })
   it('鉄道は railAccent、それ以外は選んだ発音', () => {
     const s = { accent: 'en-AU', railAccent: 'en-GB' } as const

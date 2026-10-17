@@ -1,7 +1,7 @@
-# Tetsu English — 英語学習＆翻訳 PWA
+# Michi — 英語学習と翻訳の PWA
 
 > **English summary**
-> Tetsu English is an English-learning and translation PWA for a Japanese railway track-maintenance (保線) and EAM professional, designed for iPhone (add to home screen).
+> Michi (Japanese for "path") is an English-learning and translation PWA for Japanese learners — originally built for a railway track-maintenance (保線) and EAM professional — designed for iPhone (add to home screen).
 > Learners choose and quickly switch modes (everyday / business / IT / rail maintenance) and study 4,070 words (general NGSL / business BSL+TSL / IT / rail & EAM glossary) in an evidence-based session (retrieval practice + FSRS spaced repetition + interleaving).
 > Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, Azure pronunciation assessment and 40 role-play dialogues.
 > Speech uses Azure neural voices in eight English accents (US, UK, Australia, Canada, Ireland, India, New Zealand, South Africa), cached on the device and falling back to the device voice.
@@ -43,7 +43,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 - すべての語に **和訳・米音 IPA・例文（英日）**。保線用語は **英音 IPA、英国表記／米国表記、JIS 用語、解説、出典タグ** 付き
 - レベルは 6 段階：入門（A1）／初級（A2）／中級（B1）／中上級（B2）／上級（C1）／専門
-- 初回起動時に **学ぶコース（一般会話・ビジネス・IT・鉄道（保線））**、レベル（目安から選ぶか、2分のレベル診断）、学習プラン（いつ・1日何分）を選択
+- 初回起動時に **学ぶコース（一般会話・ビジネス・IT・鉄道（保線））**、レベル（目安から選ぶか、2分のレベル診断）、学習プラン（いつ・1日の目安 5分〜2時間）を選択
 - **モードの切り替え**：ホームと練習の画面上部の「一般／ビジネス／IT／鉄道」をタップすると、そのモードに切り替わります（右のボタンをオンにすると組み合わせも可能）
 - 新出語・復習・練習の例文・シーンの最初のタブは、選んだモードに合わせます（鉄道を選ばなければ保線用語は出ません）。IT・鉄道は専門のコースなので、レベルの設定に関係なく基本の語から出題
 - 単語帳では「苦手（忘れたことがある語）」「保存した単語（★）」で絞り込み、その語だけを集中練習できます

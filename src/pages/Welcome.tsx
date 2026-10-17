@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router'
 import { ArrowLeft, Check, Volume2 } from 'lucide-react'
 import { CharImage } from '@/components/Guide'
 import { Button, cx } from '@/components/ui'
-import { PLAN_LABEL, useSettings, type PlanWhen } from '@/lib/settings'
+import { formatMinutes, MAX_NEW_PER_DAY, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen } from '@/lib/settings'
 import { CATEGORIES, LEVELS, type Category, type Word } from '@/lib/types'
 import { distractors, loadCategory, shuffle } from '@/lib/vocab'
 import { speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
@@ -24,14 +24,7 @@ const LEVEL_PRESETS = [
   { label: '上級', desc: 'TOEIC 650点〜・英検2級以上', min: 4, max: 5 },
 ]
 
-/**
- * 学習時間の目安から1日の新出語数を決める。FSRS（保持率90%）では、新出語1語につき
- * しばらくの間は1日あたり数回分の復習が積み上がるため、1分あたり約0.6語にしておく。
- */
-export const newPerDay = (minutes: number) => Math.max(3, Math.round(minutes * 0.6))
-
 const WHEN: PlanWhen[] = ['morning', 'lunch', 'evening', 'night', 'free']
-const MINUTES = [5, 10, 15, 20]
 
 /** はじめての起動：コース → レベル → 学習プラン */
 export default function Welcome() {
@@ -203,8 +196,8 @@ export default function Welcome() {
             ))}
           </div>
           <p className="mt-7 text-[13px] font-semibold text-muted">1日の目安</p>
-          <div className="mt-2 grid grid-cols-4 gap-2">
-            {MINUTES.map((m) => (
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {MINUTE_CHOICES.map((m) => (
               <button
                 key={m}
                 aria-pressed={minutes === m}
@@ -214,13 +207,15 @@ export default function Welcome() {
                   minutes === m ? 'border-ink shadow-[0_0_0_1px_var(--text)]' : 'border-line',
                 )}
               >
-                <span className="text-[20px] font-semibold tabular-nums">{m}</span>
-                <span className="ml-0.5 text-[12px] text-muted">分</span>
+                <span className="text-[17px] font-semibold tabular-nums">{formatMinutes(m)}</span>
               </button>
             ))}
           </div>
           <p className="mt-3 text-[12px] leading-relaxed text-muted">
-            新しい単語は1日{newPerDay(minutes)}語（翌日以降の復習を合わせて約{minutes}分になる量）。あとで設定から変えられます。
+            {newPerDay(minutes) >= MAX_NEW_PER_DAY
+              ? `新しい単語は1日${MAX_NEW_PER_DAY}語まで（それ以上は翌日以降の復習が増えすぎるため）。残りの時間は、復習・リスニング・会話の練習にあてます。`
+              : `新しい単語は1日${newPerDay(minutes)}語（翌日以降の復習を合わせて約${formatMinutes(minutes)}になる量）。`}
+            あとで設定から変えられます。
           </p>
           <div className="mt-auto pb-[max(env(safe-area-inset-bottom),20px)] pt-6">
             <Button block size="lg" onClick={finish}>

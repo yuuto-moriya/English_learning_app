@@ -8,7 +8,7 @@ import { HOME_TOUR, Tour } from '@/components/Tour'
 import { Button, Card, List, ListRow, ProgressBar, RouteProgress, SectionTitle, cx } from '@/components/ui'
 import { useCardsMap, useDueCount, useNow, useRecentDays, useStreak, useToday } from '@/lib/hooks'
 import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
-import { PLAN_LABEL, selectedCats, useSettings } from '@/lib/settings'
+import { formatMinutes, PLAN_LABEL, selectedCats, useSettings } from '@/lib/settings'
 import { isActiveDay } from '@/lib/db'
 import VOCAB_COUNTS from '@/data/vocab/counts.json'
 import { ALL_CATS, CATEGORIES, type Category } from '@/lib/types'
@@ -105,10 +105,10 @@ export default function Home() {
           <div className="mt-5">
             <div className="mb-2 flex items-baseline justify-between text-[12px] text-muted">
               <span>
-                {PLAN_LABEL[s.planWhen]}に{s.dailyMinutes}分
+                {PLAN_LABEL[s.planWhen]}に{formatMinutes(s.dailyMinutes)}
               </span>
               <span className="tabular-nums">
-                <b className="font-semibold text-ink">{minutes}</b> / {s.dailyMinutes}分
+                <b className="font-semibold text-ink">{formatMinutes(minutes)}</b> / {formatMinutes(s.dailyMinutes)}
               </span>
             </div>
             <RouteProgress value={goalValue} max={s.dailyMinutes} />
