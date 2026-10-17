@@ -25,7 +25,7 @@ export default function Research() {
                   <li key={r.cite} className="en text-[13px] leading-snug text-muted">
                     {r.cite}
                     {r.url && (
-                      <a href={r.url} target="_blank" rel="noreferrer" className="ml-1 inline-flex items-center font-sans text-[11.5px] font-medium text-brand">
+                      <a href={r.url} target="_blank" rel="noreferrer" className="-my-2 ml-1 inline-flex items-center px-1.5 py-2 font-sans text-[11.5px] font-medium text-brand">
                         DOI
                         <ArrowUpRight className="h-3 w-3" />
                       </a>
@@ -59,7 +59,7 @@ export default function Research() {
               <p className="text-[12px] leading-relaxed text-muted">
                 {c.desc}
                 {c.url && (
-                  <a href={c.url} target="_blank" rel="noreferrer" className="ml-1 text-brand">
+                  <a href={c.url} target="_blank" rel="noreferrer" className="-my-2 ml-1 px-1.5 py-2 text-brand">
                     リンク
                   </a>
                 )}

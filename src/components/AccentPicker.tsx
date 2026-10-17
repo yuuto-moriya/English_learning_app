@@ -77,7 +77,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                       {a.label}
                       <Tag>{a.short}</Tag>
                     </span>
-                    <span className="block truncate text-[11.5px] text-muted">{a.note}</span>
+                    <span className="block text-[11.5px] leading-snug text-muted">{a.note}</span>
                   </span>
                 </button>
                 <button

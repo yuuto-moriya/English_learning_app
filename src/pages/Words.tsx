@@ -180,11 +180,11 @@ export default function Words() {
                       title={STATUS_LABEL[st]}
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate">
+                      <p className="break-words">
                         <span className="en text-[18px] font-medium">{w.w}</span>
                         {w.us && <span className="ml-2 text-[12px] text-muted">US {w.us}</span>}
                       </p>
-                      <p className="truncate text-[13px] text-muted">{w.ja}</p>
+                      <p className="line-clamp-2 text-[13px] leading-snug text-muted">{w.ja}</p>
                     </div>
                     {marks?.has(w.id) && <Star className="h-3.5 w-3.5 shrink-0 fill-warn text-warn" />}
                   </Link>

@@ -57,8 +57,8 @@ export default function Scenes() {
               <Link key={s.id} to={`/scenes/${s.id}`} viewTransition className={`flex items-center gap-4 py-3.5 pl-4 pr-3 active:bg-surface-2 ${k > 0 ? 'hairline-t' : ''}`}>
                 <span className="w-6 shrink-0 text-[13px] font-medium tabular-nums text-faint">{String(k + 1).padStart(2, '0')}</span>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[15px] font-medium">{s.title}</p>
-                  <p className="en truncate text-[14px] italic text-muted">{s.titleEn}</p>
+                  <p className="text-[15px] font-medium leading-snug">{s.title}</p>
+                  <p className="en text-[14px] italic leading-snug text-muted">{s.titleEn}</p>
                 </div>
                 <span className="shrink-0 rounded-md border border-line-strong px-1.5 py-px text-[10.5px] font-semibold text-muted">{L.cefr === 'ESP' ? '専門' : L.cefr}</span>
                 <ChevronRight className="h-[18px] w-[18px] shrink-0 text-faint" />

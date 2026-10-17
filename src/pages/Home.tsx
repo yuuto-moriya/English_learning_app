@@ -154,7 +154,7 @@ export default function Home() {
           </Card>
         </Link>
 
-        <SectionTitle action={<Link to="/practice" viewTransition className="text-[13px] font-medium text-brand">すべて</Link>}>
+        <SectionTitle action={<Link to="/practice" viewTransition className="inline-flex min-h-10 items-center px-2 -mx-2 text-[13px] font-medium text-brand">すべて</Link>}>
           聞く・話す
         </SectionTitle>
         <List>
@@ -165,7 +165,7 @@ export default function Home() {
           <ListRow to="/practice/audio" icon={<Radio />} title="耳で復習" sub="画面を見ずに、音だけで思い出す" />
         </List>
 
-        <SectionTitle action={<Link to="/words" viewTransition className="text-[13px] font-medium text-brand">単語帳</Link>}>
+        <SectionTitle action={<Link to="/words" viewTransition className="inline-flex min-h-10 items-center px-2 -mx-2 text-[13px] font-medium text-brand">単語帳</Link>}>
           コースの進み具合
         </SectionTitle>
         <Card className="space-y-4">
@@ -190,7 +190,7 @@ export default function Home() {
             <span>
               定着した語 <b className="font-semibold text-ink tabular-nums">{stats.mastered.toLocaleString()}</b>
             </span>
-            <Link to="/settings#courses" className="font-medium text-brand">
+            <Link to="/settings#courses" className="-my-2 -mr-2 inline-flex min-h-10 items-center px-2 font-medium text-brand">
               コースを変更
             </Link>
           </div>
