@@ -10,3 +10,5 @@ test-results
 playwright-report
 scripts/.cache
 __pycache__/
+
+*.tsbuildinfo
