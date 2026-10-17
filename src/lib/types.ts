@@ -23,6 +23,8 @@ export interface Word {
   cat: Category
   /** 保線用語のサブカテゴリ */
   sub?: string
+  /** 動詞の変化形 [三単現, 過去形, 過去分詞, -ing]（2つあるときは「 / 」でつなぐ） */
+  vf?: string[]
   /** 米音IPA */
   ipa?: string
   /** 英音IPA（保線用語） */

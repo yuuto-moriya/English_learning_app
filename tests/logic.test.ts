@@ -5,7 +5,8 @@ import { diffWords, pickRound } from '../src/lib/sentences'
 import { compareWords } from '../src/lib/localSpeech'
 import { downsample, encodeWav } from '../src/lib/recorder'
 import { humanizeDiff, interleave, objectiveGrade, Rating } from '../src/lib/srs'
-import { splitMarked, markedTarget } from '../src/lib/vocab'
+import { splitMarked, markedTarget, isIrregularVerb } from '../src/lib/vocab'
+import general from '../src/data/vocab/general.json'
 import type { Word } from '../src/lib/types'
 import type { CardRow } from '../src/lib/db'
 
@@ -192,5 +193,28 @@ describe('練習の文の選び方', () => {
     const r = pickRound(pool, 3, new Set(['w-l', 'w-l2']))
     expect(new Set(r.slice(0, 2).map((x) => x.en))).toEqual(new Set(['l1', 'l2']))
     expect(r[2].en).toBe('scene')
+  })
+})
+
+describe('動詞の変化形', () => {
+  it('過去形・過去分詞が -ed でない動詞を不規則とする', () => {
+    expect(isIrregularVerb(['goes', 'went', 'gone', 'going'])).toBe(true)
+    expect(isIrregularVerb(['studies', 'studied', 'studied', 'studying'])).toBe(false)
+    expect(isIrregularVerb(undefined)).toBe(false)
+  })
+  it('一般の動詞のほとんどに変化形があり、基本の不規則動詞は正しい', () => {
+    const verbs = (general as Word[]).filter((x) => x.pos === 'v')
+    expect(verbs.filter((x) => x.vf).length / verbs.length).toBeGreaterThan(0.95)
+    const vf = (id: string) => (general as Word[]).find((x) => x.id === id)?.vf
+    expect(vf('g-go')).toEqual(['goes', 'went', 'gone', 'going'])
+    expect(vf('g-run')).toEqual(['runs', 'ran', 'run', 'running'])
+    expect(vf('g-stop')?.[1]).toBe('stopped')
+    for (const x of verbs) if (x.vf) expect(x.vf.length, x.id).toBe(4)
+  })
+  it('レベルは頻度（NGSL）だけでなく CEFR-J にも寄せる（bread・cat は入門〜初級、極端なずれがない）', () => {
+    const lv = (id: string) => (general as Word[]).find((x) => x.id === id)?.lv
+    expect(lv('g-bread')).toBeLessThanOrEqual(2)
+    expect(lv('g-cat')).toBeLessThanOrEqual(2)
+    expect(lv('g-government')).toBeGreaterThanOrEqual(2)
   })
 })

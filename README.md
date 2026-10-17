@@ -43,6 +43,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 | 鉄道（保線） | 422 | EN 規格・TSI・JIS の用語体系から独自に編集（設備管理/EAM・SAP 用語を含む） | B2〜専門 |
 
 - すべての語に **和訳・米音 IPA・例文（英日）**。保線用語は **英音 IPA、英国表記／米国表記、JIS 用語、解説、出典タグ** 付き
+- 一般・ビジネス・IT の動詞には **変化形（三単現・過去形・過去分詞・-ing）** を単語カードと単語帳に表示（`lemminflect` でビルド時に生成。過去形・過去分詞が不規則な動詞は色と「不規則」で目立たせる。変化形ごとの別カードは作らない）
 - レベルは 6 段階：入門（A1）／初級（A2）／中級（B1）／中上級（B2）／上級（C1）／専門
 - 初回起動時に **学ぶコース（一般会話・ビジネス・IT・鉄道（保線））**、レベル（目安から選ぶか、2分のレベル診断）、学習プラン（いつ・1日の目安 5分〜2時間）を選択
 - **モードの切り替え**：ホームと練習の画面上部の「一般／ビジネス／IT／鉄道」をタップすると、そのモードだけに切り替わります。「すべて」で全コース、「組み合わせる」で好きなコースを足したり外したりできます。いまのモードは塗りつぶし、出題に含まれるコースは色とチェックで示し、下の一文（例：「一般＋鉄道から出題」）でも伝えます。外したコースに復習の時期が来た単語があれば、その数も出します
@@ -355,8 +356,10 @@ npm run data:build
 同じ意味の語（同じ synset）や上位語・下位語（犬と動物）、和訳の意味が重なる語は「どちらも正解」になるので入れません。
 単語を追加・修正したら、ネットワークにつながる環境で作り直してください（nltk と WordNet のデータが必要）。
 
+動詞の変化形は `npm run data:build` が `lemminflect` で作ります（`pip install lemminflect`。入っていなければ変化形なしで作られるので注意）。
+
 ```bash
-python3 -m venv .venv && .venv/bin/pip install nltk
+python3 -m venv .venv && .venv/bin/pip install nltk lemminflect
 mkdir -p nltk_data/corpora && curl -L -o nltk_data/corpora/wordnet.zip \
   https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip
 npm run data:build                       # 先に単語データを作る
@@ -374,7 +377,7 @@ reservation|n|予約|I have a *reservation* under the name Moriya.|守屋の名�
 ```
 
 - 例文の見出し語は `*アスタリスク*` で囲みます（囲み忘れはビルド時に活用形を探して自動で囲み、見つからなければ警告）
-- レベルはファイルで決まります：`general-N.txt` → レベル N（NGSL のグループ）、`business-3/4.txt` → レベル 3/4
+- レベルはファイルで決まります：`general-N.txt` → NGSL のグループ N（一般語は、これを `data-src/lists/cefrj.csv`（CEFR-J）のレベルとの中間に補正して `lv` にします。bread・cat のような身近な語が上級に、government のような語が入門に偏らないように）、`business-3/4.txt` → レベル 3/4
   （`business-4.txt` のうち BSL の順位が 300 より低い語はレベル 5 に）
 - 一般語とビジネス語で重複した語は警告を出してスキップされます。NGSL/BSL/TSL にない語の頻度順位は 9999 になります
 - ID は見出し語から作られます（`g-<語>` / `b-<語>`）。**見出し語を変えると、その語の学習履歴は引き継がれません**
@@ -438,6 +441,7 @@ python scripts/blender/postprocess.py render-out
 | 対象 | ライセンス |
 |---|---|
 | ソースコード | [MIT](LICENSE)（© 2026 yuuto-moriya） |
+| CEFR-J Vocabulary Profile（一般語のレベルの補正） | 研究・商用に無料、出典の明記が条件（東京外国語大学 CEFR-J プロジェクト, <http://www.cefr-j.org/>） |
 | NGSL / BSL / TSL と、それに基づく一般・ビジネス語データ | CC BY-SA 4.0（Browne, Culligan & Phillips, <https://www.newgeneralservicelist.com/>） |
 | 米音 IPA | MIT（open-dict-data/ipa-dict、cmudict-ipa 由来） |
 | 英語の書体 Newsreader | SIL Open Font License 1.1（Production Type） |

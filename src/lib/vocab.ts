@@ -150,3 +150,9 @@ export function shuffle<T>(arr: T[], rnd = Math.random): T[] {
   return a
 }
 
+
+/** 過去形・過去分詞が -ed でない不規則動詞か（表示で目立たせる） */
+export function isIrregularVerb(vf: string[] | undefined): boolean {
+  if (!vf) return false
+  return [vf[1], vf[2]].some((f) => !f.split(' / ')[0].endsWith('ed'))
+}

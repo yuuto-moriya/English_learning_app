@@ -257,6 +257,57 @@ def ipa_for_phrase(phrase: str, d: dict[str, str]) -> str | None:
     return " ".join(parts) if parts else None
 
 
+CEFR_LV = {"A1": 1, "A2": 2, "B1": 3, "B2": 4}
+
+
+def load_cefrj() -> dict[str, int]:
+    """CEFR-J Vocabulary Profile 1.5（東京外国語大学 投野研究室）。見出し語 → いちばん低い CEFR レベル（A1=1 … B2=4）"""
+    path = SRC / "lists" / "cefrj.csv"
+    out: dict[str, int] = {}
+    if not path.exists():
+        return out
+    with open(path, encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            lv = CEFR_LV.get(r["CEFR"])
+            if not lv:
+                continue
+            for h in r["headword"].split("/"):
+                k = h.strip().lower()
+                out[k] = min(out.get(k, 9), lv)
+    return out
+
+
+def blend_level(ngsl_lv: int, cefr_lv: int | None) -> int:
+    """NGSL の頻度順のレベルと、日本人学習者向けの CEFR-J の中間にする（同数のときは CEFR-J 側）。
+    頻度だけだと bread が中上級・government が入門になるので、極端なずれだけを直す"""
+    if cefr_lv is None:
+        return ngsl_lv
+    return round((ngsl_lv + cefr_lv + (0.01 if cefr_lv > ngsl_lv else -0.01)) / 2)
+
+
+# lemminflect が片方の意味しか返さない動詞
+OVERRIDE_VF = {"lie": ["lies", "lay / lied", "lain / lied", "lying"]}
+
+
+def verb_forms(lemma: str) -> list[str] | None:
+    """動詞の変化形 [三単現, 過去形, 過去分詞, -ing]。2つ以上あるときは「 / 」でつなぐ（learned / learnt）。複数語の動詞は作らない"""
+    if lemma.lower() in OVERRIDE_VF:
+        return OVERRIDE_VF[lemma.lower()]
+    if " " in lemma or "-" in lemma:
+        return None
+    try:
+        from lemminflect import getInflection
+    except ImportError:
+        return None
+    out = []
+    for tag in ("VBZ", "VBD", "VBN", "VBG"):
+        opts = list(dict.fromkeys(getInflection(lemma.lower(), tag=tag, inflect_oov=False) or ()))
+        if not opts:
+            return None
+        out.append(" / ".join(opts[:2]))
+    return out
+
+
 def slug(s: str) -> str:
     s = s.lower().replace("&", "and")
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
@@ -311,6 +362,7 @@ def build_general_business(ipa: dict[str, str]):
     with open(SRC / "lists" / "ngsl.csv", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             ngsl[r["lemma"].lower()] = (int(r["group"]), int(r["rank"]))
+    cefrj = load_cefrj()
     general = []
     seen = set()
     for lvl in (1, 2, 3, 4):
@@ -333,7 +385,7 @@ def build_general_business(ipa: dict[str, str]):
                 "w": lemma,
                 "pos": pos,
                 "ja": ja,
-                "lv": lvl,
+                "lv": blend_level(lvl, cefrj.get(key)),
                 "cat": "general",
                 "ipa": us_ipa(lemma, ipa, pos),
                 "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
@@ -520,6 +572,11 @@ def main():
     near = load_neighbors()
     for words in (general, business, it):
         attach_neighbors(words, near)
+        for w in words:
+            if w["pos"] == "v":
+                vf = verb_forms(w["w"])
+                if vf:
+                    w["vf"] = vf
     OUT.mkdir(parents=True, exist_ok=True)
     for name, data in (("general", general), ("business", business), ("it", it), ("rail", rail)):
         with open(OUT / f"{name}.json", "w", encoding="utf-8") as f:
