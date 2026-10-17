@@ -6,7 +6,7 @@ import { Button, SpeakButton, cx } from '@/components/ui'
 import { ChoiceButton } from '@/components/Session'
 import { formatMinutes, MAX_NEW_PER_DAY, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen } from '@/lib/settings'
 import { CATEGORIES, LEVELS, type Category, type Word } from '@/lib/types'
-import { loadCategory, shuffle } from '@/lib/vocab'
+import { loadCategory, quizGloss, shuffle } from '@/lib/vocab'
 import { diagnosticTier, wordDistractors } from '@/lib/distractors'
 import { stopSpeaking } from '@/lib/tts'
 
@@ -51,7 +51,8 @@ export default function Welcome() {
       maxLevel: range?.max ?? 2,
       planWhen: when,
       dailyMinutes: minutes,
-      dailyNew: newPerDay(minutes),
+      // 診断し直したときは、1日の時間を変えていなければ、自分で決めた新しい単語の数をそのままにする
+      dailyNew: s.onboarded && minutes === s.dailyMinutes ? s.dailyNew : newPerDay(minutes),
       onboarded: true,
     })
     nav('/', { replace: true, viewTransition: true })
@@ -232,14 +233,16 @@ export default function Welcome() {
 
 /**
  * レベル診断（語彙サイズテストの考え方を簡略化）。
- * NGSL のレベル1〜5から4語ずつ、意味を4択で答える。3問以上正解したレベルまでを「習得済み」とみなし、
- * その次のレベルから新出語を始める。2つ続けて基準に届かなければ打ち切る。
+ * 一般語のレベル（入門〜中上級。データにあるレベルだけ）から4語ずつ、意味を4択で答える。
+ * 3問以上正解したレベルまでを「習得済み」とみなし、その次のレベルから新出語を始める。基準に届かなかった時点で打ち切る。
  */
 function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => void }) {
   const [items, setItems] = useState<{ word: Word; options: Word[] }[] | null>(null)
   const [i, setI] = useState(0)
   const [answers, setAnswers] = useState<boolean[]>([])
   const [picked, setPicked] = useState<string | null>(null)
+  /** 診断するレベル（一般語のデータにあるレベルだけ。C1 の一般語はないので出さない） */
+  const [levels, setLevels] = useState<number[]>([1, 2, 3, 4])
   const PER = 4
 
   useEffect(() => {
@@ -247,11 +250,14 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
     loadCategory('general').then((all) => {
       const content = all.filter((w) => ['n', 'v', 'adj', 'adv'].includes(w.pos) && !w.w.includes(' '))
       const out: { word: Word; options: Word[] }[] = []
-      for (const lv of [1, 2, 3, 4, 5]) {
+      const lvs = [...new Set(content.map((w) => w.lv))].sort((a, b) => a - b).filter((lv) => content.filter((w) => w.lv === lv).length >= PER)
+      for (const lv of lvs) {
         const pool = content.filter((w) => w.lv === lv)
         for (const w of shuffle(pool).slice(0, PER)) out.push({ word: w, options: shuffle([w, ...wordDistractors(w, pool, diagnosticTier(w.lv)).map((d) => d.word)]) })
       }
-      if (alive) setItems(out)
+      if (!alive) return
+      setLevels(lvs)
+      setItems(out)
     })
     return () => {
       alive = false
@@ -261,17 +267,17 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
 
   const result = useMemo(() => {
     // 各レベルの正解数
-    const byLv = [0, 0, 0, 0, 0]
+    const byLv = levels.map(() => 0)
     answers.forEach((ok, k) => ok && byLv[Math.floor(k / PER)]++)
     let mastered = 0
-    for (let lv = 0; lv < 5; lv++) {
+    for (let lv = 0; lv < levels.length; lv++) {
       const answered = Math.min(PER, Math.max(0, answers.length - lv * PER))
       if (answered < PER) break
       if (byLv[lv] >= 3) mastered = lv + 1
       else break
     }
     return { byLv, mastered }
-  }, [answers])
+  }, [answers, levels])
 
   if (!items) return <p className="mt-10 text-center text-muted">読み込み中…</p>
 
@@ -283,8 +289,10 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
 
   if (finished) {
     const m = result.mastered
-    const min = Math.min(5, m + 1)
-    const max = Math.min(5, m + 2)
+    // 一般語のいちばん上のレベルより上にはしない（全問正解でも新しい単語がなくならないように）
+    const top = levels[levels.length - 1] ?? 4
+    const min = Math.min(top, m + 1)
+    const max = Math.min(top, m + 2)
     const L = LEVELS.find((l) => l.lv === min)!
     return (
       <div className="flex flex-1 flex-col animate-rise">
@@ -344,7 +352,7 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
       <div className="mt-5 space-y-2">
         {it.options.map((o, k) => (
           <ChoiceButton key={o.id} index={k + 1} state={picked === o.id ? 'selected' : 'idle'} onClick={() => choose(o.id)}>
-            {o.ja}
+            {quizGloss(o.ja)}
           </ChoiceButton>
         ))}
         <button onClick={() => choose(null)} className="min-h-11 w-full text-[14px] text-muted">

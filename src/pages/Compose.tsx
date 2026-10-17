@@ -10,7 +10,7 @@ import { sentencePool, type Sentence } from '@/lib/sentences'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily, db } from '@/lib/db'
 import { getWord, plain, shuffle } from '@/lib/vocab'
-import { accentFor } from '@/lib/settings'
+import { accentFor, getSettings } from '@/lib/settings'
 import { play } from '@/lib/sounds'
 
 const ROUND = 10
@@ -24,7 +24,8 @@ const THINK_MS = 8000
  * 足りなければ、選んでいるコースの例文・シーン会話から補う。
  */
 async function buildRound(): Promise<Sentence[]> {
-  const learned = await db.cards.filter((c) => c.reps > 0).toArray().catch(() => [])
+  const cats = getSettings().studyCats
+  const learned = await db.cards.filter((c) => c.reps > 0 && !!cats[c.cat]).toArray().catch(() => [])
   const due = learned.filter((c) => !c.known).sort((a, b) => a.due - b.due).slice(0, 40)
   const out: Sentence[] = []
   for (const c of shuffle(due)) {

@@ -100,7 +100,11 @@ describe('苦手・保存した単語', () => {
     expect(await toggleMark('g-be')).toBe(true)
     expect(await db.marks.count()).toBe(1)
     const items = await buildDrill('marked')
-    expect(items.map((i) => i.word.id)).toEqual(['g-be'])
+    // まだ学んでいない語（保存しただけ）は、提示してから問う
+    expect(items.map((i) => [i.word.id, i.type])).toEqual([
+      ['g-be', 'learn'],
+      ['g-be', 'mc'],
+    ])
     expect(await toggleMark('g-be')).toBe(false)
     expect(await db.marks.count()).toBe(0)
   })

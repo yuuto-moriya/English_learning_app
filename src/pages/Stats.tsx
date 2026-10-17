@@ -75,7 +75,8 @@ export default function Stats() {
     const rev30 = last30.reduce((a, d) => a + (d.row?.reviews || 0), 0)
     const cor30 = last30.reduce((a, d) => a + (d.row?.correct || 0), 0)
     const active30 = last30.filter((d) => isActiveDay(d.row)).length
-    return { minutes7, accuracy: rev30 ? Math.round((cor30 / rev30) * 100) : null, active30, rev30 }
+    // 以前の版は聞き取りの正解も数えていたので、100% を超えないようにしておく
+    return { minutes7, accuracy: rev30 ? Math.min(100, Math.round((cor30 / rev30) * 100)) : null, active30, rev30 }
   }, [days])
 
   const byCat = useMemo(() => {

@@ -3,7 +3,7 @@ import type { CardRow } from './db'
 import { db } from './db'
 import { dueCards, interleave, newLearnedToday } from './srs'
 import { ALL_CATS, type Category, type Word } from './types'
-import { getWord, loadCategory } from './vocab'
+import { getWord, glossRevealsWord, loadCategory, markedTarget, quizGloss } from './vocab'
 import type { Settings } from './settings'
 
 /**
@@ -27,15 +27,39 @@ export interface Item {
 /** 同じ語をセッション内で再出題する上限。何度も間違えたときに問題数が際限なく増えないようにする */
 export const MAX_RETRIES = 2
 
-export function chooseType(row: CardRow | undefined, word: Word, seed: number): QType {
-  if (!row || row.reps < 2 || row.state === State.Learning || row.state === State.Relearning) return 'mc'
-  if (row.stability < 7) return seed % 2 === 0 ? 'listen' : 'flip'
-  const hasCloze = word.ex.some((e) => e.en.includes('*'))
-  const spellable = !/[ ]/.test(word.w) && word.w.length <= 14
+/**
+ * 問題の形式を選ぶ。
+ * - 和訳に見出し語がそのまま入っている語（API →「API（…）」）は、意味を選ぶ・書く問題だと答えが見えるので、カード（flip）にする
+ * - 同じコースに和訳が同じ語がある語（完全に：completely / totally）は、和訳から書く問題だと答えが1つに決まらないので、例文の穴埋めにする
+ */
+export function chooseType(row: CardRow | undefined, word: Word, seed: number, ambiguous = false): QType {
+  const reveals = glossRevealsWord(word)
+  if (!row || row.reps < 2 || row.state === State.Learning || row.state === State.Relearning) return reveals ? 'flip' : 'mc'
+  if (row.stability < 7) return reveals || seed % 2 !== 0 ? 'flip' : 'listen'
+  const hasCloze = word.ex.some((e) => e.en.includes('*')) && !reveals
+  const spellable = !/[ ]/.test(word.w) && word.w.length <= 14 && !reveals
   const r = seed % 3
   if (r === 0 && hasCloze) return 'cloze'
-  if (r === 1 && spellable) return 'spell'
-  return seed % 2 === 0 ? 'listen' : 'flip'
+  if (r === 1 && spellable) return ambiguous ? (hasCloze ? 'cloze' : 'flip') : 'spell'
+  return reveals || seed % 2 !== 0 ? 'flip' : 'listen'
+}
+
+const ambiguousCache = new Map<Category, Promise<Set<string>>>()
+/** 同じコースに、問題に出す和訳の最初の意味が同じ語がある語の id（書く問題では答えが1つに決まらない） */
+export function ambiguousGloss(cat: Category): Promise<Set<string>> {
+  let p = ambiguousCache.get(cat)
+  if (!p) {
+    p = loadCategory(cat).then((ws) => {
+      const by = new Map<string, string[]>()
+      for (const w of ws) {
+        const g = quizGloss(w.ja).split('；')[0]
+        by.set(g, [...(by.get(g) ?? []), w.id])
+      }
+      return new Set([...by.values()].filter((ids) => ids.length > 1).flat())
+    })
+    ambiguousCache.set(cat, p)
+  }
+  return p
 }
 
 const FUNCTION_POS = new Set(['det', 'pron', 'prep', 'conj', 'aux', 'int', 'num'])
@@ -49,10 +73,24 @@ export function newWordPool(
   for (const w of all) {
     if (cards.has(w.id)) continue
     if (!s.studyCats[w.cat]) continue
-    // IT・鉄道は専門のコースなので、レベルの範囲に関係なく基本の語（低いレベル）から順に出す
-    const specialist = w.cat === 'rail' || w.cat === 'it'
-    if (!specialist && (w.lv > s.maxLevel || w.lv < (s.minLevel ?? 1))) continue
+    // 数（three → 3）と間投詞（yes → はい）は、意味を選ぶ問題にしても簡単すぎるので新しい単語には出さない（単語帳には残す）
+    if (w.pos === 'num' || w.pos === 'int') continue
     groups[w.cat].push(w)
+  }
+  // IT・鉄道は専門のコースなので、レベルの範囲に関係なく基本の語（低いレベル）から順に出す。
+  // 一般・ビジネスはレベルの範囲で絞るが、範囲に語が残っていなければ（ビジネスは3以上しかない・範囲の語を学び終えた）
+  // いちばん近いレベルの語を出す（新しい単語が0にならないように）
+  const lo = s.minLevel ?? 1
+  const hi = s.maxLevel
+  for (const c of ['general', 'business'] as const) {
+    const g = groups[c]
+    const inRange = g.filter((w) => w.lv >= lo && w.lv <= hi)
+    if (inRange.length || !g.length) groups[c] = inRange
+    else {
+      const dist = (w: Word) => (w.lv > hi ? w.lv - hi : lo - w.lv)
+      const best = Math.min(...g.map(dist))
+      groups[c] = g.filter((w) => dist(w) === best)
+    }
   }
   // 同じレベル内では内容語を先に、機能語（冠詞・前置詞など）は後回し
   const fn = (w: Word) => (FUNCTION_POS.has(w.pos) ? 1 : 0)
@@ -84,7 +122,8 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
   for (const r of dueRows) {
     const w = await getWord(r.id)
     if (!w) continue
-    dueItems.push({ key: `d-${w.id}`, word: w, type: chooseType(rowMap.get(w.id), w, seed++), isNew: false })
+    const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
+    dueItems.push({ key: `d-${w.id}`, word: w, type: chooseType(rowMap.get(w.id), w, seed++, ambiguous), isNew: false })
   }
   // 復習もカテゴリを混ぜる
   const dueByCat = cats.map((c) => dueItems.filter((i) => i.word.cat === c))
@@ -97,7 +136,7 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
     for (const w of chunk) out.push({ key: `l-${w.id}`, word: w, type: 'learn', isNew: true })
     // 提示と想起テストの間に少し間隔を空ける（短い分散）
     for (let k = 0; k < 3 && di < dueMixed.length; k++) out.push(dueMixed[di++])
-    for (const w of chunk) out.push({ key: `t-${w.id}`, word: w, type: 'mc', isNew: true })
+    for (const w of chunk) out.push({ key: `t-${w.id}`, word: w, type: glossRevealsWord(w) ? 'flip' : 'mc', isNew: true })
   }
   while (di < dueMixed.length) out.push(dueMixed[di++])
   return out
@@ -123,7 +162,11 @@ export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<I
       .slice(0, limit)
       .map((r) => r.id)
   } else {
-    ids = (await db.marks.orderBy('at').reverse().toArray()).map((m) => m.id).slice(0, limit)
+    // 「知っている」にした語は出さない
+    ids = (await db.marks.orderBy('at').reverse().toArray())
+      .map((m) => m.id)
+      .filter((id) => !rowMap.get(id)?.known)
+      .slice(0, limit)
   }
   const out: Item[] = []
   let seed = Math.floor(Math.random() * 1000)
@@ -131,8 +174,15 @@ export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<I
     const w = await getWord(id)
     if (!w) continue
     const row = rowMap.get(id)
+    // まだ学んでいない語（単語帳で保存しただけの語）は、先に提示してから問う
+    if (!row || row.reps === 0) {
+      out.push({ key: `xl-${id}`, word: w, type: 'learn', isNew: false })
+      out.push({ key: `x-${id}`, word: w, type: glossRevealsWord(w) ? 'flip' : 'mc', isNew: false })
+      continue
+    }
     // 苦手な語は意味の想起（選択・音声）を中心に、安定してきた語は産出も混ぜる
-    out.push({ key: `x-${id}`, word: w, type: row ? chooseType(row, w, seed++) : 'mc', isNew: false })
+    const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
+    out.push({ key: `x-${id}`, word: w, type: chooseType(row, w, seed++, ambiguous), isNew: false })
   }
   return out
 }
@@ -152,6 +202,8 @@ export function checkSpelling(input: string, word: Word, target?: string): boole
   const norm = (s: string) => s.toLowerCase().replace(/[‐-―-]/g, '-').replace(/\s+/g, ' ').trim()
   const a = norm(input)
   if (!a) return false
-  const answers = target ? [target] : [word.w, word.us].filter(Boolean) as string[]
+  // 例文で使っている形（headquarters・congratulations など、見出し語と形が違う語）も正解にする
+  const used = word.ex.map((e) => markedTarget(e.en)).filter((t): t is string => !!t)
+  const answers = target ? [target] : ([word.w, word.us, ...used].filter(Boolean) as string[])
   return answers.some((t) => norm(t) === a || norm(t).replace(/-/g, ' ') === a.replace(/-/g, ' '))
 }

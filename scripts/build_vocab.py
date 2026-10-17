@@ -8,6 +8,7 @@
   data-src/vocab/*.txt           和訳・例文（lemma|pos|ja|例文EN|例文JA）
   data-src/rail/*.txt            保線用語（en|us|ja|lv|ipa_uk|ipa_us|refs|note|例文EN|例文JA）
   data-src/ipa/en_US.tsv         米音IPA（ipa-dict / cmudict-ipa, MIT）
+  data-src/neighbors.tsv         意味の近い語（scripts/build_neighbors.py が WordNet 3.0 から生成）→ near
 出力:
   src/data/vocab/general.json, business.json, rail.json
 """
@@ -37,9 +38,38 @@ def load_ipa() -> dict[str, str]:
             if "\t" not in line:
                 continue
             w, p = line.rstrip("\n").split("\t", 1)
-            first = p.split(",")[0].strip().strip("/")
-            d.setdefault(w.lower(), first)
+            variants = [v.strip().strip("/") for v in p.split(",") if v.strip()]
+            # 品詞で読みが変わる語は、候補の順（名詞の読みが先）を変えない。動詞などの読みは OVERRIDE_POS で直す
+            d.setdefault(w.lower(), variants[0] if w.lower() in HOMOGRAPHS else best_variant(variants))
     return d
+
+
+IPA_CONS = set("pbtdkgfvθðszʃʒmnŋlɫɹrjwʧʤ")  # h は数えない（which /hwɪtʃ/ のような古い発音を選ばない）
+
+
+def best_variant(variants: list[str]) -> str:
+    """辞書の発音候補から、学習者向けの丁寧な発音を選ぶ。
+    最初の候補はくだけた発音のことが多い（around /ɝˈaʊn/、twenty /ˈtwɛni/、report /ɹiˈpɔɹt/）。
+    子音を落とさない候補・弱い母音を ɪ で書く候補・余分な第2強勢のない候補を優先する（同点なら先の候補）"""
+    def score(v: str) -> float:
+        cons = sum(1 for c in v if c in IPA_CONS)
+        # 第1強勢より前の、強勢のない ɪ だけを数える（report /rɪˈpɔrt/）。when /wɪn/・focus /ˈfoʊkɪs/ は選ばない
+        primary = v.find("ˈ")
+        weak_i = sum(1 for k, c in enumerate(v) if c == "ɪ" and k < primary and not any_stress(v, k))
+        return cons + weak_i - (1 if v.startswith("ˌ") else 0)
+    return max(variants, key=lambda v: (score(v), -variants.index(v)))
+
+
+def any_stress(ipa: str, idx: int) -> bool:
+    """idx の母音が第1・第2強勢のある音節にあるか"""
+    j = idx - 1
+    while j >= 0:
+        if ipa[j] in STRESS:
+            return True
+        if ipa[j] in VOWELS:
+            return False
+        j -= 1
+    return False
 
 
 def stressed(ipa: str, idx: int) -> bool:
@@ -72,6 +102,8 @@ OVERRIDE_US = {
     "genuine": "ˈdʒɛnjuːɪn", "differently": "ˈdɪfrəntli", "duration": "dʊˈreɪʃən", "everyday": "ˈɛvriːˌdeɪ",
     "coworker": "ˈkoʊˌwɝkɚ", "sightsee": "ˈsaɪtˌsiː",
     "printer": "ˈprɪntɚ", "center": "ˈsɛntɚ", "interface": "ˈɪntɚˌfeɪs", "neural": "ˈnʊrəl",
+    "tissue": "ˈtɪʃuː", "saturday": "ˈsætɚdeɪ", "email": "ˈiːmeɪl", "between": "bɪˈtwiːn", "often": "ˈɔfən",
+    "beyond": "bɪˈjɑnd", "eventually": "ɪˈvɛntʃuəli", "forget": "fɚˈɡɛt",
 }
 
 # 品詞で発音が変わる語（名詞と動詞で強勢や音が違う）。辞書の最初の発音が別の品詞のものを直す
@@ -93,7 +125,7 @@ OVERRIDE_POS = {
     ("inside", "adv"): "ˌɪnˈsaɪd", ("refund", "n"): "ˈriːfʌnd", ("subordinate", "n"): "səˈbɔrdənət",
     ("duplicate", "n"): "ˈduːpləkət", ("affiliate", "n"): "əˈfɪliːət", ("estimate", "n"): "ˈɛstəmət",
     ("overhead", "n"): "ˈoʊvɚˌhɛd", ("offset", "v"): "ˌɔfˈsɛt",
-    ("reset", "v"): "riːˈsɛt",
+    ("reset", "v"): "riːˈsɛt", ("desert", "n"): "ˈdɛzɚt",
 }
 
 
@@ -109,33 +141,61 @@ HOMOGRAPHS = {
 }
 
 
+DIPHTHONGS = {"aɪ", "aʊ", "eɪ", "oʊ", "ɔɪ"}
+
+
 def syllables(ipa: str) -> int:
-    n, prev = 0, False
+    """音節の数（母音のまとまりの数。aɪ などの二重母音は1つ、ri.ɪn・wɝ.i のように並んだ母音は別に数える）"""
+    n, prev = 0, ""
     for c in ipa:
-        v = c in VOWELS
-        if v and not prev:
-            n += 1
-        prev = v or (prev and c == "ː")
+        if c == "ː":
+            continue
+        if c in VOWELS:
+            if not prev or prev + c not in DIPHTHONGS:
+                n += 1
+            prev = c
+        else:
+            prev = ""
     return n
 
 
-def normalize_us(ipa: str) -> str:
+def normalize_us(ipa: str, word: str = "") -> str:
     """cmudict-ipa の表記を学習者向けの一般米語表記に整える"""
     # which/when などの hw は現代の一般米語では w
     s = ipa.replace("ɫ", "l").replace("ɹ", "r").replace("hw", "w")
+    # 強勢記号が /j/ の後ろに付いている表記（kəmˈjunəti）は、音節の頭の子音の前へ（kəˈmjunəti）
+    s = re.sub(r"([^aeiouæɑɒɔəɛɪʊʌɝɚɐˈˌː])([ˈˌ])j", r"\2\1j", s)
+    # 第1強勢の直前の1音節だけに付いた余分な第2強勢（ˌɪmˈpɔrtənt、ˌdɪˈsaɪd、ˌriˈvju）は取る。
+    # 第1強勢の前に2音節以上あるとき（ˌɪndəˈkeɪʃən、ˌriːɪnˈfɔrs）は本来の第2強勢なので残す
+    m = re.match(r"^ˌ([^ˈˌ]*)ˈ", s)
+    if m and syllables(m.group(1)) == 1 and re.search(r"[ɪəi]", m.group(1)):
+        s = s[1:]
+    # 語末の -y（弱い i）に付いた第2強勢（company ˈkʌmpəˌni、ability əˈbɪləˌti）は取る
+    if word.lower().endswith("y"):
+        s = re.sub(r"ˌ([^aeiouæɑɒɔəɛɪʊʌɝɚɐˈˌ]*)i$", r"\1i", s)
+    one = syllables(s) <= 1
     out = []
     for i, c in enumerate(s):
+        nxt = next((x for x in s[i + 1 :] if x not in STRESS), "")
         if c == "ə" and stressed(s, i):
             out.append("ʌ")
         elif c == "ɝ" and not stressed(s, i):
             out.append("ɚ")
-        elif c == "i" and (i != len(s) - 1 or stressed(s, i)):
-            out.append("iː")
+        elif c == "i":
+            # 強勢のある i は長い iː。弱い i は、語末と母音の前（happy、react）では i、それ以外は ɪ（report、economy）
+            if any_stress(s, i) or one:
+                out.append("iː")
+            elif i == len(s) - 1 or nxt in VOWELS:
+                out.append("i")
+            else:
+                out.append("ɪ")
         elif c == "u":
             out.append("uː")
         else:
             out.append(c)
     r = "".join(out)
+    # r の位置（correct /kɚˈɛkt/ → /kəˈrɛkt/、original /ɚˈɪdʒənəl/ → /əˈrɪdʒənəl/）
+    r = re.sub(r"ɚ([ˈˌ])(?=[aeiouæɑɒɔəɛɪʊʌ])", r"ə\1r", r)
     if syllables(r) <= 1:
         r = r.replace("ˈ", "").replace("ˌ", "")
     # 第1強勢が2つある表記（ˈfɪfˈtin など）は、前を第2強勢にする
@@ -153,7 +213,7 @@ def us_ipa(word: str, d: dict[str, str], pos: str | None = None) -> str | None:
     if key in OVERRIDE_US:
         return OVERRIDE_US[key]
     if key in d:
-        return normalize_us(d[key])
+        return normalize_us(d[key], key)
     return ipa_for_phrase(word, d)
 
 
@@ -187,11 +247,11 @@ def ipa_for_phrase(phrase: str, d: dict[str, str]) -> str | None:
             parts.append(OVERRIDE_US[key])
             continue
         if key in d:
-            parts.append(normalize_us(d[key]))
+            parts.append(normalize_us(d[key], key))
             continue
         # ハイフン語は分割して合成
         if "-" in key and all(p in d for p in key.split("-")):
-            parts.append("".join(normalize_us(d[p]) for p in key.split("-")))
+            parts.append("".join(normalize_us(d[p], p) for p in key.split("-")))
             continue
         return None
     return " ".join(parts) if parts else None
@@ -370,6 +430,9 @@ RAIL_FILES = [
 ]
 
 
+RAIL_AUX = {"shall", "should", "may", "must", "will", "can"}
+
+
 def build_rail(ipa: dict[str, str]):
     rail = []
     seen = set()
@@ -385,7 +448,8 @@ def build_rail(ipa: dict[str, str]):
                 continue
             seen.add(sid)
             us_term = us if us and us.lower() != en.lower() else None
-            us_ipa = ipa_us or ipa_for_phrase(us_term or en, ipa)
+            # 米音は他のコースと同じ一般米語の表記（ɑ・ɔ に長音記号を付けない）にそろえる
+            us_ipa = (ipa_us or ipa_for_phrase(us_term or en, ipa) or "").replace("ɑː", "ɑ").replace("ɔː", "ɔ") or None
             if not us_ipa:
                 missing_ipa.append(us_term or en)
             ex2, ok = ensure_marked(ex_en, en)
@@ -405,7 +469,8 @@ def build_rail(ipa: dict[str, str]):
             item = {
                 "id": sid,
                 "w": en,
-                "pos": "n" if not en.endswith(("ing",)) else "n",
+                # 保線用語はほぼ名詞。規格の助動詞（shall / should / may / must）だけは助動詞にする
+                "pos": "aux" if en.lower() in RAIL_AUX else "n",
                 "ja": ja_main.strip(),
                 "lv": int(lv),
                 "cat": "rail",
@@ -422,6 +487,29 @@ def build_rail(ipa: dict[str, str]):
     return rail, missing_ipa
 
 
+def load_neighbors() -> dict[str, list[str]]:
+    """選択問題のまぎらわしい選択肢に使う、意味の近い語（id → 近い順の id）"""
+    path = SRC / "neighbors.tsv"
+    out: dict[str, list[str]] = {}
+    if not path.exists():
+        return out
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip() or line.startswith("#"):
+            continue
+        wid, ids = line.split("\t")
+        out[wid] = ids.split(",")
+    return out
+
+
+def attach_neighbors(words: list[dict], near: dict[str, list[str]]):
+    """同じコースにある語だけを残して near に入れる（語が消えたときに古い id を残さない）"""
+    ids = {w["id"] for w in words}
+    for w in words:
+        ns = [i for i in near.get(w["id"], []) if i in ids and i != w["id"]]
+        if ns:
+            w["near"] = ns
+
+
 def main():
     ipa = load_ipa()
     general, business, warnings = build_general_business(ipa)
@@ -429,6 +517,9 @@ def main():
     taken = {w["w"].lower() for w in general + business + rail}
     it, it_warn = build_it(ipa, taken)
     warnings += it_warn
+    near = load_neighbors()
+    for words in (general, business, it):
+        attach_neighbors(words, near)
     OUT.mkdir(parents=True, exist_ok=True)
     for name, data in (("general", general), ("business", business), ("it", it), ("rail", rail)):
         with open(OUT / f"{name}.json", "w", encoding="utf-8") as f:

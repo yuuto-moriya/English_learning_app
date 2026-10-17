@@ -71,7 +71,7 @@ symptom|n|症状；兆候|A fever is a common *symptom* of the flu.|発熱はイ
 virtually|adv|事実上；ほとんど|The town was *virtually* empty on Sunday.|日曜日、町にはほとんど人がいなかった。
 era|n|時代|The Showa *era* ended in 1989.|昭和の時代は1989年に終わった。
 coverage|n|範囲；報道；補償範囲|The insurance *coverage* includes flood damage.|保険の補償範囲には洪水被害も含まれる。
-tension|n|緊張；張力|There was *tension* between the two countries.|2国の間には緊張関係があった。
+tension|n|緊張；緊迫した状態|There was *tension* between the two countries.|2国の間には緊張関係があった。
 cable|n|ケーブル|Where can I buy a charging *cable*?|充電ケーブルはどこで買えますか。
 sensitive|adj|敏感な；取り扱いに注意を要する|This is *sensitive* information.|これは取り扱い注意の情報だ。
 nervous|adj|緊張した|I'm *nervous* about the presentation.|プレゼンで緊張している。
@@ -109,7 +109,7 @@ supporter|n|支持者；サポーター|He is a big *supporter* of the plan.|彼
 convert|v|変換する；転換する|*Convert* the data into a chart.|データを図表に変換してください。
 steady|adj|着実な；安定した|We made *steady* progress.|着実に前進した。
 meter|n|メートル；計器|The pool is 25 *meters* long.|そのプールは長さ25メートルだ。
-truck|n|トラック；（米）台車|A *truck* delivered the furniture.|トラックが家具を配達した。
+truck|n|トラック|A *truck* delivered the furniture.|トラックが家具を配達した。
 nose|n|鼻|I have a runny *nose*.|鼻水が出ている。
 beside|prep|〜のそばに|Sit *beside* me.|私の隣に座って。
 sail|v|航海する|We *sailed* across the bay.|私たちは湾を横断した。
@@ -175,7 +175,7 @@ wound|n|傷|The *wound* healed quickly.|傷はすぐに治った。
 restriction|n|制限|There are no age *restrictions* for this course.|この講座には年齢制限がない。
 foundation|n|基礎；財団|The *foundation* of the building is strong.|その建物の基礎は頑丈だ。
 designer|n|設計者；デザイナー|She is a web *designer*.|彼女はウェブデザイナーだ。
-strain|n|ひずみ；負担|Working long hours puts a *strain* on your health.|長時間労働は健康に負担をかける。
+strain|n|負担；ひずみ|Working long hours puts a *strain* on your health.|長時間労働は健康に負担をかける。
 innovation|n|革新|*Innovation* is key to our future.|革新が私たちの未来の鍵だ。
 album|n|アルバム|Their new *album* is great.|彼らの新しいアルバムはすばらしい。
 singer|n|歌手|She is a famous *singer*.|彼女は有名な歌手だ。
@@ -222,7 +222,7 @@ overcome|v|克服する|We *overcame* many difficulties.|私たちは多くの�
 web|n|クモの巣；ウェブ|Search the *web* for more information.|詳しくはウェブで検索してください。
 depth|n|深さ|What is the *depth* of the pool?|そのプールの深さはどれくらいですか。
 entrance|n|入口|Meet me at the north *entrance*.|北口で会いましょう。
-log|n|記録；丸太；（動詞）記録する|We put another *log* on the fire.|火にもう1本まきをくべた。
+log|n|記録；丸太；（動詞）記録する|We sat on a *log* by the river.|川辺の丸太に座った。
 giant|adj|巨大な|A *giant* wave hit the beach.|巨大な波が浜辺に押し寄せた。
 god|n|神|Many people believe in *God*.|多くの人が神を信じている。
 portion|n|部分；一人前|The restaurant serves large *portions*.|そのレストランは量が多い。
@@ -238,7 +238,7 @@ pink|adj|ピンクの|She wore a *pink* dress.|彼女はピンクのドレスを
 shadow|n|影|The children played in the *shadow* of the building.|子どもたちは建物の陰で遊んだ。
 strip|n|細長い一片；（動詞）はがす|Cut the paper into thin *strips*.|紙を細長く切ってください。
 smooth|adj|滑らかな|The new road gives a *smooth* ride.|新しい道路は乗り心地がなめらかだ。
-intervention|n|介入；手入れ|Government *intervention* stopped prices from rising.|政府の介入で物価の上昇が止まった。
+intervention|n|介入；仲裁|Government *intervention* stopped prices from rising.|政府の介入で物価の上昇が止まった。
 impress|v|感銘を与える|Your English *impressed* me.|あなたの英語には感心しました。
 exam|n|試験|I passed the *exam*!|試験に合格した！
 vice|adj|副〜|She is the *vice* president of the company.|彼女はその会社の副社長だ。
@@ -543,7 +543,7 @@ wooden|adj|木製の|We sat on a *wooden* bench.|木のベンチに座った。
 boom|n|好景気；急増|There is a camping *boom* in Japan.|日本ではキャンプがブームになっている。
 tale|n|話；物語|My grandfather told us a *tale* about the old days.|祖父は昔の話をしてくれた。
 democratic|adj|民主的な|We made the decision in a *democratic* way.|民主的な方法で決定した。
-maintenance|n|保守；保全；維持管理|The building is closed for *maintenance*.|その建物はメンテナンスのため休業中だ。
+maintenance|n|整備；保守；維持管理|The building is closed for *maintenance*.|その建物はメンテナンスのため休業中だ。
 consequently|adv|その結果|He missed the bus; *consequently*, he was late for work.|彼はバスに乗り遅れ、その結果、仕事に遅刻した。
 pot|n|鍋；つぼ|Put the *pot* on the stove.|鍋をこんろにかけて。
 cow|n|牛|The *cows* are eating grass in the field.|牛が牧草地で草を食べている。
@@ -576,7 +576,7 @@ wise|adj|賢い|That was a *wise* choice.|それは賢明な選択だった。
 neglect|v|怠る；放置する|Don't *neglect* your health.|健康をおろそかにしないで。
 compose|v|構成する；作曲する|Mozart *composed* his first music at the age of five.|モーツァルトは5歳で最初の曲を作った。
 jail|n|刑務所|He spent a night in *jail*.|彼は一晩留置場で過ごした。
-shelter|n|避難所；待避所|We took *shelter* from the rain under a tree.|木の下で雨宿りをした。
+shelter|n|避難所；住まい|We took *shelter* from the rain under a tree.|木の下で雨宿りをした。
 mere|adj|単なる|It was a *mere* five minutes late.|ほんの5分遅れただけだった。
 carbon|n|炭素|We should reduce *carbon* emissions.|二酸化炭素の排出を減らすべきだ。
 regulate|v|規制する；調整する|The government *regulates* food safety.|政府が食品の安全を規制している。
@@ -780,7 +780,7 @@ tournament|n|トーナメント；大会|Our team won the *tournament*.|私た�
 registration|n|登録|*Registration* closes on Friday.|登録は金曜日に締め切られる。
 fragment|n|破片|*Fragments* of glass were all over the floor.|床一面にガラスの破片が散らばっていた。
 listener|n|聞き手|She is a good *listener*.|彼女は聞き上手だ。
-tender|n|入札；（形容詞）柔らかい|The company won the *tender* for the new hospital.|その会社は新病院の入札に勝った。
+tender|adj|優しい；柔らかい；（名詞）入札|The meat is very *tender*.|その肉はとても柔らかい。
 density|n|密度|Tokyo has a high population *density*.|東京は人口密度が高い。
 ugly|adj|醜い|It's an *ugly* building.|それは醜い建物だ。
 module|n|単位；モジュール|This course has six *modules*.|この講座には6つの単元がある。

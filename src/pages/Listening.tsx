@@ -5,7 +5,7 @@ import { Guide } from '@/components/Guide'
 import { defaultLevel, defaultSources, SourcePicker, SpeedPicker, VoiceVarietyToggles } from '@/components/PracticeControls'
 import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell, SlowButton, SLOW_RATE, scoreCaption, TierBadge } from '@/components/Session'
 import { Button, Card } from '@/components/ui'
-import { pickRound, sentencePool, type Sentence, type Source } from '@/lib/sentences'
+import { learnedIds, pickRound, sentencePool, type Sentence, type Source } from '@/lib/sentences'
 import { listeningTier, sentenceDistractors } from '@/lib/distractors'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily } from '@/lib/db'
@@ -20,6 +20,8 @@ export default function Listening() {
   const [level, setLevel] = useState(defaultLevel)
   const [rate, setRate] = useState(0.85)
   const vary = useSettings((s) => s.varyVoices)
+  // 選択肢の難しさは学習者のレベル（はじめるレベル）から。出題範囲のレベルを上げても選択肢まで難しくはしない
+  const learnerLevel = useSettings((s) => s.minLevel)
   const mix = useSettings((s) => s.mixAccents)
   const [pool, setPool] = useState<Sentence[]>([])
   const [round, setRound] = useState<Sentence[]>([])
@@ -32,19 +34,28 @@ export default function Listening() {
   /** 選択肢の難しさの調整：正解が3問続くと上げ、まちがえると下げる（−1〜+1） */
   const adjust = useRef({ value: 0, streak: 0 })
 
+  /** 学習した語（覚えた語の例文から先に出す） */
+  const [learned, setLearned] = useState<Set<string>>(new Set())
+  const [loaded, setLoaded] = useState(false)
   useEffect(() => {
     let alive = true
-    sentencePool(sources, level, Math.max(1, level - 2)).then((p) => alive && setPool(p))
+    Promise.all([sentencePool(sources, level, Math.max(1, level - 2)), learnedIds()]).then(([p, l]) => {
+      if (!alive) return
+      setPool(p)
+      setLearned(l)
+      setLoaded(true)
+    })
     return () => {
       alive = false
     }
   }, [sources, level])
+  const mine = useMemo(() => pool.filter((s) => s.wordId && learned.has(s.wordId)).length, [pool, learned])
   useEffect(() => () => stopSpeaking(), [])
 
   const cur = round[i]
   // 選択肢の難しさは選んだレベルと回の中の正解の続き具合で決める（回答後に選択肢が変わらないよう、問題が変わったときだけ作る）
   const { options, tier } = useMemo(() => {
-    const t = listeningTier(level, adjust.current.value)
+    const t = listeningTier(learnerLevel, adjust.current.value)
     return { tier: t, options: cur ? shuffle([cur.ja, ...sentenceDistractors(cur, pool, t).map((d) => d.ja)]) : [] }
   }, [cur, pool]) // eslint-disable-line react-hooks/exhaustive-deps
   const done = started && i >= round.length
@@ -63,7 +74,7 @@ export default function Listening() {
   const start = () => {
     warmUpSpeech()
     // いろいろな国の英語を混ぜるときは、1問ごとに発音（国・地域）を選び直す
-    const r = pickRound(pool, 10).map((x) => (mix ? { ...x, accent: ACCENTS[Math.floor(Math.random() * ACCENTS.length)].id } : x))
+    const r = pickRound(pool, 10, learned).map((x) => (mix ? { ...x, accent: ACCENTS[Math.floor(Math.random() * ACCENTS.length)].id } : x))
     setRound(r)
     setI(0)
     setScore(0)
@@ -86,7 +97,8 @@ export default function Listening() {
     else if (a.streak + 1 >= 3) adjust.current = { value: Math.min(1, a.value + 1), streak: 0 }
     else adjust.current = { ...a, streak: a.streak + 1 }
     setGuide(ok ? correctMessage(0) : listenWrongMessage())
-    bumpDaily({ listening: 1, correct: ok ? 1 : 0, seconds: 15 })
+    // 学習記録の正答率は単語の復習の数え方なので、リスニングの正解は入れない（回数だけ）
+    bumpDaily({ listening: 1, seconds: 15 })
   }
 
   const next = () => {
@@ -161,9 +173,12 @@ export default function Listening() {
           <SpeedPicker rate={rate} onRate={setRate} />
           <VoiceVarietyToggles />
           <p className="text-[12px] leading-relaxed text-muted">
-            対象の文：{pool.length.toLocaleString()}文。選択肢には、聞こえた英文と同じ単語・同じ場面の文がまぎれます。数はレベルに合わせて決まり、正解が続くと増えます
+            対象の文：{pool.length.toLocaleString()}文（うち学習した単語の例文 {mine.toLocaleString()}文。学習した単語の例文から先に出します）。選択肢には、聞こえた英文と同じ単語・同じ場面の文がまぎれます。数はレベルに合わせて決まり、正解が続くと増えます
           </p>
         </Card>
+        {loaded && pool.length < 4 && (
+          <p className="px-1 text-[12.5px] leading-relaxed text-muted">出題できる文が足りません。出題範囲を増やすか、レベルを上げてください。</p>
+        )}
         <Button block size="lg" onClick={start} disabled={pool.length < 4}>
           {done && <RotateCcw className="h-[18px] w-[18px]" />}
           {done ? 'もう一度' : 'はじめる'}

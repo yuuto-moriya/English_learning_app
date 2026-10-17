@@ -40,7 +40,7 @@ advice|n|助言|Thank you for your *advice*.|助言をありがとうござい�
 handle|v|扱う；処理する|She *handles* customer complaints.|彼女は顧客の苦情に対応している。
 glass|n|ガラス；コップ|Could I have a *glass* of water?|お水を1杯いただけますか。
 trial|n|試験；試用；裁判|You can use the app for free during the *trial* period.|試用期間中はアプリを無料で使えます。
-stress|n|ストレス；応力|Too much *stress* is bad for your health.|ストレスが多すぎるのは健康に悪い。
+stress|n|ストレス；強調|Too much *stress* is bad for your health.|ストレスが多すぎるのは健康に悪い。
 radio|n|無線；ラジオ|I listen to the *radio* in the car.|車の中でラジオを聴きます。
 administration|n|管理；行政；政権|He works in *administration*.|彼は管理部門で働いている。
 complex|adj|複雑な|The system is very *complex*.|そのシステムはとても複雑だ。
@@ -101,7 +101,7 @@ progress|n|進歩；進捗|How is the *progress* on the project?|プロジェク
 truth|n|真実|Tell me the *truth*.|本当のことを言って。
 nobody|pron|誰も〜ない|*Nobody* was hurt in the accident.|その事故でけが人はいなかった。
 examine|v|調べる；検査する|The doctor *examined* my throat.|医者は私ののどを診察した。
-lay|v|置く；敷設する|She *laid* the baby on the bed.|彼女は赤ちゃんをベッドに寝かせた。
+lay|v|置く；横たえる；（卵を）産む|She *laid* the baby on the bed.|彼女は赤ちゃんをベッドに寝かせた。
 speed|n|速度|The car was going at high *speed*.|その車は猛スピードで走っていた。
 politics|n|政治|I'm not interested in *politics*.|政治には興味がない。
 reply|v|返事をする|Please *reply* by Friday.|金曜日までに返信してください。
@@ -299,7 +299,7 @@ engage|v|従事させる；関わる|He is *engaged* in volunteer work.|彼は�
 powerful|adj|強力な|This is a *powerful* machine.|これは強力な機械だ。
 flower|n|花|She gave me some *flowers*.|彼女は私に花をくれた。
 crisis|n|危機|The company is facing a financial *crisis*.|その会社は財政危機に直面している。
-settle|v|解決する；落ち着く；沈下する|We need to *settle* this problem soon.|この問題を早く解決する必要がある。
+settle|v|解決する；落ち着く；定住する|We need to *settle* this problem soon.|この問題を早く解決する必要がある。
 boat|n|ボート；船|We crossed the lake by *boat*.|ボートで湖を渡った。
 aid|n|援助；補助具|I took a first *aid* course.|応急手当の講習を受けた。
 fan|n|ファン；扇風機|I'm a big *fan* of this band.|私はこのバンドの大ファンだ。
@@ -317,7 +317,7 @@ length|n|長さ|What is the *length* of this river?|この川の長さはどれ�
 investigation|n|調査；捜査|The police started an *investigation* into the fire.|警察はその火事の捜査を始めた。
 package|n|小包；一式|A *package* arrived for you.|あなた宛てに小包が届いた。
 somewhere|adv|どこかに|I left my phone *somewhere*.|携帯電話をどこかに置き忘れた。
-expand|v|膨張する；拡大する|Steel *expands* when it gets hot.|鋼は熱くなると膨張する。
+expand|v|拡大する；膨張する|The company plans to *expand* into Asia.|その会社はアジアへの事業拡大を計画している。
 commit|v|（罪を）犯す；（commit toで）全力を注ぐ|We are *committed* to protecting the environment.|私たちは環境保護に全力で取り組んでいます。
 obvious|adj|明らかな|The answer is *obvious*.|答えは明らかだ。
 jump|v|跳ぶ|The dog *jumped* over the fence.|犬が柵を跳び越えた。
@@ -451,7 +451,7 @@ citizen|n|市民|All *citizens* have the right to vote.|すべての市民に選
 temperature|n|温度；気温|The *temperature* dropped to minus five last night.|昨夜は気温が氷点下5度まで下がった。
 gold|n|金|She won a *gold* medal.|彼女は金メダルを獲得した。
 domestic|adj|国内の；家庭の|This is a *domestic* flight.|これは国内線だ。
-load|n|荷重；積み荷；（動詞）積む|The truck was carrying a heavy *load*.|トラックは重い荷物を積んでいた。
+load|n|荷物；積み荷；（動詞）積む|The truck was carrying a heavy *load*.|トラックは重い荷物を積んでいた。
 belief|n|信念|He has a strong *belief* in hard work.|彼は勤勉を固く信じている。
 troop|n|部隊；（複数で）軍隊|*Troops* were sent to help after the earthquake.|地震後、救援のため部隊が派遣された。
 technical|adj|技術的な；専門的な|We had a *technical* problem.|技術的な問題が発生した。
@@ -459,7 +459,7 @@ remind|v|思い出させる|Please *remind* me about the meeting.|会議のこ�
 arrangement|n|手配；取り決め|I'll make the *arrangements* for the trip.|旅行の手配をします。
 skin|n|皮膚|Protect your *skin* from the sun.|日差しから肌を守りなさい。
 prison|n|刑務所|He was sent to *prison*.|彼は刑務所に送られた。
-switch|n|スイッチ；（米）分岐器；（動詞）切り替える|The light *switch* is by the door.|照明のスイッチはドアのそばにある。
+switch|n|スイッチ；（動詞）切り替える|The light *switch* is by the door.|照明のスイッチはドアのそばにある。
 acquire|v|獲得する；習得する|She *acquired* new skills at the training.|彼女は研修で新しい技能を身につけた。
 corporate|adj|企業の|Our *corporate* office is in Tokyo.|本社は東京にある。
 fairly|adv|かなり；公平に|The test was *fairly* easy.|テストはかなり簡単だった。
@@ -512,7 +512,7 @@ slowly|adv|ゆっくりと|Please speak more *slowly*.|もっとゆっくり話�
 bond|n|きずな；債券|There is a strong *bond* between the team members.|チームメンバーの間には強いきずながある。
 hire|v|雇う；（物を）借りる|We *hired* three new engineers.|新しい技術者を3人雇った。
 hole|n|穴|There is a *hole* in the fence.|柵に穴が開いている。
-tie|n|ネクタイ；（米）まくらぎ；（動詞）結ぶ|He wore a blue *tie* to the interview.|彼は面接に青いネクタイを締めて行った。
+tie|n|ネクタイ；（動詞）結ぶ|He wore a blue *tie* to the interview.|彼は面接に青いネクタイを締めて行った。
 internal|adj|内部の|This is an *internal* document.|これは社内文書です。
 chain|n|鎖；チェーン|He works for a hotel *chain*.|彼はホテルチェーンで働いている。
 literature|n|文学；文献|She studies English *literature*.|彼女は英文学を学んでいる。
@@ -555,7 +555,7 @@ principal|adj|主要な；（名詞）校長|The *principal* reason was cost.|�
 master|v|習得する；（名詞）名人|It takes time to *master* a language.|言語を習得するには時間がかかる。
 definitely|adv|確かに；絶対に|I'll *definitely* be there.|必ず行きます。
 session|n|会；期間|The training *session* starts at nine.|研修会は9時に始まる。
-grade|n|等級；成績；（米）勾配|I got a good *grade* in English.|英語で良い成績を取った。
+grade|n|成績；等級；学年|I got a good *grade* in English.|英語で良い成績を取った。
 nevertheless|adv|それにもかかわらず|It was raining. *Nevertheless*, the game continued.|雨が降っていた。それでも試合は続けられた。
 predict|v|予測する|It's hard to *predict* the weather in the mountains.|山の天気を予測するのは難しい。
 previously|adv|以前に|He *previously* worked in Europe.|彼は以前ヨーロッパで働いていた。
@@ -597,7 +597,7 @@ investor|n|投資家|*Investors* expect a good return.|投資家は高い利益�
 practical|adj|実用的な；実践的な|I want to learn *practical* English.|実践的な英語を学びたい。
 tea|n|お茶；紅茶|Would you like some *tea*?|お茶はいかがですか。
 lovely|adj|すてきな|What a *lovely* garden!|なんてすてきな庭でしょう！
-soft|adj|柔らかい|The ground is *soft* after the rain.|雨の後で地盤が軟らかい。
+soft|adj|柔らかい|The ground is *soft* after the rain.|雨の後で地面が柔らかい。
 row|n|列|We sat in the front *row*.|私たちは最前列に座った。
 youth|n|若さ；若者|He spent his *youth* in Hokkaido.|彼は青春時代を北海道で過ごした。
 lock|v|鍵をかける；（名詞）錠|Did you *lock* the door?|ドアに鍵をかけましたか。
@@ -678,7 +678,7 @@ cat|n|猫|My *cat* sleeps all day.|私の猫は一日中寝ている。
 somewhat|adv|いくぶん|The results were *somewhat* surprising.|結果はいくぶん意外だった。
 kiss|v|キスする|She *kissed* her baby.|彼女は赤ちゃんにキスした。
 presentation|n|発表；プレゼン|I have to give a *presentation* in English.|英語でプレゼンをしなければならない。
-joint|n|継ぎ目；関節；（形容詞）共同の|My knee *joint* hurts when it rains.|雨が降るとひざの関節が痛む。
+joint|n|関節；継ぎ目；（形容詞）共同の|My knee *joint* hurts when it rains.|雨が降るとひざの関節が痛む。
 compete|v|競争する|Many companies *compete* for the contract.|多くの会社がその契約を競っている。
 poll|n|世論調査|A recent *poll* shows strong support.|最近の世論調査は強い支持を示している。
 weak|adj|弱い|The signal is *weak* here.|ここは電波が弱い。

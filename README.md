@@ -318,6 +318,7 @@ data-src/lists/*.csv          NGSL / BSL / TSL（見出し語・頻度順位、C
 data-src/vocab/*.txt          一般・ビジネス・IT 語の和訳と例文
 data-src/rail/*.txt           保線・EAM 用語集
 scripts/.cache/en_US.txt      米音 IPA 辞書（ipa-dict, MIT）
+data-src/neighbors.tsv        意味の近い語（WordNet 3.0 から生成。選択問題のまぎらわしい選択肢）
         │
         ▼  npm run data:build（scripts/build_vocab.py）
 src/data/vocab/general.json   一般 2,847語
@@ -341,9 +342,27 @@ npm run data:build
 
 `scripts/.cache/en_US.txt` がない場合は `data-src/ipa/en_US.tsv`（同じタブ区切り形式）を読み込みます。
 
+辞書に発音が複数あるときは、くだけた発音（around /ɝˈaʊn/、twenty /ˈtwɛni/）より、子音を落とさない・弱い母音を ɪ で書く丁寧な発音を選びます（`best_variant`）。
+強勢記号の位置（community /kəˈmjuːnɪti/）、語頭や語末の余分な第2強勢（important、company）、r の位置（correct /kəˈrɛkt/）も整えます。
 辞書の最初の発音が品詞と合わない語（live の動詞 /lɪv/、record の名詞 /ˈrɛkɚd/ など）や、強調形・旧来形の発音（which の /hw/ など）は、
 `scripts/build_vocab.py` の `OVERRIDE_POS`（品詞ごと）と `OVERRIDE_US` で直しています。品詞で読みが変わる語には `say`（その品詞の発音）を付け、
 単語だけをニューラル音声で読むときに発音を指定します。
+
+### 意味の近い語（選択問題のまぎらわしい選択肢）
+
+選択問題のまちがいの選択肢に使う「意味の近い語」（犬 → 猫・馬、月曜日 → 火曜日、安い → 高価な）を、
+[Princeton WordNet 3.0](https://wordnet.princeton.edu/) から `data-src/neighbors.tsv` に書き出し、ビルドで各語の `near` に入れます。
+同じ意味の語（同じ synset）や上位語・下位語（犬と動物）、和訳の意味が重なる語は「どちらも正解」になるので入れません。
+単語を追加・修正したら、ネットワークにつながる環境で作り直してください（nltk と WordNet のデータが必要）。
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install nltk
+mkdir -p nltk_data/corpora && curl -L -o nltk_data/corpora/wordnet.zip \
+  https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip
+npm run data:build                       # 先に単語データを作る
+NLTK_DATA=nltk_data .venv/bin/python scripts/build_neighbors.py
+npm run data:build                       # near を入れる
+```
 
 ### 一般語・ビジネス語を追加・修正する
 

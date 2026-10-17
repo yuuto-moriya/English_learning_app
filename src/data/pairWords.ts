@@ -62,9 +62,9 @@ export const PAIR_WORDS: Record<string, PairWord> = {
   curb: { ja: '（歩道の）縁石', en: 'Please park close to the *curb*.', exJa: '縁石に寄せて駐車してください。' },
   curve: { ja: 'カーブ・曲線', en: 'Slow down before the *curve*.', exJa: 'カーブの手前で減速してください。' },
   bat: { ja: 'バット・コウモリ', en: 'He swung the *bat* and hit the ball.', exJa: '彼はバットを振ってボールを打った。' },
-  vat: { ja: '大きな桶・タンク', en: 'The wine is aged in a large *vat*.', exJa: 'ワインは大きなタンクで熟成される。' },
+  vat: { ja: '大きな桶・タンク', en: 'The grapes ferment in a large *vat*.', exJa: 'ぶどうは大きなタンクの中で発酵する。' },
   bend: { ja: '曲げる', en: '*Bend* your knees a little.', exJa: 'ひざを少し曲げてください。' },
-  vend: { ja: '販売する', en: 'Machines that *vend* drinks are everywhere in Japan.', exJa: '飲み物を売る自動販売機は、日本のどこにでもある。' },
+  vend: { ja: '販売する', en: 'Some machines *vend* hot coffee in winter.', exJa: '冬には温かいコーヒーを売る自動販売機もある。' },
   marble: { ja: '大理石・ビー玉', en: 'The floor is made of *marble*.', exJa: '床は大理石でできている。' },
   marvel: { ja: '驚くべきもの', en: 'The bridge is a *marvel* of engineering.', exJa: 'その橋は工学の驚くべき成果だ。' },
 

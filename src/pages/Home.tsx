@@ -29,7 +29,6 @@ export default function Home() {
   const week = useRecentDays(7)
   const cats = selectedCats(s)
   const learnedToday = today?.newLearned ?? 0
-  const newLeft = Math.max(0, s.dailyNew - learnedToday)
   const tip = useMemo(() => randomTip(s.studyCats), [s.studyCats])
 
   // 「学習をはじめる」をすぐ開けるよう、待ち時間のあるうちに画面と単語データを読み込んでおく
@@ -46,11 +45,6 @@ export default function Home() {
   // 開きっぱなしでも時間帯・日付が変われば挨拶を更新する
   const hour = new Date(now).getHours()
   const hello = useMemo(() => greeting(new Date()), [hour]) // eslint-disable-line react-hooks/exhaustive-deps
-  const msg = useMemo(() => {
-    const st = streakMessage(streak)
-    if (due > 0 || newLeft > 0) return dueMessage(due, newLeft)
-    return st ?? dueMessage(due, newLeft)
-  }, [due, newLeft, streak])
 
   const stats = useMemo(() => {
     // 語数は集計済みの counts.json を使い、ホームでは大きな単語データを読み込まない
@@ -69,6 +63,14 @@ export default function Home() {
       }
     return { byCat, mastered }
   }, [cards])
+  // 今日の新しい単語の残り。選んでいるコースにまだ学んでいない語が残っている分まで（学び終えたコースで「あと6語」と出さない）
+  const unlearned = cats.reduce((a, c) => a + Math.max(0, stats.byCat[c].total - stats.byCat[c].learned), 0)
+  const newLeft = Math.max(0, Math.min(s.dailyNew - learnedToday, cards ? unlearned : s.dailyNew))
+  const msg = useMemo(() => {
+    const st = streakMessage(streak)
+    if (due > 0 || newLeft > 0) return dueMessage(due, newLeft)
+    return st ?? dueMessage(due, newLeft)
+  }, [due, newLeft, streak])
 
   if (!s.onboarded) return <Navigate to="/welcome" replace />
 

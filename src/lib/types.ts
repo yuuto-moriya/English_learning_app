@@ -40,6 +40,8 @@ export interface Word {
   refs?: string[]
   /** 頻度順位（NGSL/BSL/TSL内） */
   rank?: number
+  /** 意味の近い語の id（選択問題のまぎらわしい選択肢。WordNet から計算、近い順） */
+  near?: string[]
 }
 
 export type Level = 1 | 2 | 3 | 4 | 5 | 6
