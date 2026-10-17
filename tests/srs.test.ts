@@ -56,7 +56,7 @@ describe('FSRSによる復習記録', () => {
     // カードがない語は newWordPool の対象になる
     const cardSet = new Set((await db.cards.toArray()).map((c) => c.id))
     const pool = newWordPool([{ id: 'unseen', w: 'unseen', pos: 'adj', ja: 'テスト', lv: 2, cat: 'general', ex: [] }], cardSet, {
-      studyCats: { general: true, business: true, rail: true },
+      studyCats: { general: true, business: true, it: true, rail: true },
       maxLevel: 3,
     })
     expect(pool.flat().map((x) => x.id)).toEqual(['unseen'])

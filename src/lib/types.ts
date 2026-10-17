@@ -1,4 +1,9 @@
-export type Category = 'general' | 'business' | 'rail'
+import type { Accent } from './accents'
+
+export type Category = 'general' | 'business' | 'it' | 'rail'
+
+/** コースの並び（一般 → ビジネス → IT → 鉄道） */
+export const ALL_CATS: Category[] = ['general', 'business', 'it', 'rail']
 
 /** 例文。英文中の学習対象語は *word* のようにアスタリスクで囲む */
 export interface Example {
@@ -7,7 +12,7 @@ export interface Example {
 }
 
 export interface Word {
-  /** g-0001 / b-0001 / r-0001 */
+  /** g-<語> / b-<語> / i-<語> / r-<語> */
   id: string
   /** 見出し語（保線用語はEN規格に沿った英国表記） */
   w: string
@@ -22,6 +27,8 @@ export interface Word {
   ipa?: string
   /** 英音IPA（保線用語） */
   ipaUk?: string
+  /** 品詞で読みが変わる語（live, record など）の、この品詞での米音。単語だけを高品質音声で読むときに指定する */
+  say?: string
   /** 米国表記（保線用語で英国表記と異なる場合） */
   us?: string
   /** JIS等の日本語用語 */
@@ -46,11 +53,67 @@ export const LEVELS: { lv: Level; label: string; cefr: string; toeic: string }[]
   { lv: 6, label: '専門', cefr: 'ESP', toeic: '専門' },
 ]
 
-export const CATEGORIES: { key: Category; label: string; short: string; desc: string }[] = [
-  { key: 'general', label: '一般・日常', short: '一般', desc: 'NGSL（一般英語の約92%をカバーする高頻度語）' },
-  { key: 'business', label: 'ビジネス', short: 'ビジネス', desc: 'BSL/TSL（ビジネス・TOEIC頻出語）' },
-  { key: 'rail', label: '鉄道・保線', short: '保線', desc: 'EN規格・TSI・JISに基づく保線/設備管理用語' },
+/** コース（＝単語のカテゴリ）。オンボーディングで選び、出題・シーン・練習の既定に使う */
+export const CATEGORIES: {
+  key: Category
+  label: string
+  short: string
+  desc: string
+  source: string
+  /** シーン会話のグループ */
+  scene: SceneGroup
+  /** 文字色・背景色（Tailwind のクラス） */
+  text: string
+  soft: string
+  dot: string
+}[] = [
+  {
+    key: 'general',
+    label: '一般会話',
+    short: '一般',
+    desc: '日常の会話・旅行・暮らしで使う高頻度の英語',
+    source: 'NGSL（一般英語の約92%をカバーする高頻度語）',
+    scene: 'daily',
+    text: 'text-gen',
+    soft: 'bg-gen-soft',
+    dot: 'bg-gen',
+  },
+  {
+    key: 'business',
+    label: 'ビジネス',
+    short: 'ビジネス',
+    desc: '会議・メール・電話・交渉などの仕事の英語',
+    source: 'BSL / TSL（ビジネス・TOEIC 頻出語）',
+    scene: 'business',
+    text: 'text-biz',
+    soft: 'bg-biz-soft',
+    dot: 'bg-biz',
+  },
+  {
+    key: 'it',
+    label: 'IT',
+    short: 'IT',
+    desc: 'パソコン・システム開発・運用・セキュリティ・AI の英語',
+    source: 'IT の現場でよく使う用語（本アプリで編集）',
+    scene: 'it',
+    text: 'text-it',
+    soft: 'bg-it-soft',
+    dot: 'bg-it',
+  },
+  {
+    key: 'rail',
+    label: '鉄道（保線）',
+    short: '鉄道',
+    desc: '鉄道保線・設備管理（EAM）の専門用語と現場の英語',
+    source: 'EN 規格・TSI・JIS に基づく保線／設備管理用語',
+    scene: 'rail',
+    text: 'text-rail',
+    soft: 'bg-rail-soft',
+    dot: 'bg-rail',
+  },
 ]
+
+export const catMeta = (c: Category) => CATEGORIES.find((x) => x.key === c)!
 
 export const RAIL_SUBS: Record<string, string> = {
   general: '線路一般・線形',
@@ -78,11 +141,13 @@ export interface Phrase {
   note?: string
 }
 
-export type SceneGroup = 'daily' | 'business' | 'rail'
+export type SceneGroup = 'daily' | 'business' | 'it' | 'rail'
 
 export interface Scene {
   id: string
   group: SceneGroup
+  /** 舞台の土地の発音（最初の話者がこの発音で話す）。省略時は保線＝英国、それ以外＝米国 */
+  accent?: Accent
   title: string
   titleEn: string
   lv: Level

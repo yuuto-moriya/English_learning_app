@@ -1,14 +1,16 @@
-# Tetsu English — 英語学習＆翻訳 PWA
+# Michi — 英語学習と翻訳の PWA
 
 > **English summary**
-> Tetsu English is an English-learning and translation PWA for a Japanese railway track-maintenance (保線) and EAM professional, designed for iPhone (add to home screen).
-> It combines 3,824 words (general NGSL / business BSL+TSL / rail & EAM glossary) with an evidence-based study session (retrieval practice + FSRS spaced repetition + interleaving),
-> listening, dictation, shadowing, Azure pronunciation assessment, 30 role-play dialogues, and an Azure-powered translator that flags rail terms (UK / US / JIS Japanese).
+> Michi (Japanese for "path") is an English-learning and translation PWA for Japanese learners — originally built for a railway track-maintenance (保線) and EAM professional — designed for iPhone (add to home screen).
+> Learners choose and quickly switch modes (everyday / business / IT / rail maintenance) and study 4,070 words (general NGSL / business BSL+TSL / IT / rail & EAM glossary) in an evidence-based session (retrieval practice + FSRS spaced repetition + interleaving).
+> Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, Azure pronunciation assessment and 40 role-play dialogues.
+> Speech uses Azure neural voices in eight English accents (US, UK, Australia, Canada, Ireland, India, New Zealand, South Africa), cached on the device and falling back to the device voice.
+> The translator works as you type or speak, and a simultaneous-interpretation screen streams live transcripts and translations (Azure Speech translation via short-lived tokens), with a face-to-face conversation mode, sound cues and a guided tour for new users.
 > Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Vercel (static site + Vercel Functions).
 > A corgi guide, "Tetsu", and four animal friends are modeled procedurally in Blender.
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
 
-一般・ビジネス・鉄道保線（設備管理/EAM を含む）の英語を、**学習**から**実務での翻訳**までひとつで扱えるアプリです。
+一般・ビジネス・IT・鉄道保線（設備管理/EAM を含む）の英語を、**学習**から**実務での翻訳・同時通訳**までひとつで扱えるアプリです。
 iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーのぬいぐるみ「テツ」で、いろいろな犬種のなかまたち（リスニング・発音のモカ＝トイプードル、ビジネスのスミ＝フレンチブルドッグ、保線のキナコ＝柴犬、学習法の解説のユキ先生＝サモエド、翻訳のショコラ＝ダックスフンド）が各画面を案内します。
 
 ---
@@ -30,17 +32,21 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 ## 主な機能
 
-### 単語（3,824語）
+### 単語（4,070語）
 
-| カテゴリ | 語数 | 出典 | レベル |
+| カテゴリ（モード） | 語数 | 出典 | レベル |
 |---|---|---|---|
-| 一般・日常 | 2,847 | NGSL 1.2（一般英語の約92%をカバーする高頻度語） | A1〜B2 |
+| 一般 | 2,847 | NGSL 1.2（一般英語の約92%をカバーする高頻度語） | A1〜B2 |
 | ビジネス | 555 | BSL 1.2 / TSL 1.2（ビジネス・TOEIC 頻出語） | B1〜C1 |
-| 鉄道・保線 | 422 | EN 規格・TSI・JIS の用語体系から独自に編集（設備管理/EAM・SAP 用語を含む） | B2〜専門 |
+| IT | 248 | IT の現場でよく使う用語を独自に編集（パソコン操作・開発・運用・セキュリティ・データ・AI） | B1〜C1 |
+| 鉄道（保線） | 422 | EN 規格・TSI・JIS の用語体系から独自に編集（設備管理/EAM・SAP 用語を含む） | B2〜専門 |
 
 - すべての語に **和訳・米音 IPA・例文（英日）**。保線用語は **英音 IPA、英国表記／米国表記、JIS 用語、解説、出典タグ** 付き
 - レベルは 6 段階：入門（A1）／初級（A2）／中級（B1）／中上級（B2）／上級（C1）／専門
-- 初回起動時のオンボーディングで、自分に合ったレベルを選択
+- 初回起動時に **学ぶコース（一般会話・ビジネス・IT・鉄道（保線））**、レベル（目安から選ぶか、2分のレベル診断）、学習プラン（いつ・1日の目安 5分〜2時間）を選択
+- **モードの切り替え**：ホームと練習の画面上部の「一般／ビジネス／IT／鉄道」をタップすると、そのモードだけに切り替わります。「すべて」で全コース、「組み合わせる」で好きなコースを足したり外したりできます。いまのモードは塗りつぶし、出題に含まれるコースは色とチェックで示し、下の一文（例：「一般＋鉄道から出題」）でも伝えます。外したコースに復習の時期が来た単語があれば、その数も出します
+- 新出語・復習・練習の例文・シーンの最初のタブは、選んだモードに合わせます（鉄道を選ばなければ保線用語は出ません）。IT・鉄道は専門のコースなので、レベルの設定に関係なく基本の語から出題
+- 単語帳では「苦手（忘れたことがある語）」「保存した単語（★）」で絞り込み、その語だけを集中練習できます
 
 ### 学習セッション（エビデンスに基づく設計）
 
@@ -48,45 +54,56 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - **分散学習（FSRS）**：ts-fsrs で単語ごとに次回の復習日を決定。目標保持率（85/90/95%）を設定可能
 - **段階的な難易度**：記憶の安定度に応じて 選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋め
 - **インターリーブ**：カテゴリや復習／新出語を混ぜて出題
-- 1日の目標・連続学習日数・進捗のシンプルな習慣化（ランキング等の競争要素なし）
+- 終わったら、正答率・覚えた語・まちがえた語のまとめを表示
+- 1日の目安（分）・連続学習日数・12週間の学習記録と、7日先までの復習予定（ランキング等の競争要素なし）
 
 根拠となる研究と実装の対応は [docs/RESEARCH.md](docs/RESEARCH.md) にまとめています（アプリ内の「学習法の根拠」画面と同じ内容）。
 
 ### リスニング・スピーキング
 
-- **リスニングクイズ**、**ディクテーション**（読み上げは端末の音声合成。米音・英音を選択可能）
+- **読み上げ**：Azure のニューラル音声。**発音（国・地域）を8つから選べます**（アメリカ・イギリス・オーストラリア・カナダ・アイルランド・インド・ニュージーランド・南アフリカ。各国2人以上の声）。鉄道は別に設定でき、はじめはイギリス。一度聞いた音声は端末に保存して次からはすぐ・オフラインでも再生。未設定・オフライン時は端末の声（その国の声がなければ近い発音の声）。品詞で読みが変わる語（live, record など）は、その品詞の発音で読みます
+- **リスニングクイズ**、**ディクテーション**（毎回ちがう声で聞く・いろいろな国の英語を混ぜて聞くことも可能）
+- **聞き分け**：L/R・B/V・S/TH など日本語話者が苦手な8種類の音の対立を、最小対語と複数の声で（高変動音声訓練：HVPT）
+- **瞬間英作文**：学習した単語の例文を、日本語から英語ですぐ言う。言えなかった文はもう一度
+- **耳で復習**：「和訳 → 考える間 → 英語 → 例文」を流す、画面を見ない復習（通勤中など）
 - **シャドーイング**：「聞く → つぶやく → 意味確認 → 同時読み → シャドーイング」の 5 ステップコーチ
 - **発音チェック**：Azure AI Speech の発音評価で、文・単語・音素ごとのスコアと誤りを表示
   - Azure 未設定時は、Safari のタブでは端末の音声認識による簡易判定、ホーム画面アプリ（iOS では SpeechRecognition 非対応）では録音して聞き比べる自己評価に切り替え
 
-### シーン別会話（30本）
+### シーン別会話（40本）
 
-- 日常・ビジネス・保線の各 10 本。「この場面のゴール」→ キーフレーズ → 聞いて理解 → ロールプレイ
-- 保線では、作業前の安全ミーティング、指令への線路閉鎖の連絡、軌道検測データのレビュー、EN 規格と JIS の違いの議論、EAM 導入ワークショップなど実務に直結する場面
+- 日常 10・ビジネス 10・IT 8・鉄道 12。「この場面のゴール」→ キーフレーズ → 聞いて理解 → ロールプレイ
+- 日常・ビジネスは一般の場面（自己紹介・ホテル・会議・交渉・苦情対応など）。IT では、ヘルプデスクへの問い合わせ、朝会、コードレビュー、障害報告、要件の聞き取り、技術をやさしく説明する、不審なメールの報告、クラウド移行の打ち合わせ。鉄道では、作業前の安全ミーティング、指令への線路閉鎖の連絡、軌道検測データのレビュー、EN 規格と JIS の違いの議論、EAM 導入ワークショップ、夜間工事の苦情対応など実務に直結する場面
+- 話者ごとに声を変えて読み上げます（1人目は設定の発音、相手役は米・英のもう一方）。英国が舞台の場面は英国の発音
 
-### 翻訳
+### 翻訳・同時通訳
 
-- Azure AI Translator による日英・英日翻訳（音声入力対応）
+- Azure AI Translator による日英・英日翻訳。**入力しながら翻訳**（手を止めると自動で訳す。1,000文字まで）
+- **音声入力**：話しているそばから入力欄に文字が出ます（Azure Speech のリアルタイム認識。なければ Safari・Chrome の音声認識、それもなければ録音して文字起こし）。止めると訳を読み上げます
+- **同時通訳**（翻訳 → 同時通訳）：話している途中から文字起こしと訳が流れます（Azure の音声翻訳）。日本語→英語・英語→日本語に加え、日本語と英語のボタンを交互に押す**会話モード**（話し終えると訳を読み上げ）。マイクの開始・終了は効果音でお知らせ。画面は消えません
+- 訳の読み上げ：英語は設定の発音（国・地域）、日本語も読み上げ
 - **保線用語の自動検出**：原文・訳文に含まれる専門用語を、英国表記／米国表記／JIS 日本語で並べて表示（オフラインで動作）
 - 規格英語の **shall / should / may** の使い分けのヒント
 
 ### その他
 
+- **使い方ガイド**：はじめての人に、モードの切り替え・学習・単語帳・練習・シーン・翻訳と同時通訳・設定を順番に案内（暗くして説明する場所だけを照らすツアー）。設定の「使い方ガイド」と翻訳画面の「？」からいつでも見直せます
+- **効果音**：正解・不正解・回の終わり・録音の開始と終了（音声ファイルを使わず合成。設定でオフ可）
 - 学習データはすべて **端末内（IndexedDB）** に保存。設定画面から JSON で書き出し・読み込み（機種変更時のバックアップ）
 - ダークモード、オフライン対応（Service Worker）
-- Azure を設定しなくても、単語学習・リスニング・ディクテーション・シャドーイング・シーン会話・保線用語チェックは利用可能
+- Azure を設定しなくても、単語学習・リスニング・ディクテーション・シャドーイング・聞き分け・瞬間英作文・耳で復習・シーン会話・保線用語チェックは利用可能（読み上げは端末の音声）
 
 ## 技術スタック
 
 | 分類 | 使用技術 |
 |---|---|
 | フロントエンド | React 19, TypeScript 7, Vite 8, React Router 8 |
-| スタイル・動き | Tailwind CSS v4（アニメーションは CSS のみ）, lucide-react |
+| スタイル・動き | Tailwind CSS v4（アニメーションは CSS のみ、View Transitions）, lucide-react, Newsreader（英語の書体。同梱） |
 | PWA | vite-plugin-pwa（Workbox, 更新はアプリ内の通知から） |
 | データ保存 | Dexie（IndexedDB）, zustand（設定） |
 | 復習スケジューラ | ts-fsrs（FSRS） |
 | ホスティング・API | Vercel（静的配信 + Vercel Functions `/api`） |
-| 外部 API | Azure AI Translator, Azure AI Speech（発音評価・音声認識） |
+| 外部 API | Azure AI Translator, Azure AI Speech（発音評価・音声認識・ニューラル音声の読み上げ・リアルタイムの音声認識と音声翻訳。ブラウザ側は Speech SDK を同時通訳のときだけ読み込む） |
 | テスト | Vitest, fake-indexeddb, Playwright（スクリーンショット・E2E スクリプト） |
 | データ生成 | Python 3（`scripts/build_vocab.py`） |
 | キャラクター | Blender（bpy）+ Pillow |
@@ -99,7 +116,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 ├── .github/workflows/ci.yml   # CI（Node 22: npm ci → typecheck → test → build）
 ├── data-src/                  # 単語データの元ファイル（ここを編集する）
 │   ├── lists/                 #   NGSL / BSL / TSL の語彙リスト（CSV, CC BY-SA 4.0）
-│   ├── vocab/                 #   一般・ビジネス語の和訳と例文（general-1..4.txt, business-3..4.txt）
+│   ├── vocab/                 #   一般・ビジネス・IT 語の和訳と例文（general-1..4.txt, business-3..4.txt, it-3..5.txt）
 │   ├── rail/                  #   保線・EAM 用語集（11 サブカテゴリ）
 │   └── ipa/                   #   （任意）米音 IPA 辞書の置き場所
 ├── docs/                      # ドキュメント
@@ -108,6 +125,8 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   ├── translate.ts           #   POST /api/translate（Azure Translator）
 │   ├── pronunciation.ts       #   POST /api/pronunciation（Azure Speech 発音評価）
 │   ├── stt.ts                 #   POST /api/stt（音声入力の文字起こし）
+│   ├── tts.ts                 #   GET  /api/tts（ニューラル音声の読み上げ。MP3 を長期キャッシュ）
+│   ├── speech-token.ts        #   GET  /api/speech-token（同時通訳・リアルタイム音声入力用の10分の一時トークン）
 │   └── tsconfig.json          #   API 用の型チェック設定
 ├── public/
 │   ├── guide/                 # キャラクターの表情・ポーズ画像（WebP）
@@ -123,9 +142,10 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   └── env.ts                 #   環境変数の読み込み
 ├── src/
 │   ├── components/            # 共通 UI（ガイド、発音チェック、単語情報など）
-│   ├── data/                  # 単語 JSON（生成物）、シーン会話、学習法の根拠
+│   ├── assets/fonts/          # Newsreader（英語の書体、OFL）
+│   ├── data/                  # 単語 JSON（生成物）、シーン会話、聞き分けの最小対語、学習法の根拠
 │   ├── lib/                   # 学習セッション、FSRS、DB、用語検出、音声、設定
-│   ├── pages/                 # 画面（ホーム、学習、単語帳、練習、シーン、翻訳、設定…）
+│   ├── pages/                 # 画面（はじめての設定、ホーム、学習、単語帳、練習、聞き分け、瞬間英作文、耳で復習、学習記録、シーン、翻訳、同時通訳、設定…）
 │   └── styles/
 ├── tests/                     # Vitest（データ整合性、学習ロジック、FSRS、用語検出、API）
 ├── .env.example               # 環境変数の例（ローカルは .env.local にコピー）
@@ -234,14 +254,14 @@ npx vercel --prod   # 本番へ
 
 ## Azure（翻訳・発音評価）の設定
 
-翻訳・発音評価・音声入力には Azure AI Translator と Azure AI Speech（どちらも無料の F0 プランあり）を使います。
+翻訳・発音評価・音声入力・高品質な読み上げには Azure AI Translator と Azure AI Speech（どちらも無料の F0 プランあり）を使います。読み上げは Speech と同じキーで動きます。
 キーは Vercel の環境変数（サーバー側）にだけ保存され、端末には送られません。
 
 | 環境変数 | 必須 | 内容 |
 |---|---|---|
 | `AZURE_TRANSLATOR_KEY` / `AZURE_TRANSLATOR_REGION` | 翻訳に必須 | Translator リソースのキーとリージョン（例: `japaneast`） |
 | `AZURE_TRANSLATOR_ENDPOINT` | 任意 | 既定 `https://api.cognitive.microsofttranslator.com` |
-| `AZURE_SPEECH_KEY` / `AZURE_SPEECH_REGION` | 音声に必須 | Speech リソースのキーとリージョン |
+| `AZURE_SPEECH_KEY` / `AZURE_SPEECH_REGION` | 音声に必須 | Speech リソースのキーとリージョン（同時通訳・リアルタイムの音声入力にはリージョンが必要） |
 | `AZURE_SPEECH_ENDPOINT` | 任意 | 例 `https://<resource>.cognitiveservices.azure.com` |
 | `APP_ACCESS_TOKEN` | 任意（推奨） | 設定すると `/api/*` に `X-App-Token` が必要。アプリの設定画面で入力 |
 
@@ -256,9 +276,9 @@ npx vercel --prod   # 本番へ
 
 使い方のポイント:
 
-- 初回起動でレベルを選ぶと学習を始められます。単語データはアプリに同梱されているので、オフラインでも学習できます
+- 初回起動でコース・レベル・学習プランを選ぶと学習を始められます。単語データはアプリに同梱されているので、オフラインでも学習できます
 - 発音チェック・音声入力ではマイクの使用を許可してください
-- より自然な読み上げには、iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で高品質（拡張・プレミアム）音声をダウンロードします
+- Azure Speech を設定していれば、読み上げは自動でニューラル音声になります。端末の音声を使うとき（未設定・オフライン）は、iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で高品質（拡張・プレミアム）音声をダウンロードすると自然になります
 - 学習データはその端末内にだけ保存されます。**Safari のタブとホーム画面のアプリでは保存先が別** なので、普段使う方（ホーム画面）で学習してください
 - 機種変更や念のためのバックアップは、**設定 → データ → 書き出し**（JSON）→ 新しい端末で **読み込み**
 - `APP_ACCESS_TOKEN` を設定している場合は、ホーム画面のアプリの設定画面でトークンを入力します
@@ -267,13 +287,14 @@ npx vercel --prod   # 本番へ
 
 ```
 data-src/lists/*.csv          NGSL / BSL / TSL（見出し語・頻度順位、CC BY-SA 4.0）
-data-src/vocab/*.txt          一般・ビジネス語の和訳と例文
+data-src/vocab/*.txt          一般・ビジネス・IT 語の和訳と例文
 data-src/rail/*.txt           保線・EAM 用語集
 scripts/.cache/en_US.txt      米音 IPA 辞書（ipa-dict, MIT）
         │
         ▼  npm run data:build（scripts/build_vocab.py）
 src/data/vocab/general.json   一般 2,847語
 src/data/vocab/business.json  ビジネス 555語
+src/data/vocab/it.json        IT 248語
 src/data/vocab/rail.json      保線 422語
 ```
 
@@ -292,6 +313,10 @@ npm run data:build
 
 `scripts/.cache/en_US.txt` がない場合は `data-src/ipa/en_US.tsv`（同じタブ区切り形式）を読み込みます。
 
+辞書の最初の発音が品詞と合わない語（live の動詞 /lɪv/、record の名詞 /ˈrɛkɚd/ など）や、強調形・旧来形の発音（which の /hw/ など）は、
+`scripts/build_vocab.py` の `OVERRIDE_POS`（品詞ごと）と `OVERRIDE_US` で直しています。品詞で読みが変わる語には `say`（その品詞の発音）を付け、
+単語だけをニューラル音声で読むときに発音を指定します。
+
 ### 一般語・ビジネス語を追加・修正する
 
 `data-src/vocab/*.txt` に 1 行 1 語、5 列のパイプ区切りで書きます（`#` で始まる行はコメント）。
@@ -306,6 +331,19 @@ reservation|n|予約|I have a *reservation* under the name Moriya.|守屋の名�
   （`business-4.txt` のうち BSL の順位が 300 より低い語はレベル 5 に）
 - 一般語とビジネス語で重複した語は警告を出してスキップされます。NGSL/BSL/TSL にない語の頻度順位は 9999 になります
 - ID は見出し語から作られます（`g-<語>` / `b-<語>`）。**見出し語を変えると、その語の学習履歴は引き継がれません**
+
+### IT 用語を追加・修正する
+
+`data-src/vocab/it-3.txt` / `it-4.txt` / `it-5.txt`（数字がレベル）に、一般語と同じ 5 列で書きます。
+辞書にない語（`malware` など）は 6 列目に米音 IPA を書きます。`API`・`VPN` のような略語は、1文字ずつ読む IPA を自動で付けます。
+
+```
+lemma|品詞|和訳|例文(英)|例文(和)[|米音IPA]
+phishing|n|フィッシング（偽のメールなどで情報を盗む詐欺）|Do not click links in *phishing* emails.|フィッシングメールのリンクはクリックしないでください。|ˈfɪʃɪŋ
+```
+
+- 一般・ビジネス・鉄道と同じ見出し語は入れられません（ビルドで警告してスキップ）。ID は `i-<語>`
+- 用語の選定・和訳・例文は本プロジェクトのオリジナル（[DATA_LICENSE.md](DATA_LICENSE.md)）
 
 ### 保線・EAM 用語を追加・修正する
 
@@ -355,6 +393,7 @@ python scripts/blender/postprocess.py render-out
 | ソースコード | [MIT](LICENSE)（© 2026 yuuto-moriya） |
 | NGSL / BSL / TSL と、それに基づく一般・ビジネス語データ | CC BY-SA 4.0（Browne, Culligan & Phillips, <https://www.newgeneralservicelist.com/>） |
 | 米音 IPA | MIT（open-dict-data/ipa-dict、cmudict-ipa 由来） |
+| 英語の書体 Newsreader | SIL Open Font License 1.1（Production Type） |
 | 保線・EAM 用語集 | 本プロジェクトのオリジナル編集物（MIT）。規格本文は転載していません |
 | キャラクターの画像・アイコン | 本プロジェクトのオリジナル（MIT） |
 

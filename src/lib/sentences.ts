@@ -1,5 +1,7 @@
-import { SCENES } from '@/data/scenes'
-import type { Category } from './types'
+import { SCENES, sceneAccent } from '@/data/scenes'
+import { catMeta, type Category } from './types'
+import { accentFor } from './settings'
+import type { Accent } from './accents'
 import { loadCategory, plain, shuffle } from './vocab'
 
 export type Source = Category | 'scene'
@@ -9,7 +11,7 @@ export interface Sentence {
   ja: string
   lv: number
   src: Source
-  accent: 'en-US' | 'en-GB'
+  accent: Accent
   wordId?: string
 }
 
@@ -20,11 +22,14 @@ export async function sentencePool(sources: Source[], maxLv: number, minLv = 1):
   const out: Sentence[] = []
   for (const src of sources) {
     if (src === 'scene') {
+      // 一緒に選んだコースに合う場面だけ（シーン会話だけを選んだときはすべて）
+      const groups = new Set(sources.flatMap((x) => (x === 'scene' ? [] : [catMeta(x).scene])))
       for (const sc of SCENES) {
         if (sc.lv > maxLv || sc.lv < minLv) continue
+        if (groups.size && !groups.has(sc.group)) continue
         for (const l of sc.lines) {
           if (wc(l.en) < 4 || wc(l.en) > 20) continue
-          out.push({ en: l.en, ja: l.ja, lv: sc.lv, src, accent: sc.group === 'rail' ? 'en-GB' : 'en-US' })
+          out.push({ en: l.en, ja: l.ja, lv: sc.lv, src, accent: sceneAccent(sc) })
         }
       }
       continue
@@ -35,7 +40,7 @@ export async function sentencePool(sources: Source[], maxLv: number, minLv = 1):
       for (const e of w.ex) {
         const p = plain(e.en)
         if (wc(p) < 4 || wc(p) > 18) continue
-        out.push({ en: p, ja: e.ja, lv: w.lv, src, accent: src === 'rail' ? 'en-GB' : 'en-US', wordId: w.id })
+        out.push({ en: p, ja: e.ja, lv: w.lv, src, accent: accentFor(src), wordId: w.id })
       }
     }
   }

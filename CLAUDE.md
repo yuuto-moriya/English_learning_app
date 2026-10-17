@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-英語学習・翻訳の PWA「Tetsu English」。主な利用者は iPhone で使う、鉄道保線・設備管理（EAM）に関わる日本人。
+英語学習・翻訳の PWA「Michi（ミチ）」（旧名 Tetsu English）。主な利用者は iPhone で使う日本人の英語学習者。一般・ビジネス・IT が中心で、鉄道保線・設備管理（EAM）は付帯のコース。
 
 ## 最初に読むもの
 
@@ -35,6 +35,7 @@ Playwright の Chromium は `CHROMIUM_PATH` で指定できる。
 
 - 変更後は `npm run build` と `npm test` を通し、画面に関わる変更は E2E とスクリーンショット（ライト/ダーク）で確認する
 - 表示文言は日本語。E2E が使う文言を変えたら `scripts/e2e-flow.mjs` も直す
+- コミットメッセージ・PR のタイトルと本文は日本語で書く（`feat:` `fix:` などの接頭辞はそのまま）
 - iPhone 幅（390px）、safe-area、ダークモード、standalone 表示を壊さない。入力欄は 16px 以上
 - API キー・トークンをコミットしない
 - ブランチ運用（詳細は README の「ブランチ運用」）:

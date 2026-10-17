@@ -1,9 +1,10 @@
 # 学習法のエビデンスと実装
 
-Tetsu English の学習機能は、認知心理学・第二言語習得研究で効果が確認されている学習法をもとに設計しています。
+Michi の学習機能は、認知心理学・第二言語習得研究で効果が確認されている学習法をもとに設計しています。
 このドキュメントは、アプリ内の「学習法の根拠」画面（`/research`）と同じ内容を、実装箇所とあわせてまとめたものです。
 
 > 内容の正本は [`src/data/research.ts`](../src/data/research.ts) です。文献を追加・修正するときは、まず `research.ts` を更新し、このファイルにも反映してください（アプリの画面は `research.ts` から表示されます）。
+> 13〜19 は 2026-10 の改修（コース選択・聞き分け・瞬間英作文・耳で復習・レベル診断・学習プラン・国ごとの発音）で追加した項目です。
 
 ## 一覧
 
@@ -13,14 +14,21 @@ Tetsu English の学習機能は、認知心理学・第二言語習得研究で
 | 2 | [記憶モデルに基づく復習スケジューラ（FSRS）](#2-fsrs) | ts-fsrs、目標保持率85/90/95%、評価ボタンに次回間隔を表示 |
 | 3 | [検索練習（テスト効果）](#3-retrieval) | 必ず「答える→確認」。間違えた語は数問後に再テスト |
 | 4 | [望ましい困難（段階的な難易度）](#4-difficulty) | 選択 → 音声だけ → 自己評価 → スペル・穴埋めへ段階的に |
-| 5 | [インターリーブ（混ぜて練習）](#5-interleave) | カテゴリ・復習/新出語を混ぜて出題 |
+| 5 | [インターリーブ（混ぜて練習）](#5-interleave) | 選んだコースの単語・復習/新出語・出題形式を混ぜて出題 |
 | 6 | [高頻度語から学ぶ（語彙リスト）](#6-wordlists) | NGSL / BSL / TSL の頻度順＋規格ベースの保線用語 |
 | 7 | [産出効果・マルチモーダル学習](#7-production) | 全語に発音記号と米英の音声、新出語で例文の音読 |
 | 8 | [シャドーイング](#8-shadowing) | 5ステップのシャドーイングコーチ |
 | 9 | [音声認識による発音フィードバック](#9-asr) | Azure発音評価（文・単語・音素スコア） |
-| 10 | [タスク中心の言語指導（TBLT）](#10-tblt) | 場面ゴール付きのシーン会話30本とロールプレイ |
+| 10 | [タスク中心の言語指導（TBLT）](#10-tblt) | 場面ゴール付きのシーン会話40本とロールプレイ |
 | 11 | [学習を支えるキャラクター（教育エージェント）](#11-agent) | コーギー「テツ」が努力・プロセスをほめる |
-| 12 | [習慣化とゲーミフィケーション](#12-habit) | 1日の目標・連続日数・進捗のみ（競争要素なし） |
+| 12 | [習慣化とゲーミフィケーション](#12-habit) | 1日の目安・連続日数・12週間の記録のみ（競争要素なし） |
+| 13 | [聞き分けトレーニング（高変動音声訓練：HVPT）](#13-hvpt) | 「聞き分け」：8種類の音の対立を、最小対語と複数の声で |
+| 14 | [アウトプット（産出）の練習](#14-output) | 「瞬間英作文」：日本語を見て英語ですぐ言う |
+| 15 | [連続再学習（正解できるまで → 間隔を空けてまた）](#15-relearning) | 間違えた語・文を同じ回で再出題、苦手な単語の集中練習 |
+| 16 | [音だけで思い出す復習](#16-audio) | 「耳で復習」：和訳 → 考える間 → 英語 → 例文 |
+| 17 | [レベルに合った語から学ぶ（レベル診断）](#17-placement) | 最初の設定で2分のレベル診断 |
+| 18 | [「いつ・どこで」を決める（実行意図）](#18-intention) | 学習する時間帯と1日の分数を決めてホームに表示 |
+| 19 | [いろいろな話し方に慣れる（多様なアクセント）](#19-accents) | 8つの国・地域の発音から選べる。リスニングで国の発音を混ぜる |
 
 <a id="1-spacing"></a>
 ## 1. 分散学習（間隔を空けた復習）
@@ -67,7 +75,7 @@ ts-fsrsを採用。目標保持率（85/90/95%）を設定でき、各評価ボ�
 
 **アプリでの実装**
 
-単語は必ず「答える→確認」の順。間違えた語は数問後にもう一度出題し、セッション内で繰り返し想起させます。
+単語は必ず「答える→確認」の順。間違えた語は数問後にもう一度出題し、セッション内で繰り返し想起させます。「耳で復習」も、答えの前に考える間を置いて想起を促します。
 
 実装箇所: `src/lib/session.ts`（`reinsert`：間違えた語を数問後に再出題） / `src/pages/Study.tsx`
 
@@ -105,7 +113,7 @@ ts-fsrsを採用。目標保持率（85/90/95%）を設定でき、各評価ボ�
 
 **アプリでの実装**
 
-一般・ビジネス・保線の単語、復習と新出語を交互に混ぜて出題します。
+選んだコース（一般会話・ビジネス・保線）の単語と、復習・新出語、選択・リスニング・スペルなどの出題形式を混ぜて出題します。
 
 実装箇所: `src/lib/srs.ts`（`interleave`） / `src/lib/session.ts`
 
@@ -176,9 +184,9 @@ ts-fsrsを採用。目標保持率（85/90/95%）を設定でき、各評価ボ�
 
 **アプリでの実装**
 
-Azure Speechの発音評価で、文・単語・音素ごとにスコアと誤りを表示。苦手な単語をタップして聞き直せます。
+Azure Speechの発音評価で、文・単語・音ごと（米音はIPA表記）にスコアと誤りを表示。苦手な単語をタップして聞き直せます。
 
-実装箇所: `functions/api/pronunciation.ts` / `src/components/SpeakCheck.tsx` / `src/lib/localSpeech.ts`（端末内認識のフォールバック）
+実装箇所: `api/pronunciation.ts` → `server/handlers.ts` / `src/components/SpeakCheck.tsx` / `src/lib/localSpeech.ts`（端末内認識のフォールバック）
 
 **文献**
 
@@ -193,7 +201,7 @@ Azure Speechの発音評価で、文・単語・音素ごとにスコアと誤�
 
 **アプリでの実装**
 
-シーン会話は「この場面のゴール」を設定し、キーフレーズ → 聞いて理解 → ロールプレイの流れで練習します。保線現場・規格の議論など実務に直結する場面を用意しました。
+シーン会話は「この場面のゴール」を設定し、キーフレーズ → 聞いて理解 → ロールプレイの流れで練習します。IT の障害報告やコードレビュー、保線現場・規格の議論など、実務に直結する場面を用意しました。
 
 実装箇所: `src/data/scenes.ts` / `src/pages/SceneDetail.tsx`
 
@@ -228,20 +236,147 @@ Azure Speechの発音評価で、文・単語・音素ごとにスコアと誤�
 
 **アプリでの実装**
 
-1日の目標・連続学習日数・進捗のみのシンプルな仕組みにし、ランキング等の競争要素は入れていません。
+1日の目安（分）・連続学習日数・週の記録・12週間の学習記録だけのシンプルな仕組みにし、ランキングなどの競争要素は入れていません。
 
-実装箇所: `src/pages/Home.tsx` / `src/lib/db.ts`
+実装箇所: `src/pages/Home.tsx` / `src/pages/Stats.tsx` / `src/lib/db.ts`
 
 **文献**
 
 - Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., & Wardle, J. (2010). How are habits formed: Modelling habit formation in the real world. European Journal of Social Psychology, 40(6), 998–1009.
 - Sailer, M., & Homner, L. (2020). The gamification of learning: A meta-analysis. Educational Psychology Review, 32(1), 77–112. <https://doi.org/10.1007/s10648-019-09498-w>
+
+<a id="13-hvpt"></a>
+## 13. 聞き分けトレーニング（高変動音声訓練：HVPT）
+
+**研究で分かっていること**
+
+日本語話者が苦手な L と R などの対立を、多くの話者の声・多くの語で聞き分ける練習（HVPT）は、初めて聞く声や語にも効果が広がる。79研究のメタ分析でも、知覚への中〜大の効果と、効果の持続が報告された。単語学習でも、複数の話者の声で聞いた方が、聞いて語を思い出す成績が高かった。
+
+**アプリでの実装**
+
+「聞き分け」で、L/R・B/V・S/TH など8種類の音の対立を、最小対語（light / right など）と複数の声で練習します。答えるとすぐ正誤が分かり、同じ声で聞き比べられます。リスニング問題も毎回ちがう声で再生できます（設定で切り替え）。
+
+実装箇所: `src/data/minimalPairs.ts` / `src/pages/Sounds.tsx` / `src/lib/tts.ts`（`voice: 'random'`）
+
+**文献**
+
+- Logan, J. S., Lively, S. E., & Pisoni, D. B. (1991). Training Japanese listeners to identify English /r/ and /l/: A first report. The Journal of the Acoustical Society of America, 89(2), 874–886. <https://doi.org/10.1121/1.1894649>
+- Thomson, R. I. (2018). High variability [pronunciation] training (HVPT): A proven technique about which every language teacher and learner ought to know. Journal of Second Language Pronunciation, 4(2), 208–231.
+- Uchihara, T., Karas, M., & Thomson, R. I. (2025). High variability phonetic training (HVPT): A meta-analysis of L2 perceptual training studies. Studies in Second Language Acquisition. <https://doi.org/10.1017/S0272263125100879>
+- Barcroft, J., & Sommers, M. S. (2005). Effects of acoustic variability on second language vocabulary learning. Studies in Second Language Acquisition, 27(3), 387–414.
+
+<a id="14-output"></a>
+## 14. アウトプット（産出）の練習
+
+**研究で分かっていること**
+
+言いたいことを自分で英語にしようとすると、知っていることと言えないことの差に気づき、文法や語の使い方に注意が向く（アウトプット仮説）。語彙も、意味が分かる練習（受容）だけでなく、自分で言う・書く練習（産出）をした方が、産出の力が伸びる。
+
+**アプリでの実装**
+
+「瞬間英作文」で、学習した単語の例文を日本語から英語にすぐ言う練習をします。言えなかった文はその回の最後にもう一度出し、お手本の音声と発音チェックで確かめられます。
+
+実装箇所: `src/pages/Compose.tsx` / `src/lib/sentences.ts`
+
+**文献**
+
+- Swain, M. (1985). Communicative competence: Some roles of comprehensible input and comprehensible output in its development. In S. Gass & C. Madden (Eds.), Input in second language acquisition (pp. 235–253). Newbury House.
+- Webb, S. (2009). The effects of receptive and productive learning of word pairs on vocabulary knowledge. RELC Journal, 40(3), 360–376.
+
+<a id="15-relearning"></a>
+## 15. 連続再学習（正解できるまで → 間隔を空けてまた）
+
+**研究で分かっていること**
+
+1回の学習の中で正しく思い出せるまで練習し、それを間隔を空けた別の日にも繰り返す方法（successive relearning）は、検索練習と分散学習の両方の利点を持ち、長期の保持に強い効果がある。
+
+**アプリでの実装**
+
+単語学習では、間違えた語を同じ回の中でもう一度出題し、次の復習日は FSRS が決めます。瞬間英作文でも、言えなかった文を最後にもう一度出します。苦手な単語（忘れたことがある語）は単語帳から集中練習できます。
+
+実装箇所: `src/lib/session.ts`（`reinsert`, `buildDrill`） / `src/pages/Compose.tsx`
+
+**文献**
+
+- Rawson, K. A., & Dunlosky, J. (2022). Successive relearning: An underexplored but potent technique for obtaining and maintaining knowledge. Current Directions in Psychological Science, 31(4), 362–368. <https://doi.org/10.1177/09637214221100484>
+
+<a id="16-audio"></a>
+## 16. 音だけで思い出す復習
+
+**研究で分かっていること**
+
+答えを見る前に思い出そうとすること（検索練習）が記憶を強める。音声だけの語学教材では、答えの前に考える間を置き、だんだん間隔を広げて思い出させる方法（段階的な間隔での想起）が古くから使われている。
+
+**アプリでの実装**
+
+「耳で復習」で、忘れかけている単語から順に「和訳 → 考える間 → 英語 → 例文」と流します。画面を見なくても進み、再生中は画面が消えないようにします。
+
+実装箇所: `src/pages/AudioReview.tsx`
+
+**文献**
+
+- Pimsleur, P. (1967). A memory schedule. The Modern Language Journal, 51(2), 73–75. <https://doi.org/10.1111/j.1540-4781.1967.tb06700.x>
+- Karpicke, J. D., & Roediger, H. L. (2008). The critical importance of retrieval for learning. Science, 319(5865), 966–968.
+
+<a id="17-placement"></a>
+## 17. レベルに合った語から学ぶ（レベル診断）
+
+**研究で分かっていること**
+
+語彙の力は、頻度の段階ごとに知っている語の割合を調べることで見積もれる（語彙サイズテスト）。すでに知っている語や難しすぎる語に時間を使わず、今のレベルの次の語から学ぶのが効率的。
+
+**アプリでの実装**
+
+最初の設定で、NGSL の各レベルから意味を問う短い診断を行い、身についているレベルの次から新出語を出します。保線用語は専門の基本語から順に出題します。
+
+実装箇所: `src/pages/Welcome.tsx`（`LevelCheck`）
+
+**文献**
+
+- Nation, P., & Beglar, D. (2007). A vocabulary size test. The Language Teacher, 31(7), 9–13.
+
+<a id="18-intention"></a>
+## 18. 「いつ・どこで」を決める（実行意図）
+
+**研究で分かっていること**
+
+「〇〇のときに△△をする」と状況と行動を結びつけて決めておく（実行意図）と、目標の達成率が上がる。94の研究のメタ分析で中〜大の効果（d = 0.65）が報告された。
+
+**アプリでの実装**
+
+最初の設定で、学習する時間帯（朝の通勤・昼休み・帰り道・寝る前など）と1日の目安の分数を決め、ホームに毎日表示します。
+
+実装箇所: `src/pages/Welcome.tsx` / `src/lib/settings.ts`（`planWhen`, `dailyMinutes`） / `src/pages/Home.tsx`
+
+**文献**
+
+- Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. Advances in Experimental Social Psychology, 38, 69–119. <https://doi.org/10.1016/S0065-2601(06)38002-1>
+
+<a id="19-accents"></a>
+## 19. いろいろな話し方に慣れる（多様なアクセント）
+
+**研究で分かっていること**
+
+英語を母語とする聞き手を対象とした研究で、訛りのある英語を複数の話者で聞いておくと、初めて聞く話者の同じ訛りも聞き取りやすくなった。いくつもの異なる訛りを聞いた場合は、聞いたことのない訛りにも慣れが広がった。英語は国や地域で発音が大きく違うため、学習者もさまざまな話し方に触れておくことが、実際の会話での聞き取りに役立つと考えられる。
+
+**アプリでの実装**
+
+読み上げの発音を、アメリカ・イギリス・オーストラリア・カナダ・アイルランド・インド・ニュージーランド・南アフリカから選べます（設定 → 音声）。リスニングで「いろいろな国の英語で聞く」をオンにすると、1問ごとに国の発音を変えて出題します。
+
+実装箇所: `src/lib/accents.ts` / `src/components/AccentPicker.tsx` / `src/pages/Listening.tsx`（`mixAccents`）
+
+**文献**
+
+- Bradlow, A. R., & Bent, T. (2008). Perceptual adaptation to non-native speech. Cognition, 106(2), 707–729.
+- Baese-Berk, M. M., Bradlow, A. R., & Wright, B. A. (2013). Accent-independent adaptation to foreign accented speech. The Journal of the Acoustical Society of America, 133(3), EL174–EL180.
+
 ---
 
 ## 設計上の方針
 
 - **研究で効果が確認されたことだけを機能にする。** 根拠の弱い演出（ランキング、過度な報酬など）は入れていません。
 - **1回の学習セッションに複数の学習法を重ねる。** 学習セッションは「分散学習（FSRS）＋検索練習＋段階的な難易度＋インターリーブ＋セッション内再テスト」を同時に満たすように組み立てています（`src/lib/session.ts` の冒頭コメント参照）。
+- **学ぶ内容は利用者が選ぶ。** 最初に一般会話・ビジネス・保線からコースを選び、新出語・練習の例文・シーンの既定をそのコースに合わせます（関係のない語に時間を使わない）。
 - **実務につながる場面を優先する。** 保線現場・規格の議論・設備管理（EAM）など、利用者が実際に英語を使う場面のタスクを用意しています（TBLT）。
 
 ## 関連ドキュメント

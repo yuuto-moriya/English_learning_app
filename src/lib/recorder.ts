@@ -1,3 +1,4 @@
+import { beginCapture } from './audioSession'
 /**
  * マイク録音 → 16kHz/モノラル/16bit PCM の WAV を作る。
  * Azure Speech の短い音声用REST APIはこの形式を受け付ける。
@@ -39,6 +40,7 @@ export class WavRecorder {
   private lastLevel = 0
   private timer?: ReturnType<typeof setTimeout>
   private cancelled = false
+  private endCapture?: () => void
   onAutoStop?: () => void
 
   /**
@@ -50,6 +52,7 @@ export class WavRecorder {
   async start() {
     this.chunks = []
     this.cancelled = false
+    this.endCapture = beginCapture()
     try {
       const ctx = new AudioContext()
       this.ctx = ctx
@@ -109,6 +112,8 @@ export class WavRecorder {
   }
 
   private release() {
+    this.endCapture?.()
+    this.endCapture = undefined
     clearTimeout(this.timer)
     this.timer = undefined
     if (this.node) this.node.onaudioprocess = null

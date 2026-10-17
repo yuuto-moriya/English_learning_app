@@ -1,4 +1,4 @@
-// 主要フローの動作確認（オンボーディング → 学習セッション → 単語帳 → シーン → 翻訳の用語検出）
+// 主要フローの動作確認（はじめての設定 → 使い方ツアー → 学習セッション → 単語帳 → 練習 → シーン → 翻訳・同時通訳 → モード切り替え → 設定）
 // 使い方: npx vite preview --port 4173 & CHROMIUM_PATH=... node scripts/e2e-flow.mjs <出力dir>
 import { chromium, devices } from '@playwright/test'
 import { mkdirSync } from 'node:fs'
@@ -17,17 +17,42 @@ const check = (cond, msg) => {
   console.log('✓', msg)
 }
 
+// はじめての起動：コース → レベル → 学習プラン
 await page.goto(BASE + '/')
+await page.getByText('何の英語を学びますか？').waitFor()
+check(page.url().endsWith('/welcome'), '初回はコース選択の画面へ')
+await page.getByRole('button', { name: /保線/ }).click()
+await page.getByRole('button', { name: '次へ' }).click()
 await page.getByRole('button', { name: /中級/ }).click()
-check(!(await page.getByText('はじめまして').isVisible()), 'オンボーディングでレベル選択')
+await page.getByRole('button', { name: '次へ' }).click()
+await page.getByRole('button', { name: '帰り道' }).click()
+await page.getByRole('button', { name: 'はじめる' }).click()
 
-await page.getByRole('button', { name: '学習をはじめる' }).click()
+// 使い方ツアー：最初の1回だけ表示。最後まで進める
+await page.getByText('使い方を30秒でご案内します').waitFor()
+check(true, '初回は使い方ツアーを表示')
+let steps = 1
+while (await page.getByRole('button', { name: '次へ' }).isVisible().catch(() => false)) {
+  await page.getByRole('button', { name: '次へ' }).click()
+  steps++
+  await page.waitForTimeout(150)
+}
+check(steps >= 8 && (await page.getByText('準備OK！').isVisible()), `ツアーを最後まで進められる（${steps}ステップ）`)
+await page.getByRole('dialog').getByRole('button', { name: 'はじめる' }).click()
+check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.tourDone === true), 'ツアーを見終えたことが保存される')
+await page.getByRole('button', { name: /学習をはじめる/ }).waitFor()
+check(await page.getByText('帰り道に10分').isVisible(), 'ホームに学習プラン（実行意図）を表示')
+const cats = await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
+check(cats.general && cats.rail && !cats.business, '選んだコース（一般会話＋保線）が保存される')
+
+// 学習セッション
+await page.getByRole('button', { name: /学習をはじめる/ }).click()
 await page.getByRole('button', { name: 'スタート' }).click()
-check(await page.getByText('NEW').isVisible(), '新出語の提示カード')
+check(await page.getByText('新しい単語').first().isVisible(), '新出語の提示')
 await page.screenshot({ path: `${OUT}/1-learn.png` })
 
 // 新出語3語を提示 → 想起テスト
-for (let i = 0; i < 3; i++) await page.getByRole('button', { name: '覚えた！次へ' }).click()
+for (let i = 0; i < 3; i++) await page.getByRole('button', { name: '覚えた・次へ' }).click()
 check(await page.getByText('意味を選ぼう').isVisible(), '提示後に選択式の想起テスト')
 const options = page.locator('button[data-choice]')
 await options.first().waitFor()
@@ -37,32 +62,102 @@ check(await page.getByRole('button', { name: '次へ' }).isVisible(), '回答後
 await page.screenshot({ path: `${OUT}/2-feedback.png` })
 await page.getByRole('button', { name: '次へ' }).click()
 
-// 単語帳でカード作成を確認
+// 単語帳の検索
 await page.goto(BASE + '/words?cat=general')
 await page.getByPlaceholder('英語・日本語で検索').fill('maintain')
 await page.waitForTimeout(300)
 check(await page.getByText('維持する；保守する').first().isVisible(), '単語帳の検索')
 
-// 保線語の詳細（英米表記）
+// 保線語の詳細（英米表記）と保存
 await page.goto(BASE + '/words/r-sleeper')
 await page.getByText('tie', { exact: true }).first().waitFor({ timeout: 5000 })
 check(await page.getByText('tie', { exact: true }).first().isVisible(), '保線語の米国表記（sleeper/tie）')
-await page.screenshot({ path: `${OUT}/3-sleeper.png` })
+await page.getByRole('button', { name: '単語を保存' }).click()
+// 保存（IndexedDB への書き込み）が終わってから移動する
+await page.getByRole('button', { name: '保存を取り消す' }).waitFor()
+await page.goto(BASE + '/words?cat=rail&status=marked')
+await page.getByText('sleeper', { exact: true }).waitFor({ timeout: 5000 })
+check(await page.getByRole('button', { name: /保存した単語を練習する/ }).isVisible(), '保存した単語の一覧と集中練習')
+await page.screenshot({ path: `${OUT}/3-marked.png` })
+
+// 聞き分け（HVPT）
+await page.goto(BASE + '/practice/sounds')
+await page.getByRole('button', { name: /L と R/ }).click()
+await page.getByText('どちらが聞こえた？').waitFor()
+await page.locator('.grid.grid-cols-2 > button').first().click()
+check(await page.getByText('聞き比べる（同じ声）').isVisible(), '聞き分けの回答と聞き比べ')
+await page.screenshot({ path: `${OUT}/4-sounds.png` })
+
+// 瞬間英作文
+await page.goto(BASE + '/practice/compose')
+await page.getByRole('button', { name: 'はじめる' }).click()
+await page.getByRole('button', { name: '答えを見る' }).click()
+check(await page.getByRole('button', { name: '言えた' }).isVisible(), '瞬間英作文の答えと自己評価')
+await page.getByRole('button', { name: '言えた' }).click()
+
+// 学習記録
+await page.goto(BASE + '/stats')
+await page.getByText('12週間の学習').waitFor()
+check(await page.getByText('12週間の学習').isVisible(), '学習記録（12週間）')
 
 // 翻訳ページの用語検出（オフラインでも動作）
 await page.goto(BASE + '/translate')
 await page.getByPlaceholder(/翻訳したい文章/).fill('明日の夜間に下り線で道床つき固めを行い、軌間とカントを測定します。')
-await page.getByText('🇬🇧 track gauge').waitFor({ timeout: 5000 })
-check(await page.getByText('🇬🇧 track gauge').isVisible(), '翻訳画面で「軌間」を検出')
-check(await page.getByText('🇬🇧 cant').isVisible(), '翻訳画面で「カント」を検出')
-await page.screenshot({ path: `${OUT}/4-glossary.png`, fullPage: true })
+await page.getByText('track gauge', { exact: true }).waitFor({ timeout: 5000 })
+check(await page.getByText('track gauge', { exact: true }).isVisible(), '翻訳画面で「軌間」を検出')
+check(await page.getByText('cant', { exact: true }).isVisible(), '翻訳画面で「カント」を検出')
+await page.screenshot({ path: `${OUT}/5-glossary.png`, fullPage: true })
+
+// 翻訳画面のヘルプと同時通訳
+await page.getByRole('button', { name: '翻訳画面の使い方' }).click()
+check(await page.getByRole('dialog').getByText('同時通訳').first().isVisible(), '翻訳画面のヘルプ（ツアー）')
+await page.getByRole('button', { name: 'スキップ' }).click()
+await page.getByRole('link', { name: /同時通訳/ }).click()
+await page.getByRole('tab', { name: '会話' }).click()
+check(await page.getByRole('button', { name: '日本語で話す' }).isVisible(), '同時通訳の会話モード（日本語／英語のボタン）')
+check(await page.getByRole('button', { name: 'Speak English' }).isVisible(), '同時通訳の英語ボタン')
+await page.screenshot({ path: `${OUT}/6-interpreter.png` })
 
 // シーンのロールプレイ開始
 await page.goto(BASE + '/scenes/r-briefing')
 await page.getByRole('tab', { name: 'ロールプレイ' }).click()
-await page.getByRole('button', { name: 'ロールプレイ開始' }).click()
+await page.getByRole('button', { name: 'ロールプレイを始める' }).click()
 await page.waitForTimeout(500)
 check(await page.locator('text=Supervisor').first().isVisible(), 'ロールプレイ開始')
+
+// モードの切り替え（ホーム）：「すべて」と「組み合わせる」、タップでそのモードだけに。シーンの最初のタブも合わせる
+await page.goto(BASE + '/')
+const modeGroup = page.getByRole('group', { name: '学ぶモード' })
+const studyCats = () => page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
+await modeGroup.getByRole('button', { name: 'すべて', exact: true }).click()
+let mode = await studyCats()
+check(mode.general && mode.business && mode.it && mode.rail, 'モードを「すべて」に切り替え')
+check(await modeGroup.getByText('すべてのコースから出題').isVisible(), '「すべて」の状態を文で表示')
+check(
+  (await modeGroup.getByRole('button', { name: 'すべて', exact: true }).getAttribute('aria-pressed')) === 'true' &&
+    (await modeGroup.getByRole('button', { name: 'IT', exact: true }).getAttribute('aria-pressed')) === 'false',
+  '「すべて」のときは「すべて」だけが選択中',
+)
+await modeGroup.getByRole('button', { name: '組み合わせる' }).click()
+await modeGroup.getByRole('button', { name: '鉄道', exact: true }).click()
+await modeGroup.getByRole('button', { name: 'ビジネス', exact: true }).click()
+await modeGroup.getByRole('button', { name: '完了' }).click()
+mode = await studyCats()
+check(mode.general && mode.it && !mode.business && !mode.rail, '組み合わせでコースを外す')
+check(await modeGroup.getByText('一般＋ITから出題').isVisible(), '組み合わせの状態を文で表示')
+await modeGroup.getByRole('button', { name: 'IT', exact: true }).click()
+mode = await studyCats()
+check(mode.it && !mode.general && !mode.rail && !mode.business, 'モードを IT に切り替え')
+check(await modeGroup.getByText('ITだけを出題').isVisible(), '1つのモードの状態を文で表示')
+await page.goto(BASE + '/scenes')
+await page.getByText('朝会で進捗を報告する').waitFor({ timeout: 5000 })
+check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シーンが IT モードの場面で開く')
+
+// 発音（国・地域）の選択
+await page.goto(BASE + '/settings')
+await page.getByRole('button', { name: /^オーストラリア/ }).first().click()
+await page.waitForTimeout(200)
+check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.accent === 'en-AU'), '読み上げの発音をオーストラリアに変更')
 
 // ダークモード切替
 await page.goto(BASE + '/settings')

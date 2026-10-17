@@ -61,14 +61,22 @@ export interface SpeakingRow {
   completeness: number
 }
 
+/** 保存（★）した単語 */
+export interface MarkRow {
+  id: string
+  at: number
+}
+
 export class AppDB extends Dexie {
   cards!: EntityTable<CardRow, 'id'>
   logs!: EntityTable<LogRow, 'id'>
   daily!: EntityTable<DailyRow, 'date'>
   translations!: EntityTable<TranslationRow, 'id'>
   speaking!: EntityTable<SpeakingRow, 'id'>
+  marks!: EntityTable<MarkRow, 'id'>
 
   constructor() {
+    // データベース名は旧アプリ名のまま（変えると端末に保存した学習履歴が読めなくなる）
     super('tetsu-english')
     this.version(1).stores({
       cards: 'id, cat, lv, due, state, addedAt',
@@ -77,6 +85,8 @@ export class AppDB extends Dexie {
       translations: '++id, at, fav',
       speaking: '++id, at',
     })
+    // v2: 単語の保存（★）
+    this.version(2).stores({ marks: 'id, at' })
   }
 }
 
@@ -101,9 +111,9 @@ export async function bumpDaily(patch: Partial<Omit<DailyRow, 'date'>>) {
       speaking: 0,
       seconds: 0,
     }
-    for (const [k, v] of Object.entries(patch)) {
-      ;(cur as unknown as Record<string, number>)[k] += v as number
-    }
+    // 古いバックアップ由来の行に項目がなくても NaN にならないよう 0 から足す
+    const row = cur as unknown as Record<string, number>
+    for (const [k, v] of Object.entries(patch)) row[k] = (Number(row[k]) || 0) + (v as number)
     await db.daily.put(cur)
   })
 }
@@ -111,7 +121,7 @@ export async function bumpDaily(patch: Partial<Omit<DailyRow, 'date'>>) {
 /** 連続学習日数 */
 export async function getStreak(): Promise<number> {
   const rows = await db.daily.toArray()
-  const active = new Set(rows.filter((r) => r.reviews + r.listening + r.speaking > 0).map((r) => r.date))
+  const active = new Set(rows.filter((r) => isActiveDay(r)).map((r) => r.date))
   let streak = 0
   const d = new Date()
   if (!active.has(todayKey(d))) d.setDate(d.getDate() - 1)
@@ -124,6 +134,7 @@ export async function getStreak(): Promise<number> {
 
 export async function exportAll(): Promise<string> {
   const data = {
+    // バックアップの識別子は旧アプリ名のまま（以前に書き出したファイルも読み込めるように）
     app: 'tetsu-english',
     version: 1,
     exportedAt: new Date().toISOString(),
@@ -132,6 +143,7 @@ export async function exportAll(): Promise<string> {
     daily: await db.daily.toArray(),
     translations: await db.translations.toArray(),
     speaking: await db.speaking.toArray(),
+    marks: await db.marks.toArray(),
     settings: localStorage.getItem('tetsu-settings'),
   }
   return JSON.stringify(data)
@@ -140,13 +152,35 @@ export async function exportAll(): Promise<string> {
 export async function importAll(json: string) {
   const data = JSON.parse(json)
   if (data.app !== 'tetsu-english') throw new Error('このアプリのバックアップファイルではありません')
-  await db.transaction('rw', [db.cards, db.logs, db.daily, db.translations, db.speaking], async () => {
-    await Promise.all([db.cards.clear(), db.logs.clear(), db.daily.clear(), db.translations.clear(), db.speaking.clear()])
+  await db.transaction('rw', [db.cards, db.logs, db.daily, db.translations, db.speaking, db.marks], async () => {
+    await Promise.all([db.cards.clear(), db.logs.clear(), db.daily.clear(), db.translations.clear(), db.speaking.clear(), db.marks.clear()])
     await db.cards.bulkPut(data.cards ?? [])
     await db.logs.bulkPut(data.logs ?? [])
     await db.daily.bulkPut(data.daily ?? [])
     await db.translations.bulkPut(data.translations ?? [])
     await db.speaking.bulkPut(data.speaking ?? [])
+    await db.marks.bulkPut(data.marks ?? [])
   })
   if (data.settings) localStorage.setItem('tetsu-settings', data.settings)
+}
+
+/** 単語の保存（★）を切り替える */
+export async function toggleMark(id: string): Promise<boolean> {
+  return db.transaction('rw', db.marks, async () => {
+    if (await db.marks.get(id)) {
+      await db.marks.delete(id)
+      return false
+    }
+    await db.marks.put({ id, at: Date.now() })
+    return true
+  })
+}
+
+/** その日に何か学習したか（単語・リスニング・スピーキングのどれか） */
+export const isActiveDay = (r: DailyRow | undefined) => !!r && (r.reviews || 0) + (r.listening || 0) + (r.speaking || 0) > 0
+
+/** 日付キーを n 日ずらす */
+export function shiftDay(key: string, n: number): string {
+  const [y, m, d] = key.split('-').map(Number)
+  return todayKey(new Date(y, m - 1, d + n))
 }

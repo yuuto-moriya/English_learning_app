@@ -1,0 +1,76 @@
+# IT（レベル5：C1）— システム構成・運用・セキュリティ・データ・AI
+# 書式: lemma|品詞|和訳|例文(英)|例文(和)[|米音IPA（辞書にない語だけ）]
+microservices|n|マイクロサービス（小さなサービスを組み合わせる構成）|We split the system into *microservices*.|システムをマイクロサービスに分割した。|ˈmaɪkroʊˌsɝvɪsɪz
+system architecture|n|システム構成（アーキテクチャ）|The *system architecture* must support millions of users.|システム構成は数百万人の利用者に対応できなければならない。
+refactor|v|リファクタリングする（動きを変えずにコードを整理する）|We need to *refactor* this code before we add new features.|新しい機能を足す前に、このコードを整理する必要がある。|riːˈfæktɚ
+technical debt|n|技術的負債（後回しにした設計上の問題）|Rushed releases left us with a lot of *technical debt*.|急いだリリースのせいで、多くの技術的負債が残った。
+continuous integration|n|継続的インテグレーション（CI）|*Continuous integration* runs the tests on every change.|継続的インテグレーションでは、変更のたびにテストが実行される。
+build pipeline|n|ビルドパイプライン（ビルドやテストを自動で進める流れ）|The *build pipeline* takes about fifteen minutes.|ビルドのパイプラインは約15分かかる。
+load balancer|n|ロードバランサー（負荷分散装置）|The *load balancer* sends traffic only to healthy servers.|ロードバランサーは正常なサーバーにだけ通信を振り分ける。
+failover|n|フェイルオーバー（予備系への自動切り替え）|*Failover* to the backup site took less than a minute.|予備サイトへの切り替えは1分もかからなかった。|ˈfeɪlˌoʊvɚ
+disaster recovery|n|災害復旧（DR）|Our *disaster recovery* plan is tested twice a year.|災害復旧計画は年2回テストしている。
+service level agreement|n|サービスレベル合意（SLA：品質の取り決め）|The *service level agreement* promises 99.9% uptime.|サービスレベル合意では99.9%の稼働率が約束されている。
+high availability|n|高可用性（止まりにくい構成）|The database is set up for *high availability*.|データベースは止まりにくい高可用性の構成になっている。
+single point of failure|n|単一障害点（そこが壊れると全体が止まる箇所）|The old router was a *single point of failure*.|古いルーターが単一障害点になっていた。
+scalability|n|拡張性（スケーラビリティ）|*Scalability* was the main reason we moved to the cloud.|クラウドへ移行した主な理由は拡張性だった。|ˌskeɪləˈbɪləti
+throughput|n|処理能力（スループット）|The new database doubled our *throughput*.|新しいデータベースで処理能力が2倍になった。|ˈθruːˌpʊt
+asynchronous|adj|非同期の|The upload runs as an *asynchronous* task.|アップロードは非同期の処理として実行される。
+endpoint|n|エンドポイント（APIの接続先）|Each *endpoint* returns data in JSON format.|各エンドポイントはJSON形式でデータを返す。|ˈɛndˌpɔɪnt
+schema|n|スキーマ（データ構造の定義）|We changed the database *schema* to add a new column.|新しい列を追加するために、データベースのスキーマを変更した。|ˈskiːmə
+data warehouse|n|データウェアハウス（分析用の大規模なデータ保管庫）|Sales data is loaded into the *data warehouse* every night.|売上データは毎晩データウェアハウスに取り込まれる。
+data governance|n|データガバナンス（データ管理の方針と体制）|Good *data governance* makes our data reliable.|適切なデータガバナンスによって、データの信頼性が高まる。
+metadata|n|メタデータ（データについての情報）|The *metadata* shows who created the file and when.|メタデータには、だれがいつファイルを作ったかが記録されている。|ˈmɛtəˌdeɪtə
+anonymize|v|匿名化する|We *anonymize* the data before the analysis.|分析の前にデータを匿名化する。|əˈnɑnəˌmaɪz
+principle of least privilege|n|最小権限の原則|Follow the *principle of least privilege* when you grant access.|権限を与えるときは最小権限の原則に従ってください。
+single sign-on|n|シングルサインオン（1回の認証で複数のシステムを使えること）|With *single sign-on*, you only need one password.|シングルサインオンなら、パスワードは1つで済む。|ˈsɪŋɡəl ˈsaɪnˌɑn
+zero-day|adj|ゼロデイの（修正が出る前の）|Attackers exploited a *zero-day* vulnerability.|攻撃者はゼロデイ脆弱性を悪用した。|ˈzɪroʊˌdeɪ
+ransomware|n|ランサムウェア（身代金を要求するウイルス）|*Ransomware* locked all the files on the server.|ランサムウェアによって、サーバー上のファイルがすべてロックされた。|ˈrænsəmˌwɛr
+penetration test|n|侵入テスト（ペネトレーションテスト）|An outside company carried out a *penetration test*.|外部の会社が侵入テストを実施した。
+audit log|n|監査ログ（操作の記録）|The *audit log* records every change to user accounts.|監査ログには、ユーザーアカウントへの変更がすべて記録される。
+security incident|n|セキュリティインシデント（情報セキュリティ上の事故）|Report any *security incident* to the IT team immediately.|セキュリティインシデントはただちにITチームに報告してください。
+incident response|n|インシデント対応|Our *incident response* team works around the clock.|インシデント対応チームは24時間体制で動いている。
+postmortem|n|事後検証（障害の振り返り報告）|We wrote a *postmortem* after the outage.|障害のあとで事後検証の報告をまとめた。|ˌpoʊstˈmɔrtəm
+observability|n|可観測性（システムの状態を外から把握できること）|Better *observability* helps us find problems faster.|可観測性を高めると、問題を早く見つけられる。|əbˌzɝvəˈbɪləti
+feature flag|n|機能フラグ（機能のオン・オフの切り替え）|We hide the new feature behind a *feature flag*.|新機能は機能フラグで隠しておく。
+regression|n|デグレ（以前は動いていた機能が壊れること）|The update caused a *regression* in the search function.|その更新で検索機能にデグレが起きた。
+edge case|n|特殊なケース（めったに起きない境界的な条件）|The code fails in one rare *edge case*.|そのコードは、まれな特殊ケースで1つだけ失敗する。
+deprecated|adj|非推奨の（廃止予定の）|This function is *deprecated* and will be removed.|この関数は非推奨で、今後削除される。|ˈdɛprəˌkeɪtɪd
+backward compatible|adj|後方互換性のある（古い版とも動く）|The new version of the API is *backward compatible*.|新しい版のAPIは後方互換性がある。
+infrastructure as code|n|コードによるインフラ管理（IaC）|With *infrastructure as code*, servers are built automatically.|コードによるインフラ管理なら、サーバーは自動で構築される。
+virtualization|n|仮想化|*Virtualization* lets one server run many systems.|仮想化により、1台のサーバーで多くのシステムを動かせる。|ˌvɝtʃuːələˈzeɪʃən
+edge computing|n|エッジコンピューティング（端末の近くで処理すること）|*Edge computing* reduces delays for factory sensors.|エッジコンピューティングで、工場のセンサーの遅れが小さくなる。
+Internet of Things|n|モノのインターネット（IoT）|The *Internet of Things* connects machines to the network.|IoTは機械をネットワークにつなぐ。
+large language model|n|大規模言語モデル（LLM）|A *large language model* can answer questions in natural language.|大規模言語モデルは、自然な言葉で質問に答えられる。
+training data|n|学習データ（訓練データ）|The quality of the *training data* affects the model's accuracy.|学習データの質がモデルの精度に影響する。
+hallucination|n|ハルシネーション（AIがもっともらしい誤りを出すこと）|Always check AI answers for *hallucinations*.|AIの回答にハルシネーションがないか、必ず確認してください。
+fine-tune|v|（AIモデルを）追加学習させる；微調整する|We *fine-tuned* the model on our support emails.|サポートのメールでモデルを追加学習させた。|ˌfaɪnˈtuːn
+neural network|n|ニューラルネットワーク|A *neural network* learns patterns from examples.|ニューラルネットワークは例からパターンを学ぶ。
+computer vision|n|コンピュータビジョン（画像認識の技術）|*Computer vision* checks products for damage on the line.|コンピュータビジョンが製造ラインで製品の傷を検査する。
+robotic process automation|n|RPA（定型の事務作業の自動化）|*Robotic process automation* now handles our invoice checks.|請求書のチェックは今ではRPAが処理している。
+API key|n|APIキー（APIを使うための鍵）|Never put an *API key* in the source code.|APIキーをソースコードに書いてはいけない。
+environment variable|n|環境変数|Store passwords in *environment variables*, not in the code.|パスワードはコードではなく環境変数に保存してください。
+code freeze|n|コードフリーズ（リリース前の変更停止）|There is a *code freeze* one week before each release.|各リリースの1週間前にはコードフリーズがある。
+stack trace|n|スタックトレース（エラー時の呼び出し履歴）|Paste the *stack trace* into the bug report.|スタックトレースをバグ報告に貼り付けてください。
+memory leak|n|メモリリーク（使い終わったメモリが解放されない不具合）|A *memory leak* made the server slower every day.|メモリリークのせいで、サーバーが日ごとに遅くなった。
+end-to-end encryption|n|エンドツーエンド暗号化（送信者と受信者だけが読める暗号化）|The chat app uses *end-to-end encryption*.|そのチャットアプリはエンドツーエンド暗号化を使っている。|ˌɛndtəˌɛnd ɪnˈkrɪpʃən
+parallel run|n|並行稼働（新旧のシステムを同時に動かすこと）|We had a one-month *parallel run* of the old and new systems.|新旧のシステムを1か月間、並行稼働させた。
+change management|n|変更管理|Every change goes through *change management* approval.|すべての変更は変更管理の承認を経る。
+recovery time objective|n|目標復旧時間（RTO）|Our *recovery time objective* is four hours.|当社の目標復旧時間は4時間だ。
+vendor lock-in|n|ベンダーロックイン（特定の業者から離れにくい状態）|Open standards help us avoid *vendor lock-in*.|オープンな標準を使えば、ベンダーロックインを避けやすい。|ˈvɛndɚ ˈlɑkˌɪn
+total cost of ownership|n|総保有コスト（TCO）|Moving to the cloud can lower the *total cost of ownership*.|クラウドへの移行で総保有コストを下げられることがある。
+SaaS|n|SaaS（ネット経由で使うソフトのサービス）|We switched to a *SaaS* accounting tool.|会計ツールをSaaSに切り替えた。|sæs
+on-premises|adj|オンプレミスの（自社内に設置した）|We still run some *on-premises* servers.|自社内に設置したサーバーもまだいくつか運用している。|ˌɑnˈprɛmɪsɪz
+open standard|n|オープンな標準（だれでも使える公開された規格）|We chose an *open standard* so that any vendor can connect.|どの業者でも接続できるように、オープンな標準を選んだ。
+data pipeline|n|データパイプライン（データを集めて加工する流れ）|The *data pipeline* collects sensor data every minute.|データパイプラインが1分ごとにセンサーのデータを集める。
+interoperable|adj|相互運用できる（異なるシステムどうしで連携できる）|The two systems are not fully *interoperable* yet.|2つのシステムはまだ完全には連携できない。|ˌɪntɚˈɑpɚəbəl
+predictive model|n|予測モデル|The *predictive model* tells us when a machine is likely to fail.|予測モデルで、機械がいつ故障しそうかが分かる。
+anomaly detection|n|異常検知|*Anomaly detection* found unusual traffic at 3 a.m.|異常検知で午前3時の不審な通信が見つかった。
+digital signature|n|電子署名|The contract was approved with a *digital signature*.|契約は電子署名で承認された。
+certificate authority|n|認証局（電子証明書を発行する機関）|The browser trusts certificates from a known *certificate authority*.|ブラウザは、信頼できる認証局が発行した証明書を信頼する。
+denial-of-service attack|n|サービス妨害攻撃（DoS攻撃）|A *denial-of-service attack* made the website unavailable.|サービス妨害攻撃でウェブサイトが使えなくなった。|dɪˌnaɪəl əv ˈsɝvəs əˈtæk
+social engineering|n|ソーシャルエンジニアリング（人の心理を突いて情報を盗む手口）|The caller used *social engineering* to get a password.|電話をかけてきた人物は、ソーシャルエンジニアリングでパスワードを聞き出した。
+business continuity|n|事業継続（BCP）|Cloud backups are part of our *business continuity* plan.|クラウドへのバックアップは事業継続計画の一部だ。
+technical specification|n|技術仕様（書）|Check the *technical specification* before you order the parts.|部品を注文する前に技術仕様を確認してください。
+requirements gathering|n|要件の聞き取り（ヒアリング）|*Requirements gathering* took three weeks of interviews.|要件の聞き取りには3週間の面談がかかった。
+scope creep|n|スコープクリープ（作業範囲が少しずつ広がること）|*Scope creep* delayed the project by three months.|作業範囲が少しずつ広がり、プロジェクトは3か月遅れた。
+minimum viable product|n|MVP（必要最小限の機能を備えた製品）|We launched a *minimum viable product* to test the idea.|アイデアを試すために、必要最小限の機能の製品を公開した。
