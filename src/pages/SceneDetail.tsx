@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useParams } from 'react-router'
-import { Lightbulb, Pause, Play, SkipForward, Target } from 'lucide-react'
+import { Lightbulb, Play, RotateCcw, Square, Target, Volume2 } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SpeakCheck } from '@/components/SpeakCheck'
@@ -120,7 +120,7 @@ export default function SceneDetail() {
                 </Button>
               ) : (
                 <Button variant="outline" className="flex-1" onClick={stopAll}>
-                  <Pause className="h-4 w-4 fill-current" />
+                  <Square className="h-4 w-4 fill-current" />
                   停止
                 </Button>
               )}
@@ -209,16 +209,15 @@ function RolePlay({ scene }: { scene: Scene }) {
       <Card className="space-y-4">
         <p className="text-[13px] font-medium text-muted">あなたの役</p>
         <Segmented value={role} onChange={setRole} options={scene.roles.map((r) => ({ value: r.id, label: r.name }))} />
-        <p className="text-[12.5px] leading-relaxed text-muted">相手のセリフは自動で再生されます。自分の番では日本語を見て英語で言ってみよう（ヒントで英文を表示）。</p>
+        <p className="text-[12.5px] leading-relaxed text-muted">相手のセリフは自動で再生されます。自分の番では日本語を見て英語で言ってみよう（「ヒント」で英文を表示）。</p>
         <Button
           block
-          variant="ink"
           onClick={() => {
             warmUpSpeech()
             setI(0)
           }}
         >
-          ロールプレイを始める
+          ロールプレイをはじめる
         </Button>
       </Card>
     )
@@ -229,12 +228,12 @@ function RolePlay({ scene }: { scene: Scene }) {
         <Guide pose="celebrate" text="会話を最後までやりきったワン！役を交代してもう一度やると効果倍増！" />
         <Button
           block
-          variant="ink"
           onClick={() => {
             setStalledAt(null)
             setI(-1)
           }}
         >
+          <RotateCcw className="h-[18px] w-[18px]" />
           もう一度
         </Button>
       </Card>
@@ -255,9 +254,10 @@ function RolePlay({ scene }: { scene: Scene }) {
             {hint ? (
               <p className="en mt-2 text-[18px] text-brand-strong">{line.en}</p>
             ) : (
-              <button onClick={() => setHint(true)} className="mt-2 min-h-9 text-[13px] font-medium text-brand">
-                ヒント（英文を表示）
-              </button>
+              <Button variant="secondary" size="sm" className="mt-2" onClick={() => setHint(true)}>
+                <Lightbulb className="h-4 w-4" strokeWidth={1.8} />
+                ヒント
+              </Button>
             )}
             <div className="mt-4">
               <SpeakCheck
@@ -282,7 +282,6 @@ function RolePlay({ scene }: { scene: Scene }) {
                 }}
               >
                 次へ
-                <SkipForward className="h-4 w-4" />
               </Button>
             </div>
           </>
@@ -299,7 +298,7 @@ function RolePlay({ scene }: { scene: Scene }) {
                     playPartner(i)
                   }}
                 >
-                  <Play className="h-3.5 w-3.5 fill-current" />
+                  <Volume2 className="h-4 w-4" strokeWidth={1.9} />
                   もう一度聞く
                 </Button>
                 <Button
@@ -312,7 +311,6 @@ function RolePlay({ scene }: { scene: Scene }) {
                   }}
                 >
                   次へ
-                  <SkipForward className="h-4 w-4" />
                 </Button>
               </div>
             )}

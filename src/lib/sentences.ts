@@ -13,6 +13,8 @@ export interface Sentence {
   src: Source
   accent: Accent
   wordId?: string
+  /** シーン会話の文のときの場面 */
+  scene?: string
 }
 
 const wc = (s: string) => s.split(/\s+/).filter(Boolean).length
@@ -29,7 +31,7 @@ export async function sentencePool(sources: Source[], maxLv: number, minLv = 1):
         if (groups.size && !groups.has(sc.group)) continue
         for (const l of sc.lines) {
           if (wc(l.en) < 4 || wc(l.en) > 20) continue
-          out.push({ en: l.en, ja: l.ja, lv: sc.lv, src, accent: sceneAccent(sc) })
+          out.push({ en: l.en, ja: l.ja, lv: sc.lv, src, accent: sceneAccent(sc), scene: sc.id })
         }
       }
       continue
@@ -49,18 +51,6 @@ export async function sentencePool(sources: Source[], maxLv: number, minLv = 1):
 
 export function pickRound(pool: Sentence[], n = 10): Sentence[] {
   return shuffle(pool).slice(0, n)
-}
-
-/** 長さが近い和訳を誤答選択肢に */
-export function jaDistractors(target: Sentence, pool: Sentence[], n = 3): string[] {
-  const len = target.ja.length
-  const cand = shuffle(pool.filter((s) => s.ja !== target.ja && Math.abs(s.ja.length - len) <= Math.max(6, len * 0.4)))
-  const out: string[] = []
-  for (const c of cand) {
-    if (!out.includes(c.ja)) out.push(c.ja)
-    if (out.length >= n) break
-  }
-  return out
 }
 
 export interface DiffToken {

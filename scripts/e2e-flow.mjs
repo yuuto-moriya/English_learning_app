@@ -26,7 +26,7 @@ await page.getByRole('button', { name: '次へ' }).click()
 await page.getByRole('button', { name: /中級/ }).click()
 await page.getByRole('button', { name: '次へ' }).click()
 await page.getByRole('button', { name: '帰り道' }).click()
-await page.getByRole('button', { name: 'はじめる' }).click()
+await page.getByRole('button', { name: 'はじめる', exact: true }).click()
 
 // 使い方ツアー：最初の1回だけ表示。最後まで進める
 await page.getByText('使い方を30秒でご案内します').waitFor()
@@ -47,7 +47,7 @@ check(cats.general && cats.rail && !cats.business, '選んだコース（一般�
 
 // 学習セッション
 await page.getByRole('button', { name: /学習をはじめる/ }).click()
-await page.getByRole('button', { name: 'スタート' }).click()
+await page.getByRole('button', { name: 'はじめる', exact: true }).click()
 check(await page.getByText('新しい単語').first().isVisible(), '新出語の提示')
 await page.screenshot({ path: `${OUT}/1-learn.png` })
 
@@ -56,6 +56,7 @@ for (let i = 0; i < 3; i++) await page.getByRole('button', { name: '覚えた・
 check(await page.getByText('意味を選ぼう').isVisible(), '提示後に選択式の想起テスト')
 const options = page.locator('button[data-choice]')
 await options.first().waitFor()
+check(await page.getByText(/^(やさしい|ふつう|むずかしい)$/).first().isVisible(), '選択肢の難しさ（レベルと覚え具合）を表示')
 await options.nth(1).click()
 await page.waitForTimeout(400)
 check(await page.getByRole('button', { name: '次へ' }).isVisible(), '回答後にフィードバックと次へボタン')
@@ -80,13 +81,32 @@ await page.getByText('sleeper', { exact: true }).waitFor({ timeout: 5000 })
 check(await page.getByRole('button', { name: /保存した単語を練習する/ }).isVisible(), '保存した単語の一覧と集中練習')
 await page.screenshot({ path: `${OUT}/3-marked.png` })
 
-// 聞き分け（HVPT）
+// 聞き分け（HVPT）：意味つきの選択肢、回答後に聞き比べと例文。練習中はタブバーを隠す
 await page.goto(BASE + '/practice/sounds')
 await page.getByRole('button', { name: /L と R/ }).click()
 await page.getByText('どちらが聞こえた？').waitFor()
-await page.locator('.grid.grid-cols-2 > button').first().click()
+check(!(await page.getByRole('navigation', { name: 'メインメニュー' }).isVisible()), '練習中はタブバーを隠す')
+const pairBtn = page.locator('.grid.grid-cols-2 > button').first()
+const pairWord = (await pairBtn.locator('.en').textContent()).trim()
+check((await pairBtn.textContent()).length > pairWord.length, '聞き分けの選択肢に意味を表示')
+await pairBtn.click()
 check(await page.getByText('聞き比べる（同じ声）').isVisible(), '聞き分けの回答と聞き比べ')
+check(await page.locator('mark.hl', { hasText: new RegExp(`^${pairWord}$`, 'i') }).first().isVisible(), '聞き分けの語の例文を表示')
 await page.screenshot({ path: `${OUT}/4-sounds.png` })
+await page.getByRole('button', { name: 'やめる' }).click()
+await page.getByRole('tab', { name: '同じ？ちがう？' }).click()
+await page.getByRole('button', { name: /F と H/ }).click()
+await page.getByRole('button', { name: 'ちがう' }).click()
+check(await page.getByText('聞き比べる（同じ声）').isVisible(), '聞き分け（同じ？ちがう？）の回答')
+await page.getByRole('button', { name: 'やめる' }).click()
+await page.getByRole('tab', { name: '単語' }).click()
+
+// リスニング：共通の練習画面（× でやめる・進み具合・回答後の「次へ」）
+await page.goto(BASE + '/practice/listening')
+await page.getByRole('button', { name: 'はじめる', exact: true }).click()
+await page.locator('button[data-choice]').first().click()
+check(await page.getByRole('button', { name: '次へ' }).isVisible(), 'リスニングの回答と次へ')
+check(await page.getByText('1 / 10').isVisible(), 'リスニングの進み具合')
 
 // 瞬間英作文
 await page.goto(BASE + '/practice/compose')
@@ -121,7 +141,7 @@ await page.screenshot({ path: `${OUT}/6-interpreter.png` })
 // シーンのロールプレイ開始
 await page.goto(BASE + '/scenes/r-briefing')
 await page.getByRole('tab', { name: 'ロールプレイ' }).click()
-await page.getByRole('button', { name: 'ロールプレイを始める' }).click()
+await page.getByRole('button', { name: 'ロールプレイをはじめる' }).click()
 await page.waitForTimeout(500)
 check(await page.locator('text=Supervisor').first().isVisible(), 'ロールプレイ開始')
 

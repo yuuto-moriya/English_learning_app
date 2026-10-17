@@ -4,6 +4,7 @@ import { RAIL_SUBS } from '@/lib/types'
 import { speak, type Accent } from '@/lib/tts'
 import { CategoryBadge, LevelBadge, Marked, SpeakButton, Tag } from './ui'
 import { accentFor } from '@/lib/settings'
+import { SLOW_RATE } from './Session'
 
 export const POS_JA: Record<string, string> = {
   n: '名詞',
@@ -22,15 +23,15 @@ export const POS_JA: Record<string, string> = {
 function SlowButton({ text, accent }: { text: string; accent: Accent }) {
   return (
     <button
-      aria-label="ゆっくり再生"
+      aria-label="ゆっくり"
       // iOSではタップ処理の中で同期的に speak() しないと再生されないことがあるため、動的importは使わない
       onClick={(e) => {
         e.stopPropagation()
-        speak(text, { accent, rate: 0.6 })
+        speak(text, { accent, rate: SLOW_RATE })
       }}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-surface-2 text-muted transition active:scale-90"
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line-strong bg-surface text-ink transition active:scale-90"
     >
-      <Snail className="h-[17px] w-[17px]" strokeWidth={1.8} />
+      <Snail className="h-[18px] w-[18px]" strokeWidth={1.9} />
     </button>
   )
 }
@@ -48,11 +49,11 @@ export function WordHead({ word, big }: { word: Word; big?: boolean }) {
       </div>
       {isRail ? (
         <div className="mt-3 space-y-3">
-          <PronRow tag="UK・EN" term={word.w} ipa={word.ipaUk} accent="en-GB" big={big} />
+          <PronRow tag="英・EN" term={word.w} ipa={word.ipaUk} accent="en-GB" big={big} />
           {word.us ? (
-            <PronRow tag="US" term={word.us} ipa={word.ipa} accent="en-US" />
+            <PronRow tag="米" term={word.us} ipa={word.ipa} accent="en-US" />
           ) : (
-            word.ipa && <PronRow tag="US" term={word.w} ipa={word.ipa} accent="en-US" sameTerm />
+            word.ipa && <PronRow tag="米" term={word.w} ipa={word.ipa} accent="en-US" sameTerm />
           )}
         </div>
       ) : (

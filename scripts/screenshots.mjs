@@ -74,7 +74,7 @@ for (const scheme of ['light', 'dark']) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' })
     await page.waitForTimeout(700)
     if (name === 'study') {
-      const start = page.getByRole('button', { name: 'スタート' })
+      const start = page.getByRole('button', { name: 'はじめる', exact: true })
       if (await start.isVisible().catch(() => false)) {
         await page.screenshot({ path: `${OUT}/${scheme}-study-start.png`, fullPage: false })
         await start.click()
@@ -98,6 +98,22 @@ for (const scheme of ['light', 'dark']) {
       await page.screenshot({ path: `${OUT}/${scheme}-settings-voice.png` })
     }
   }
+  // 練習の画面（共通の部品：× でやめる・進み具合・回答後のバー）
+  await page.goto(BASE + '/practice/sounds', { waitUntil: 'networkidle' })
+  await page.getByRole('button', { name: /L と R/ }).click()
+  await page.waitForTimeout(600)
+  await page.screenshot({ path: `${OUT}/${scheme}-sounds-question.png` })
+  await page.locator('.grid.grid-cols-2 > button').first().click()
+  await page.waitForTimeout(600)
+  await page.screenshot({ path: `${OUT}/${scheme}-sounds-answer.png` })
+  await page.screenshot({ path: `${OUT}/${scheme}-sounds-answer-full.png`, fullPage: true })
+  await page.goto(BASE + '/practice/listening', { waitUntil: 'networkidle' })
+  await page.getByRole('button', { name: 'はじめる', exact: true }).click()
+  await page.waitForTimeout(600)
+  await page.locator('button[data-choice]').first().click()
+  await page.waitForTimeout(600)
+  await page.screenshot({ path: `${OUT}/${scheme}-listening-answer.png` })
+
   // ホームの下の方も撮る
   await page.goto(BASE + '/', { waitUntil: 'networkidle' })
   await page.waitForTimeout(500)

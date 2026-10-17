@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Check, Play } from 'lucide-react'
+import { Check, Volume2 } from 'lucide-react'
 import { ACCENTS, NEURAL_VOICES, type Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
 import { listVoices, speak, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
@@ -66,11 +66,11 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                 >
                   <span
                     className={cx(
-                      'flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-full border-[1.5px]',
+                      'flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border-[1.5px]',
                       on ? 'border-ink bg-ink text-bg' : 'border-line-strong',
                     )}
                   >
-                    {on && <Check className="h-3 w-3" strokeWidth={3} />}
+                    {on && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center gap-2 text-[15px] font-medium">
@@ -85,7 +85,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                   onClick={() => preview(a.id)}
                   className="mr-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted active:bg-surface-2"
                 >
-                  <Play className="h-4 w-4 fill-current" strokeWidth={1.5} />
+                  <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.9} />
                 </button>
               </div>
               {expanded && (

@@ -13,7 +13,7 @@ Michi の学習機能は、認知心理学・第二言語習得研究で効果�
 | 1 | [分散学習（間隔を空けた復習）](#1-spacing) | FSRSで単語ごとに復習日を決め、期限の来た語から出題 |
 | 2 | [記憶モデルに基づく復習スケジューラ（FSRS）](#2-fsrs) | ts-fsrs、目標保持率85/90/95%、評価ボタンに次回間隔を表示 |
 | 3 | [検索練習（テスト効果）](#3-retrieval) | 必ず「答える→確認」。間違えた語は数問後に再テスト |
-| 4 | [望ましい困難（段階的な難易度）](#4-difficulty) | 選択 → 音声だけ → 自己評価 → スペル・穴埋めへ段階的に |
+| 4 | [望ましい困難（段階的な難易度）](#4-difficulty) | 選択 → 音声だけ → 自己評価 → スペル・穴埋めへ段階的に。選択肢の難しさもレベルと覚え具合で調整 |
 | 5 | [インターリーブ（混ぜて練習）](#5-interleave) | 選んだコースの単語・復習/新出語・出題形式を混ぜて出題 |
 | 6 | [高頻度語から学ぶ（語彙リスト）](#6-wordlists) | NGSL / BSL / TSL の頻度順＋規格ベースの保線用語 |
 | 7 | [産出効果・マルチモーダル学習](#7-production) | 全語に発音記号と米英の音声、新出語で例文の音読 |
@@ -97,11 +97,24 @@ ts-fsrsを採用。目標保持率（85/90/95%）を設定でき、各評価ボ�
 
 記憶の安定度に応じて、選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋めへと難易度が上がります。
 
-実装箇所: `src/lib/session.ts`（`chooseType`：mc → listen / flip → spell / cloze）
+選択問題のまちがいの選択肢（ダミー）も、ランダムではなく「もっともらしいもの」を混ぜます。もっともらしい誤答の選択肢は、正解だけでなく関連する知識の想起も促すことが示されています（Little et al., 2012）。混ぜる数（3つのダミーのうち似た選択肢の数）は次のように決めます。
+
+| 覚え具合＼学習者のレベル | 入門・初級（A1–A2） | 中級・中上級（B1–B2） | 上級・専門 |
+|---|---|---|---|
+| 覚えたて（安定度3日未満） | やさしい（1） | やさしい（1） | ふつう（2） |
+| 定着しつつある | ふつう（2） | ふつう（2） | むずかしい（3） |
+| 定着（21日以上） | ふつう（2） | むずかしい（3） | むずかしい（3） |
+
+- 単語：綴り・音が似た語（adapt / adopt、quite / quiet）と、同じ分野（保線の分類）・同じ品詞で頻度が近い語。同じ回で出し直す問題は1段やさしく
+- リスニング：聞こえた英文と同じ単語を含む例文・同じ単語や場面の例文。難しさは選んだレベルで決め、正解が3問続くと上げ、まちがえると下げる
+- 「どちらも正解」に見える選択肢は作らない：和訳の意味のまとまりが同じ語、漢字・カタカナが2文字以上共通する語（影響する／影響力）、同じ語の仲間（decide / decision）、和訳が近すぎる例文は除外
+
+実装箇所: `src/lib/session.ts`（`chooseType`：mc → listen / flip → spell / cloze）、`src/lib/distractors.ts`（`wordTier`・`wordDistractors`・`sentenceDistractors`）
 
 **文献**
 
 - Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe & A. Shimamura (Eds.), Metacognition: Knowing about knowing (pp. 185–205). MIT Press.
+- Little, J. L., Bjork, E. L., Bjork, R. A., & Angello, G. (2012). Multiple-choice tests exonerated, at least of some charges: Fostering test-induced learning and avoiding test-induced forgetting. Psychological Science, 23(11), 1337–1344. https://doi.org/10.1177/0956797612443370
 - Webb, S. (2007). The effects of repetition on vocabulary knowledge. Applied Linguistics, 28(1), 46–65.
 
 <a id="5-interleave"></a>

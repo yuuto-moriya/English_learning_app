@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate, useParams } from 'react-router'
-import { CheckCircle2, Mic, RotateCcw, Star } from 'lucide-react'
+import { CheckCircle2, Mic, Undo2, Star } from 'lucide-react'
 import { PageHeader, iconBtn } from '@/components/Layout'
 import { Button, Card, Empty, Metric, SectionTitle, cx } from '@/components/ui'
 import { WordBody, WordHead } from '@/components/WordInfo'
@@ -75,7 +75,7 @@ export default function WordDetail() {
         </Card>
         <div className="mt-3 grid grid-cols-2 gap-2">
           <Button variant="secondary" onClick={() => markKnown(word, !card?.known)}>
-            {card?.known ? <RotateCcw className="h-4 w-4" strokeWidth={1.9} /> : <CheckCircle2 className="h-4 w-4" strokeWidth={1.9} />}
+            {card?.known ? <Undo2 className="h-4 w-4" strokeWidth={1.9} /> : <CheckCircle2 className="h-4 w-4" strokeWidth={1.9} />}
             {card?.known ? '学習対象に戻す' : '知っている'}
           </Button>
           <Button

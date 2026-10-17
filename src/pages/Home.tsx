@@ -1,11 +1,12 @@
 import { useEffect, useMemo } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router'
-import { ArrowRight, BarChart3, ChevronRight, Ear, Mic, PencilLine, Radio, RotateCcw, Waves } from 'lucide-react'
+import { ArrowRight, BarChart3, ChevronRight, Dumbbell } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
 import { ModeSwitcher } from '@/components/ModeSwitcher'
 import { HOME_TOUR, Tour } from '@/components/Tour'
-import { Button, Card, List, ListRow, ProgressBar, RouteProgress, SectionTitle, cx } from '@/components/ui'
+import { Button, Card, List, MoreLink, ProgressBar, RouteProgress, SectionTitle, cx } from '@/components/ui'
+import { PracticeRows } from '@/components/PracticeMenu'
 import { useCardsMap, useDueCount, useNow, useRecentDays, useStreak, useToday } from '@/lib/hooks'
 import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
 import { formatMinutes, PLAN_LABEL, selectedCats, useSettings } from '@/lib/settings'
@@ -154,20 +155,12 @@ export default function Home() {
           </Card>
         </Link>
 
-        <SectionTitle action={<Link to="/practice" viewTransition className="inline-flex min-h-10 items-center px-2 -mx-2 text-[13px] font-medium text-brand">すべて</Link>}>
-          聞く・話す
-        </SectionTitle>
+        <SectionTitle action={<MoreLink to="/practice">すべて</MoreLink>}>聞く・話す</SectionTitle>
         <List>
-          <ListRow to="/practice/listening" icon={<Ear />} title="リスニング" sub="例文・会話を聞いて意味を選ぶ" />
-          <ListRow to="/practice/sounds" icon={<Waves />} title="聞き分け" sub="L と R など、日本語にない音の区別" />
-          <ListRow to="/practice/compose" icon={<PencilLine />} title="瞬間英作文" sub="日本語を見て、すぐ英語で言う" />
-          <ListRow to="/practice/speaking" icon={<Mic />} title="発音チェック" sub="話して採点・シャドーイング" />
-          <ListRow to="/practice/audio" icon={<Radio />} title="耳で復習" sub="画面を見ずに、音だけで思い出す" />
+          <PracticeRows keys={['listening', 'sounds', 'compose', 'speaking', 'audio']} />
         </List>
 
-        <SectionTitle action={<Link to="/words" viewTransition className="inline-flex min-h-10 items-center px-2 -mx-2 text-[13px] font-medium text-brand">単語帳</Link>}>
-          コースの進み具合
-        </SectionTitle>
+        <SectionTitle action={<MoreLink to="/words">単語帳</MoreLink>}>コースの進み具合</SectionTitle>
         <Card className="space-y-4">
           {CATEGORIES.filter((c) => cats.includes(c.key)).map((c) => {
             const st = stats.byCat[c.key]
@@ -190,9 +183,9 @@ export default function Home() {
             <span>
               定着した語 <b className="font-semibold text-ink tabular-nums">{stats.mastered.toLocaleString()}</b>
             </span>
-            <Link to="/settings#courses" className="-my-2 -mr-2 inline-flex min-h-10 items-center px-2 font-medium text-brand">
+            <MoreLink to="/settings#courses" className="-my-2 text-[12px]">
               コースを変更
-            </Link>
+            </MoreLink>
           </div>
         </Card>
 
@@ -217,7 +210,7 @@ export default function Home() {
           </Link>
           <Link to="/words?status=weak" viewTransition>
             <Card className="flex items-center gap-2.5 py-3">
-              <RotateCcw className="h-5 w-5 text-muted" strokeWidth={1.7} />
+              <Dumbbell className="h-5 w-5 text-muted" strokeWidth={1.7} />
               <span className="text-[14px] font-medium">苦手な単語</span>
             </Card>
           </Link>

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { EyeOff, Pause, Play, SkipBack, SkipForward, TriangleAlert } from 'lucide-react'
+import { EyeOff, Pause, Play, RotateCcw, SkipBack, SkipForward, TriangleAlert } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
-import { Button, Card, ProgressBar, Segmented, Toggle, cx } from '@/components/ui'
+import { Button, Card, Direction, Empty, ProgressBar, Segmented, Toggle, cx } from '@/components/ui'
 import { bumpDaily, db } from '@/lib/db'
 import { retrievability } from '@/lib/srs'
 import { newWordPool } from '@/lib/session'
@@ -139,7 +139,7 @@ export default function AudioReview() {
     } else setIdx(to)
   }
 
-  if (!list) return <div className="p-8 text-center text-muted">準備中…</div>
+  if (!list) return <div className="p-8 text-center text-muted">読み込み中…</div>
 
   const finished = idx >= words.length && words.length > 0
   const showEn = !hide && (dir === 'en-ja' || phase === 'answer' || phase === 'example' || !playing)
@@ -162,13 +162,13 @@ export default function AudioReview() {
         )}
 
         {words.length === 0 ? (
-          <Card className="text-center text-[14px] text-muted">聞ける単語がありません</Card>
+          <Empty>聞ける単語がありません</Empty>
         ) : finished ? (
           <Card className="text-center">
             <p className="text-[15px] font-medium">{words.length}語を聞き終えました</p>
-            <Button className="mt-4" variant="ink" onClick={() => void run(0)}>
-              <Play className="h-4 w-4 fill-current" />
-              最初から
+            <Button className="mt-4" onClick={() => void run(0)}>
+              <RotateCcw className="h-[18px] w-[18px]" />
+              もう一度
             </Button>
           </Card>
         ) : (
@@ -230,8 +230,8 @@ export default function AudioReview() {
                 setDir(d)
               }}
               options={[
-                { value: 'ja-en', label: '日本語 → 英語' },
-                { value: 'en-ja', label: '英語 → 日本語' },
+                { value: 'ja-en', label: <Direction from="日本語" to="英語" /> },
+                { value: 'en-ja', label: <Direction from="英語" to="日本語" /> },
               ]}
             />
           </div>
@@ -254,7 +254,7 @@ export default function AudioReview() {
 
         <p className="flex gap-2 px-1 text-[12px] leading-relaxed text-muted">
           <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-warn" strokeWidth={1.8} />
-          線路内での作業中や、車・自転車の運転中は使わないでください。周りの音が聞こえる音量で使いましょう。
+          車や自転車の運転中、作業中は使わないでください。周りの音が聞こえる音量で使いましょう。
         </p>
       </div>
     </div>

@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
-import { Brain, CalendarClock, Check, Eye, Headphones, Lightbulb, Shuffle, Star, Volume2, X } from 'lucide-react'
+import { Brain, CalendarClock, Check, Eye, Gauge, Lightbulb, Shuffle, Star, Volume2, X } from 'lucide-react'
 import { Guide } from '@/components/Guide'
-import { BottomBar, Button, ProgressBar, SpeakButton, cx } from '@/components/ui'
+import { BottomBar, Button, SpeakButton, Tag, cx } from '@/components/ui'
+import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell as Shell, SlowButton, SLOW_RATE, scoreCaption, TierBadge } from '@/components/Session'
 import { WordBody, WordHead } from '@/components/WordInfo'
 import { buildDrill, buildSession, checkSpelling, MAX_RETRIES, reinsert, type Item } from '@/lib/session'
 import { objectiveGrade, previewIntervals, Rating, recordReview, humanizeDiff, type Grade } from '@/lib/srs'
@@ -10,7 +11,8 @@ import { bumpDaily, db, toggleMark, type CardRow } from '@/lib/db'
 import { accentFor, useSettings, getSettings } from '@/lib/settings'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { correctMessage, sessionDoneMessage, wrongMessage, type GuideLine } from '@/lib/guide'
-import { distractors, loadCategory, markedTarget, shuffle, plain } from '@/lib/vocab'
+import { loadCategory, markedTarget, shuffle, plain } from '@/lib/vocab'
+import { wordDistractors, wordTier, type Tier } from '@/lib/distractors'
 import { useMarks } from '@/lib/hooks'
 import type { Word } from '@/lib/types'
 import { play } from '@/lib/sounds'
@@ -112,7 +114,7 @@ export default function Study() {
     }
   }
 
-  if (phase === 'loading') return <div className="p-8 text-center text-muted">準備中…</div>
+  if (phase === 'loading') return <div className="p-8 text-center text-muted">読み込み中…</div>
 
   if (phase === 'empty')
     return (
@@ -124,7 +126,7 @@ export default function Study() {
               mode === 'weak'
                 ? '苦手な単語はまだないワン。間違えた語がここに集まるよ。'
                 : mode === 'marked'
-                  ? '保存した単語はまだないワン。単語の画面の ☆ で保存できるよ。'
+                  ? '保存した単語はまだないワン。単語の画面の「保存」（星のボタン）で集められるよ。'
                   : '今は復習も新しい単語もないワン。リスニングやシーン会話で「使う」練習をしよう。'
             }
           />
@@ -141,7 +143,7 @@ export default function Study() {
   if (phase === 'start')
     return (
       <Shell onClose={() => nav('/')}>
-        <div className="mt-4 animate-rise">
+        <div className="mt-4 animate-rise pb-36">
           <p className="text-[13px] font-medium text-muted">
             {mode === 'weak' ? '苦手な単語の練習' : mode === 'marked' ? '保存した単語の練習' : '今日の単語'}
           </p>
@@ -163,6 +165,7 @@ export default function Study() {
               <Point icon={<CalendarClock />} title="忘れかけた頃にまた出題" desc="FSRS が単語ごとに次の復習日を決めます（分散学習）" />
             )}
             <Point icon={<Shuffle />} title="形式とコースを混ぜて出題" desc="選択・リスニング・スペルを混ぜます（インターリーブ）" />
+            <Point icon={<Gauge />} title="選択肢の難しさはレベルと覚え具合で" desc="覚えた語ほど、綴りや分野が似たまぎらわしい選択肢で確かめます（望ましい困難）" />
             <Point icon={<Volume2 />} title="例文を声に出して読む" desc="音と文脈がそろうと思い出しやすくなります（産出効果）" />
           </ul>
         </div>
@@ -179,7 +182,7 @@ export default function Study() {
               setPhase('question')
             }}
           >
-            スタート
+            はじめる
           </Button>
         </BottomBar>
       </Shell>
@@ -207,28 +210,23 @@ export default function Study() {
       {learn && phase === 'question' && (
         <BottomBar>
           <p className="mb-2.5 text-center text-[12px] text-muted">例文を一度、声に出して読んでから進もう</p>
-          <Button block size="lg" onClick={next}>
+          <Button block size="lg" variant="ink" onClick={next}>
             覚えた・次へ
           </Button>
         </BottomBar>
       )}
       {phase === 'feedback' && result && item && (
-        <BottomBar tone={result.correct ? 'ok' : 'ng'}>
-          <div className="mb-3 flex items-center gap-2.5">
-            <span className={cx('flex h-7 w-7 items-center justify-center rounded-full text-white', result.correct ? 'bg-ok' : 'bg-ng')}>
-              {result.correct ? <Check className="h-4 w-4" strokeWidth={3} /> : <X className="h-4 w-4" strokeWidth={3} />}
-            </span>
-            <span className={cx('text-[17px] font-bold', result.correct ? 'text-ok' : 'text-ng')}>{result.correct ? '正解' : '不正解'}</span>
-            <span className="ml-auto flex items-center gap-2">
-              {result.correct && result.next && <span className="text-[12px] text-muted">次の復習 {result.next}後</span>}
-              {!result.correct && (item.retry ?? 0) < MAX_RETRIES && <span className="text-[12px] text-muted">数問後にもう一度</span>}
+        <FeedbackBar
+          ok={result.correct}
+          aside={
+            <>
+              {result.correct && result.next && <span>次の復習 {result.next}後</span>}
+              {!result.correct && (item.retry ?? 0) < MAX_RETRIES && <span>数問後にもう一度</span>}
               <MarkButton id={item.word.id} />
-            </span>
-          </div>
-          <Button block size="lg" variant="ink" onClick={next}>
-            次へ
-          </Button>
-        </BottomBar>
+            </>
+          }
+          onNext={next}
+        />
       )}
     </Shell>
   )
@@ -282,28 +280,14 @@ function Summary({
   drill: boolean
 }) {
   const nav = useNavigate()
-  useEffect(() => play('complete'), [])
   const rate = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0
   const sorted = [...outcomes].sort((a, b) => Number(a.correct) - Number(b.correct))
   return (
     <Shell onClose={() => nav('/')}>
       <div className="animate-rise pb-44">
         {guide && <Guide pose={guide.pose} text={guide.text} size={84} className="mt-2" />}
-        <div className="mt-6 flex items-end gap-8">
-          <div>
-            <p className="text-[44px] font-semibold leading-none tracking-tight tabular-nums">
-              {rate}
-              <span className="text-[18px] font-medium text-muted">%</span>
-            </p>
-            <p className="mt-1.5 text-[12px] text-muted">正答率</p>
-          </div>
-          <div>
-            <p className="text-[28px] font-semibold leading-none tabular-nums">
-              {stats.correct}
-              <span className="text-[15px] font-medium text-muted"> / {stats.total}</span>
-            </p>
-            <p className="mt-1.5 text-[12px] text-muted">問</p>
-          </div>
+        <div className="mt-6">
+          <ResultCard value={rate} caption={`正答率・${scoreCaption(stats.correct, stats.total)}`} />
         </div>
         {sorted.length > 0 && (
           <>
@@ -337,28 +321,6 @@ function Summary({
         </div>
       </BottomBar>
     </Shell>
-  )
-}
-
-function Shell({ children, onClose, progress }: { children: React.ReactNode; onClose: () => void; progress?: { value: number; max: number } }) {
-  return (
-    <div className="px-5">
-      {/* pt-safe はスクロールしても固定されるヘッダー側に付け、ステータスバー／Dynamic Island の下に潜らないようにする */}
-      <div className="glass sticky top-0 z-10 -mx-5 px-5 pt-safe">
-        <div className="flex h-14 items-center gap-3">
-          <button onClick={onClose} aria-label="閉じる" className="-ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted active:bg-surface-2">
-            <X className="h-[22px] w-[22px]" strokeWidth={1.9} />
-          </button>
-          {progress && <ProgressBar value={progress.value} max={progress.max} className="h-[5px] flex-1" />}
-          {progress && (
-            <span className="min-w-10 text-right text-[12px] font-medium tabular-nums text-muted">
-              {Math.min(progress.value + 1, progress.max)}/{progress.max}
-            </span>
-          )}
-        </div>
-      </div>
-      <div className="pt-3">{children}</div>
-    </div>
   )
 }
 
@@ -404,24 +366,36 @@ function ItemView({ item, phase, result, onAnswer }: { item: Item; phase: Phase;
   return <TypeQ item={item} phase={phase} result={result} elapsed={elapsed} onAnswer={onAnswer} />
 }
 
-function Prompt({ children }: { children: React.ReactNode }) {
-  return <p className="mb-5 text-[13px] font-medium text-muted">{children}</p>
+function Prompt({ children, aside }: { children: React.ReactNode; aside?: React.ReactNode }) {
+  return (
+    <div className="mb-5 flex items-center gap-2">
+      <p className="min-w-0 flex-1 text-[13px] font-medium text-muted">{children}</p>
+      {aside}
+    </div>
+  )
 }
 
 function ChoiceQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase; elapsed: () => number; onAnswer: AnswerFn }) {
   const w = item.word
   const [options, setOptions] = useState<Word[] | null>(null)
+  const [tier, setTier] = useState<Tier | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
   const vary = useSettings((s) => s.varyVoices)
+  const learnerLevel = useSettings((s) => s.maxLevel)
   useEffect(() => {
-    loadCategory(w.cat).then((pool) => setOptions(shuffle([w, ...distractors(w, pool, 3)])))
-  }, [w])
+    // 選択肢の難しさ：学習者のレベルと、この語の覚え具合（記憶の安定度）で決める
+    Promise.all([loadCategory(w.cat), db.cards.get(w.id)]).then(([pool, row]) => {
+      const t = wordTier({ learnerLevel, stability: row?.stability, retry: item.retry })
+      setTier(t)
+      setOptions(shuffle([w, ...wordDistractors(w, pool, t).map((d) => d.word)]))
+    })
+  }, [w]) // eslint-disable-line react-hooks/exhaustive-deps
   const listen = item.type === 'listen'
   const accent = accentOf(w)
   const showWord = !listen || phase !== 'question'
   return (
     <div className="animate-rise">
-      <Prompt>{listen ? '聞こえた単語の意味は？' : item.retry ? 'もう一度。意味を選ぼう' : '意味を選ぼう'}</Prompt>
+      <Prompt aside={tier && <TierBadge tier={tier} />}>{listen ? '聞こえた単語の意味は？' : item.retry ? 'もう一度。意味を選ぼう' : '意味を選ぼう'}</Prompt>
       <div className="flex min-h-[132px] flex-col items-center justify-center gap-3 text-center">
         {showWord ? (
           <>
@@ -432,42 +406,27 @@ function ChoiceQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase;
             </div>
           </>
         ) : (
-          <div className="flex items-center gap-3">
-            <SpeakButton text={w.w} accent={accent} size="lg" voice={vary ? 'random' : 'main'} />
-            <SpeakButton text={w.w} accent={accent} rate={0.6} label="ゆっくり" />
+          <div className="flex flex-col items-center gap-3">
+            <ListenButton onClick={() => speak(w.w, { accent, voice: vary ? 'random' : 'main' })} />
+            <SlowButton onClick={() => speak(w.w, { accent, rate: SLOW_RATE })} />
           </div>
         )}
       </div>
       <div className="mt-6 space-y-2">
-        {(options ?? []).map((o, k) => {
-          const isAns = o.id === w.id
-          const show = phase === 'feedback'
-          return (
-            <button
-              key={o.id}
-              data-choice
-              disabled={phase !== 'question'}
-              onClick={() => {
-                setPicked(o.id)
-                onAnswer(isAns, elapsed())
-              }}
-              className={cx(
-                'flex min-h-[54px] w-full items-center gap-3 rounded-[14px] border px-4 py-3 text-left text-[15px] transition duration-150 active:scale-[0.99]',
-                show && isAns
-                  ? 'border-ok bg-ok-soft'
-                  : show && picked === o.id
-                    ? 'animate-shake border-ng bg-ng-soft'
-                    : show
-                      ? 'border-line bg-surface opacity-50'
-                      : 'border-line bg-surface',
-              )}
-            >
-              <span className="w-4 shrink-0 text-[12px] font-medium tabular-nums text-faint">{k + 1}</span>
-              <span className="min-w-0 flex-1">{o.ja}</span>
-              {show && isAns && <Check className="h-4 w-4 shrink-0 text-ok" strokeWidth={2.6} />}
-            </button>
-          )
-        })}
+        {(options ?? []).map((o, k) => (
+          <ChoiceButton
+            key={o.id}
+            index={k + 1}
+            state={choiceState(phase === 'feedback', o.id === w.id, picked === o.id)}
+            disabled={phase !== 'question'}
+            onClick={() => {
+              setPicked(o.id)
+              onAnswer(o.id === w.id, elapsed())
+            }}
+          >
+            {o.ja}
+          </ChoiceButton>
+        ))}
         {phase === 'question' && (
           <button onClick={() => onAnswer(false, elapsed())} className="min-h-11 w-full text-[14px] text-muted">
             分からない
@@ -499,14 +458,19 @@ function FlipQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase; e
       <Prompt>意味を思い浮かべてから、答えを見よう</Prompt>
       <div className="flex min-h-[160px] flex-col items-center justify-center gap-3 text-center">
         <p className="en text-[44px] font-medium leading-[1.05] tracking-tight">{w.w}</p>
-        {w.us && <p className="text-[13px] text-muted">米: {w.us}</p>}
+        {w.us && (
+          <p className="flex items-center gap-1.5 text-[13px] text-muted">
+            <Tag>米</Tag>
+            <span className="en">{w.us}</span>
+          </p>
+        )}
         <SpeakButton text={w.w} accent={accent} size="sm" />
         {shown && <p className="mt-2 animate-rise text-[20px] font-semibold">{w.ja}</p>}
       </div>
       {phase === 'question' &&
         (!shown ? (
           <Button block size="lg" variant="ink" className="mt-8" onClick={() => setShown(true)}>
-            <Eye className="h-5 w-5" strokeWidth={1.8} />
+            <Eye className="h-[18px] w-[18px]" strokeWidth={1.8} />
             答えを見る
           </Button>
         ) : (
@@ -573,7 +537,7 @@ function TypeQ({
       {hint > 0 && (
         <p className="mt-3 font-mono text-[15px] tracking-wider text-brand-strong">
           {target.slice(0, hint)}
-          {'・'.repeat(Math.max(0, target.length - hint))}
+          {'_'.repeat(Math.max(0, target.length - hint))}
         </p>
       )}
       <form
@@ -603,11 +567,12 @@ function TypeQ({
         />
         {phase === 'question' && (
           <div className="mt-3 flex gap-2">
-            <Button type="button" variant="secondary" aria-label="ヒント" onClick={() => setHint((h) => Math.min(target.length, h + 1))}>
+            <Button type="button" variant="secondary" onClick={() => setHint((h) => Math.min(target.length, h + 1))}>
               <Lightbulb className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              ヒント
             </Button>
             <Button type="button" variant="secondary" aria-label="例文を聞く" onClick={() => speak(plain(ex.en), { accent: accentOf(w) })}>
-              <Headphones className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.8} />
             </Button>
             <Button type="submit" variant="ink" className="flex-1" disabled={!value.trim()}>
               答え合わせ

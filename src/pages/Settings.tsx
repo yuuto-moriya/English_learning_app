@@ -8,6 +8,7 @@ import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
 import { AccentPicker } from '@/components/AccentPicker'
+import { formatRate, VoiceVarietyToggles } from '@/components/PracticeControls'
 import { getHealth, type Health } from '@/lib/api'
 import { db, exportAll, importAll } from '@/lib/db'
 import { CATEGORIES, LEVELS } from '@/lib/types'
@@ -277,7 +278,7 @@ export default function Settings() {
           <div>
             <div className="flex justify-between text-[15px]">
               <span>読み上げ速度</span>
-              <b className="font-semibold tabular-nums">{s.rate.toFixed(2)}×</b>
+              <b className="font-semibold tabular-nums">{formatRate(s.rate)}</b>
             </div>
             <input
               type="range"
@@ -291,18 +292,7 @@ export default function Settings() {
             />
           </div>
           <Toggle label="単語を自動で読み上げる" checked={s.autoPlay} onChange={(v) => s.set({ autoPlay: v })} />
-          <Toggle
-            label="リスニングでいろいろな声を使う"
-            desc="聞き取りの問題で毎回ちがう話者の声にします（話者の多様性）"
-            checked={s.varyVoices}
-            onChange={(v) => s.set({ varyVoices: v })}
-          />
-          <Toggle
-            label="リスニングでいろいろな国の英語を混ぜる"
-            desc="アメリカ・イギリス・オーストラリア・インドなどの発音を混ぜて出題します"
-            checked={s.mixAccents}
-            onChange={(v) => s.set({ mixAccents: v })}
-          />
+          <VoiceVarietyToggles />
           <Toggle label="効果音" desc="正解・不正解、録音の開始・終了などを音でお知らせします" checked={s.sounds} onChange={(v) => s.set({ sounds: v })} />
         </Card>
 

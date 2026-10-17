@@ -35,6 +35,7 @@ Playwright の Chromium は `CHROMIUM_PATH` で指定できる。
 
 - 変更後は `npm run build` と `npm test` を通し、画面に関わる変更は E2E とスクリーンショット（ライト/ダーク）で確認する
 - 表示文言は日本語。E2E が使う文言を変えたら `scripts/e2e-flow.mjs` も直す
+- アイコン・ボタンの言葉・練習の画面の部品は README の「UI の決まり」にそろえる（練習の1回分は `src/components/Session.tsx` の部品で作る）
 - コミットメッセージ・PR のタイトルと本文は日本語で書く（`feat:` `fix:` などの接頭辞はそのまま）
 - iPhone 幅（390px）、safe-area、ダークモード、standalone 表示を壊さない。入力欄は 16px 以上
 - API キー・トークンをコミットしない
