@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowDownUp, AudioLines, ChevronRight, Copy, Check, HelpCircle, Loader2, Mic, Scale, Square, Star, Trash2, Volume2, X, AlertTriangle } from 'lucide-react'
+import { ArrowDownUp, ChevronRight, Copy, Check, HelpCircle, Loader2, Mic, Scale, Speech, Square, Star, Trash2, X } from 'lucide-react'
 import { TRANSLATE_TOUR, Tour } from '@/components/Tour'
 import { PageHeader, iconBtn } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
-import { Button, Card, Segmented, SpeakButton, SectionTitle, Tag, Toggle, cx } from '@/components/ui'
+import { Button, Card, Direction, Notice, Segmented, SpeakButton, SectionTitle, Tag, Toggle, cx } from '@/components/ui'
 import { ApiError, transcribe, translate } from '@/lib/api'
 import { db } from '@/lib/db'
 import { findTerms, hasJapanese, modalTips, type GlossaryHit } from '@/lib/glossary'
@@ -313,8 +313,8 @@ export default function Translate() {
           onChange={changeDir}
           options={[
             { value: 'auto', label: '自動判定' },
-            { value: 'ja-en', label: '日本語→英語' },
-            { value: 'en-ja', label: '英語→日本語' },
+            { value: 'ja-en', label: <Direction from="日本語" to="英語" /> },
+            { value: 'en-ja', label: <Direction from="英語" to="日本語" /> },
           ]}
         />
         <Link
@@ -324,7 +324,7 @@ export default function Translate() {
           className="flex items-center gap-3 rounded-[18px] border border-line bg-surface px-4 py-3 active:bg-surface-2"
         >
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
-            <AudioLines className="h-5 w-5" strokeWidth={1.9} />
+            <Speech className="h-5 w-5" strokeWidth={1.9} />
           </span>
           <span className="min-w-0 flex-1">
             <span className="block text-[15px] font-semibold">同時通訳</span>
@@ -405,17 +405,15 @@ export default function Translate() {
         )}
 
         {error && (
-          <div className="flex gap-2 rounded-[14px] bg-warn-soft p-3 text-[13px]">
-            <AlertTriangle className="h-4 w-4 shrink-0 text-warn" />
-            <span>
-              {error}{' '}
-              {health && !health.translator && (
-                <Link to="/settings" className="font-semibold text-brand">
-                  設定方法
-                </Link>
-              )}
-            </span>
-          </div>
+          <Notice>
+            {error}{' '}
+            {health && !health.translator && (
+              <Link to="/settings" className="inline-flex items-center font-semibold text-brand">
+                設定方法
+                <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+              </Link>
+            )}
+          </Notice>
         )}
 
         {out && (
@@ -425,30 +423,19 @@ export default function Translate() {
             </div>
             <div className="mt-3 flex items-center gap-2">
               {outLang === 'en' ? (
-                <>
-                  <SpeakButton text={out} accent={s.accent} label={`読み上げ（${accentInfo(s.accent).label}）`} />
-                  <span className="text-[12px] text-muted">{accentInfo(s.accent).label}</span>
-                </>
+                <SpeakButton text={out} accent={s.accent} label="読み上げ" />
               ) : (
-                <button
-                  aria-label="読み上げ（日本語）"
-                  onClick={() => {
-                    primeAudio()
-                    void speakJa(out)
-                  }}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-ink active:scale-95"
-                >
-                  <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </button>
+                <SpeakButton text={out} lang="ja" label="読み上げ" />
               )}
+              <span className="text-[12px] text-muted">{outLang === 'en' ? accentInfo(s.accent).label : '日本語'}</span>
               <button
                 onClick={copyOut}
-                className="flex h-8 items-center gap-1 rounded-full border border-line-strong px-3 text-[12px] font-semibold"
+                className="ml-auto flex min-h-8 items-center gap-1 rounded-full border border-line-strong px-3 text-[12px] font-semibold"
               >
                 {copied ? <Check className="h-3.5 w-3.5 text-ok" /> : <Copy className="h-3.5 w-3.5" />}
                 コピー
               </button>
-              <button onClick={swap} className="ml-auto flex h-8 items-center gap-1 rounded-full border border-line-strong px-3 text-[12px] font-semibold">
+              <button onClick={swap} className="flex min-h-8 items-center gap-1 rounded-full border border-line-strong px-3 text-[12px] font-semibold">
                 <ArrowDownUp className="h-3.5 w-3.5" />
                 入れ替え
               </button>
@@ -489,11 +476,11 @@ export default function Translate() {
               <Link key={h.word.id} to={`/words/${h.word.id}`} className={cx('flex items-center gap-3 py-3 pl-4 pr-3 active:bg-surface-2', k > 0 && 'hairline-t')}>
                 <div className="min-w-0 flex-1">
                   <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                    <Tag>UK</Tag>
+                    <Tag>英</Tag>
                     <span className="en text-[17px] font-medium">{h.word.w}</span>
                     {h.word.us && (
                       <>
-                        <Tag>US</Tag>
+                        <Tag>米</Tag>
                         <span className="en text-[17px] text-muted">{h.word.us}</span>
                       </>
                     )}
@@ -530,20 +517,21 @@ export default function Translate() {
                         e.stopPropagation()
                         db.translations.update(h.id!, { fav: !h.fav })
                       }}
-                      className="p-1.5"
-                      aria-label="お気に入り"
+                      className="flex h-9 w-9 items-center justify-center rounded-full active:bg-surface-2"
+                      aria-label={h.fav ? '保存を取り消す' : '保存'}
+                      aria-pressed={!!h.fav}
                     >
-                      <Star className={cx('h-4 w-4', h.fav ? 'fill-warn text-warn' : 'text-muted')} />
+                      <Star className={cx('h-[18px] w-[18px]', h.fav ? 'fill-warn text-warn' : 'text-muted')} strokeWidth={1.8} />
                     </button>
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
                         db.translations.delete(h.id!)
                       }}
-                      className="p-1.5 text-muted"
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-muted active:bg-surface-2"
                       aria-label="削除"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-[18px] w-[18px]" strokeWidth={1.8} />
                     </button>
                   </div>
                 </Card>

@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 import { ChevronRight } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide, type CharId, type Pose } from '@/components/Guide'
-import { Segmented } from '@/components/ui'
+import { LevelBadge, Segmented } from '@/components/ui'
 import { scenesByGroup } from '@/data/scenes'
-import { CATEGORIES, LEVELS, type SceneGroup } from '@/lib/types'
+import { CATEGORIES, type SceneGroup } from '@/lib/types'
 import { getSettings, selectedCats } from '@/lib/settings'
 
 const INTRO: Record<SceneGroup, { who: CharId; pose: Pose; text: string }> = {
@@ -52,7 +52,6 @@ export default function Scenes() {
         <Guide who={intro.who} pose={intro.pose} text={intro.text} />
         <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
           {list.map((s, k) => {
-            const L = LEVELS.find((l) => l.lv === s.lv)!
             return (
               <Link key={s.id} to={`/scenes/${s.id}`} viewTransition className={`flex items-center gap-4 py-3.5 pl-4 pr-3 active:bg-surface-2 ${k > 0 ? 'hairline-t' : ''}`}>
                 <span className="w-6 shrink-0 text-[13px] font-medium tabular-nums text-faint">{String(k + 1).padStart(2, '0')}</span>
@@ -60,7 +59,9 @@ export default function Scenes() {
                   <p className="text-[15px] font-medium leading-snug">{s.title}</p>
                   <p className="en text-[14px] italic leading-snug text-muted">{s.titleEn}</p>
                 </div>
-                <span className="shrink-0 rounded-md border border-line-strong px-1.5 py-px text-[10.5px] font-semibold text-muted">{L.cefr === 'ESP' ? '専門' : L.cefr}</span>
+                <span className="shrink-0">
+                  <LevelBadge lv={s.lv} />
+                </span>
                 <ChevronRight className="h-[18px] w-[18px] shrink-0 text-faint" />
               </Link>
             )

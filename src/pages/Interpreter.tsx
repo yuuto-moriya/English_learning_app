@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
-import { AlertTriangle, Check, Copy, Loader2, Mic, Square, Trash2 } from 'lucide-react'
+import { Check, ChevronRight, Copy, Loader2, Mic, Square, Trash2 } from 'lucide-react'
 import { PageHeader, iconBtn } from '@/components/Layout'
-import { Segmented, Toggle, cx } from '@/components/ui'
+import { Direction, Empty, Notice, Segmented, SpeakButton, Toggle, cx } from '@/components/ui'
 import { ApiError, transcribe, translate } from '@/lib/api'
 import { useHealth, useWakeLock } from '@/lib/hooks'
 import { liveEngine, startLive, warmLive, type Engine, type LiveSession, type SpeechLang, type TargetLang } from '@/lib/live'
@@ -217,7 +217,7 @@ export default function Interpreter() {
           segments.length > 0 && (
             <>
               <button aria-label="すべてコピー" onClick={copyAll} className={iconBtn}>
-                {copied ? <Check className="h-4 w-4 text-ok" /> : <Copy className="h-4 w-4" />}
+                {copied ? <Check className="h-[18px] w-[18px] text-ok" strokeWidth={1.8} /> : <Copy className="h-[18px] w-[18px]" strokeWidth={1.8} />}
               </button>
               <button
                 aria-label="消去"
@@ -227,7 +227,7 @@ export default function Interpreter() {
                 }}
                 className={iconBtn}
               >
-                <Trash2 className="h-4 w-4" />
+                <Trash2 className="h-[18px] w-[18px]" strokeWidth={1.8} />
               </button>
             </>
           )
@@ -238,20 +238,20 @@ export default function Interpreter() {
           value={mode}
           onChange={(m) => void changeMode(m)}
           options={[
-            { value: 'ja-en', label: '日本語→英語' },
-            { value: 'en-ja', label: '英語→日本語' },
+            { value: 'ja-en', label: <Direction from="日本語" to="英語" /> },
+            { value: 'en-ja', label: <Direction from="英語" to="日本語" /> },
             { value: 'talk', label: '会話' },
           ]}
         />
 
         <div className="mt-3 flex-1 space-y-3 pb-48" aria-live="polite">
           {segments.length === 0 && !partial && (
-            <div className="rounded-[18px] border border-dashed border-line-strong p-5 text-[13.5px] leading-relaxed text-muted">
+            <Empty>
               {mode === 'talk'
                 ? '話す人の言語のボタンを押して話してください。話し終えたらもう一度押すと、訳を読み上げます。'
                 : `${mode === 'ja-en' ? '日本語' : '英語'}で話すと、話しているそばから訳が流れます。止めるまで聞き続けます。`}
               {engineNote && <span className="mt-2 block text-[12px] text-faint">{engineNote}</span>}
-            </div>
+            </Empty>
           )}
           {segments.map((x) => (
             <Bubble key={x.id} seg={x} talk={mode === 'talk'} accentLabel={accentInfo(s.accent).label} />
@@ -269,17 +269,13 @@ export default function Interpreter() {
 
       <div className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line px-4 pb-[max(env(safe-area-inset-bottom),14px)] pt-3">
         <div className="mx-auto max-w-xl">
-          {error && (
-            <p className="mb-2 flex gap-2 rounded-[12px] bg-warn-soft p-2.5 text-[12.5px]">
-              <AlertTriangle className="h-4 w-4 shrink-0 text-warn" />
-              {error}
-            </p>
-          )}
+          {error && <Notice className="mb-2">{error}</Notice>}
           {!available && health !== undefined && engine !== undefined ? (
             <p className="py-2 text-center text-[13px] leading-relaxed text-muted">
               音声認識を使えません。Azure Speech を設定するか、Safari で開いてください。
-              <Link to="/settings" className="ml-1 font-semibold text-brand">
+              <Link to="/settings" className="ml-1 inline-flex items-center font-semibold text-brand">
                 設定
+                <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.2} />
               </Link>
             </p>
           ) : mode === 'talk' ? (
@@ -326,7 +322,7 @@ function MicButton({ lang, active, disabled, onPress, wide }: { lang: SpeechLang
     >
       {active && <span className="absolute inset-0 animate-ping rounded-[inherit] bg-ng/30" aria-hidden />}
       {active ? <Square className="h-5 w-5 fill-current" /> : <Mic className="h-6 w-6" />}
-      {wide && <span>{active ? '止める' : lang === 'ja-JP' ? '日本語で話す' : 'Speak English'}</span>}
+      {wide && <span>{active ? '停止' : lang === 'ja-JP' ? '日本語で話す' : 'Speak English'}</span>}
     </button>
   )
 }
@@ -353,15 +349,10 @@ function Bubble({ seg, talk, live, accentLabel }: { seg: Segment; talk: boolean;
           !live && <p className="mt-1.5 text-[12px] text-faint">（訳を取得できませんでした）</p>
         )}
         {!live && seg.tr && (
-          <button
-            onClick={() => {
-              primeAudio()
-              void (toEn ? speak(seg.tr!) : speakJa(seg.tr!))
-            }}
-            className="mt-1.5 text-[12px] font-medium text-brand"
-          >
-            {toEn ? `読み上げ（${accentLabel}）` : '読み上げ'}
-          </button>
+          <div className="mt-2 flex items-center gap-2">
+            <SpeakButton text={seg.tr} lang={toEn ? 'en' : 'ja'} size="sm" label="読み上げ" />
+            <span className="text-[11.5px] text-muted">{toEn ? accentLabel : '日本語'}</span>
+          </div>
         )}
       </div>
     </div>

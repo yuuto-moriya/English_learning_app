@@ -157,7 +157,7 @@ export const HOME_TOUR: TourStep[] = [
   {
     target: 'tab-words',
     title: '単語帳',
-    body: '全単語を検索できます。「苦手」「保存した単語（★）」だけを集めて練習することもできます。',
+    body: '全単語を検索できます。「苦手」「保存した単語」だけを集めて練習することもできます。',
   },
   {
     target: 'tab-practice',

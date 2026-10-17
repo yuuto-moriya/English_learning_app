@@ -5,6 +5,7 @@ import type { Accent } from '@/lib/tts'
  * 日本語話者が区別しにくい英語の音の対立を選び、1つの音だけが違う語の組を集めた。
  * - 読み方が2通りある語（lead, live, close, row など）は、音声合成が意図と違う読みをするおそれがあるので入れない
  * - 母音の対立は米音で考えた組なので、米国の声だけで出題する（英国の音では組にならないものがある）
+ * - 語の意味と例文は pairWords.ts（すべての語にあることをテストで確かめる）
  */
 export interface Contrast {
   id: string
@@ -175,6 +176,94 @@ export const CONTRASTS: Contrast[] = [
       ['saw', 'so'],
       ['ball', 'bowl'],
       ['hall', 'hole'],
+    ],
+  },
+  {
+    id: 'f-h',
+    title: 'F と H',
+    symbols: ['f', 'h'],
+    tip: 'F は上の前歯を下唇に軽く当てて、すき間から息を出す。H は口の奥から息を出すだけで、唇も歯も使わない。日本語の「フ」は両唇の間から息を出すので、どちらとも違う。',
+    accents: ['en-US', 'en-GB'],
+    pairs: [
+      ['fat', 'hat'],
+      ['fall', 'hall'],
+      ['fear', 'hear'],
+      ['fold', 'hold'],
+      ['fire', 'hire'],
+      ['fair', 'hair'],
+      ['fill', 'hill'],
+      ['fit', 'hit'],
+      ['feet', 'heat'],
+      ['fight', 'height'],
+    ],
+  },
+  {
+    id: 'n-ng',
+    title: '語末の N と NG',
+    symbols: ['n', 'ŋ'],
+    tip: 'N は舌先を上の歯ぐきにつけて止める。NG は舌の奥を上あごの奥につけて、鼻から音を出す（「ング」の「グ」は言わない）。日本語の「ん」はどちらの音にもなるので、意識して区別する。',
+    accents: ['en-US', 'en-GB'],
+    pairs: [
+      ['sin', 'sing'],
+      ['thin', 'thing'],
+      ['win', 'wing'],
+      ['ran', 'rang'],
+      ['ban', 'bang'],
+      ['ton', 'tongue'],
+      ['fan', 'fang'],
+      ['sun', 'sung'],
+    ],
+  },
+  {
+    id: 'ah-uh',
+    title: 'hot の母音と hut の母音',
+    symbols: ['ɑː', 'ʌ'],
+    tip: 'ɑː（hot）は口を縦に大きく開けて、のどの奥から「アー」。ʌ（hut）は口を軽く開けて、短く弱い「ア」。アメリカ英語の hot は「ホット」より「ハァト」に近い。',
+    accents: ['en-US'],
+    pairs: [
+      ['hot', 'hut'],
+      ['cop', 'cup'],
+      ['lock', 'luck'],
+      ['not', 'nut'],
+      ['dock', 'duck'],
+      ['rob', 'rub'],
+      ['shot', 'shut'],
+      ['collar', 'color'],
+      ['robber', 'rubber'],
+    ],
+  },
+  {
+    id: 'er-or',
+    title: 'work の母音と walk の母音',
+    symbols: ['ɜːr', 'ɔː(r)'],
+    tip: 'ɜːr（work）は口をあまり開けず、舌を少し奥に丸めて、こもった「アー」。ɔː（walk）は口を縦に開け、唇を丸めて「オー」。カタカナの「ワーク」「ウォーク」より、口の開き方の違いに注目。',
+    accents: ['en-US'],
+    pairs: [
+      ['work', 'walk'],
+      ['worm', 'warm'],
+      ['word', 'ward'],
+      ['firm', 'form'],
+      ['shirt', 'short'],
+      ['bird', 'board'],
+      ['fur', 'for'],
+      ['turn', 'torn'],
+      ['burn', 'born'],
+    ],
+  },
+  {
+    id: 'cluster',
+    title: '子音の連続（母音を入れない）',
+    symbols: ['CC', 'CəC'],
+    tip: 'sport を「スポート」と母音を入れて言うと support に聞こえる。子音どうしは間に母音を入れず、すばやくつなげる。聞くときは、弱い「ア（ə）」があるかどうかに注目。',
+    accents: ['en-US', 'en-GB'],
+    pairs: [
+      ['sport', 'support'],
+      ['blow', 'below'],
+      ['plight', 'polite'],
+      ['please', 'police'],
+      ['prayed', 'parade'],
+      ['drive', 'derive'],
+      ['claps', 'collapse'],
     ],
   },
 ]

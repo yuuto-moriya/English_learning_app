@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router'
-import { Eye, EyeOff, Repeat, Shuffle, Play } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Eye, EyeOff, Repeat, Shuffle, Snail, Volume2 } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { defaultLevel, defaultSources, SourcePicker, SpeedPicker } from '@/components/PracticeControls'
+import { SLOW_RATE } from '@/components/Session'
 import { SpeakCheck } from '@/components/SpeakCheck'
 import { Button, Card, Segmented, cx } from '@/components/ui'
-import { Snail } from 'lucide-react'
 import { sentencePool, type Sentence, type Source } from '@/lib/sentences'
 import { speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { isAccent } from '@/lib/accents'
@@ -103,7 +103,7 @@ export default function Speaking() {
             setStep(0)
           }}
           options={[
-            { value: 'repeat', label: 'リピート採点' },
+            { value: 'repeat', label: '発音チェック' },
             { value: 'shadow', label: 'シャドーイング' },
           ]}
         />
@@ -142,7 +142,9 @@ export default function Speaking() {
                   ))}
                 </div>
                 <p className="mt-3 text-[13px] font-semibold">
-                  <span className="mr-2 tabular-nums text-muted">{step + 1}/5</span>
+                  <span className="mr-2 tabular-nums text-muted">
+                    {step + 1} / {STEPS.length}
+                  </span>
                   {st.title}
                 </p>
                 <p className="mt-0.5 text-[12.5px] leading-snug text-muted">{st.desc}</p>
@@ -152,7 +154,10 @@ export default function Speaking() {
               {textVisible ? (
                 <p className="en text-[22px] leading-snug">{cur.en}</p>
               ) : (
-                <p className="text-[14px] text-faint">英文は隠れています</p>
+                <p className="flex items-center gap-2 text-[14px] text-faint">
+                  <EyeOff className="h-4 w-4" strokeWidth={1.8} />
+                  英文は隠れています
+                </p>
               )}
               {jaVisible && cur.ja && <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{cur.ja}</p>}
             </div>
@@ -166,10 +171,10 @@ export default function Speaking() {
                   speak(cur.en, { accent: cur.accent, rate })
                 }}
               >
-                <Play className="h-3.5 w-3.5 fill-current" />
+                <Volume2 className="h-4 w-4" strokeWidth={1.9} />
                 お手本
               </Button>
-              <Button variant="outline" size="sm" onClick={() => speak(cur.en, { accent: cur.accent, rate: 0.6 })}>
+              <Button variant="outline" size="sm" onClick={() => speak(cur.en, { accent: cur.accent, rate: SLOW_RATE })}>
                 <Snail className="h-4 w-4" strokeWidth={1.8} />
                 ゆっくり
               </Button>
@@ -192,11 +197,13 @@ export default function Speaking() {
         {mode === 'shadow' ? (
           <div className="flex gap-2">
             <Button variant="secondary" disabled={step === 0} onClick={() => setStep((s) => Math.max(0, s - 1))}>
+              <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={2} />
               前へ
             </Button>
             {step < STEPS.length - 1 ? (
               <Button variant="ink" className="flex-1" onClick={() => setStep((s) => s + 1)}>
                 次のステップ
+                <ChevronRight className="h-[18px] w-[18px]" strokeWidth={2} />
               </Button>
             ) : (
               <Button

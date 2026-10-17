@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
-import { ArrowLeft, Check, Volume2 } from 'lucide-react'
+import { Check, ChevronLeft } from 'lucide-react'
 import { CharImage } from '@/components/Guide'
-import { Button, cx } from '@/components/ui'
+import { Button, SpeakButton, cx } from '@/components/ui'
+import { ChoiceButton } from '@/components/Session'
 import { formatMinutes, MAX_NEW_PER_DAY, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen } from '@/lib/settings'
 import { CATEGORIES, LEVELS, type Category, type Word } from '@/lib/types'
 import { distractors, loadCategory, shuffle } from '@/lib/vocab'
-import { speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
+import { stopSpeaking } from '@/lib/tts'
 
 type Step = 'course' | 'level' | 'check' | 'plan'
 
@@ -64,7 +65,7 @@ export default function Welcome() {
             onClick={() => setStep(step === 'check' ? 'level' : steps[idx - 1])}
             className="-ml-1 flex h-9 w-9 items-center justify-center rounded-full text-ink active:bg-surface-2"
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ChevronLeft className="h-5 w-5" strokeWidth={2} />
           </button>
         ) : (
           <span className="h-9 w-9" />
@@ -271,7 +272,7 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
     return { byLv, mastered }
   }, [answers])
 
-  if (!items) return <p className="mt-10 text-center text-muted">準備中…</p>
+  if (!items) return <p className="mt-10 text-center text-muted">読み込み中…</p>
 
   const levelIdx = Math.floor(i / PER)
   const levelDone = i > 0 && i % PER === 0
@@ -311,8 +312,8 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
           </p>
         </div>
         <div className="mt-auto pb-[max(env(safe-area-inset-bottom),20px)] pt-6">
-          <Button block size="lg" variant="ink" onClick={() => onDone({ min, max })}>
-            このレベルで始める
+          <Button block size="lg" onClick={() => onDone({ min, max })}>
+            このレベルではじめる
           </Button>
         </div>
       </div>
@@ -336,32 +337,16 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
       </p>
       <div className="mt-6 flex items-center gap-3">
         <p className="en text-[40px] font-medium leading-none">{it.word.w}</p>
-        <button
-          aria-label="発音を聞く"
-          onClick={() => {
-            warmUpSpeech()
-            speak(it.word.w)
-          }}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line-strong active:scale-90"
-        >
-          <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.9} />
-        </button>
+        <SpeakButton text={it.word.w} />
       </div>
       <p className="mt-2 text-[13px] text-muted">いちばん近い意味は？</p>
       <div className="mt-5 space-y-2">
-        {it.options.map((o) => (
-          <button
-            key={o.id}
-            onClick={() => choose(o.id)}
-            className={cx(
-              'w-full rounded-[14px] border bg-surface px-4 py-3.5 text-left text-[15px] transition active:scale-[0.99]',
-              picked === o.id ? 'border-ink' : 'border-line',
-            )}
-          >
+        {it.options.map((o, k) => (
+          <ChoiceButton key={o.id} index={k + 1} state={picked === o.id ? 'selected' : 'idle'} onClick={() => choose(o.id)}>
             {o.ja}
-          </button>
+          </ChoiceButton>
         ))}
-        <button onClick={() => choose(null)} className="w-full py-3 text-[14px] text-muted">
+        <button onClick={() => choose(null)} className="min-h-11 w-full text-[14px] text-muted">
           分からない
         </button>
       </div>

@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router'
 import { BookOpen, ChevronLeft, Headphones, House, Languages, MessagesSquare, Settings } from 'lucide-react'
 import { type ReactNode, Suspense, useEffect, useRef, useState } from 'react'
-import { isFocusMode } from '@/lib/routes'
+import { isFocusMode, useSessionActive } from '@/lib/routes'
 import { cx } from './ui'
 import { UpdateToast } from './UpdateToast'
 
@@ -15,7 +15,8 @@ const TABS = [
 
 export function Layout() {
   const { pathname } = useLocation()
-  const focus = isFocusMode(pathname)
+  const session = useSessionActive()
+  const focus = isFocusMode(pathname) || session
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])

@@ -48,6 +48,15 @@ export function wrongMessage(): GuideLine {
   ])
 }
 
+/** 聞き取りでまちがえたとき（同じ問題はもう出さないので「あとでもう一度」とは言わない） */
+export function listenWrongMessage(): GuideLine {
+  return pick([
+    { pose: 'think', text: '英文を見ながら、もう一度聞いてみよう。聞こえ方が変わるはずだワン。' },
+    { pose: 'oops', text: 'おしい！聞き取れなかった部分は、ゆっくりでも聞いてみよう。' },
+    { pose: 'think', text: '音と文字を結びつけると、次は聞き取れるようになるワン。' },
+  ])
+}
+
 export function sessionDoneMessage(correct: number, total: number, minutes: number): GuideLine {
   const rate = total ? Math.round((correct / total) * 100) : 0
   if (rate >= 90) return { pose: 'celebrate', text: `${total}問中${correct}問正解（${rate}%）！${minutes}分の集中、すばらしいワン！` }
