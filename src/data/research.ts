@@ -48,9 +48,14 @@ export const EVIDENCE: Evidence[] = [
     title: '望ましい困難（段階的な難易度）',
     finding:
       '学習時に適度な困難（思い出す・生成する）を伴う方が長期的な定着につながる。語彙は「意味が分かる（受容）」から「自分で書ける・言える（産出）」まで段階がある。',
-    inApp: '記憶の安定度に応じて、選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋めへと難易度が上がります。',
+    inApp:
+      '記憶の安定度に応じて、選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋めへと難易度が上がります。選択問題のまちがいの選択肢も、学習者のレベルとその語の覚え具合に応じて、綴りが似た語・同じ分野の語・同じ単語を含む例文など「もっともらしいもの」を増やします（意味が重なる語は除外）。',
     refs: [
       { cite: 'Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe & A. Shimamura (Eds.), Metacognition: Knowing about knowing (pp. 185–205). MIT Press.' },
+      {
+        cite: 'Little, J. L., Bjork, E. L., Bjork, R. A., & Angello, G. (2012). Multiple-choice tests exonerated, at least of some charges: Fostering test-induced learning and avoiding test-induced forgetting. Psychological Science, 23(11), 1337–1344.',
+        url: 'https://doi.org/10.1177/0956797612443370',
+      },
       { cite: 'Webb, S. (2007). The effects of repetition on vocabulary knowledge. Applied Linguistics, 28(1), 46–65.' },
     ],
   },

@@ -6,7 +6,8 @@ import { Button, SpeakButton, cx } from '@/components/ui'
 import { ChoiceButton } from '@/components/Session'
 import { formatMinutes, MAX_NEW_PER_DAY, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen } from '@/lib/settings'
 import { CATEGORIES, LEVELS, type Category, type Word } from '@/lib/types'
-import { distractors, loadCategory, shuffle } from '@/lib/vocab'
+import { loadCategory, shuffle } from '@/lib/vocab'
+import { diagnosticTier, wordDistractors } from '@/lib/distractors'
 import { stopSpeaking } from '@/lib/tts'
 
 type Step = 'course' | 'level' | 'check' | 'plan'
@@ -248,7 +249,7 @@ function LevelCheck({ onDone }: { onDone: (r: { min: number; max: number }) => v
       const out: { word: Word; options: Word[] }[] = []
       for (const lv of [1, 2, 3, 4, 5]) {
         const pool = content.filter((w) => w.lv === lv)
-        for (const w of shuffle(pool).slice(0, PER)) out.push({ word: w, options: shuffle([w, ...distractors(w, pool, 3)]) })
+        for (const w of shuffle(pool).slice(0, PER)) out.push({ word: w, options: shuffle([w, ...wordDistractors(w, pool, diagnosticTier(w.lv)).map((d) => d.word)]) })
       }
       if (alive) setItems(out)
     })

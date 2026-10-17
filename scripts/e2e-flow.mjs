@@ -56,6 +56,7 @@ for (let i = 0; i < 3; i++) await page.getByRole('button', { name: '覚えた・
 check(await page.getByText('意味を選ぼう').isVisible(), '提示後に選択式の想起テスト')
 const options = page.locator('button[data-choice]')
 await options.first().waitFor()
+check(await page.getByText(/^(やさしい|ふつう|むずかしい)$/).first().isVisible(), '選択肢の難しさ（レベルと覚え具合）を表示')
 await options.nth(1).click()
 await page.waitForTimeout(400)
 check(await page.getByRole('button', { name: '次へ' }).isVisible(), '回答後にフィードバックと次へボタン')

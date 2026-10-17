@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { RotateCcw } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { defaultLevel, defaultSources, SourcePicker, SpeedPicker, VoiceVarietyToggles } from '@/components/PracticeControls'
-import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell, SlowButton, SLOW_RATE, scoreCaption } from '@/components/Session'
+import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell, SlowButton, SLOW_RATE, scoreCaption, TierBadge } from '@/components/Session'
 import { Button, Card } from '@/components/ui'
-import { jaDistractors, pickRound, sentencePool, type Sentence, type Source } from '@/lib/sentences'
+import { pickRound, sentencePool, type Sentence, type Source } from '@/lib/sentences'
+import { listeningTier, sentenceDistractors } from '@/lib/distractors'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily } from '@/lib/db'
 import { correctMessage, listenWrongMessage, type GuideLine } from '@/lib/guide'
@@ -28,6 +29,8 @@ export default function Listening() {
   const [started, setStarted] = useState(false)
   const [guide, setGuide] = useState<GuideLine | null>(null)
   const [plays, setPlays] = useState(0)
+  /** 選択肢の難しさの調整：正解が3問続くと上げ、まちがえると下げる（−1〜+1） */
+  const adjust = useRef({ value: 0, streak: 0 })
 
   useEffect(() => {
     let alive = true
@@ -39,7 +42,11 @@ export default function Listening() {
   useEffect(() => () => stopSpeaking(), [])
 
   const cur = round[i]
-  const options = useMemo(() => (cur ? shuffle([cur.ja, ...jaDistractors(cur, pool)]) : []), [cur, pool])
+  // 選択肢の難しさは選んだレベルと回の中の正解の続き具合で決める（回答後に選択肢が変わらないよう、問題が変わったときだけ作る）
+  const { options, tier } = useMemo(() => {
+    const t = listeningTier(level, adjust.current.value)
+    return { tier: t, options: cur ? shuffle([cur.ja, ...sentenceDistractors(cur, pool, t).map((d) => d.ja)]) : [] }
+  }, [cur, pool]) // eslint-disable-line react-hooks/exhaustive-deps
   const done = started && i >= round.length
   const voice = vary ? 'random' : 'main'
 
@@ -64,6 +71,7 @@ export default function Listening() {
     setGuide(null)
     setStarted(true)
     setPlays(1)
+    adjust.current = { value: 0, streak: 0 }
     if (r[0]) speak(r[0].en, { accent: r[0].accent, rate, voice })
   }
 
@@ -73,6 +81,10 @@ export default function Listening() {
     const ok = ja === cur.ja
     playCue(ok ? 'correct' : 'wrong')
     if (ok) setScore((s) => s + 1)
+    const a = adjust.current
+    if (!ok) adjust.current = { value: Math.max(-1, a.value - 1), streak: 0 }
+    else if (a.streak + 1 >= 3) adjust.current = { value: Math.min(1, a.value + 1), streak: 0 }
+    else adjust.current = { ...a, streak: a.streak + 1 }
     setGuide(ok ? correctMessage(0) : listenWrongMessage())
     bumpDaily({ listening: 1, correct: ok ? 1 : 0, seconds: 15 })
   }
@@ -96,7 +108,10 @@ export default function Listening() {
         progress={{ value: i, max: round.length }}
       >
         <div className={picked ? 'pb-40' : 'pb-8'}>
-          <p className="text-center text-[12.5px] font-medium text-muted">聞こえた英文の意味は？</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-[12.5px] font-medium text-muted">聞こえた英文の意味は？</p>
+            <TierBadge tier={tier} />
+          </div>
           <div className="flex flex-col items-center gap-3 py-7">
             <ListenButton onClick={() => play()} />
             <div className="flex items-center gap-3">
@@ -145,7 +160,9 @@ export default function Listening() {
           <SourcePicker sources={sources} onSources={setSources} level={level} onLevel={setLevel} />
           <SpeedPicker rate={rate} onRate={setRate} />
           <VoiceVarietyToggles />
-          <p className="text-[12px] text-muted">対象の文：{pool.length.toLocaleString()}文</p>
+          <p className="text-[12px] leading-relaxed text-muted">
+            対象の文：{pool.length.toLocaleString()}文。選択肢には、聞こえた英文と同じ単語・同じ場面の文がまぎれます。数はレベルに合わせて決まり、正解が続くと増えます
+          </p>
         </Card>
         <Button block size="lg" onClick={start} disabled={pool.length < 4}>
           {done && <RotateCcw className="h-[18px] w-[18px]" />}

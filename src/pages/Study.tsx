@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
-import { Brain, CalendarClock, Check, Eye, Lightbulb, Shuffle, Star, Volume2, X } from 'lucide-react'
+import { Brain, CalendarClock, Check, Eye, Gauge, Lightbulb, Shuffle, Star, Volume2, X } from 'lucide-react'
 import { Guide } from '@/components/Guide'
 import { BottomBar, Button, SpeakButton, Tag, cx } from '@/components/ui'
-import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell as Shell, SlowButton, SLOW_RATE, scoreCaption } from '@/components/Session'
+import { ChoiceButton, choiceState, FeedbackBar, ListenButton, ResultCard, SessionShell as Shell, SlowButton, SLOW_RATE, scoreCaption, TierBadge } from '@/components/Session'
 import { WordBody, WordHead } from '@/components/WordInfo'
 import { buildDrill, buildSession, checkSpelling, MAX_RETRIES, reinsert, type Item } from '@/lib/session'
 import { objectiveGrade, previewIntervals, Rating, recordReview, humanizeDiff, type Grade } from '@/lib/srs'
@@ -11,7 +11,8 @@ import { bumpDaily, db, toggleMark, type CardRow } from '@/lib/db'
 import { accentFor, useSettings, getSettings } from '@/lib/settings'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent } from '@/lib/tts'
 import { correctMessage, sessionDoneMessage, wrongMessage, type GuideLine } from '@/lib/guide'
-import { distractors, loadCategory, markedTarget, shuffle, plain } from '@/lib/vocab'
+import { loadCategory, markedTarget, shuffle, plain } from '@/lib/vocab'
+import { wordDistractors, wordTier, type Tier } from '@/lib/distractors'
 import { useMarks } from '@/lib/hooks'
 import type { Word } from '@/lib/types'
 import { play } from '@/lib/sounds'
@@ -142,7 +143,7 @@ export default function Study() {
   if (phase === 'start')
     return (
       <Shell onClose={() => nav('/')}>
-        <div className="mt-4 animate-rise">
+        <div className="mt-4 animate-rise pb-36">
           <p className="text-[13px] font-medium text-muted">
             {mode === 'weak' ? '苦手な単語の練習' : mode === 'marked' ? '保存した単語の練習' : '今日の単語'}
           </p>
@@ -164,6 +165,7 @@ export default function Study() {
               <Point icon={<CalendarClock />} title="忘れかけた頃にまた出題" desc="FSRS が単語ごとに次の復習日を決めます（分散学習）" />
             )}
             <Point icon={<Shuffle />} title="形式とコースを混ぜて出題" desc="選択・リスニング・スペルを混ぜます（インターリーブ）" />
+            <Point icon={<Gauge />} title="選択肢の難しさはレベルと覚え具合で" desc="覚えた語ほど、綴りや分野が似たまぎらわしい選択肢で確かめます（望ましい困難）" />
             <Point icon={<Volume2 />} title="例文を声に出して読む" desc="音と文脈がそろうと思い出しやすくなります（産出効果）" />
           </ul>
         </div>
@@ -364,24 +366,36 @@ function ItemView({ item, phase, result, onAnswer }: { item: Item; phase: Phase;
   return <TypeQ item={item} phase={phase} result={result} elapsed={elapsed} onAnswer={onAnswer} />
 }
 
-function Prompt({ children }: { children: React.ReactNode }) {
-  return <p className="mb-5 text-[13px] font-medium text-muted">{children}</p>
+function Prompt({ children, aside }: { children: React.ReactNode; aside?: React.ReactNode }) {
+  return (
+    <div className="mb-5 flex items-center gap-2">
+      <p className="min-w-0 flex-1 text-[13px] font-medium text-muted">{children}</p>
+      {aside}
+    </div>
+  )
 }
 
 function ChoiceQ({ item, phase, elapsed, onAnswer }: { item: Item; phase: Phase; elapsed: () => number; onAnswer: AnswerFn }) {
   const w = item.word
   const [options, setOptions] = useState<Word[] | null>(null)
+  const [tier, setTier] = useState<Tier | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
   const vary = useSettings((s) => s.varyVoices)
+  const learnerLevel = useSettings((s) => s.maxLevel)
   useEffect(() => {
-    loadCategory(w.cat).then((pool) => setOptions(shuffle([w, ...distractors(w, pool, 3)])))
-  }, [w])
+    // 選択肢の難しさ：学習者のレベルと、この語の覚え具合（記憶の安定度）で決める
+    Promise.all([loadCategory(w.cat), db.cards.get(w.id)]).then(([pool, row]) => {
+      const t = wordTier({ learnerLevel, stability: row?.stability, retry: item.retry })
+      setTier(t)
+      setOptions(shuffle([w, ...wordDistractors(w, pool, t).map((d) => d.word)]))
+    })
+  }, [w]) // eslint-disable-line react-hooks/exhaustive-deps
   const listen = item.type === 'listen'
   const accent = accentOf(w)
   const showWord = !listen || phase !== 'question'
   return (
     <div className="animate-rise">
-      <Prompt>{listen ? '聞こえた単語の意味は？' : item.retry ? 'もう一度。意味を選ぼう' : '意味を選ぼう'}</Prompt>
+      <Prompt aside={tier && <TierBadge tier={tier} />}>{listen ? '聞こえた単語の意味は？' : item.retry ? 'もう一度。意味を選ぼう' : '意味を選ぼう'}</Prompt>
       <div className="flex min-h-[132px] flex-col items-center justify-center gap-3 text-center">
         {showWord ? (
           <>

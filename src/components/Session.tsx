@@ -1,7 +1,8 @@
 import { useEffect, type ReactNode } from 'react'
-import { Check, Snail, Volume2, X } from 'lucide-react'
+import { Check, Gauge, Snail, Volume2, X } from 'lucide-react'
 import { play as playCue } from '@/lib/sounds'
 import { enterSession } from '@/lib/routes'
+import { TIER_LABEL, type Tier } from '@/lib/distractors'
 import { BottomBar, Button, Card, ProgressBar, cx } from './ui'
 
 /**
@@ -71,6 +72,16 @@ export function SlowButton({ onClick }: { onClick: () => void }) {
       <Snail className="h-4 w-4" strokeWidth={1.8} />
       ゆっくり
     </Button>
+  )
+}
+
+/** 選択肢の難しさ（似た選択肢の多さ）。レベルと覚え具合で自動で変わる */
+export function TierBadge({ tier }: { tier: Tier }) {
+  return (
+    <span className="inline-flex shrink-0 items-center gap-1 text-[11.5px] font-medium text-muted" title="選択肢の難しさ（レベルと覚え具合で自動調整）">
+      <Gauge className="h-3.5 w-3.5" strokeWidth={1.9} />
+      {TIER_LABEL[tier]}
+    </span>
   )
 }
 

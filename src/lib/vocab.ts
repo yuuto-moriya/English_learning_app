@@ -129,12 +129,3 @@ export function shuffle<T>(arr: T[], rnd = Math.random): T[] {
   return a
 }
 
-/** 意味の選択肢を作る（同カテゴリ・近いレベル・同品詞を優先） */
-export function distractors(target: Word, pool: Word[], n = 3): Word[] {
-  const cand = pool.filter(
-    (w) => w.id !== target.id && w.ja !== target.ja && Math.abs(w.lv - target.lv) <= 1,
-  )
-  const samePos = cand.filter((w) => w.pos === target.pos)
-  const src = samePos.length >= n * 3 ? samePos : cand
-  return shuffle(src).slice(0, n)
-}
