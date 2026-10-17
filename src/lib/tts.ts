@@ -255,9 +255,17 @@ if (synth) {
 
 export const ttsAvailable = !!synth
 
-/** 遊び用・旧式の声（学習に向かない） */
+/**
+ * 遊び用・旧式の声（学習に向かない）。iPhone を日本語で使っていると名前が日本語になる（オルガン・ささやき声・トリノイド…）ので、
+ * 英語名だけでなく voiceURI（言語に関係なく英語の ID）と日本語名でも見分ける。
+ */
 const NOVELTY =
   /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Deranged|Hysterical|Pipe Organ|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i
+const NOVELTY_JA =
+  /^(アルバート|悪い知らせ|バッドニュース|ベル|ボイン|ブーイング|バブル|泡|チェロ|良い知らせ|グッドニュース|道化|オルガン|パイプオルガン|スーパースター|トリノイド|ささやき|震え|ザーボックス|ザルボックス|錯乱|ヒステリック|エディ|フロー|おばあちゃん|おじいちゃん|リード|ロッコ|サンディ|シェリー|フレッド|ジュニア|ラルフ|キャシー|プリンセス|ヴィッキー|ビッキー|ヴィクトリア|ビクトリア|アグネス|ブルース)/
+/** macOS 由来の遊び用・旧式の声の ID（com.apple.speech.synthesis.voice.Organ など） */
+const LEGACY_URI =
+  /speech\.synthesis\.voice\.(Albert|BadNews|Bahh|Bells|Boing|Bubbles|Cellos|GoodNews|Jester|Organ|PipeOrgan|Superstar|Trinoids|Whisper|Wobble|Zarvox|Deranged|Hysterical|Fred|Junior|Ralph|Kathy|Princess|Vicki|Victoria|Agnes|Bruce)\b/i
 const OLD_MACINTALK = /^(Fred|Junior|Ralph|Kathy|Princess|Vicki|Victoria|Agnes|Bruce)\b/i
 const GOOD_APPLE =
   /^(Samantha|Ava|Allison|Susan|Zoe|Evan|Nathan|Joelle|Noelle|Tom|Nicky|Aaron|Alex|Daniel|Kate|Serena|Arthur|Martha|Oliver|Stephanie|Jamie|Siri)\b/i
@@ -265,13 +273,13 @@ const GOOD_APPLE =
 /** 声の品質の目安（大きいほど良い。負の値は使わない） */
 export function voiceQuality(v: Pick<SpeechSynthesisVoice, 'name' | 'voiceURI'>): number {
   const id = `${v.voiceURI} ${v.name}`
-  if (NOVELTY.test(v.name) || /eloquence/i.test(v.voiceURI)) return -1
+  if (NOVELTY.test(v.name) || NOVELTY_JA.test(v.name) || OLD_MACINTALK.test(v.name)) return -1
+  if (/eloquence/i.test(v.voiceURI) || LEGACY_URI.test(v.voiceURI)) return -1
   if (/premium/i.test(id)) return 100
   if (/microsoft/i.test(id) && /(natural|online)/i.test(id)) return 95
   if (/enhanced/i.test(id)) return 85
   if (/^Google/i.test(v.name)) return 60
   if (GOOD_APPLE.test(v.name)) return 50
-  if (OLD_MACINTALK.test(v.name)) return 5
   return 20
 }
 
