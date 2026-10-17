@@ -137,7 +137,7 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
 export const HOME_TOUR: TourStep[] = [
   {
     title: 'ようこそ！使い方を30秒でご案内します',
-    body: 'Tetsu English は、単語・リスニング・発音・会話・翻訳をひとつで練習できるアプリです。主な場所を順番に見ていきましょう。',
+    body: 'Michi（ミチ）は、単語・リスニング・発音・会話・翻訳をひとつで練習できるアプリです。主な場所を順番に見ていきましょう。',
   },
   {
     target: 'mode',

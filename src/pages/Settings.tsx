@@ -38,13 +38,13 @@ export default function Settings() {
 
   const doExport = async () => {
     const json = await exportAll()
-    const name = `tetsu-english-backup-${new Date().toISOString().slice(0, 10)}.json`
+    const name = `michi-backup-${new Date().toISOString().slice(0, 10)}.json`
     const blob = new Blob([json], { type: 'application/json' })
     // iPhone のホーム画面アプリではダウンロードリンクが使えないことがあるため、共有シート（ファイルに保存）を優先
     const f = new File([blob], name, { type: 'application/json' })
     if (navigator.canShare?.({ files: [f] })) {
       try {
-        await navigator.share({ files: [f], title: 'Tetsu English バックアップ' })
+        await navigator.share({ files: [f], title: 'Michi のバックアップ' })
         setMsg('バックアップを書き出しました')
         return
       } catch (e) {
@@ -400,7 +400,7 @@ export default function Settings() {
             <ChevronRight className="h-[18px] w-[18px] text-faint" />
           </Link>
         </div>
-        <p className="mt-6 text-center text-[11px] text-faint">Tetsu English v{__APP_VERSION__}</p>
+        <p className="mt-6 text-center text-[11px] text-faint">Michi v{__APP_VERSION__}</p>
       </div>
     </div>
   )

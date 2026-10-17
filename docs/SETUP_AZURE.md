@@ -1,6 +1,6 @@
 # Azure（翻訳・発音評価）の設定手順
 
-Tetsu English の **翻訳**・**発音評価**・**音声入力**・**高品質な読み上げ（ニューラル音声）**・**同時通訳** は、Microsoft Azure の
+Michi の **翻訳**・**発音評価**・**音声入力**・**高品質な読み上げ（ニューラル音声）**・**同時通訳** は、Microsoft Azure の
 **Azure AI Translator** と **Azure AI Speech** を、Vercel Functions（`/api/*`）経由で呼び出しています。
 この手順書では、両サービスを **無料枠（Free F0）** で作成し、Vercel に設定するまでを説明します。
 
@@ -39,7 +39,7 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
 1. <https://portal.azure.com/> にサインインします（Microsoft アカウントで Azure のサブスクリプションを作成）。
    アカウント作成時には、本人確認（電話番号・クレジットカードなど）を求められることがあります。
    F0 の範囲で使う限り、料金は発生しません。
-2. 以降の手順で作るリソースは、まとめて1つの **リソースグループ**（例: `rg-tetsu-english`）に入れておくと、
+2. 以降の手順で作るリソースは、まとめて1つの **リソースグループ**（例: `rg-michi`）に入れておくと、
    不要になったときにグループごと削除できます。
 
 ## 2. Azure AI Translator（翻訳）を作成する
@@ -52,7 +52,7 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
    | 項目 | 設定 |
    |---|---|
    | サブスクリプション | 自分のサブスクリプション |
-   | リソースグループ | `rg-tetsu-english`（新規作成可） |
+   | リソースグループ | `rg-michi`（新規作成可） |
    | リージョン | **Japan East**（推奨）。Global も選べます |
    | 名前 | 例: `tetsu-translator`（世界で一意） |
    | 価格レベル | **Free F0** |
@@ -89,7 +89,7 @@ iPhone（PWA） ──HTTPS──▶ Vercel Functions（/api/*） ──▶ Azur
 
    | 項目 | 設定 |
    |---|---|
-   | リソースグループ | `rg-tetsu-english` |
+   | リソースグループ | `rg-michi` |
    | リージョン | **Japan East**（推奨） |
    | 名前 | 例: `tetsu-speech` |
    | 価格レベル | **Free F0** |

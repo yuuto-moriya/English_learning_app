@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-英語学習・翻訳の PWA「Tetsu English」。主な利用者は iPhone で使う、鉄道保線・設備管理（EAM）に関わる日本人。
+英語学習・翻訳の PWA「Michi（ミチ）」（旧名 Tetsu English）。主な利用者は iPhone で使う、鉄道保線・設備管理（EAM）に関わる日本人。
 
 ## 最初に読むもの
 
