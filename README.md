@@ -1,14 +1,18 @@
-# Michi — 英語学習と翻訳の PWA
+# Eliza Patina — 英語学習と翻訳の PWA
+
+> 話すほど、使うほど、あなたの英語に味が出る。
 
 > **English summary**
-> Michi (Japanese for "path") is an English-learning and translation PWA for Japanese learners — originally built for a railway track-maintenance (保線) and EAM professional — designed for iPhone (add to home screen).
+> Eliza Patina is an English-learning and translation PWA for Japanese learners. The name joins Eliza Doolittle of *My Fair Lady* (who changes herself by practising how she speaks; the first chatbot, ELIZA, was named after her) and patina, the beauty that copper, leather and denim gain with use — like the green of Lady Liberty. It was — originally built for a railway track-maintenance (保線) and EAM professional — designed for iPhone (add to home screen).
 > Learners choose and quickly switch modes (everyday / business / IT / rail maintenance) and study 4,070 words (general NGSL / business BSL+TSL / IT / rail & EAM glossary) in an evidence-based session (retrieval practice + FSRS spaced repetition + interleaving).
-> Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, Azure pronunciation assessment and 40 role-play dialogues.
+> Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, a timed "while you do chores" mode that cycles recall, repeat-after-me, spoken translation and role-play dialogues by ear and voice, Azure pronunciation assessment and 40 role-play dialogues.
 > Speech uses Azure neural voices in eight English accents (US, UK, Australia, Canada, Ireland, India, New Zealand, South Africa), cached on the device and falling back to the device voice.
 > The translator works as you type or speak, and a simultaneous-interpretation screen streams live transcripts and translations (Azure Speech translation via short-lived tokens), with a face-to-face conversation mode, sound cues and a guided tour for new users.
 > Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Vercel (static site + Vercel Functions).
 > A corgi guide, "Tetsu", and four animal friends are modeled procedurally in Blender.
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
+
+**名前の由来**：映画『マイ・フェア・レディ』で話し方の練習を重ねて自分を変えていくイライザ（**Eliza**＝話して変わる人、つまり学ぶあなた）と、銅や革・デニムが使い込むうちに帯びる経年変化の味＝**Patina**（ニューヨークの自由の女神の緑も、銅が年月で生んだパティーナ）。My Fair Lady と Lady Liberty、ふたりの「英語のレディ」を、ファッションのメゾンのように人の名前として組みました。ホーム画面の表示名は「Patina」。
 
 一般・ビジネス・IT・鉄道保線（設備管理/EAM を含む）の英語を、**学習**から**実務での翻訳・同時通訳**までひとつで扱えるアプリです。
 iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーのぬいぐるみ「テツ」で、いろいろな犬種のなかまたち（リスニング・発音のモカ＝トイプードル、ビジネスのスミ＝フレンチブルドッグ、保線のキナコ＝柴犬、学習法の解説のユキ先生＝サモエド、翻訳のショコラ＝ダックスフンド）が各画面を案内します。
@@ -69,6 +73,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - **聞き分け**：L/R・B/V・S/TH・F/H・語末の N/NG・work/walk の母音・子音の連続（sport/support）など、日本語話者が苦手な13種類の音の対立（144組の最小対語）を複数の声で（高変動音声訓練：HVPT）。選択肢に単語の意味、回答後に両方の語の例文（英・和）と聞き比べを表示。形式は「単語」「例文（文の中で聞き分け）」「同じ？ちがう？」の3つ
 - **瞬間英作文**：学習した単語の例文を、日本語から英語ですぐ言う。言えなかった文はもう一度
 - **耳で復習**：「和訳 → 考える間 → 英語 → 例文」を流す、画面を見ない復習（通勤中など）
+- **ながら練習**：家事や身支度をしながら、耳と声だけで練習（`src/pages/Handsfree.tsx`・`src/lib/handsfree.ts`）。はじめに時間（5分〜1時間）・内容・考える間（ゆっくり／ふつう／はやめ）・日本語の案内を選ぶと、「単語を思い出す（5問）→ まねして言う（4文）→ 日本語から英語で言う（3文）→ 会話を聞く（1場面。あなたの台詞は間を置いてまねして言う）」を順番に流しっぱなしにする。言う間は文の長さに合わせて変わる。時間になったら1問の区切りで終わり、「あと5分」でのばせる。画面は消えないようにし（Wake Lock）、ほかのアプリに切り替えると一時停止。答え合わせはしないので復習の予定（FSRS）は変えず、練習した時間を今日の学習に記録する
 - **シャドーイング**：「聞く → つぶやく → 意味確認 → 同時読み → シャドーイング」の 5 ステップコーチ
 - **発音チェック**：Azure AI Speech の発音評価で、文・単語・音素ごとのスコアと誤りを表示
   - Azure 未設定時は、Safari のタブでは端末の音声認識による簡易判定、ホーム画面アプリ（iOS では SpeechRecognition 非対応）では録音して聞き比べる自己評価に切り替え
@@ -117,6 +122,8 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 | 注意・エラー | `TriangleAlert`（`Notice`） | |
 | 翻訳・出題の向き | 矢印は文字ではなく `ArrowRight`（`Direction`） | 日本語 → 英語 |
 | 米国・英国の表記 | `Tag` | 米・英 |
+| 単語の覚え具合（パティーナ） | 学習中＝銅色（`copper`）、定着＝緑青色（`verdigris`）の点・`PatinaBar`。必ず `PatinaLegend` か「学習中・定着」の言葉と並べる。正解・不正解の色（`ok`・`ng`）は覚え具合に使わない | 未学習・学習中・定着 |
+| 時間で区切る練習の残り時間 | `SessionShell` の `label`（「12:05」） | あと5分 |
 
 - 練習の1回分は `src/components/Session.tsx` の部品で組み立てる：`SessionShell`（× でやめる・進み具合「3 / 10」・その間はタブバーを隠す）、`ChoiceButton`（選択肢）、`FeedbackBar`（回答後の「正解／不正解」と「次へ」）、`ResultCard`（最後の結果と終わりの効果音）
 - 練習メニューの名前・アイコン・説明は `src/components/PracticeMenu.tsx` の1か所で持ち、ホームと練習の画面で共有する
@@ -173,8 +180,8 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 │   ├── components/            # 共通 UI（練習の画面の部品 Session.tsx、練習メニュー、ガイド、発音チェック、単語情報など）
 │   ├── assets/fonts/          # Newsreader（英語の書体、OFL）
 │   ├── data/                  # 単語 JSON（生成物）、シーン会話、聞き分けの最小対語と語の意味・例文、学習法の根拠
-│   ├── lib/                   # 学習セッション、FSRS、DB、用語検出、音声、設定
-│   ├── pages/                 # 画面（はじめての設定、ホーム、学習、単語帳、練習、聞き分け、瞬間英作文、耳で復習、学習記録、シーン、翻訳、同時通訳、設定…）
+│   ├── lib/                   # 学習セッション、FSRS、DB、用語検出、音声、設定、ながら練習（handsfree）
+│   ├── pages/                 # 画面（はじめての設定、ホーム、学習、単語帳、練習、聞き分け、瞬間英作文、耳で復習、ながら練習、学習記録、シーン、翻訳、同時通訳、設定…）
 │   └── styles/
 ├── tests/                     # Vitest（データ整合性、学習ロジック、FSRS、用語検出、API）
 ├── .env.example               # 環境変数の例（ローカルは .env.local にコピー）
@@ -301,13 +308,13 @@ npx vercel --prod   # 本番へ
 
 1. iPhone の **Safari** でアプリの URL（例: `https://<project>.vercel.app`）を開く
 2. 共有ボタン（四角から上向き矢印）→ **ホーム画面に追加**（見当たらない場合は共有メニューを下にスクロール）
-3. 名前を確認して **追加**。以降はホーム画面のアイコンから全画面で起動します
+3. 名前（「Patina」）を確認して **追加**。以降はホーム画面のアイコンから全画面で起動します
 
 使い方のポイント:
 
 - 初回起動でコース・レベル・学習プランを選ぶと学習を始められます。単語データはアプリに同梱されているので、オフラインでも学習できます
 - 発音チェック・音声入力ではマイクの使用を許可してください
-- Azure Speech を設定していれば、読み上げは自動でニューラル音声になります。端末の音声を使うとき（未設定・オフライン）は、iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で高品質（拡張・プレミアム）音声をダウンロードすると自然になります
+- Azure Speech を設定していれば、読み上げは自動でニューラル音声になります。端末の音声を使うとき（未設定・オフライン）は、iPhone の「設定 → アクセシビリティ（視覚サポート）→ リーダーと読み上げ → 声 → 英語」（古い iOS では「読み上げコンテンツ」）で高品質（拡張・プレミアム）音声をダウンロードすると自然になります
 - 学習データはその端末内にだけ保存されます。**Safari のタブとホーム画面のアプリでは保存先が別** なので、普段使う方（ホーム画面）で学習してください
 - 機種変更や念のためのバックアップは、**設定 → データ → 書き出し**（JSON）→ 新しい端末で **読み込み**
 - `APP_ACCESS_TOKEN` を設定している場合は、ホーム画面のアプリの設定画面でトークンを入力します

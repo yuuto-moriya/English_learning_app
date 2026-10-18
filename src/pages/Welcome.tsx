@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 import { Check, ChevronLeft } from 'lucide-react'
+import { BRAND, Wordmark } from '@/components/Brand'
 import { CharImage } from '@/components/Guide'
 import { Button, SpeakButton, cx } from '@/components/ui'
 import { ChoiceButton } from '@/components/Session'
@@ -82,7 +83,9 @@ export default function Welcome() {
 
       {step === 'course' && (
         <div key="course" className="flex flex-1 flex-col animate-rise">
-          <div className="mt-2 flex items-end gap-2">
+          <Wordmark className="mt-1 text-[22px] leading-tight" />
+          <p className="mt-0.5 text-[12.5px] text-muted">{BRAND.tagline}</p>
+          <div className="mt-3 flex items-end gap-2">
             {s.guide && <CharImage pose="greet" size={76} className="-ml-2" />}
             <p className="mb-2 text-[14px] leading-relaxed text-muted">はじめまして、テツだワン。いっしょに続けよう！</p>
           </div>

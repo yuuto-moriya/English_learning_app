@@ -115,6 +115,29 @@ await page.getByRole('button', { name: '答えを見る' }).click()
 check(await page.getByRole('button', { name: '言えた' }).isVisible(), '瞬間英作文の答えと自己評価')
 await page.getByRole('button', { name: '言えた' }).click()
 
+// ながら練習：時間と内容を選んで始め、一時停止 → やめると結果
+await page.goto(BASE + '/practice/handsfree')
+await page.getByRole('button', { name: '5分', exact: true }).click()
+await page.getByRole('button', { name: /^会話を聞く/ }).click()
+check(await page.getByRole('button', { name: /^会話を聞く/ }).getAttribute('aria-pressed') === 'false', 'ながら練習の内容を選べる')
+await page.getByRole('button', { name: '5分はじめる' }).click()
+await page.getByRole('button', { name: '一時停止' }).waitFor({ timeout: 8000 })
+check(await page.getByText(/^[45]:\d\d$/).isVisible(), 'ながら練習の残り時間')
+await page.getByText('単語を思い出す').first().waitFor({ timeout: 8000 })
+check(await page.getByText('単語を思い出す').first().isVisible(), 'ながら練習のまとまり（単語）')
+await page.getByText('例文', { exact: true }).waitFor({ timeout: 20000 })
+await page.getByRole('button', { name: '次へ' }).click()
+await page.waitForTimeout(800)
+await page.getByRole('button', { name: '一時停止' }).click()
+check(await page.getByText('一時停止中').isVisible(), 'ながら練習の一時停止')
+await page.getByRole('button', { name: 'やめる' }).click()
+await page.getByRole('button', { name: 'あと5分' }).waitFor({ timeout: 5000 })
+check(await page.getByText(/ながら練習 ・/).isVisible(), 'ながら練習の結果（あと5分・終える）')
+await page.getByRole('button', { name: '終える' }).click()
+// 次回のために内容を戻す（設定に保存される）
+await page.goto(BASE + '/practice/handsfree')
+await page.getByRole('button', { name: /^会話を聞く/ }).click()
+
 // 学習記録
 await page.goto(BASE + '/stats')
 await page.getByText('12週間の学習').waitFor()
@@ -175,6 +198,11 @@ check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シ�
 
 // 発音（国・地域）の選択
 await page.goto(BASE + '/settings')
+await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).waitFor({ timeout: 5000 })
+check(await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).isVisible(), '設定に高音質の声の入れ方と、いまの声の状態を表示')
+await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).click()
+await page.getByText('「リーダーと読み上げ」を開く').waitFor({ timeout: 5000 })
+check(await page.getByText('「リーダーと読み上げ」を開く').isVisible(), '高音質の声の手順を開ける')
 await page.getByRole('button', { name: /^オーストラリア/ }).first().click()
 await page.waitForTimeout(200)
 check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.accent === 'en-AU'), '読み上げの発音をオーストラリアに変更')

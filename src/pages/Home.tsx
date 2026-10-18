@@ -5,7 +5,7 @@ import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
 import { ModeSwitcher } from '@/components/ModeSwitcher'
 import { HOME_TOUR, Tour } from '@/components/Tour'
-import { Button, Card, List, MoreLink, ProgressBar, RouteProgress, SectionTitle, cx } from '@/components/ui'
+import { Button, Card, List, MoreLink, PatinaBar, PatinaLegend, RouteProgress, SectionTitle, cx } from '@/components/ui'
 import { PracticeRows } from '@/components/PracticeMenu'
 import { useCardsMap, useDueCount, useNow, useRecentDays, useStreak, useToday } from '@/lib/hooks'
 import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
@@ -159,7 +159,7 @@ export default function Home() {
 
         <SectionTitle action={<MoreLink to="/practice">すべて</MoreLink>}>聞く・話す</SectionTitle>
         <List>
-          <PracticeRows keys={['listening', 'sounds', 'compose', 'speaking', 'audio']} />
+          <PracticeRows keys={['handsfree', 'listening', 'sounds', 'compose', 'speaking']} />
         </List>
 
         <SectionTitle action={<MoreLink to="/words">単語帳</MoreLink>}>コースの進み具合</SectionTitle>
@@ -177,13 +177,16 @@ export default function Home() {
                     <b className="font-semibold text-ink">{st.learned.toLocaleString()}</b> / {st.total.toLocaleString()}語
                   </span>
                 </div>
-                <ProgressBar value={st.learned} max={st.total} color={c.dot} />
+                <PatinaBar learned={st.learned} mastered={st.mastered} total={st.total} />
               </Link>
             )
           })}
-          <div className="flex items-center justify-between border-t border-line pt-3 text-[12px] text-muted">
-            <span>
-              定着した語 <b className="font-semibold text-ink tabular-nums">{stats.mastered.toLocaleString()}</b>
+          <div className="flex flex-wrap items-center justify-between gap-y-1 border-t border-line pt-3 text-[12px] text-muted">
+            <span className="flex items-center gap-3">
+              <span>
+                定着した語 <b className="font-semibold text-ink tabular-nums">{stats.mastered.toLocaleString()}</b>
+              </span>
+              <PatinaLegend />
             </span>
             <MoreLink to="/settings#courses" className="-my-2 text-[12px]">
               コースを変更

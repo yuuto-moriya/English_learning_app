@@ -50,6 +50,13 @@ export default function WordDetail() {
 
         <SectionTitle>学習状況</SectionTitle>
         <Card>
+          {card && card.reps > 0 && !card.known && (
+            <p className="mb-3 flex items-center gap-2 text-[13px]">
+              <span className={cx('h-2.5 w-2.5 rounded-full', card.stability >= 21 ? 'bg-verdigris' : 'bg-copper')} />
+              <span className="font-medium">{card.stability >= 21 ? '定着' : '学習中'}</span>
+              <span className="text-muted">{card.stability >= 21 ? '— 使い込まれて、緑青色になりました' : '— 復習を重ねると、銅色から緑青色に変わります'}</span>
+            </p>
+          )}
           {card && card.reps > 0 ? (
             <div className="grid grid-cols-3 gap-2">
               <Metric value={Math.round((r ?? 0) * 100)} unit="%" label="いま思い出せる確率" />

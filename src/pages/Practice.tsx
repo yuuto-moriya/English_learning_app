@@ -12,6 +12,11 @@ export default function Practice() {
         <ModeSwitcher className="mb-3" />
         <Guide who="moka" pose="greet" text="聞く・話すで使うと定着するよ♪ 1日5分からでOK！" />
 
+        <SectionTitle>家で・ながらで</SectionTitle>
+        <List>
+          <PracticeRows keys={['handsfree']} />
+        </List>
+
         <SectionTitle>聞く</SectionTitle>
         <List>
           <PracticeRows keys={PRACTICE_MODES.filter((m) => m.group === '聞く').map((m) => m.key)} />

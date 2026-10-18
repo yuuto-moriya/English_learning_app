@@ -118,6 +118,8 @@ export default function Words() {
           {STATUS.map(([k, v]) => (
             <Chip key={k} active={status === k} onClick={() => setParam('status', k === 'all' ? null : k)}>
               {k === 'marked' && <Star className="h-3.5 w-3.5" strokeWidth={2} />}
+              {/* 一覧の左の点（パティーナ）の凡例を兼ねる */}
+              {(k === 'learning' || k === 'mastered') && <span className={cx('h-2 w-2 rounded-full', k === 'mastered' ? 'bg-verdigris' : 'bg-copper')} />}
               {v}
             </Chip>
           ))}
@@ -175,7 +177,7 @@ export default function Words() {
                     <span
                       className={cx(
                         'h-1.5 w-1.5 shrink-0 rounded-full',
-                        st === 'mastered' ? 'bg-ok' : st === 'learning' ? 'bg-warn' : 'bg-surface-3',
+                        st === 'mastered' ? 'bg-verdigris' : st === 'learning' ? 'bg-copper' : 'bg-surface-3',
                       )}
                       title={STATUS_LABEL[st]}
                     />

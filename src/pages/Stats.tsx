@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { PageHeader } from '@/components/Layout'
-import { Card, Metric, ProgressBar, SectionTitle, cx } from '@/components/ui'
+import { Card, Metric, PatinaBar, PatinaLegend, SectionTitle, cx } from '@/components/ui'
 import { useCardsMap, useNow, useRecentDays, useStreak } from '@/lib/hooks'
 import { db, isActiveDay, shiftDay, todayKey, type DailyRow } from '@/lib/db'
 import { selectedCats, useSettings } from '@/lib/settings'
@@ -211,11 +211,14 @@ export default function Stats() {
                     学習 <b className="font-semibold text-ink">{st.learned.toLocaleString()}</b>・定着 <b className="font-semibold text-ink">{st.mastered.toLocaleString()}</b> / {st.total.toLocaleString()}
                   </span>
                 </div>
-                <ProgressBar value={st.learned} max={st.total} color={c.dot} />
+                <PatinaBar learned={st.learned} mastered={st.mastered} total={st.total} />
               </div>
             )
           })}
-          <p className="text-[11.5px] text-muted">定着＝次の復習まで21日以上あいた語</p>
+          <div className="space-y-1">
+            <PatinaLegend />
+            <p className="text-[11.5px] leading-relaxed text-muted">定着＝次の復習まで21日以上あいた語。銅が年月で緑青を帯びるように、使い込んだ語ほど色が変わります</p>
+          </div>
         </Card>
       </div>
     </div>

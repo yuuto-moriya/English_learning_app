@@ -84,7 +84,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'production',
     title: '産出効果・マルチモーダル学習',
     finding: '声に出して読んだ語は、黙読した語より記憶に残りやすい（産出効果）。文字・音声・例文（文脈）を組み合わせると、記憶の手がかりが増える。',
-    inApp: 'すべての単語・例文に発音記号と音声（米・英）を付け、新出語では例文の音読を促します。',
+    inApp: 'すべての単語・例文に発音記号と音声（米・英）を付け、新出語では例文の音読を促します。「ながら練習」では、英文のあとに文の長さに合わせた間を置き、声に出してまねして言えるようにしています。',
     refs: [
       { cite: 'MacLeod, C. M., Gopie, N., Hourihan, K. L., Neary, K. R., & Ozubko, J. D. (2010). The production effect: Delineation of a phenomenon. Journal of Experimental Psychology: Learning, Memory, and Cognition, 36(3), 671–685.', url: 'https://doi.org/10.1037/a0018785' },
     ],
@@ -178,7 +178,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'audio',
     title: '音だけで思い出す復習',
     finding: '答えを見る前に思い出そうとすること（検索練習）が記憶を強める。音声だけの語学教材では、答えの前に考える間を置き、だんだん間隔を広げて思い出させる方法（段階的な間隔での想起）が古くから使われている。',
-    inApp: '「耳で復習」で、忘れかけている単語から順に「和訳 → 考える間 → 英語 → 例文」と流します。画面を見なくても進み、再生中は画面が消えないようにします。',
+    inApp: '「耳で復習」で、忘れかけている単語から順に「和訳 → 考える間 → 英語 → 例文」と流します。画面を見なくても進み、再生中は画面が消えないようにします。家事や身支度のあいだに使う「ながら練習」では、単語の想起・まねして言う・日本語から英語で言う・会話を、時間を決めて順番に（混ぜて）流します。',
     refs: [
       { cite: 'Pimsleur, P. (1967). A memory schedule. The Modern Language Journal, 51(2), 73–75.', url: 'https://doi.org/10.1111/j.1540-4781.1967.tb06700.x' },
       { cite: 'Karpicke, J. D., & Roediger, H. L. (2008). The critical importance of retrieval for learning. Science, 319(5865), 966–968.' },

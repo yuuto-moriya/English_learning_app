@@ -8,6 +8,8 @@ import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
 import { AccentPicker } from '@/components/AccentPicker'
+import { VoiceGuide } from '@/components/VoiceGuide'
+import { BRAND, BrandStory, Wordmark } from '@/components/Brand'
 import { formatRate, VoiceVarietyToggles } from '@/components/PracticeControls'
 import { getHealth, type Health } from '@/lib/api'
 import { db, exportAll, importAll } from '@/lib/db'
@@ -39,13 +41,13 @@ export default function Settings() {
 
   const doExport = async () => {
     const json = await exportAll()
-    const name = `michi-backup-${new Date().toISOString().slice(0, 10)}.json`
+    const name = `patina-backup-${new Date().toISOString().slice(0, 10)}.json`
     const blob = new Blob([json], { type: 'application/json' })
     // iPhone のホーム画面アプリではダウンロードリンクが使えないことがあるため、共有シート（ファイルに保存）を優先
     const f = new File([blob], name, { type: 'application/json' })
     if (navigator.canShare?.({ files: [f] })) {
       try {
-        await navigator.share({ files: [f], title: 'Michi のバックアップ' })
+        await navigator.share({ files: [f], title: 'Eliza Patina のバックアップ' })
         setMsg('バックアップを書き出しました')
         return
       } catch (e) {
@@ -269,12 +271,8 @@ export default function Settings() {
                 : '高品質音声はサーバーの Azure Speech が未設定のため使えません。端末の音声で読み上げます。'}
             </p>
           </div>
+          <VoiceGuide neural={neuralOk && s.voiceEngine === 'auto'} />
           <AccentPicker neural={neuralOk && s.voiceEngine === 'auto'} />
-          {(!neuralOk || s.voiceEngine === 'device') && (
-            <p className="text-[11.5px] leading-relaxed text-muted">
-              iPhone では「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で、名前に「拡張」「プレミアム」と付いた声をダウンロードすると自然な発音になります（おすすめ：Ava、Zoe、Evan、Daniel など）。
-            </p>
-          )}
           <div>
             <div className="flex justify-between text-[15px]">
               <span>読み上げ速度</span>
@@ -412,6 +410,13 @@ export default function Settings() {
         </Card>
 
         <SectionTitle>このアプリについて</SectionTitle>
+        <Card className="mb-3">
+          <Wordmark className="text-[26px] leading-tight" />
+          <p className="mt-1 text-[13px] text-muted">{BRAND.tagline}</p>
+          <div className="mt-2 border-t border-line pt-1">
+            <BrandStory />
+          </div>
+        </Card>
         <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
           <Link to="/research" className="flex items-center justify-between py-3.5 pl-4 pr-3 active:bg-surface-2">
             <span className="text-[15px]">学習法の根拠（研究・論文）とクレジット</span>
@@ -422,7 +427,7 @@ export default function Settings() {
             <ChevronRight className="h-[18px] w-[18px] text-faint" />
           </Link>
         </div>
-        <p className="mt-6 text-center text-[11px] text-faint">Michi v{__APP_VERSION__}</p>
+        <p className="mt-6 text-center text-[11px] text-faint">{BRAND.name} v{__APP_VERSION__}</p>
       </div>
     </div>
   )

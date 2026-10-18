@@ -25,7 +25,7 @@ function useDeviceVoices() {
 }
 
 /**
- * 英語の発音（国・地域）と声の選択。iPhone の「読み上げコンテンツ → 声 → 英語」のように国ごとに選べる。
+ * 英語の発音（国・地域）と声の選択。iPhone の「リーダーと読み上げ → 声 → 英語」のように国ごとに選べる。
  * neural = 高品質音声（Azure）を使うとき。使わないときは端末に入っている声から選ぶ。
  */
 export function AccentPicker({ neural }: { neural: boolean }) {
@@ -134,7 +134,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                     <p className="text-[12px] leading-relaxed text-muted">
                       この端末には{a.label}英語の声がありません。
                       {near ? `近い発音（${labelOfLang(near.lang)}）の声で読みます。` : ''}
-                      iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で追加できます。
+                      上の「iPhone で高音質の声を入れる方法」で追加できます。
                     </p>
                   )}
                 </div>

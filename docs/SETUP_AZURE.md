@@ -1,6 +1,6 @@
 # Azure（翻訳・発音評価）の設定手順
 
-Michi の **翻訳**・**発音評価**・**音声入力**・**高品質な読み上げ（ニューラル音声）**・**同時通訳** は、Microsoft Azure の
+Eliza Patina の **翻訳**・**発音評価**・**音声入力**・**高品質な読み上げ（ニューラル音声）**・**同時通訳** は、Microsoft Azure の
 **Azure AI Translator** と **Azure AI Speech** を、Vercel Functions（`/api/*`）経由で呼び出しています。
 この手順書では、両サービスを **無料枠（Free F0）** で作成し、Vercel に設定するまでを説明します。
 
