@@ -51,13 +51,21 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
   const step = steps[i]
   const last = i === steps.length - 1
 
+  /** 照らす場所を測る。値が変わったときだけ更新する（毎フレーム呼んでも再描画が増えない） */
   const measure = useCallback(() => {
-    setVh(window.innerHeight)
-    setDock(dockOffset(window.innerHeight))
+    const h = window.innerHeight
+    setVh((v) => (v === h ? v : h))
+    const d = dockOffset(h)
+    setDock((v) => (v === d ? v : d))
     const el = findTarget(step?.target)
-    if (!el) return setRect(null)
+    if (!el) return setRect((v) => (v === null ? v : null))
     const r = el.getBoundingClientRect()
-    setRect({ top: r.top - PAD, left: r.left - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 })
+    const next = { top: r.top - PAD, left: r.left - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 }
+    setRect((v) =>
+      v && Math.abs(v.top - next.top) < 0.5 && Math.abs(v.left - next.left) < 0.5 && Math.abs(v.width - next.width) < 0.5 && Math.abs(v.height - next.height) < 0.5
+        ? v
+        : next,
+    )
   }, [step])
 
   useLayoutEffect(() => {
@@ -69,17 +77,17 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
       if (r.top < 70 || r.bottom > limit) window.scrollBy({ top: r.top - 80, behavior: 'smooth' })
     }
     measure()
-    const t = setTimeout(measure, 380)
-    return () => clearTimeout(t)
   }, [step, measure])
 
+  // スクロール中・見出しが縮むとき・あとから内容が読み込まれて位置が変わるときも、照らす場所がずれないよう毎フレーム測り直す
   useEffect(() => {
-    window.addEventListener('resize', measure)
-    window.addEventListener('scroll', measure, { passive: true })
-    return () => {
-      window.removeEventListener('resize', measure)
-      window.removeEventListener('scroll', measure)
+    let id = 0
+    const loop = () => {
+      measure()
+      id = requestAnimationFrame(loop)
     }
+    id = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(id)
   }, [measure])
 
   useEffect(() => {
@@ -100,7 +108,7 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
       <div className={cx('absolute inset-0', !rect && 'bg-black/55')} />
       {rect && (
         <div
-          className="pointer-events-none absolute rounded-[18px] transition-all duration-300 ease-out"
+          className="pointer-events-none absolute rounded-[18px]"
           style={{ ...rect, boxShadow: '0 0 0 9999px rgb(0 0 0 / 0.55), 0 0 0 2px rgb(255 255 255 / 0.9)' }}
         />
       )}

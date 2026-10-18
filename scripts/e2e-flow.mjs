@@ -196,6 +196,19 @@ await page.goto(BASE + '/scenes')
 await page.getByText('朝会で進捗を報告する').waitFor({ timeout: 5000 })
 check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シーンが IT モードの場面で開く')
 
+// 起動時のオープニング（自動テストでは ?opening を付けたときだけ）：出て、時間がたつと消える。タップでも飛ばせる
+await page.goto(BASE + '/?opening')
+await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ timeout: 5000 })
+check(await page.getByRole('img', { name: /Eliza Patina/ }).isVisible(), '起動時のオープニング')
+await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ state: 'detached', timeout: 8000 })
+check(await page.getByRole('img', { name: /Eliza Patina/ }).count() === 0, 'オープニングが終わってアプリが使える')
+await page.goto(BASE + '/?opening')
+await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ timeout: 5000 })
+await page.waitForTimeout(600)
+await page.getByRole('img', { name: /Eliza Patina/ }).click()
+await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ state: 'detached', timeout: 3000 })
+check(true, 'オープニングはタップで飛ばせる')
+
 // 発音（国・地域）の選択
 await page.goto(BASE + '/settings')
 await page.getByText('iPhone で高音質の声を入れる方法', { exact: true }).waitFor({ timeout: 5000 })

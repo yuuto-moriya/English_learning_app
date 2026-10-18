@@ -12,7 +12,7 @@
 > A corgi guide, "Tetsu", and four animal friends are modeled procedurally in Blender.
 > Code: MIT. Word-list data: CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)).
 
-**名前の由来**：映画『マイ・フェア・レディ』で話し方の練習を重ねて自分を変えていくイライザ（**Eliza**＝話して変わる人、つまり学ぶあなた）と、銅や革・デニムが使い込むうちに帯びる経年変化の味＝**Patina**（ニューヨークの自由の女神の緑も、銅が年月で生んだパティーナ）。My Fair Lady と Lady Liberty、ふたりの「英語のレディ」を、ファッションのメゾンのように人の名前として組みました。ホーム画面の表示名も「Eliza Patina」（フルネーム）。ロゴ文字は欧文セリフ体の大文字を字間を広くとって組む（`src/components/Brand.tsx`）。
+**名前の由来**：映画『マイ・フェア・レディ』で話し方の練習を重ねて自分を変えていくイライザ（**Eliza**＝話して変わる人、つまり学ぶあなた）と、銅や革・デニムが使い込むうちに帯びる経年変化の味＝**Patina**（ニューヨークの自由の女神の緑も、銅が年月で生んだパティーナ）。My Fair Lady と Lady Liberty、ふたりの「英語のレディ」を、ファッションのメゾンのように人の名前として組みました。ホーム画面の表示名は略称の「EliPati」。ロゴ文字は欧文セリフ体の大文字を字間を広くとって組む（`src/components/Brand.tsx`）。
 
 一般・ビジネス・IT・鉄道保線（設備管理/EAM を含む）の英語を、**学習**から**実務での翻訳・同時通訳**までひとつで扱えるアプリです。
 iPhone のホーム画面に追加して使うことを前提に作っています。案内役はコーギーのぬいぐるみ「テツ」で、いろいろな犬種のなかまたち（リスニング・発音のモカ＝トイプードル、ビジネスのスミ＝フレンチブルドッグ、保線のキナコ＝柴犬、学習法の解説のユキ先生＝サモエド、翻訳のショコラ＝ダックスフンド）が各画面を案内します。
@@ -92,6 +92,15 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - 訳の読み上げ：英語は設定の発音（国・地域）、日本語も読み上げ
 - **保線用語の自動検出**：原文・訳文に含まれる専門用語を、英国表記／米国表記／JIS 日本語で並べて表示（オフラインで動作）
 - 規格英語の **shall / should / may** の使い分けのヒント
+
+### 起動時のオープニング
+
+アプリを開くたびに、約3秒のブランドの演出を出します（`src/components/Opening.tsx`）。
+エンブレムは、ヴィンテージの真鍮・エナメル看板の組み方で作った 3D の銅の板です（`public/opening/`）。
+外周に「ELIZA PATINA」「ENGLISH ≡ ATELIER」とスピード線、内側は緑青色のエナメルに銅の二重線、中央に 1930 年代のリボンマイク（ヒギンズ教授の蓄音機で発音を録られ、話し方で変わっていくイライザの物語から）、上下に「ESTD」「2026」。
+磨いたばかりの銅のエンブレムが斜めから正面へ回り込み、年月を経た姿（くすみ・酸化の斑点）が広がり、光がひと筋流れて、ひとことが出ます。設定の「このアプリについて」にも同じエンブレムを出しています。
+動きは GSAP（起動時に読み込む）。タップで飛ばせ、iPhone の「視差効果を減らす」がオンのときは動かさずに短く見せます。設定の「表示 → 起動時のオープニング」でオフにできます。
+JavaScript の読み込み前から同じ色の幕を出し（`index.html`）、白い画面がちらつかないようにしています。自動テスト（webdriver）では出しません（`?opening` を付けたときだけ）。
 
 ### その他
 
@@ -308,7 +317,7 @@ npx vercel --prod   # 本番へ
 
 1. iPhone の **Safari** でアプリの URL（例: `https://<project>.vercel.app`）を開く
 2. 共有ボタン（四角から上向き矢印）→ **ホーム画面に追加**（見当たらない場合は共有メニューを下にスクロール）
-3. 名前（「Eliza Patina」）を確認して **追加**。以降はホーム画面のアイコンから全画面で起動します
+3. 名前（「EliPati」）を確認して **追加**。以降はホーム画面のアイコンから全画面で起動します
 
 使い方のポイント:
 
@@ -426,6 +435,9 @@ npm test             # データの整合性テスト
 | `scripts/blender/dogs.py` | 犬のぬいぐるみ。犬種・毛色・小物（CHARACTERS）でテツ（8ポーズ）となかまたち（各4ポーズ）を作り分け |
 | `scripts/blender/render.py` | レンダリングの実行（透過 PNG） |
 | `scripts/blender/postprocess.py` | WebP・アプリアイコンへの変換 |
+| `scripts/blender/emblem_art.py` | オープニングのエンブレムの図案（外周の文字・スピード線・中央のマイク・ESTD 2026）を描き、エナメルの部分のマスクにする |
+| `scripts/blender/logo.py` | エンブレムを 3D の銅の板（緑青色のエナメルを埋め込み）にしてレンダリング。磨いたばかりの銅が回り込む連番と、年月を経た姿 |
+| `scripts/blender/postprocess_logo.py` | 3D ロゴを `public/opening/*.webp` に変換 |
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
@@ -439,6 +451,13 @@ python scripts/blender/render.py render-out --size 768 --samples 64
 python scripts/blender/postprocess.py render-out
 #    → public/guide/<キャラ>-<ポーズ>.webp（384px, 透過）
 #    → public/icons/icon-192.png, icon-512.png, icon-512-maskable.png, apple-touch-icon.png, public/favicon.png
+
+# 3D のエンブレム（起動時のオープニング）。文字は幾何学的なサンセリフ Jost（OFL。npm の @fontsource/jost）を TTF にしてから
+npm pack @fontsource/jost && tar xzf fontsource-jost-*.tgz
+python -c "from fontTools.ttLib import TTFont; f=TTFont('package/files/jost-latin-600-normal.woff2'); f.flavor=None; f.save('Jost-600.ttf')"
+python scripts/blender/emblem_art.py emblem-out --font Jost-600.ttf --size 2048    # 図案のマスク
+python scripts/blender/logo.py logo-out --mask emblem-out/emblem-mask.png --size 640 --samples 96 --frames 14
+python scripts/blender/postprocess_logo.py logo-out    # → public/opening/*.webp（透過）
 ```
 
 画面での使い分け（どのキャラが話すか）は `src/lib/characters.ts` と各ページの `<Guide who="…">` で決めています。

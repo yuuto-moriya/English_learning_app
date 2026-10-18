@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { bumpDaily, db, exportAll, importAll, shiftDay, todayKey, toggleMark } from '../src/lib/db'
 import { buildDrill, isWeak } from '../src/lib/session'
-import { ratePercent, voiceQuality } from '../src/lib/tts'
+import { SYSTEM_VOICE, ratePercent, systemVoiceActive, voiceQuality } from '../src/lib/tts'
 import { voiceStatus } from '../src/components/VoiceGuide'
 import { jaForSpeech } from '../src/lib/vocab'
 import { CONTRASTS } from '../src/data/minimalPairs'
@@ -64,6 +64,13 @@ describe('読み上げの声', () => {
     expect(compact).toBeGreaterThan(old)
     expect(voiceQuality(v('Microsoft Aria Online (Natural) - English (United States)'))).toBeGreaterThan(compact)
   })
+  it('「iPhone の設定どおり」を選ぶと声を指定しない。自分で選んだ声があればそれを使う', () => {
+    const list = [v('Kyoko', 'com.apple.voice.compact.ja-JP.Kyoko')] as SpeechSynthesisVoice[]
+    expect(systemVoiceActive(list, SYSTEM_VOICE)).toBe(true)
+    expect(systemVoiceActive(list, 'Kyoko')).toBe(false)
+    // iPhone 以外（テスト環境）では、選んでいなければこれまでどおり一覧の声を使う
+    expect(systemVoiceActive(list, '')).toBe(false)
+  })
   it('日本語の声も、拡張・プレミアム > 標準の声（Kyoko など）> 遊び用の声', () => {
     const premium = voiceQuality(v('Kyoko (Premium)', 'com.apple.voice.premium.ja-JP.Kyoko'))
     const enhanced = voiceQuality(v('Kyoko（拡張）', 'com.apple.voice.enhanced.ja-JP.Kyoko'))
@@ -94,6 +101,8 @@ describe('声の状態の案内', () => {
     expect(voiceStatus(true, undefined).tone).toBe('good')
     expect(voiceStatus(false, { name: 'Ava (Premium)', quality: 100 })).toMatchObject({ tone: 'good', title: expect.stringContaining('Ava') })
     expect(voiceStatus(false, { name: 'Samantha', quality: 50 }).tone).toBe('warn')
+    // 声を指定せず iPhone の設定の声に任せているとき
+    expect(voiceStatus(false, { name: 'Samantha', quality: 50 }, true).tone).toBe('info')
     expect(voiceStatus(false, undefined).title).toContain('見つかりません')
   })
 })

@@ -56,6 +56,8 @@ export interface Settings {
   autoPlay: boolean
   /** サーバーAPI（/api/*）へのアクセストークン（任意） */
   apiToken: string
+  /** 起動時のオープニング（ブランドの演出）を出す */
+  opening: boolean
   /** ながら練習：時間（分）・内容・間の長さ・日本語の案内（前回の選択を覚えておく） */
   hfMinutes: number
   hfKinds: HfKind[]
@@ -89,6 +91,7 @@ const defaults: Settings = {
   tourDone: false,
   autoPlay: true,
   apiToken: '',
+  opening: true,
   hfMinutes: 15,
   hfKinds: ['words', 'repeat', 'compose', 'dialogue'],
   hfPace: 'normal',

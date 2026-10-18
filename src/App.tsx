@@ -1,6 +1,8 @@
-import { lazy } from 'react'
+import { lazy, useCallback, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { Layout } from './components/Layout'
+import { Opening } from './components/Opening'
+import { applyTheme, getSettings } from './lib/settings'
 
 const Home = lazy(() => import('./pages/Home'))
 const Words = lazy(() => import('./pages/Words'))
@@ -53,6 +55,30 @@ const router = createBrowserRouter([
   },
 ])
 
+/**
+ * 起動時のオープニングを出すか。アプリを開くたび（読み込みのたび）に1回。
+ * 設定でオフにできる。自動テスト（webdriver）では出さない（?opening を付けたときだけ出す）
+ */
+function wantsOpening(): boolean {
+  if (typeof window === 'undefined') return false
+  if (new URLSearchParams(location.search).has('opening')) return true
+  if (navigator.webdriver) return false
+  return getSettings().opening
+}
+
 export function App() {
-  return <RouterProvider router={router} />
+  const [opening, setOpening] = useState(wantsOpening)
+  const close = useCallback(() => setOpening(false), [])
+  // オープニングを出さないときは、index.html の幕を外す
+  useEffect(() => {
+    if (opening || !document.getElementById('boot')) return
+    document.getElementById('boot')?.remove()
+    applyTheme(getSettings().theme)
+  }, [opening])
+  return (
+    <>
+      <RouterProvider router={router} />
+      {opening && <Opening onDone={close} />}
+    </>
+  )
 }

@@ -1,17 +1,17 @@
-import { CheckCircle2, ChevronDown, TriangleAlert } from 'lucide-react'
+import { CheckCircle2, ChevronDown, Info, TriangleAlert } from 'lucide-react'
 import type { Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
-import { listVoices, voicesFor, voiceQuality } from '@/lib/tts'
+import { listVoices, systemVoiceActive, systemVoiceLabel, voicesFor, voiceQuality } from '@/lib/tts'
 import { cx } from './ui'
 
 export interface VoiceStatus {
-  tone: 'good' | 'warn'
+  tone: 'good' | 'warn' | 'info'
   title: string
   desc: string
 }
 
 /** いま読み上げに使われる声の状態（高音質かどうか）を、利用者に分かる言葉にする */
-export function voiceStatus(neural: boolean, best: { name: string; quality: number } | undefined): VoiceStatus {
+export function voiceStatus(neural: boolean, best: { name: string; quality: number } | undefined, system = false): VoiceStatus {
   if (neural) {
     return {
       tone: 'good',
@@ -21,6 +21,13 @@ export function voiceStatus(neural: boolean, best: { name: string; quality: numb
   }
   if (!best) {
     return { tone: 'warn', title: 'この端末で英語の声が見つかりません', desc: '下の手順で英語の声を追加してください。追加したあとは、アプリを開き直すと反映されます。' }
+  }
+  if (system) {
+    return {
+      tone: 'info',
+      title: 'iPhone の設定で選んだ声で読み上げています',
+      desc: 'iPhone の Safari は、ダウンロードした「拡張」「プレミアム」の声をアプリに見せないことがあります。そのため声を指定せず、iPhone の「リーダーと読み上げ」で選んでいる声に任せています。下の手順で高音質の声をダウンロードし、そこで選んでおいてください。',
+    }
   }
   if (best.quality >= 85) {
     return { tone: 'good', title: `端末の高音質の声（${best.name.replace(/\s*\(.*\)$/, '')}）で読み上げています`, desc: '「拡張」「プレミアム」の声が入っているので、このままで大丈夫です。' }
@@ -37,28 +44,36 @@ export const VOICE_STEPS = [
   '「声」→「英語」→「声」と進む',
   '使いたい声（Ava・Zoe・Evan・Daniel など）をタップし、「プレミアム」か「拡張」の横のダウンロードボタンをタップ。ダウンロードが終わるまで待つ',
   '日本語の声も同じように入れる：「声」→「日本語」→「声」で、Kyoko・Otoya などの「拡張」か「プレミアム」をダウンロード（和訳や案内の読み上げが自然になります）',
-  'Eliza Patina をいったん終了して（アプリの切り替え画面で、上へスワイプ）開き直す。「英語の発音」で声を選ぶと、「高品質」と出ます',
+  'Eliza Patina をいったん終了して（アプリの切り替え画面で、上へスワイプ）開き直す。「英語の発音」と「日本語の声」で声を選ぶと「高品質」と出ます。一覧に出ないときは「iPhone の設定どおり」を選ぶと、ダウンロードした声で読みます',
 ]
 
 /** 設定の「音声」と、はじめの案内で使う。いまの声の状態と、iPhone で高音質の声を入れる手順 */
 export function VoiceGuide({ accent, neural, defaultOpen }: { accent?: Accent; neural: boolean; defaultOpen?: boolean }) {
   const s = useSettings()
-  const top = voicesFor(accent ?? s.accent)[0]
-  const st = voiceStatus(neural, top ? { name: top.name, quality: voiceQuality(top) } : undefined)
+  const a = accent ?? s.accent
+  const top = voicesFor(a)[0]
+  const enList = listVoices(a)
+  const st = voiceStatus(neural, top ? { name: top.name, quality: voiceQuality(top) } : undefined, enList.length > 0 && systemVoiceActive(enList, s.deviceVoice[a]))
   const jaList = listVoices('ja-JP')
+  const jaSystem = systemVoiceActive(jaList, s.deviceVoiceJa)
   const ja = (s.deviceVoiceJa && jaList.find((v) => v.name === s.deviceVoiceJa)) || jaList[0]
   const jaGood = !!ja && voiceQuality(ja) >= 85
-  const Icon = st.tone === 'good' ? CheckCircle2 : TriangleAlert
+  const Icon = st.tone === 'good' ? CheckCircle2 : st.tone === 'info' ? Info : TriangleAlert
   return (
     <div className="rounded-[14px] border border-line p-3.5">
       <div className="flex items-start gap-2.5" role="status">
-        <Icon className={cx('mt-0.5 h-[18px] w-[18px] shrink-0', st.tone === 'good' ? 'text-ok' : 'text-warn')} strokeWidth={1.9} />
+        <Icon className={cx('mt-0.5 h-[18px] w-[18px] shrink-0', st.tone === 'good' ? 'text-ok' : st.tone === 'info' ? 'text-muted' : 'text-warn')} strokeWidth={1.9} />
         <div className="min-w-0">
           <p className="text-[14px] font-semibold leading-snug">{st.title}</p>
           <p className="mt-1 text-[12px] leading-relaxed text-muted">{st.desc}</p>
           {!neural && (
             <p className="mt-1.5 text-[12px] leading-relaxed">
-              日本語の声：{ja ? `${ja.name.replace(/\s*\(.*\)$/, '')}（${jaGood ? '高音質' : '標準。下の手順で高音質にできます'}）` : 'ありません（下の手順で追加できます）'}
+              日本語の声：
+              {jaSystem
+                ? `${systemVoiceLabel()}（「声 → 日本語 → 声」で選んだ声）`
+                : ja
+                  ? `${ja.name.replace(/\s*\(.*\)$/, '')}（${jaGood ? '高音質' : '標準。下の手順で高音質にできます'}）`
+                  : 'ありません（下の手順で追加できます）'}
             </p>
           )}
         </div>
