@@ -412,8 +412,8 @@ export default function Settings() {
 
         <SectionTitle>このアプリについて</SectionTitle>
         <Card className="mb-3">
-          <Wordmark className="text-[26px] leading-tight" />
-          <p className="mt-1 text-[13px] text-muted">{BRAND.tagline}</p>
+          <Wordmark className="mt-1 text-[21px]" />
+          <p className="mt-2.5 text-[13px] text-muted">{BRAND.tagline}</p>
           <div className="mt-2 border-t border-line pt-1">
             <BrandStory />
           </div>

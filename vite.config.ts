@@ -21,7 +21,7 @@ export default defineConfig({
       includeAssets: ['icons/*.png', 'guide/*.webp', 'favicon.png'],
       manifest: {
         name: 'Eliza Patina — 英語学習と翻訳',
-        short_name: 'Patina',
+        short_name: 'Eliza Patina',
         description: '話すほど、使うほど、あなたの英語に味が出る。単語・リスニング・スピーキング・シーン別会話・翻訳と同時通訳をひとつに。',
         lang: 'ja',
         start_url: '/',

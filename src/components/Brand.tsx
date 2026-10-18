@@ -4,15 +4,18 @@ import { cx } from './ui'
 /** アプリ名と、名前に込めた考え（設定の「このアプリについて」・はじめての画面で使う） */
 export const BRAND = {
   name: 'Eliza Patina',
-  short: 'Patina',
   tagline: '話すほど、使うほど、あなたの英語に味が出る。',
 }
 
-/** 欧文セリフ体のロゴ文字（ファッションのメゾンのように、人の名前として組む） */
+/**
+ * ロゴ文字。ファッションのメゾン（CELINE・LOEWE など）のように、欧文セリフ体の大文字を字間を広くとって組む。
+ * 字間は最後の文字の後ろにも付くので、右側を同じだけ詰めて見た目の幅をそろえる。
+ */
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <p className={cx('en font-medium tracking-[0.01em]', className)}>
-      Eliza <span className="italic">Patina</span>
+    // 字間は .en（欧文の字詰め）より強くしたいので style で指定する
+    <p className={cx('en font-medium uppercase leading-none', className)} style={{ letterSpacing: '0.24em', marginRight: '-0.24em' }} aria-label={BRAND.name}>
+      {BRAND.name}
     </p>
   )
 }

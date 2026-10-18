@@ -83,8 +83,8 @@ export default function Welcome() {
 
       {step === 'course' && (
         <div key="course" className="flex flex-1 flex-col animate-rise">
-          <Wordmark className="mt-1 text-[22px] leading-tight" />
-          <p className="mt-0.5 text-[12.5px] text-muted">{BRAND.tagline}</p>
+          <Wordmark className="mt-2 text-[17px]" />
+          <p className="mt-2 text-[12.5px] text-muted">{BRAND.tagline}</p>
           <div className="mt-3 flex items-end gap-2">
             {s.guide && <CharImage pose="greet" size={76} className="-ml-2" />}
             <p className="mb-2 text-[14px] leading-relaxed text-muted">はじめまして、テツだワン。いっしょに続けよう！</p>
