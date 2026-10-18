@@ -79,14 +79,16 @@ export function Opening({ onDone }: { onDone: () => void }) {
       const frame = { f: 0 }
       let shown = -1
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: finish })
-      tl.fromTo(els.m, { opacity: 0, y: 26, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 1.5 }, 0)
+      // 先に姿を見せてから回す（回り込みが見えるように）
+      tl.fromTo(els.m, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0)
+        .fromTo(els.m, { y: 26, scale: 0.86 }, { y: 0, scale: 1, duration: 1.6 }, 0)
         // 3D の連番をめくって、メダルを斜めから正面へ回す（となりのコマと重ねてなめらかに）
         .to(
           frame,
           {
             f: FRAMES - 1,
-            duration: 1.8,
-            ease: 'power2.out',
+            duration: 2.0,
+            ease: 'sine.inOut',
             onUpdate: () => {
               const k = Math.min(Math.floor(frame.f), FRAMES - 1)
               if (k !== shown) {
@@ -100,7 +102,7 @@ export function Opening({ onDone }: { onDone: () => void }) {
           0,
         )
         // 緑青が左上から広がる（年月の早送り）
-        .fromTo(els.p, { '--r': '0%' }, { '--r': '160%', duration: 1.7, ease: 'power1.inOut' }, 2.0)
+        .fromTo(els.p, { '--r': '0%' }, { '--r': '160%', duration: 1.7, ease: 'power1.inOut' }, 2.1)
         // 光がひと筋、メダルの上を流れる
         .fromTo(els.s, { xPercent: -120, opacity: 0 }, { xPercent: 120, opacity: 1, duration: 1.2, ease: 'power2.inOut' }, 2.7)
         .to(els.s, { opacity: 0, duration: 0.35 }, 3.6)
