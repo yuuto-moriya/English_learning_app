@@ -7,7 +7,7 @@ import type { Accent } from '@/lib/accents'
  * タスク中心の言語指導（TBLT）に基づき、「目的のある場面」で使う表現をまとまりで学ぶ。
  */
 export const SCENES: Scene[] = [
-  // ───────────── 日常会話 ─────────────
+  // ───────────── 一般（会話・旅行・暮らし） ─────────────
   {
     id: 'd-intro',
     group: 'daily',

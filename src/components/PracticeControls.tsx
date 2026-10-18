@@ -6,7 +6,7 @@ import { Chip, Segmented, Toggle } from './ui'
 export const formatRate = (r: number) => `${r.toFixed(2).replace(/0$/, '')}×`
 
 export const SOURCES: { key: Source; label: string }[] = [
-  { key: 'general', label: '一般会話' },
+  { key: 'general', label: '一般' },
   { key: 'business', label: 'ビジネス' },
   { key: 'it', label: 'IT' },
   { key: 'rail', label: '鉄道' },

@@ -63,7 +63,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'interleave',
     title: 'インターリーブ（混ぜて練習）',
     finding: '種類の異なる問題を混ぜて練習すると、区別して使い分ける力が伸びやすい。第二言語の文法練習でも、混ぜて練習した方が長期保持に優れていた。',
-    inApp: '選んだコース（一般会話・ビジネス・保線）の単語と、復習・新出語、選択・リスニング・スペルなどの出題形式を混ぜて出題します。',
+    inApp: '選んだコース（一般・ビジネス・IT・鉄道）の単語と、復習・新出語、選択・リスニング・スペルなどの出題形式を混ぜて出題します。',
     refs: [
       { cite: 'Rohrer, D., & Taylor, K. (2007). The shuffling of mathematics problems improves learning. Instructional Science, 35(6), 481–498.' },
       { cite: 'Nakata, T., & Suzuki, Y. (2019). Mixing grammar exercises facilitates long-term retention: Effects of blocking, interleaving, and increasing practice. The Modern Language Journal, 103(3), 629–647.', url: 'https://doi.org/10.1111/modl.12581' },

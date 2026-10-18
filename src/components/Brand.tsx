@@ -43,6 +43,9 @@ export function BrandStory() {
         <p className="text-muted">
           My Fair <span className="en">Lady</span> と、<span className="en">Lady</span> Liberty。ふたりの「英語のレディ」をひとつの名前に。単語の覚え具合も、学習中は銅色、定着すると緑青色で表しています。
         </p>
+        <p className="text-muted">
+          エンブレムは古い銅の看板の組み方で、中央は仕立て屋のトルソー。イライザが話し方を仕立て直したように、あなたの英語を一着ずつ仕立てていくアトリエ（<span className="en">English Atelier</span>）です。
+        </p>
       </div>
     </details>
   )

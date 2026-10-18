@@ -218,7 +218,7 @@ export default function Settings() {
             <p className="mt-1.5 text-[11.5px] leading-relaxed text-muted">FSRS は、この確率で思い出せる直前に復習を入れます。高くすると復習の回数が増えます。</p>
           </div>
           <div>
-            <p className="text-[15px]">新しい単語のレベル（一般会話・ビジネス）</p>
+            <p className="text-[15px]">新しい単語のレベル（一般・ビジネス）</p>
             <p className="mt-2 text-[12px] text-muted">下限</p>
             <div className="mt-1">
               <Segmented
