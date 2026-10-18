@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Check, Volume2 } from 'lucide-react'
 import { ACCENTS, NEURAL_VOICES, type Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
-import { listVoices, speak, speakJa, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
+import { NEURAL_JA_VOICES, listVoices, speak, speakJa, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
 import { Tag, cx } from './ui'
 
 const SAMPLE = 'Nice to meet you. Shall we practice some English together today?'
@@ -185,6 +185,12 @@ export function JaVoicePicker({ neural }: { neural: boolean }) {
     if (name) s.set({ deviceVoiceJa: name })
     void speakJa(SAMPLE_JA)
   }
+  const previewNeural = (id: string) => {
+    warmUpSpeech()
+    s.set({ neuralJa: id })
+    void speakJa(SAMPLE_JA)
+  }
+  const neuralSel = NEURAL_JA_VOICES.find((v) => v.id === s.neuralJa)?.id ?? NEURAL_JA_VOICES[0].id
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -199,9 +205,29 @@ export function JaVoicePicker({ neural }: { neural: boolean }) {
       </div>
       <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">
         和訳や、耳で復習・ながら練習の案内に使います。
-        {neural ? '高品質音声（Nanami）で読みます。通信できないときは下の声になります。' : ''}
+        {neural ? '高品質音声で読みます。通信できないときは、端末の声（' + (current ?? 'なし') + '）になります。' : ''}
       </p>
-      {list.length ? (
+      {neural ? (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {NEURAL_JA_VOICES.map((v) => {
+            const sel = neuralSel === v.id
+            return (
+              <button
+                key={v.id}
+                aria-pressed={sel}
+                onClick={() => previewNeural(v.id)}
+                className={cx(
+                  'min-h-9 rounded-full border px-3 text-[13px] transition active:scale-95',
+                  sel ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink',
+                )}
+              >
+                {v.name}
+                <span className="ml-1 opacity-60">{v.gender === 'F' ? '女性' : '男性'}</span>
+              </button>
+            )
+          })}
+        </div>
+      ) : list.length ? (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {list.slice(0, 8).map((v) => {
             const sel = current === v.name

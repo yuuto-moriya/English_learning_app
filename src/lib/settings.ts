@@ -40,6 +40,8 @@ export interface Settings {
   deviceVoice: Partial<Record<Accent, string>>
   /** 和訳・案内を読む端末の日本語の声（空なら品質の高い声を自動で） */
   deviceVoiceJa: string
+  /** 和訳・案内を読む日本語の高品質音声の声 ID（空なら Nanami） */
+  neuralJa: string
   /** リスニング練習で毎回ちがう声にする（話者の多様性） */
   varyVoices: boolean
   /** リスニング練習でいろいろな国の英語を混ぜる */
@@ -79,6 +81,7 @@ const defaults: Settings = {
   neural: {},
   deviceVoice: {},
   deviceVoiceJa: '',
+  neuralJa: '',
   varyVoices: true,
   mixAccents: false,
   sounds: true,

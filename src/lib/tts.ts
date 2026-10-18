@@ -30,7 +30,12 @@ export interface SpeakOptions {
 
 // ───────── ニューラル音声（Azure） ─────────
 
-const NEURAL_JA = 'ja-JP-NanamiNeural'
+/** 和訳・案内を読む日本語の高品質音声（女性・男性の2つから選べる） */
+export const NEURAL_JA_VOICES = [
+  { id: 'ja-JP-NanamiNeural', name: 'Nanami', gender: 'F' },
+  { id: 'ja-JP-KeitaNeural', name: 'Keita', gender: 'M' },
+] as const
+const neuralJa = () => NEURAL_JA_VOICES.find((v) => v.id === getSettings().neuralJa)?.id ?? NEURAL_JA_VOICES[0].id
 
 let neuralAvailable: boolean | null = null
 let neuralFailures = 0
@@ -426,7 +431,7 @@ export function speakJa(text: string, rate = 1): Promise<boolean> {
   synth?.cancel()
   if (neuralEnabled() && text.length <= 400) {
     const { waiting, release } = holdCurrent()
-    const run = audioFor(text, NEURAL_JA, ratePercent(rate)).then(
+    const run = audioFor(text, neuralJa(), ratePercent(rate)).then(
       (url) => {
         if (my !== seq) return false
         release()
