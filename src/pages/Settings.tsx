@@ -413,8 +413,14 @@ export default function Settings() {
 
         <SectionTitle>このアプリについて</SectionTitle>
         <Card className="mb-3">
-          <Wordmark className="mt-1 text-[21px]" />
-          <p className="mt-2.5 text-[13px] text-muted">{BRAND.tagline}</p>
+          <div className="flex items-center gap-3.5">
+            {/* 起動時のオープニングと同じエンブレム（年月を経た姿） */}
+            <img src="/opening/patina.webp" alt="" className="h-[72px] w-[72px] shrink-0" />
+            <div className="min-w-0">
+              <Wordmark className="text-[19px]" />
+              <p className="mt-2 text-[12.5px] leading-snug text-muted">{BRAND.tagline}</p>
+            </div>
+          </div>
           <div className="mt-2 border-t border-line pt-1">
             <BrandStory />
           </div>

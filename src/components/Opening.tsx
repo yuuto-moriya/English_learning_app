@@ -2,14 +2,13 @@ import { useEffect, useRef, type CSSProperties } from 'react'
 import { BRAND } from './Brand'
 import { applyTheme, getSettings } from '@/lib/settings'
 
-/** Blender でレンダリングした 3D ロゴの連番（scripts/blender/logo.py → public/opening/） */
+/** Blender でレンダリングした 3D のエンブレムの連番（scripts/blender/emblem_art.py・logo.py → public/opening/） */
 const FRAMES = 14
 const frameSrc = (k: number) => `/opening/copper-${String(k).padStart(2, '0')}.webp`
 const PATINA_SRC = '/opening/patina.webp'
 /** 背景はテーマに関係なく墨色（銅と緑青がいちばん映える） */
 export const OPENING_BG = '#0e0f11'
 
-const letters = BRAND.name.toUpperCase().split('')
 
 function preload(src: string): Promise<void> {
   return new Promise((resolve) => {
@@ -21,9 +20,9 @@ function preload(src: string): Promise<void> {
 
 /**
  * 起動時のオープニング。ブランドの考え（新しい銅 → 使い込んで緑青）をそのまま動きにする。
- * 1. 磨いた銅のメダル（3D の「EP」）が、斜めから正面へ回り込む
- * 2. 緑青（パティーナ）がメダルの上に広がり、光がひと筋流れる
- * 3. 「ELIZA PATINA」が1文字ずつ現れ、ひとことが出て、アプリへ
+ * 1. 磨いたばかりの銅に緑青色のエナメルを埋めたエンブレム（ヴィンテージの看板の組み方）が、斜めから正面へ回り込む
+ * 2. 年月を経た姿（銅のくすみ・酸化の斑点）が左上から広がり、光がひと筋流れる
+ * 3. 線とひとことが出て、アプリへ
  * タップでいつでも飛ばせる。「視差効果を減らす」の設定のときは動かさずに短く見せる。
  */
 export function Opening({ onDone }: { onDone: () => void }) {
@@ -32,7 +31,6 @@ export function Opening({ onDone }: { onDone: () => void }) {
   const copper = useRef<HTMLImageElement>(null)
   const patina = useRef<HTMLDivElement>(null)
   const sheen = useRef<HTMLDivElement>(null)
-  const word = useRef<HTMLParagraphElement>(null)
   const line = useRef<HTMLDivElement>(null)
   const tagline = useRef<HTMLParagraphElement>(null)
   const done = useRef(false)
@@ -62,11 +60,10 @@ export function Opening({ onDone }: { onDone: () => void }) {
       ])
       const { gsap } = await import('gsap')
       if (!alive) return
-      const els = { r: root.current!, m: medal.current!, c: copper.current!, p: patina.current!, s: sheen.current!, w: word.current!, l: line.current!, t: tagline.current! }
-      const chars = Array.from(els.w.querySelectorAll('span'))
+      const els = { r: root.current!, m: medal.current!, c: copper.current!, p: patina.current!, s: sheen.current!, l: line.current!, t: tagline.current! }
 
       if (reduced) {
-        gsap.set([els.m, els.p, els.w, ...chars, els.l, els.t], { opacity: 1, clearProps: 'transform' })
+        gsap.set([els.m, els.p, els.l, els.t], { opacity: 1, clearProps: 'transform' })
         els.p.style.setProperty('--r', '160%')
         const tl = gsap.timeline({ onComplete: finish })
         tl.to(els.r, { opacity: 0, duration: 0.4, delay: 1.1 })
@@ -104,14 +101,12 @@ export function Opening({ onDone }: { onDone: () => void }) {
         // 光がひと筋、メダルの上を流れる
         .fromTo(els.s, { xPercent: -120, opacity: 0 }, { xPercent: 120, opacity: 1, duration: 0.9, ease: 'power2.inOut' }, 1.15)
         .to(els.s, { opacity: 0, duration: 0.25 }, 1.8)
-        // 文字は字間を詰めながら1文字ずつ
-        .fromTo(els.w, { letterSpacing: '0.62em' }, { letterSpacing: '0.28em', duration: 1.2, ease: 'expo.out' }, 1.0)
-        .fromTo(chars, { opacity: 0, y: 8, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.035 }, 1.0)
-        .fromTo(els.l, { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: 'expo.out' }, 1.55)
-        .fromTo(els.t, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.6 }, 1.7)
+        // 細い線が伸び、ひとこと（字間を詰めながら）
+        .fromTo(els.l, { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: 'expo.out' }, 1.35)
+        .fromTo(els.t, { opacity: 0, y: 6, letterSpacing: '0.3em' }, { opacity: 1, y: 0, letterSpacing: '0.06em', duration: 0.9, ease: 'expo.out' }, 1.45)
         // アプリへ
-        .to(els.m, { scale: 0.96, duration: 0.5, ease: 'power2.in' }, 2.65)
-        .to(els.r, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 2.7)
+        .to(els.m, { scale: 0.96, duration: 0.5, ease: 'power2.in' }, 2.55)
+        .to(els.r, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 2.6)
       kill = () => void tl.kill()
       skipRef.current = () => {
         tl.kill()
@@ -135,8 +130,7 @@ export function Opening({ onDone }: { onDone: () => void }) {
       role="img"
       aria-label={`${BRAND.name}。${BRAND.tagline}`}
     >
-      {/* 画像はメダルの周りに余白があるので、表示は大きめに取る（メダル自体は約 190px） */}
-      <div ref={medal} className="relative -my-8 aspect-square w-[min(84vw,330px)] opacity-0">
+      <div ref={medal} className="relative aspect-square w-[min(80vw,310px)] opacity-0">
         <img ref={copper} src={frameSrc(0)} alt="" draggable={false} className="absolute inset-0 h-full w-full" />
         {/* 緑青の姿を、円の広がるマスクで重ねていく */}
         <div
@@ -170,14 +164,7 @@ export function Opening({ onDone }: { onDone: () => void }) {
         </div>
       </div>
 
-      <p ref={word} className="en mt-2 whitespace-nowrap text-[19px] font-medium text-[#efe8df]" style={{ letterSpacing: '0.28em', marginRight: '-0.28em' }}>
-        {letters.map((ch, i) => (
-          <span key={i} className="inline-block opacity-0">
-            {ch === ' ' ? ' ' : ch}
-          </span>
-        ))}
-      </p>
-      <div ref={line} className="mt-4 h-px w-10 origin-center bg-[#2aa596] opacity-0" />
+      <div ref={line} className="mt-9 h-px w-10 origin-center bg-[#2aa596] opacity-0" />
       <p ref={tagline} className="mt-4 text-[12.5px] tracking-[0.06em] text-[#a7a29b] opacity-0">
         {BRAND.tagline}
       </p>

@@ -95,8 +95,10 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 ### 起動時のオープニング
 
-アプリを開くたびに、ブランドの考え（新しい銅 → 使い込んで緑青）をそのまま動きにした約3秒の演出を出します（`src/components/Opening.tsx`）。
-Blender で作った 3D の「EP」メダル（`public/opening/`）が斜めから正面へ回り込み、緑青が広がり、光がひと筋流れたあと、「ELIZA PATINA」が1文字ずつ現れます。
+アプリを開くたびに、約3秒のブランドの演出を出します（`src/components/Opening.tsx`）。
+エンブレムは、ヴィンテージの真鍮・エナメル看板の組み方で作った 3D の銅の板です（`public/opening/`）。
+外周に「ELIZA PATINA」「ENGLISH ≡ ATELIER」とスピード線、内側は緑青色のエナメルに銅の二重線、中央に 1930 年代のリボンマイク（ヒギンズ教授の蓄音機で発音を録られ、話し方で変わっていくイライザの物語から）、上下に「ESTD」「2026」。
+磨いたばかりの銅のエンブレムが斜めから正面へ回り込み、年月を経た姿（くすみ・酸化の斑点）が広がり、光がひと筋流れて、ひとことが出ます。設定の「このアプリについて」にも同じエンブレムを出しています。
 動きは GSAP（起動時に読み込む）。タップで飛ばせ、iPhone の「視差効果を減らす」がオンのときは動かさずに短く見せます。設定の「表示 → 起動時のオープニング」でオフにできます。
 JavaScript の読み込み前から同じ色の幕を出し（`index.html`）、白い画面がちらつかないようにしています。自動テスト（webdriver）では出しません（`?opening` を付けたときだけ）。
 
@@ -433,7 +435,8 @@ npm test             # データの整合性テスト
 | `scripts/blender/dogs.py` | 犬のぬいぐるみ。犬種・毛色・小物（CHARACTERS）でテツ（8ポーズ）となかまたち（各4ポーズ）を作り分け |
 | `scripts/blender/render.py` | レンダリングの実行（透過 PNG） |
 | `scripts/blender/postprocess.py` | WebP・アプリアイコンへの変換 |
-| `scripts/blender/logo.py` | 起動時のオープニングの 3D ロゴ（「EP」の浮き彫りのメダル。磨いた銅が回り込む連番と、緑青の出た姿） |
+| `scripts/blender/emblem_art.py` | オープニングのエンブレムの図案（外周の文字・スピード線・中央のマイク・ESTD 2026）を描き、エナメルの部分のマスクにする |
+| `scripts/blender/logo.py` | エンブレムを 3D の銅の板（緑青色のエナメルを埋め込み）にしてレンダリング。磨いたばかりの銅が回り込む連番と、年月を経た姿 |
 | `scripts/blender/postprocess_logo.py` | 3D ロゴを `public/opening/*.webp` に変換 |
 
 ```bash
@@ -449,11 +452,12 @@ python scripts/blender/postprocess.py render-out
 #    → public/guide/<キャラ>-<ポーズ>.webp（384px, 透過）
 #    → public/icons/icon-192.png, icon-512.png, icon-512-maskable.png, apple-touch-icon.png, public/favicon.png
 
-# 3D ロゴ（起動時のオープニング）。英文書体 Newsreader を Blender が読める TTF にしてから
-pip install fonttools brotli skia-pathops
-python -c "from fontTools.ttLib import TTFont; from fontTools.varLib import instancer; f=TTFont('src/assets/fonts/newsreader-latin-wght-normal.woff2'); i=instancer.instantiateVariableFont(f, {'wght': 500}, overlap=instancer.OverlapMode.REMOVE); i.flavor=None; i.save('Newsreader-Medium.ttf')"
-python scripts/blender/logo.py logo-out --font Newsreader-Medium.ttf --size 600 --samples 96 --frames 14
-python scripts/blender/postprocess_logo.py logo-out    # → public/opening/*.webp（480px, 透過）
+# 3D のエンブレム（起動時のオープニング）。文字は幾何学的なサンセリフ Jost（OFL。npm の @fontsource/jost）を TTF にしてから
+npm pack @fontsource/jost && tar xzf fontsource-jost-*.tgz
+python -c "from fontTools.ttLib import TTFont; f=TTFont('package/files/jost-latin-600-normal.woff2'); f.flavor=None; f.save('Jost-600.ttf')"
+python scripts/blender/emblem_art.py emblem-out --font Jost-600.ttf --size 2048    # 図案のマスク
+python scripts/blender/logo.py logo-out --mask emblem-out/emblem-mask.png --size 640 --samples 96 --frames 14
+python scripts/blender/postprocess_logo.py logo-out    # → public/opening/*.webp（透過）
 ```
 
 画面での使い分け（どのキャラが話すか）は `src/lib/characters.ts` と各ページの `<Guide who="…">` で決めています。
