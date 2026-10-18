@@ -1,38 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
-import { EyeOff, Pause, Play, SkipBack, SkipForward, TriangleAlert } from 'lucide-react'
+import { EyeOff, Pause, Play, RotateCcw, SkipBack, SkipForward, TriangleAlert } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
-import { Button, Card, ProgressBar, Segmented, Toggle, cx } from '@/components/ui'
-import { bumpDaily, db } from '@/lib/db'
-import { retrievability } from '@/lib/srs'
-import { newWordPool } from '@/lib/session'
-import { accentFor, getSettings, selectedCats } from '@/lib/settings'
+import { Button, Card, Direction, Empty, ProgressBar, Segmented, Toggle, cx } from '@/components/ui'
+import { bumpDaily } from '@/lib/db'
+import { reviewWords } from '@/lib/handsfree'
+import { accentFor } from '@/lib/settings'
 import { prefetchSpeech, speak, speakJa, stopSpeaking, warmUpSpeech } from '@/lib/tts'
-import { getWord, jaForSpeech, loadCategory, plain } from '@/lib/vocab'
-import { interleave } from '@/lib/srs'
+import { jaForSpeech, plain } from '@/lib/vocab'
+import { useWakeLock } from '@/lib/wakeLock'
 import type { Word } from '@/lib/types'
 
 type Dir = 'ja-en' | 'en-ja'
 type Phase = 'idle' | 'prompt' | 'think' | 'answer' | 'example'
-
-/**
- * 忘れかけている語（想起確率の低い順）を優先。学習した語が少ないときは、これから学ぶ語を聞く。
- */
-async function buildList(n = 20): Promise<{ words: Word[]; preview: boolean }> {
-  const rows = (await db.cards.toArray()).filter((r) => r.reps > 0 && !r.known)
-  const now = new Date()
-  const ranked = rows
-    .map((r) => ({ r, p: retrievability(r, now) }))
-    .sort((a, b) => a.p - b.p)
-    .slice(0, n)
-  const words = (await Promise.all(ranked.map((x) => getWord(x.r.id)))).filter(Boolean) as Word[]
-  if (words.length >= 5) return { words, preview: false }
-  const s = getSettings()
-  const lists = await Promise.all(selectedCats(s).map((c) => loadCategory(c)))
-  const ids = new Set(rows.map((r) => r.id))
-  const fresh = interleave(newWordPool(lists.flat(), ids, s)).slice(0, n)
-  return { words: [...words, ...fresh].slice(0, n), preview: true }
-}
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
@@ -49,10 +29,11 @@ export default function AudioReview() {
   /** 再生中に変えた設定（考える時間・例文）を次の語から反映する */
   const opts = useRef({ gap, withExample })
   opts.current = { gap, withExample }
-  const wake = useRef<{ release: () => Promise<void> } | null>(null)
 
   useEffect(() => {
-    buildList().then((l) => {
+    // 学習した語が少ない（5語未満）ときは、これから学ぶ語を先に聞く
+    reviewWords().then(({ words, learned }) => {
+      const l = { words, preview: learned < 5 }
       setList(l)
       // まだ覚えていない語は日本語から英語を思い出せないので、英語 → 日本語で聞く
       if (l.preview) setDir('en-ja')
@@ -60,28 +41,11 @@ export default function AudioReview() {
     return () => {
       runId.current++
       stopSpeaking()
-      void wake.current?.release().catch(() => undefined)
     }
   }, [])
 
-  // 再生中は画面を消さない（対応ブラウザのみ）。アプリに戻ったら取り直す
-  useEffect(() => {
-    const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<{ release: () => Promise<void> }> } }
-    const acquire = () => {
-      if (!playing || !nav.wakeLock || document.visibilityState !== 'visible') return
-      nav.wakeLock
-        .request('screen')
-        .then((l) => (wake.current = l))
-        .catch(() => undefined)
-    }
-    acquire()
-    document.addEventListener('visibilitychange', acquire)
-    return () => {
-      document.removeEventListener('visibilitychange', acquire)
-      void wake.current?.release().catch(() => undefined)
-      wake.current = null
-    }
-  }, [playing])
+  // 再生中は画面を消さない（対応ブラウザのみ）
+  useWakeLock(playing)
 
   const words = list?.words ?? []
   const w = words[idx]
@@ -139,7 +103,7 @@ export default function AudioReview() {
     } else setIdx(to)
   }
 
-  if (!list) return <div className="p-8 text-center text-muted">準備中…</div>
+  if (!list) return <div className="p-8 text-center text-muted">読み込み中…</div>
 
   const finished = idx >= words.length && words.length > 0
   const showEn = !hide && (dir === 'en-ja' || phase === 'answer' || phase === 'example' || !playing)
@@ -162,13 +126,13 @@ export default function AudioReview() {
         )}
 
         {words.length === 0 ? (
-          <Card className="text-center text-[14px] text-muted">聞ける単語がありません</Card>
+          <Empty>聞ける単語がありません</Empty>
         ) : finished ? (
           <Card className="text-center">
             <p className="text-[15px] font-medium">{words.length}語を聞き終えました</p>
-            <Button className="mt-4" variant="ink" onClick={() => void run(0)}>
-              <Play className="h-4 w-4 fill-current" />
-              最初から
+            <Button className="mt-4" onClick={() => void run(0)}>
+              <RotateCcw className="h-[18px] w-[18px]" />
+              もう一度
             </Button>
           </Card>
         ) : (
@@ -230,8 +194,8 @@ export default function AudioReview() {
                 setDir(d)
               }}
               options={[
-                { value: 'ja-en', label: '日本語 → 英語' },
-                { value: 'en-ja', label: '英語 → 日本語' },
+                { value: 'ja-en', label: <Direction from="日本語" to="英語" /> },
+                { value: 'en-ja', label: <Direction from="英語" to="日本語" /> },
               ]}
             />
           </div>
@@ -254,7 +218,7 @@ export default function AudioReview() {
 
         <p className="flex gap-2 px-1 text-[12px] leading-relaxed text-muted">
           <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-warn" strokeWidth={1.8} />
-          線路内での作業中や、車・自転車の運転中は使わないでください。周りの音が聞こえる音量で使いましょう。
+          車や自転車の運転中、作業中は使わないでください。周りの音が聞こえる音量で使いましょう。
         </p>
       </div>
     </div>

@@ -23,6 +23,8 @@ export interface Word {
   cat: Category
   /** 保線用語のサブカテゴリ */
   sub?: string
+  /** 動詞の変化形 [三単現, 過去形, 過去分詞, -ing]（2つあるときは「 / 」でつなぐ） */
+  vf?: string[]
   /** 米音IPA */
   ipa?: string
   /** 英音IPA（保線用語） */
@@ -40,6 +42,8 @@ export interface Word {
   refs?: string[]
   /** 頻度順位（NGSL/BSL/TSL内） */
   rank?: number
+  /** 意味の近い語の id（選択問題のまぎらわしい選択肢。WordNet から計算、近い順） */
+  near?: string[]
 }
 
 export type Level = 1 | 2 | 3 | 4 | 5 | 6
@@ -69,9 +73,9 @@ export const CATEGORIES: {
 }[] = [
   {
     key: 'general',
-    label: '一般会話',
+    label: '一般',
     short: '一般',
-    desc: '日常の会話・旅行・暮らしで使う高頻度の英語',
+    desc: '会話・旅行・暮らしでよく使う英語（いちばん基本のコース）',
     source: 'NGSL（一般英語の約92%をカバーする高頻度語）',
     scene: 'daily',
     text: 'text-gen',

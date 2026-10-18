@@ -48,9 +48,14 @@ export const EVIDENCE: Evidence[] = [
     title: '望ましい困難（段階的な難易度）',
     finding:
       '学習時に適度な困難（思い出す・生成する）を伴う方が長期的な定着につながる。語彙は「意味が分かる（受容）」から「自分で書ける・言える（産出）」まで段階がある。',
-    inApp: '記憶の安定度に応じて、選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋めへと難易度が上がります。',
+    inApp:
+      '記憶の安定度に応じて、選択問題 → 音声だけで答える → 自己評価カード → スペル入力・例文穴埋めへと難易度が上がります。選択問題のまちがいの選択肢も、学習者のレベルとその語の覚え具合に応じて、綴りが似た語・同じ分野の語・同じ単語を含む例文など「もっともらしいもの」を増やします（意味が重なる語は除外）。',
     refs: [
       { cite: 'Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe & A. Shimamura (Eds.), Metacognition: Knowing about knowing (pp. 185–205). MIT Press.' },
+      {
+        cite: 'Little, J. L., Bjork, E. L., Bjork, R. A., & Angello, G. (2012). Multiple-choice tests exonerated, at least of some charges: Fostering test-induced learning and avoiding test-induced forgetting. Psychological Science, 23(11), 1337–1344.',
+        url: 'https://doi.org/10.1177/0956797612443370',
+      },
       { cite: 'Webb, S. (2007). The effects of repetition on vocabulary knowledge. Applied Linguistics, 28(1), 46–65.' },
     ],
   },
@@ -58,7 +63,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'interleave',
     title: 'インターリーブ（混ぜて練習）',
     finding: '種類の異なる問題を混ぜて練習すると、区別して使い分ける力が伸びやすい。第二言語の文法練習でも、混ぜて練習した方が長期保持に優れていた。',
-    inApp: '選んだコース（一般会話・ビジネス・保線）の単語と、復習・新出語、選択・リスニング・スペルなどの出題形式を混ぜて出題します。',
+    inApp: '選んだコース（一般・ビジネス・IT・鉄道）の単語と、復習・新出語、選択・リスニング・スペルなどの出題形式を混ぜて出題します。',
     refs: [
       { cite: 'Rohrer, D., & Taylor, K. (2007). The shuffling of mathematics problems improves learning. Instructional Science, 35(6), 481–498.' },
       { cite: 'Nakata, T., & Suzuki, Y. (2019). Mixing grammar exercises facilitates long-term retention: Effects of blocking, interleaving, and increasing practice. The Modern Language Journal, 103(3), 629–647.', url: 'https://doi.org/10.1111/modl.12581' },
@@ -79,7 +84,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'production',
     title: '産出効果・マルチモーダル学習',
     finding: '声に出して読んだ語は、黙読した語より記憶に残りやすい（産出効果）。文字・音声・例文（文脈）を組み合わせると、記憶の手がかりが増える。',
-    inApp: 'すべての単語・例文に発音記号と音声（米・英）を付け、新出語では例文の音読を促します。',
+    inApp: 'すべての単語・例文に発音記号と音声（米・英）を付け、新出語では例文の音読を促します。「ながら練習」では、英文のあとに文の長さに合わせた間を置き、声に出してまねして言えるようにしています。',
     refs: [
       { cite: 'MacLeod, C. M., Gopie, N., Hourihan, K. L., Neary, K. R., & Ozubko, J. D. (2010). The production effect: Delineation of a phenomenon. Journal of Experimental Psychology: Learning, Memory, and Cognition, 36(3), 671–685.', url: 'https://doi.org/10.1037/a0018785' },
     ],
@@ -173,7 +178,7 @@ export const EVIDENCE: Evidence[] = [
     id: 'audio',
     title: '音だけで思い出す復習',
     finding: '答えを見る前に思い出そうとすること（検索練習）が記憶を強める。音声だけの語学教材では、答えの前に考える間を置き、だんだん間隔を広げて思い出させる方法（段階的な間隔での想起）が古くから使われている。',
-    inApp: '「耳で復習」で、忘れかけている単語から順に「和訳 → 考える間 → 英語 → 例文」と流します。画面を見なくても進み、再生中は画面が消えないようにします。',
+    inApp: '「耳で復習」で、忘れかけている単語から順に「和訳 → 考える間 → 英語 → 例文」と流します。画面を見なくても進み、再生中は画面が消えないようにします。家事や身支度のあいだに使う「ながら練習」では、単語の想起・まねして言う・日本語から英語で言う・会話を、時間を決めて順番に（混ぜて）流します。',
     refs: [
       { cite: 'Pimsleur, P. (1967). A memory schedule. The Modern Language Journal, 51(2), 73–75.', url: 'https://doi.org/10.1111/j.1540-4781.1967.tb06700.x' },
       { cite: 'Karpicke, J. D., & Roediger, H. L. (2008). The critical importance of retrieval for learning. Science, 319(5865), 966–968.' },

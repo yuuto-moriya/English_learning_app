@@ -5,6 +5,8 @@ import rail from '../src/data/vocab/rail.json'
 import itWords from '../src/data/vocab/it.json'
 import counts from '../src/data/vocab/counts.json'
 import { SCENES } from '../src/data/scenes'
+import { CONTRASTS } from '../src/data/minimalPairs'
+import { PAIR_WORDS } from '../src/data/pairWords'
 import type { Word } from '../src/lib/types'
 
 const all = [...(general as Word[]), ...(business as Word[]), ...(itWords as Word[]), ...(rail as Word[])]
@@ -100,6 +102,38 @@ describe('シーン会話データ', () => {
     for (const s of SCENES) {
       const ids = new Set(s.roles.map((r) => r.id))
       for (const l of s.lines) expect(ids.has(l.sp), `${s.id}:${l.en}`).toBe(true)
+    }
+  })
+})
+
+describe('聞き分け（最小対語）の意味と例文', () => {
+  const words = new Set(CONTRASTS.flatMap((c) => c.pairs.flat()))
+
+  it('すべての語に意味・例文・和訳がある', () => {
+    for (const w of words) {
+      const g = PAIR_WORDS[w]
+      expect(g, w).toBeDefined()
+      expect(g.ja.trim(), w).not.toBe('')
+      expect(g.exJa.trim(), w).not.toBe('')
+    }
+  })
+
+  it('例文はその語を *word* で1つだけ示す', () => {
+    for (const w of words) {
+      const marks = [...PAIR_WORDS[w].en.matchAll(/\*([^*]+)\*/g)].map((m) => m[1].toLowerCase())
+      expect(marks, w).toEqual([w])
+    }
+  })
+
+  it('使っていない語の説明を残さない', () => {
+    expect(Object.keys(PAIR_WORDS).filter((w) => !words.has(w))).toEqual([])
+  })
+
+  it('同じ対立の中に同じ組がない・組の2語はちがう', () => {
+    for (const c of CONTRASTS) {
+      const keys = c.pairs.map(([a, b]) => `${a}/${b}`)
+      expect(new Set(keys).size, c.id).toBe(keys.length)
+      for (const [a, b] of c.pairs) expect(a, c.id).not.toBe(b)
     }
   })
 })

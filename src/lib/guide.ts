@@ -27,7 +27,7 @@ export function greeting(now = new Date(), name = ''): GuideLine & { title: stri
 
 export function dueMessage(due: number, newLeft: number): GuideLine {
   if (due === 0 && newLeft === 0) return { pose: 'celebrate', text: '今日の目標は達成だワン！リスニングやシーン練習で「使う」練習をしよう。' }
-  if (due > 50) return { pose: 'cheer', text: `復習が${due}枚たまってるワン。全部じゃなくて大丈夫、まず20枚からいこう！` }
+  if (due > 50) return { pose: 'cheer', text: `復習が${due}枚たまってるワン。1回は50枚までにしてあるから、少しずつ進めよう！` }
   if (due > 0) return { pose: 'cheer', text: `忘れかけたころが復習のベストタイミング。${due}枚の復習が待ってるワン！` }
   return { pose: 'happy', text: `新しい単語があと${newLeft}語。例文ごと覚えると使える英語になるワン。` }
 }
@@ -40,11 +40,25 @@ export function correctMessage(streak: number, rail = false): GuideLine {
   return { pose: 'happy', text: pick(['正解！', 'ナイス！', 'バッチリだワン！', 'よく思い出せたね！']) }
 }
 
-export function wrongMessage(): GuideLine {
+export function wrongMessage(willRetry = true): GuideLine {
+  if (!willRetry)
+    return pick([
+      { pose: 'think', text: '正解と例文をよく見ておこう。次の復習で、また確かめるワン。' },
+      { pose: 'oops', text: 'ドンマイ！むずかしい単語は、近いうちにまた復習に出てくるワン。' },
+    ])
   return pick([
     { pose: 'oops', text: '惜しい！間違えた単語は、あとでもう一度出すから大丈夫だワン。' },
     { pose: 'think', text: '間違いは記憶を強くするチャンス。正解と例文をもう一度見ておこう。' },
     { pose: 'oops', text: 'ドンマイ！「思い出そうとした」こと自体が学習になってるワン。' },
+  ])
+}
+
+/** 聞き取りでまちがえたとき（同じ問題はもう出さないので「あとでもう一度」とは言わない） */
+export function listenWrongMessage(): GuideLine {
+  return pick([
+    { pose: 'think', text: '英文を見ながら、もう一度聞いてみよう。聞こえ方が変わるはずだワン。' },
+    { pose: 'oops', text: 'おしい！聞き取れなかった部分は、ゆっくりでも聞いてみよう。' },
+    { pose: 'think', text: '音と文字を結びつけると、次は聞き取れるようになるワン。' },
   ])
 }
 

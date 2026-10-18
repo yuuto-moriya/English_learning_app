@@ -7,11 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Michi" />
+    <meta name="apple-mobile-web-app-title" content="EliPati" />
     <meta name="description" content="一般・ビジネス・IT・鉄道の英単語、リスニング、スピーキング、シーン別会話、翻訳と同時通訳をひとつにした英語学習アプリ" />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-    <title>Michi — 英語学習と翻訳</title>
+    <title>Eliza Patina — 英語学習と翻訳</title>
     <script>
       // テーマのちらつき防止（React描画前に適用）
       try {
@@ -24,6 +24,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // 起動時のオープニングと同じ色の幕を、JavaScript の読み込み前から出しておく（白い画面がちらつかないように）
+      try {
+        var st = JSON.parse(localStorage.getItem('tetsu-settings') || '{}').state || {};
+        if ((st.opening !== false && !navigator.webdriver) || location.search.indexOf('opening') >= 0) {
+          var b = document.createElement('div');
+          b.id = 'boot';
+          b.style.cssText = 'position:fixed;inset:0;z-index:99;background:#0e0f11';
+          document.body.appendChild(b);
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0e0f11');
+        }
+      } catch (e) {}
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

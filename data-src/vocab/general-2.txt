@@ -24,14 +24,14 @@ accord|v|一致する；（according toで）〜によれば|*According* to the 
 list|n|一覧表；リスト|I made a shopping *list*.|買い物リストを作った。
 wish|v|願う|I *wish* you good luck.|幸運を祈ります。
 therefore|adv|それゆえに|It's raining; *therefore*, the game is canceled.|雨が降っている。そのため試合は中止だ。
-wear|v|着ている；身につけている；（名詞）摩耗|She is *wearing* a red coat.|彼女は赤いコートを着ている。
+wear|v|着ている；身につけている|She is *wearing* a red coat.|彼女は赤いコートを着ている。
 fund|n|資金；基金|We need more *funds* for the project.|そのプロジェクトにはさらに資金が必要だ。
 rest|n|休息；残り|Take a *rest* if you are tired.|疲れたら休憩してください。
 kid|n|子ども|The *kids* are playing outside.|子どもたちは外で遊んでいる。
 industry|n|産業；業界|The car *industry* is changing fast.|自動車業界は急速に変化している。
 education|n|教育|*Education* is the key to the future.|教育は未来への鍵だ。
 measure|v|測る；（名詞）対策|Let me *measure* the window first.|まず窓の寸法を測らせてください。
-kill|v|殺す|The frost *killed* the flowers.|霜で花が枯れた。
+kill|v|殺す|Smoking can *kill* you.|たばこは命取りになることがある。
 serve|v|（食事を）出す；仕える；役立つ|Breakfast is *served* from seven.|朝食は7時から提供されます。
 likely|adj|ありそうな；〜しそうな|It is *likely* to snow tomorrow.|明日は雪が降りそうだ。
 certainly|adv|確かに；（返事で）もちろん|*Certainly*, I'll do it right away.|かしこまりました。すぐにやります。
@@ -192,7 +192,7 @@ average|adj|平均の；（名詞）平均|The *average* speed was 80 km/h.|平�
 stock|n|在庫；株|This item is out of *stock*.|この商品は在庫切れです。
 management|n|経営；管理|Good *management* is important for any company.|どんな会社にも良い経営が大切だ。
 character|n|性格；登場人物；文字|She has a strong *character*.|彼女は芯の強い性格だ。
-bed|n|ベッド；（道床などの）床|I went to *bed* early.|早く寝た。
+bed|n|ベッド；（川などの）底|I went to *bed* early.|早く寝た。
 hit|v|打つ；当たる|He *hit* the ball very hard.|彼はボールを強く打った。
 establish|v|設立する；確立する|The company was *established* in 1990.|その会社は1990年に設立された。
 indeed|adv|実に；本当に|It was *indeed* a hard day.|実に大変な一日だった。

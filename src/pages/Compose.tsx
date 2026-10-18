@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
-import { Eye, Lightbulb, Mic, RotateCcw } from 'lucide-react'
+import { Check, Eye, Lightbulb, Mic, RotateCcw, Triangle, X } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SpeakCheck } from '@/components/SpeakCheck'
-import { BottomBar, Button, Card, ProgressBar, SpeakButton, cx } from '@/components/ui'
+import { ResultCard, SessionShell } from '@/components/Session'
+import { BottomBar, Button, Card, SpeakButton, cx } from '@/components/ui'
 import { defaultLevel, defaultSources } from '@/components/PracticeControls'
 import { sentencePool, type Sentence } from '@/lib/sentences'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { bumpDaily, db } from '@/lib/db'
 import { getWord, plain, shuffle } from '@/lib/vocab'
-import { accentFor } from '@/lib/settings'
+import { accentFor, getSettings } from '@/lib/settings'
 import { play } from '@/lib/sounds'
 
 const ROUND = 10
+/** 自己評価のボタン（3つ横に並べても文字が折り返さない大きさ） */
+const RATE_BTN =
+  'flex min-h-[64px] flex-col items-center justify-center gap-1 rounded-[14px] border border-line-strong bg-surface px-1 text-[14px] font-semibold transition active:scale-[0.98]'
 const THINK_MS = 8000
 
 /**
@@ -20,7 +24,8 @@ const THINK_MS = 8000
  * 足りなければ、選んでいるコースの例文・シーン会話から補う。
  */
 async function buildRound(): Promise<Sentence[]> {
-  const learned = await db.cards.filter((c) => c.reps > 0).toArray().catch(() => [])
+  const cats = getSettings().studyCats
+  const learned = await db.cards.filter((c) => c.reps > 0 && !!cats[c.cat]).toArray().catch(() => [])
   const due = learned.filter((c) => !c.known).sort((a, b) => a.due - b.due).slice(0, 40)
   const out: Sentence[] = []
   for (const c of shuffle(due)) {
@@ -88,7 +93,7 @@ export default function Compose() {
     setI(i + 1)
   }
 
-  if (!round) return <div className="p-8 text-center text-muted">準備中…</div>
+  if (!round) return <div className="p-8 text-center text-muted">読み込み中…</div>
 
   if (!started || done)
     return (
@@ -101,20 +106,10 @@ export default function Compose() {
                 pose={tally.good >= tally.miss ? 'celebrate' : 'cheer'}
                 text="おつかれさま！声に出した分だけ、使える英語になっていくワン。言えなかった文は、お手本をもう一度まねしておこう。"
               />
-              <Card className="grid grid-cols-3 gap-2 text-center">
-                {(
-                  [
-                    ['good', '言えた', 'text-ok'],
-                    ['close', 'おしい', 'text-warn'],
-                    ['miss', '言えなかった', 'text-ng'],
-                  ] as const
-                ).map(([k, label, color]) => (
-                  <div key={k}>
-                    <p className={cx('text-[28px] font-semibold tabular-nums', color)}>{tally[k]}</p>
-                    <p className="text-[12px] text-muted">{label}</p>
-                  </div>
-                ))}
-              </Card>
+              <ResultCard
+                value={Math.round((tally.good / Math.max(1, tally.good + tally.close + tally.miss)) * 100)}
+                caption={`言えた ${tally.good}・おしい ${tally.close}・言えなかった ${tally.miss}`}
+              />
             </>
           ) : (
             <>
@@ -165,11 +160,9 @@ export default function Compose() {
 
   if (!cur) return null
   return (
-    <div>
-      <PageHeader title="瞬間英作文" back="/practice" />
-      <div className={cx('px-4', shown ? 'pb-56' : 'pb-40')}>
-        <ProgressBar value={i} max={round.length} className="h-[5px]" />
-        <div key={i} className="animate-rise pt-8">
+    <SessionShell onClose={() => setStarted(false)} progress={{ value: i, max: round.length }}>
+      <div className={shown ? 'pb-56' : 'pb-40'}>
+        <div key={i} className="animate-rise pt-2">
           <p className="text-[13px] text-muted">英語で言ってみよう</p>
           <p className="mt-3 text-[24px] font-semibold leading-snug">{cur.ja}</p>
           {!shown && <ThinkBar key={`t${i}`} />}
@@ -199,8 +192,9 @@ export default function Compose() {
       <BottomBar>
         {!shown ? (
           <div className="flex gap-2">
-            <Button variant="secondary" aria-label="ヒント" onClick={() => setHint(true)} disabled={hint}>
+            <Button variant="secondary" size="lg" onClick={() => setHint(true)} disabled={hint}>
               <Lightbulb className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              ヒント
             </Button>
             <Button block size="lg" variant="ink" onClick={reveal}>
               <Eye className="h-[18px] w-[18px]" strokeWidth={1.8} />
@@ -216,20 +210,23 @@ export default function Compose() {
               </button>
             )}
             <div className="grid grid-cols-3 gap-2">
-              <Button variant="outline" className="text-ng" onClick={() => rate('miss')}>
+              <button className={cx(RATE_BTN, 'text-ng')} onClick={() => rate('miss')}>
+                <X className="h-[18px] w-[18px]" strokeWidth={2.2} />
                 言えなかった
-              </Button>
-              <Button variant="outline" className="text-warn" onClick={() => rate('close')}>
+              </button>
+              <button className={cx(RATE_BTN, 'text-warn')} onClick={() => rate('close')}>
+                <Triangle className="h-4 w-4" strokeWidth={2.2} />
                 おしい
-              </Button>
-              <Button variant="outline" className="text-ok" onClick={() => rate('good')}>
+              </button>
+              <button className={cx(RATE_BTN, 'text-ok')} onClick={() => rate('good')}>
+                <Check className="h-[18px] w-[18px]" strokeWidth={2.4} />
                 言えた
-              </Button>
+              </button>
             </div>
           </>
         )}
       </BottomBar>
-    </div>
+    </SessionShell>
   )
 }
 

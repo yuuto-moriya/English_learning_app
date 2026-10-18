@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { CharImage } from './Guide'
 import { Button, cx } from './ui'
@@ -19,6 +19,15 @@ interface Rect {
 }
 
 const PAD = 6
+/** 説明カードの高さの見積もり（照らす場所がカードに隠れないよう、上に送る量の目安） */
+const CARD_EST = 270
+
+/** 説明カードを置く位置（画面の下端からの距離）。タブバーがあればそのすぐ上、なければ画面の下 */
+function dockOffset(vh: number): number | null {
+  const bar = document.querySelector<HTMLElement>('nav[aria-label="メインメニュー"] > div')
+  const r = bar?.getBoundingClientRect()
+  return r && r.height > 0 ? Math.max(16, vh - r.top + 10) : null
+}
 
 function findTarget(name?: string): HTMLElement | null {
   if (!name) return null
@@ -30,42 +39,59 @@ function findTarget(name?: string): HTMLElement | null {
 /**
  * 使い方ツアー（コーチマーク）。画面を暗くして、説明する場所だけを明るく切り抜く。
  * 「次へ」で進み、「スキップ」でいつでも終われる。終わったら onDone。
+ * 説明カードはいつも同じ場所（タブバーのすぐ上）に下端をそろえて置き、「次へ」が動かないようにする。
+ * 照らす場所はカードの上に見えるよう、必要なら画面を送る。ページの終わりで送れず隠れてしまうときだけ、カードを上に置く。
  */
 export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void }) {
   const guide = useSettings((s) => s.guide)
   const [i, setI] = useState(0)
   const [rect, setRect] = useState<Rect | null>(null)
   const [vh, setVh] = useState(() => window.innerHeight)
+  const [dock, setDock] = useState<number | null>(null)
+  const card = useRef<HTMLDivElement>(null)
+  const [cardH, setCardH] = useState(CARD_EST)
   const step = steps[i]
   const last = i === steps.length - 1
 
+  /** 照らす場所を測る。値が変わったときだけ更新する（毎フレーム呼んでも再描画が増えない） */
   const measure = useCallback(() => {
-    setVh(window.innerHeight)
+    const h = window.innerHeight
+    setVh((v) => (v === h ? v : h))
+    const d = dockOffset(h)
+    setDock((v) => (v === d ? v : d))
+    const ch = card.current?.offsetHeight
+    if (ch) setCardH((v) => (Math.abs(v - ch) < 1 ? v : ch))
     const el = findTarget(step?.target)
-    if (!el) return setRect(null)
+    if (!el) return setRect((v) => (v === null ? v : null))
     const r = el.getBoundingClientRect()
-    setRect({ top: r.top - PAD, left: r.left - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 })
+    const next = { top: r.top - PAD, left: r.left - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 }
+    setRect((v) =>
+      v && Math.abs(v.top - next.top) < 0.5 && Math.abs(v.left - next.left) < 0.5 && Math.abs(v.width - next.width) < 0.5 && Math.abs(v.height - next.height) < 0.5
+        ? v
+        : next,
+    )
   }, [step])
 
   useLayoutEffect(() => {
     const el = findTarget(step?.target)
-    if (el) {
+    // タブバーなど固定の場所は送らない。それ以外は、カードより上（画面の上のほう）に入るよう送ってから測る
+    if (el && !el.closest('nav')) {
       const r = el.getBoundingClientRect()
-      // 画面の外なら中央まで送ってから測る
-      if (r.top < 70 || r.bottom > window.innerHeight - 110) el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      const limit = window.innerHeight - (dockOffset(window.innerHeight) ?? 40) - CARD_EST
+      if (r.top < 70 || r.bottom > limit) window.scrollBy({ top: r.top - 80, behavior: 'smooth' })
     }
     measure()
-    const t = setTimeout(measure, 380)
-    return () => clearTimeout(t)
   }, [step, measure])
 
+  // スクロール中・見出しが縮むとき・あとから内容が読み込まれて位置が変わるときも、照らす場所がずれないよう毎フレーム測り直す
   useEffect(() => {
-    window.addEventListener('resize', measure)
-    window.addEventListener('scroll', measure, { passive: true })
-    return () => {
-      window.removeEventListener('resize', measure)
-      window.removeEventListener('scroll', measure)
+    let id = 0
+    const loop = () => {
+      measure()
+      id = requestAnimationFrame(loop)
     }
+    id = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(id)
   }, [measure])
 
   useEffect(() => {
@@ -77,13 +103,14 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
   }, [onDone])
 
   if (!step) return null
-  // 説明カードは、照らした場所の下に入ればその下、入らなければ上。対象がなければ中央
-  const below = rect ? rect.top + rect.height + 12 + 230 < vh : false
-  const cardStyle = rect
-    ? below
-      ? { top: rect.top + rect.height + 12 }
-      : { bottom: Math.max(12, vh - rect.top + 12) }
-    : { top: '50%', transform: 'translateY(-50%)' }
+  // 説明カードは、どのステップでも下端の位置をそろえる（ボタンが同じ場所に来る）
+  const bottom = dock === null ? 40 : Math.min(dock, vh - 200)
+  // ページの終わりに近くて画面を送れず、照らす場所がカードに隠れるときだけ、カードを画面の上に置く
+  const cardBottom = vh - bottom
+  const covered = !!rect && rect.top < cardBottom && rect.top + rect.height > cardBottom - cardH - 8
+  const cardStyle = covered
+    ? { top: 'calc(env(safe-area-inset-top) + 12px)' }
+    : { bottom: dock === null ? 'calc(env(safe-area-inset-bottom) + 16px)' : bottom }
 
   return createPortal(
     <div className="fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-label="使い方ガイド">
@@ -91,12 +118,13 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
       <div className={cx('absolute inset-0', !rect && 'bg-black/55')} />
       {rect && (
         <div
-          className="pointer-events-none absolute rounded-[18px] transition-all duration-300 ease-out"
+          className="pointer-events-none absolute rounded-[18px]"
           style={{ ...rect, boxShadow: '0 0 0 9999px rgb(0 0 0 / 0.55), 0 0 0 2px rgb(255 255 255 / 0.9)' }}
         />
       )}
       <div
         key={i}
+        ref={card}
         className="absolute inset-x-4 mx-auto max-w-[360px] animate-rise rounded-[20px] border border-line bg-surface p-4 shadow-float"
         style={cardStyle}
       >
@@ -137,7 +165,7 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
 export const HOME_TOUR: TourStep[] = [
   {
     title: 'ようこそ！使い方を30秒でご案内します',
-    body: 'Michi（ミチ）は、単語・リスニング・発音・会話・翻訳をひとつで練習できるアプリです。主な場所を順番に見ていきましょう。',
+    body: 'Eliza Patina（イライザ・パティーナ）は、単語・リスニング・発音・会話・翻訳をひとつで練習できるアプリです。話すほど、使うほど、あなたの英語に味が出ます。主な場所を順番に見ていきましょう。',
   },
   {
     target: 'mode',
@@ -157,12 +185,12 @@ export const HOME_TOUR: TourStep[] = [
   {
     target: 'tab-words',
     title: '単語帳',
-    body: '全単語を検索できます。「苦手」「保存した単語（★）」だけを集めて練習することもできます。',
+    body: '全単語を検索できます。「苦手」「保存した単語」だけを集めて練習することもできます。',
   },
   {
     target: 'tab-practice',
     title: '練習',
-    body: 'リスニング・聞き分け・ディクテーション・瞬間英作文・発音チェック・シャドーイング・耳で復習。覚えた単語を使える英語にします。',
+    body: 'リスニング・聞き分け・ディクテーション・瞬間英作文・発音チェック・シャドーイング・耳で復習。家事や身支度のあいだは、時間を決めて流しっぱなしにできる「ながら練習」も。覚えた単語を使える英語にします。',
   },
   {
     target: 'tab-scenes',
@@ -177,7 +205,11 @@ export const HOME_TOUR: TourStep[] = [
   {
     target: 'settings',
     title: '設定',
-    body: '読み上げの発音（アメリカ・イギリス・オーストラリア・インドなど）と声、速度、効果音、1日の目安、データのバックアップはここから。',
+    body: '読み上げの発音（アメリカ・イギリス・オーストラリア・インドなど）と声、高音質の声の入れ方、速度、効果音、1日の目安、データのバックアップはここから。',
+  },
+  {
+    title: '声を高音質にするには',
+    body: '通信できるときは高品質音声で読みます。通信できないときのために、iPhone の「設定 → アクセシビリティ → リーダーと読み上げ → 声 → 英語 → 声」で「プレミアム」か「拡張」の声をダウンロードしておくと安心です（日本語の声も同じように「声 → 日本語 → 声」で）。くわしい手順と、いまの声の状態は、このアプリの設定の「音声」にあります。',
   },
   {
     title: '準備OK！',

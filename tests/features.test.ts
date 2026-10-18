@@ -2,7 +2,8 @@ import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { bumpDaily, db, exportAll, importAll, shiftDay, todayKey, toggleMark } from '../src/lib/db'
 import { buildDrill, isWeak } from '../src/lib/session'
-import { ratePercent, voiceQuality } from '../src/lib/tts'
+import { SYSTEM_VOICE, ratePercent, systemVoiceActive, voiceQuality } from '../src/lib/tts'
+import { voiceStatus } from '../src/components/VoiceGuide'
 import { jaForSpeech } from '../src/lib/vocab'
 import { CONTRASTS } from '../src/data/minimalPairs'
 import { EVIDENCE } from '../src/data/research'
@@ -63,6 +64,22 @@ describe('読み上げの声', () => {
     expect(compact).toBeGreaterThan(old)
     expect(voiceQuality(v('Microsoft Aria Online (Natural) - English (United States)'))).toBeGreaterThan(compact)
   })
+  it('「iPhone の設定どおり」を選ぶと声を指定しない。自分で選んだ声があればそれを使う', () => {
+    const list = [v('Kyoko', 'com.apple.voice.compact.ja-JP.Kyoko')] as SpeechSynthesisVoice[]
+    expect(systemVoiceActive(list, SYSTEM_VOICE)).toBe(true)
+    expect(systemVoiceActive(list, 'Kyoko')).toBe(false)
+    // iPhone 以外（テスト環境）では、選んでいなければこれまでどおり一覧の声を使う
+    expect(systemVoiceActive(list, '')).toBe(false)
+  })
+  it('日本語の声も、拡張・プレミアム > 標準の声（Kyoko など）> 遊び用の声', () => {
+    const premium = voiceQuality(v('Kyoko (Premium)', 'com.apple.voice.premium.ja-JP.Kyoko'))
+    const enhanced = voiceQuality(v('Kyoko（拡張）', 'com.apple.voice.enhanced.ja-JP.Kyoko'))
+    const compact = voiceQuality(v('Kyoko', 'com.apple.voice.compact.ja-JP.Kyoko'))
+    expect(premium).toBeGreaterThan(enhanced)
+    expect(enhanced).toBeGreaterThan(compact)
+    expect(compact).toBeGreaterThan(voiceQuality(v('Unknown', 'x.ja-JP.Unknown')))
+    expect(voiceQuality(v('Eddy', 'com.apple.eloquence.ja-JP.Eddy'))).toBeLessThan(0)
+  })
   it('速度は5%刻みの SSML の値にする（キャッシュが効くように）', () => {
     expect(ratePercent(1)).toBe(0)
     expect(ratePercent(0.95)).toBe(-5)
@@ -76,6 +93,17 @@ describe('読み上げの声', () => {
     expect(jaForSpeech('〜である；いる、ある')).toBe('である')
     expect(jaForSpeech('（米）地下鉄')).toBe('地下鉄')
     expect(jaForSpeech('まくらぎ')).toBe('まくらぎ')
+  })
+})
+
+describe('声の状態の案内', () => {
+  it('高品質音声（サーバー）が使えるときは良好、端末の声は品質で案内を変える', () => {
+    expect(voiceStatus(true, undefined).tone).toBe('good')
+    expect(voiceStatus(false, { name: 'Ava (Premium)', quality: 100 })).toMatchObject({ tone: 'good', title: expect.stringContaining('Ava') })
+    expect(voiceStatus(false, { name: 'Samantha', quality: 50 }).tone).toBe('warn')
+    // 声を指定せず iPhone の設定の声に任せているとき
+    expect(voiceStatus(false, { name: 'Samantha', quality: 50 }, true).tone).toBe('info')
+    expect(voiceStatus(false, undefined).title).toContain('見つかりません')
   })
 })
 
@@ -100,7 +128,11 @@ describe('苦手・保存した単語', () => {
     expect(await toggleMark('g-be')).toBe(true)
     expect(await db.marks.count()).toBe(1)
     const items = await buildDrill('marked')
-    expect(items.map((i) => i.word.id)).toEqual(['g-be'])
+    // まだ学んでいない語（保存しただけ）は、提示してから問う
+    expect(items.map((i) => [i.word.id, i.type])).toEqual([
+      ['g-be', 'learn'],
+      ['g-be', 'mc'],
+    ])
     expect(await toggleMark('g-be')).toBe(false)
     expect(await db.marks.count()).toBe(0)
   })

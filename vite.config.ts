@@ -18,11 +18,11 @@ export default defineConfig({
     VitePWA({
       // 学習中に勝手にリロードされないよう、更新はユーザーの操作で適用する（UpdateToast）
       registerType: 'prompt',
-      includeAssets: ['icons/*.png', 'guide/*.webp', 'favicon.png'],
+      includeAssets: ['icons/*.png', 'guide/*.webp', 'opening/*.webp', 'favicon.png'],
       manifest: {
-        name: 'Michi — 英語学習と翻訳',
-        short_name: 'Michi',
-        description: '一般・ビジネス・IT・鉄道の英単語、リスニング、スピーキング、シーン別会話、翻訳と同時通訳をひとつに。',
+        name: 'Eliza Patina — 英語学習と翻訳',
+        short_name: 'EliPati',
+        description: '話すほど、使うほど、あなたの英語に味が出る。単語・リスニング・スピーキング・シーン別会話・翻訳と同時通訳をひとつに。',
         lang: 'ja',
         start_url: '/',
         scope: '/',

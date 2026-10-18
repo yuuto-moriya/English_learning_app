@@ -59,8 +59,9 @@ export default function Research() {
               <p className="text-[12px] leading-relaxed text-muted">
                 {c.desc}
                 {c.url && (
-                  <a href={c.url} target="_blank" rel="noreferrer" className="-my-2 ml-1 px-1.5 py-2 text-brand">
+                  <a href={c.url} target="_blank" rel="noreferrer" className="-my-2 ml-1 inline-flex items-center px-1.5 py-2 font-medium text-brand">
                     リンク
+                    <ArrowUpRight className="h-3 w-3" />
                   </a>
                 )}
               </p>

@@ -1,7 +1,7 @@
 import { type ButtonHTMLAttributes, type ReactNode, useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import { ChevronRight, Loader2, Volume2 } from 'lucide-react'
-import { speak, stopSpeaking, type Accent, type SpeakOptions } from '@/lib/tts'
+import { ArrowRight, ChevronRight, Loader2, TriangleAlert, Volume2 } from 'lucide-react'
+import { primeAudio, speak, speakJa, stopSpeaking, type Accent, type SpeakOptions } from '@/lib/tts'
 import { LEVELS, catMeta, type Category, type Level } from '@/lib/types'
 import { splitMarked } from '@/lib/vocab'
 
@@ -149,6 +149,41 @@ export function ProgressBar({
 }
 
 /**
+ * 単語のパティーナ。学んだ語のうち、定着した分を緑青色・まだ育っている分を銅色で示す（残りは未学習）。
+ * 銅が年月で緑青を帯びるように、使い込んだ語ほど色が変わる。色だけに頼らないよう PatinaLegend と並べる。
+ */
+export function PatinaBar({ learned, mastered, total, className }: { learned: number; mastered: number; total: number; className?: string }) {
+  const pct = (n: number) => (total ? Math.min(100, (n / total) * 100) : 0)
+  const m = Math.min(mastered, learned)
+  return (
+    <div
+      className={cx('flex h-1.5 gap-[2px] overflow-hidden rounded-full bg-surface-3', className)}
+      role="img"
+      aria-label={`${total}語のうち、定着 ${m}語・学習中 ${learned - m}語`}
+    >
+      {m > 0 && <div className="h-full shrink-0 rounded-full bg-verdigris transition-[width] duration-500 ease-out" style={{ width: `${pct(m)}%` }} />}
+      {learned - m > 0 && <div className="h-full shrink-0 rounded-full bg-copper transition-[width] duration-500 ease-out" style={{ width: `${pct(learned - m)}%` }} />}
+    </div>
+  )
+}
+
+/** パティーナの凡例（色の意味を言葉で） */
+export function PatinaLegend({ className }: { className?: string }) {
+  return (
+    <span className={cx('inline-flex items-center gap-3 text-[11.5px] text-muted', className)}>
+      <span className="inline-flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-verdigris" />
+        定着
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-copper" />
+        学習中
+      </span>
+    </span>
+  )
+}
+
+/**
  * 路線図のような進捗表示（駅＝区切り）。今日の目標の進み具合に使う。
  * 線路の保守に関わる利用者へのささやかな目配せで、数字だけより達成までの距離が見える。
  */
@@ -259,8 +294,11 @@ export function SpeakButton({
   size = 'md',
   className,
   voice,
+  lang = 'en',
 }: {
   text: string
+  /** ja は日本語の読み上げ（訳文など） */
+  lang?: 'en' | 'ja'
   accent?: Accent
   rate?: number
   label?: string
@@ -281,7 +319,9 @@ export function SpeakButton({
           return
         }
         setBusy(true)
-        await speak(text, { accent, rate, voice })
+        // iOS ではタップの中で音声の再生を始めておく必要がある（最初の画面からでも鳴るように）
+        primeAudio()
+        await (lang === 'ja' ? speakJa(text) : speak(text, { accent, rate, voice }))
         setBusy(false)
       }}
       className={cx(
@@ -301,6 +341,17 @@ export function SpeakButton({
   )
 }
 
+/** 翻訳・出題の向き（例：日本語 → 英語）。矢印は文字ではなくアイコンで出す */
+export function Direction({ from, to, className }: { from: ReactNode; to: ReactNode; className?: string }) {
+  return (
+    <span className={cx('inline-flex items-center gap-1', className)}>
+      {from}
+      <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-70" strokeWidth={2} aria-label="から" />
+      {to}
+    </span>
+  )
+}
+
 /** 例文の *target* をハイライト表示 */
 export function Marked({ text, className }: { text: string; className?: string }) {
   return (
@@ -310,12 +361,32 @@ export function Marked({ text, className }: { text: string; className?: string }
   )
 }
 
+/** 別の画面へ移る小さな文字リンク（「すべて ›」など）。見出しの右やカードの下に置く */
+export function MoreLink({ to, children, className }: { to: string; children: ReactNode; className?: string }) {
+  return (
+    <Link to={to} viewTransition className={cx('-mx-2 inline-flex min-h-10 items-center gap-0.5 px-2 text-[13px] font-medium text-brand', className)}>
+      {children}
+      <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+    </Link>
+  )
+}
+
 /** セクションの見出し（小さく控えめに） */
 export function SectionTitle({ children, action, className }: { children: ReactNode; action?: ReactNode; className?: string }) {
   return (
     <div className={cx('mb-2 mt-8 flex items-end justify-between px-1', className)}>
       <h2 className="text-[13px] font-semibold tracking-wide text-muted">{children}</h2>
       {action}
+    </div>
+  )
+}
+
+/** 注意・エラーの表示（三角の注意アイコン＋文） */
+export function Notice({ children, tone = 'warn', className }: { children: ReactNode; tone?: 'warn' | 'ng'; className?: string }) {
+  return (
+    <div role="alert" className={cx('flex gap-2 rounded-[14px] p-3 text-[13px] leading-relaxed', tone === 'ng' ? 'bg-ng-soft' : 'bg-warn-soft', className)}>
+      <TriangleAlert className={cx('mt-0.5 h-4 w-4 shrink-0', tone === 'ng' ? 'text-ng' : 'text-warn')} strokeWidth={1.9} />
+      <div className="min-w-0 flex-1">{children}</div>
     </div>
   )
 }

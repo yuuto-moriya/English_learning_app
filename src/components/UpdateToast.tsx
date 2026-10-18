@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react'
 import { useLocation } from 'react-router'
-import { isFocusMode } from '@/lib/routes'
+import { isFocusMode, useSessionActive } from '@/lib/routes'
 
 /**
  * PWAの更新通知。
@@ -45,8 +45,9 @@ export function registerServiceWorker() {
 export function UpdateToast() {
   const show = useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
   const { pathname } = useLocation()
-  // 単語学習の最中は操作ボタンに重なるので出さない（終わってから表示）
-  if (!show || isFocusMode(pathname)) return null
+  const session = useSessionActive()
+  // 単語学習・練習の最中は操作ボタンに重なるので出さない（終わってから表示）
+  if (!show || isFocusMode(pathname) || session) return null
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-[calc(max(env(safe-area-inset-bottom),10px)+70px)] z-40 px-4">
       <div

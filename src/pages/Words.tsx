@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
-import { Play, Search, Star, X } from 'lucide-react'
+import { ArrowRight, Search, Star, X } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
-import { Button, Chip, Empty, Segmented, SpeakButton, cx } from '@/components/ui'
+import { Button, Chip, Empty, Segmented, SpeakButton, Tag, cx } from '@/components/ui'
 import { useCardsMap, useMarks } from '@/lib/hooks'
 import { useCategory } from '@/lib/vocab'
 import { CATEGORIES, LEVELS, RAIL_SUBS, type Category } from '@/lib/types'
@@ -118,6 +118,8 @@ export default function Words() {
           {STATUS.map(([k, v]) => (
             <Chip key={k} active={status === k} onClick={() => setParam('status', k === 'all' ? null : k)}>
               {k === 'marked' && <Star className="h-3.5 w-3.5" strokeWidth={2} />}
+              {/* 一覧の左の点（パティーナ）の凡例を兼ねる */}
+              {(k === 'learning' || k === 'mastered') && <span className={cx('h-2 w-2 rounded-full', k === 'mastered' ? 'bg-verdigris' : 'bg-copper')} />}
               {v}
             </Chip>
           ))}
@@ -151,8 +153,8 @@ export default function Words() {
 
         {drill && filtered.length > 0 && (
           <Button block variant="outline" onClick={() => nav(`/study?mode=${status}`)}>
-            <Play className="h-4 w-4" strokeWidth={2} />
             {status === 'weak' ? '苦手な単語を練習する' : '保存した単語を練習する'}
+            <ArrowRight className="h-[18px] w-[18px]" strokeWidth={2} />
           </Button>
         )}
 
@@ -161,7 +163,7 @@ export default function Words() {
             {status === 'weak'
               ? '苦手な単語はまだありません。学習で間違えた語がここに集まります。'
               : status === 'marked'
-                ? '保存した単語はまだありません。単語の画面の ☆ で保存できます。'
+                ? '保存した単語はまだありません。単語の画面の「保存」（星のボタン）で集められます。'
                 : '該当する単語がありません'}
           </Empty>
         )}
@@ -175,14 +177,19 @@ export default function Words() {
                     <span
                       className={cx(
                         'h-1.5 w-1.5 shrink-0 rounded-full',
-                        st === 'mastered' ? 'bg-ok' : st === 'learning' ? 'bg-warn' : 'bg-surface-3',
+                        st === 'mastered' ? 'bg-verdigris' : st === 'learning' ? 'bg-copper' : 'bg-surface-3',
                       )}
                       title={STATUS_LABEL[st]}
                     />
                     <div className="min-w-0 flex-1">
                       <p className="break-words">
                         <span className="en text-[18px] font-medium">{w.w}</span>
-                        {w.us && <span className="ml-2 text-[12px] text-muted">US {w.us}</span>}
+                        {w.us && (
+                          <span className="ml-2 inline-flex items-center gap-1 align-middle text-[12px] text-muted">
+                            <Tag>米</Tag>
+                            <span className="en">{w.us}</span>
+                          </span>
+                        )}
                       </p>
                       <p className="line-clamp-2 text-[13px] leading-snug text-muted">{w.ja}</p>
                     </div>

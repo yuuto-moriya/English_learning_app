@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Mic, Square, Play, Loader2, Info } from 'lucide-react'
+import { Mic, Square, Play, Loader2, Info, Volume2 } from 'lucide-react'
 import { assessPronunciation, type PronResult, type PronWord, ApiError } from '@/lib/api'
 import { recorderAvailable, WavRecorder, type Recording } from '@/lib/recorder'
 import {
@@ -13,7 +13,7 @@ import { useHealth } from '@/lib/hooks'
 import { bumpDaily, db } from '@/lib/db'
 import { speak, type Accent } from '@/lib/tts'
 import { plain } from '@/lib/vocab'
-import { Button, Card, ProgressBar, cx } from './ui'
+import { Button, Card, Notice, ProgressBar, cx } from './ui'
 
 export type Engine = 'azure' | 'local' | 'none'
 
@@ -267,7 +267,7 @@ export function SpeakCheck({
           <button
             onClick={stop}
             className="relative flex h-[76px] w-[76px] items-center justify-center rounded-full bg-ng text-white active:scale-95"
-            aria-label="録音停止"
+            aria-label="停止"
           >
             {/* 入力音量に合わせて広がる輪（animate-ping は transform を上書きするので、音量表示とは別の要素にする） */}
             <span
@@ -311,15 +311,17 @@ export function SpeakCheck({
           {ENGINE_LABEL[engine]}
         </p>
       )}
-      {error && <p className="rounded-[14px] bg-ng-soft p-3 text-[13px] text-ng">{error}</p>}
+      {error && <Notice tone="ng">{error}</Notice>}
       {engine === 'none' && rec && !result && (
         <div className="rounded-[14px] bg-surface-2 p-3.5 text-[13.5px]">
           <p className="leading-relaxed">録音を再生して、お手本と比べてみよう。リズム・強く読む語・語尾の音に注目！</p>
           <div className="mt-3 flex gap-2">
             <Button variant="outline" size="sm" onClick={() => speak(target, { accent })}>
+              <Volume2 className="h-4 w-4" strokeWidth={1.9} />
               お手本
             </Button>
             <Button variant="outline" size="sm" onClick={() => playUrl(rec.url)}>
+              <Play className="h-4 w-4" strokeWidth={1.8} />
               自分の声
             </Button>
           </div>

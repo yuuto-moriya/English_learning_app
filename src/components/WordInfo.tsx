@@ -2,8 +2,10 @@ import { Snail } from 'lucide-react'
 import type { Word } from '@/lib/types'
 import { RAIL_SUBS } from '@/lib/types'
 import { speak, type Accent } from '@/lib/tts'
-import { CategoryBadge, LevelBadge, Marked, SpeakButton, Tag } from './ui'
+import { CategoryBadge, LevelBadge, Marked, SpeakButton, Tag, cx } from './ui'
 import { accentFor } from '@/lib/settings'
+import { isIrregularVerb } from '@/lib/vocab'
+import { SLOW_RATE } from './Session'
 
 export const POS_JA: Record<string, string> = {
   n: '名詞',
@@ -22,15 +24,15 @@ export const POS_JA: Record<string, string> = {
 function SlowButton({ text, accent }: { text: string; accent: Accent }) {
   return (
     <button
-      aria-label="ゆっくり再生"
+      aria-label="ゆっくり"
       // iOSではタップ処理の中で同期的に speak() しないと再生されないことがあるため、動的importは使わない
       onClick={(e) => {
         e.stopPropagation()
-        speak(text, { accent, rate: 0.6 })
+        speak(text, { accent, rate: SLOW_RATE })
       }}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-surface-2 text-muted transition active:scale-90"
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line-strong bg-surface text-ink transition active:scale-90"
     >
-      <Snail className="h-[17px] w-[17px]" strokeWidth={1.8} />
+      <Snail className="h-[18px] w-[18px]" strokeWidth={1.9} />
     </button>
   )
 }
@@ -48,11 +50,11 @@ export function WordHead({ word, big }: { word: Word; big?: boolean }) {
       </div>
       {isRail ? (
         <div className="mt-3 space-y-3">
-          <PronRow tag="UK・EN" term={word.w} ipa={word.ipaUk} accent="en-GB" big={big} />
+          <PronRow tag="英・EN" term={word.w} ipa={word.ipaUk} accent="en-GB" big={big} />
           {word.us ? (
-            <PronRow tag="US" term={word.us} ipa={word.ipa} accent="en-US" />
+            <PronRow tag="米" term={word.us} ipa={word.ipa} accent="en-US" />
           ) : (
-            word.ipa && <PronRow tag="US" term={word.w} ipa={word.ipa} accent="en-US" sameTerm />
+            word.ipa && <PronRow tag="米" term={word.w} ipa={word.ipa} accent="en-US" sameTerm />
           )}
         </div>
       ) : (
@@ -100,6 +102,29 @@ function PronRow({
   )
 }
 
+const FORM_LABELS = ['三単現（he / she）', '過去形', '過去分詞', '〜ing']
+
+/** 動詞の変化形。基本形といっしょに覚える（過去形・過去分詞が不規則な動詞は目立たせる） */
+export function VerbForms({ word }: { word: Word }) {
+  if (!word.vf) return null
+  const irregular = isIrregularVerb(word.vf)
+  return (
+    <div>
+      <p className="flex items-center gap-1.5 text-[12px] font-semibold text-muted">
+        変化形{irregular && <Tag className="bg-warn-soft text-warn">不規則</Tag>}
+      </p>
+      <dl className="mt-1.5 grid grid-cols-2 gap-x-4 gap-y-2">
+        {word.vf.map((f, i) => (
+          <div key={i}>
+            <dt className="text-[11px] text-muted">{FORM_LABELS[i]}</dt>
+            <dd className={cx('en text-[16px] leading-snug', irregular && (i === 1 || i === 2) && !f.endsWith('ed') ? 'font-semibold text-warn' : '')}>{f}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  )
+}
+
 /** 意味・例文・解説 */
 export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: boolean }) {
   return (
@@ -110,6 +135,7 @@ export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: bool
           {word.jis && <p className="mt-1 text-[12.5px] text-muted">JIS 用語：{word.jis}</p>}
         </div>
       )}
+      {!hideMeaning && <VerbForms word={word} />}
       {word.ex.map((e, i) => (
         <div key={i} className="border-l-2 border-line-strong pl-3.5">
           <div className="flex items-start gap-2">

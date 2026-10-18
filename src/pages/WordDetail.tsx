@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate, useParams } from 'react-router'
-import { CheckCircle2, Mic, RotateCcw, Star } from 'lucide-react'
+import { CheckCircle2, Mic, Undo2, Star } from 'lucide-react'
 import { PageHeader, iconBtn } from '@/components/Layout'
 import { Button, Card, Empty, Metric, SectionTitle, cx } from '@/components/ui'
 import { WordBody, WordHead } from '@/components/WordInfo'
@@ -50,6 +50,13 @@ export default function WordDetail() {
 
         <SectionTitle>学習状況</SectionTitle>
         <Card>
+          {card && card.reps > 0 && !card.known && (
+            <p className="mb-3 flex items-center gap-2 text-[13px]">
+              <span className={cx('h-2.5 w-2.5 rounded-full', card.stability >= 21 ? 'bg-verdigris' : 'bg-copper')} />
+              <span className="font-medium">{card.stability >= 21 ? '定着' : '学習中'}</span>
+              <span className="text-muted">{card.stability >= 21 ? '— 使い込まれて、緑青色になりました' : '— 復習を重ねると、銅色から緑青色に変わります'}</span>
+            </p>
+          )}
           {card && card.reps > 0 ? (
             <div className="grid grid-cols-3 gap-2">
               <Metric value={Math.round((r ?? 0) * 100)} unit="%" label="いま思い出せる確率" />
@@ -75,7 +82,7 @@ export default function WordDetail() {
         </Card>
         <div className="mt-3 grid grid-cols-2 gap-2">
           <Button variant="secondary" onClick={() => markKnown(word, !card?.known)}>
-            {card?.known ? <RotateCcw className="h-4 w-4" strokeWidth={1.9} /> : <CheckCircle2 className="h-4 w-4" strokeWidth={1.9} />}
+            {card?.known ? <Undo2 className="h-4 w-4" strokeWidth={1.9} /> : <CheckCircle2 className="h-4 w-4" strokeWidth={1.9} />}
             {card?.known ? '学習対象に戻す' : '知っている'}
           </Button>
           <Button

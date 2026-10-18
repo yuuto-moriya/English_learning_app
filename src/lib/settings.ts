@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { ALL_CATS, type Category } from './types'
 import { isAccent, type Accent } from './accents'
+import type { HfKind, HfPace } from './handsfree'
 
 export type Theme = 'system' | 'light' | 'dark'
 
@@ -37,6 +38,10 @@ export interface Settings {
   neural: Partial<Record<Accent, string>>
   /** 発音ごとの端末の声（SpeechSynthesisVoice.name） */
   deviceVoice: Partial<Record<Accent, string>>
+  /** 和訳・案内を読む端末の日本語の声（空なら品質の高い声を自動で） */
+  deviceVoiceJa: string
+  /** 和訳・案内を読む日本語の高品質音声の声 ID（空なら Nanami） */
+  neuralJa: string
   /** リスニング練習で毎回ちがう声にする（話者の多様性） */
   varyVoices: boolean
   /** リスニング練習でいろいろな国の英語を混ぜる */
@@ -51,6 +56,13 @@ export interface Settings {
   autoPlay: boolean
   /** サーバーAPI（/api/*）へのアクセストークン（任意） */
   apiToken: string
+  /** 起動時のオープニング（ブランドの演出）を出す */
+  opening: boolean
+  /** ながら練習：時間（分）・内容・間の長さ・日本語の案内（前回の選択を覚えておく） */
+  hfMinutes: number
+  hfKinds: HfKind[]
+  hfPace: HfPace
+  hfCues: boolean
   guide: boolean
   onboarded: boolean
 }
@@ -70,6 +82,8 @@ const defaults: Settings = {
   railAccent: 'en-GB',
   neural: {},
   deviceVoice: {},
+  deviceVoiceJa: '',
+  neuralJa: '',
   varyVoices: true,
   mixAccents: false,
   sounds: true,
@@ -77,6 +91,11 @@ const defaults: Settings = {
   tourDone: false,
   autoPlay: true,
   apiToken: '',
+  opening: true,
+  hfMinutes: 15,
+  hfKinds: ['words', 'repeat', 'compose', 'dialogue'],
+  hfPace: 'normal',
+  hfCues: true,
   guide: true,
   onboarded: false,
 }

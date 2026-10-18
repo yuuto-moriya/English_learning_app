@@ -1,9 +1,12 @@
 import type { Source } from '@/lib/sentences'
-import { getSettings, selectedCats } from '@/lib/settings'
-import { Chip, Segmented } from './ui'
+import { getSettings, selectedCats, useSettings } from '@/lib/settings'
+import { Chip, Segmented, Toggle } from './ui'
+
+/** 再生速度の表示（例：0.85×・1.0×）。すべての画面でこの形にそろえる */
+export const formatRate = (r: number) => `${r.toFixed(2).replace(/0$/, '')}×`
 
 export const SOURCES: { key: Source; label: string }[] = [
-  { key: 'general', label: '一般会話' },
+  { key: 'general', label: '一般' },
   { key: 'business', label: 'ビジネス' },
   { key: 'it', label: 'IT' },
   { key: 'rail', label: '鉄道' },
@@ -80,13 +83,31 @@ export function SpeedPicker({ rate, onRate }: { rate: number; onRate: (r: number
         size="sm"
         value={String(rate)}
         onChange={(v) => onRate(Number(v))}
-        options={[
-          { value: '0.7', label: '0.7×' },
-          { value: '0.85', label: '0.85×' },
-          { value: '1', label: '1.0×' },
-          { value: '1.15', label: '1.15×' },
-        ]}
+        options={[0.7, 0.85, 1, 1.15].map((r) => ({ value: String(r), label: formatRate(r) }))}
       />
     </div>
+  )
+}
+
+/** 聞き取りの問題の声の設定（リスニングの画面と設定画面で同じ文言にする） */
+export function VoiceVarietyToggles() {
+  const vary = useSettings((s) => s.varyVoices)
+  const mix = useSettings((s) => s.mixAccents)
+  const set = useSettings((s) => s.set)
+  return (
+    <>
+      <Toggle
+        label="いろいろな声で聞く"
+        desc="聞き取りの問題を、毎回ちがう話者の声で再生します。初めて聞く声でも聞き取れる力につながります"
+        checked={vary}
+        onChange={(v) => set({ varyVoices: v })}
+      />
+      <Toggle
+        label="いろいろな国の英語で聞く"
+        desc="アメリカ・イギリス・オーストラリア・インドなど、1問ごとに国の発音を変えます"
+        checked={mix}
+        onChange={(v) => set({ mixAccents: v })}
+      />
+    </>
   )
 }

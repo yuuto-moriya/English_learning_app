@@ -453,7 +453,7 @@ certain|adj|確かな；ある〜|I'm *certain* he will come.|彼はきっと来
 forward|adv|前へ|Please move *forward*.|前へお進みください。
 main|adj|主な|What is the *main* reason?|主な理由は何ですか。
 die|v|死ぬ；枯れる|The plants *died* because of the cold.|寒さで植物が枯れた。
-bear|v|耐える；（荷重を）支える；（名詞）熊|I can't *bear* this heat.|この暑さには耐えられない。
+bear|v|耐える；（重さを）支える；（名詞）熊|I can't *bear* this heat.|この暑さには耐えられない。
 cut|v|切る；削減する|We need to *cut* costs.|コストを削減する必要がある。
 describe|v|描写する；説明する|Can you *describe* the problem?|問題を説明してもらえますか。
 himself|pron|彼自身|He fixed the bike *himself*.|彼は自分で自転車を直した。

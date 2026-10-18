@@ -10,3 +10,9 @@ test-results
 playwright-report
 scripts/.cache
 __pycache__/
+
+*.tsbuildinfo
+
+# 意味の近い語の計算用（scripts/build_neighbors.py）
+.venv/
+nltk_data/

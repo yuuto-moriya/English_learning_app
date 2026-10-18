@@ -1,11 +1,12 @@
 import { useEffect, useMemo } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router'
-import { ArrowRight, BarChart3, ChevronRight, Ear, Mic, PencilLine, Radio, RotateCcw, Waves } from 'lucide-react'
+import { ArrowRight, BarChart3, ChevronRight, Dumbbell } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
 import { ModeSwitcher } from '@/components/ModeSwitcher'
 import { HOME_TOUR, Tour } from '@/components/Tour'
-import { Button, Card, List, ListRow, ProgressBar, RouteProgress, SectionTitle, cx } from '@/components/ui'
+import { Button, Card, List, MoreLink, PatinaBar, PatinaLegend, RouteProgress, SectionTitle, cx } from '@/components/ui'
+import { PracticeRows } from '@/components/PracticeMenu'
 import { useCardsMap, useDueCount, useNow, useRecentDays, useStreak, useToday } from '@/lib/hooks'
 import { dueMessage, greeting, randomTip, streakMessage } from '@/lib/guide'
 import { formatMinutes, PLAN_LABEL, selectedCats, useSettings } from '@/lib/settings'
@@ -28,7 +29,6 @@ export default function Home() {
   const week = useRecentDays(7)
   const cats = selectedCats(s)
   const learnedToday = today?.newLearned ?? 0
-  const newLeft = Math.max(0, s.dailyNew - learnedToday)
   const tip = useMemo(() => randomTip(s.studyCats), [s.studyCats])
 
   // 「学習をはじめる」をすぐ開けるよう、待ち時間のあるうちに画面と単語データを読み込んでおく
@@ -45,11 +45,6 @@ export default function Home() {
   // 開きっぱなしでも時間帯・日付が変われば挨拶を更新する
   const hour = new Date(now).getHours()
   const hello = useMemo(() => greeting(new Date()), [hour]) // eslint-disable-line react-hooks/exhaustive-deps
-  const msg = useMemo(() => {
-    const st = streakMessage(streak)
-    if (due > 0 || newLeft > 0) return dueMessage(due, newLeft)
-    return st ?? dueMessage(due, newLeft)
-  }, [due, newLeft, streak])
 
   const stats = useMemo(() => {
     // 語数は集計済みの counts.json を使い、ホームでは大きな単語データを読み込まない
@@ -68,6 +63,14 @@ export default function Home() {
       }
     return { byCat, mastered }
   }, [cards])
+  // 今日の新しい単語の残り。選んでいるコースにまだ学んでいない語が残っている分まで（学び終えたコースで「あと6語」と出さない）
+  const unlearned = cats.reduce((a, c) => a + Math.max(0, stats.byCat[c].total - stats.byCat[c].learned), 0)
+  const newLeft = Math.max(0, Math.min(s.dailyNew - learnedToday, cards ? unlearned : s.dailyNew))
+  const msg = useMemo(() => {
+    const st = streakMessage(streak)
+    if (due > 0 || newLeft > 0) return dueMessage(due, newLeft)
+    return st ?? dueMessage(due, newLeft)
+  }, [due, newLeft, streak])
 
   if (!s.onboarded) return <Navigate to="/welcome" replace />
 
@@ -154,20 +157,12 @@ export default function Home() {
           </Card>
         </Link>
 
-        <SectionTitle action={<Link to="/practice" viewTransition className="inline-flex min-h-10 items-center px-2 -mx-2 text-[13px] font-medium text-brand">すべて</Link>}>
-          聞く・話す
-        </SectionTitle>
+        <SectionTitle action={<MoreLink to="/practice">すべて</MoreLink>}>聞く・話す</SectionTitle>
         <List>
-          <ListRow to="/practice/listening" icon={<Ear />} title="リスニング" sub="例文・会話を聞いて意味を選ぶ" />
-          <ListRow to="/practice/sounds" icon={<Waves />} title="聞き分け" sub="L と R など、日本語にない音の区別" />
-          <ListRow to="/practice/compose" icon={<PencilLine />} title="瞬間英作文" sub="日本語を見て、すぐ英語で言う" />
-          <ListRow to="/practice/speaking" icon={<Mic />} title="発音チェック" sub="話して採点・シャドーイング" />
-          <ListRow to="/practice/audio" icon={<Radio />} title="耳で復習" sub="画面を見ずに、音だけで思い出す" />
+          <PracticeRows keys={['handsfree', 'listening', 'sounds', 'compose', 'speaking']} />
         </List>
 
-        <SectionTitle action={<Link to="/words" viewTransition className="inline-flex min-h-10 items-center px-2 -mx-2 text-[13px] font-medium text-brand">単語帳</Link>}>
-          コースの進み具合
-        </SectionTitle>
+        <SectionTitle action={<MoreLink to="/words">単語帳</MoreLink>}>コースの進み具合</SectionTitle>
         <Card className="space-y-4">
           {CATEGORIES.filter((c) => cats.includes(c.key)).map((c) => {
             const st = stats.byCat[c.key]
@@ -182,17 +177,20 @@ export default function Home() {
                     <b className="font-semibold text-ink">{st.learned.toLocaleString()}</b> / {st.total.toLocaleString()}語
                   </span>
                 </div>
-                <ProgressBar value={st.learned} max={st.total} color={c.dot} />
+                <PatinaBar learned={st.learned} mastered={st.mastered} total={st.total} />
               </Link>
             )
           })}
-          <div className="flex items-center justify-between border-t border-line pt-3 text-[12px] text-muted">
-            <span>
-              定着した語 <b className="font-semibold text-ink tabular-nums">{stats.mastered.toLocaleString()}</b>
+          <div className="flex flex-wrap items-center justify-between gap-y-1 border-t border-line pt-3 text-[12px] text-muted">
+            <span className="flex items-center gap-3">
+              <span>
+                定着した語 <b className="font-semibold text-ink tabular-nums">{stats.mastered.toLocaleString()}</b>
+              </span>
+              <PatinaLegend />
             </span>
-            <Link to="/settings#courses" className="-my-2 -mr-2 inline-flex min-h-10 items-center px-2 font-medium text-brand">
+            <MoreLink to="/settings#courses" className="-my-2 text-[12px]">
               コースを変更
-            </Link>
+            </MoreLink>
           </div>
         </Card>
 
@@ -217,7 +215,7 @@ export default function Home() {
           </Link>
           <Link to="/words?status=weak" viewTransition>
             <Card className="flex items-center gap-2.5 py-3">
-              <RotateCcw className="h-5 w-5 text-muted" strokeWidth={1.7} />
+              <Dumbbell className="h-5 w-5 text-muted" strokeWidth={1.7} />
               <span className="text-[14px] font-medium">苦手な単語</span>
             </Card>
           </Link>

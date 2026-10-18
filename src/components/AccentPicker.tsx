@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Check, Play } from 'lucide-react'
+import { Check, Volume2 } from 'lucide-react'
 import { ACCENTS, NEURAL_VOICES, type Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
-import { listVoices, speak, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
+import { NEURAL_JA_VOICES, SYSTEM_VOICE, listVoices, speak, speakJa, systemVoiceActive, systemVoiceLabel, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
 import { Tag, cx } from './ui'
 
 const SAMPLE = 'Nice to meet you. Shall we practice some English together today?'
@@ -25,7 +25,7 @@ function useDeviceVoices() {
 }
 
 /**
- * 英語の発音（国・地域）と声の選択。iPhone の「読み上げコンテンツ → 声 → 英語」のように国ごとに選べる。
+ * 英語の発音（国・地域）と声の選択。iPhone の「リーダーと読み上げ → 声 → 英語 → 声」のように国ごとに選べる。
  * neural = 高品質音声（Azure）を使うとき。使わないときは端末に入っている声から選ぶ。
  */
 export function AccentPicker({ neural }: { neural: boolean }) {
@@ -46,7 +46,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
   return (
     <div>
       <p className="text-[15px]">英語の発音（国・地域）</p>
-      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">一般会話・ビジネス・IT の読み上げに使います。タップして声を選び、試聴できます。</p>
+      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">一般・ビジネス・IT の読み上げに使います。タップして声を選び、試聴できます。</p>
       <div className="mt-2.5 overflow-hidden rounded-[14px] border border-line">
         {ACCENTS.map((a, k) => {
           const on = s.accent === a.id
@@ -66,11 +66,11 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                 >
                   <span
                     className={cx(
-                      'flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-full border-[1.5px]',
+                      'flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border-[1.5px]',
                       on ? 'border-ink bg-ink text-bg' : 'border-line-strong',
                     )}
                   >
-                    {on && <Check className="h-3 w-3" strokeWidth={3} />}
+                    {on && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center gap-2 text-[15px] font-medium">
@@ -85,7 +85,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                   onClick={() => preview(a.id)}
                   className="mr-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted active:bg-surface-2"
                 >
-                  <Play className="h-4 w-4 fill-current" strokeWidth={1.5} />
+                  <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.9} />
                 </button>
               </div>
               {expanded && (
@@ -112,8 +112,9 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                     </div>
                   ) : device.length ? (
                     <div className="flex flex-wrap gap-1.5">
+                      <SystemChip on={systemVoiceActive(device, s.deviceVoice[a.id])} onClick={() => preview(a.id, SYSTEM_VOICE)} />
                       {device.slice(0, 8).map((v) => {
-                        const sel = (s.deviceVoice[a.id] || device[0].name) === v.name
+                        const sel = !systemVoiceActive(device, s.deviceVoice[a.id]) && (s.deviceVoice[a.id] || device[0].name) === v.name
                         return (
                           <button
                             key={v.name}
@@ -134,7 +135,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                     <p className="text-[12px] leading-relaxed text-muted">
                       この端末には{a.label}英語の声がありません。
                       {near ? `近い発音（${labelOfLang(near.lang)}）の声で読みます。` : ''}
-                      iPhone の「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」で追加できます。
+                      上の「iPhone で高音質の声を入れる方法」で追加できます。
                     </p>
                   )}
                 </div>
@@ -166,5 +167,108 @@ export function AccentPicker({ neural }: { neural: boolean }) {
         </div>
       )}
     </div>
+  )
+}
+
+const SAMPLE_JA = 'こんにちは。今日も、いっしょに英語を練習しましょう。'
+
+/**
+ * 和訳・案内（耳で復習・ながら練習など）を読む日本語の声。
+ * 高品質音声のときはサーバーの声（Nanami）、それ以外は端末の日本語の声から選ぶ。
+ */
+export function JaVoicePicker({ neural }: { neural: boolean }) {
+  const s = useSettings()
+  useDeviceVoices()
+  const list = listVoices('ja-JP')
+  const system = systemVoiceActive(list, s.deviceVoiceJa)
+  const current = system ? systemVoiceLabel() : (s.deviceVoiceJa && list.find((v) => v.name === s.deviceVoiceJa)?.name) || list[0]?.name
+  const preview = (name?: string) => {
+    warmUpSpeech()
+    if (name) s.set({ deviceVoiceJa: name })
+    void speakJa(SAMPLE_JA)
+  }
+  const previewNeural = (id: string) => {
+    warmUpSpeech()
+    s.set({ neuralJa: id })
+    void speakJa(SAMPLE_JA)
+  }
+  const neuralSel = NEURAL_JA_VOICES.find((v) => v.id === s.neuralJa)?.id ?? NEURAL_JA_VOICES[0].id
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <p className="text-[15px]">日本語の声</p>
+        <button
+          aria-label="日本語の声を試聴"
+          onClick={() => preview()}
+          className="flex h-9 w-9 items-center justify-center rounded-full text-muted active:bg-surface-2"
+        >
+          <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.9} />
+        </button>
+      </div>
+      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">
+        和訳や、耳で復習・ながら練習の案内に使います。
+        {neural ? '高品質音声で読みます。通信できないときは、端末の声（' + (current ?? 'なし') + '）になります。' : ''}
+      </p>
+      {neural ? (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {NEURAL_JA_VOICES.map((v) => {
+            const sel = neuralSel === v.id
+            return (
+              <button
+                key={v.id}
+                aria-pressed={sel}
+                onClick={() => previewNeural(v.id)}
+                className={cx(
+                  'min-h-9 rounded-full border px-3 text-[13px] transition active:scale-95',
+                  sel ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink',
+                )}
+              >
+                {v.name}
+                <span className="ml-1 opacity-60">{v.gender === 'F' ? '女性' : '男性'}</span>
+              </button>
+            )
+          })}
+        </div>
+      ) : list.length ? (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <SystemChip on={system} onClick={() => preview(SYSTEM_VOICE)} />
+          {list.slice(0, 8).map((v) => {
+            const sel = !system && current === v.name
+            return (
+              <button
+                key={v.voiceURI}
+                aria-pressed={sel}
+                onClick={() => preview(v.name)}
+                className={cx(
+                  'min-h-9 rounded-full border px-3 text-[13px] transition active:scale-95',
+                  sel ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink',
+                )}
+              >
+                {v.name.replace(/\s*\(.*\)$/, '')}
+                {voiceQuality(v) >= 85 && <span className="ml-1 opacity-60">高品質</span>}
+              </button>
+            )
+          })}
+        </div>
+      ) : (
+        <p className="mt-2 text-[12px] text-muted">この端末には日本語の声がありません。上の手順の「日本語」で追加できます。</p>
+      )}
+    </div>
+  )
+}
+
+/**
+ * 「iPhone の設定どおり」：声を指定せず、iPhone の「リーダーと読み上げ」で選んだ声で読む。
+ * ダウンロードした拡張・プレミアムの声がアプリの一覧に出ないときに使う
+ */
+function SystemChip({ on, onClick }: { on: boolean; onClick: () => void }) {
+  return (
+    <button
+      aria-pressed={on}
+      onClick={onClick}
+      className={cx('min-h-9 rounded-full border px-3 text-[13px] transition active:scale-95', on ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink')}
+    >
+      {systemVoiceLabel()}
+    </button>
   )
 }

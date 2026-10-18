@@ -30,7 +30,12 @@ export interface SpeakOptions {
 
 // ───────── ニューラル音声（Azure） ─────────
 
-const NEURAL_JA = 'ja-JP-NanamiNeural'
+/** 和訳・案内を読む日本語の高品質音声（女性・男性の2つから選べる） */
+export const NEURAL_JA_VOICES = [
+  { id: 'ja-JP-NanamiNeural', name: 'Nanami', gender: 'F' },
+  { id: 'ja-JP-KeitaNeural', name: 'Keita', gender: 'M' },
+] as const
+const neuralJa = () => NEURAL_JA_VOICES.find((v) => v.id === getSettings().neuralJa)?.id ?? NEURAL_JA_VOICES[0].id
 
 let neuralAvailable: boolean | null = null
 let neuralFailures = 0
@@ -270,6 +275,9 @@ const OLD_MACINTALK = /^(Fred|Junior|Ralph|Kathy|Princess|Vicki|Victoria|Agnes|B
 const GOOD_APPLE =
   /^(Samantha|Ava|Allison|Susan|Zoe|Evan|Nathan|Joelle|Noelle|Tom|Nicky|Aaron|Alex|Daniel|Kate|Serena|Arthur|Martha|Oliver|Stephanie|Jamie|Siri)\b/i
 
+/** iPhone・Mac の日本語の標準の声（遊び用の声と区別する） */
+const GOOD_APPLE_JA = /^(Kyoko|Otoya|O-ren|Hattori)\b/i
+
 /** 声の品質の目安（大きいほど良い。負の値は使わない） */
 export function voiceQuality(v: Pick<SpeechSynthesisVoice, 'name' | 'voiceURI'>): number {
   const id = `${v.voiceURI} ${v.name}`
@@ -279,7 +287,7 @@ export function voiceQuality(v: Pick<SpeechSynthesisVoice, 'name' | 'voiceURI'>)
   if (/microsoft/i.test(id) && /(natural|online)/i.test(id)) return 95
   if (/enhanced/i.test(id)) return 85
   if (/^Google/i.test(v.name)) return 60
-  if (GOOD_APPLE.test(v.name)) return 50
+  if (GOOD_APPLE.test(v.name) || GOOD_APPLE_JA.test(v.name)) return 50
   return 20
 }
 
@@ -291,7 +299,8 @@ export function listVoices(accent: Accent | 'ja-JP'): SpeechSynthesisVoice[] {
   const want = accent.toLowerCase()
   return voices
     .filter((v) => langOf(v) === want && voiceQuality(v) >= 0)
-    .sort((a, b) => voiceQuality(b) - voiceQuality(a) || a.name.localeCompare(b.name))
+    // 同じ品質なら、端末の既定の声（iPhone の「読み上げ」で選んだ声）を先に
+    .sort((a, b) => voiceQuality(b) - voiceQuality(a) || Number(!!b.default) - Number(!!a.default) || a.name.localeCompare(b.name))
 }
 
 /** その発音の端末の声。なければ近い発音の声（オーストラリア → イギリスなど） */
@@ -303,9 +312,33 @@ export function voicesFor(accent: Accent): SpeechSynthesisVoice[] {
   return []
 }
 
+/** 声を指定せず、iPhone の「リーダーと読み上げ」で選んだ声に任せる（設定の値） */
+export const SYSTEM_VOICE = '__system__'
+/** その選択肢の名前 */
+export const systemVoiceLabel = () => (isApple ? 'iPhone の設定どおり' : '端末の既定の声')
+
+export const isApple =
+  typeof navigator !== 'undefined' &&
+  (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+
+/**
+ * 端末の声を指定しないで読むか。
+ * iPhone の Safari は、ダウンロードした「拡張」「プレミアム」の声をアプリに見せないことがある。
+ * その場合でも、声を指定せず言語だけを伝えると、iPhone の設定で選んだ声（ダウンロードした声）で読まれることがあるので、
+ * 自分で声を選んでいなくて、一覧に高品質の声がないときは iPhone の設定に任せる。
+ */
+export function systemVoiceActive(list: SpeechSynthesisVoice[], preferred?: string): boolean {
+  if (preferred === SYSTEM_VOICE) return true
+  if (preferred && list.some((v) => v.name === preferred)) return false
+  return isApple && !list.some((v) => voiceQuality(v) >= 85)
+}
+
 export function pickVoice(accent: Accent, preferred?: string, role: VoiceRole = 'main'): SpeechSynthesisVoice | undefined {
   const list = voicesFor(accent)
-  const main = (preferred && list.find((x) => x.name === preferred)) || list[0]
+  // その発音の声が端末にないとき（近い発音の声で読むとき）は、これまでどおり声を指定する
+  const exact = listVoices(accent)
+  const system = preferred === SYSTEM_VOICE || (exact.length > 0 && systemVoiceActive(exact, preferred))
+  const main = system ? undefined : (preferred && list.find((x) => x.name === preferred)) || list[0]
   if (role === 'main' || list.length < 2) return main
   const good = list.filter((v) => voiceQuality(v) >= 50 && v !== main)
   const pool = good.length ? good : list.filter((v) => v !== main)
@@ -422,7 +455,7 @@ export function speakJa(text: string, rate = 1): Promise<boolean> {
   synth?.cancel()
   if (neuralEnabled() && text.length <= 400) {
     const { waiting, release } = holdCurrent()
-    const run = audioFor(text, NEURAL_JA, ratePercent(rate)).then(
+    const run = audioFor(text, neuralJa(), ratePercent(rate)).then(
       (url) => {
         if (my !== seq) return false
         release()
@@ -443,7 +476,9 @@ function speakJaDevice(text: string, rate: number): Promise<boolean> {
   if (!synth) return Promise.resolve(false)
   const u = new SpeechSynthesisUtterance(text)
   u.lang = 'ja-JP'
-  const v = listVoices('ja-JP')[0]
+  const list = listVoices('ja-JP')
+  const pref = getSettings().deviceVoiceJa
+  const v = systemVoiceActive(list, pref) ? undefined : (pref && list.find((x) => x.name === pref)) || list[0]
   if (v) u.voice = v
   u.rate = rate
   const est = Math.max(3000, (text.length * 250) / (rate || 1))
