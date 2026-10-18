@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Check, Volume2 } from 'lucide-react'
 import { ACCENTS, NEURAL_VOICES, type Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
-import { NEURAL_JA_VOICES, listVoices, speak, speakJa, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
+import { NEURAL_JA_VOICES, SYSTEM_VOICE, listVoices, speak, speakJa, systemVoiceActive, systemVoiceLabel, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
 import { Tag, cx } from './ui'
 
 const SAMPLE = 'Nice to meet you. Shall we practice some English together today?'
@@ -112,8 +112,9 @@ export function AccentPicker({ neural }: { neural: boolean }) {
                     </div>
                   ) : device.length ? (
                     <div className="flex flex-wrap gap-1.5">
+                      <SystemChip on={systemVoiceActive(device, s.deviceVoice[a.id])} onClick={() => preview(a.id, SYSTEM_VOICE)} />
                       {device.slice(0, 8).map((v) => {
-                        const sel = (s.deviceVoice[a.id] || device[0].name) === v.name
+                        const sel = !systemVoiceActive(device, s.deviceVoice[a.id]) && (s.deviceVoice[a.id] || device[0].name) === v.name
                         return (
                           <button
                             key={v.name}
@@ -179,7 +180,8 @@ export function JaVoicePicker({ neural }: { neural: boolean }) {
   const s = useSettings()
   useDeviceVoices()
   const list = listVoices('ja-JP')
-  const current = (s.deviceVoiceJa && list.find((v) => v.name === s.deviceVoiceJa)?.name) || list[0]?.name
+  const system = systemVoiceActive(list, s.deviceVoiceJa)
+  const current = system ? systemVoiceLabel() : (s.deviceVoiceJa && list.find((v) => v.name === s.deviceVoiceJa)?.name) || list[0]?.name
   const preview = (name?: string) => {
     warmUpSpeech()
     if (name) s.set({ deviceVoiceJa: name })
@@ -229,8 +231,9 @@ export function JaVoicePicker({ neural }: { neural: boolean }) {
         </div>
       ) : list.length ? (
         <div className="mt-2 flex flex-wrap gap-1.5">
+          <SystemChip on={system} onClick={() => preview(SYSTEM_VOICE)} />
           {list.slice(0, 8).map((v) => {
-            const sel = current === v.name
+            const sel = !system && current === v.name
             return (
               <button
                 key={v.voiceURI}
@@ -251,5 +254,21 @@ export function JaVoicePicker({ neural }: { neural: boolean }) {
         <p className="mt-2 text-[12px] text-muted">この端末には日本語の声がありません。上の手順の「日本語」で追加できます。</p>
       )}
     </div>
+  )
+}
+
+/**
+ * 「iPhone の設定どおり」：声を指定せず、iPhone の「リーダーと読み上げ」で選んだ声で読む。
+ * ダウンロードした拡張・プレミアムの声がアプリの一覧に出ないときに使う
+ */
+function SystemChip({ on, onClick }: { on: boolean; onClick: () => void }) {
+  return (
+    <button
+      aria-pressed={on}
+      onClick={onClick}
+      className={cx('min-h-9 rounded-full border px-3 text-[13px] transition active:scale-95', on ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink')}
+    >
+      {systemVoiceLabel()}
+    </button>
   )
 }

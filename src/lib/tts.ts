@@ -312,9 +312,33 @@ export function voicesFor(accent: Accent): SpeechSynthesisVoice[] {
   return []
 }
 
+/** 声を指定せず、iPhone の「リーダーと読み上げ」で選んだ声に任せる（設定の値） */
+export const SYSTEM_VOICE = '__system__'
+/** その選択肢の名前 */
+export const systemVoiceLabel = () => (isApple ? 'iPhone の設定どおり' : '端末の既定の声')
+
+export const isApple =
+  typeof navigator !== 'undefined' &&
+  (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+
+/**
+ * 端末の声を指定しないで読むか。
+ * iPhone の Safari は、ダウンロードした「拡張」「プレミアム」の声をアプリに見せないことがある。
+ * その場合でも、声を指定せず言語だけを伝えると、iPhone の設定で選んだ声（ダウンロードした声）で読まれることがあるので、
+ * 自分で声を選んでいなくて、一覧に高品質の声がないときは iPhone の設定に任せる。
+ */
+export function systemVoiceActive(list: SpeechSynthesisVoice[], preferred?: string): boolean {
+  if (preferred === SYSTEM_VOICE) return true
+  if (preferred && list.some((v) => v.name === preferred)) return false
+  return isApple && !list.some((v) => voiceQuality(v) >= 85)
+}
+
 export function pickVoice(accent: Accent, preferred?: string, role: VoiceRole = 'main'): SpeechSynthesisVoice | undefined {
   const list = voicesFor(accent)
-  const main = (preferred && list.find((x) => x.name === preferred)) || list[0]
+  // その発音の声が端末にないとき（近い発音の声で読むとき）は、これまでどおり声を指定する
+  const exact = listVoices(accent)
+  const system = preferred === SYSTEM_VOICE || (exact.length > 0 && systemVoiceActive(exact, preferred))
+  const main = system ? undefined : (preferred && list.find((x) => x.name === preferred)) || list[0]
   if (role === 'main' || list.length < 2) return main
   const good = list.filter((v) => voiceQuality(v) >= 50 && v !== main)
   const pool = good.length ? good : list.filter((v) => v !== main)
@@ -454,7 +478,7 @@ function speakJaDevice(text: string, rate: number): Promise<boolean> {
   u.lang = 'ja-JP'
   const list = listVoices('ja-JP')
   const pref = getSettings().deviceVoiceJa
-  const v = (pref && list.find((x) => x.name === pref)) || list[0]
+  const v = systemVoiceActive(list, pref) ? undefined : (pref && list.find((x) => x.name === pref)) || list[0]
   if (v) u.voice = v
   u.rate = rate
   const est = Math.max(3000, (text.length * 250) / (rate || 1))

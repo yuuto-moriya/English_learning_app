@@ -309,6 +309,7 @@ export default function Settings() {
             ]}
           />
           <Toggle label="キャラクターを表示" checked={s.guide} onChange={(v) => s.set({ guide: v })} />
+          <Toggle label="起動時のオープニング" desc="アプリを開くたびにロゴの演出を表示します（タップで飛ばせます）" checked={s.opening} onChange={(v) => s.set({ opening: v })} />
         </Card>
 
         <SectionTitle>
