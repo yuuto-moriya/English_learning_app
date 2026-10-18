@@ -27,8 +27,10 @@
 }
 
 /* ===== デザイントークン（ライト / ダーク） =====
- * 紙のような温かい白地に、墨色の文字と柿色（テツの毛色）のアクセントを一色だけ。
- * 面の区切りは影ではなく細い罫線で表す。コースの色は小さな印にだけ使う。 */
+ * 紙のような温かい白地に、墨色の文字と銅色（新しい銅。テツの毛色とも同じ）のアクセントを一色だけ。
+ * 面の区切りは影ではなく細い罫線で表す。コースの色は小さな印にだけ使う。
+ * パティーナ（Eliza Patina の Patina）：語の覚え具合だけに使う2色。学習中＝銅色、定着＝緑青色（銅が年月で帯びる色）。
+ * 文字には使わず、必ず「学習中」「定着」の言葉と並べる（色覚の多様性・コントラストは検証済み）。 */
 :root {
   --bg: #f6f5f1;
   --surface: #ffffff;
@@ -57,6 +59,10 @@
   --ng-soft: #fbe7e6;
   --warn: #8f5c00;
   --warn-soft: #fbf1dc;
+  --copper: #c8461d;
+  --copper-soft: #f9e6dd;
+  --verdigris: #11968b;
+  --verdigris-soft: #dcf1ee;
   --glass: rgb(255 255 255 / 0.74);
   --glass-edge: rgb(255 255 255 / 0.9);
   --shadow-soft: 0 1px 2px rgb(23 24 27 / 0.04);
@@ -92,6 +98,10 @@
   --ng-soft: #3a1717;
   --warn: #f2b443;
   --warn-soft: #36290f;
+  --copper: #cc7240;
+  --copper-soft: #36231a;
+  --verdigris: #24a596;
+  --verdigris-soft: #0f2d2a;
   --glass: rgb(30 31 35 / 0.72);
   --glass-edge: rgb(255 255 255 / 0.08);
   --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3);
@@ -127,6 +137,10 @@
   --color-ng-soft: var(--ng-soft);
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
+  --color-copper: var(--copper);
+  --color-copper-soft: var(--copper-soft);
+  --color-verdigris: var(--verdigris);
+  --color-verdigris-soft: var(--verdigris-soft);
   --shadow-soft: var(--shadow-soft);
   --shadow-float: var(--shadow-float);
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Hiragino Sans", "Hiragino Kaku Gothic ProN",

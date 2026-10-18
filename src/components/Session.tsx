@@ -20,10 +20,13 @@ export function SessionShell({
   children,
   onClose,
   progress,
+  label,
 }: {
   children: ReactNode
   onClose: () => void
   progress?: { value: number; max: number }
+  /** 進み具合の数字の代わりに出す文字（時間で区切る練習の残り時間など） */
+  label?: ReactNode
 }) {
   // 練習の最中はタブバーを隠す（単語学習と同じ集中モード）
   useEffect(() => enterSession(), [])
@@ -42,7 +45,7 @@ export function SessionShell({
           {progress && <ProgressBar value={progress.value} max={progress.max} className="h-[5px] flex-1" />}
           {progress && (
             <span className="min-w-12 text-right text-[12px] font-medium tabular-nums text-muted">
-              {Math.min(progress.value + 1, progress.max)} / {progress.max}
+              {label ?? `${Math.min(progress.value + 1, progress.max)} / ${progress.max}`}
             </span>
           )}
         </div>

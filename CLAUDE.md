@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-英語学習・翻訳の PWA「Michi（ミチ）」（旧名 Tetsu English）。主な利用者は iPhone で使う日本人の英語学習者。一般・ビジネス・IT が中心で、鉄道保線・設備管理（EAM）は付帯のコース。
+英語学習・翻訳の PWA「Eliza Patina（イライザ・パティーナ）」（ホーム画面の表示名は Patina。旧名 Michi・Tetsu English）。主な利用者は iPhone で使う日本人の英語学習者。一般・ビジネス・IT が中心で、鉄道保線・設備管理（EAM）は付帯のコース。
 
 ## 最初に読むもの
 

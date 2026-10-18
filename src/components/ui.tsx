@@ -149,6 +149,41 @@ export function ProgressBar({
 }
 
 /**
+ * 単語のパティーナ。学んだ語のうち、定着した分を緑青色・まだ育っている分を銅色で示す（残りは未学習）。
+ * 銅が年月で緑青を帯びるように、使い込んだ語ほど色が変わる。色だけに頼らないよう PatinaLegend と並べる。
+ */
+export function PatinaBar({ learned, mastered, total, className }: { learned: number; mastered: number; total: number; className?: string }) {
+  const pct = (n: number) => (total ? Math.min(100, (n / total) * 100) : 0)
+  const m = Math.min(mastered, learned)
+  return (
+    <div
+      className={cx('flex h-1.5 gap-[2px] overflow-hidden rounded-full bg-surface-3', className)}
+      role="img"
+      aria-label={`${total}語のうち、定着 ${m}語・学習中 ${learned - m}語`}
+    >
+      {m > 0 && <div className="h-full shrink-0 rounded-full bg-verdigris transition-[width] duration-500 ease-out" style={{ width: `${pct(m)}%` }} />}
+      {learned - m > 0 && <div className="h-full shrink-0 rounded-full bg-copper transition-[width] duration-500 ease-out" style={{ width: `${pct(learned - m)}%` }} />}
+    </div>
+  )
+}
+
+/** パティーナの凡例（色の意味を言葉で） */
+export function PatinaLegend({ className }: { className?: string }) {
+  return (
+    <span className={cx('inline-flex items-center gap-3 text-[11.5px] text-muted', className)}>
+      <span className="inline-flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-verdigris" />
+        定着
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-copper" />
+        学習中
+      </span>
+    </span>
+  )
+}
+
+/**
  * 路線図のような進捗表示（駅＝区切り）。今日の目標の進み具合に使う。
  * 線路の保守に関わる利用者へのささやかな目配せで、数字だけより達成までの距離が見える。
  */

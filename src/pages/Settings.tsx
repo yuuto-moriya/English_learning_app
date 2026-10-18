@@ -9,6 +9,7 @@ import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSe
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
 import { AccentPicker } from '@/components/AccentPicker'
 import { VoiceGuide } from '@/components/VoiceGuide'
+import { BRAND, BrandStory, Wordmark } from '@/components/Brand'
 import { formatRate, VoiceVarietyToggles } from '@/components/PracticeControls'
 import { getHealth, type Health } from '@/lib/api'
 import { db, exportAll, importAll } from '@/lib/db'
@@ -40,13 +41,13 @@ export default function Settings() {
 
   const doExport = async () => {
     const json = await exportAll()
-    const name = `michi-backup-${new Date().toISOString().slice(0, 10)}.json`
+    const name = `patina-backup-${new Date().toISOString().slice(0, 10)}.json`
     const blob = new Blob([json], { type: 'application/json' })
     // iPhone のホーム画面アプリではダウンロードリンクが使えないことがあるため、共有シート（ファイルに保存）を優先
     const f = new File([blob], name, { type: 'application/json' })
     if (navigator.canShare?.({ files: [f] })) {
       try {
-        await navigator.share({ files: [f], title: 'Michi のバックアップ' })
+        await navigator.share({ files: [f], title: 'Eliza Patina のバックアップ' })
         setMsg('バックアップを書き出しました')
         return
       } catch (e) {
@@ -409,6 +410,13 @@ export default function Settings() {
         </Card>
 
         <SectionTitle>このアプリについて</SectionTitle>
+        <Card className="mb-3">
+          <Wordmark className="text-[26px] leading-tight" />
+          <p className="mt-1 text-[13px] text-muted">{BRAND.tagline}</p>
+          <div className="mt-2 border-t border-line pt-1">
+            <BrandStory />
+          </div>
+        </Card>
         <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
           <Link to="/research" className="flex items-center justify-between py-3.5 pl-4 pr-3 active:bg-surface-2">
             <span className="text-[15px]">学習法の根拠（研究・論文）とクレジット</span>
@@ -419,7 +427,7 @@ export default function Settings() {
             <ChevronRight className="h-[18px] w-[18px] text-faint" />
           </Link>
         </div>
-        <p className="mt-6 text-center text-[11px] text-faint">Michi v{__APP_VERSION__}</p>
+        <p className="mt-6 text-center text-[11px] text-faint">{BRAND.name} v{__APP_VERSION__}</p>
       </div>
     </div>
   )

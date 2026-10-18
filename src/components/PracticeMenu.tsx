@@ -1,8 +1,9 @@
-import { AudioLines, Ear, Keyboard, Mic, PencilLine, Radio, Waves, type LucideIcon } from 'lucide-react'
+import { AudioLines, Ear, House, Keyboard, Mic, PencilLine, Radio, Waves, type LucideIcon } from 'lucide-react'
 import { ListRow } from './ui'
 
 /** 練習メニュー。ホームと練習の画面で同じ名前・アイコン・説明を使う */
-export const PRACTICE_MODES: { key: string; to: string; icon: LucideIcon; title: string; sub: string; group: '聞く' | '話す' }[] = [
+export const PRACTICE_MODES: { key: string; to: string; icon: LucideIcon; title: string; sub: string; group: '聞く' | '話す' | 'ながら' }[] = [
+  { key: 'handsfree', to: '/practice/handsfree', icon: House, title: 'ながら練習', sub: '家事や身支度をしながら、耳と声で。時間を決めて流しっぱなし', group: 'ながら' },
   { key: 'listening', to: '/practice/listening', icon: Ear, title: 'リスニング', sub: '例文・会話を聞いて意味を選ぶ（10問）', group: '聞く' },
   { key: 'sounds', to: '/practice/sounds', icon: Waves, title: '聞き分け', sub: 'light / right など日本語にない音の区別。意味と例文つき', group: '聞く' },
   { key: 'dictation', to: '/practice/dictation', icon: Keyboard, title: 'ディクテーション', sub: '聞いた英文を書き取り、聞き逃した語を見つける', group: '聞く' },

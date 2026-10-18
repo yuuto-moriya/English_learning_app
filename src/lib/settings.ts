@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { ALL_CATS, type Category } from './types'
 import { isAccent, type Accent } from './accents'
+import type { HfKind, HfPace } from './handsfree'
 
 export type Theme = 'system' | 'light' | 'dark'
 
@@ -51,6 +52,11 @@ export interface Settings {
   autoPlay: boolean
   /** サーバーAPI（/api/*）へのアクセストークン（任意） */
   apiToken: string
+  /** ながら練習：時間（分）・内容・間の長さ・日本語の案内（前回の選択を覚えておく） */
+  hfMinutes: number
+  hfKinds: HfKind[]
+  hfPace: HfPace
+  hfCues: boolean
   guide: boolean
   onboarded: boolean
 }
@@ -77,6 +83,10 @@ const defaults: Settings = {
   tourDone: false,
   autoPlay: true,
   apiToken: '',
+  hfMinutes: 15,
+  hfKinds: ['words', 'repeat', 'compose', 'dialogue'],
+  hfPace: 'normal',
+  hfCues: true,
   guide: true,
   onboarded: false,
 }

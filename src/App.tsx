@@ -20,6 +20,7 @@ const Stats = lazy(() => import('./pages/Stats'))
 const Sounds = lazy(() => import('./pages/Sounds'))
 const Compose = lazy(() => import('./pages/Compose'))
 const AudioReview = lazy(() => import('./pages/AudioReview'))
+const Handsfree = lazy(() => import('./pages/Handsfree'))
 const Interpreter = lazy(() => import('./pages/Interpreter'))
 
 const router = createBrowserRouter([
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: 'practice/sounds', element: <Sounds /> },
       { path: 'practice/compose', element: <Compose /> },
       { path: 'practice/audio', element: <AudioReview /> },
+      { path: 'practice/handsfree', element: <Handsfree /> },
       { path: 'scenes', element: <Scenes /> },
       { path: 'scenes/:id', element: <SceneDetail /> },
       { path: 'translate', element: <Translate /> },

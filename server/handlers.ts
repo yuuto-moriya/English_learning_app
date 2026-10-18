@@ -255,7 +255,7 @@ export async function handleTts(request: Request, env: Env): Promise<Response> {
       'Ocp-Apim-Subscription-Key': env.AZURE_SPEECH_KEY!,
       'Content-Type': 'application/ssml+xml',
       'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
-      'User-Agent': 'michi-english',
+      'User-Agent': 'eliza-patina',
     },
     body: buildSsml(text, voice, rate, ph),
   })
