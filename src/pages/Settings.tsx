@@ -7,7 +7,7 @@ import { Button, Card, Segmented, SectionTitle, Toggle, cx } from '@/components/
 import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
-import { AccentPicker } from '@/components/AccentPicker'
+import { AccentPicker, JaVoicePicker } from '@/components/AccentPicker'
 import { VoiceGuide } from '@/components/VoiceGuide'
 import { BRAND, BrandStory, Wordmark } from '@/components/Brand'
 import { formatRate, VoiceVarietyToggles } from '@/components/PracticeControls'
@@ -273,6 +273,7 @@ export default function Settings() {
           </div>
           <VoiceGuide neural={neuralOk && s.voiceEngine === 'auto'} />
           <AccentPicker neural={neuralOk && s.voiceEngine === 'auto'} />
+          <JaVoicePicker neural={neuralOk && s.voiceEngine === 'auto'} />
           <div>
             <div className="flex justify-between text-[15px]">
               <span>読み上げ速度</span>
@@ -411,8 +412,8 @@ export default function Settings() {
 
         <SectionTitle>このアプリについて</SectionTitle>
         <Card className="mb-3">
-          <Wordmark className="text-[26px] leading-tight" />
-          <p className="mt-1 text-[13px] text-muted">{BRAND.tagline}</p>
+          <Wordmark className="mt-1 text-[21px]" />
+          <p className="mt-2.5 text-[13px] text-muted">{BRAND.tagline}</p>
           <div className="mt-2 border-t border-line pt-1">
             <BrandStory />
           </div>

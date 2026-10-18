@@ -191,4 +191,9 @@ describe('読み上げの声（国・地域）', () => {
     for (const list of Object.values(NEURAL_VOICES)) for (const v of list) expect(TTS_VOICES.has(v.id), v.id).toBe(true)
     expect(Object.keys(NEURAL_VOICES)).toEqual(['en-US', 'en-GB', 'en-AU', 'en-CA', 'en-IE', 'en-IN', 'en-NZ', 'en-ZA'])
   })
+  it('日本語の高品質音声（女性・男性）もサーバーの許可リストにある', async () => {
+    const { NEURAL_JA_VOICES } = await import('../src/lib/tts')
+    expect(NEURAL_JA_VOICES.length).toBe(2)
+    for (const v of NEURAL_JA_VOICES) expect(TTS_VOICES.has(v.id), v.id).toBe(true)
+  })
 })

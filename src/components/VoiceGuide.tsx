@@ -1,7 +1,7 @@
 import { CheckCircle2, ChevronDown, TriangleAlert } from 'lucide-react'
 import type { Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
-import { voicesFor, voiceQuality } from '@/lib/tts'
+import { listVoices, voicesFor, voiceQuality } from '@/lib/tts'
 import { cx } from './ui'
 
 export interface VoiceStatus {
@@ -34,9 +34,10 @@ export function voiceStatus(neural: boolean, best: { name: string; quality: numb
 
 export const VOICE_STEPS = [
   'iPhone の「設定」アプリを開き、「アクセシビリティ」をタップ。「視覚サポート」の欄にある「リーダーと読み上げ」を開く',
-  '「声」→「英語」をタップ',
+  '「声」→「英語」→「声」と進む',
   '使いたい声（Ava・Zoe・Evan・Daniel など）をタップし、「プレミアム」か「拡張」の横のダウンロードボタンをタップ。ダウンロードが終わるまで待つ',
-  'Patina をいったん終了して（アプリの切り替え画面で、Patina を上へスワイプ）開き直す。「英語の発音」で声を選ぶと、「高品質」と出ます',
+  '日本語の声も同じように入れる：「声」→「日本語」→「声」で、Kyoko・Otoya などの「拡張」か「プレミアム」をダウンロード（和訳や案内の読み上げが自然になります）',
+  'Eliza Patina をいったん終了して（アプリの切り替え画面で、上へスワイプ）開き直す。「英語の発音」で声を選ぶと、「高品質」と出ます',
 ]
 
 /** 設定の「音声」と、はじめの案内で使う。いまの声の状態と、iPhone で高音質の声を入れる手順 */
@@ -44,6 +45,9 @@ export function VoiceGuide({ accent, neural, defaultOpen }: { accent?: Accent; n
   const s = useSettings()
   const top = voicesFor(accent ?? s.accent)[0]
   const st = voiceStatus(neural, top ? { name: top.name, quality: voiceQuality(top) } : undefined)
+  const jaList = listVoices('ja-JP')
+  const ja = (s.deviceVoiceJa && jaList.find((v) => v.name === s.deviceVoiceJa)) || jaList[0]
+  const jaGood = !!ja && voiceQuality(ja) >= 85
   const Icon = st.tone === 'good' ? CheckCircle2 : TriangleAlert
   return (
     <div className="rounded-[14px] border border-line p-3.5">
@@ -52,6 +56,11 @@ export function VoiceGuide({ accent, neural, defaultOpen }: { accent?: Accent; n
         <div className="min-w-0">
           <p className="text-[14px] font-semibold leading-snug">{st.title}</p>
           <p className="mt-1 text-[12px] leading-relaxed text-muted">{st.desc}</p>
+          {!neural && (
+            <p className="mt-1.5 text-[12px] leading-relaxed">
+              日本語の声：{ja ? `${ja.name.replace(/\s*\(.*\)$/, '')}（${jaGood ? '高音質' : '標準。下の手順で高音質にできます'}）` : 'ありません（下の手順で追加できます）'}
+            </p>
+          )}
         </div>
       </div>
       <details className="group mt-3 border-t border-line pt-2.5" open={defaultOpen}>
@@ -71,7 +80,8 @@ export function VoiceGuide({ accent, neural, defaultOpen }: { accent?: Accent; n
           <li>・品質は「プレミアム」＞「拡張」＞標準の順。1つ数百MBなので、Wi-Fi でのダウンロードがおすすめです</li>
           <li>・メニューの名前や並びは iOS のバージョンで少し違うことがあります。古い iOS では「リーダーと読み上げ」の代わりに「読み上げコンテンツ」や「スピーチ」という名前です</li>
           <li>・ダウンロードした声は、この端末だけに入ります。通信がなくても使えます</li>
-          <li>・声が増えない・反映されないときは、Patina を閉じて開き直してください</li>
+          <li>・「Siri」の声（Siri 1・2 など）は、iPhone の仕様でアプリからは使えません。設定で Siri の声を選んでいても、ほかの声で読まれます。「プレミアム」か「拡張」の声を入れてください</li>
+          <li>・声が増えない・反映されないときは、Eliza Patina を閉じて開き直してください</li>
         </ul>
       </details>
     </div>

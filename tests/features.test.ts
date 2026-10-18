@@ -64,6 +64,15 @@ describe('読み上げの声', () => {
     expect(compact).toBeGreaterThan(old)
     expect(voiceQuality(v('Microsoft Aria Online (Natural) - English (United States)'))).toBeGreaterThan(compact)
   })
+  it('日本語の声も、拡張・プレミアム > 標準の声（Kyoko など）> 遊び用の声', () => {
+    const premium = voiceQuality(v('Kyoko (Premium)', 'com.apple.voice.premium.ja-JP.Kyoko'))
+    const enhanced = voiceQuality(v('Kyoko（拡張）', 'com.apple.voice.enhanced.ja-JP.Kyoko'))
+    const compact = voiceQuality(v('Kyoko', 'com.apple.voice.compact.ja-JP.Kyoko'))
+    expect(premium).toBeGreaterThan(enhanced)
+    expect(enhanced).toBeGreaterThan(compact)
+    expect(compact).toBeGreaterThan(voiceQuality(v('Unknown', 'x.ja-JP.Unknown')))
+    expect(voiceQuality(v('Eddy', 'com.apple.eloquence.ja-JP.Eddy'))).toBeLessThan(0)
+  })
   it('速度は5%刻みの SSML の値にする（キャッシュが効くように）', () => {
     expect(ratePercent(1)).toBe(0)
     expect(ratePercent(0.95)).toBe(-5)

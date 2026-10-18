@@ -228,6 +228,7 @@ export const TTS_VOICES = new Set([
   'en-ZA-LeahNeural',
   'en-ZA-LukeNeural',
   'ja-JP-NanamiNeural',
+  'ja-JP-KeitaNeural',
 ])
 export const MAX_TTS_CHARS = 400
 
