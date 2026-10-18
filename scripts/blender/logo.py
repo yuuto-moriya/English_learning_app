@@ -8,7 +8,7 @@
   <出力dir>/patina.png                               年月を経た姿（銅がくすみ、縁や地に酸化の斑点。最後の連番と同じ構図）
 続けて scripts/blender/postprocess_logo.py で public/opening/ の WebP に変換する。
 
-図案（文字・スピード線・中央のマイク）は scripts/blender/emblem_art.py が描く emblem-mask.png（白＝エナメル、黒＝銅）。
+図案（文字・スピード線・中央のトルソー）は scripts/blender/emblem_art.py が描く emblem-mask.png（白＝エナメル、黒＝銅）。
 エナメルは銅より少し低く埋め込み、つやのある面にする。
 """
 from __future__ import annotations

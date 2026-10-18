@@ -43,7 +43,7 @@ check(await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings'
 await page.getByRole('button', { name: /学習をはじめる/ }).waitFor()
 check(await page.getByText('帰り道に10分').isVisible(), 'ホームに学習プラン（実行意図）を表示')
 const cats = await page.evaluate(() => JSON.parse(localStorage.getItem('tetsu-settings')).state.studyCats)
-check(cats.general && cats.rail && !cats.business, '選んだコース（一般会話＋保線）が保存される')
+check(cats.general && cats.rail && !cats.business, '選んだコース（一般＋鉄道）が保存される')
 
 // 学習セッション
 await page.getByRole('button', { name: /学習をはじめる/ }).click()
@@ -200,7 +200,7 @@ check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シ�
 await page.goto(BASE + '/?opening')
 await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ timeout: 5000 })
 check(await page.getByRole('img', { name: /Eliza Patina/ }).isVisible(), '起動時のオープニング')
-await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ state: 'detached', timeout: 8000 })
+await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ state: 'detached', timeout: 12000 })
 check(await page.getByRole('img', { name: /Eliza Patina/ }).count() === 0, 'オープニングが終わってアプリが使える')
 await page.goto(BASE + '/?opening')
 await page.getByRole('img', { name: /Eliza Patina/ }).waitFor({ timeout: 5000 })

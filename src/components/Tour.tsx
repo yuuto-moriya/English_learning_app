@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { CharImage } from './Guide'
 import { Button, cx } from './ui'
@@ -40,7 +40,7 @@ function findTarget(name?: string): HTMLElement | null {
  * 使い方ツアー（コーチマーク）。画面を暗くして、説明する場所だけを明るく切り抜く。
  * 「次へ」で進み、「スキップ」でいつでも終われる。終わったら onDone。
  * 説明カードはいつも同じ場所（タブバーのすぐ上）に下端をそろえて置き、「次へ」が動かないようにする。
- * 照らす場所はカードの上に見えるよう、必要なら画面を送る。
+ * 照らす場所はカードの上に見えるよう、必要なら画面を送る。ページの終わりで送れず隠れてしまうときだけ、カードを上に置く。
  */
 export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void }) {
   const guide = useSettings((s) => s.guide)
@@ -48,6 +48,8 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
   const [rect, setRect] = useState<Rect | null>(null)
   const [vh, setVh] = useState(() => window.innerHeight)
   const [dock, setDock] = useState<number | null>(null)
+  const card = useRef<HTMLDivElement>(null)
+  const [cardH, setCardH] = useState(CARD_EST)
   const step = steps[i]
   const last = i === steps.length - 1
 
@@ -57,6 +59,8 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
     setVh((v) => (v === h ? v : h))
     const d = dockOffset(h)
     setDock((v) => (v === d ? v : d))
+    const ch = card.current?.offsetHeight
+    if (ch) setCardH((v) => (Math.abs(v - ch) < 1 ? v : ch))
     const el = findTarget(step?.target)
     if (!el) return setRect((v) => (v === null ? v : null))
     const r = el.getBoundingClientRect()
@@ -100,7 +104,13 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
 
   if (!step) return null
   // 説明カードは、どのステップでも下端の位置をそろえる（ボタンが同じ場所に来る）
-  const cardStyle = { bottom: dock === null ? 'calc(env(safe-area-inset-bottom) + 16px)' : Math.min(dock, vh - 200) }
+  const bottom = dock === null ? 40 : Math.min(dock, vh - 200)
+  // ページの終わりに近くて画面を送れず、照らす場所がカードに隠れるときだけ、カードを画面の上に置く
+  const cardBottom = vh - bottom
+  const covered = !!rect && rect.top < cardBottom && rect.top + rect.height > cardBottom - cardH - 8
+  const cardStyle = covered
+    ? { top: 'calc(env(safe-area-inset-top) + 12px)' }
+    : { bottom: dock === null ? 'calc(env(safe-area-inset-bottom) + 16px)' : bottom }
 
   return createPortal(
     <div className="fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-label="使い方ガイド">
@@ -114,6 +124,7 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
       )}
       <div
         key={i}
+        ref={card}
         className="absolute inset-x-4 mx-auto max-w-[360px] animate-rise rounded-[20px] border border-line bg-surface p-4 shadow-float"
         style={cardStyle}
       >

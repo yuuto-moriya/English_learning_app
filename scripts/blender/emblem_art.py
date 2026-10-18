@@ -9,8 +9,8 @@
 
 図案（1000 × 1000 の座標で設計）:
   外周の帯：上に「ELIZA PATINA」、下に「ENGLISH ATELIER」（字は内向き）、左右にスピード線を3本ずつ
-  内側：緑青のエナメルの円に、銅の二重線。中央に 1930 年代のリボンマイクを一筆の線で（イライザが
-        ヒギンズ教授の蓄音機で発音を録られ、話し方で変わっていく物語から）。上下に「ESTD」「2026」と罫線
+  内側：緑青のエナメルの円に、銅の二重線。中央に仕立て屋のトルソー（銅の面に緑青の縫い目）、
+        左右に「ESTD」「2026」。看板の中央の絵（ハンガーなど）のように、一目で何の店かわかる形にする
 フォントは幾何学的なサンセリフ（Jost, SIL OFL 1.1。npm の @fontsource/jost の woff2 を TTF にして使う）。
 """
 from __future__ import annotations
@@ -121,24 +121,88 @@ def text_center(d, s: str, cx: float, cy: float, size: float, tracking: float, f
         x += w + p(tracking)
 
 
-def microphone(d: ImageDraw.ImageDraw, fill: int, stroke: float = 9):
-    """1930 年代のリボンマイク（丸みのあるカプセル・横の格子・U字の支え・脚）を一筆の太さの線で"""
-    sw = int(p(stroke))
-    # カプセル
-    d.rounded_rectangle([p(449), p(386), p(551), p(556)], radius=p(51), outline=fill, width=sw)
-    # 格子
-    for y in (440, 471, 502):
-        line(d, 466, y, 534, y, 5.5, fill)
-    # U 字の支え（左右の軸の点から下へ回り込む）
-    c = (500, 470)
-    r = 76
-    d.arc([p(c[0] - r), p(c[1] - r), p(c[0] + r), p(c[1] + r)], 0, 180, fill=fill, width=sw)
-    for x in (c[0] - r, c[0] + r):
-        rr = p(11)
-        d.ellipse([p(x) - rr, p(c[1]) - rr, p(x) + rr, p(c[1]) + rr], fill=fill)
-    # 脚と台
-    line(d, 500, 546, 500, 598, stroke, fill)
-    line(d, 462, 604, 538, 604, stroke, fill)
+def bez(p0, p1, p2, p3, n: int = 48) -> list[tuple[float, float]]:
+    """3次ベジェ曲線を点の列に（設計の座標のまま）"""
+    pts = []
+    for i in range(n + 1):
+        t = i / n
+        u = 1 - t
+        pts.append((
+            u**3 * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t**3 * p3[0],
+            u**3 * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t**3 * p3[1],
+        ))
+    return pts
+
+
+def path(*segs) -> list[tuple[float, float]]:
+    """ベジェ（4点の組）をつないで1本の線に"""
+    pts: list[tuple[float, float]] = []
+    for sg in segs:
+        q = bez(*sg)
+        pts.extend(q if not pts else q[1:])
+    return pts
+
+
+def mirror(pts):
+    return [(1000 - x, y) for x, y in pts]
+
+
+def stroke(d: ImageDraw.ImageDraw, pts, width: float, fill: int, closed: bool = False):
+    """点の列を、つなぎ目と両端の丸い線で引く"""
+    if closed:
+        pts = list(pts) + [pts[0]]
+    rr = p(width) / 2
+    for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+        d.line([p(x1), p(y1), p(x2), p(y2)], fill=fill, width=int(p(width)))
+    for x, y in pts:
+        d.ellipse([p(x) - rr, p(y) - rr, p(x) + rr, p(y) + rr], fill=fill)
+
+
+def dot(d, x, y, r, fill):
+    d.ellipse([p(x - r), p(y - r), p(x + r), p(y + r)], fill=fill)
+
+
+def torso_outline() -> list[tuple[float, float]]:
+    """トルソーの輪郭（首の付け根の右から時計回りに、左右対称）。肩はなで肩に、腕の付け根は丸く切る"""
+    right = path(
+        ((511, 420), (524, 421), (538, 424), (547, 428)),
+        ((547, 428), (557, 432), (559, 442), (555, 450)),
+        ((555, 450), (551, 459), (557, 470), (553, 484)),
+        ((553, 484), (549, 500), (533, 510), (533, 522)),
+        ((533, 522), (533, 538), (557, 550), (557, 568)),
+        ((557, 568), (557, 580), (549, 586), (537, 588)),
+        ((537, 588), (525, 590), (512, 591), (500, 591)),
+    )
+    return right + list(reversed(mirror(right)))[1:]
+
+
+def torso_base(d: ImageDraw.ImageDraw, fill: int):
+    """首・上のつまみ・支柱と三脚"""
+    d.rectangle([p(489), p(402), p(511), p(422)], fill=fill)
+    line(d, 480, 403, 520, 403, 9, fill)
+    dot(d, 500, 389, 10, fill)
+    line(d, 500, 591, 500, 620, 10, fill)
+    line(d, 500, 621, 466, 633, 8, fill)
+    line(d, 500, 621, 534, 633, 8, fill)
+
+
+def mark_dressform(d: ImageDraw.ImageDraw, fill: int):
+    """
+    仕立て屋のトルソー（ドレスフォーム）。銅の面に、緑青の細い線で衿ぐり・前中心・ウエストのテープ。
+    アトリエで一着を形にしていくように、自分の英語を仕立てていく（イライザが話し方を仕立て直した物語から）
+    """
+    body = torso_outline()
+    d.polygon([(p(x), p(y)) for x, y in body], fill=fill)
+    stroke(d, body, 2, fill, closed=True)
+    torso_base(d, fill)
+    bg = 255 - fill
+    stroke(d, path(((477, 436), (485, 456), (515, 456), (523, 436))), 5, bg)
+    stroke(d, [(500, 456), (500, 589)], 4, bg)
+    stroke(d, path(((467, 520), (488, 527), (512, 527), (533, 520))), 5, bg)
+
+
+MARK_SCALE = 1.42  # 上の図形は 1000 の座標で小さく描き、この倍率で大きくして置く
+MARK_CY = 510  # 拡大の中心（マークの縦の中心）
 
 
 def main():
@@ -164,12 +228,15 @@ def main():
     # 銅の二重線
     ring(d, 306, 7, 0)
     ring(d, 289, 3.5, 0)
-    # ESTD・罫線・マイク・2026（銅）
-    text_center(d, "ESTD", 500, 330, 44, 9, 0)
-    line(d, 438, 360, 562, 360, 4, 0)
-    microphone(d, 0)
-    line(d, 438, 646, 562, 646, 4, 0)
-    text_center(d, "2026", 500, 682, 44, 9, 0)
+    # 中央のマーク（銅）。別の層に描いて、中心を保ったまま大きくして重ねる
+    layer = Image.new("L", (W, W), 0)
+    mark_dressform(ImageDraw.Draw(layer), 255)
+    big = layer.resize((int(W * MARK_SCALE), int(W * MARK_SCALE)), Image.LANCZOS)
+    ox, oy = p(500) * (MARK_SCALE - 1), p(MARK_CY) * (MARK_SCALE - 1)
+    mask.paste(0, (0, 0), big.crop((int(ox), int(oy), int(ox) + W, int(oy) + W)))
+    # マークの左右に ESTD と 2026（銅）
+    text_center(d, "ESTD", 340, MARK_CY, 42, 8, 0)
+    text_center(d, "2026", 660, MARK_CY, 42, 8, 0)
 
     # 円の外は使わない（透過の外側）
     edge = Image.new("L", (W, W), 0)

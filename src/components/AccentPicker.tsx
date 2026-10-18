@@ -46,7 +46,7 @@ export function AccentPicker({ neural }: { neural: boolean }) {
   return (
     <div>
       <p className="text-[15px]">英語の発音（国・地域）</p>
-      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">一般会話・ビジネス・IT の読み上げに使います。タップして声を選び、試聴できます。</p>
+      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">一般・ビジネス・IT の読み上げに使います。タップして声を選び、試聴できます。</p>
       <div className="mt-2.5 overflow-hidden rounded-[14px] border border-line">
         {ACCENTS.map((a, k) => {
           const on = s.accent === a.id

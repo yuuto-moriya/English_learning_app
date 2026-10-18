@@ -73,9 +73,9 @@ export const CATEGORIES: {
 }[] = [
   {
     key: 'general',
-    label: '一般会話',
+    label: '一般',
     short: '一般',
-    desc: '日常の会話・旅行・暮らしで使う高頻度の英語',
+    desc: '会話・旅行・暮らしでよく使う英語（いちばん基本のコース）',
     source: 'NGSL（一般英語の約92%をカバーする高頻度語）',
     scene: 'daily',
     text: 'text-gen',

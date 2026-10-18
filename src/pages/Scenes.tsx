@@ -15,7 +15,7 @@ const INTRO: Record<SceneGroup, { who: CharId; pose: Pose; text: string }> = {
   rail: { who: 'kinako', pose: 'cheer', text: '保線現場と鉄道ビジネスの英会話だ。安全に関わる交信は必ず復唱（repeat back）だぞ！' },
 }
 
-const GROUP_LABEL: Record<SceneGroup, string> = { daily: '日常', business: 'ビジネス', it: 'IT', rail: '鉄道' }
+const GROUP_LABEL: Record<SceneGroup, string> = { daily: '一般', business: 'ビジネス', it: 'IT', rail: '鉄道' }
 
 function initialGroup(): SceneGroup {
   try {
