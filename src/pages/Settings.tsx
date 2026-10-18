@@ -7,7 +7,7 @@ import { Button, Card, Segmented, SectionTitle, Toggle, cx } from '@/components/
 import { CAST_ORDER, CHARACTERS } from '@/lib/characters'
 import { applyTheme, formatMinutes, MINUTE_CHOICES, newPerDay, PLAN_LABEL, useSettings, type PlanWhen, type Theme } from '@/lib/settings'
 import { refreshNeural, ttsAvailable } from '@/lib/tts'
-import { AccentPicker } from '@/components/AccentPicker'
+import { AccentPicker, JaVoicePicker } from '@/components/AccentPicker'
 import { VoiceGuide } from '@/components/VoiceGuide'
 import { BRAND, BrandStory, Wordmark } from '@/components/Brand'
 import { formatRate, VoiceVarietyToggles } from '@/components/PracticeControls'
@@ -273,6 +273,7 @@ export default function Settings() {
           </div>
           <VoiceGuide neural={neuralOk && s.voiceEngine === 'auto'} />
           <AccentPicker neural={neuralOk && s.voiceEngine === 'auto'} />
+          <JaVoicePicker neural={neuralOk && s.voiceEngine === 'auto'} />
           <div>
             <div className="flex justify-between text-[15px]">
               <span>読み上げ速度</span>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Check, Volume2 } from 'lucide-react'
 import { ACCENTS, NEURAL_VOICES, type Accent } from '@/lib/accents'
 import { useSettings } from '@/lib/settings'
-import { listVoices, speak, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
+import { listVoices, speak, speakJa, voiceQuality, voicesFor, warmUpSpeech } from '@/lib/tts'
 import { Tag, cx } from './ui'
 
 const SAMPLE = 'Nice to meet you. Shall we practice some English together today?'
@@ -25,7 +25,7 @@ function useDeviceVoices() {
 }
 
 /**
- * 英語の発音（国・地域）と声の選択。iPhone の「リーダーと読み上げ → 声 → 英語」のように国ごとに選べる。
+ * 英語の発音（国・地域）と声の選択。iPhone の「リーダーと読み上げ → 声 → 英語 → 声」のように国ごとに選べる。
  * neural = 高品質音声（Azure）を使うとき。使わないときは端末に入っている声から選ぶ。
  */
 export function AccentPicker({ neural }: { neural: boolean }) {
@@ -164,6 +164,65 @@ export function AccentPicker({ neural }: { neural: boolean }) {
             ))}
           </div>
         </div>
+      )}
+    </div>
+  )
+}
+
+const SAMPLE_JA = 'こんにちは。今日も、いっしょに英語を練習しましょう。'
+
+/**
+ * 和訳・案内（耳で復習・ながら練習など）を読む日本語の声。
+ * 高品質音声のときはサーバーの声（Nanami）、それ以外は端末の日本語の声から選ぶ。
+ */
+export function JaVoicePicker({ neural }: { neural: boolean }) {
+  const s = useSettings()
+  useDeviceVoices()
+  const list = listVoices('ja-JP')
+  const current = (s.deviceVoiceJa && list.find((v) => v.name === s.deviceVoiceJa)?.name) || list[0]?.name
+  const preview = (name?: string) => {
+    warmUpSpeech()
+    if (name) s.set({ deviceVoiceJa: name })
+    void speakJa(SAMPLE_JA)
+  }
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <p className="text-[15px]">日本語の声</p>
+        <button
+          aria-label="日本語の声を試聴"
+          onClick={() => preview()}
+          className="flex h-9 w-9 items-center justify-center rounded-full text-muted active:bg-surface-2"
+        >
+          <Volume2 className="h-[18px] w-[18px]" strokeWidth={1.9} />
+        </button>
+      </div>
+      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">
+        和訳や、耳で復習・ながら練習の案内に使います。
+        {neural ? '高品質音声（Nanami）で読みます。通信できないときは下の声になります。' : ''}
+      </p>
+      {list.length ? (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {list.slice(0, 8).map((v) => {
+            const sel = current === v.name
+            return (
+              <button
+                key={v.voiceURI}
+                aria-pressed={sel}
+                onClick={() => preview(v.name)}
+                className={cx(
+                  'min-h-9 rounded-full border px-3 text-[13px] transition active:scale-95',
+                  sel ? 'border-ink bg-ink text-bg' : 'border-line-strong text-ink',
+                )}
+              >
+                {v.name.replace(/\s*\(.*\)$/, '')}
+                {voiceQuality(v) >= 85 && <span className="ml-1 opacity-60">高品質</span>}
+              </button>
+            )
+          })}
+        </div>
+      ) : (
+        <p className="mt-2 text-[12px] text-muted">この端末には日本語の声がありません。上の手順の「日本語」で追加できます。</p>
       )}
     </div>
   )

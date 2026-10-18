@@ -38,6 +38,8 @@ export interface Settings {
   neural: Partial<Record<Accent, string>>
   /** 発音ごとの端末の声（SpeechSynthesisVoice.name） */
   deviceVoice: Partial<Record<Accent, string>>
+  /** 和訳・案内を読む端末の日本語の声（空なら品質の高い声を自動で） */
+  deviceVoiceJa: string
   /** リスニング練習で毎回ちがう声にする（話者の多様性） */
   varyVoices: boolean
   /** リスニング練習でいろいろな国の英語を混ぜる */
@@ -76,6 +78,7 @@ const defaults: Settings = {
   railAccent: 'en-GB',
   neural: {},
   deviceVoice: {},
+  deviceVoiceJa: '',
   varyVoices: true,
   mixAccents: false,
   sounds: true,

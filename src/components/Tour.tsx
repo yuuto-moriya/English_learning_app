@@ -19,6 +19,15 @@ interface Rect {
 }
 
 const PAD = 6
+/** 説明カードの高さの見積もり（照らす場所がカードに隠れないよう、上に送る量の目安） */
+const CARD_EST = 270
+
+/** 説明カードを置く位置（画面の下端からの距離）。タブバーがあればそのすぐ上、なければ画面の下 */
+function dockOffset(vh: number): number | null {
+  const bar = document.querySelector<HTMLElement>('nav[aria-label="メインメニュー"] > div')
+  const r = bar?.getBoundingClientRect()
+  return r && r.height > 0 ? Math.max(16, vh - r.top + 10) : null
+}
 
 function findTarget(name?: string): HTMLElement | null {
   if (!name) return null
@@ -30,17 +39,21 @@ function findTarget(name?: string): HTMLElement | null {
 /**
  * 使い方ツアー（コーチマーク）。画面を暗くして、説明する場所だけを明るく切り抜く。
  * 「次へ」で進み、「スキップ」でいつでも終われる。終わったら onDone。
+ * 説明カードはいつも同じ場所（タブバーのすぐ上）に下端をそろえて置き、「次へ」が動かないようにする。
+ * 照らす場所はカードの上に見えるよう、必要なら画面を送る。
  */
 export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void }) {
   const guide = useSettings((s) => s.guide)
   const [i, setI] = useState(0)
   const [rect, setRect] = useState<Rect | null>(null)
   const [vh, setVh] = useState(() => window.innerHeight)
+  const [dock, setDock] = useState<number | null>(null)
   const step = steps[i]
   const last = i === steps.length - 1
 
   const measure = useCallback(() => {
     setVh(window.innerHeight)
+    setDock(dockOffset(window.innerHeight))
     const el = findTarget(step?.target)
     if (!el) return setRect(null)
     const r = el.getBoundingClientRect()
@@ -49,10 +62,11 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
 
   useLayoutEffect(() => {
     const el = findTarget(step?.target)
-    if (el) {
+    // タブバーなど固定の場所は送らない。それ以外は、カードより上（画面の上のほう）に入るよう送ってから測る
+    if (el && !el.closest('nav')) {
       const r = el.getBoundingClientRect()
-      // 画面の外なら中央まで送ってから測る
-      if (r.top < 70 || r.bottom > window.innerHeight - 110) el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      const limit = window.innerHeight - (dockOffset(window.innerHeight) ?? 40) - CARD_EST
+      if (r.top < 70 || r.bottom > limit) window.scrollBy({ top: r.top - 80, behavior: 'smooth' })
     }
     measure()
     const t = setTimeout(measure, 380)
@@ -77,13 +91,8 @@ export function Tour({ steps, onDone }: { steps: TourStep[]; onDone: () => void 
   }, [onDone])
 
   if (!step) return null
-  // 説明カードは、照らした場所の下に入ればその下、入らなければ上。対象がなければ中央
-  const below = rect ? rect.top + rect.height + 12 + 230 < vh : false
-  const cardStyle = rect
-    ? below
-      ? { top: rect.top + rect.height + 12 }
-      : { bottom: Math.max(12, vh - rect.top + 12) }
-    : { top: '50%', transform: 'translateY(-50%)' }
+  // 説明カードは、どのステップでも下端の位置をそろえる（ボタンが同じ場所に来る）
+  const cardStyle = { bottom: dock === null ? 'calc(env(safe-area-inset-bottom) + 16px)' : Math.min(dock, vh - 200) }
 
   return createPortal(
     <div className="fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-label="使い方ガイド">
@@ -181,7 +190,7 @@ export const HOME_TOUR: TourStep[] = [
   },
   {
     title: '声を高音質にするには',
-    body: '通信できるときは高品質音声で読みます。通信できないときのために、iPhone の「設定 → アクセシビリティ → リーダーと読み上げ → 声 → 英語」で「プレミアム」か「拡張」の声をダウンロードしておくと安心です。くわしい手順と、いまの声の状態は、このアプリの設定の「音声」にあります。',
+    body: '通信できるときは高品質音声で読みます。通信できないときのために、iPhone の「設定 → アクセシビリティ → リーダーと読み上げ → 声 → 英語 → 声」で「プレミアム」か「拡張」の声をダウンロードしておくと安心です（日本語の声も同じように「声 → 日本語 → 声」で）。くわしい手順と、いまの声の状態は、このアプリの設定の「音声」にあります。',
   },
   {
     title: '準備OK！',
