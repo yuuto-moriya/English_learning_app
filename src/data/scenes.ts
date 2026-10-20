@@ -1,4 +1,5 @@
 import type { Scene } from '@/lib/types'
+import { MORE_SCENES } from './scenes-more'
 import { accentFor } from '@/lib/settings'
 import type { Accent } from '@/lib/accents'
 
@@ -6,7 +7,7 @@ import type { Accent } from '@/lib/accents'
  * シチュエーション別会話。
  * タスク中心の言語指導（TBLT）に基づき、「目的のある場面」で使う表現をまとまりで学ぶ。
  */
-export const SCENES: Scene[] = [
+const BASE_SCENES: Scene[] = [
   // ───────────── 一般（会話・旅行・暮らし） ─────────────
   {
     id: 'd-intro',
@@ -1242,6 +1243,13 @@ export const SCENES: Scene[] = [
     tip: '安全のための工事でも、まず謝罪と共感から。理由（緊急補修）と今後の約束（事前のお知らせ）をはっきり伝えます。',
   },
 ]
+
+/** グループの順（一般 → ビジネス → IT → 鉄道）にそろえ、各グループの中では元のシーンのあとに追加分をレベル順で並べる */
+const GROUP_ORDER: Scene['group'][] = ['daily', 'business', 'it', 'rail']
+export const SCENES: Scene[] = GROUP_ORDER.flatMap((g) => [
+  ...BASE_SCENES.filter((s) => s.group === g),
+  ...MORE_SCENES.filter((s) => s.group === g).sort((a, b) => a.lv - b.lv),
+])
 
 /** シーンの基本の発音（舞台の土地が決まっていればその発音。なければ設定の発音：鉄道は railAccent、それ以外は accent） */
 export function sceneAccent(scene: Scene): Accent {

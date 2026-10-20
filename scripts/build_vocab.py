@@ -106,6 +106,9 @@ OVERRIDE_US = {
     "printer": "ˈprɪntɚ", "center": "ˈsɛntɚ", "interface": "ˈɪntɚˌfeɪs", "neural": "ˈnʊrəl",
     "tissue": "ˈtɪʃuː", "saturday": "ˈsætɚdeɪ", "email": "ˈiːmeɪl", "between": "bɪˈtwiːn", "often": "ˈɔfən",
     "beyond": "bɪˈjɑnd", "eventually": "ɪˈvɛntʃuəli", "forget": "fɚˈɡɛt",
+    # 辞書にない語（CEFR-J の追加語）
+    "snowboarding": "ˈsnoʊˌbɔrdɪŋ", "stomachache": "ˈstʌməkˌeɪk", "toothache": "ˈtuːθˌeɪk", "earache": "ˈɪrˌeɪk",
+    "antonym": "ˈæntəˌnɪm", "phrasal": "ˈfreɪzəl", "preposition": "ˌprɛpəˈzɪʃən",
 }
 
 # 品詞で発音が変わる語（名詞と動詞で強勢や音が違う）。辞書の最初の発音が別の品詞のものを直す
