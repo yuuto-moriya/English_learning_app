@@ -157,6 +157,17 @@ export function hasJapanese(s: string): boolean {
   return /[぀-ヿ㐀-鿿]/.test(s)
 }
 
+/**
+ * 入力した文の言語を見分ける。日本語の文字の数と英単語の数を比べる
+ * （「APIのendpointをdeployする」は日本語、「Check the 道床 today」は英語）
+ */
+export function detectLang(text: string): 'ja' | 'en' | null {
+  const ja = (text.match(/[぀-ヿ㐀-鿿ｦ-ﾟ]/g) ?? []).length
+  const en = (text.match(/[A-Za-z]+/g) ?? []).length
+  if (!ja && !en) return null
+  return ja >= en ? 'ja' : 'en'
+}
+
 /** 規格英語の助動詞の注意喚起 */
 export function modalTips(en: string): string[] {
   const tips: string[] = []

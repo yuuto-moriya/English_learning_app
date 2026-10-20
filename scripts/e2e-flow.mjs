@@ -163,9 +163,31 @@ check(await page.getByText('track gauge', { exact: true }).isVisible(), '翻訳�
 check(await page.getByText('cant', { exact: true }).isVisible(), '翻訳画面で「カント」を検出')
 await page.screenshot({ path: `${OUT}/5-glossary.png`, fullPage: true })
 
+// 翻訳（API はモック）：自動の向き・訳・保存・入れ替え・拡大
+await page.route('**/api/health', (r) => r.fulfill({ json: { translator: true, speech: false, tts: false, realtime: false, tokenRequired: false } }))
+await page.route('**/api/translate', (r) => {
+  const b = JSON.parse(r.request().postData() || '{}')
+  r.fulfill({ json: b.to === 'en' ? { text: 'See you tomorrow.' } : { text: 'また明日。' } })
+})
+await page.goto(BASE + '/translate')
+await page.getByPlaceholder(/翻訳したい文章/).fill('また明日。')
+await page.getByText('See you tomorrow.', { exact: true }).waitFor({ timeout: 5000 })
+check(await page.getByText('See you tomorrow.', { exact: true }).isVisible(), '翻訳：入力しながら訳が出る')
+await page.getByRole('button', { name: /^保存$/ }).click()
+await page.getByRole('tab', { name: /保存した訳（1）/ }).waitFor({ timeout: 3000 })
+check(await page.getByRole('tab', { name: /保存した訳（1）/ }).isVisible(), '翻訳：訳を保存すると「保存した訳」に入る')
+await page.getByRole('button', { name: '拡大' }).click()
+check(await page.getByRole('dialog', { name: '訳を大きく表示' }).isVisible(), '翻訳：訳を大きく表示')
+await page.getByRole('button', { name: '閉じる' }).click()
+await page.getByRole('button', { name: '訳す向きを入れ替える' }).click()
+check((await page.getByLabel('翻訳する文').inputValue()) === 'See you tomorrow.', '翻訳：入れ替えで訳が入力欄に移る')
+await page.unroute('**/api/health')
+await page.unroute('**/api/translate')
+
 // 翻訳画面のヘルプと同時通訳
+await page.goto(BASE + '/translate')
 await page.getByRole('button', { name: '翻訳画面の使い方' }).click()
-check(await page.getByRole('dialog').getByText('同時通訳').first().isVisible(), '翻訳画面のヘルプ（ツアー）')
+check(await page.getByRole('dialog').getByText('訳す向き').first().isVisible(), '翻訳画面のヘルプ（ツアー）')
 await page.getByRole('button', { name: 'スキップ' }).click()
 await page.getByRole('link', { name: /同時通訳/ }).click()
 await page.getByRole('tab', { name: '会話' }).click()
