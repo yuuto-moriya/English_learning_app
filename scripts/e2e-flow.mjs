@@ -201,6 +201,31 @@ await page.getByRole('button', { name: '送る' }).click()
 await page.getByRole('button', { name: 'より自然な言い方' }).waitFor({ timeout: 5000 })
 await page.getByRole('button', { name: 'より自然な言い方' }).click()
 check(await page.getByText("I'd like a latte, please.").isVisible(), 'AI と会話：より自然な言い方が出る（押すと開く）')
+// 先生役：相手の英語の解説・自分の英語の詳しい評価・日本語で質問
+await page.route('**/api/tutor', (r) => {
+  const b = JSON.parse(r.request().postData() || '{}')
+  r.fulfill({
+    json:
+      b.mode === 'explain-reply'
+        ? { ja: 'サイズは？', phrases: [{ en: 'What size', ja: 'どのサイズ' }], point: '店でよく聞く言い方', answers: ['Medium, please.'] }
+        : b.mode === 'explain-mine'
+          ? { good: '伝わります', fix: 'I want a latte.', why: 'a が必要', casual: 'A latte, please.', polite: 'Could I have a latte?' }
+          : { answer: '「店内で」という意味です。' },
+  })
+})
+await page.getByRole('button', { name: '解説' }).last().click()
+await page.getByText('店でよく聞く言い方').waitFor({ timeout: 5000 })
+check(await page.getByText('店でよく聞く言い方').isVisible(), 'AI と会話：相手の英語の解説')
+await page.getByRole('button', { name: '詳しく' }).first().click()
+await page.getByText('Could I have a latte?').waitFor({ timeout: 5000 })
+check(await page.getByText('Could I have a latte?').isVisible(), 'AI と会話：自分の英語の詳しい評価')
+await page.getByRole('button', { name: 'ヒント' }).click()
+await page.getByRole('tab', { name: '先生に質問' }).click()
+await page.getByLabel('先生に質問').fill('for here って何？')
+await page.getByRole('button', { name: '質問', exact: true }).click()
+await page.getByText('「店内で」という意味です。').waitFor({ timeout: 5000 })
+check(await page.getByText('「店内で」という意味です。').isVisible(), 'AI と会話：先生に日本語で質問')
+await page.unroute('**/api/tutor')
 await page.getByRole('button', { name: 'やめる' }).click()
 check(await page.getByRole('heading', { name: '会話の振り返り' }).isVisible(), 'AI と会話：振り返り')
 await page.getByRole('button', { name: '答えを見る' }).click()

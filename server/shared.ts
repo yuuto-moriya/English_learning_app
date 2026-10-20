@@ -15,6 +15,9 @@ export interface Env {
   CLOUDFLARE_ACCOUNT_ID?: string
   CLOUDFLARE_AI_TOKEN?: string
   CLOUDFLARE_MODEL?: string
+  /** 先生役（解説・質問）のモデル。未設定なら会話と同じモデル */
+  CLOUDFLARE_TUTOR_MODEL?: string
+  GROQ_TUTOR_MODEL?: string
   /** 設定するとクライアントは X-App-Token ヘッダーが必要（無料枠の不正利用防止） */
   APP_ACCESS_TOKEN?: string
 }
