@@ -9,7 +9,7 @@ import { fetchUpstream, json, upstreamJson, type Env } from './shared.js'
 /** 1回に送れる会話の長さ（古い発言は端末側で切る） */
 export const CHAT_MAX_TURNS = 16
 export const CHAT_MAX_CHARS = 600
-export const CHAT_MAX_SCENE = 400
+export const CHAT_MAX_SCENE = 700
 
 export const CHAT_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 export type ChatLevel = (typeof CHAT_LEVELS)[number]
@@ -64,7 +64,7 @@ export function completionBody(p: Provider, messages: { role: string; content: s
   return {
     model: p.model,
     messages,
-    temperature: 0.7,
+    temperature: 0.6,
     max_tokens: reasoning ? 800 : 220,
     ...(reasoning ? { reasoning_effort: 'low' } : {}),
   }
@@ -95,11 +95,17 @@ export function systemPrompt(scene: string, level: ChatLevel): string {
     '- HINT: one short example sentence the learner could say next in answer to your REPLY.',
     '- The learner speaks through speech recognition: ignore capitalization, punctuation, filler words, and small recognition errors. If the message is unclear, kindly ask them to say it again in REPLY.',
     '- If there is no learner message yet, greet the learner and ask a first question that fits the situation; BETTER and NOTE are NONE.',
+    '- If the situation lists goals for the learner, lead the conversation through them one at a time.',
     'Answer with exactly these four lines and nothing else:',
     'REPLY: ...',
     'BETTER: ...',
     'NOTE: ...',
     'HINT: ...',
+    'Example, when the learner said "i want go to station":',
+    'REPLY: Sure! Which station would you like to go to?',
+    'BETTER: I want to go to the station.',
+    'NOTE: want to＋動詞の原形。特定の駅には the を付ける',
+    'HINT: I want to go to Tokyo Station.',
   ].join('\n')
 }
 
@@ -180,7 +186,109 @@ export function readChatBody(body: unknown): { scene: string; level: ChatLevel; 
 
 type CompletionResponse = { choices?: { message?: { content?: string } }[] }
 
-/** POST /api/chat — { scene, level, messages } に、相手の返事・直し・ヒントを返す */
+/** 句読点・大文字小文字・空白を除いて比べる（音声認識の文は句読点がなく、それだけ違う「直し」は出さない） */
+const normalize = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/[^a-z0-9' ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+/** 直しが元の文と（句読点・大文字小文字のほかは）同じなら、直しなしにする */
+export function dropSameCorrection(out: ChatReply, said: string | undefined): ChatReply {
+  if (!out.correction || !said) return out
+  return normalize(out.correction.better) === normalize(said) ? { ...out, correction: null } : out
+}
+
+/** 生成の途中の文から、返事（REPLY の行）のここまでを取り出す。complete は返事の行を書き終えたか */
+export function partialReply(text: string): { text: string; complete: boolean } {
+  const m = /(?:^|\n)\s*\**\s*REPLY\s*\**\s*[:：]\s*\**\s*/i.exec(text)
+  if (!m) return { text: '', complete: false }
+  const rest = text.slice(m.index + m[0].length)
+  const nl = rest.indexOf('\n')
+  const line = (nl >= 0 ? rest.slice(0, nl) : rest).split(/\{\s*"/)[0].replace(/\*+\s*$/, '').trim()
+  return { text: line, complete: nl >= 0 }
+}
+
+/** 上流の応答（SSE の stream か、ふつうの JSON）から、生成された文を順に取り出す */
+export async function* upstreamText(res: Response): AsyncGenerator<string> {
+  const ct = res.headers.get('content-type') ?? ''
+  if (!ct.includes('event-stream') || !res.body) {
+    const data = await upstreamJson<CompletionResponse>(res)
+    const c = data?.choices?.[0]?.message?.content
+    if (c) yield c
+    return
+  }
+  const reader = res.body.getReader()
+  const dec = new TextDecoder()
+  let buf = ''
+  for (;;) {
+    const { value, done } = await reader.read()
+    if (done) break
+    buf += dec.decode(value, { stream: true })
+    let i: number
+    while ((i = buf.indexOf('\n')) >= 0) {
+      const line = buf.slice(0, i).trim()
+      buf = buf.slice(i + 1)
+      if (!line.startsWith('data:')) continue
+      const data = line.slice(5).trim()
+      if (data === '[DONE]') return
+      try {
+        const j = JSON.parse(data) as { choices?: { delta?: { content?: string } }[]; response?: string }
+        // OpenAI 互換は choices[0].delta.content、Cloudflare の独自形式は response
+        const d = j.choices?.[0]?.delta?.content ?? j.response
+        if (typeof d === 'string' && d) yield d
+      } catch {
+        /* 壊れた行は飛ばす */
+      }
+    }
+  }
+}
+
+/**
+ * 返事を生成しながら送る（1行に1つの JSON）。
+ * {"type":"reply","text":"…","complete":false} を返事が伸びるたびに、最後に {"type":"done", 返事・直し・ヒント}。
+ * 端末は届いた返事をすぐ表示し、返事の行を書き終えた時点で読み上げを始められる
+ */
+function streamReply(res: Response, p: Provider, said: string | undefined, fallback: () => Promise<string>): Response {
+  const enc = new TextEncoder()
+  const body = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const send = (o: unknown) => controller.enqueue(enc.encode(JSON.stringify(o) + '\n'))
+      let text = ''
+      let last = ''
+      let lastComplete = false
+      try {
+        for await (const d of upstreamText(res)) {
+          text += d
+          const r = partialReply(text)
+          if (r.text && (r.text !== last || r.complete !== lastComplete)) {
+            last = r.text
+            lastComplete = r.complete
+            send({ type: 'reply', text: r.text, complete: r.complete })
+          }
+        }
+        // stream に対応していない・何も届かなかったときは、同じサービスにふつうの形でもう一度たのむ
+        if (!text.trim()) text = await fallback().catch(() => '')
+        const out = parseChatReply(text)
+        if (out) send({ type: 'done', ...dropSameCorrection(out, said), provider: p.name })
+        else send({ type: 'error', error: 'AI の返事を読み取れませんでした。もう一度送ってください' })
+      } catch {
+        // 途中で切れても、そこまでの返事が読めれば使う
+        const out = parseChatReply(text)
+        if (out) send({ type: 'done', ...dropSameCorrection(out, said), provider: p.name })
+        else send({ type: 'error', error: 'AI の返事が途中で切れました。もう一度送ってください' })
+      }
+      controller.close()
+    },
+  })
+  return new Response(body, {
+    headers: { 'Content-Type': 'application/x-ndjson; charset=utf-8', 'Cache-Control': 'no-store', 'X-Accel-Buffering': 'no' },
+  })
+}
+
+/** POST /api/chat — { scene, level, messages, stream? } に、相手の返事・直し・ヒントを返す（stream なら生成しながら送る） */
 export async function handleChat(request: Request, env: Env): Promise<Response> {
   const providers = chatProviders(env)
   if (!providers.length) return json({ error: 'AI 会話（Cloudflare / Groq）が未設定です' }, 503)
@@ -192,25 +300,45 @@ export async function handleChat(request: Request, env: Env): Promise<Response> 
   }
   const input = readChatBody(body)
   if (!input) return json({ error: 'リクエスト形式が不正です' }, 400)
+  const stream = (body as { stream?: unknown }).stream === true
+  const said = input.messages.at(-1)?.content
 
   const messages = [{ role: 'system', content: systemPrompt(input.scene, input.level) }, ...historyForModel(input.messages)]
+  const cid = (body as { cid?: unknown }).cid
+  const call = (p: Provider, asStream: boolean) =>
+    fetchUpstream(p.url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${p.key}`,
+        'Content-Type': 'application/json',
+        // Cloudflare：同じ会話を同じ場所で処理させ、前の部分の計算を使い回して最初の返事を速くする（プロンプトキャッシュ）
+        ...(p.name === 'cloudflare' && typeof cid === 'string' && /^[\w-]{8,64}$/.test(cid) ? { 'x-session-affinity': cid } : {}),
+      },
+      body: JSON.stringify({ ...completionBody(p, messages), ...(asStream ? { stream: true } : {}) }),
+      // 返事が来ないまま待たせない（次のサービスを試す）
+      signal: AbortSignal.timeout(25_000),
+    })
   let quota = false
   for (const p of providers) {
-    const res = await fetchUpstream(p.url, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${p.key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify(completionBody(p, messages)),
-    })
+    const res = await call(p, stream)
     // つながらない・枠を超えた・サーバーの不調なら、次のサービスを試す
     if (!res) continue
     if (!res.ok) {
-      if (res.status === 429 || res.status === 403) quota = true
-      console.error(`chat ${p.name} ${res.status}`, (await res.text().catch(() => '')).slice(0, 300))
+      const detail = (await res.text().catch(() => '')).slice(0, 300)
+      // 429 は無料枠・回数の上限。403 のうち 5035 は「有料プランが必要なモデル」なので枠切れとは分ける
+      if (res.status === 429 || (res.status === 403 && !/5035|paid/i.test(detail))) quota = true
+      console.error(`chat ${p.name} ${res.status}`, detail)
       continue
     }
+    if (stream)
+      return streamReply(res, p, said, async () => {
+        const r = await call(p, false)
+        const data = r?.ok ? await upstreamJson<CompletionResponse>(r) : undefined
+        return data?.choices?.[0]?.message?.content ?? ''
+      })
     const data = await upstreamJson<CompletionResponse>(res)
     const out = parseChatReply(data?.choices?.[0]?.message?.content ?? '')
-    if (out) return json({ ...out, provider: p.name })
+    if (out) return json({ ...dropSameCorrection(out, said), provider: p.name })
   }
   return json(
     { error: quota ? '今日の AI 会話の無料枠を使い切りました。料金はかからず、時間がたつとまた使えます' : 'AI に接続できませんでした。しばらくしてからもう一度お試しください' },

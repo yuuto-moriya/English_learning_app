@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { chatProviders, completionBody, handleChat, historyForModel, parseChatReply, readChatBody, systemPrompt } from '../server/chat.js'
+import { chatProviders, completionBody, dropSameCorrection, handleChat, historyForModel, parseChatReply, partialReply, readChatBody, systemPrompt } from '../server/chat.js'
 import type { Env } from '../server/shared.js'
 
 const BOTH: Env = { CLOUDFLARE_ACCOUNT_ID: 'acc', CLOUDFLARE_AI_TOKEN: 'cf', GROQ_API_KEY: 'gsk' }
@@ -94,5 +94,50 @@ describe('AI 会話（/api/chat）', () => {
     const res = await handleChat(post(OK), BOTH)
     expect(res.status).toBe(502)
     expect(((await res.json()) as { error: string }).error).toContain('料金はかからず')
+  })
+
+  it('句読点・大文字だけ違う「直し」は出さない', () => {
+    const out = { reply: 'OK', correction: { better: "I'd like a latte.", note: '' }, hint: '' }
+    expect(dropSameCorrection(out, "i'd like a latte").correction).toBeNull()
+    expect(dropSameCorrection(out, 'I want latte').correction).not.toBeNull()
+  })
+
+  it('生成の途中から、返事の行のここまでを取り出す', () => {
+    expect(partialReply('REPLY: Sure! What si')).toEqual({ text: 'Sure! What si', complete: false })
+    expect(partialReply('REPLY: Sure! What size?\nBETT')).toEqual({ text: 'Sure! What size?', complete: true })
+    expect(partialReply('Sure')).toEqual({ text: '', complete: false })
+  })
+
+  it('stream なら、生成しながら返事を送り、最後に直しとヒントを送る', async () => {
+    const sse = ['REPLY: Sure! What', ' size?\nBETTER: I want a latte, please.\n', 'NOTE: a を付ける\nHINT: Medium, please.']
+      .map((c) => `data: ${JSON.stringify({ choices: [{ delta: { content: c } }] })}\n\n`)
+      .join('') + 'data: [DONE]\n\n'
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(sse, { headers: { 'Content-Type': 'text/event-stream' } })))
+    const res = await handleChat(post({ ...OK, stream: true }), { CLOUDFLARE_ACCOUNT_ID: 'a', CLOUDFLARE_AI_TOKEN: 't' })
+    expect(res.headers.get('content-type')).toContain('ndjson')
+    const lines = (await res.text()).trim().split('\n').map((l) => JSON.parse(l))
+    expect(lines[0]).toEqual({ type: 'reply', text: 'Sure! What', complete: false })
+    expect(lines.some((l) => l.type === 'reply' && l.complete && l.text === 'Sure! What size?')).toBe(true)
+    expect(lines.at(-1)).toMatchObject({ type: 'done', reply: 'Sure! What size?', correction: { better: 'I want a latte, please.' }, hint: 'Medium, please.', provider: 'cloudflare' })
+  })
+
+  it('stream で何も届かなければ、同じサービスにふつうの形でたのみ直す', async () => {
+    const fetchMock = vi.fn(async (_u: string | URL, init?: RequestInit) =>
+      JSON.parse(String(init?.body)).stream
+        ? new Response('data: [DONE]\n\n', { headers: { 'Content-Type': 'text/event-stream' } })
+        : completion('REPLY: Hello again!\nBETTER: NONE\nNOTE: NONE\nHINT: Hi.'),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+    const res = await handleChat(post({ ...OK, stream: true, cid: 'abcdef12-3456' }), { CLOUDFLARE_ACCOUNT_ID: 'a', CLOUDFLARE_AI_TOKEN: 't' })
+    const lines = (await res.text()).trim().split('\n').map((l) => JSON.parse(l))
+    expect(lines.at(-1)).toMatchObject({ type: 'done', reply: 'Hello again!' })
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    expect((fetchMock.mock.calls[0][1]!.headers as Record<string, string>)['x-session-affinity']).toBe('abcdef12-3456')
+  })
+
+  it('有料プランが必要なモデル（403・5035）は枠切れと言わない', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('{"errors":[{"code":5035}]}', { status: 403 })))
+    const res = await handleChat(post(OK), { CLOUDFLARE_ACCOUNT_ID: 'a', CLOUDFLARE_AI_TOKEN: 't' })
+    expect(((await res.json()) as { error: string }).error).toContain('接続できませんでした')
   })
 })
