@@ -1,0 +1,830 @@
+abnormal|adj|The doctor found an *abnormal* result in the blood test.|医者は血液検査で異常な結果を見つけた。
+aboard|adv|All passengers are now *aboard*, so the plane can leave.|乗客はみな搭乗したので、飛行機は出発できる。
+absent|adj|Two members were *absent* from today's meeting.|今日の会議には2人のメンバーが欠席した。
+absorb|v|Plants *absorb* sunlight and use it to grow.|植物は日光を吸収して成長に使う。
+abundance|n|There was an *abundance* of food at the party.|パーティーには食べ物がたっぷりあった。
+abundant|adj|The region has *abundant* rain in the summer.|その地域は夏に雨が豊富に降る。
+academy|n|He entered a cooking *academy* after high school.|彼は高校を卒業して料理の専門学校に入った。
+accent|n|Can you tell where he is from by his *accent*?|なまりで彼がどこの出身か分かりますか？
+acceptance|n|Many people showed *acceptance* of the new rule without complaint.|多くの人が文句を言わずに新しい規則を受け入れた。
+accessible|adj|This website is *accessible* to people who cannot see well.|このウェブサイトは目の不自由な人にも利用しやすい。
+accessory|n|The camera comes with many useful *accessories*.|そのカメラには便利な付属品がたくさん付いている。
+accidental|adj|The fire was *accidental*; no one did it on purpose.|その火事は偶然で、だれかがわざとやったのではない。
+accidentally|adv|She *accidentally* left her umbrella at the cafe.|彼女はうっかりカフェに傘を忘れた。
+accustom|v|She slowly became *accustomed* to life in the city.|彼女は少しずつ都会の生活に慣れていった。
+ache|n|A warm bath will ease the *ache* in your legs.|温かいお風呂は足の痛みを和らげてくれる。
+acknowledgment|n|The company's *acknowledgment* of the problem surprised everyone.|会社が問題を認めたことにみんな驚いた。
+acquaintance|n|I met an old *acquaintance* at the airport yesterday.|昨日、空港で昔の知り合いに会った。
+actress|n|The *actress* won an award for her new movie.|その女優は新作映画で賞を取った。
+addressee|n|The letter was returned because the *addressee* had moved.|宛先人が引っ越していたので、手紙は戻ってきた。
+admiration|n|I have great *admiration* for people who run marathons.|私はマラソンを走る人たちをとても尊敬している。
+adorable|adj|The puppy looked *adorable* in its tiny red coat.|子犬は小さな赤いコートを着て、とてもかわいく見えた。
+adverb|n|Underline the *adverb* in this sentence.|この文の副詞に下線を引いてください。
+aerobics|n|Our *aerobics* class starts at seven in the evening.|私たちのエアロビクスのクラスは夜7時に始まる。
+affection|n|The dog showed its *affection* by licking my hand.|犬は私の手をなめて愛情を示した。
+afterward|adv|Call me *afterward* and tell me how it went.|その後で電話して、どうだったか教えてね。
+agriculture|n|Many young people want to study *agriculture* at university.|大学で農業を学びたい若者は多い。
+air conditioning|n|Is there *air conditioning* in the hotel rooms?|ホテルの部屋にはエアコンがありますか？
+alcoholic|adj|Children should not drink *alcoholic* beverages.|子どもはアルコール飲料を飲んではいけない。
+allergic|adj|She is *allergic* to peanuts and checks every label.|彼女はピーナッツアレルギーで、どの表示も確認する。
+aloud|adv|She read the letter *aloud* to her grandfather.|彼女は祖父に手紙を声に出して読んであげた。
+alphabet|n|The English *alphabet* has twenty-six letters.|英語のアルファベットは26文字ある。
+amazed|adj|He looked *amazed* when he saw the huge cake.|大きなケーキを見て、彼は驚いた顔をした。
+amazing|adj|She has an *amazing* voice that fills the whole hall.|彼女はホール全体に響きわたるすばらしい声をしている。
+ambitious|adj|He made an *ambitious* plan to open ten shops.|彼は10店舗を開くという野心的な計画を立てた。
+ambulance|n|The *ambulance* arrived in less than five minutes.|救急車は5分もかからずに到着した。
+amusing|adj|I found the movie very *amusing*.|私はその映画がとてもおもしろいと思った。
+animated|adj|She became *animated* when she talked about her trip.|旅行の話になると、彼女は生き生きとしてきた。
+animation|n|This studio makes beautiful *animation* for children and adults.|このスタジオは子どもにも大人にも美しいアニメーションを作っている。
+annoyance|n|To my *annoyance*, the bus was late again.|腹立たしいことに、バスはまた遅れた。
+annoyed|adj|I felt *annoyed* by the loud music next door.|隣の大きな音楽にいらいらした。
+antique|n|She likes to look for *antiques* at the weekend market.|彼女は週末の市で骨董品を探すのが好きだ。
+antonym|n|Can you think of an *antonym* for "happy"?|「happy」の反意語を思いつきますか？
+anxiously|adv|He looked *anxiously* at the clock.|彼は不安そうに時計を見た。
+anyhow|adv|*Anyhow*, let's get back to the main topic.|とにかく、本題に戻りましょう。
+apology|n|I owe you an *apology* for being late.|遅れたことをおわびしなければなりません。
+appetite|n|A long walk gave me a good *appetite*.|長い散歩のおかげで食欲がわいた。
+applaud|v|Everyone *applauded* when the winner came on stage.|優勝者が舞台に上がると、みんなが拍手した。
+applause|n|There was a round of *applause* for the winner.|優勝者に拍手が送られた。
+appreciation|n|We showed our *appreciation* with a small gift.|私たちは感謝の気持ちを小さな贈り物で表した。
+arithmetic|n|Basic *arithmetic* includes adding and subtracting.|基本的な計算には足し算と引き算がある。
+arrow|n|Click the *arrow* to go to the next page.|矢印をクリックすると次のページに進む。
+artistic|adj|He has an *artistic* eye for color.|彼は色に対する芸術的な目を持っている。
+aspirin|n|Do you have an *aspirin* in your bag?|かばんにアスピリンは入っていますか？
+astronomer|n|An *astronomer* uses a large telescope to watch the sky.|天文学者は大きな望遠鏡で空を観察する。
+athletic|adj|He is tall and *athletic*, like a basketball player.|彼は背が高く運動が得意で、バスケットボール選手のようだ。
+attain|v|It takes years to *attain* this level of skill.|この技術の水準に達するには何年もかかる。
+auxiliary|adj|The hospital has an *auxiliary* power system for emergencies.|その病院には非常時のための補助電源がある。
+avenue|n|We walked down the *avenue* to the park.|私たちは大通りを歩いて公園へ行った。
+awesome|adj|That's an *awesome* idea, so let's try it!|それはすごいアイデアだから、やってみよう。
+awkward|adj|I felt *awkward* at the party where I knew no one.|知り合いのいないパーティーで私は気まずかった。
+babysit|v|She *babysits* for her neighbors to earn money.|彼女はお金を稼ぐために近所の子の子守りをしている。
+babysitter|n|The *babysitter* put the kids to bed at eight.|ベビーシッターは8時に子どもたちを寝かせた。
+backache|n|A long drive gave him a *backache*.|長い運転で彼は背中が痛くなった。
+backpack|n|Don't forget your *backpack* when you leave.|出るときはリュックを忘れないでね。
+backpacker|n|As a *backpacker*, she traveled across Asia for six months.|バックパッカーとして、彼女は6か月かけてアジアを旅した。
+backpacking|n|My brother loves *backpacking* and sleeps in cheap hostels.|兄はバックパック旅行が大好きで、安いホステルに泊まる。
+bacon|n|The smell of *bacon* filled the kitchen.|ベーコンのにおいが台所に広がった。
+baker|n|The *baker* sold us two loaves of fresh bread.|パン職人は私たちに焼きたてのパンを2斤売ってくれた。
+bakery|n|The *bakery* opens at six in the morning.|そのパン屋は朝6時に開く。
+bald|adj|The old man was *bald* but had a long beard.|その老人は頭に髪がなかったが、長いひげがあった。
+bandage|n|He wrapped a *bandage* around his sore knee.|彼は痛むひざに包帯を巻いた。
+bank account|n|My pay goes straight to my *bank account*.|給料はそのまま私の銀行口座に振り込まれる。
+bare|adj|The walls of the room were *bare*.|その部屋の壁は何も飾られていなかった。
+bark|v|Our dog *barked* all night during the storm.|嵐の間、うちの犬は一晩中吠えていた。
+barrel|n|They rolled the *barrel* into the cellar.|彼らは樽を地下室へ転がして入れた。
+basement|n|The kids play games in the *basement*.|子どもたちは地下室でゲームをする。
+basin|n|He washed his face in the *basin*.|彼は洗面台で顔を洗った。
+bathe|v|We *bathed* in the warm hot spring.|私たちは温かい温泉に入った。
+beard|n|My father shaves his *beard* every week.|父は毎週あごひげをそる。
+beautifully|adv|The room was *beautifully* decorated with flowers.|その部屋は花で美しく飾られていた。
+because of|prep|I was late *because of* a traffic jam.|私は渋滞のせいで遅れた。
+bedside|n|He keeps a glass of water at his *bedside*.|彼は枕元に水の入ったコップを置いている。
+beloved|adj|She wrote a book about her *beloved* grandmother.|彼女は大好きな祖母についての本を書いた。
+bilingual|adj|We are looking for a *bilingual* assistant.|私たちは二か国語を話せるアシスタントを探している。
+biography|n|She is writing a *biography* of her grandfather.|彼女は祖父の伝記を書いている。
+biology|n|She studies *biology* at university and wants to be a researcher.|彼女は大学で生物学を学んでいて、研究者になりたいと思っている。
+bitter|adj|The medicine had a *bitter* taste.|その薬は苦い味がした。
+bleed|v|If the cut keeps *bleeding*, see a doctor.|切り傷から血が止まらなければ、医者に診てもらいなさい。
+blend|v|The colors *blend* together to make a soft green.|色が混ざり合って、やわらかい緑になる。
+blessing|n|Having good friends is a real *blessing*.|よい友人がいることは本当にありがたいことだ。
+blog|n|I read his travel *blog* every week.|私は毎週、彼の旅行ブログを読んでいる。
+blogger|n|She became a popular *blogger* after posting daily photos.|毎日写真を投稿して、彼女は人気ブロガーになった。
+blush|v|He *blushes* easily when he is shy.|彼は恥ずかしがり屋で、すぐに顔が赤くなる。
+boast|v|She never *boasts* about her good grades.|彼女は成績がよいことを決して自慢しない。
+bold|adj|It was a *bold* decision to start a new business.|新しい事業を始めるのは大胆な決断だった。
+boldly|adv|He *boldly* walked up to the stage and sang.|彼は大胆にも舞台に上がって歌った。
+boredom|n|Long waits at the airport lead to *boredom*.|空港での長い待ち時間は退屈につながる。
+bounce|v|The kids *bounce* on the bed every morning.|子どもたちは毎朝ベッドの上ではねる。
+bracelet|n|He gave her a *bracelet* for her birthday.|彼は誕生日に彼女にブレスレットを贈った。
+brainstorming|n|*Brainstorming* helps a team find fresh ideas.|ブレインストーミングはチームが新しい発想を見つけるのに役立つ。
+brand-new|adj|The shoes are *brand-new*, so don't step in the mud.|その靴は新品だから、泥を踏まないで。
+bravely|adv|She *bravely* told the truth to her teacher.|彼女は勇敢にも先生に本当のことを話した。
+breakthrough|n|After months of talks, they reached a *breakthrough*.|何か月もの話し合いの末、彼らは突破口にたどり着いた。
+breathless|adj|She arrived *breathless* after running from the station.|彼女は駅から走ってきて、息を切らして到着した。
+brick|n|He laid a *brick* at the base of the garden wall.|彼は庭の壁の根元にれんがを1個置いた。
+brightly|adv|She smiled *brightly* and waved to us.|彼女は明るくほほえんで私たちに手を振った。
+broccoli|n|Steam the *broccoli* for three minutes.|ブロッコリーを3分間蒸してください。
+bronze|n|The old bell was cast in *bronze*.|その古い鐘は青銅で鋳造された。
+bubble|n|Small *bubbles* rose to the top of the water.|小さな泡が水面まで上がっていった。
+buddy|n|He went fishing with his old *buddy*.|彼は昔からの仲間と釣りに行った。
+builder|n|The *builder* finished the house in six months.|その建築業者は6か月で家を完成させた。
+bump|v|The car *bumped* the fence, but there was no damage.|車はフェンスにぶつかったが、傷はなかった。
+bureau|n|He asked at the information *bureau* for a map.|彼は案内所で地図をもらえないか尋ねた。
+burning|adj|Don't touch the *burning* candle, because it is very hot.|燃えているろうそくはとても熱いから、触らないで。
+cabbage|n|*Cabbage* is cheap in the winter.|冬はキャベツが安い。
+cage|n|The rabbit lives in a small *cage*.|そのウサギは小さなかごの中で暮らしている。
+calmness|n|Deep breathing brings *calmness* to the mind.|深呼吸は心に落ち着きをもたらす。
+campsite|n|The *campsite* has showers and a small shop.|そのキャンプ場にはシャワーと小さな店がある。
+canal|n|A new *canal* was built to carry water to the fields.|畑に水を運ぶために新しい運河が造られた。
+candle|n|The *candle* went out when the wind blew.|風が吹くとろうそくの火が消えた。
+canned|adj|We ate *canned* fish on the camping trip.|私たちはキャンプで缶詰の魚を食べた。
+capsule|n|The medicine comes in a small white *capsule*.|その薬は小さな白いカプセルになっている。
+careless|adj|She was *careless* and left the door open.|彼女は不注意でドアを開けたままにした。
+carelessly|adv|She answered *carelessly* and made several errors.|彼女は不注意に答えて、いくつか間違えた。
+carton|n|She put a *carton* of eggs in the cart.|彼女は卵のパックをカートに入れた。
+categorize|v|The library *categorizes* books by subject.|図書館は本を主題ごとに分類している。
+cattle|n|The *cattle* walked slowly across the field.|牛たちは畑をゆっくりと横切って歩いた。
+caution|n|Use *caution* when you open the hot oven.|熱いオーブンを開けるときは気をつけて。
+cautious|adj|Be *cautious* when you buy things online.|ネットで買い物をするときは慎重にね。
+cave|n|We explored a deep *cave* on our trip.|私たちは旅行で深い洞窟を探検した。
+celebrity|n|Many *celebrities* came to the party.|多くの有名人がそのパーティーに来た。
+central heating|n|The *central heating* broke down in the coldest week.|いちばん寒い週にセントラルヒーティングが壊れた。
+certainty|n|There is no *certainty* that he will win.|彼が勝つという確実性はない。
+challenging|adj|The hike was long and *challenging*.|そのハイキングは長くてきつかった。
+chaos|n|After the party, the kitchen was in *chaos*.|パーティーの後、台所はめちゃくちゃだった。
+check-in counter|n|There was a long line at the *check-in counter*.|チェックインカウンターには長い列ができていた。
+checkout|n|The store has six *checkouts*, and all of them are open.|その店にはレジが6つあり、すべて開いている。
+cheerful|adj|The cafe has a *cheerful* atmosphere.|そのカフェは明るい雰囲気だ。
+chemistry|n|Our *chemistry* teacher showed us an experiment.|化学の先生が私たちに実験を見せてくれた。
+cherish|v|She *cherishes* the ring her mother gave her.|彼女は母にもらった指輪を大切にしている。
+chest of drawers|n|We bought a wooden *chest of drawers* for the bedroom.|私たちは寝室用に木製のたんすを買った。
+chewing gum|n|He was told to throw away his *chewing gum*.|彼はガムを捨てるように言われた。
+choir|n|The school *choir* gave a concert in December.|学校の合唱団は12月にコンサートを開いた。
+choke|v|She *choked* on the dust when she cleaned.|彼女は掃除をしていてほこりにむせた。
+chronological|adj|A *chronological* resume begins with your latest job.|時系列式の履歴書は最新の職歴から始まる。
+chuckle|n|We all had a good *chuckle* at the joke.|私たちはみんなその冗談に思わず笑った。
+circus|n|A *circus* came to town last week.|先週、サーカスが町に来た。
+citizenship|n|He has dual *citizenship* in two countries.|彼は二つの国の国籍を持っている。
+civilization|n|Modern *civilization* depends on electricity and the internet.|現代文明は電気とインターネットに頼っている。
+cliff|n|We watched the waves hit the *cliff*.|私たちは波が崖に打ちつけるのを眺めた。
+climber|n|A group of *climbers* was waiting at the base camp.|登山者の一団がベースキャンプで待っていた。
+clinic|n|The *clinic* closes at six on weekdays.|その診療所は平日は6時に閉まる。
+clip|n|She put a *clip* in her hair.|彼女は髪にクリップをつけた。
+coastal|adj|*Coastal* areas often get strong winds.|沿岸地域はよく強い風が吹く。
+collar|n|She turned up her *collar* against the cold wind.|彼女は冷たい風を避けようと襟を立てた。
+columnist|n|She works as a *columnist* for a local paper.|彼女は地元紙のコラムニストとして働いている。
+comedian|n|He wants to become a *comedian* someday.|彼はいつかお笑い芸人になりたいと思っている。
+comet|n|People gathered to watch the *comet* in the sky.|人々は空の彗星を見ようと集まった。
+comma|n|Add a *comma* between the two names.|二つの名前の間にコンマを入れてください。
+common sense|n|Use your *common sense* and don't go out in the storm.|常識を働かせて、嵐の中は出かけないで。
+companion|n|She traveled with a *companion* from her tour group.|彼女はツアーで一緒になった人と旅をした。
+compliment|n|She gave me a nice *compliment* on my new haircut.|彼女は私の新しい髪型をほめてくれた。
+complicated|adj|It's a *complicated* story with many characters.|それは登場人物が多い複雑な話だ。
+concerned|adj|Parents are *concerned* about the school's new rule.|親たちは学校の新しい規則を心配している。
+confusing|adj|The instructions are *confusing*, so please explain them again.|その説明書は分かりにくいので、もう一度説明してください。
+congratulate|v|We *congratulated* her on winning the prize.|私たちは彼女の受賞を祝った。
+conquer|v|It took years to *conquer* the disease.|その病気を克服するのに何年もかかった。
+conscious|adj|The patient was awake and *conscious*.|その患者は目を覚まして意識があった。
+conservation|n|Water *conservation* is important during a dry summer.|雨の少ない夏は水の節約が大切だ。
+consonant|n|The word has three *consonants* and one vowel.|その単語には子音が3つと母音が1つある。
+constitution|n|The *constitution* says that all people are equal.|憲法はすべての人が平等だと定めている。
+continuously|adv|The machine ran *continuously* all night.|その機械は一晩中動き続けた。
+contrary|adj|The two plans lead to *contrary* results.|その二つの計画は正反対の結果につながる。
+convey|v|Please *convey* my thanks to your parents.|ご両親に私の感謝をお伝えください。
+correction|n|Please send a *correction* if you find a mistake.|間違いを見つけたら、訂正を送ってください。
+cotton|n|*Cotton* grows well in warm places.|綿は暖かい場所でよく育つ。
+counseling|n|The school offers free *counseling* to students.|その学校は生徒に無料のカウンセリングを行っている。
+countless|adj|There are *countless* stars in the sky.|空には数えきれないほどの星がある。
+courage|n|He had the *courage* to say no.|彼には断る勇気があった。
+courageous|adj|It was a *courageous* decision to tell the truth.|本当のことを話すのは勇気ある決断だった。
+creator|n|The *creator* of the game is a young designer.|そのゲームの作者は若いデザイナーだ。
+crossroads|n|The old inn stands at a quiet *crossroads*.|その古い宿は静かな交差点にある。
+cruel|adj|Some children can be *cruel* to each other.|子どもは互いにひどいことをすることがある。
+cucumber|n|She made a sandwich with *cucumber* and cheese.|彼女はきゅうりとチーズのサンドイッチを作った。
+cultivate|v|They *cultivate* tea on the hills.|彼らは丘でお茶を栽培している。
+cure|n|There is no quick *cure* for a cold.|風邪にすぐ効く治療法はない。
+curiosity|n|Children are full of *curiosity* and ask many questions.|子どもは好奇心でいっぱいで、たくさん質問をする。
+curiously|adv|The cat *curiously* sniffed the new bag.|猫は新しいかばんを興味深そうににおいだ。
+curly|adj|My dog has *curly* fur, so it needs a haircut.|うちの犬は毛が巻いているので、カットが必要だ。
+curriculum|n|English is part of the *curriculum* from the first grade.|英語は1年生からカリキュラムに入っている。
+cushion|n|The sofa has three soft *cushions*.|そのソファには柔らかいクッションが3つある。
+customs|n|The officer at *customs* checked my bag.|税関の係員が私のかばんを調べた。
+damaged|adj|He took a *damaged* phone to the shop.|彼は壊れた携帯電話を店に持っていった。
+damp|adj|The basement smells *damp* after the rain.|雨の後、地下室は湿ったにおいがする。
+dangerously|adv|The river was *dangerously* high after the storm.|嵐の後、川は危険なほど水位が高かった。
+deadly|adj|Smoking can lead to *deadly* diseases.|喫煙は命にかかわる病気につながることがある。
+deaf|adj|He became *deaf* in one ear after the accident.|彼は事故の後、片方の耳が聞こえなくなった。
+debris|n|After the storm, *debris* covered the street.|嵐の後、通りはがれきで覆われた。
+declaration|n|The president read a *declaration* on the radio.|大統領はラジオで宣言を読み上げた。
+deed|n|He was praised for his brave *deeds*.|彼は勇敢な行いをほめられた。
+defender|n|She plays as a *defender* on the soccer team.|彼女はサッカーチームでディフェンダーをしている。
+deficiency|n|The test showed a *deficiency* in iron.|検査で鉄分の不足が分かった。
+definite|adj|There is a *definite* change in his attitude.|彼の態度にははっきりした変化がある。
+delicate|adj|She has *delicate* skin that burns easily.|彼女は繊細な肌で、すぐに日焼けする。
+delighted|adj|She was *delighted* with the gift.|彼女はその贈り物にとても喜んだ。
+delightful|adj|What a *delightful* surprise to see you here!|ここであなたに会えるなんて、なんてすてきな驚きでしょう。
+depressed|adj|She was *depressed* about the long, gray winter.|彼女は長くどんよりした冬に気が滅入っていた。
+depressing|adj|It's *depressing* to work on a rainy Monday.|雨の月曜日に働くのは気が滅入る。
+deprive|v|The strict rule *deprived* the students of free time.|その厳しい規則は生徒から自由な時間を奪った。
+despair|n|She cried in *despair* when the door closed.|ドアが閉まると、彼女は絶望して泣いた。
+desperate|adj|They made a *desperate* attempt to save the dog.|彼らは犬を助けようと必死の努力をした。
+destructive|adj|Too much stress can be *destructive* to your health.|ストレスが多すぎると健康に悪い影響が出ることがある。
+detective|n|She likes novels about a clever *detective*.|彼女は賢い探偵が出てくる小説が好きだ。
+devastate|v|The fire *devastated* the forest and the animals living there.|火事は森とそこにすむ動物たちを荒廃させた。
+devastating|adj|It was a *devastating* loss for the family.|それは家族にとって大きな打撃となる喪失だった。
+diameter|n|The pizza is thirty centimeters in *diameter*.|そのピザは直径30センチだ。
+diaper|n|We packed *diapers* in the bag.|私たちはかばんにおむつを詰めた。
+diligent|adj|He's a *diligent* worker who never misses a day.|彼は一日も休まない勤勉な働き手だ。
+dirt|n|Wipe the *dirt* off your shoes.|靴の泥をふき取って。
+disability|n|She does not let her *disability* stop her.|彼女は障がいに行動を妨げられない。
+disagreement|n|There was a *disagreement* over the plan.|その計画をめぐって意見の食い違いがあった。
+disappointment|n|The loss was a big *disappointment* for the fans.|その敗戦はファンにとって大きな失望だった。
+disastrous|adj|Rain made the festival *disastrous* for the shop owners.|雨のせいで、お祭りは店の人たちにとって散々なものになった。
+discomfort|n|The cold room caused them *discomfort*.|寒い部屋は彼らに不快な思いをさせた。
+discourage|v|Bad grades can *discourage* a student.|悪い成績は生徒のやる気をなくさせることがある。
+discrimination|n|She faced *discrimination* because of her age.|彼女は年齢を理由に差別を受けた。
+disgusting|adj|This milk tastes *disgusting*, so please throw it away.|この牛乳はひどくまずいから、捨ててください。
+dishwasher|n|Our new *dishwasher* is very quiet.|うちの新しい食器洗い機はとても静かだ。
+dissolve|v|Stir until the salt *dissolves* in the water.|塩が水に溶けるまでかき混ぜてください。
+distinctly|adv|She spoke *distinctly* so everyone could understand.|彼女はみんなが理解できるようにはっきり話した。
+disturbance|n|Please keep quiet to avoid *disturbance* to others.|他の人の迷惑にならないよう静かにしてください。
+dive|v|I want to *dive* and see colorful fish.|私は潜ってカラフルな魚を見たい。
+diver|n|She is a professional *diver* who films whales.|彼女はクジラを撮影するプロのダイバーだ。
+diverse|adj|We offer a *diverse* range of classes.|当校は多様な授業を提供している。
+diving|n|He goes *diving* in the ocean every summer.|彼は毎年夏に海へダイビングに行く。
+divorced|adj|She is *divorced* and lives with her son.|彼女は離婚していて、息子と暮らしている。
+documentary|n|That *documentary* won a prize at the film festival.|そのドキュメンタリーは映画祭で賞を取った。
+dolphin|n|*Dolphins* are very smart animals that live in groups.|イルカは群れで暮らす、とても賢い動物だ。
+dot|n|On the map, each red *dot* is a city.|地図では、赤い点の一つ一つが都市を表す。
+downward|adj|Follow the *downward* slope to the river.|下り坂を進むと川に出る。
+doze|v|I *dozed* off during the long lecture.|私は長い講義の間にうとうと眠ってしまった。
+drown|v|Swim near the lifeguard so you won't *drown*.|溺れないように、救助員の近くで泳いで。
+drunk|adj|She got *drunk* at the wedding party.|彼女は結婚披露宴で酔っぱらった。
+dull|adj|The movie was so *dull* that I fell asleep.|その映画はとても退屈で、私は眠ってしまった。
+dump|v|Someone *dumped* old furniture in the park.|だれかが公園に古い家具を捨てていった。
+dusty|adj|The shelves in the attic are very *dusty*.|屋根裏の棚はとてもほこりっぽい。
+duty-free|adj|Many *duty-free* shops sell sweets and drinks.|多くの免税店はお菓子や飲み物を売っている。
+dynasty|n|A new *dynasty* began after the war.|戦争の後、新しい王朝が始まった。
+eager|adj|She is *eager* to learn English.|彼女は英語を学びたくてたまらない。
+earache|n|A bad cold gave her an *earache*.|ひどい風邪で彼女は耳が痛くなった。
+easygoing|adj|He is an *easygoing* boss who rarely gets angry.|彼はめったに怒らないおおらかな上司だ。
+ecological|adj|Pollution caused an *ecological* problem in the lake.|汚染のせいで湖に生態系の問題が起きた。
+ecology|n|He took a course in *ecology* last year.|彼は去年、生態学の講座を受けた。
+economics|n|*Economics* explains how prices change over time.|経済学は価格が時間とともにどう変わるかを説明する。
+ecosystem|n|Bees are important to the *ecosystem*.|ミツバチは生態系にとって大切だ。
+elbow|n|He hit his *elbow* on the door.|彼はドアにひじをぶつけた。
+embarrassed|adj|She felt *embarrassed* about her mistake.|彼女は自分の間違いが恥ずかしかった。
+embarrassment|n|To my *embarrassment*, I tripped on the stage.|恥ずかしいことに、私は舞台でつまずいた。
+emotionally|adv|He spoke *emotionally* about his late father.|彼は亡き父について感情を込めて語った。
+emperor|n|The *emperor* ruled the land for forty years.|皇帝は40年間その土地を治めた。
+encouragement|n|Children need *encouragement* from their parents.|子どもには親からの励ましが必要だ。
+encouraging|adj|Her teacher gave her *encouraging* words.|先生は彼女に励ましの言葉をかけた。
+encyclopedia|n|The library has a large *encyclopedia* set.|その図書館には大きな百科事典のセットがある。
+endanger|v|Pollution *endangers* the fish in the river.|汚染は川の魚を危険にさらしている。
+endless|adj|We drove through *endless* fields of corn.|私たちは果てしなく続くトウモロコシ畑を車で走った。
+endure|v|She *endured* a long, cold winter.|彼女は長くて寒い冬に耐えた。
+engaged|adj|They got *engaged* last spring and will marry in June.|二人は去年の春に婚約し、6月に結婚する。
+engineering|n|*Engineering* is a popular major for students who like math.|工学は数学が好きな学生に人気の専攻だ。
+enjoyable|adj|The trip was *enjoyable* for everyone.|その旅行はみんなにとって楽しかった。
+enjoyment|n|He plays the piano for his own *enjoyment*.|彼は自分の楽しみのためにピアノを弾く。
+enrich|v|Music *enriches* our lives in many ways.|音楽はさまざまな形で私たちの生活を豊かにする。
+entertainer|n|She worked as an *entertainer* at hotels.|彼女はホテルでエンターテイナーとして働いていた。
+enthusiasm|n|The team's *enthusiasm* made the project fun.|チームの熱意のおかげで、その企画は楽しいものになった。
+enthusiast|n|She is a coffee *enthusiast* who roasts her own beans.|彼女は自分で豆を焙煎するコーヒー好きだ。
+enthusiastic|adj|She is *enthusiastic* about learning to cook.|彼女は料理を習うことに熱心だ。
+environmentalist|n|My aunt is an *environmentalist* who recycles everything.|おばは何でもリサイクルする環境保護活動家だ。
+equality|n|The school teaches *equality* to all students.|その学校はすべての生徒に平等について教えている。
+essence|n|Good teamwork is the *essence* of this job.|よいチームワークはこの仕事の真髄だ。
+eternity|n|They promised to love each other for *eternity*.|二人は永遠に愛し合うと約束した。
+evenly|adv|Divide the cake *evenly* among the kids.|ケーキを子どもたちで均等に分けてください。
+evident|adj|His joy was *evident* from his big smile.|彼の喜びは満面の笑みから明らかだった。
+examiner|n|The *examiner* watched me during my driving test.|試験官は運転免許の試験中、私を見ていた。
+excellence|n|He received an award for *excellence* in teaching.|彼は教育における卓越さで賞を受けた。
+exchange rate|n|Check the *exchange rate* before you change money.|両替する前に為替レートを確認してください。
+excitedly|adv|She *excitedly* opened the box and found a puppy.|彼女はわくわくして箱を開け、中に子犬を見つけた。
+exclusive|adj|It is an *exclusive* hotel where only a few can stay.|そこはごく限られた人しか泊まれない高級ホテルだ。
+exhausted|adj|The *exhausted* runner sat down on the ground.|疲れ果てたランナーは地面に座り込んだ。
+experienced|adj|She is an *experienced* teacher with ten years of work.|彼女は10年の経歴を持つ経験豊富な教師だ。
+exploration|n|They went on an *exploration* of the cave.|彼らは洞窟の探検に出かけた。
+explosion|n|The gas *explosion* shook the building.|ガス爆発で建物が揺れた。
+extensively|adv|She has traveled *extensively* in Europe.|彼女はヨーロッパを広く旅行してきた。
+extinct|adj|Some birds have gone *extinct* because of hunting.|狩りのせいで絶滅した鳥もいる。
+extinction|n|The *extinction* of the dinosaurs is still a mystery.|恐竜の絶滅は今も謎である。
+extreme sports|n|Many young people enjoy *extreme sports* like snowboarding.|多くの若者がスノーボードのようなエクストリームスポーツを楽しむ。
+eyesight|n|Carrots are said to be good for your *eyesight*.|にんじんは視力によいと言われている。
+face to face|adv|I'd rather talk *face to face* than on the phone.|電話より直接会って話したい。
+faint|adj|There was a *faint* smell of smoke in the air.|空気中にかすかな煙のにおいがした。
+faithful|adj|He was a *faithful* husband for fifty years.|彼は50年間、誠実な夫だった。
+fake|adj|He showed a *fake* ID at the door.|彼は入口で偽の身分証を見せた。
+fantasy|n|The movie is a *fantasy* about magic and dragons.|その映画は魔法とドラゴンのファンタジーだ。
+faraway|adj|We saw a *faraway* light across the lake.|私たちは湖の向こうに遠くの明かりを見た。
+farewell|n|We said our *farewell* at the airport.|私たちは空港で別れを告げた。
+farming|n|Her family has been in *farming* for generations.|彼女の家は何世代も農業を営んでいる。
+farmland|n|The *farmland* stretched as far as we could see.|農地は見渡すかぎり広がっていた。
+farther|adv|I'm too tired to walk any *farther* today.|私は今日は疲れすぎて、これ以上歩けない。
+fashionable|adj|That cafe is very *fashionable* among young people.|そのカフェは若者の間でとても流行している。
+fasten|v|She *fastened* the buttons on her coat.|彼女はコートのボタンを留めた。
+fax|n|We got your *fax* this morning.|今朝、あなたのファクスを受け取りました。
+feast|n|The wedding *feast* lasted all night.|結婚の宴は夜通し続いた。
+ferry|n|The last *ferry* leaves the port at nine tonight.|最終のフェリーは今夜9時に港を出る。
+festive|adj|Everyone was in a *festive* mood at the holiday party.|休日のパーティーでは皆がお祭り気分だった。
+fetch|v|The dog ran to *fetch* the ball.|犬はボールを取りに走っていった。
+finding|n|The main *finding* of the report is that sleep helps memory.|報告書の主な結果は、睡眠が記憶に役立つということだ。
+fire station|n|A fire truck drove quickly out of the *fire station*.|消防車が消防署から素早く出ていった。
+firefighter|n|My brother wants to become a *firefighter* someday.|兄はいつか消防士になりたいと思っている。
+firework|n|Children love to watch *fireworks* at the summer festival.|子どもたちは夏祭りで花火を見るのが大好きだ。
+flock|n|The farmer counted his *flock* of sheep every evening.|農家の人は毎晩羊の群れを数えた。
+fluent|adj|He gave a *fluent* speech without looking at his notes.|彼はメモを見ずに流ちょうなスピーチをした。
+flunk|v|He *flunked* chemistry and had to take the class again.|彼は化学の単位を落とし、もう一度授業を受けなければならなかった。
+fond|adj|She is *fond* of cooking Italian food on weekends.|彼女は週末にイタリア料理を作るのが好きだ。
+foolish|adj|Don't be *foolish*; you can't swim across the lake!|ばかなことを言わないで。湖を泳いで渡れるはずがない！
+forbidden|adj|Swimming is *forbidden* in this part of the river.|川のこのあたりでは遊泳が禁止されている。
+forehead|n|The nurse put her hand on my *forehead* to check for a fever.|看護師は熱を確かめるため私のおでこに手を当てた。
+forgive|v|She never *forgave* him for forgetting her birthday.|彼女は誕生日を忘れた彼をずっと許さなかった。
+formally|adv|The company will *formally* announce the news on Monday.|会社は月曜日にそのニュースを正式に発表する。
+fountain|n|We threw coins into the *fountain* and made a wish.|私たちは噴水にコインを投げて願い事をした。
+freezer|n|There is a bag of peas in the *freezer*.|冷凍庫にグリーンピースが一袋ある。
+freezing|adj|My hands were *freezing* after the long walk.|長く歩いたので、手が凍えそうだった。
+freshman|n|The *freshman* got lost on her first day of high school.|その1年生は高校の初日に道に迷った。
+frost|n|Farmers worry when *frost* comes too early in the fall.|霜が秋に早く降りすぎると農家は心配する。
+frozen|adj|The road is *frozen* this morning, so drive carefully.|今朝は道が凍っているので、気をつけて運転して。
+frustrated|adj|She felt *frustrated* because nobody listened to her ideas.|誰も自分の考えを聞いてくれず、彼女はいらだちを感じた。
+frustration|n|Waiting in long lines caused a lot of *frustration*.|長い列で待たされて、多くのいらだちが生まれた。
+frying pan|n|I burned my hand on the hot *frying pan*.|熱いフライパンでやけどをした。
+full-time|adj|We need to hire a *full-time* teacher next year.|来年は常勤の教師を雇う必要がある。
+funeral|n|She wore a black dress to the *funeral*.|彼女は葬儀に黒いドレスを着ていった。
+fur|n|The dog's thick *fur* keeps it warm in winter.|その犬の厚い毛は冬でも体を暖かく保つ。
+furnish|v|They *furnished* the living room with a sofa and a small table.|彼らは居間にソファと小さなテーブルを備えた。
+fuss|n|There was a big *fuss* when the singer arrived.|その歌手が到着すると大騒ぎになった。
+gallon|n|I bought a *gallon* of milk at the store.|店で牛乳を1ガロン買った。
+gardening|n|*Gardening* is a good way to relax after work.|ガーデニングは仕事の後にくつろぐのによい方法だ。
+generous|adj|She gave a *generous* gift to the school.|彼女は学校に気前のよい寄付をした。
+genetics|n|*Genetics* explains why children look like their parents.|遺伝学は、子どもが親に似る理由を説明する。
+geography|n|He knows the *geography* of Europe very well.|彼はヨーロッパの地理をとてもよく知っている。
+gifted|adj|The school has a special class for *gifted* children.|その学校には才能のある子ども向けの特別クラスがある。
+ginger|n|I drink *ginger* tea when I have a cold.|風邪をひいたときはしょうが茶を飲む。
+glimpse|n|She got only a *glimpse* of the car before it disappeared.|車が消える前に、彼女はちらりと見ただけだった。
+glorious|adj|It was a *glorious* sunny morning at the beach.|ビーチはすばらしく晴れた朝だった。
+gorgeous|adj|The view from the hotel room was *gorgeous*.|ホテルの部屋からの眺めはすばらしく美しかった。
+gossip|n|They spent the afternoon sharing *gossip* about their neighbors.|彼らは午後ずっと近所の人たちのうわさ話をして過ごした。
+graceful|adj|The cat jumped onto the shelf in a *graceful* way.|猫は優雅な身のこなしで棚に飛び乗った。
+graduation|n|After *graduation*, he moved to Chicago to find a job.|卒業後、彼は仕事を探しにシカゴへ引っ越した。
+graphics|n|My computer needs a better *graphics* card.|私のコンピューターにはもっと良いグラフィックスカードが必要だ。
+gratitude|n|I want to express my *gratitude* to everyone who helped me.|助けてくれたみんなに感謝の気持ちを伝えたい。
+gravy|n|My grandmother makes the best *gravy* at Thanksgiving.|祖母は感謝祭に最高のグレービーソースを作る。
+greenhouse|n|It is always warm inside the *greenhouse*, even in winter.|温室の中は冬でもいつも暖かい。
+greeting|n|"Good morning" is a common *greeting* in English.|"Good morning"は英語でよく使うあいさつだ。
+grill|v|*Grill* the fish for five minutes on each side.|魚を両面5分ずつ焼いてください。
+guilt|n|She couldn't sleep because of her *guilt*.|彼女は罪悪感で眠れなかった。
+guitarist|n|My uncle works as a *guitarist* in a small band.|おじは小さなバンドでギタリストとして働いている。
+habitat|n|Pollution can destroy the *habitat* of fish.|汚染は魚の生息地を破壊することがある。
+hairdresser|n|The *hairdresser* cut my hair very short.|美容師は私の髪をとても短く切った。
+hammer|n|She bought a *hammer* to hang the pictures.|彼女は絵を掛けるためにハンマーを買った。
+hand-held|adj|He took photos with a small *hand-held* camera.|彼は小さな手持ちカメラで写真を撮った。
+handkerchief|n|I always carry a clean *handkerchief* in my pocket.|私はいつもポケットに清潔なハンカチを入れている。
+handshake|n|A *handshake* is a common greeting in business.|握手はビジネスでよくあるあいさつだ。
+handwriting|n|I can't read his messy *handwriting*.|彼の乱雑な字は読めない。
+handy|adj|This app is *handy* for finding nearby cafes.|このアプリは近くのカフェを探すのに便利だ。
+hard-working|adj|Our *hard-working* staff stayed late to finish the order.|勤勉なスタッフが注文を終えるため遅くまで残った。
+hardship|n|She grew up in *hardship*, but never gave up.|彼女は苦難の中で育ったが、あきらめなかった。
+hasty|adj|It was a *hasty* choice, and he regretted it later.|それは性急な選択で、彼は後で後悔した。
+hatred|n|She felt deep *hatred* toward the man who lied to her.|彼女は自分にうそをついた男に深い憎しみを感じた。
+headline|n|I only read the *headlines* in the morning.|朝は見出ししか読まない。
+heal|v|Time can *heal* a broken heart.|時間が傷ついた心を癒やすこともある。
+hearing|n|Loud music can damage your *hearing*.|大音量の音楽は聴力を傷めることがある。
+heart attack|n|Regular exercise can lower your risk of a *heart attack*.|定期的な運動は心臓発作のリスクを下げる。
+heater|n|We bought a small *heater* for the bedroom.|寝室用に小さなヒーターを買った。
+heel|n|These new shoes hurt my *heels*.|この新しい靴はかかとが痛い。
+helmet|n|The baseball player's *helmet* protected his head.|野球選手のヘルメットが頭を守った。
+helpless|adj|I felt *helpless* when I saw my friend crying.|泣いている友人を見て、なすすべがないと感じた。
+herd|n|The farmer moved his *herd* of cattle to a new field.|農家の人は牛の群れを新しい牧草地に移した。
+hidden|adj|There is a *hidden* door behind the bookshelf.|本棚の後ろに隠し扉がある。
+hip|n|He put his hands on his *hips* and laughed.|彼は両手を腰に当てて笑った。
+homeless|adj|The church gives free meals to *homeless* people.|その教会は家のない人々に無料の食事を出している。
+honestly|adv|He *honestly* told the teacher that he had copied the answer.|彼は答えを写したと先生に正直に話した。
+honesty|n|*Honesty* is important in any friendship.|どんな友情でも正直さは大切だ。
+honeymoon|n|Where are you going on your *honeymoon*?|新婚旅行はどこへ行くの？
+hopeful|adj|She felt *hopeful* after the doctor's good news.|医者からの良い知らせの後、彼女は希望を感じた。
+hopeless|adj|It's *hopeless*; the old radio is completely broken.|絶望的だ。その古いラジオは完全に壊れている。
+horn|n|Don't use your *horn* near the hospital at night.|夜に病院の近くでクラクションを鳴らさないで。
+hostel|n|The *hostel* has a shared kitchen for travelers.|そのホステルには旅行者用の共用キッチンがある。
+housework|n|Sharing the *housework* is important for a happy family.|家事を分担することは幸せな家庭に大切だ。
+humanity|n|Scientists hope the new medicine will help all of *humanity*.|科学者たちは新しい薬が全人類の役に立つことを望んでいる。
+humid|adj|It was so *humid* that my shirt stuck to me.|とても蒸し暑くて、シャツが体に張りついた。
+humorous|adj|Her speech was *humorous* and made everyone laugh.|彼女のスピーチはユーモアがあり、皆を笑わせた。
+ice skating|n|*Ice skating* is hard for beginners at first.|アイススケートは初心者には最初は難しい。
+idiom|n|It's hard to learn every English *idiom*.|英語のイディオムをすべて覚えるのは難しい。
+idol|n|Many teenagers want to meet their *idol*.|多くの10代が自分のアイドルに会いたがる。
+illegally|adv|Selling tickets *illegally* is a crime.|チケットを違法に売るのは犯罪だ。
+imaginary|adj|The story takes place in an *imaginary* country.|その物語は架空の国が舞台だ。
+imitate|v|Young children often *imitate* the way their parents talk.|幼い子どもはよく親の話し方をまねる。
+immigration|n|*Immigration* has increased in the city over the last ten years.|この都市では過去10年で移民が増えた。
+including|prep|The price is fifty dollars, *including* tax.|値段は税込みで50ドルだ。
+inconvenient|adj|Is this an *inconvenient* time to talk?|今は話すのに都合の悪い時ですか？
+incorrect|adj|The map was *incorrect*, so we got lost.|地図が不正確だったので、私たちは道に迷った。
+incredible|adj|It's *incredible* that she finished the race with a broken toe.|足の指を骨折していたのにレースを完走したなんて信じられない。
+incredibly|adv|She is *incredibly* kind to everyone.|彼女は誰にでもとても親切だ。
+indoors|adv|Children have to stay *indoors* when the air is bad.|空気が悪いとき、子どもは屋内にいなければならない。
+inevitable|adj|Change is *inevitable* in every company.|どの会社でも変化は避けられない。
+informative|adj|I found the article *informative* and easy to read.|その記事は情報が豊富で読みやすかった。
+instead of|prep|Let's walk *instead of* taking the bus.|バスに乗る代わりに歩こう。
+institute|n|The *institute* offers evening classes for adults.|その機関は大人向けの夜間講座を開いている。
+intensive|adj|The doctor gave him *intensive* care for a week.|彼は1週間、集中治療を受けた。
+intentionally|adv|He *intentionally* left the door open for the cat.|彼は猫のためにわざとドアを開けておいた。
+interact|v|The class gives students time to *interact* in English.|その授業では生徒が英語でやりとりする時間がある。
+intermediate|adj|This book is for *intermediate* learners.|この本は中級の学習者向けだ。
+interrupt|v|Please don't *interrupt* me while I'm speaking.|私が話している間はさえぎらないでください。
+interviewee|n|The *interviewee* answered each question clearly.|取材を受けた人は質問一つひとつにはっきり答えた。
+involved|adj|She is *involved* in a local volunteer group.|彼女は地元のボランティア団体に参加している。
+ironing|n|She does the *ironing* while watching TV.|彼女はテレビを見ながらアイロンがけをする。
+irregular|adj|"Go" is an *irregular* verb: go, went, gone.|"go"は不規則動詞だ：go, went, gone。
+irritate|v|It *irritates* me when people talk during a movie.|映画の最中に話す人がいるといらいらする。
+jar|n|I can't open this *jar*; it's too tight.|この瓶が開けられない。きつすぎる。
+jazz|n|He plays *jazz* on the piano.|彼はピアノでジャズを演奏する。
+jealous|adj|Don't be *jealous*; you'll get your turn soon.|うらやまなくていいよ。もうすぐ君の番が来るから。
+jewel|n|A box of *jewels* sat on the table.|宝石の入った箱がテーブルの上にあった。
+jog|v|He *jogged* around the lake before breakfast.|彼は朝食前に湖の周りをジョギングした。
+juicy|adj|The steak was thick and *juicy*.|ステーキは厚くてジューシーだった。
+jungle|n|We took a boat trip through the *jungle*.|私たちはジャングルをボートで旅した。
+kettle|n|Please turn off the stove; the *kettle* is already boiling.|コンロを消して。やかんはもう沸いているよ。
+kindness|n|The old man was known for his *kindness* to animals.|その老人は動物への優しさで知られていた。
+knit|v|She *knitted* a scarf for her brother.|彼女は弟にマフラーを編んだ。
+lamb|n|The farm has fifty sheep and ten *lambs*.|その農場には羊が50頭と子羊が10頭いる。
+lasting|adj|The storm caused *lasting* damage to the town.|嵐は町に長く残る被害をもたらした。
+leading|adj|The company is a *leading* maker of cars.|その会社は大手の自動車メーカーだ。
+legally|adv|Is it *legally* possible to park here overnight?|一晩ここに駐車するのは法的に許されますか？
+lessen|v|Walking to work will *lessen* your stress and save money.|歩いて通勤すればストレスが減り、お金も節約できる。
+lettuce|n|I'd like a sandwich with *lettuce* and tomato.|レタスとトマトを入れたサンドイッチがほしい。
+liar|n|Don't call me a *liar*; I told the truth.|私をうそつき呼ばわりしないで。本当のことを言ったんだ。
+librarian|n|My aunt works as a *librarian* at a school.|おばは学校で司書として働いている。
+lifeguard|n|The *lifeguard* jumped into the pool to help the boy.|ライフガードはその男の子を助けようとプールに飛び込んだ。
+lifelong|adj|Reading became a *lifelong* habit for her.|読書は彼女にとって生涯の習慣になった。
+lighter|n|I can't find my *lighter*; do you have a match?|ライターが見つからない。マッチを持っている？
+lightning|n|*Lightning* hit a tall tree near the house.|雷が家の近くの高い木に落ちた。
+limited|adj|Seats are *limited*, so book early.|席は限られているので早めに予約して。
+loaf|n|She baked a fresh *loaf* this morning.|彼女は今朝、焼きたてのパンを一斤焼いた。
+lottery|n|She buys a *lottery* ticket every Friday.|彼女は毎週金曜日に宝くじを買う。
+loudspeaker|n|The coach shouted through a *loudspeaker*.|コーチは拡声器を使って叫んだ。
+loyal|adj|She is a *loyal* customer and shops here every week.|彼女は忠実な常連客で、毎週ここで買い物をする。
+lung|n|The doctor listened to my *lungs*.|医者は私の肺の音を聞いた。
+magician|n|We hired a *magician* for my son's birthday party.|息子の誕生日会に手品師を雇った。
+magnificent|adj|We saw a *magnificent* sunset from the beach.|ビーチから見事な夕日を見た。
+mailbox|n|I walked to the *mailbox* to send the postcard.|はがきを出しに郵便ポストまで歩いた。
+mash|v|Use a fork to *mash* the banana.|フォークでバナナをつぶして。
+mathematician|n|The *mathematician* solved the problem in a few minutes.|その数学者は数分でその問題を解いた。
+meaningful|adj|We had a *meaningful* talk about the future.|私たちは将来について意義のある話をした。
+mechanical|adj|A *mechanical* clock needs no battery.|機械式の時計は電池が要らない。
+meditation|n|Daily *meditation* helps me stay calm during a busy week.|毎日の瞑想は忙しい一週間を落ち着いて過ごすのに役立つ。
+melt|v|Ice cream *melts* quickly on a hot day.|暑い日にはアイスクリームがすぐ溶ける。
+memorable|adj|Her speech was short but *memorable*.|彼女のスピーチは短かったが印象に残った。
+memorize|v|The actor *memorized* all his lines in a week.|その俳優は1週間でせりふを全部暗記した。
+mend|v|My father *mended* my broken toy.|父は壊れたおもちゃを直してくれた。
+mentally|adv|Exercise keeps you healthy both physically and *mentally*.|運動は体にも心にも健康を保ってくれる。
+messy|adj|His desk is always *messy* and full of papers.|彼の机はいつも散らかっていて、紙だらけだ。
+middle-aged|adj|Many *middle-aged* people start exercising for their health.|多くの中年の人が健康のために運動を始める。
+mild|adj|It was a *mild* day in March, and we left our coats at home.|3月の穏やかな日で、コートは家に置いてきた。
+mineral|n|The doctor said I need more *minerals* in my diet.|医者は私の食事にもっとミネラルが必要だと言った。
+minus|prep|Your total is fifty dollars *minus* the discount.|合計は50ドルから割引を引いた額だ。
+miracle|n|Doctors called her recovery a *miracle*.|医者たちは彼女の回復を奇跡と呼んだ。
+miserable|adj|It was a cold, rainy, and *miserable* day.|寒くて雨の降る、みじめな日だった。
+misunderstanding|n|It was just a small *misunderstanding* between friends.|友人同士のちょっとした誤解にすぎなかった。
+mixing bowl|n|She put flour and sugar into the *mixing bowl*.|彼女は小麦粉と砂糖をボウルに入れた。
+modem|n|I bought a new *modem* for faster internet.|もっと速いインターネットのために新しいモデムを買った。
+moisture|n|This cream keeps *moisture* in your skin.|このクリームは肌の水分を保つ。
+molecule|n|Scientists study how each *molecule* moves in the liquid.|科学者は液体の中で分子がどう動くかを調べる。
+monument|n|Tourists take photos in front of the old *monument*.|観光客は古い記念碑の前で写真を撮る。
+mosquito|n|Put on spray to keep *mosquitoes* away.|蚊を寄せつけないようにスプレーをつけて。
+motive|n|Money was her main *motive* for taking the job.|お金が彼女がその仕事に就いた主な動機だった。
+motorcycle|n|A *motorcycle* passed us on the highway.|オートバイが高速道路で私たちを追い越した。
+motto|n|The school's *motto* is written above the gate.|その学校の標語は門の上に書かれている。
+mud|n|It rained, so the road turned to *mud*.|雨が降ったので、道がぬかるんだ。
+mustard|n|She spread *mustard* on the bread.|彼女はパンにマスタードを塗った。
+myth|n|Children enjoy reading *myths* about gods and heroes.|子どもたちは神々や英雄の神話を読むのを楽しむ。
+nail|n|She painted her *nails* red for the party.|彼女はパーティーのために爪を赤く塗った。
+nap|n|The baby is taking a *nap* now.|赤ちゃんは今お昼寝中だ。
+nasty|adj|I got a *nasty* cold and stayed in bed.|ひどい風邪をひいて寝ていた。
+navy blue|adj|My school uniform is *navy blue*.|私の学校の制服は紺色だ。
+necklace|n|He gave her a pearl *necklace* for her birthday.|彼は誕生日に彼女に真珠のネックレスを贈った。
+needle|n|I need a *needle* and thread to fix this button.|このボタンを直すのに針と糸が要る。
+nephew|n|I took my *nephew* to the zoo on Sunday.|日曜日に甥を動物園に連れていった。
+newborn|adj|They brought their *newborn* son home from the hospital.|彼らは生まれたばかりの息子を病院から家に連れて帰った。
+newcomer|n|The club welcomes every *newcomer* with a small party.|クラブは新しく来た人を皆、小さなパーティーで迎える。
+next door|adv|A nice couple moved in *next door* last month.|感じのいい夫婦が先月隣に引っ越してきた。
+nickname|n|Do you have a *nickname* that your friends use?|友達が使うあだ名はありますか？
+niece|n|I bought a doll for my *niece*.|姪に人形を買った。
+nightlife|n|We don't care about *nightlife*; we just want to see museums.|私たちはナイトライフに興味がなく、博物館を見たいだけだ。
+nod|v|He *nodded* and smiled when I asked him.|私が尋ねると、彼はうなずいて微笑んだ。
+nonetheless|adv|It was raining. *Nonetheless*, we went for a walk.|雨が降っていた。それでも私たちは散歩に出かけた。
+nonsense|n|That's complete *nonsense*; I never said that.|それは全くのでたらめだ。私はそんなことは言っていない。
+northeast|n|Boston is in the *northeast* of the United States.|ボストンはアメリカの北東部にある。
+northwest|n|The Pacific *Northwest* gets a lot of rain.|太平洋岸北西部は雨が多い。
+noticeable|adj|The stain on his shirt was very *noticeable*.|シャツのしみがとても目立った。
+notorious|adj|He is *notorious* for being late to every meeting.|彼はどの会議にも遅れることで悪名高い。
+novelist|n|The *novelist* is working on her third book.|その小説家は3冊目の本に取り組んでいる。
+nutrient|n|Plants take *nutrients* from the soil.|植物は土から栄養分を取る。
+nutrition|n|The school teaches students about *nutrition*.|学校は生徒に栄養について教える。
+nutritious|adj|The school lunch is cheap and *nutritious*.|学校の給食は安くて栄養がある。
+objection|n|She raised no *objection* to moving the meeting.|彼女は会議の変更に異議を唱えなかった。
+occasional|adj|We had *occasional* rain all weekend.|週末はずっとときどき雨が降った。
+offensive|adj|Please delete that *offensive* comment from the website.|そのウェブサイトから不快なコメントを削除してください。
+officially|adv|He is *officially* the new manager.|彼は正式に新しいマネージャーだ。
+old-fashioned|adj|My grandfather has an *old-fashioned* way of dressing.|祖父は古風な服の着こなしをしている。
+oneself|pron|Learning to cook for *oneself* is a useful skill.|自分のために料理することを学ぶのは役立つ技能だ。
+opening|n|The *opening* of the book made me want to keep reading.|本の冒頭に引き込まれて、読み続けたくなった。
+oral|adj|She gave an *oral* report in front of the class.|彼女はクラスの前で口頭で報告した。
+orbit|n|The moon follows an *orbit* around the Earth.|月は地球の周りの軌道をたどる。
+orchestra|n|The *orchestra* played a beautiful old piece.|オーケストラは美しい古い曲を演奏した。
+organ|n|The liver is the largest *organ* inside the body.|肝臓は体内で最大の臓器だ。
+organism|n|Every living *organism* needs water to survive.|すべての生物は生きるために水を必要とする。
+out-of-date|adj|My phone is *out-of-date* and very slow.|私の電話は古くて動作がとても遅い。
+outdoors|adv|Kids should play *outdoors* more often.|子どもはもっと屋外で遊ぶべきだ。
+outer|adj|The *outer* walls of the house are painted white.|家の外壁は白く塗られている。
+outweigh|v|For me, the pleasure of travel *outweighs* the cost.|私には旅行の楽しさが費用を上回る。
+overjoyed|adj|My parents were *overjoyed* when I passed the test.|私がテストに受かって、両親は大喜びした。
+overwhelm|v|The noise in the city *overwhelmed* me at first.|街の騒音に最初は圧倒された。
+overwhelming|adj|I felt an *overwhelming* sense of joy.|圧倒的な喜びを感じた。
+oxygen|n|Plants produce *oxygen* during the day.|植物は日中に酸素を作り出す。
+packing|n|*Packing* for a long trip takes time.|長旅の荷造りには時間がかかる。
+paid|adj|Is this a *paid* job or volunteer work?|これは有給の仕事ですか、ボランティアですか？
+painful|adj|The shot was a bit *painful*.|注射は少し痛かった。
+palm|n|She showed me her *palm* and said, "Wait here."|彼女は手のひらを見せて「ここで待って」と言った。
+paradise|n|This quiet beach is a *paradise* for families.|この静かなビーチは家族連れにとって楽園だ。
+parcel|n|I went to the post office to send a *parcel*.|小包を送りに郵便局へ行った。
+parental|adj|The app has *parental* controls for young users.|そのアプリには幼い利用者向けの保護者による管理機能がある。
+parking|n|*Parking* is not allowed in front of the gate.|門の前は駐車禁止だ。
+part-time|adj|I work as a *part-time* teacher two days a week.|私は週に2日、非常勤の教師として働いている。
+passive|adj|A *passive* learner just listens and never asks questions.|受け身の学習者はただ聞くだけで質問しない。
+patience|n|Thank you for your *patience* while we fix the problem.|問題を解決するまでお待ちいただきありがとうございます。
+peanut|n|He ate a bag of *peanuts* during the game.|彼は試合中にピーナッツを一袋食べた。
+peculiar|adj|He has a *peculiar* way of talking.|彼は独特な話し方をする。
+penny|n|A *penny* is worth one cent.|1ペニーは1セントの価値がある。
+performer|n|Every *performer* bowed at the end of the show.|公演の最後に出演者全員がおじぎをした。
+permanently|adv|He moved to Canada *permanently* after he got married.|彼は結婚した後、永住するためにカナダへ引っ越した。
+persuasive|adj|His *persuasive* argument made me change my mind.|彼の説得力のある主張で私は考えを変えた。
+pharmacy|n|The *pharmacy* closes at nine in the evening.|その薬局は夜9時に閉まる。
+philosopher|n|My uncle is a *philosopher* who teaches at a university.|おじは大学で教える哲学者だ。
+phrasal verb|n|Many students find every *phrasal verb* difficult.|多くの生徒はどの句動詞も難しいと感じる。
+physics|n|Our *physics* teacher showed us how a rainbow forms.|物理の先生が虹のでき方を見せてくれた。
+pie|n|We shared a slice of pumpkin *pie* after dinner.|私たちは夕食後にかぼちゃのパイを一切れ分け合った。
+pillow|n|She put a *pillow* behind her back on the sofa.|彼女はソファで背中の後ろに枕を置いた。
+pin|n|The tailor held the cloth together with a *pin*.|仕立て屋は布をピンで留めていた。
+pineapple|n|Do you want *pineapple* on your pizza?|ピザにパイナップルをのせたい？
+pit|n|The farmer filled the *pit* with stones and sand.|農家の人は穴に石と砂を詰めた。
+pleasantly|adv|A soft breeze blew *pleasantly* through the open window.|開いた窓から穏やかな風が心地よく吹き込んだ。
+plug|n|Pull the *plug* out before you clean the toaster.|トースターを掃除する前にプラグを抜いてください。
+poison|n|Keep the *poison* away from children and pets.|毒は子どもやペットから遠ざけておいてください。
+poisonous|adj|Be careful, that snake is *poisonous*.|気をつけて、あのヘビは毒を持っている。
+pole|n|He pushed the boat away with a long *pole*.|彼は長い棒で船を押し出した。
+politely|adv|Ken *politely* thanked the driver before he got off.|ケンは降りる前に運転手に丁寧にお礼を言った。
+pollutant|n|The factory must reduce the *pollutants* in the river.|その工場は川の汚染物質を減らさなければならない。
+pond|n|We saw frogs near the *pond* in the park.|私たちは公園の池の近くでカエルを見た。
+popcorn|n|Ken ate a big bucket of *popcorn* at the movies.|ケンは映画館で大きなバケツ入りのポップコーンを食べた。
+pork|n|Some people do not eat *pork* for religious reasons.|宗教上の理由で豚肉を食べない人もいる。
+positively|adv|Try to think *positively* before the big interview.|大事な面接の前は、前向きに考えるようにしよう。
+postcard|n|She collects old *postcards* from around the world.|彼女は世界中の古い絵はがきを集めている。
+pottery|n|The shop sells beautiful *pottery* made by local artists.|その店は地元の芸術家が作った美しい陶器を売っている。
+powder|n|Add a spoonful of milk *powder* to the coffee.|コーヒーに粉ミルクをスプーン1杯入れてください。
+prayer|n|The villagers gathered for *prayer* every morning.|村人たちは毎朝、祈りのために集まった。
+precious|adj|Water is *precious* in the desert.|砂漠では水は貴重だ。
+prefix|n|Add a *prefix* to the word to change its meaning.|その語に接頭辞を付けると、意味が変わる。
+prejudice|n|We must fight *prejudice* in every workplace.|私たちはあらゆる職場で偏見と闘わなければならない。
+prepared|adj|She felt well *prepared* for the interview.|彼女は面接に向けて十分に準備ができていると感じた。
+preposition|n|I often choose the wrong *preposition* in English.|私は英語でよく前置詞を間違える。
+preservation|n|Cold storage helps with the *preservation* of fresh fish.|冷蔵保管は新鮮な魚の保存に役立つ。
+priest|n|A *priest* blessed the new house.|司祭が新しい家に祝福を与えた。
+primitive|adj|People once lived in *primitive* huts made of mud.|人々はかつて泥でできた粗末な小屋に住んでいた。
+privacy|n|Websites must protect the *privacy* of their users.|ウェブサイトは利用者のプライバシーを守らなければならない。
+proclaim|v|The king *proclaimed* peace after the long war.|王は長い戦争のあと、平和を宣言した。
+procrastination|n|His *procrastination* made him miss the deadline.|彼は先延ばしにしたせいで締め切りに間に合わなかった。
+prominent|adj|A *prominent* writer will speak at the event.|著名な作家がそのイベントで話す予定だ。
+pronoun|n|Use a *pronoun* instead of repeating the name.|名前を繰り返す代わりに代名詞を使おう。
+prosperity|n|We wish you health and *prosperity* in the new year.|新年のご健康とご繁栄をお祈りします。
+prosperous|adj|He came from a *prosperous* farming family.|彼は裕福な農家の出身だった。
+proverb|n|My grandmother liked to quote an old *proverb*.|祖母は古いことわざを引用するのが好きだった。
+publicly|adv|He doesn't like to talk *publicly* about his private life.|彼は私生活について人前で話すのを好まない。
+punish|v|The company will *punish* anyone who breaks the rule.|会社はルールを破った人を処罰する。
+punishment|n|He accepted his *punishment* without complaining.|彼は文句を言わずに罰を受け入れた。
+puppy|n|The *puppy* chased its tail around the yard.|子犬は庭で自分のしっぽを追いかけて回った。
+purify|v|They *purify* the water before it reaches homes.|水は家庭に届く前に浄化される。
+purse|n|I left my *purse* on the bus.|私はバスの中にハンドバッグを置き忘れた。
+puzzle|n|He likes to solve a crossword *puzzle* every morning.|彼は毎朝クロスワードパズルを解くのが好きだ。
+qualified|adj|We need a *qualified* electrician to fix this.|これを直すには資格を持った電気技師が必要だ。
+question mark|n|Don't forget the *question mark* at the end.|最後の疑問符を忘れないでね。
+radiation|n|Workers wear special clothing to protect against *radiation*.|作業員は放射線から身を守るために特別な服を着る。
+rage|n|Her face turned red with *rage*.|彼女の顔は怒りで真っ赤になった。
+railroad|n|The town grew quickly after the *railroad* arrived.|鉄道が来てから、その町は急速に発展した。
+rainfall|n|Low *rainfall* this year hurt the crops.|今年は雨量が少なく、作物に被害が出た。
+rainforest|n|The *rainforest* is shrinking every year.|熱帯雨林は毎年小さくなっている。
+raspberry|n|I like *raspberry* jam on my toast.|私はトーストにラズベリージャムをつけるのが好きだ。
+ration|n|Soldiers received a daily *ration* of bread.|兵士たちは毎日パンの配給を受けた。
+razor|n|He bought a new *razor* at the drugstore.|彼はドラッグストアで新しいかみそりを買った。
+realistic|adj|Let's set a *realistic* goal for this month.|今月は現実的な目標を立てよう。
+rearrange|v|We decided to *rearrange* the furniture in the living room.|私たちはリビングの家具を配置し直すことにした。
+rebuild|v|It took years to *rebuild* the town.|その町を再建するのに何年もかかった。
+recite|v|He can *recite* the whole alphabet backward.|彼はアルファベット全部を逆から暗唱できる。
+reclaim|v|He went to the desk to *reclaim* his lost wallet.|彼は落とした財布を取り戻しに窓口へ行った。
+recording|n|The *recording* of the concert is available online.|そのコンサートの録画はオンラインで見られる。
+recycling|n|Our town has a free *recycling* program for glass.|私たちの町にはガラスの無料リサイクル制度がある。
+reef|n|Divers came to see the *reef* near the island.|ダイバーたちは島の近くの礁を見にやって来た。
+referee|n|Fans shouted at the *referee* after the bad call.|ファンはひどい判定のあと、審判に向かって叫んだ。
+refreshments|n|There were free *refreshments* at the entrance.|入り口で無料の軽食と飲み物が配られていた。
+refusal|n|We were sad about her *refusal* of our offer.|私たちは彼女が申し出を断ったことを残念に思った。
+regain|v|She *regained* control of the car.|彼女は車の制御を取り戻した。
+regarding|prep|I have a question *regarding* the schedule.|スケジュールについて質問があります。
+relaxing|adj|We spent a *relaxing* weekend at the lake.|私たちは湖でのんびりした週末を過ごした。
+remainder|n|Please pay the *remainder* by next Friday.|残りの金額は来週の金曜日までに支払ってください。
+remote control|n|I can't find the *remote control* anywhere.|リモコンがどこにも見つからない。
+repeatedly|adv|The teacher *repeatedly* told us to be quiet.|先生は私たちに何度も静かにするように言った。
+reproduce|v|The shop will *reproduce* the old painting as a poster.|その店は古い絵をポスターとして複製する予定だ。
+republic|n|A *republic* has a president, not a king.|共和国には王ではなく大統領がいる。
+resemble|v|The new building *resembles* a giant egg.|新しい建物は巨大な卵に似ている。
+residential|adj|This street is *residential*, so there are no shops.|この通りは住宅街なので、店はない。
+respectable|adj|Wear a clean shirt to look *respectable*.|きちんとして見えるように、清潔なシャツを着なさい。
+retell|v|He loves to *retell* funny stories from his childhood.|彼は子どものころの面白い話を語り直すのが大好きだ。
+retrospect|n|In *retrospect*, the plan was a mistake.|振り返ってみると、その計画は間違いだった。
+revision|n|A new *revision* of the schedule was sent to everyone.|スケジュールの新しい改訂版が全員に送られた。
+riddle|n|The children love telling *riddles* at lunch.|子どもたちは昼食のときになぞなぞを出し合うのが大好きだ。
+ridiculous|adj|It's *ridiculous* to wait two hours for a short meeting.|短い会議のために2時間も待つなんてばかげている。
+ripe|adj|Wait until the mango is *ripe* before you eat it.|マンゴーは熟すまで待ってから食べて。
+roadside|n|Yellow flowers grew all along the *roadside* in spring.|春になると、道端に沿って黄色い花がずっと咲いていた。
+robot|n|The factory uses a *robot* to move heavy boxes.|その工場は重い箱を動かすのにロボットを使っている。
+rubber|n|She wore *rubber* boots in the rain.|彼女は雨の中でゴム長靴をはいた。
+rudely|adv|The clerk answered our simple question very *rudely*.|店員は私たちの簡単な質問にとても無作法に答えた。
+runway|n|The *runway* was closed because of fog.|霧のため滑走路は閉鎖された。
+sacred|adj|They visited a *sacred* temple on the hill.|彼らは丘の上の神聖な寺を訪れた。
+sadness|n|His eyes were full of *sadness*.|彼の目は悲しみでいっぱいだった。
+safari|n|They saw lions and elephants on their *safari*.|彼らはサファリでライオンやゾウを見た。
+safeguard|n|Strong laws are a *safeguard* for workers.|強い法律は労働者を守る防護策になる。
+safely|adv|Drive *safely* on the icy roads.|凍った道では安全運転をしてください。
+salmon|n|Bears catch *salmon* in the river.|クマは川でサケを捕まえる。
+sandal|n|I need new *sandals* for summer.|夏用の新しいサンダルが必要だ。
+satellite|n|The *satellite* circles the Earth every ninety minutes.|その衛星は90分ごとに地球を回る。
+satisfied|adj|I'm not *satisfied* with my test score.|私は自分のテストの点数に満足していない。
+saucepan|n|She washed the *saucepan* after cooking.|彼女は料理のあとで片手鍋を洗った。
+scared|adj|I was *scared* when I heard a loud noise.|大きな音を聞いて、私はおびえた。
+scary|adj|The old house looked *scary* at night.|その古い家は夜になると怖く見えた。
+scatter|v|She *scattered* bread for the birds in the yard.|彼女は庭の鳥のためにパンをまき散らした。
+scenic|adj|The drive was long but very *scenic*.|ドライブは長かったが、景色がとてもよかった。
+scholarship|n|He needs a *scholarship* to pay for college.|彼は大学の費用を払うために奨学金が必要だ。
+scold|v|Don't *scold* the child for a small mistake.|小さな間違いで子どもを叱らないで。
+scratch|v|Try not to *scratch* the mosquito bite.|蚊に刺されたところをかかないようにして。
+seawater|n|She rinsed the sand off her feet in the *seawater*.|彼女は海水で足の砂を洗い流した。
+seaweed|n|*Seaweed* washed up on the beach after the storm.|嵐のあと、浜辺に海藻が打ち上げられた。
+second-hand|adj|This shop sells *second-hand* books cheaply.|この店は中古の本を安く売っている。
+secretly|adv|She *secretly* hoped they would cancel the test.|彼女はテストが中止になればいいと密かに願っていた。
+seize|v|He *seized* my arm to stop me from falling.|彼は私が倒れないように腕をつかんだ。
+self-service|adj|We ate at a *self-service* restaurant near the station.|私たちは駅の近くのセルフサービスのレストランで食べた。
+selfish|adj|It was *selfish* of him to take the last piece.|最後の一切れを取るなんて、彼は自分勝手だった。
+sensation|n|He lost all *sensation* in his legs after the fall.|彼は転んだあと、足の感覚をすべて失った。
+separation|n|The long *separation* from her family made her sad.|家族との長い別れが彼女を悲しませた。
+setting|n|Change the *settings* on your phone to save battery.|電池を節約するために、携帯の設定を変えて。
+settler|n|Many *settlers* traveled west by wagon.|多くの入植者が馬車で西へ向かった。
+severely|adv|The storm *severely* damaged the roof.|嵐で屋根がひどく壊れた。
+shallow|adj|Use a *shallow* dish for the sauce.|ソースには浅い皿を使ってください。
+shame|n|It's a *shame* to waste this good food.|このおいしい食べ物を無駄にするのはもったいない。
+shave|v|I forgot to *shave* before the interview.|面接の前にひげを剃るのを忘れた。
+shiny|adj|He polished the car until it was *shiny*.|彼は車がぴかぴかになるまで磨いた。
+shiver|v|The child *shivered* after getting out of the pool.|その子はプールから上がったあと震えていた。
+shocking|adj|It's *shocking* how fast prices have risen.|物価がこんなに速く上がったのは衝撃的だ。
+shrimp|n|We ate grilled *shrimp* at the beach.|私たちはビーチで焼きエビを食べた。
+sickness|n|*Sickness* kept her at home for a week.|病気のせいで彼女は1週間家にいた。
+silk|n|This *silk* dress feels smooth and cool.|この絹のドレスはすべすべして涼しい。
+similarity|n|I saw little *similarity* between the twins.|その双子にはほとんど似たところがなかった。
+skeleton|n|A human *skeleton* has over two hundred bones.|人間の骨格には200以上の骨がある。
+skyscraper|n|We looked out from the top of a *skyscraper*.|私たちは超高層ビルの上から外を眺めた。
+sleeve|n|She rolled up her *sleeves* and started cooking.|彼女は袖をまくって料理を始めた。
+slogan|n|The company has a new advertising *slogan*.|その会社は新しい広告スローガンを作った。
+slot|n|Insert your card into the *slot* on the machine.|カードを機械の差し込み口に入れてください。
+smoker|n|*Smokers* must go outside the building.|喫煙者は建物の外に出なければならない。
+sneeze|v|She *sneezed* three times in a row.|彼女は続けて3回くしゃみをした。
+snowboard|n|I'll rent a *snowboard* at the ski resort.|スキー場でスノーボードを借りるつもりだ。
+snowstorm|n|We stayed home during the *snowstorm*.|私たちは吹雪の間、家にいた。
+soap opera|n|The actor became famous on a popular *soap opera*.|その俳優は人気の連続ドラマで有名になった。
+sometime|adv|I'd like to visit Italy *sometime*.|いつかイタリアを訪れたい。
+soothe|v|A warm drink can *soothe* a sore throat.|温かい飲み物は痛いのどを和らげてくれる。
+sophomore|n|My sister is a *sophomore* in high school.|私の妹は高校2年生だ。
+sore|adj|I have a *sore* throat today.|今日はのどが痛い。
+sorrow|n|He felt great *sorrow* when his dog died.|犬が死んだとき、彼は深い悲しみを感じた。
+sour|adj|The milk went *sour* in the heat.|牛乳は暑さで酸っぱくなった。
+souvenir|n|Do you want to buy a *souvenir* before we leave?|出発する前にお土産を買いたい？
+spectacular|adj|We watched a *spectacular* fireworks show.|私たちは見事な花火大会を見た。
+spectator|n|Thousands of *spectators* filled the stadium.|何千人もの観客がスタジアムを埋めた。
+spelling|n|Check the *spelling* of your name on the form.|用紙に書いた名前のつづりを確認して。
+spice|n|She added a pinch of *spice* to the soup.|彼女はスープにひとつまみのスパイスを加えた。
+spicy|adj|The curry was too *spicy* for the kids.|そのカレーは子どもには辛すぎた。
+spider|n|The *spider* made a web in the corner.|クモが隅に巣を作った。
+spinach|n|She added fresh *spinach* to the salad.|彼女はサラダに新鮮なほうれん草を加えた。
+spiritual|adj|He is not religious, but he is a very *spiritual* person.|彼は信仰を持たないが、とても精神性の高い人だ。
+spoil|v|Don't let one bad day *spoil* your trip.|一日の嫌なことで旅行を台無しにしないで。
+sponge|n|I need a new kitchen *sponge*.|台所用の新しいスポンジが必要だ。
+sportsmanship|n|Good *sportsmanship* means being kind to the other team.|よいスポーツマンシップとは、相手チームに親切にすることだ。
+stall|n|We bought tomatoes from a *stall* near the station.|私たちは駅の近くの屋台でトマトを買った。
+steadily|adv|She *steadily* improved her English by studying every day.|彼女は毎日勉強して、着実に英語が上達した。
+steam|n|The mirror was covered with *steam* after my shower.|シャワーのあと、鏡は湯気で曇った。
+steep|adj|We climbed a *steep* path to the top.|私たちは急な道を頂上まで登った。
+sticker|n|Each student got a star *sticker* from the teacher.|生徒は一人ずつ先生から星のシールをもらった。
+sticky|adj|The floor was *sticky* where juice spilled.|ジュースがこぼれたところは床がべたべたしていた。
+stormy|adj|The sea is too *stormy* for small boats today.|今日は海が荒れていて、小さな船には危険だ。
+strangely|adv|He was acting *strangely* all morning.|彼は午前中ずっと妙な振る舞いをしていた。
+straw|n|The kids drank juice through a paper *straw*.|子どもたちは紙のストローでジュースを飲んだ。
+strawberry|n|We picked fresh *strawberries* at the farm.|私たちは農場で新鮮なイチゴを摘んだ。
+stressed|adj|He looked *stressed* after the long meeting.|長い会議のあと、彼はストレスを感じているように見えた。
+stressful|adj|Moving to a new city can be *stressful*.|新しい街への引っ越しはストレスになることがある。
+stripe|n|He wore a shirt with blue *stripes*.|彼は青い縞模様のシャツを着ていた。
+stubborn|adj|The *stubborn* child refused to wear a coat.|その頑固な子はコートを着ようとしなかった。
+stuck|adj|The door is *stuck*, and I can't open it.|ドアが動かなくて開けられない。
+stumble|v|She *stumbled* over a rock on the path.|彼女は道の石につまずいた。
+stunning|adj|The view from the mountain was absolutely *stunning*.|山からの眺めは本当に見事だった。
+stylish|adj|It's a small but *stylish* cafe.|そこは小さいけれどおしゃれなカフェだ。
+submarine|n|We saw an old *submarine* at the museum.|私たちは博物館で古い潜水艦を見た。
+suffix|n|Add a *suffix* to the word to make a noun.|その語に接尾辞を付けると名詞になる。
+sunbathe|v|I like to *sunbathe* by the pool.|私はプールのそばで日光浴をするのが好きだ。
+sunrise|n|The *sunrise* over the sea was beautiful.|海の上の日の出は美しかった。
+sunset|n|The *sunset* turned the sky orange.|夕焼けで空がオレンジ色になった。
+superstition|n|Many people follow an old *superstition* about Friday the 13th.|13日の金曜日についての古い迷信に従う人は多い。
+supportive|adj|She has a *supportive* boss who listens to her.|彼女には話をよく聞いてくれる協力的な上司がいる。
+supposedly|adv|He is *supposedly* on vacation this week.|彼は今週休暇中のはずだ。
+surgeon|n|She wants to become a *surgeon*.|彼女は外科医になりたいと思っている。
+survivor|n|Every *survivor* of the accident was taken to the hospital.|事故の生存者は全員病院に運ばれた。
+suspicion|n|Her strange behavior at the door raised *suspicion* among the neighbors.|玄関での彼女の奇妙な行動は、近所の人たちの疑いを招いた。
+swarm|n|We saw a *swarm* of insects near the lake.|私たちは湖の近くで虫の群れを見た。
+sweatshirt|n|He put on a gray *sweatshirt* with a hood.|彼はフード付きの灰色のトレーナーを着た。
+swimmer|n|The *swimmers* waited at the edge of the pool.|泳ぐ人たちはプールの縁で待っていた。
+swollen|adj|Her eyes were red and *swollen* from crying.|彼女の目は泣いたせいで赤く腫れていた。
+sympathy|n|We sent flowers to show our *sympathy*.|私たちは思いやりを示すために花を送った。
+tablet|n|She uses a *tablet* to draw pictures.|彼女はタブレットで絵を描く。
+takeoff|n|I always feel nervous during *takeoff* on a plane.|飛行機に乗ると、離陸のときはいつも緊張する。
+talented|adj|The team has many *talented* young players.|そのチームには才能のある若い選手がたくさんいる。
+talkative|adj|He becomes *talkative* when he is nervous.|彼は緊張するとおしゃべりになる。
+tasty|adj|We had a *tasty* lunch at a small cafe.|私たちは小さなカフェでおいしい昼食を食べた。
+teammate|n|She thanked her *teammates* after the game.|彼女は試合のあとチームメイトに感謝した。
+teamwork|n|Our project needs strong *teamwork* from everyone.|私たちのプロジェクトには全員の強いチームワークが必要だ。
+tease|v|The kids *teased* him about his haircut.|子どもたちは彼の髪型をからかった。
+teen|n|She wrote a book about life as a *teen*.|彼女は10代の暮らしについての本を書いた。
+teller|n|Ask the *teller* about opening an account.|口座の開設については窓口係に聞いてください。
+temper|n|She lost her *temper* and shouted at him.|彼女はかっとなって彼に怒鳴った。
+tempt|v|Don't let a low price *tempt* you.|安い値段に誘惑されないで。
+tense|adj|The meeting was *tense*, and nobody smiled.|会議は張りつめていて、誰も笑わなかった。
+terribly|adv|The room was *terribly* cold last night.|昨夜、部屋はひどく寒かった。
+terrific|adj|That's a *terrific* idea for the party, Emma!|それはパーティーにすばらしい考えだね、エマ！
+terrified|adj|I was *terrified* when the plane shook.|飛行機が揺れたとき、私はひどくおびえた。
+thankful|adj|We're *thankful* that everyone is safe.|みんなが無事で、ありがたく思う。
+theft|n|The store reported a *theft* last night.|その店は昨夜、盗難があったと届け出た。
+thriller|n|We watched a *thriller* on Friday night.|私たちは金曜の夜にスリラー映画を見た。
+thumb|n|She held her *thumb* up to say OK.|彼女は親指を立ててOKと伝えた。
+thunder|n|The dog is afraid of *thunder*.|その犬は雷を怖がる。
+tide|n|Waves covered the beach when the *tide* came in.|潮が満ちてくると、波が浜辺を覆った。
+tile|n|One *tile* in the kitchen is cracked.|台所のタイルが1枚ひび割れている。
+tiring|adj|It was a *tiring* day at work.|仕事で疲れる一日だった。
+toothpaste|n|Put a little *toothpaste* on the brush.|ブラシに歯磨き粉を少しつけてください。
+tornado|n|People hid in the basement when the *tornado* came.|竜巻が来たとき、人々は地下室に隠れた。
+toss|v|*Toss* the trash in the bin.|ごみをごみ箱にほうり込んで。
+traditionally|adv|Turkey is *traditionally* eaten on Thanksgiving.|感謝祭には伝統的に七面鳥を食べる。
+traffic jam|n|There's always a *traffic jam* on Monday mornings.|月曜の朝はいつも渋滞している。
+tragedy|n|The *tragedy* shocked the whole country.|その悲劇は国じゅうに衝撃を与えた。
+tragic|adj|The movie has a *tragic* ending.|その映画は悲劇的な結末を迎える。
+transformation|n|The *transformation* of the old factory into a mall took two years.|古い工場をショッピングモールに変えるのに2年かかった。
+trash|n|The beach was full of *trash*.|浜辺はごみだらけだった。
+travel agent|n|Ask a *travel agent* about cheap flights.|安い航空券については旅行代理店の人に聞いてみて。
+tremble|v|The ground began to *tremble* during the loud storm.|激しい嵐の間、地面が揺れ始めた。
+tremendous|adj|We made a *tremendous* effort to finish on time.|私たちは時間内に終えようと、ものすごい努力をした。
+tropical|adj|*Tropical* fruit like mango is cheap here.|ここではマンゴーのような熱帯の果物が安い。
+trumpet|n|The *trumpet* sounded loud and clear.|トランペットの音は大きくはっきりと響いた。
+trustworthy|adj|Is this shopping website *trustworthy* enough for my card?|このショッピングサイトは、カードを使えるほど信頼できる？
+tuna|n|Fresh *tuna* is great with rice.|新鮮なマグロはご飯によく合う。
+turbulence|n|Please keep your seat belt on during *turbulence*.|乱気流の間はシートベルトを着けたままでお願いします。
+turtle|n|The *turtle* slowly crossed the road.|カメはゆっくり道を渡った。
+unbelievable|adj|The view from the top was *unbelievable*.|頂上からの眺めは信じられないほどだった。
+uncover|v|*Uncover* the pot and let the sauce cook.|鍋のふたを取って、ソースを煮てください。
+underneath|prep|She found a letter *underneath* the pillow.|彼女は枕の下に手紙を見つけた。
+undo|v|Can you *undo* this knot for me?|この結び目をほどいてくれる？
+unemployed|adj|She is *unemployed* and looking for work.|彼女は失業中で、仕事を探している。
+unexpectedly|adv|The long meeting ended *unexpectedly* soon today.|長い会議が、今日は思いのほか早く終わった。
+unfairly|adv|Some workers in the shop were paid *unfairly*.|その店では不公平な給料を受け取っていた従業員もいた。
+unfold|v|He *unfolded* the napkin and put it on his lap.|彼はナプキンを広げてひざの上に置いた。
+unfortunate|adj|That's *unfortunate*; I hoped you could come.|それは残念だ。来られると思っていたのに。
+unfriendly|adj|The neighbors seemed cold and *unfriendly*.|近所の人たちは冷たくてよそよそしい感じだった。
+uninterested|adj|She is *uninterested* in sports and never watches games.|彼女はスポーツに興味がなく、試合を見ることもない。
+unlucky|adj|Some people think the number thirteen is *unlucky*.|13という数字は不運だと考える人もいる。
+unpack|v|We *unpacked* the boxes after moving.|私たちは引っ越しのあと、箱の荷ほどきをした。
+unpredictable|adj|Stock prices are *unpredictable*, even for experts.|株価は専門家にとっても予測できない。
+unrelated|adj|Two *unrelated* events happened on the same day.|無関係な2つの出来事が同じ日に起きた。
+unusually|adv|She was *unusually* quiet at dinner.|彼女は夕食のときいつになく静かだった。
+unwanted|adj|I get a lot of *unwanted* calls.|不要な電話がたくさんかかってくる。
+up-to-date|adj|Is this map of the city *up-to-date*?|この市の地図は最新のものですか？
+useless|adj|The phone is *useless* without a battery.|電池がなければ、その電話は役に立たない。
+vague|adj|I have only a *vague* memory of that day.|あの日のことはぼんやりとしか覚えていない。
+vegetarian|n|There are many dishes for *vegetarians*.|ベジタリアン向けの料理がたくさんある。
+vet|n|The *vet* gave our cat a shot.|獣医が私たちの猫に注射をした。
+vice president|n|The *vice president* will lead the meeting today.|今日の会議は副社長が進める。
+video clip|n|The *video clip* is only thirty seconds long.|その動画はたった30秒だ。
+viewpoint|n|Each person sees it from a different *viewpoint*.|人はそれぞれ違った観点からそれを見る。
+visa|n|She applied for a work *visa*.|彼女は就労ビザを申請した。
+vivid|adj|The painting has *vivid* colors like red and blue.|その絵には赤や青のような鮮やかな色が使われている。
+volcano|n|Gray smoke rose from the top of the *volcano*.|火山の頂上から灰色の煙が立ち上った。
+vowel|n|Which *vowel* is in the word "cat"?|「cat」という語にはどの母音が入っている？
+voyage|n|We enjoyed a calm *voyage* to the island.|私たちは島までの穏やかな船旅を楽しんだ。
+ward|n|She works in the children's *ward* at the hospital.|彼女は病院の小児病棟で働いている。
+wardrobe|n|Hang your coat in the *wardrobe*.|コートは衣装だんすに掛けてください。
+warmly|adv|Dress *warmly* when you go out today.|今日は出かけるとき暖かい服装をしてね。
+warmth|n|We gathered around the fire for *warmth*.|私たちは暖を取るために火の周りに集まった。
+warning|n|We got a *warning* about the storm.|私たちは嵐についての警報を受け取った。
+wasteful|adj|Throwing away good food is *wasteful*.|まだ食べられる食べ物を捨てるのは無駄だ。
+waterfall|n|The *waterfall* is over a hundred feet tall.|その滝は高さが100フィート以上ある。
+wax|n|The candle is made of *wax*.|そのろうそくはろうでできている。
+weather forecast|n|I checked the *weather forecast* before leaving.|出かける前に天気予報を確認した。
+well-dressed|adj|A *well-dressed* woman waited at the door.|身なりのよい女性が玄関で待っていた。
+wetland|n|The *wetland* protects the city from floods.|その湿地は街を洪水から守っている。
+whale|n|A *whale* is the biggest animal in the sea.|クジラは海でいちばん大きな動物だ。
+whichever|det|You can take *whichever* seat is free.|空いている席ならどこでも座っていいよ。
+whistle|n|I heard a loud *whistle* from the street.|通りから大きな笛の音が聞こえた。
+whoever|pron|You can invite *whoever* you like.|誰でも好きな人を招待していいよ。
+widespread|adj|Cell phone use is *widespread* among teens.|携帯電話の使用は10代の間に広く行き渡っている。
+wildlife|n|The group works to protect *wildlife*.|その団体は野生生物を守る活動をしている。
+workout|n|That was a hard *workout*, and my legs hurt.|きついトレーニングで、足が痛い。
+worthwhile|adj|Learning English is *worthwhile* for your career.|英語を学ぶことはキャリアにとって価値がある。
+wrist|n|She wears a bracelet on her *wrist*.|彼女は手首にブレスレットをつけている。
+wristwatch|n|I lost my *wristwatch* at the gym yesterday.|私は昨日、ジムで腕時計をなくした。
+yell|v|The kids *yelled* with joy at the park.|子どもたちは公園で喜んで大声を上げた。
+yoga|n|She does *yoga* at home every morning.|彼女は毎朝家でヨガをする。
