@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { findTerms, jaVariants } from '../src/lib/glossary'
+import { detectLang, findTerms, jaVariants } from '../src/lib/glossary'
 
 const words = async (text: string) => (await findTerms(text)).map((h) => h.word.w)
 
@@ -43,5 +43,17 @@ describe('保線用語の検出（glossary）', () => {
     expect(jaVariants('頭部（上面）摩耗')).toEqual(['頭部摩耗'])
     expect(jaVariants('現行（As-Is）プロセス')).toEqual(['現行プロセス'])
     expect(jaVariants('軌道基盤；道床・路盤')).toEqual(['軌道基盤', '道床', '路盤'])
+  })
+})
+
+describe('翻訳の言語の自動判定（detectLang）', () => {
+  it('日本語の文字と英単語の数を比べる', () => {
+    expect(detectLang('明日の会議は10時からです。')).toBe('ja')
+    expect(detectLang('See you tomorrow.')).toBe('en')
+    // 英語まじりの日本語・日本語まじりの英語
+    expect(detectLang('APIのendpointをdeployする')).toBe('ja')
+    expect(detectLang('Check the 道床 today')).toBe('en')
+    expect(detectLang('PCまくらぎの交換')).toBe('ja')
+    expect(detectLang('123 !?')).toBeNull()
   })
 })
