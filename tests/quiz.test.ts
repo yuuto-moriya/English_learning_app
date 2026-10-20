@@ -145,3 +145,21 @@ describe('空所の前の a / an', () => {
     expect(neutralArticle('a ＿＿＿ later', ['hour', 'day'])).toBe('a(n) ＿＿＿ later')
   })
 })
+
+describe('出題の順番がばらける', () => {
+  it('新しい単語は、よく使う語を先にしつつ、毎回同じ順にはしない', async () => {
+    const { newWordPool } = await import('../src/lib/session')
+    const s = { studyCats: { general: true, business: false, it: false, rail: false }, maxLevel: 2 }
+    const runs = Array.from({ length: 5 }, () => newWordPool(G, new Set(), s)[0].slice(0, 30).map((w) => w.id).join())
+    expect(new Set(runs).size).toBeGreaterThan(1)
+    // よく使う語（順位の小さい語）が先に来る傾向は保つ
+    const first = newWordPool(G, new Set(), s)[0]
+    const avg = (ws: Word[]) => ws.reduce((n, w) => n + (w.rank ?? 0), 0) / ws.length
+    expect(avg(first.slice(0, 50))).toBeLessThan(avg(first.slice(-50)))
+  })
+  it('問題の種は連番ではない', async () => {
+    const { randomSeed } = await import('../src/lib/session')
+    const a = Array.from({ length: 20 }, randomSeed)
+    expect(a.some((x, i) => i > 0 && x !== a[i - 1] + 1)).toBe(true)
+  })
+})

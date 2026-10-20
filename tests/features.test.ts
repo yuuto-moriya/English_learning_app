@@ -119,10 +119,12 @@ describe('苦手・保存した単語', () => {
     expect(isWeak(card({ lapses: 2, reps: 0 }))).toBe(false)
     expect(isWeak(undefined)).toBe(false)
   })
-  it('苦手な語の集中練習は忘れた回数の多い順', async () => {
+  it('苦手な語の集中練習は、忘れた回数の多い語から選び、出す順は混ぜる', async () => {
     await db.cards.bulkPut([card({ id: 'g-a', lapses: 1 }), card({ id: 'g-be', lapses: 3 }), card({ id: 'g-and' })])
     const items = await buildDrill('weak')
-    expect(items.map((i) => i.word.id)).toEqual(['g-be', 'g-a'])
+    expect(items.map((i) => i.word.id).sort()).toEqual(['g-a', 'g-be'])
+    const one = await buildDrill('weak', 1)
+    expect(one.map((i) => i.word.id)).toEqual(['g-be'])
   })
   it('保存の切り替えと、保存した語の練習', async () => {
     expect(await toggleMark('g-be')).toBe(true)
