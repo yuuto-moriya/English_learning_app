@@ -9,6 +9,8 @@ export interface ChatScene {
   role: string
   /** この場面でやること（日本語は画面に、英語は AI への指示に） */
   goals: [ja: string, en: string][]
+  /** 始める前に見る、この場面で使える言い方（英語・日本語） */
+  phrases: [en: string, ja: string][]
 }
 
 export const CHAT_SCENES: ChatScene[] = [
@@ -22,6 +24,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['自分のことを1つ話す', 'share one thing about themselves'],
       ['相手に質問を1つする', 'ask the partner one question'],
       ['理由を付けて話す（because …）', 'explain a reason with "because"'],
+    ],    phrases: [
+      ['I\'m really into ___.', '〜にはまっています'],
+      ['What about you?', 'あなたは？'],
+      ['That\'s because ___.', 'それは〜だからです'],
     ],
   },
   {
@@ -34,6 +40,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['飲み物を注文する', 'order a drink'],
       ['サイズと店内／持ち帰りを伝える', 'say the size and for here or to go'],
       ['支払い方法を伝える', 'say how they will pay'],
+    ],    phrases: [
+      ['Can I get a ___, please?', '〜をください'],
+      ['For here, please. / To go, please.', '店内で／持ち帰りで'],
+      ['Can I pay by card?', 'カードで払えますか'],
     ],
   },
   {
@@ -46,6 +56,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['名前と仕事を伝える', 'say their name and job'],
       ['出身と趣味を話す', 'talk about their hometown and hobbies'],
       ['相手に質問を返す', 'ask the partner a question back'],
+    ],    phrases: [
+      ['Nice to meet you. I\'m ___.', 'はじめまして、〜です'],
+      ['I work as a ___.', '〜として働いています'],
+      ['How about you?', 'あなたはどうですか'],
     ],
   },
   {
@@ -58,6 +72,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['週末にしたことを話す', 'say what they did on the weekend'],
       ['感想を言う（It was …）', 'say how it was'],
       ['相手の週末を聞く', 'ask about the partner\'s weekend'],
+    ],    phrases: [
+      ['I went to ___ with ___.', '〜と〜に行きました'],
+      ['It was really fun.', 'とても楽しかったです'],
+      ['How was your weekend?', '週末はどうでしたか'],
     ],
   },
   {
@@ -70,6 +88,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['行きたい場所を伝える', 'say where they want to go'],
       ['行き方を聞き返して確かめる', 'check the directions by repeating them'],
       ['お礼を言う', 'thank the local person'],
+    ],    phrases: [
+      ['Excuse me, how can I get to ___?', 'すみません、〜へはどう行けばいいですか'],
+      ['So I go straight and turn left?', 'まっすぐ行って左ですね？（確認）'],
+      ['Thank you so much!', '本当にありがとう'],
     ],
   },
   {
@@ -82,6 +104,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['名前と予約を伝える', 'give their name and reservation'],
       ['朝食か Wi-Fi について聞く', 'ask about breakfast or Wi-Fi'],
       ['チェックアウトの時間を確かめる', 'confirm the check-out time'],
+    ],    phrases: [
+      ['I have a reservation under ___.', '〜の名前で予約しています'],
+      ['What time is breakfast?', '朝食は何時ですか'],
+      ['What time is check-out?', 'チェックアウトは何時ですか'],
     ],
   },
   {
@@ -94,6 +120,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['おすすめを聞く', 'ask for a recommendation'],
       ['苦手なもの・アレルギーを伝える', 'mention a food they cannot eat'],
       ['料理を注文する', 'order a dish'],
+    ],    phrases: [
+      ['What do you recommend?', 'おすすめは何ですか'],
+      ['I can\'t eat ___.', '〜は食べられません'],
+      ['I\'ll have the ___, please.', '〜にします'],
     ],
   },
   {
@@ -106,6 +136,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['症状を伝える', 'describe the symptom'],
       ['いつからかを伝える', 'say when it started'],
       ['痛みの程度を伝える', 'say how bad it is'],
+    ],    phrases: [
+      ['I have a headache.', '頭が痛いです'],
+      ['It started two days ago.', '2日前からです'],
+      ['It hurts a lot.', 'とても痛いです'],
     ],
   },
   {
@@ -118,6 +152,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['賛成か反対かを言う', 'say if they agree or disagree'],
       ['理由を1つ挙げる', 'give one reason'],
       ['代わりの案を出す', 'suggest an alternative'],
+    ],    phrases: [
+      ['I agree with you because ___.', '〜なので賛成です'],
+      ['I see your point, but ___.', 'おっしゃることは分かりますが、〜'],
+      ['How about ___ instead?', '代わりに〜はどうでしょう'],
     ],
   },
   {
@@ -130,6 +168,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['これまでの経験を話す', 'describe their experience'],
       ['強みを1つ挙げる', 'name one strength with an example'],
       ['志望理由を話す', 'explain why they want the job'],
+    ],    phrases: [
+      ['I have ___ years of experience in ___.', '〜の経験が〜年あります'],
+      ['One of my strengths is ___.', '私の強みの一つは〜です'],
+      ['I\'d like to work here because ___.', '〜なので御社で働きたいです'],
     ],
   },
   {
@@ -142,6 +184,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['名乗って会社名を言う', 'answer with their name and company'],
       ['不在を伝える', 'say that Mr. Smith is out'],
       ['伝言を聞いて復唱する', 'take the message and read it back'],
+    ],    phrases: [
+      ['Hello, this is ___ from ___.', 'はい、〜社の〜です'],
+      ['I\'m afraid he\'s out of the office.', 'あいにく外出しております'],
+      ['May I take a message?', 'ご伝言を承りましょうか'],
     ],
   },
   {
@@ -154,6 +200,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['何が起きたかを伝える', 'say what happened'],
       ['利用者への影響を伝える', 'explain the impact on users'],
       ['次の対応を伝える', 'say the next steps'],
+    ],    phrases: [
+      ['We had an outage in ___.', '〜で障害がありました'],
+      ['About ___ users were affected.', '約〜人の利用者に影響がありました'],
+      ['Next, we\'ll ___.', '次は〜します'],
     ],
   },
   {
@@ -166,6 +216,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['変更の目的を説明する', 'explain the purpose of the change'],
       ['どうテストしたかを話す', 'say how they tested it'],
       ['指摘に答える', 'respond to the suggestion'],
+    ],    phrases: [
+      ['The purpose of this change is to ___.', 'この変更の目的は〜です'],
+      ['I tested it by ___.', '〜で確認しました'],
+      ['Good point. I\'ll fix it.', 'いい指摘です。直します'],
     ],
   },
   {
@@ -178,6 +232,10 @@ export const CHAT_SCENES: ChatScene[] = [
       ['作業の内容と時間を伝える', 'explain the work and the time'],
       ['安全の手配を確かめる', 'confirm the safety arrangements'],
       ['測定の段取りを話す', 'discuss the track geometry measurement'],
+    ],    phrases: [
+      ['We\'ll be working from ___ to ___.', '〜から〜まで作業します'],
+      ['Have we arranged the lookouts?', '見張りの手配はできていますか'],
+      ['We\'ll measure the track geometry after tamping.', 'つき固めのあとに軌道狂いを測ります'],
     ],
   },
 ]

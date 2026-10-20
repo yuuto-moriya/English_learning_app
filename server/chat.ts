@@ -22,10 +22,14 @@ export interface ChatMessage {
 export interface ChatReply {
   reply: string
   /** 学習者の直前の発言の直し（直すところがなければ null） */
-  correction: { better: string; note: string } | null
+  correction: { better: string; note: string; type?: ErrorType } | null
   /** 次に学習者が言える返事の例 */
   hint: string
 }
+
+/** 直しの種類（日本人の話す英語で多い順に。端末で集計して「最近多い間違い」に出す） */
+export const ERROR_TYPES = ['article', 'plural', 'tense', 'preposition', 'agreement', 'word-order', 'word-choice', 'missing-word', 'other'] as const
+export type ErrorType = (typeof ERROR_TYPES)[number]
 
 export interface Provider {
   name: 'groq' | 'cloudflare'
@@ -61,12 +65,15 @@ export function chatProviders(env: Env): Provider[] {
 /** モデルに送る本文。gpt-oss は考える過程も出力として数えるので、考える量を小さくして返事の分の上限を残す */
 export function completionBody(p: Provider, messages: { role: string; content: string }[]): Record<string, unknown> {
   const reasoning = /gpt-oss/.test(p.model)
+  // Gemma 4・GLM 4.7・Qwen 3 は考える過程が既定でオン。会話では待ち時間とトークンの無駄になるので切る
+  const thinking = /gemma-4|glm-4|qwen3/i.test(p.model)
   return {
     model: p.model,
     messages,
     temperature: 0.6,
     max_tokens: reasoning ? 800 : 220,
     ...(reasoning ? { reasoning_effort: 'low' } : {}),
+    ...(thinking ? { chat_template_kwargs: { enable_thinking: false } } : {}),
   }
 }
 
@@ -89,30 +96,34 @@ export function systemPrompt(scene: string, level: ChatLevel): string {
     `Situation (stay in this role the whole time): ${scene}`,
     `Use ${LEVEL_GUIDE[level]}.`,
     'Rules:',
-    '- REPLY: 1 or 2 short sentences (at most 25 words) in English, then one question so the learner keeps talking. No Japanese, no grammar explanations.',
-    "- BETTER: look only at the learner's LAST message. If it has a grammar mistake, a wrong word, or sounds unnatural, write one corrected natural sentence. If it is fine, write NONE.",
-    '- NOTE: if BETTER is not NONE, a short reason in Japanese (at most 40 characters). Otherwise NONE.',
+    '- REPLY: 1 or 2 short sentences (at most 25 words) in English, then one question so the learner keeps talking. Make the first sentence short. No Japanese, no grammar explanations, no corrections (a teacher handles those separately).',
     '- HINT: one short example sentence the learner could say next in answer to your REPLY.',
-    '- The learner speaks through speech recognition: ignore capitalization, punctuation, filler words, and small recognition errors. If the message is unclear, kindly ask them to say it again in REPLY.',
-    '- If there is no learner message yet, greet the learner and ask a first question that fits the situation; BETTER and NOTE are NONE.',
+    '- The learner speaks through speech recognition: ignore capitalization, punctuation, filler words, and small recognition errors. If the message is unclear, kindly ask them to say it again.',
+    '- If there is no learner message yet, greet the learner and ask a first question that fits the situation.',
     '- If the situation lists goals for the learner, lead the conversation through them one at a time.',
-    'Answer with exactly these four lines and nothing else:',
+    '- If the learner writes Japanese (or mixes Japanese), reply in simple English and gently encourage them to try saying it in English.',
+    '- If the learner asks you to repeat, speak slowly, or say it more simply, say your last point again with easier words and shorter sentences, and keep using easier English after that.',
+    '- If the learner asks what a word means, explain it in very simple English, then return to the situation.',
+    '- If the learner gives very short answers, use easier words and offer two choices in your question. If they answer easily, use slightly richer English.',
+    '- Never write the learner\'s lines for them.',
+    'Answer with exactly these two lines and nothing else:',
     'REPLY: ...',
-    'BETTER: ...',
-    'NOTE: ...',
     'HINT: ...',
-    'Example, when the learner said "i want go to station":',
+    'Example:',
     'REPLY: Sure! Which station would you like to go to?',
-    'BETTER: I want to go to the station.',
-    'NOTE: want to＋動詞の原形。特定の駅には the を付ける',
     'HINT: I want to go to Tokyo Station.',
   ].join('\n')
+}
+
+/** 毎回の念押し（小さいモデルは会話が長くなると役やレベルを忘れるので、最後に短く言い直す） */
+export function reminder(level: ChatLevel): string {
+  return `Remember: stay in your role, use CEFR ${level} English, at most 25 words, end with one question. Answer with the REPLY and HINT lines only.`
 }
 
 const NONE = /^(none|n\/a|null|-|なし)?\.?$/i
 /** 行の見出しで区切って取り出す（見出しの前後の空白・** の強調・大文字小文字はゆるく扱う） */
 function field(text: string, name: string): string {
-  const re = new RegExp(`(?:^|\\n)\\s*\\**\\s*${name}\\s*\\**\\s*[:：]\\s*\\**\\s*([\\s\\S]*?)(?=\\n\\s*\\**\\s*(?:REPLY|BETTER|NOTE|HINT)\\s*\\**\\s*[:：]|$)`, 'i')
+  const re = new RegExp(`(?:^|\\n)\\s*\\**\\s*${name}\\s*\\**\\s*[:：]\\s*\\**\\s*([\\s\\S]*?)(?=\\n\\s*\\**\\s*(?:REPLY|BETTER|NOTE|TYPE|HINT)\\s*\\**\\s*[:：]|$)`, 'i')
   const m = text.match(re)
   return m ? m[1].trim().replace(/^["“]|["”]$/g, '').trim() : ''
 }
@@ -130,9 +141,13 @@ export function parseChatReply(raw: string): ChatReply | null {
     const better = field(text, 'BETTER')
     const note = field(text, 'NOTE')
     const hint = field(text, 'HINT')
+    const type = field(text, 'TYPE').toLowerCase().replace(/[^a-z-]/g, '') as ErrorType
     return {
       reply,
-      correction: better && !NONE.test(better) ? { better, note: NONE.test(note) ? '' : note } : null,
+      correction:
+        better && !NONE.test(better)
+          ? { better, note: NONE.test(note) ? '' : note, ...(ERROR_TYPES.includes(type) ? { type } : {}) }
+          : null,
       hint: NONE.test(hint) ? '' : hint,
     }
   }
@@ -153,7 +168,7 @@ export function parseChatReply(raw: string): ChatReply | null {
     }
   }
   // 返事のあとに JSON や見出しの切れ端が続いていたら、そこから後ろは捨てる
-  const cut = text.search(/\{\s*"|\n\s*(?:BETTER|NOTE|HINT)\s*[:：]/i)
+  const cut = text.search(/\{\s*"|\n\s*(?:BETTER|NOTE|TYPE|HINT)\s*[:：]/i)
   const plainReply = (cut > 0 ? text.slice(0, cut) : text).replace(/^["\s]+|["\s]+$/g, '').trim()
   return plainReply && !plainReply.startsWith('{') ? { reply: plainReply.slice(0, 400), correction: null, hint: '' } : null
 }
@@ -303,7 +318,11 @@ export async function handleChat(request: Request, env: Env): Promise<Response> 
   const stream = (body as { stream?: unknown }).stream === true
   const said = input.messages.at(-1)?.content
 
-  const messages = [{ role: 'system', content: systemPrompt(input.scene, input.level) }, ...historyForModel(input.messages)]
+  const messages = [
+    { role: 'system', content: systemPrompt(input.scene, input.level) },
+    ...historyForModel(input.messages),
+    ...(input.messages.length ? [{ role: 'system', content: reminder(input.level) }] : []),
+  ]
   const cid = (body as { cid?: unknown }).cid
   const call = (p: Provider, asStream: boolean) =>
     fetchUpstream(p.url, {

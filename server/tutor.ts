@@ -3,12 +3,13 @@
  * - explain-reply：相手の英語の解説（訳・表現・ポイント・返し方の例）
  * - explain-mine：自分の英語の詳しい評価（よかった点・直し・理由・くだけた言い方・ていねいな言い方）
  * - ask：会話の途中で、先生に日本語で質問する（「for here ってどういう意味？」など）
+ * - correct：自分の発言の直し。会話の返事とは別に、同時にたのむ（返事を待たせず、直しは明らかな誤りだけを最小限に）
  * 会話の中身はサーバーに保存しない。
  */
-import { chatProviders, CHAT_LEVELS, completionBody, upstreamText, type ChatLevel, type Provider } from './chat.js'
+import { chatProviders, CHAT_LEVELS, completionBody, ERROR_TYPES, upstreamText, type ChatLevel, type ErrorType, type Provider } from './chat.js'
 import { fetchUpstream, json, type Env } from './shared.js'
 
-export const TUTOR_MODES = ['explain-reply', 'explain-mine', 'ask'] as const
+export const TUTOR_MODES = ['correct', 'explain-reply', 'explain-mine', 'ask'] as const
 export type TutorMode = (typeof TUTOR_MODES)[number]
 const MAX_TEXT = 600
 const MAX_CONTEXT = 6
@@ -53,6 +54,44 @@ export function tutorPrompt(input: TutorInput): string {
     'Recent conversation:',
     transcript(input.context),
   ]
+  if (input.mode === 'correct') {
+    const partner = [...input.context].reverse().find((m) => m.role === 'assistant')?.content
+    if (hasJapanese(input.text))
+      return [
+        `A Japanese learner (CEFR ${input.level}) said this in a role-play, partly or fully in Japanese: "${input.text}"`,
+        partner ? `The partner had said: "${partner}"` : '',
+        'Write how to say it naturally in simple English.',
+        'Answer with these lines only:',
+        'FIX: the English sentence',
+        'NATURAL: NONE',
+        'NOTE: 英語ではこう言えます',
+        'TYPE: NONE',
+      ].join('\n')
+    return [
+      `You are an English teacher checking one sentence a Japanese learner (CEFR ${input.level}) said in a role-play.`,
+      partner ? `The partner had said: "${partner}"` : '',
+      `The learner said: "${input.text}"`,
+      'It came from speech recognition: ignore capitalization, punctuation, and filler words like um or uh.',
+      'Rules:',
+      '- FIX: correct only clear grammar or word mistakes, with the fewest changes. If there is no clear mistake, write SAME.',
+      '- NATURAL: if a native speaker would clearly say it in a more natural way in this situation, write that one sentence. Otherwise NONE.',
+      '- NOTE: in Japanese (at most 40 characters), explain only what you changed. NONE if nothing changed.',
+      '- TYPE: if FIX is not SAME, one of: article, plural, tense, preposition, agreement, word-order, word-choice, missing-word, other. Otherwise NONE.',
+      'Answer with exactly these four lines.',
+      'Example: the learner said "i want go to station"',
+      'FIX: I want to go to the station.',
+      'NATURAL: NONE',
+      'NOTE: want to＋動詞の原形。特定の駅には the',
+      'TYPE: missing-word',
+      'Example: the learner said "I am fine thank you"',
+      'FIX: SAME',
+      'NATURAL: NONE',
+      'NOTE: NONE',
+      'TYPE: NONE',
+    ]
+      .filter(Boolean)
+      .join('\n')
+  }
   if (input.mode === 'explain-reply')
     return [
       ...head,
@@ -148,12 +187,51 @@ export function toMineFeedback(text: string, said: string): MineFeedback | null 
   return out.good || out.fix || out.casual || out.polite ? out : null
 }
 
-/** 先生役のモデル（設定があれば会話の相手役とは別のモデル。日本語の説明が得意なものを使える） */
+const hasJapanese = (s: string) => /[぀-ヿ㐀-鿿]/.test(s)
+
+export interface Correction {
+  better: string
+  note: string
+  type?: ErrorType
+  /** fix＝誤りの直し、natural＝誤りではないが、より自然な言い方、ja＝日本語で言ったことの英語 */
+  kind: 'fix' | 'natural' | 'ja'
+}
+
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/[^a-z0-9' ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+/** 直しを読む。直すところがなければ null（句読点・大文字だけの違いも直しにしない） */
+export function toCorrection(text: string, said: string): Correction | null {
+  const f = parseLabeled(text)
+  const fix = one(f, 'FIX')
+  const natural = one(f, 'NATURAL')
+  const note = one(f, 'NOTE')
+  const type = one(f, 'TYPE').toLowerCase().replace(/[^a-z-]/g, '') as ErrorType
+  if (hasJapanese(said)) return fix && !/^same$/i.test(fix) ? { better: fix, note: note || '英語ではこう言えます', kind: 'ja' } : null
+  if (fix && !/^same\.?$/i.test(fix) && norm(fix) !== norm(said))
+    return { better: fix, note, kind: 'fix', ...(ERROR_TYPES.includes(type) ? { type } : {}) }
+  if (natural && norm(natural) !== norm(said)) return { better: natural, note, kind: 'natural' }
+  return null
+}
+
+/**
+ * 先生役のモデル（試す順）。直し・解説は待ち時間より質が大事なので、日本語の説明が得意で無料の大きめのモデルを先に、
+ * 使えなければ（有料のみ・形式の不一致・混雑など）会話と同じモデルにする
+ */
 export function tutorProviders(env: Env): Provider[] {
-  return chatProviders(env).map((p) => {
-    const m = p.name === 'cloudflare' ? env.CLOUDFLARE_TUTOR_MODEL : env.GROQ_TUTOR_MODEL
-    return m ? { ...p, model: m } : p
-  })
+  const out: Provider[] = []
+  for (const p of chatProviders(env)) {
+    const tutor =
+      p.name === 'cloudflare' ? env.CLOUDFLARE_TUTOR_MODEL || '@cf/google/gemma-4-26b-a4b-it' : env.GROQ_TUTOR_MODEL || 'openai/gpt-oss-120b'
+    out.push({ ...p, model: tutor })
+    if (tutor !== p.model) out.push(p)
+  }
+  return out
 }
 
 /** POST /api/tutor — { mode, level, scene, text, context } */
@@ -174,8 +252,12 @@ export async function handleTutor(request: Request, env: Env): Promise<Response>
     const res = await fetchUpstream(p.url, {
       method: 'POST',
       headers: { Authorization: `Bearer ${p.key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...completionBody(p, messages), temperature: 0.3, max_tokens: /gpt-oss/.test(p.model) ? 900 : 380 }),
-      signal: AbortSignal.timeout(25_000),
+      body: JSON.stringify({
+        ...completionBody(p, messages),
+        temperature: input.mode === 'correct' ? 0 : 0.3,
+        max_tokens: /gpt-oss/.test(p.model) ? 900 : input.mode === 'correct' ? 160 : 380,
+      }),
+      signal: AbortSignal.timeout(input.mode === 'correct' ? 12_000 : 25_000),
     })
     if (!res) continue
     if (!res.ok) {
@@ -186,6 +268,11 @@ export async function handleTutor(request: Request, env: Env): Promise<Response>
     }
     let text = ''
     for await (const d of upstreamText(res)) text += d
+    if (input.mode === 'correct') {
+      // 読めない出力（形式の崩れ・考える過程だけ）なら次のモデルへ。読めて直しがなければ null を返す
+      if (!/FIX\s*[:：]/i.test(text)) continue
+      return json({ correction: toCorrection(text, input.text), provider: p.name })
+    }
     if (input.mode === 'ask') {
       const answer = text.trim()
       if (answer) return json({ answer: answer.slice(0, 600), provider: p.name })

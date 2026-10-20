@@ -32,12 +32,14 @@ describe('AI 会話（/api/chat）', () => {
     expect(readChatBody({ ...OK, scene: '' })).toBeNull()
   })
 
-  it('指示に場面とレベルを入れ、JSON だけで返させる', () => {
+  it('指示に場面とレベルを入れ、見出しの行で返させる', () => {
     const p = systemPrompt('You are a hotel receptionist.', 'A2')
     expect(p).toContain('hotel receptionist')
     expect(p).toContain('CEFR A2')
     expect(p).toContain('REPLY:')
-    expect(p).toContain('BETTER:')
+    expect(p).toContain('HINT:')
+    // 直しは別の呼び出し（先生役）で、返事の側には書かせない
+    expect(p).not.toContain('BETTER:')
   })
 
   it('見出しの行で返した出力を読む（直しなし・強調・全角コロン）', () => {
@@ -139,5 +141,31 @@ describe('AI 会話（/api/chat）', () => {
     vi.stubGlobal('fetch', vi.fn(async () => new Response('{"errors":[{"code":5035}]}', { status: 403 })))
     const res = await handleChat(post(OK), { CLOUDFLARE_ACCOUNT_ID: 'a', CLOUDFLARE_AI_TOKEN: 't' })
     expect(((await res.json()) as { error: string }).error).toContain('接続できませんでした')
+  })
+
+  it('直しの種類（TYPE）を読む。知らない種類は付けない', () => {
+    expect(parseChatReply('REPLY: OK!\nBETTER: I want a latte.\nNOTE: a が必要\nTYPE: article\nHINT: Thanks.')?.correction).toEqual({
+      better: 'I want a latte.',
+      note: 'a が必要',
+      type: 'article',
+    })
+    expect(parseChatReply('REPLY: OK!\nBETTER: I want a latte.\nNOTE: x\nTYPE: spelling\nHINT: Thanks.')?.correction).toEqual({ better: 'I want a latte.', note: 'x' })
+    expect(partialReply('REPLY: Sure!\nTYPE: NONE')).toEqual({ text: 'Sure!', complete: true })
+  })
+})
+
+describe('AI と会話：声のやりとりの区切り', async () => {
+  const { autoSendDelay, sentenceEnd, splitSentences } = await import('../src/lib/chatSpeech')
+  it('文が . ? ! で終わっていれば早く送り、考えている途中（and・um）なら長く待つ', () => {
+    expect(autoSendDelay('I want a latte.', false)).toBe(600)
+    expect(autoSendDelay('I want a latte and', false)).toBe(1800)
+    expect(autoSendDelay('I want a latte', false)).toBe(1000)
+    expect(autoSendDelay('I want a latte.', true)).toBe(1800)
+  })
+  it('書き終えた文から読み上げる（略語の点では区切らない）', () => {
+    expect(sentenceEnd('Sure! What si', false)).toBe(6)
+    expect(sentenceEnd('It opens at 10 a.m. tomorrow', false)).toBe(0)
+    expect(sentenceEnd('Sure! What size?', true)).toBe(16)
+    expect(splitSentences('Sure! What size would you like? Small or large?')).toEqual(['Sure!', 'What size would you like?', 'Small or large?'])
   })
 })

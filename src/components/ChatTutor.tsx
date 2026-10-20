@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { GraduationCap, Loader2 } from 'lucide-react'
+import { Eye, GraduationCap, Loader2 } from 'lucide-react'
 import { SpeakButton, cx } from './ui'
 import { ApiError, explainMine, explainReply, type ChatTurn, type MineFeedback, type ReplyExplanation } from '@/lib/api'
 import type { Accent } from '@/lib/tts'
@@ -40,6 +40,24 @@ function Label({ children }: { children: ReactNode }) {
   return <p className="text-[11.5px] font-semibold text-muted">{children}</p>
 }
 
+/** 訳は、意味を自分で考えてから開く（すぐ答えを見るより身につきやすい） */
+function Translation({ ja }: { ja: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div>
+      <Label>訳</Label>
+      {open ? (
+        <p className="text-[13.5px] leading-relaxed">{ja}</p>
+      ) : (
+        <button onClick={() => setOpen(true)} className="flex min-h-8 items-center gap-1 text-[12.5px] font-semibold text-brand">
+          <Eye className="h-3.5 w-3.5" strokeWidth={2} />
+          意味を考えてから、訳を見る
+        </button>
+      )}
+    </div>
+  )
+}
+
 /** 相手の英語の解説：訳・大事な表現・ポイント・返し方の例 */
 export function ReplyExplain({ text, base, accent }: { text: string; base: Base; accent: Accent }) {
   const [open, setOpen] = useState(false)
@@ -68,12 +86,7 @@ export function ReplyExplain({ text, base, accent }: { text: string; base: Base;
       {error && <p className="text-[12.5px] text-ng">{error}</p>}
       {data && (
         <>
-          {data.ja && (
-            <div>
-              <Label>訳</Label>
-              <p className="text-[13.5px] leading-relaxed">{data.ja}</p>
-            </div>
-          )}
+          {data.ja && <Translation ja={data.ja} />}
           {data.phrases.length > 0 && (
             <div>
               <Label>大事な表現</Label>
