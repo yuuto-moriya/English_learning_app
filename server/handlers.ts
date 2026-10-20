@@ -64,6 +64,17 @@ type AzureTranslateResponse = {
   translations?: { text?: string; to?: string }[]
 }[]
 
+/**
+ * Translator のエラーを利用者向けの文にする。Free F0 は無料枠を超えると 403（403001）で止まり、課金はされない。
+ * 429 は短い時間の回数制限（F0 は1時間200万文字・毎分約33,300文字）
+ */
+export function translatorError(status: number, detail = ''): string {
+  if (status === 403 && /403001|quota/i.test(detail)) return '今月の翻訳の無料枠（200万文字）を使い切りました。料金はかからず、来月また使えます'
+  if (status === 429) return '翻訳の回数制限に達しました。少し待ってからもう一度お試しください'
+  if (status === 403) return '翻訳APIの無料枠または利用の制限に達しました'
+  return `翻訳APIエラー (${status})`
+}
+
 /** POST /api/translate — { text, to, from? } を Azure Translator で翻訳 */
 export async function handleTranslate(request: Request, env: Env): Promise<Response> {
   if (!env.AZURE_TRANSLATOR_KEY || !env.AZURE_TRANSLATOR_REGION) {
@@ -106,8 +117,7 @@ export async function handleTranslate(request: Request, env: Env): Promise<Respo
   if (!res) return json({ error: '翻訳APIに接続できませんでした' }, 502)
   if (!res.ok) {
     const detail = await res.text().catch(() => '')
-    const quota = res.status === 403 || res.status === 429
-    return json({ error: quota ? '翻訳APIの無料枠または回数制限に達しました' : `翻訳APIエラー (${res.status})`, detail: detail.slice(0, 300) }, 502)
+    return json({ error: translatorError(res.status, detail), detail: detail.slice(0, 300) }, 502)
   }
   const data = await upstreamJson<AzureTranslateResponse>(res)
   if (!Array.isArray(data)) return json({ error: '翻訳APIの応答を読み取れませんでした' }, 502)
