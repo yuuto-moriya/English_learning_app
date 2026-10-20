@@ -9,7 +9,7 @@ import { chatScenes, type ChatScene } from '@/data/chatScenes'
 import { ApiError, chat, transcribe, translate, type ChatReply, type ChatTurn } from '@/lib/api'
 import { bumpDaily } from '@/lib/db'
 import { useHealth } from '@/lib/hooks'
-import { liveEngine, startLive, type LiveSession } from '@/lib/live'
+import { liveEngine, startLive, warmLive, type Engine, type LiveSession } from '@/lib/live'
 import { WavRecorder } from '@/lib/recorder'
 import { useSettings } from '@/lib/settings'
 import { play } from '@/lib/sounds'
@@ -26,6 +26,8 @@ const CHAT_LEVELS = [
 type ChatLevel = (typeof CHAT_LEVELS)[number]['value']
 const levelOf = (maxLevel: number): ChatLevel => CHAT_LEVELS[Math.min(Math.max(maxLevel, 1), 4) - 1].value
 
+/** 話し終えてから自動で送るまでの無音（ミリ秒） */
+const AUTO_SEND_MS = 1400
 /** AI に送る会話の長さ（サーバーの上限 16 発言。古い発言から落とす） */
 const SEND_TURNS = 16
 /** 1日に送れる回数（端末ごと。無料枠を使い切らないための目安） */
@@ -97,6 +99,13 @@ export default function Conversation() {
   const session = useRef<LiveSession | null>(null)
   const rec = useRef<WavRecorder | null>(null)
   const micText = useRef('')
+  /** 音声入力の回。送ったあとに遅れて届いた認識結果を捨てるのに使う */
+  const micGen = useRef(0)
+  const lastFinal = useRef('')
+  const silence = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const [starting, setStarting] = useState(false)
+  /** 使える音声入力の方式（undefined = まだ調べていない） */
+  const [engine, setEngine] = useState<Engine | null | undefined>(undefined)
   const mounted = useRef(true)
   const bottom = useRef<HTMLDivElement>(null)
 
@@ -107,8 +116,23 @@ export default function Conversation() {
       stopSpeaking()
       rec.current?.cancel()
       void session.current?.stop()
+      clearTimeout(silence.current)
     }
   }, [])
+
+  // マイクを押してから聞き始めるまでを短くするため、音声認識の方式・SDK・一時トークンを先に用意しておく
+  useEffect(() => {
+    if (!health?.speech && !health?.realtime) return
+    let alive = true
+    void liveEngine().then((e) => {
+      if (!alive) return
+      setEngine(e)
+      warmLive(e)
+    })
+    return () => {
+      alive = false
+    }
+  }, [health])
 
   useEffect(() => {
     bottom.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
@@ -151,6 +175,7 @@ export default function Conversation() {
   const start = (sc: ChatScene) => {
     warmUpSpeech()
     primeAudio()
+    warmLive(engine)
     setScene(sc)
     setTurns([])
     setDone(false)
@@ -169,63 +194,93 @@ export default function Conversation() {
     void ask(next, scene)
   }
 
-  /** 話す：リアルタイムの認識なら話しながら文字を出し、止めたら送る。なければ録音して文字起こし */
+  /** 話す：リアルタイムの認識なら話しながら文字を出し、話し終えて少し黙ると自動で送る（止めて送るボタンでもすぐ送れる）。なければ録音して文字起こし */
   const startMic = async () => {
-    if (session.current || rec.current || busy) return
+    if (session.current || rec.current || busy || starting) return
     stopSpeaking()
     setError(null)
+    setStarting(true)
     play('start')
+    const gen = ++micGen.current
     micText.current = ''
+    lastFinal.current = ''
     setDraft('')
     try {
-      const eng = await liveEngine()
+      const eng = engine === undefined ? await liveEngine() : engine
       if (eng) {
         const sess = await startLive({
           lang: 'en-US',
-          onPartial: (t) => mounted.current && setDraft((micText.current + ' ' + t).trim()),
-          onFinal: (t) => {
-            micText.current = (micText.current + ' ' + t).trim()
-            if (mounted.current) setDraft(micText.current)
+          onPartial: (t) => {
+            // 送ったあとに遅れて届いた結果は捨てる（前の発言が二重に出ないように）
+            if (gen !== micGen.current || !mounted.current) return
+            clearTimeout(silence.current)
+            setDraft((micText.current + ' ' + t).trim())
           },
-          onError: (m) => mounted.current && setError(m),
+          onFinal: (t) => {
+            if (gen !== micGen.current) return
+            const text = t.trim()
+            // 同じ区切りが続けて届いたとき（端末の認識で起きる）は1回だけ使う
+            if (!text || text.toLowerCase() === lastFinal.current.toLowerCase()) return
+            lastFinal.current = text
+            micText.current = (micText.current + ' ' + text).trim()
+            if (!mounted.current) return
+            setDraft(micText.current)
+            // 話し終えて黙ったら自動で送る
+            clearTimeout(silence.current)
+            silence.current = setTimeout(() => void stopRef.current(), AUTO_SEND_MS)
+          },
+          onError: (m) => gen === micGen.current && mounted.current && setError(m),
           onEnd: () => {
             if (session.current === sess) session.current = null
-            if (mounted.current) setRecording(false)
+            if (gen === micGen.current && mounted.current) setRecording(false)
           },
         })
+        if (!mounted.current || gen !== micGen.current) {
+          void sess.stop()
+          return
+        }
         session.current = sess
         setRecording(true)
         return
       }
       const r = new WavRecorder()
-      r.onAutoStop = () => void stopMic()
+      r.onAutoStop = () => void stopRef.current()
       await r.start()
       rec.current = r
       setRecording(true)
     } catch {
       if (mounted.current) setError('マイクを使用できません。下のキーボードから入力することもできます')
+    } finally {
+      if (mounted.current) setStarting(false)
     }
   }
 
   const stopMic = async () => {
-    play('stop')
-    setRecording(false)
+    clearTimeout(silence.current)
     if (session.current) {
       const s = session.current
       session.current = null
+      play('stop')
+      setRecording(false)
+      // 止めた直前の区切りが届くのを待ってから送る（止める処理が終わると最後の確定が届く）
       await s.stop()
-      // 最後の確定を待ってから送る（止めた直前の言葉が落ちないように）
-      setTimeout(() => {
-        if (!mounted.current) return
-        const t = micText.current.trim()
-        if (t) send(t)
-        else setError('聞き取れませんでした。もう一度話してください')
-      }, 300)
+      const t = micText.current.trim()
+      // ここから先に届く結果は、この発言のものでも使わない
+      micGen.current++
+      micText.current = ''
+      if (!mounted.current) return
+      if (t) send(t)
+      else {
+        setDraft('')
+        setError('聞き取れませんでした。もう一度話してください')
+      }
       return
     }
     const r = rec.current
     rec.current = null
     if (!r) return
+    play('stop')
+    setRecording(false)
     setBusy(true)
     try {
       const out = await r.stop()
@@ -239,6 +294,11 @@ export default function Conversation() {
       if (mounted.current) setError(e instanceof ApiError ? e.message : '音声を文字にできませんでした')
     }
   }
+  // 自動で送るとき（無音・録音の時間切れ）は、そのときの最新の stopMic を呼ぶ
+  const stopRef = useRef(stopMic)
+  useEffect(() => {
+    stopRef.current = stopMic
+  })
 
   const showJa = async (k: number) => {
     const t = turns[k]
@@ -335,7 +395,7 @@ export default function Conversation() {
         {/* 下の操作：話す（または入力）・ヒント */}
         <div className="glass fixed inset-x-0 bottom-0 z-10 px-4 pb-safe hairline-t">
           <div className="mx-auto max-w-[640px] py-3">
-            {(recording || draft) && !typing && <p className="en mb-2 line-clamp-3 min-h-6 text-[15px] leading-snug text-muted">{draft || 'Listening…'}</p>}
+            {(recording || draft) && !typing && <p className="en mb-2 line-clamp-3 min-h-6 text-[15px] leading-snug text-muted">{draft || '聞き取っています。話し終えると自動で送ります'}</p>}
             {typing || !canMic ? (
               <form
                 className="flex items-center gap-2"
@@ -374,15 +434,15 @@ export default function Conversation() {
                 </button>
                 <button
                   onClick={() => void (recording ? stopMic() : startMic())}
-                  disabled={busy && !recording}
+                  disabled={(busy && !recording) || starting}
                   aria-label={recording ? '止めて送る' : '話す'}
                   className={cx(
                     'flex h-16 flex-1 items-center justify-center gap-2 rounded-full text-[16px] font-semibold transition active:scale-[0.98] disabled:opacity-40',
                     recording ? 'bg-ng text-white' : 'bg-brand text-on-brand',
                   )}
                 >
-                  {recording ? <Square className="h-5 w-5 fill-current" /> : <Mic className="h-6 w-6" />}
-                  {recording ? '止めて送る' : '話す'}
+                  {starting ? <Loader2 className="h-6 w-6 animate-spin" /> : recording ? <Square className="h-5 w-5 fill-current" /> : <Mic className="h-6 w-6" />}
+                  {starting ? '準備中…' : recording ? '止めて送る' : '話す'}
                 </button>
                 <button
                   onClick={() => setTyping(true)}

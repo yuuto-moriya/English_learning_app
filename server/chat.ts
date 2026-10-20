@@ -65,7 +65,7 @@ export function completionBody(p: Provider, messages: { role: string; content: s
     model: p.model,
     messages,
     temperature: 0.7,
-    max_tokens: reasoning ? 800 : 300,
+    max_tokens: reasoning ? 800 : 220,
     ...(reasoning ? { reasoning_effort: 'low' } : {}),
   }
 }
@@ -78,51 +78,83 @@ const LEVEL_GUIDE: Record<ChatLevel, string> = {
   C1: 'natural, rich English as between native speakers (CEFR C1)',
 }
 
-/** AI への指示（役・レベル・返事の形） */
+/**
+ * AI への指示（役・レベル・返事の形）。
+ * 小さいモデルは JSON を途中で崩しやすい（返事のあとに {"correction": … が切れて混ざる）ので、
+ * 見出しつきの行（REPLY: / BETTER: / NOTE: / HINT:）で返させる
+ */
 export function systemPrompt(scene: string, level: ChatLevel): string {
   return [
     'You are a friendly conversation partner helping a Japanese adult practice spoken English.',
     `Situation (stay in this role the whole time): ${scene}`,
     `Use ${LEVEL_GUIDE[level]}.`,
     'Rules:',
-    '- Reply in 1 or 2 short sentences (at most 30 words), then ask one question or give one prompt so the learner keeps talking.',
-    '- Never switch to Japanese in "reply". Do not explain grammar in "reply".',
-    "- Look only at the learner's LAST message. If it has a grammar mistake, a wrong word, or sounds unnatural, put a corrected natural version in correction.better and a short explanation in Japanese (at most 60 characters) in correction.note. If it is fine, set correction to null.",
-    '- The learner speaks through speech recognition: ignore capitalization, punctuation, and filler words. Do not correct those.',
-    '- If there is no learner message yet, start the conversation with a greeting and a first question that fits the situation; correction is null.',
-    '- "hint" is one short example sentence the learner could say next in answer to you, at the same level.',
-    'Respond with ONLY a JSON object, no other text:',
-    '{"reply": "...", "correction": null or {"better": "...", "note": "..."}, "hint": "..."}',
+    '- REPLY: 1 or 2 short sentences (at most 25 words) in English, then one question so the learner keeps talking. No Japanese, no grammar explanations.',
+    "- BETTER: look only at the learner's LAST message. If it has a grammar mistake, a wrong word, or sounds unnatural, write one corrected natural sentence. If it is fine, write NONE.",
+    '- NOTE: if BETTER is not NONE, a short reason in Japanese (at most 40 characters). Otherwise NONE.',
+    '- HINT: one short example sentence the learner could say next in answer to your REPLY.',
+    '- The learner speaks through speech recognition: ignore capitalization, punctuation, filler words, and small recognition errors. If the message is unclear, kindly ask them to say it again in REPLY.',
+    '- If there is no learner message yet, greet the learner and ask a first question that fits the situation; BETTER and NOTE are NONE.',
+    'Answer with exactly these four lines and nothing else:',
+    'REPLY: ...',
+    'BETTER: ...',
+    'NOTE: ...',
+    'HINT: ...',
   ].join('\n')
 }
 
-/** AI の出力（JSON のはず）を読む。前後に余計な文があっても、最初の {…} を探す。読めなければ全体を返事とみなす */
+const NONE = /^(none|n\/a|null|-|なし)?\.?$/i
+/** 行の見出しで区切って取り出す（見出しの前後の空白・** の強調・大文字小文字はゆるく扱う） */
+function field(text: string, name: string): string {
+  const re = new RegExp(`(?:^|\\n)\\s*\\**\\s*${name}\\s*\\**\\s*[:：]\\s*\\**\\s*([\\s\\S]*?)(?=\\n\\s*\\**\\s*(?:REPLY|BETTER|NOTE|HINT)\\s*\\**\\s*[:：]|$)`, 'i')
+  const m = text.match(re)
+  return m ? m[1].trim().replace(/^["“]|["”]$/g, '').trim() : ''
+}
+
+/**
+ * AI の出力を読む。見出しの行の形を優先し、JSON で返してきたときも読む。
+ * どちらでもないときは、JSON の切れ端（{"correction": …）を除いた全体を返事にする
+ */
 export function parseChatReply(raw: string): ChatReply | null {
-  const text = raw.trim()
+  const text = raw.replace(/\r/g, '').trim()
   if (!text) return null
+  // 返事の行に JSON の切れ端が続いていたら捨てる
+  const reply = field(text, 'REPLY').split(/\{\s*"/)[0].trim()
+  if (reply) {
+    const better = field(text, 'BETTER')
+    const note = field(text, 'NOTE')
+    const hint = field(text, 'HINT')
+    return {
+      reply,
+      correction: better && !NONE.test(better) ? { better, note: NONE.test(note) ? '' : note } : null,
+      hint: NONE.test(hint) ? '' : hint,
+    }
+  }
   const start = text.indexOf('{')
   const end = text.lastIndexOf('}')
   if (start >= 0 && end > start) {
     try {
       const j = JSON.parse(text.slice(start, end + 1)) as Record<string, unknown>
-      const reply = typeof j.reply === 'string' ? j.reply.trim() : ''
-      if (reply) {
+      const r = typeof j.reply === 'string' ? j.reply.trim() : ''
+      if (r) {
         const c = j.correction as Record<string, unknown> | null | undefined
         const better = c && typeof c.better === 'string' ? c.better.trim() : ''
         const note = c && typeof c.note === 'string' ? c.note.trim() : ''
-        return {
-          reply,
-          correction: better ? { better, note } : null,
-          hint: typeof j.hint === 'string' ? j.hint.trim() : '',
-        }
+        return { reply: r, correction: better ? { better, note } : null, hint: typeof j.hint === 'string' ? j.hint.trim() : '' }
       }
     } catch {
       /* JSON でなければ下へ */
     }
   }
-  // JSON にならなかったときは、記号を除いた全体を返事にする（直しとヒントはなし）
-  const plainReply = text.replace(/^[{"\s]+|[}"\s]+$/g, '')
-  return plainReply ? { reply: plainReply.slice(0, 400), correction: null, hint: '' } : null
+  // 返事のあとに JSON や見出しの切れ端が続いていたら、そこから後ろは捨てる
+  const cut = text.search(/\{\s*"|\n\s*(?:BETTER|NOTE|HINT)\s*[:：]/i)
+  const plainReply = (cut > 0 ? text.slice(0, cut) : text).replace(/^["\s]+|["\s]+$/g, '').trim()
+  return plainReply && !plainReply.startsWith('{') ? { reply: plainReply.slice(0, 400), correction: null, hint: '' } : null
+}
+
+/** これまでの AI の発言も同じ形にして渡す（小さいモデルが前の発言をまねて、見出しを付けなくなるのを防ぐ） */
+export function historyForModel(messages: ChatMessage[]): ChatMessage[] {
+  return messages.map((m) => (m.role === 'assistant' ? { role: m.role, content: `REPLY: ${m.content}` } : m))
 }
 
 /** 会話の入力を確かめる。不正なら null */
@@ -161,7 +193,7 @@ export async function handleChat(request: Request, env: Env): Promise<Response> 
   const input = readChatBody(body)
   if (!input) return json({ error: 'リクエスト形式が不正です' }, 400)
 
-  const messages = [{ role: 'system', content: systemPrompt(input.scene, input.level) }, ...input.messages]
+  const messages = [{ role: 'system', content: systemPrompt(input.scene, input.level) }, ...historyForModel(input.messages)]
   let quota = false
   for (const p of providers) {
     const res = await fetchUpstream(p.url, {

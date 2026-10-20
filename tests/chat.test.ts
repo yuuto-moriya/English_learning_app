@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { chatProviders, completionBody, handleChat, parseChatReply, readChatBody, systemPrompt } from '../server/chat.js'
+import { chatProviders, completionBody, handleChat, historyForModel, parseChatReply, readChatBody, systemPrompt } from '../server/chat.js'
 import type { Env } from '../server/shared.js'
 
 const BOTH: Env = { CLOUDFLARE_ACCOUNT_ID: 'acc', CLOUDFLARE_AI_TOKEN: 'cf', GROQ_API_KEY: 'gsk' }
@@ -36,7 +36,35 @@ describe('AI 会話（/api/chat）', () => {
     const p = systemPrompt('You are a hotel receptionist.', 'A2')
     expect(p).toContain('hotel receptionist')
     expect(p).toContain('CEFR A2')
-    expect(p).toContain('"correction"')
+    expect(p).toContain('REPLY:')
+    expect(p).toContain('BETTER:')
+  })
+
+  it('見出しの行で返した出力を読む（直しなし・強調・全角コロン）', () => {
+    expect(parseChatReply("REPLY: What size would you like?\nBETTER: I'd like a latte, please.\nNOTE: want より丁寧\nHINT: A medium, please.")).toEqual({
+      reply: 'What size would you like?',
+      correction: { better: "I'd like a latte, please.", note: 'want より丁寧' },
+      hint: 'A medium, please.',
+    })
+    expect(parseChatReply('**REPLY:** Nice to meet you! Where are you from?\n**BETTER:** NONE\n**NOTE:** NONE\n**HINT:** I am from Tokyo.')).toEqual({
+      reply: 'Nice to meet you! Where are you from?',
+      correction: null,
+      hint: 'I am from Tokyo.',
+    })
+    expect(parseChatReply('REPLY：Hello!\nBETTER：none.')?.correction).toBeNull()
+  })
+
+  it('返事に JSON の切れ端が混ざっても、返事だけを出す（実機で出た崩れ）', () => {
+    const broken = 'It sounds like you love Australia. What do you like to do there? {"correction": {"better"'
+    expect(parseChatReply(broken)).toEqual({ reply: 'It sounds like you love Australia. What do you like to do there?', correction: null, hint: '' })
+    expect(parseChatReply('REPLY: Great! {"correction": null}')?.reply).toBe('Great!')
+  })
+
+  it('これまでの AI の発言にも見出しを付けて渡す', () => {
+    expect(historyForModel([{ role: 'assistant', content: 'Hi!' }, { role: 'user', content: 'Hello' }])).toEqual([
+      { role: 'assistant', content: 'REPLY: Hi!' },
+      { role: 'user', content: 'Hello' },
+    ])
   })
 
   it('AI の出力を読む（前後の文・直しなし・JSON でない）', () => {
@@ -52,7 +80,7 @@ describe('AI 会話（/api/chat）', () => {
 
   it('1つめが枠切れなら次のサービスで返事する', async () => {
     const fetchMock = vi.fn(async (url: string | URL) =>
-      String(url).includes('cloudflare') ? new Response('quota', { status: 429 }) : completion('{"reply":"Hi!","correction":null,"hint":"Hello."}'),
+      String(url).includes('cloudflare') ? new Response('quota', { status: 429 }) : completion('REPLY: Hi!\nBETTER: NONE\nNOTE: NONE\nHINT: Hello.'),
     )
     vi.stubGlobal('fetch', fetchMock)
     const res = await handleChat(post(OK), BOTH)
