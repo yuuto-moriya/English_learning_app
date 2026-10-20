@@ -108,6 +108,18 @@ await page.locator('button[data-choice]').first().click()
 check(await page.getByRole('button', { name: '次へ' }).isVisible(), 'リスニングの回答と次へ')
 check(await page.getByText('1 / 10').isVisible(), 'リスニングの進み具合')
 
+// 使い分け（日本語では同じになる英語の組）
+await page.goto(BASE + '/practice/usage')
+await page.getByRole('button', { name: 'はじめる', exact: true }).click()
+check(await page.getByText('和訳に合うように、空所に入る語を選ぼう').isVisible(), '使い分けの問題（空所と和訳）')
+await page.locator('button[data-choice]').first().click()
+check(await page.getByRole('button', { name: '次へ' }).isVisible(), '使い分けの回答と違いの解説')
+
+// 定着チェック（まだ定着した単語がないときは案内を出す）
+await page.goto(BASE + '/study?mode=check')
+await page.getByText(/まだ確かめられる単語がない/).waitFor({ timeout: 5000 }).catch(() => {})
+check(await page.getByText(/まだ確かめられる単語がない/).isVisible(), '定着チェック（対象がないときの案内）')
+
 // 瞬間英作文
 await page.goto(BASE + '/practice/compose')
 await page.getByRole('button', { name: 'はじめる' }).click()

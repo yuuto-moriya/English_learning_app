@@ -50,7 +50,7 @@ click|v|クリックする|*Click* the blue button to continue.|青いボタン�
 double-click|v|ダブルクリックする|*Double-click* the file to open it.|ファイルをダブルクリックして開いてください。|ˌdʌbəlˈklɪk
 drop-down menu|n|ドロップダウンメニュー（選択肢の一覧）|Choose your country from the *drop-down menu*.|ドロップダウンメニューから国を選んでください。|ˈdrɑpˌdaʊn ˈmɛnjuː
 pop-up|n|ポップアップ（前面に出る小さな画面）|Close the *pop-up* and try again.|ポップアップを閉じて、もう一度試してください。|ˈpɑˌpʌp
-checkbox|n|チェックボックス|Tick the *checkbox* to accept the terms.|チェックボックスにチェックを入れて規約に同意してください。|ˈtʃɛkˌbɑks
+checkbox|n|チェックボックス|Select the *checkbox* to accept the terms.|チェックボックスをオンにして規約に同意してください。|ˈtʃɛkˌbɑks
 settings|n|設定（画面）|You can change the language in *Settings*.|言語は「設定」で変更できます。
 homepage|n|トップページ（ホームページ）|The *homepage* shows our latest news.|トップページには最新のお知らせが表示される。|ˈhoʊmˌpeɪdʒ
 web page|n|ウェブページ|This *web page* takes a long time to load.|このウェブページは読み込みに時間がかかる。

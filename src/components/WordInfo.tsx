@@ -126,7 +126,8 @@ export function VerbForms({ word }: { word: Word }) {
 }
 
 /** 意味・例文・解説 */
-export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: boolean }) {
+/** examples：見せる例文の数（新しい単語の提示では1つ目だけにし、2つ目は問題の「新しい文脈」に取っておく） */
+export function WordBody({ word, hideMeaning, examples }: { word: Word; hideMeaning?: boolean; examples?: number }) {
   return (
     <div className="space-y-5">
       {!hideMeaning && (
@@ -136,7 +137,7 @@ export function WordBody({ word, hideMeaning }: { word: Word; hideMeaning?: bool
         </div>
       )}
       {!hideMeaning && <VerbForms word={word} />}
-      {word.ex.map((e, i) => (
+      {word.ex.slice(0, examples).map((e, i) => (
         <div key={i} className="border-l-2 border-line-strong pl-3.5">
           <div className="flex items-start gap-2">
             <p className="en flex-1 text-[18px] leading-[1.45]">

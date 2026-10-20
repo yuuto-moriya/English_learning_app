@@ -180,6 +180,9 @@ const PLAN: Record<Tier, DistractorKind[]> = {
   3: ['near', 'near', 'form'],
 }
 
+/** まちがいの選択肢に使わない語（人の属性を表す語を「まちがい」として並べない） */
+const NEVER_DISTRACTOR = new Set(['gay', 'lesbian', 'slave', 'racist', 'sexual', 'disabled'])
+
 /** 発音記号から強勢記号を除いたもの（同音異義語の判定用） */
 const bareIpa = (ipa?: string) => (ipa ?? '').replace(/[ˈˌ]/g, '')
 
@@ -200,6 +203,7 @@ export function wordDistractors(target: Word, pool: Word[], tier: Tier, opts: { 
   const ok = (w: Word) =>
     w.id !== target.id &&
     w.w.toLowerCase() !== target.w.toLowerCase() &&
+    !NEVER_DISTRACTOR.has(w.w.toLowerCase()) &&
     !containsWord(target.w, w.w) &&
     !meaningOverlap(target.ja, w.ja) &&
     !(opts.listen && sound && bareIpa(w.ipa) === sound)
@@ -289,15 +293,21 @@ function contentWords(en: string): Set<string> {
 }
 
 /** 和訳の近さ 0〜1（2文字ずつの重なり）。近すぎる和訳は「どちらも正解」に見えるので除く */
+const bigramCache = new Map<string, Set<string>>()
+/** 和訳の2文字ずつの組（例文ごとに1回だけ計算する。例文は数千あり、毎問すべてと比べるため） */
+function bigrams(s: string): Set<string> {
+  let out = bigramCache.get(s)
+  if (out) return out
+  out = new Set<string>()
+  const t = s.replace(/[。、！？!?「」（）()\s]/g, '')
+  for (let i = 0; i + 1 < t.length; i++) out.add(t.slice(i, i + 2))
+  bigramCache.set(s, out)
+  return out
+}
+
 function jaSimilarity(a: string, b: string): number {
-  const bi = (s: string) => {
-    const out = new Set<string>()
-    const t = s.replace(/[。、！？!?「」（）()\s]/g, '')
-    for (let i = 0; i + 1 < t.length; i++) out.add(t.slice(i, i + 2))
-    return out
-  }
-  const x = bi(a)
-  const y = bi(b)
+  const x = bigrams(a)
+  const y = bigrams(b)
   if (!x.size || !y.size) return 0
   let k = 0
   for (const v of x) if (y.has(v)) k++
