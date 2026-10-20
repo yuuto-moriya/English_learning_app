@@ -1,0 +1,497 @@
+claim|v|She *claimed* that the money was hers.|彼女はそのお金は自分のものだと主張した。
+relationship|n|The *relationship* between the two countries is getting better.|2国間の関係は良くなってきている。
+travel|v|We *traveled* around Europe last summer.|私たちは去年の夏、ヨーロッパを旅行した。
+enjoy|v|My kids really *enjoyed* the trip to the zoo.|子どもたちは動物園への遠足をとても楽しんだ。
+death|n|The news of her *death* made everyone sad.|彼女の死の知らせはみんなを悲しませた。
+nice|adj|What a *nice* dress! Where did you buy it?|すてきなドレスですね。どこで買ったのですか？
+amount|n|This small car uses only a small *amount* of gas.|この小型車はガソリンを少ない量しか使わない。
+improve|v|Her cooking has *improved* a lot this year.|今年、彼女の料理の腕はずいぶん上がった。
+picture|n|Look at this *picture* of my family.|私の家族のこの写真を見て。
+boy|n|A little *boy* was crying in the park.|公園で小さな男の子が泣いていた。
+regard|v|Many people *regard* her as the best singer in Japan.|多くの人が彼女を日本一の歌手とみなしている。
+organization|n|He started an *organization* to help poor children.|彼は貧しい子どもたちを助ける組織を立ち上げた。
+happy|adj|The children looked very *happy* at the party.|パーティーで子どもたちはとても幸せそうだった。
+couple|n|Can I ask you a *couple* of questions?|2、3質問してもいいですか？
+act|v|The police *acted* fast and caught the thief.|警察はすばやく行動し、泥棒を捕まえた。
+range|n|What is your price *range* for a new car?|新車の価格の範囲はどのくらいですか？
+quality|n|These shoes are cheap, but the *quality* is poor.|この靴は安いが、品質が悪い。
+project|n|Our class started a new *project* about the environment.|私たちのクラスは環境についての新しいプロジェクトを始めた。
+round|adj|The earth is *round* like a ball.|地球はボールのように丸い。
+opportunity|n|I had the *opportunity* to visit Paris last year.|去年パリを訪れる機会があった。
+road|n|Be careful when you cross the *road*.|道路を渡るときは気をつけて。
+according to|prep|*According to* the news, the store will close next month.|ニュースによると、その店は来月閉店する。
+list|n|Is my name on the *list*?|私の名前はリストに載っていますか？
+wish|v|I *wish* I had more free time.|もっと自由な時間があればいいのに。
+therefore|adv|I missed the bus and *therefore* was late for school.|バスに乗り遅れた。それゆえ学校に遅刻した。
+wear|v|Do you *wear* glasses when you read?|本を読むときは眼鏡をかけますか？
+fund|n|The school is collecting *funds* for a new library.|学校は新しい図書館のための資金を集めている。
+rest|n|You need a good night's *rest* before the test.|テストの前には一晩しっかり休む必要がある。
+kid|n|My youngest *kid* starts school next year.|うちの末っ子は来年学校に入る。
+industry|n|Tourism is an important *industry* in this town.|観光はこの町の重要な産業だ。
+education|n|My parents paid for my college *education*.|両親が私の大学教育の費用を払ってくれた。
+measure|v|The nurse *measured* my height and weight.|看護師が私の身長と体重を測った。
+kill|v|The cold weather *killed* all the flowers in my garden.|寒さで庭の花がすべて枯れてしまった。
+serve|v|This restaurant *serves* great pizza at lunch.|このレストランはランチにおいしいピザを出す。
+likely|adj|The train is *likely* to be late because of the snow.|雪のため、電車は遅れそうだ。
+certainly|adv|You will *certainly* like this movie.|あなたは確かにこの映画を気に入るはずだ。
+national|adj|Sumo is known as Japan's *national* sport.|相撲は日本の国技として知られている。
+itself|pron|The house *itself* is old, but the kitchen is new.|家そのものは古いが、台所は新しい。
+teach|v|My father *taught* me how to swim.|父が私に泳ぎ方を教えてくれた。
+field|n|Cows are eating grass in the *field*.|牛が野原で草を食べている。
+security|n|For your *security*, please lock the door at night.|安全のため、夜はドアに鍵をかけてください。
+air|n|The *air* in the mountains is clean.|山の空気はきれいだ。
+benefit|n|Walking every day has many health *benefits*.|毎日歩くことには健康上の利点がたくさんある。
+trade|n|*Trade* between the two countries grew last year.|昨年、2国間の貿易が拡大した。
+risk|n|Driving too fast increases the *risk* of accidents.|スピードの出しすぎは事故の危険性を高める。
+news|n|Did you watch the *news* last night?|昨夜ニュースを見ましたか？
+standard|n|The food at this school meets high safety *standards*.|この学校の食事は高い安全基準を満たしている。
+vote|v|Most people *voted* for the new plan.|ほとんどの人が新しい計画に投票した。
+percent|n|About 80 *percent* of the students walk to school.|生徒の約80パーセントが歩いて通学している。
+focus|v|I can't *focus* when the TV is on.|テレビがついていると集中できない。
+stage|n|At this *stage*, we still don't know the answer.|この段階では、まだ答えはわからない。
+space|n|Is there any *space* in your bag for my book?|あなたのかばんに私の本を入れる空きはありますか？
+instead|adv|There was no coffee, so I drank tea *instead*.|コーヒーがなかったので、代わりに紅茶を飲んだ。
+realize|v|She suddenly *realized* that she had lost her key.|彼女は鍵をなくしたことに突然気づいた。
+usually|adv|What do you *usually* eat for breakfast?|朝食にはたいてい何を食べますか？
+data|n|This app saves your *data* every five minutes.|このアプリは5分ごとにデータを保存する。
+single|adj|There was not a *single* cloud in the sky.|空には雲が1つもなかった。
+address|n|Can you send me your email *address*?|メールアドレスを送ってもらえますか？
+performance|n|This new phone has much better *performance* than my old one.|この新しい電話は前の電話よりずっと性能が良い。
+chance|n|I never get a *chance* to talk with her.|彼女と話す機会がまったくない。
+accept|v|She happily *accepted* the new job offer.|彼女は新しい仕事の申し出を喜んで受け入れた。
+society|n|Old people play an important role in our *society*.|高齢者は私たちの社会で重要な役割を果たしている。
+technology|n|Our school uses the latest *technology* in its classrooms.|私たちの学校は教室で最新の技術を使っている。
+mention|v|She *mentioned* that she was moving to Osaka.|彼女は大阪に引っ越すことに触れた。
+choice|n|We had a *choice* of chicken or fish.|鶏肉か魚かを選ぶことができた。
+save|v|The doctors *saved* the man's life.|医師たちはその男性の命を救った。
+common|adj|Tanaka is a *common* name in Japan.|田中は日本でよくある名前だ。
+culture|n|It's interesting to learn about the *culture* of other countries.|他の国の文化について学ぶのは面白い。
+total|adj|The *total* number of students is 300.|生徒の総数は300人だ。
+demand|n|There is a big *demand* for nurses in this city.|この市では看護師の需要が大きい。
+material|n|Wood is a popular building *material*.|木材は人気のある建築材料だ。
+limit|n|There is a time *limit* of 30 minutes for this test.|このテストには30分の時間制限がある。
+listen|v|I *listened* to music on the train.|電車で音楽を聴いた。
+due|adj|Our baby is *due* next month.|私たちの赤ちゃんは来月生まれる予定だ。
+wrong|adj|I think you have the *wrong* number.|番号をお間違えだと思います。
+foot|n|My left *foot* hurts after the long walk.|長く歩いたので左足が痛い。
+effort|n|He made a big *effort* to pass the exam.|彼は試験に合格するために大いに努力した。
+attention|n|Pay *attention* when you cross the street.|通りを渡るときは注意しなさい。
+upon|prep|*Upon* entering the room, he turned on the light.|部屋に入るとすぐに、彼は明かりをつけた。
+check|v|Did you *check* the weather for tomorrow?|明日の天気を確認しましたか？
+complete|v|It took two years to *complete* the new bridge.|新しい橋を完成させるのに2年かかった。
+lie|v|The cat is *lying* in the sun.|猫が日なたで横たわっている。
+pick|v|She *picked* a blue dress for the party.|彼女はパーティー用に青いドレスを選んだ。
+reduce|v|This new light *reduces* the cost of electricity.|この新しい照明は電気代を減らす。
+personal|adj|Please don't ask me *personal* questions.|個人的な質問はしないでください。
+ground|n|The ball fell to the *ground*.|ボールが地面に落ちた。
+animal|n|Please don't feed the *animals* at the zoo.|動物園の動物にえさを与えないでください。
+arrive|v|We *arrived* at the hotel late at night.|私たちは夜遅くホテルに到着した。
+patient|n|The hospital has over 200 *patients*.|その病院には200人を超える患者がいる。
+current|adj|Please write your *current* address on this form.|この用紙に現在の住所を書いてください。
+century|n|We are living in the 21st *century*.|私たちは21世紀に生きている。
+evidence|n|There is no *evidence* that he took the money.|彼がお金を取ったという証拠はない。
+exist|v|Do you think ghosts really *exist*?|幽霊は本当に存在すると思う？
+similar|adj|My sister and I have *similar* tastes in music.|姉と私は音楽の好みが似ている。
+fight|v|The two countries *fought* for many years.|その2国は何年も戦った。
+leader|n|Who is the *leader* of your team?|あなたのチームのリーダーは誰ですか？
+fine|adj|My mother was sick, but now she is *fine*.|母は病気だったが、今は元気だ。
+street|n|There are many shops on this *street*.|この通りにはたくさんの店がある。
+former|adj|The *former* president visited our school.|元大統領が私たちの学校を訪れた。
+contact|v|You can *contact* us at any time by phone.|いつでもお電話でご連絡いただけます。
+particularly|adv|It was *particularly* cold this morning.|今朝は特に寒かった。
+wife|n|He bought flowers for his *wife* on her birthday.|彼は妻の誕生日に花を買った。
+sport|n|Soccer is the most popular *sport* at our school.|サッカーは私たちの学校で一番人気のスポーツだ。
+prepare|v|My mother *prepared* lunch for all of us.|母が私たち全員の昼食を準備してくれた。
+discuss|v|We *discussed* our summer plans at dinner.|夕食のときに夏の計画について話し合った。
+response|n|I sent her an email, but there was no *response*.|彼女にメールを送ったが、返答はなかった。
+voice|n|She has a beautiful singing *voice*.|彼女は美しい歌声をしている。
+piece|n|I need a *piece* of paper to write on.|書くための紙が1枚必要だ。
+finish|v|Have you *finished* your homework yet?|もう宿題を終えましたか？
+suppose|v|I *suppose* he is still at work.|彼はまだ仕事中なのだと思う。
+apply|v|She *applied* to three universities last year.|彼女は去年、3つの大学に出願した。
+president|n|The *president* of our company is very kind.|うちの会社の社長はとても親切だ。
+fire|n|We sat around the *fire* and sang songs.|私たちは火を囲んで歌を歌った。
+compare|v|I always *compare* prices before I buy something.|私は何かを買う前にいつも値段を比べる。
+court|n|He has to go to *court* next week.|彼は来週、裁判所に行かなければならない。
+police|n|The *police* found my lost bike.|警察がなくした自転車を見つけてくれた。
+store|n|Is there a convenience *store* near here?|この近くにコンビニはありますか？
+poor|adj|Many *poor* children can't go to school.|多くの貧しい子どもたちは学校に行けない。
+knowledge|n|You don't need any special *knowledge* to use this app.|このアプリを使うのに特別な知識は必要ない。
+laugh|v|Why are you *laughing* at me?|どうして私を見て笑っているの？
+arm|n|She held the baby in her *arms*.|彼女は赤ちゃんを腕に抱いた。
+heart|n|The doctor listened to my *heart*.|医師は私の心臓の音を聞いた。
+source|n|The sun is our main *source* of energy.|太陽は私たちの主なエネルギー源だ。
+employee|n|All *employees* must wear a name tag.|全従業員は名札をつけなければならない。
+manage|v|My uncle *manages* a small hotel near the beach.|おじは海の近くの小さなホテルを管理している。
+simply|adv|I *simply* forgot to call you.|単にあなたに電話するのを忘れただけです。
+bank|n|The *bank* closes at three o'clock.|銀行は3時に閉まる。
+firm|n|She started her own design *firm* last year.|彼女は昨年、自分のデザイン会社を立ち上げた。
+cell|n|Can I have your *cell* phone number?|携帯電話の番号を教えてもらえますか？
+article|n|I read an *article* about healthy food in a magazine.|雑誌で健康的な食べ物についての記事を読んだ。
+fast|adj|My new computer is very *fast*.|私の新しいパソコンはとても速い。
+attack|n|The old castle was under *attack* for many days.|その古い城は何日も攻撃を受けた。
+foreign|adj|I have never been to a *foreign* country.|私は外国に行ったことがない。
+surprise|n|The party was a big *surprise* for her.|そのパーティーは彼女にとって大きな驚きだった。
+feature|n|A big *feature* of this town is its old temples.|この町の大きな特徴は古い寺だ。
+factor|n|Price is an important *factor* when I buy a car.|車を買うとき、値段は重要な要因だ。
+pretty|adv|It's *pretty* cold outside today, so take a coat.|今日は外がかなり寒いから、コートを持っていって。
+recently|adv|Have you talked to Ken *recently*?|最近ケンと話しましたか？
+affect|v|The heavy rain *affected* our plans for the weekend.|大雨が私たちの週末の計画に影響した。
+drop|v|I *dropped* my phone and broke the screen.|携帯電話を落として画面を割ってしまった。
+recent|adj|Prices have gone up in *recent* years.|ここ最近の数年で物価が上がっている。
+relate|v|Is this question *related* to the last one?|この質問は前の質問と関係がありますか？
+official|adj|English is an *official* language of Canada.|英語はカナダの公用語の1つだ。
+financial|adj|The bank gives *financial* advice for free.|その銀行は金融に関するアドバイスを無料で行っている。
+miss|v|Hurry up, or we'll *miss* the bus.|急がないと、バスに乗り遅れるよ。
+art|n|There is a famous *art* museum in this city.|この市には有名な美術館がある。
+campaign|n|The school started a *campaign* to stop bullying.|学校はいじめをなくす運動を始めた。
+private|adj|Please don't ask about my *private* life.|私生活について聞かないでください。
+pause|v|She *paused* for a moment and then smiled.|彼女は少し間を置いてからほほえんだ。
+everyone|pron|*Everyone* in my class likes the new teacher.|クラスのみんなが新しい先生を気に入っている。
+forget|v|Sorry, I *forgot* to call you last night.|ごめん、昨夜電話するのを忘れた。
+page|n|The answers are on the last *page*.|答えは最後のページにある。
+worry|v|My mother always *worries* about me.|母はいつも私のことを心配している。
+summer|n|It is very hot here in *summer*.|ここは夏はとても暑い。
+drink|v|You should *drink* more water on hot days.|暑い日はもっと水を飲んだほうがいい。
+opinion|n|What is your *opinion* of the new teacher?|新しい先生についてのあなたの意見は？
+park|n|There is a big *park* near my house.|家の近くに大きな公園がある。
+represent|v|He will *represent* Japan at the Olympics.|彼はオリンピックで日本を代表する。
+key|n|I can't find my house *key*.|家の鍵が見つからない。
+inside|adv|It started to rain, so the children played *inside*.|雨が降り始めたので、子どもたちは中で遊んだ。
+manager|n|The hotel *manager* helped us find a taxi.|ホテルの支配人がタクシーを探すのを手伝ってくれた。
+international|adj|She wants to work for an *international* company.|彼女は国際的な企業で働きたい。
+contain|v|This box *contains* old letters and photos.|この箱には古い手紙と写真が入っている。
+notice|v|I *noticed* a small hole in my sock.|靴下に小さな穴があるのに気づいた。
+wonder|v|I *wonder* where my keys are.|私の鍵はどこにあるのだろう。
+nature|n|Children should spend more time in *nature*.|子どもはもっと自然の中で過ごすべきだ。
+structure|n|This chart shows the *structure* of our company.|この図は私たちの会社の組織の構造を示している。
+section|n|Please read the first *section* of the report.|報告書の最初の部分を読んでください。
+myself|pron|I looked at *myself* in the mirror.|私は鏡に映った自分自身を見た。
+exactly|adv|The train left at *exactly* nine o'clock.|列車は正確に9時ちょうどに出発した。
+plant|n|This *plant* needs a lot of sun.|この植物はたくさん日光が必要だ。
+paint|v|Let's *paint* the fence blue this weekend.|今週末、フェンスを青く塗ろう。
+worker|n|The *workers* are building a new house next door.|作業員たちが隣に新しい家を建てている。
+press|v|*Press* this key to start the game.|このキーを押すとゲームが始まる。
+whatever|pron|You can eat *whatever* you like.|好きなものは何でも食べていいよ。
+necessary|adj|Please bring only *necessary* things for the trip.|旅行には必要なものだけを持ってきてください。
+region|n|This *region* is famous for its apples.|この地域はりんごで有名だ。
+growth|n|Good food is important for a child's *growth*.|良い食事は子どもの成長に大切だ。
+evening|n|What are you doing this *evening*?|今晩は何をする予定ですか？
+influence|n|My teacher had a great *influence* on me.|先生は私に大きな影響を与えた。
+respect|v|All the students *respect* their science teacher.|生徒は皆、理科の先生を尊敬している。
+various|adj|People came from *various* countries for the festival.|祭りのためにさまざまな国から人々が来た。
+catch|v|Can you *catch* the ball with one hand?|片手でボールを捕まえられる？
+thus|adv|He studied hard and *thus* passed the test.|彼は一生懸命勉強し、したがって試験に合格した。
+skill|n|Cooking is a useful *skill* to learn.|料理は身につけると役に立つ技能だ。
+attempt|n|This is my second *attempt* at the driving test.|運転免許の試験に挑戦するのはこれが2回目だ。
+son|n|Their only *son* lives in Tokyo now.|彼らの一人息子は今、東京に住んでいる。
+simple|adj|Can you explain it in *simple* words?|簡単な言葉で説明してもらえますか？
+medium|adj|Do you have this shirt in a *medium* size?|このシャツの中くらいのサイズはありますか？
+average|adj|The *average* age of the members is 30.|メンバーの平均年齢は30歳だ。
+stock|n|We have plenty of rice in *stock*.|米の在庫は十分にある。
+management|n|She studied business *management* in college.|彼女は大学で経営学を学んだ。
+character|n|My brother and I have very different *characters*.|兄と私は性格がまったく違う。
+bed|n|My cat likes to sleep on my *bed*.|うちの猫は私のベッドで寝るのが好きだ。
+hit|v|Ken *hit* a home run in the game.|ケンは試合でホームランを打った。
+establish|v|My grandfather *established* this shop 50 years ago.|祖父が50年前にこの店を設立した。
+indeed|adv|The food was *indeed* very good.|料理は本当にとてもおいしかった。
+final|adj|The *final* game of the season is on Sunday.|シーズン最後の試合は日曜日だ。
+economy|n|Tourism is important for the local *economy*.|観光は地元の経済にとって重要だ。
+fit|v|Will this big box *fit* in the car?|この大きな箱は車に収まるかな？
+guy|n|The *guy* at the front desk was really helpful.|フロントの男性はとても親切だった。
+function|n|This rice cooker has a timer *function*.|この炊飯器にはタイマー機能がある。
+yesterday|n|*Yesterday* was the coldest day of the year.|昨日は今年一番寒い日だった。
+image|n|You can save this *image* to your phone.|この画像を携帯電話に保存できる。
+size|n|These two boxes are the same *size*.|この2つの箱は同じ大きさだ。
+behavior|n|The teacher was happy with the children's good *behavior*.|先生は子どもたちの良いふるまいに満足した。
+addition|n|In *addition* to English, she speaks French.|英語に加えて、彼女はフランス語も話す。
+determine|v|The test will *determine* which class you join.|そのテストで、あなたがどのクラスに入るかが決まる。
+station|n|Let's meet in front of the *station* at noon.|正午に駅の前で会おう。
+population|n|Tokyo has a very large *population*.|東京は人口がとても多い。
+fail|v|My plan to wake up early *failed* again.|早起きする計画はまた失敗した。
+environment|n|Plastic bags are bad for the *environment*.|ビニール袋は環境に悪い。
+production|n|The factory increased *production* of the new car.|工場は新しい車の生産を増やした。
+contract|n|She signed a two-year *contract* with the company.|彼女はその会社と2年の契約を結んだ。
+player|n|Each team has eleven *players* on the field.|各チームにはフィールドに11人の選手がいる。
+comment|n|Thank you for your kind *comments* on my blog.|私のブログへの温かいコメントをありがとう。
+enter|v|Please take off your shoes before you *enter* the room.|部屋に入る前に靴を脱いでください。
+occur|v|When did the big earthquake *occur*?|その大地震はいつ起こったのですか？
+alone|adv|I don't like eating dinner *alone*.|一人で夕食を食べるのは好きではない。
+significant|adj|This is a *significant* day for our family.|今日は私たち家族にとって重要な日だ。
+drug|n|This *drug* may make you sleepy.|この薬を飲むと眠くなることがある。
+wall|n|She hung a picture on the *wall*.|彼女は壁に絵を掛けた。
+series|n|There was a *series* of accidents on this road last month.|先月、この道路で一連の事故があった。
+direct|adj|Keep this plant out of *direct* sunlight.|この植物には直射日光が当たらないようにしてください。
+success|n|The secret of his *success* is hard work.|彼の成功の秘訣は努力だ。
+tomorrow|n|*Tomorrow* is a holiday, so I can sleep late.|明日は休日なので遅くまで寝られる。
+director|n|She became a *director* of the company last year.|彼女は昨年、その会社の取締役になった。
+clearly|adv|I can't see the board *clearly* from here.|ここからは黒板がはっきり見えない。
+lack|n|*Lack* of sleep makes me tired.|睡眠不足で疲れる。
+review|n|The teacher gave us a quick *review* before the test.|先生はテストの前に簡単な見直しをしてくれた。
+depend|v|The price *depends* on the size of the room.|料金は部屋の大きさ次第だ。
+race|n|Ten runners took part in the *race*.|10人の走者がその競走に参加した。
+recognize|v|Would you *recognize* her if you saw her again?|もう一度見たら、彼女だとわかりますか？
+window|n|Could you open the *window*, please?|窓を開けていただけますか？
+purpose|n|The *purpose* of this meeting is to choose a new leader.|この会議の目的は新しいリーダーを選ぶことだ。
+department|n|He moved to the marketing *department* in April.|彼は4月にマーケティング部門に異動した。
+gain|v|You can *gain* useful skills through volunteer work.|ボランティア活動を通して役に立つ技能を得ることができる。
+tree|n|We sat under a *tree* and had lunch.|私たちは木の下に座って昼食をとった。
+college|n|What do you want to study in *college*?|大学では何を勉強したいですか？
+argue|v|My brother and I often *argue* about small things.|弟と私はよくささいなことで口論する。
+board|n|We need a long *board* to fix the fence.|フェンスを直すのに長い板が必要だ。
+holiday|n|Christmas is a big *holiday* in America.|クリスマスはアメリカで大きな祝日だ。
+mark|n|I put a *mark* on the map to show my house.|自分の家がわかるように地図に印をつけた。
+church|n|They go to *church* every Sunday.|彼らは毎週日曜日に教会に行く。
+machine|n|Can you show me how to use this *machine*?|この機械の使い方を教えてもらえますか？
+achieve|v|She worked hard to *achieve* her dream.|彼女は夢を達成するために一生懸命働いた。
+item|n|Many *items* in this store are on sale this week.|この店では今週、多くの品物がセールになっている。
+prove|v|The test results *proved* that he was right.|テストの結果が彼の正しさを証明した。
+cent|n|This small pen costs ninety-nine *cents*.|この小さなペンは99セントだ。
+season|n|Summer is a busy *season* for hotels by the beach.|夏は海辺のホテルが忙しい季節だ。
+floor|n|Please don't leave your bag on the *floor*.|かばんを床に置いたままにしないでください。
+stuff|n|Can I leave my *stuff* in your car?|あなたの車に私のものを置いておいてもいい？
+wide|adj|The river is very *wide* here.|ここでは川幅がとても広い。
+anyone|pron|Does *anyone* have a pen I can use?|誰か貸してもらえるペンを持っていませんか？
+method|n|What *method* of payment would you like to use?|どの支払い方法をお使いになりますか？
+analysis|n|The doctor sent my blood for *analysis*.|医師は私の血液を分析に回した。
+election|n|Who do you think will win the *election*?|選挙では誰が勝つと思いますか？
+military|adj|A *military* plane flew over the town.|軍の飛行機が町の上空を飛んだ。
+hotel|n|Our *hotel* has a nice view of the sea.|私たちのホテルからは海がきれいに見える。
+club|n|Our school has many *clubs* you can join.|私たちの学校には入れるクラブがたくさんある。
+below|prep|Please write your name *below* the line.|線の下に名前を書いてください。
+movie|n|What was the last *movie* you saw?|最後に見た映画は何ですか？
+doctor|n|My aunt is a *doctor* at a children's hospital.|おばは子ども病院の医者だ。
+discussion|n|After the *discussion*, we made a decision.|話し合いの後、私たちは決定を下した。
+sorry|adj|I'm very *sorry* for breaking your cup.|あなたのカップを割ってしまって本当にすみません。
+challenge|n|Finding a cheap apartment is a big *challenge* in Tokyo.|東京で安いアパートを見つけるのは大きな課題だ。
+nation|n|Japan is an island *nation* in Asia.|日本はアジアの島国だ。
+nearly|adv|We *nearly* finished the work before lunch.|昼食前に仕事はほとんど終わった。
+statement|n|The school made a *statement* about the new rules.|学校は新しい規則について声明を出した。
+link|n|There is a strong *link* between sleep and health.|睡眠と健康には強いつながりがある。
+despite|prep|He went to work *despite* his cold.|彼は風邪にもかかわらず仕事に行った。
+introduce|v|Can you *introduce* me to your friend?|あなたの友達に私を紹介してくれますか？
+advantage|n|One *advantage* of this phone is its big screen.|この電話の利点の1つは画面が大きいことだ。
+ready|adj|Dinner is *ready*, so please come and eat.|夕食の準備ができたので、食べに来てください。
+marry|v|My sister will *marry* her boyfriend next spring.|姉は来年の春、恋人と結婚する。
+strike|n|The teachers went on *strike* for higher pay.|教師たちは賃上げを求めてストライキをした。
+mile|n|I run three *miles* every morning.|毎朝3マイル走る。
+seek|v|Many young people come to the city to *seek* work.|多くの若者が仕事を求めて都会にやって来る。
+ability|n|He has the *ability* to speak five languages.|彼には5か国語を話す能力がある。
+unit|n|The yen is the *unit* of money in Japan.|円は日本のお金の単位だ。
+card|n|I sent my grandmother a birthday *card*.|祖母に誕生日カードを送った。
+hospital|n|My mother works at a big *hospital*.|母は大きな病院で働いている。
+quickly|adv|The children *quickly* ate their lunch and went out to play.|子どもたちは素早く昼食を食べて遊びに出た。
+interview|n|How did your *interview* for the new job go?|新しい仕事の面接はどうだった？
+agreement|n|The two companies finally signed an *agreement*.|2社はついに合意文書に署名した。
+release|v|The singer will *release* a new song next month.|その歌手は来月新曲を発表する。
+tax|n|We pay a lot of *tax* on gas.|私たちはガソリンに多くの税金を払っている。
+solution|n|Is there an easy *solution* to this problem?|この問題には簡単な解決策がありますか？
+capital|n|What is the *capital* of Australia?|オーストラリアの首都はどこですか？
+popular|adj|Soccer is very *popular* in Brazil.|ブラジルではサッカーがとても人気がある。
+specific|adj|Do you have a *specific* time in mind for the meeting?|会議の時間について具体的な希望はありますか？
+beautiful|adj|She wore a *beautiful* dress to the party.|彼女はパーティーに美しいドレスを着ていった。
+fear|n|She couldn't sleep because of her *fear* of the dark.|彼女は暗闇への恐れで眠れなかった。
+aim|n|The *aim* of this class is to improve your speaking.|この授業の目的は話す力を伸ばすことだ。
+television|n|There's a good show on *television* tonight.|今夜テレビで良い番組がある。
+serious|adj|The doctor said my illness was not *serious*.|医師は私の病気は深刻ではないと言った。
+target|n|Our *target* is to sell 100 cars this month.|私たちの目標は今月100台の車を売ることだ。
+degree|n|The temperature dropped to five *degrees* last night.|昨夜、気温は5度まで下がった。
+pull|v|Please don't *pull* the cat's tail.|猫のしっぽを引っ張らないでね。
+red|adj|She was wearing a *red* hat.|彼女は赤い帽子をかぶっていた。
+husband|n|Her *husband* works at a bank.|彼女の夫は銀行で働いている。
+access|n|Students have *access* to the library until 9 p.m.|学生は午後9時まで図書館を利用できる。
+movement|n|The dancer's *movements* were very beautiful.|そのダンサーの動きはとても美しかった。
+treat|v|Please *treat* the animals at the farm kindly.|農場の動物はやさしく扱ってください。
+identify|v|Can you *identify* the man in this photo?|この写真の男性が誰か特定できますか？
+loss|n|The shop had a *loss* of two million yen last year.|その店は昨年200万円の損失を出した。
+shall|aux|It's hot in here. *Shall* I open the window?|ここは暑いですね。窓を開けましょうか？
+modern|adj|I prefer *modern* art to old paintings.|私は昔の絵より現代美術が好きだ。
+pressure|n|My doctor checks my blood *pressure* every month.|医師は毎月私の血圧を測る。
+bus|n|I take the *bus* to school every day.|毎日バスで通学している。
+treatment|n|The new *treatment* helped my mother get better.|新しい治療のおかげで母は良くなった。
+yourself|pron|Did you make this cake *yourself*?|このケーキはあなたが自分で作ったの？
+supply|n|The *supply* of fresh vegetables is low this winter.|今年の冬は新鮮な野菜の供給が少ない。
+village|n|Only 300 people live in this small *village*.|この小さな村には300人しか住んでいない。
+worth|adj|This old watch is *worth* a lot of money.|この古い腕時計には大きな価値がある。
+natural|adj|I love the *natural* beauty of this lake.|この湖の自然の美しさが大好きだ。
+express|v|Children often *express* their feelings through pictures.|子どもはよく絵で気持ちを表現する。
+indicate|v|This sign *indicates* that the road is closed.|この標識は道路が通行止めであることを示している。
+attend|v|More than 100 people *attended* the wedding.|100人以上が結婚式に出席した。
+brother|n|Do you have any *brothers* or sisters?|兄弟や姉妹はいますか？
+investment|n|Learning English is a good *investment* in your future.|英語を学ぶことは将来への良い投資だ。
+score|n|I got a perfect *score* on the math test.|数学のテストで満点を取った。
+organize|v|We *organized* a trip to the mountains for the club.|私たちはクラブのために山への旅行を計画した。
+trip|n|We're planning a *trip* to Hawaii this summer.|この夏、ハワイ旅行を計画している。
+beyond|prep|You can see the sea *beyond* those trees.|あの木々の向こうに海が見える。
+sleep|v|Babies *sleep* a lot during the day.|赤ちゃんは日中よく眠る。
+fish|n|My son caught three *fish* in the river.|息子は川で魚を3匹釣った。
+promise|v|She *promised* to come back before dark.|彼女は暗くなる前に戻ると約束した。
+potential|adj|We met some *potential* customers at the fair.|展示会で潜在的な顧客に会った。
+energy|n|Solar panels make *energy* from the sun.|ソーラーパネルは太陽からエネルギーを作る。
+trouble|n|My son has *trouble* with math.|息子は数学に苦労している。
+relation|n|There is a close *relation* between food and health.|食べ物と健康には密接な関係がある。
+touch|v|Please don't *touch* the paintings in the museum.|美術館の絵には触らないでください。
+file|n|I can't open this *file* on my computer.|パソコンでこのファイルが開けない。
+middle|n|Please don't stop in the *middle* of the road.|道路の真ん中で止まらないでください。
+bar|n|This hotel has a nice *bar* on the top floor.|このホテルの最上階にはすてきなバーがある。
+suffer|v|Many people *suffer* from colds in winter.|冬は多くの人が風邪に苦しむ。
+strategy|n|What is your *strategy* for winning the game?|その試合に勝つためのあなたの戦略は何ですか？
+deep|adj|Don't swim here. The water is too *deep*.|ここで泳がないで。水が深すぎる。
+except|prep|Everyone came to the party *except* Tom.|トム以外はみんなパーティーに来た。
+tend|v|People *tend* to sleep more in winter.|人は冬にたくさん眠る傾向がある。
+advance|n|You should buy the tickets in *advance*.|チケットは前もって買ったほうがいい。
+fill|v|The room was *filled* with smoke.|部屋は煙で満たされていた。
+star|n|The *stars* are very bright in the mountains.|山では星がとても明るい。
+network|n|The city has a good bus *network*.|その市はバス網が整っている。
+generally|adv|*Generally*, women live longer than men.|一般に、女性は男性より長生きする。
+operation|n|The *operation* on her heart was a success.|彼女の心臓の手術は成功した。
+match|n|Who won the tennis *match* yesterday?|昨日のテニスの試合は誰が勝ったの？
+avoid|v|I left home early to *avoid* the traffic.|渋滞を避けるために早めに家を出た。
+seat|n|Please go back to your *seat*.|席に戻ってください。
+throw|v|Can you *throw* the ball to me?|ボールを私に投げてくれる？
+task|n|Cleaning the bathroom is my least favorite *task*.|風呂掃除は一番嫌いな作業だ。
+normal|adj|It's *normal* to feel tired after a long trip.|長旅の後で疲れるのは普通のことだ。
+goal|n|What are your *goals* for this year?|今年のあなたの目標は何ですか？
+associate|v|I always *associate* this song with summer.|私はこの歌をいつも夏と結びつけて考える。
+blue|adj|The baby has big *blue* eyes like her father.|その赤ちゃんは父親と同じ大きな青い目をしている。
+positive|adj|The teacher gave *positive* comments on my essay.|先生は私の作文に肯定的なコメントをくれた。
+option|n|Taking a taxi is the fastest *option*.|タクシーに乗るのが一番速い選択肢だ。
+box|n|What is inside this big *box*?|この大きな箱には何が入っているの？
+huge|adj|They live in a *huge* house with ten rooms.|彼らは10部屋もある巨大な家に住んでいる。
+message|n|I sent him a *message*, but he didn't answer.|彼にメッセージを送ったが、返事がなかった。
+instance|n|I like sports. For *instance*, I play tennis on weekends.|私はスポーツが好きだ。例えば、週末はテニスをする。
+style|n|Her clothes are always in the latest *style*.|彼女の服はいつも最新のスタイルだ。
+refer|v|You can *refer* to this list when you shop.|買い物のときはこのリストを参照できる。
+cold|adj|Put on your coat. It's *cold* outside.|コートを着て。外は寒いよ。
+push|v|Can you help me *push* the car?|車を押すのを手伝ってくれる？
+quarter|n|I ate a *quarter* of the pizza.|私はピザの4分の1を食べた。
+assume|v|I *assumed* the store was open on Sundays.|その店は日曜日も開いていると思っていた。
+baby|n|My sister had a *baby* last week.|姉は先週赤ちゃんを産んだ。
+successful|adj|Her first concert in Tokyo was very *successful*.|東京での彼女の初めてのコンサートは大成功だった。
+sing|v|Let's *sing* a song for Ken's birthday.|ケンの誕生日に歌を歌おう。
+doubt|n|I have some *doubts* about his story.|彼の話には少し疑いを持っている。
+competition|n|*Competition* for good jobs is very strong these days.|最近は良い仕事をめぐる競争がとても激しい。
+theory|n|Scientists have a new *theory* about the moon.|科学者たちは月について新しい理論を持っている。
+propose|v|He *proposed* a new plan at the meeting.|彼は会議で新しい計画を提案した。
+reference|n|I keep a dictionary on my desk for *reference*.|参照のため、机の上に辞書を置いている。
+argument|n|My parents had a big *argument* last night.|両親は昨夜ひどい口論をした。
+adult|n|Children must come with an *adult*.|子どもは大人と一緒に来なければならない。
+fly|v|Many birds *fly* south for the winter.|多くの鳥は冬を越すために南へ飛ぶ。
+document|n|Please sign this *document* and send it back.|この書類に署名して返送してください。
+pattern|n|The dress has a flower *pattern*.|そのドレスは花柄だ。
+application|n|I filled out a job *application* yesterday.|昨日、仕事の申込書に記入した。
+hot|adj|We stayed inside because it was too *hot*.|暑すぎたので私たちは家の中にいた。
+obviously|adv|She was *obviously* happy with her new job.|彼女は明らかに新しい仕事に満足していた。
+unclear|adj|The meaning of this word is *unclear* to me.|この単語の意味が私にははっきりしない。
+bill|n|I forgot to pay the phone *bill*.|電話代の請求書の支払いを忘れた。
+search|v|We *searched* everywhere for my lost cat.|私たちはいなくなった猫をあちこち捜した。
+separate|adj|The two brothers sleep in *separate* rooms.|その兄弟は別々の部屋で寝ている。
+central|adj|The *central* part of the city is very busy.|その市の中心部はとても混雑している。
+career|n|He started his *career* as a cook in a small restaurant.|彼は小さなレストランの料理人として職業人生を始めた。
+anyway|adv|It was raining, but we went out *anyway*.|雨が降っていたが、とにかく私たちは出かけた。
+speech|n|The principal's *speech* was too long.|校長先生のスピーチは長すぎた。
+dog|n|Our old *dog* sleeps most of the day.|うちの年老いた犬は一日のほとんどを寝て過ごす。
+officer|n|The *officer* asked to see my driver's license.|警官は私の運転免許証を見せるよう求めた。
+throughout|prep|This shop is open *throughout* the year.|この店は一年中開いている。
+oil|n|Cook the eggs in a little *oil*.|少しの油で卵を焼いてください。
+dress|n|My daughter wants a pink *dress* for her birthday.|娘は誕生日にピンクのドレスをほしがっている。
+profit|n|We sold the old car at a small *profit*.|古い車を売って少し利益が出た。
+guess|v|Can you *guess* how old I am?|私が何歳か推測できますか？
+fun|n|Playing in the snow is a lot of *fun*.|雪の中で遊ぶのはとても楽しい。
+protect|v|Wear a helmet to *protect* your head.|頭を守るためにヘルメットをかぶりなさい。
+resource|n|Oil is an important natural *resource*.|石油は重要な天然資源だ。
+science|n|He wants to study *science* at university.|彼は大学で科学を学びたい。
+disease|n|Washing your hands can stop the spread of *disease*.|手を洗うと病気の広がりを防げる。
+balance|n|I lost my *balance* and fell off the bike.|私はバランスを崩して自転車から落ちた。
+damage|n|The storm did a lot of *damage* to the trees.|嵐で木々が大きな損害を受けた。
+basis|n|Trust is the *basis* of a good friendship.|信頼は良い友情の基礎だ。
+author|n|The *author* signed my copy of the book.|著者が私の本にサインしてくれた。
+basic|adj|You need *basic* computer skills for this job.|この仕事には基本的なパソコンの技能が必要だ。
+encourage|v|The fans *encouraged* the players with loud cheers.|ファンは大きな声援で選手たちを励ました。
+hair|n|I had my *hair* cut yesterday.|昨日、髪を切ってもらった。
+male|adj|Most of the *male* students play soccer.|男子生徒のほとんどはサッカーをする。
+operate|v|Do you know how to *operate* this camera?|このカメラの操作のしかたを知っていますか？
+reflect|v|Our prices *reflect* the high quality of our food.|当店の価格は料理の質の高さを反映しています。
+exercise|n|Swimming is good *exercise* for your whole body.|水泳は全身に良い運動だ。
+useful|adj|Thank you for the *useful* advice.|役に立つアドバイスをありがとう。
+restaurant|n|This *restaurant* is always full on weekends.|このレストランは週末はいつも満席だ。
+income|n|Half of my *income* goes to rent.|収入の半分は家賃に消える。
+property|n|The old house is my grandfather's *property*.|その古い家は祖父の財産だ。
+previous|adj|I met her at my *previous* job.|前の職場で彼女に会った。
+dark|adj|The room was too *dark* to read a book.|部屋は暗すぎて本が読めなかった。
+imagine|v|Can you *imagine* living without a phone?|携帯電話なしの生活を想像できますか？
+okay|adj|Are you *okay*? You look tired.|大丈夫？疲れているみたいだね。
+earn|v|She *earned* money by teaching piano.|彼女はピアノを教えてお金を稼いだ。
+daughter|n|Their *daughter* just started college this spring.|彼らの娘はこの春、大学に入ったばかりだ。
+post|n|Thanks for the nice comment on my *post*.|私の投稿にすてきなコメントをありがとう。
+newspaper|n|My grandfather reads two *newspapers* every day.|祖父は毎日2紙の新聞を読む。
+define|v|Dictionaries *define* the meanings of words.|辞書は言葉の意味を定義する。
+conclusion|n|We came to the *conclusion* that the plan was too expensive.|私たちはその計画は費用がかかりすぎるという結論に達した。
+clock|n|I set my alarm *clock* for six.|目覚まし時計を6時にセットした。
+everybody|pron|*Everybody* in my family likes cats.|家族のみんなが猫好きだ。
+weekend|n|I usually clean my room on the *weekend*.|私はたいてい週末に部屋を掃除する。
+perform|v|The children *performed* a play for their parents.|子どもたちは親のために劇を演じた。
+professional|adj|You should get *professional* help with your taxes.|税金については専門的な助けを得たほうがいい。
+memory|n|I have no *memory* of my first birthday.|1歳の誕生日の記憶はまったくない。
+green|adj|The fields look so *green* after the rain.|雨の後、野原がとても緑に見える。
+song|n|Can you sing that *song* again?|その歌をもう一度歌ってくれる？
+object|n|Don't put metal *objects* in the microwave.|電子レンジに金属の物を入れないで。
+maintain|v|It's not easy to *maintain* an old house.|古い家を維持するのは簡単ではない。
+credit|n|The bank checks your *credit* before it lends you money.|銀行はお金を貸す前にあなたの信用を調べる。
+ring|v|The bell *rang* and the class started.|ベルが鳴って授業が始まった。
+discover|v|I *discovered* a great cafe near my office.|会社の近くにすてきなカフェを発見した。
+dead|adj|The plants are *dead* because I forgot to water them.|水やりを忘れたので植物が枯れてしまった。
+afternoon|n|I usually take a short nap in the *afternoon*.|私はたいてい午後に少し昼寝をする。
+prefer|v|Do you *prefer* the beach or the mountains?|海と山ではどちらが好きですか？
+extend|v|The library *extended* its opening hours.|図書館は開館時間を延長した。
+possibility|n|There is a *possibility* that the game will be canceled.|試合が中止になる可能性がある。
+direction|n|We walked in the wrong *direction* for ten minutes.|私たちは10分間、間違った方向に歩いた。
+facility|n|Our school has good sports *facilities*.|私たちの学校には良いスポーツ施設がある。
+variety|n|I love the *variety* of shops in this city.|この町の店の多様さが大好きだ。
+daily|adj|Reading the news is part of my *daily* life.|ニュースを読むことは私の毎日の生活の一部だ。
+clothes|n|I need to wash my *clothes* this weekend.|今週末は服を洗濯しなければならない。
+screen|n|The *screen* on my phone is broken.|携帯電話の画面が割れている。
+track|n|The car left *tracks* in the mud.|車がぬかるみに跡を残した。
+dance|v|They *danced* together at the wedding.|彼らは結婚式で一緒に踊った。
+completely|adv|The store was *completely* empty at night.|夜、店は完全に空っぽだった。
+female|adj|Our team has a new *female* coach.|私たちのチームに新しい女性のコーチが来た。
+responsibility|n|Taking care of the dog is my *responsibility*.|犬の世話は私の責任だ。
+original|adj|The *original* plan was to leave at eight.|最初の計画では8時に出発する予定だった。
+sister|n|My little *sister* is ten years old.|妹は10歳だ。
+rock|n|Be careful, the *rocks* are wet.|気をつけて、岩がぬれているよ。
+dream|n|Last night I had a strange *dream*.|昨夜、変な夢を見た。
+nor|conj|I don't like coffee, *nor* do I like tea.|私はコーヒーが好きではないし、紅茶も好きではない。
+university|n|My brother goes to a *university* in Osaka.|兄は大阪の大学に通っている。
+easily|adv|He *easily* won the race against the older boys.|彼は年上の男の子たちとの競走に簡単に勝った。
+agency|n|She works for an advertising *agency* in Tokyo.|彼女は東京の広告代理店で働いている。
+dollar|n|Can you lend me five *dollars*?|5ドル貸してくれる？
+garden|n|We had a barbecue in the *garden*.|庭でバーベキューをした。
+fix|v|My dad *fixed* the broken chair.|父が壊れた椅子を修理した。
+ahead|adv|There is a gas station a mile *ahead*.|1マイル前方にガソリンスタンドがある。
+cross|v|We *crossed* the river by boat.|私たちは船で川を渡った。
+yeah|int|*Yeah*, I think it's a great idea.|うん、すごくいい考えだと思う。
+weight|n|The *weight* of your suitcase must be under 23 kilos.|スーツケースの重さは23キロ以下でなければならない。
+legal|adj|She works in the *legal* department of a bank.|彼女は銀行の法務部で働いている。
+proposal|n|Did you read his *proposal* for the new park?|新しい公園についての彼の提案書を読みましたか？
+version|n|Is there an English *version* of this book?|この本の英語版はありますか？
+conversation|n|I had a nice *conversation* with my neighbor.|隣人と楽しい会話をした。
+somebody|pron|Can *somebody* help me carry this box?|誰かこの箱を運ぶのを手伝ってくれませんか？
+pound|n|I lost ten *pounds* last month.|先月10ポンドやせた。
+magazine|n|There are some *magazines* on the table in the waiting room.|待合室のテーブルに雑誌が何冊かある。
+shape|n|What *shape* is the new table?|新しいテーブルはどんな形ですか？
+sea|n|We swam in the *sea* every day during the trip.|旅行中は毎日海で泳いだ。
+immediately|adv|The doctor came *immediately* after I called.|私が電話すると、医師は直ちに来てくれた。
+welcome|v|We *welcome* students from all over the world.|私たちは世界中からの学生を歓迎します。
+smile|v|The baby *smiles* when she sees her mother.|赤ちゃんは母親を見ると微笑む。
+communication|n|There was poor *communication* between the two teams.|2つのチームの間の伝達がうまくいっていなかった。
+agent|n|Our travel *agent* booked the hotel for us.|旅行代理店の担当者がホテルを予約してくれた。
+traditional|adj|The kimono is a *traditional* Japanese dress.|着物は日本の伝統的な衣装だ。
+replace|v|We *replaced* the old sofa with a new one.|古いソファを新しいものと取り替えた。
+judge|v|It's hard to *judge* which answer is right.|どちらの答えが正しいか判断するのは難しい。
+herself|pron|She taught *herself* to play the guitar.|彼女はギターを彼女自身で独学して覚えた。
+suddenly|adv|All the lights in the house *suddenly* went out.|家中の明かりが突然消えた。
+generation|n|This house has been in my family for three *generations*.|この家は3世代にわたって私の家族のものだ。
+estimate|v|How long do you *estimate* the trip will take?|旅行はどのくらいかかると見積もっていますか？
+favorite|adj|Who is your *favorite* singer these days?|最近お気に入りの歌手は誰ですか？
+difficulty|n|She has *difficulty* sleeping at night.|彼女は夜なかなか眠れずに困っている。
+purchase|v|You must be 20 to *purchase* alcohol in Japan.|日本では20歳にならないとお酒を購入できない。

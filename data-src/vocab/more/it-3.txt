@@ -1,0 +1,78 @@
+username|n|I forgot my *username*, so I couldn't sign in.|ユーザー名を忘れたので、サインインできなかった。
+sign in|v|Have you *signed in* to the new email system yet?|新しいメールシステムにはもうサインインしましたか？
+sign out|v|I forgot to *sign out* of my account at the library.|図書館で自分のアカウントからサインアウトするのを忘れた。
+upload|v|I *uploaded* my photos to the website last night.|昨夜、写真をウェブサイトにアップロードした。
+uninstall|v|I *uninstalled* the game because it took up too much space.|容量を取りすぎるので、そのゲームをアンインストールした。
+backup|n|Did you make a *backup* of your photos before the update?|更新の前に写真のバックアップを取りましたか？
+browser|n|Which *browser* do you usually use on your computer?|パソコンではふだんどのブラウザを使っていますか？
+search engine|n|I typed the question into a *search engine* and found the answer.|質問を検索エンジンに入力して、答えを見つけた。
+smartphone|n|My grandmother bought her first *smartphone* last month.|祖母は先月、初めてのスマートフォンを買った。
+app|n|I use a free *app* to learn English words every day.|毎日、無料のアプリで英単語を勉強している。
+icon|n|Click the printer *icon* at the top of the screen.|画面上部のプリンターのアイコンをクリックしてください。
+tab|n|Close the other *tabs* so the browser runs faster.|ブラウザが速く動くように、ほかのタブを閉じてください。
+scroll|v|I *scrolled* through the long list but couldn't find my name.|長い一覧をスクロールしたが、自分の名前が見つからなかった。
+swipe|v|*Swipe* up from the bottom to return to the home screen.|下から上にスワイプすると、ホーム画面に戻ります。
+copy and paste|v|Don't *copy and paste* other people's work into your report.|他人の文章をレポートにコピー＆ペーストしてはいけない。
+shortcut|n|Do you know the keyboard *shortcut* for saving a file?|ファイルを保存するキーボードのショートカットを知っていますか？
+Wi-Fi|n|Does this hotel have free *Wi-Fi*?|このホテルには無料のWi-Fiがありますか？
+router|n|The *router* light is red, so the internet is down.|ルーターのランプが赤いので、インターネットがつながっていない。
+charger|n|I left my laptop *charger* at home today.|今日はノートパソコンの充電器を家に置いてきた。
+screenshot|n|I took a *screenshot* of the map before I went out.|出かける前に地図のスクリーンショットを撮った。
+scanner|n|I used the *scanner* to save my old photos on my computer.|スキャナーを使って、古い写真をパソコンに保存した。
+operating system|n|Which *operating system* does your new laptop use?|新しいノートパソコンはどのOSを使っていますか？
+restart|v|The computer *restarted* by itself during the night.|夜のあいだにパソコンが勝手に再起動した。
+troubleshoot|v|Can you help me *troubleshoot* this Wi-Fi problem?|このWi-Fiの問題の原因を調べて解決するのを手伝ってもらえますか？
+error message|n|I got an *error message* when I tried to save the file.|ファイルを保存しようとしたら、エラーメッセージが出た。
+bug|n|The new version fixes several *bugs* in the app.|新しいバージョンでは、アプリのいくつかのバグが直っている。
+glitch|n|A small *glitch* made the screen go black for a second.|ちょっとした不具合で、画面が一瞬真っ暗になった。
+hacker|n|A *hacker* got into the company's email system last year.|昨年、ハッカーが会社のメールシステムに侵入した。
+spam|n|I get dozens of *spam* emails every day.|毎日何十通もの迷惑メールが届く。
+phishing|n|The email looked real, but it was a *phishing* attack.|そのメールは本物に見えたが、フィッシング攻撃だった。
+malware|n|Free games from unknown websites sometimes contain *malware*.|知らないサイトの無料ゲームには、マルウェアが入っていることがある。
+antivirus software|n|My *antivirus software* found a virus in the downloaded file.|ウイルス対策ソフトが、ダウンロードしたファイルにウイルスを見つけた。
+cloud storage|n|All my photos are in *cloud storage*, so I can see them anywhere.|写真はすべてクラウドストレージにあるので、どこでも見られる。
+hard drive|n|I bought an external *hard drive* to keep my old videos.|古い動画を保存するために、外付けのハードディスクを買った。
+USB drive|n|I saved the slides on a *USB drive* for the presentation.|発表のために、スライドをUSBメモリに保存した。
+desktop|n|I put a shortcut to the folder on my *desktop*.|そのフォルダのショートカットをデスクトップに置いた。
+touchscreen|n|Our office printer has a large *touchscreen* on the front.|会社のプリンターの前面には大きなタッチスクリーンがある。
+notification|n|I got a *notification* that my package will arrive today.|荷物が今日届くという通知が来た。
+wireless|adj|I bought a *wireless* mouse, so there are no cables on my desk.|無線のマウスを買ったので、机の上にケーブルがない。
+Bluetooth|n|Turn on *Bluetooth* on your phone to use the speaker.|スピーカーを使うには、スマホのBluetoothをオンにしてください。
+sync|v|Your photos will *sync* automatically when you connect to Wi-Fi.|Wi-Fiにつなぐと、写真は自動で同期されます。
+offline|adj|The app still works when your phone is *offline*.|スマホがオフラインのときも、アプリは使える。
+IT department|n|The *IT department* will give you a new laptop on Monday.|月曜日にIT部門から新しいノートパソコンが支給されます。
+help desk|n|If your screen is broken, call the *help desk*.|画面が壊れたら、ヘルプデスクに電話してください。
+technical support|n|I contacted *technical support* because my printer stopped working.|プリンターが動かなくなったので、技術サポートに連絡した。
+user-friendly|adj|This website is not very *user-friendly* for older people.|このウェブサイトは、お年寄りにはあまり使いやすくない。
+click|v|I *clicked* the link, but nothing happened.|リンクをクリックしたが、何も起きなかった。
+double-click|v|I *double-clicked* the icon, but the program didn't start.|アイコンをダブルクリックしたが、プログラムが起動しなかった。
+drop-down menu|n|The *drop-down menu* shows a list of all the sizes.|ドロップダウンメニューには、すべてのサイズの一覧が表示される。
+pop-up|n|A *pop-up* asked me to update the software.|ポップアップでソフトの更新を求められた。
+checkbox|n|I didn't see the *checkbox*, so the form showed an error.|チェックボックスに気づかなかったので、フォームにエラーが表示された。
+settings|n|Open *Settings* and turn on dark mode.|「設定」を開いて、ダークモードをオンにしてください。
+homepage|n|Click the logo to go back to the *homepage*.|ロゴをクリックすると、トップページに戻ります。
+web page|n|I saved the *web page* so I could read it later.|あとで読めるように、そのウェブページを保存した。
+URL|n|Check the *URL* carefully before you enter your password.|パスワードを入力する前に、URLをよく確認してください。
+QR code|n|You can pay for lunch by scanning a *QR code*.|QRコードを読み取ってランチ代を払える。
+password manager|n|I keep all my passwords in a *password manager*.|パスワードはすべてパスワード管理ソフトに保存している。
+video call|n|I talk to my parents on a *video call* every Sunday.|毎週日曜日、両親とビデオ通話で話している。
+mute|v|I *muted* the TV when the phone rang.|電話が鳴ったので、テレビをミュートにした。
+screen sharing|n|Can you turn on *screen sharing* so we can see your slides?|スライドが見えるように、画面共有をオンにしてもらえますか？
+headset|n|I bought a *headset* with a good microphone for online classes.|オンライン授業のために、マイクの性能がよいヘッドセットを買った。
+webcam|n|My laptop has a small *webcam* above the screen.|ノートパソコンの画面の上に小さなウェブカメラが付いている。
+file sharing|n|We use a *file sharing* service to send large videos.|大きな動画を送るのに、ファイル共有サービスを使っている。
+cursor|n|The *cursor* stopped moving, so I restarted the computer.|カーソルが動かなくなったので、パソコンを再起動した。
+font|n|This *font* is too small to read on a phone.|このフォントはスマホでは小さすぎて読めない。
+pixel|n|Each *pixel* is a tiny dot of color on the screen.|画素の一つひとつは、画面上の色の付いた小さな点だ。
+gigabyte|n|My phone plan gives me ten *gigabytes* of data a month.|私のスマホのプランでは、月に10ギガバイトのデータが使える。
+cyberattack|n|After the *cyberattack*, the bank's website was down for a day.|サイバー攻撃のあと、その銀行のウェブサイトは1日つながらなかった。
+data breach|n|The company told customers about the *data breach* by email.|その会社は情報漏えいについて顧客にメールで知らせた。
+chatbot|n|I asked the *chatbot* how to change my password.|チャットボットにパスワードの変え方を聞いた。
+social media|n|She shares photos of her trip on *social media*.|彼女は旅行の写真をSNSで共有している。
+zip file|n|Open the *zip file* to see all the documents inside.|ZIPファイルを開くと、中のすべての書類が見られる。
+fingerprint|n|My phone doesn't recognize my *fingerprint* when my hands are wet.|手が濡れていると、スマホが私の指紋を認識しない。
+e-commerce|n|More and more people buy clothes on *e-commerce* sites.|ネット通販のサイトで服を買う人がますます増えている。
+log file|n|The *log file* shows that the server stopped at 2 a.m.|ログファイルを見ると、サーバーは午前2時に停止している。
+printer driver|n|My new laptop couldn't print until I installed the *printer driver*.|プリンタードライバをインストールするまで、新しいノートパソコンから印刷できなかった。
+storage space|n|I deleted old photos to free up *storage space*.|空き容量を増やすために、古い写真を削除した。
+reset|v|I *reset* the app's settings, and it worked again.|アプリの設定をリセットしたら、また動くようになった。

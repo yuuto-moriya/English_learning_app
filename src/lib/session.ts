@@ -3,17 +3,23 @@ import type { CardRow } from './db'
 import { db } from './db'
 import { dueCards, interleave, newLearnedToday } from './srs'
 import { ALL_CATS, type Category, type Word } from './types'
-import { getWord, glossRevealsWord, loadCategory, markedTarget, quizGloss } from './vocab'
+import { getWord, glossRevealsWord, loadCategory, markedTarget, quizGloss, shuffle } from './vocab'
+import { formOf, hasFormQuestion, markedExamples, orderTokens } from './quiz'
 import type { Settings } from './settings'
 
 /**
  * 学習セッションの組み立て。
  * - 期限の来た復習（分散学習）を優先し、新出語は少量ずつ挟む
  * - 新出語は「提示 → 数問あとに想起テスト」（検索練習）
- * - 記憶の安定度に応じて、認識（選択）→ 音声認識 → 産出（スペル・穴埋め）へ難易度を上げる（望ましい困難）
- * - カテゴリを混ぜて出題（インターリーブ）
+ * - 記憶の安定度に応じて、認識（選択）→ 音声認識 → 産出（スペル・穴埋め）・使い分けへ難易度を上げる（望ましい困難）
+ * - カテゴリと出題形式を混ぜて出題（インターリーブ）
  */
-export type QType = 'learn' | 'mc' | 'listen' | 'flip' | 'spell' | 'cloze'
+/**
+ * learn＝新しい単語の提示、mc＝意味を選ぶ、listen＝聞いて意味を選ぶ、flip＝カード（自己採点）、spell＝和訳から書く、
+ * cloze＝例文の空所に書く、rev＝和訳から英語を選ぶ、usage＝例文の空所に入る語を意味の近い語から選ぶ（使い分け）、
+ * form＝不規則動詞の変化形を選ぶ、order＝例文を並べかえる
+ */
+export type QType = 'learn' | 'mc' | 'listen' | 'flip' | 'spell' | 'cloze' | 'rev' | 'usage' | 'form' | 'order'
 
 export interface Item {
   key: string
@@ -22,26 +28,56 @@ export interface Item {
   isNew: boolean
   /** セッション内の再出題の回数（1回目の再出題で1） */
   retry?: number
+  /** 例文を選ぶときの種（毎回ちがう例文・ちがう問い方にする） */
+  seed?: number
 }
 
 /** 同じ語をセッション内で再出題する上限。何度も間違えたときに問題数が際限なく増えないようにする */
 export const MAX_RETRIES = 2
 
+/** 使い分け（例文の空所を選ぶ）を作れる語：例文の語形が分かり、空所にしても答えが見えない */
+export function canUsage(w: Word): boolean {
+  if (glossRevealsWord(w)) return false
+  return markedExamples(w).some((e) => {
+    const used = markedTarget(e.en)
+    return !!used && !!formOf(w, used)
+  })
+}
+
 /**
- * 問題の形式を選ぶ。
+ * 問題の形式を選ぶ。覚え具合（FSRS の安定度）で段階を上げ、同じ段階の中では seed で形式を混ぜる。
+ * - 覚えはじめ：意味を選ぶ（mc）
+ * - 7日未満：カード・聞いて選ぶ・英語を選ぶ
+ * - 21日未満：書く（spell・cloze）・使い分け・聞いて選ぶ・英語を選ぶ
+ * - 定着（21日以上）：使い分け・書く・不規則動詞の変化形・並べかえ・聞いて選ぶ
  * - 和訳に見出し語がそのまま入っている語（API →「API（…）」）は、意味を選ぶ・書く問題だと答えが見えるので、カード（flip）にする
  * - 同じコースに和訳が同じ語がある語（完全に：completely / totally）は、和訳から書く問題だと答えが1つに決まらないので、例文の穴埋めにする
  */
 export function chooseType(row: CardRow | undefined, word: Word, seed: number, ambiguous = false): QType {
   const reveals = glossRevealsWord(word)
   if (!row || row.reps < 2 || row.state === State.Learning || row.state === State.Relearning) return reveals ? 'flip' : 'mc'
-  if (row.stability < 7) return reveals || seed % 2 !== 0 ? 'flip' : 'listen'
-  const hasCloze = word.ex.some((e) => e.en.includes('*')) && !reveals
+  const hasCloze = markedExamples(word).length > 0 && !reveals
   const spellable = !/[ ]/.test(word.w) && word.w.length <= 14 && !reveals
-  const r = seed % 3
-  if (r === 0 && hasCloze) return 'cloze'
-  if (r === 1 && spellable) return ambiguous ? (hasCloze ? 'cloze' : 'flip') : 'spell'
-  return reveals || seed % 2 !== 0 ? 'flip' : 'listen'
+  const usage = canUsage(word)
+  const order = word.ex.some((e) => orderTokens(e.en))
+  // 和訳から英語を選ぶ問題は、和訳が同じ語がある語だと答えが1つに決まらないので出さない
+  const rev = !reveals && !ambiguous
+  const fallback: QType = reveals || seed % 2 !== 0 ? 'flip' : 'listen'
+  const pick = (cands: (QType | false)[]): QType => {
+    const ok = cands.filter((c): c is QType => !!c)
+    return ok.length ? ok[seed % ok.length] : fallback
+  }
+  if (row.stability < 7) return pick([reveals ? 'flip' : 'listen', 'flip', rev && 'rev'])
+  if (row.stability < 21)
+    return pick([hasCloze && 'cloze', spellable && (ambiguous ? hasCloze && 'cloze' : 'spell'), usage && 'usage', !reveals && 'listen', rev && 'rev'])
+  return pick([
+    usage && 'usage',
+    spellable && (ambiguous ? hasCloze && 'cloze' : 'spell'),
+    hasCloze && 'cloze',
+    hasFormQuestion(word) && 'form',
+    order && 'order',
+    !reveals && 'listen',
+  ])
 }
 
 const ambiguousCache = new Map<Category, Promise<Set<string>>>()
@@ -123,7 +159,8 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
     const w = await getWord(r.id)
     if (!w) continue
     const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
-    dueItems.push({ key: `d-${w.id}`, word: w, type: chooseType(rowMap.get(w.id), w, seed++, ambiguous), isNew: false })
+    const sd = seed++
+    dueItems.push({ key: `d-${w.id}`, word: w, type: chooseType(rowMap.get(w.id), w, sd, ambiguous), isNew: false, seed: sd })
   }
   // 復習もカテゴリを混ぜる
   const dueByCat = cats.map((c) => dueItems.filter((i) => i.word.cat === c))
@@ -182,7 +219,8 @@ export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<I
     }
     // 苦手な語は意味の想起（選択・音声）を中心に、安定してきた語は産出も混ぜる
     const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
-    out.push({ key: `x-${id}`, word: w, type: chooseType(row, w, seed++, ambiguous), isNew: false })
+    const sd = seed++
+    out.push({ key: `x-${id}`, word: w, type: chooseType(row, w, sd, ambiguous), isNew: false, seed: sd })
   }
   return out
 }
@@ -206,4 +244,40 @@ export function checkSpelling(input: string, word: Word, target?: string): boole
   const used = word.ex.map((e) => markedTarget(e.en)).filter((t): t is string => !!t)
   const answers = target ? [target] : ([word.w, word.us, ...used].filter(Boolean) as string[])
   return answers.some((t) => norm(t) === a || norm(t).replace(/-/g, ' ') === a.replace(/-/g, ' '))
+}
+
+/** 定着チェックの対象：定着した（安定度21日以上）語。少なければ、定着しつつある（7日以上）語も入れる */
+export const CHECK_STABLE = 21
+
+/**
+ * 定着チェック：覚えたはずの語を、いちばん確かめにくい形で問う（1語に2問）。
+ * 1問目は使い分け（はじめて見る例文の空所に、意味の近い語の中から選ぶ）、2問目は和訳から英語を選ぶ・書く。
+ * まだ確かめていない語・確かめてから時間がたった語から出す。
+ */
+export async function buildCheck(limit = 10): Promise<Item[]> {
+  const rows = (await db.cards.toArray()).filter((r) => !r.known && r.reps >= 2 && r.state === State.Review)
+  let cands = rows.filter((r) => r.stability >= CHECK_STABLE)
+  if (cands.length < 5) cands = rows.filter((r) => r.stability >= 7)
+  cands = shuffle(cands).sort((a, b) => (a.checkedAt ?? 0) - (b.checkedAt ?? 0)).slice(0, limit)
+  const first: Item[] = []
+  const second: Item[] = []
+  let seed = Math.floor(Math.random() * 1000)
+  for (const r of cands) {
+    const w = await getWord(r.id)
+    if (!w) continue
+    const reveals = glossRevealsWord(w)
+    const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
+    const spellable = !/[ ]/.test(w.w) && w.w.length <= 14 && !reveals && !ambiguous
+    const kinds: QType[] = [
+      ...(canUsage(w) ? (['usage'] as const) : []),
+      ...(!reveals && !ambiguous ? (['rev'] as const) : []),
+      ...(spellable ? (['spell'] as const) : []),
+      ...(reveals ? (['flip'] as const) : ['mc' as const]),
+    ]
+    const sd = seed++
+    first.push({ key: `c1-${w.id}`, word: w, type: kinds[0], isNew: false, seed: sd })
+    if (kinds[1]) second.push({ key: `c2-${w.id}`, word: w, type: kinds[1], isNew: false, seed: sd + 1 })
+  }
+  // 同じ語の2問が続かないように、1問目をすべて出してから2問目を別の順で
+  return [...first, ...shuffle(second)]
 }

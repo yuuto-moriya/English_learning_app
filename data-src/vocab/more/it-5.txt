@@ -1,0 +1,74 @@
+microservices|n|Each of our *microservices* can be updated separately.|当社のマイクロサービスは、それぞれ個別に更新できる。
+system architecture|n|The new engineer drew a diagram of our *system architecture*.|新しいエンジニアが、当社のシステム構成の図を描いた。
+refactor|v|After I *refactored* the function, it was much easier to read.|その関数をリファクタリングしたら、ずっと読みやすくなった。
+technical debt|n|We spend one day each sprint paying down *technical debt*.|スプリントごとに1日を、技術的負債の返済にあてている。
+continuous integration|n|Thanks to *continuous integration*, we find broken code within minutes.|継続的インテグレーションのおかげで、壊れたコードを数分で見つけられる。
+build pipeline|n|The *build pipeline* failed because one test did not pass.|テストが1つ通らなかったので、ビルドパイプラインが失敗した。
+load balancer|n|We added a *load balancer* to spread requests across three servers.|リクエストを3台のサーバーに分散するため、ロードバランサーを追加した。
+failover|n|Automatic *failover* kept the website online when the main server crashed.|メインのサーバーが落ちたとき、自動フェイルオーバーでウェブサイトは動き続けた。
+disaster recovery|n|We store copies of our data in another region for *disaster recovery*.|災害復旧に備えて、データのコピーを別の地域に保存している。
+service level agreement|n|The vendor failed to meet the *service level agreement* last month.|先月、業者はサービスレベル合意を守れなかった。
+high availability|n|*High availability* requires at least two servers in different locations.|高可用性には、別々の場所にある少なくとも2台のサーバーが必要だ。
+single point of failure|n|Adding a second power supply removed a *single point of failure*.|2つ目の電源を追加して、単一障害点をなくした。
+scalability|n|The old database had poor *scalability*, so it slowed down during sales.|古いデータベースは拡張性が低く、セールの時期には遅くなった。
+throughput|n|Adding more servers increased the system's *throughput*.|サーバーを増やしたら、システムの処理能力が上がった。
+asynchronous|adj|Because the API calls are *asynchronous*, the screen doesn't freeze.|API呼び出しが非同期なので、画面が固まらない。
+endpoint|n|This *endpoint* lets you search orders by date.|このエンドポイントを使うと、日付で注文を検索できる。
+schema|n|The new *schema* stores each address in a separate table.|新しいスキーマでは、住所を別のテーブルに保存する。
+data warehouse|n|Analysts run reports on the *data warehouse*, not on the live database.|分析担当者は、稼働中のデータベースではなくデータウェアハウスでレポートを作る。
+data governance|n|Our *data governance* policy says who owns each data set.|当社のデータガバナンスの方針では、各データの責任者を定めている。
+metadata|n|Photos contain *metadata* such as the date and location.|写真には、日付や場所などのメタデータが含まれている。
+anonymize|v|Patient names were *anonymized* before the data was shared.|データを共有する前に、患者の名前は匿名化された。
+principle of least privilege|n|Under the *principle of least privilege*, interns cannot see salary data.|最小権限の原則により、インターンは給与データを見られない。
+single sign-on|n|*Single sign-on* lets staff open email and chat without signing in twice.|シングルサインオンなら、社員は二度サインインせずにメールとチャットを開ける。
+zero-day|adj|The vendor released an emergency fix for the *zero-day* attack.|業者はそのゼロデイ攻撃に対する緊急の修正を公開した。
+ransomware|n|The attackers demanded money after the *ransomware* encrypted our files.|ランサムウェアがファイルを暗号化したあと、攻撃者は金銭を要求した。
+penetration test|n|The *penetration test* showed that our login page was weak.|侵入テストで、当社のログイン画面が弱いことが分かった。
+audit log|n|We checked the *audit log* to see who deleted the file.|だれがファイルを削除したか、監査ログで確認した。
+security incident|n|The lost laptop was treated as a *security incident*.|ノートパソコンの紛失はセキュリティインシデントとして扱われた。
+incident response|n|Fast *incident response* limited the damage from the attack.|迅速なインシデント対応で、攻撃の被害を抑えられた。
+postmortem|n|The *postmortem* showed that a missing alert delayed our response.|事後検証で、アラートが出なかったために対応が遅れたことが分かった。
+observability|n|Logs, metrics, and traces are the basis of *observability*.|ログ、メトリクス、トレースは可観測性の基本だ。
+feature flag|n|We turned off the *feature flag* when users reported errors.|利用者からエラーの報告があったので、機能フラグをオフにした。
+regression|n|Automated tests help us catch *regressions* before release.|自動テストは、リリース前にデグレを見つけるのに役立つ。
+edge case|n|Did you test the *edge case* where the list is empty?|リストが空になるという特殊なケースをテストしましたか？
+deprecated|adj|The old login method was *deprecated* last year.|古いログイン方式は昨年、非推奨になった。
+backward compatible|adj|The update is not *backward compatible*, so older apps will stop working.|その更新は後方互換性がないので、古いアプリは動かなくなる。
+infrastructure as code|n|*Infrastructure as code* makes it easy to rebuild a server after a failure.|コードによるインフラ管理なら、障害のあとでもサーバーを簡単に作り直せる。
+virtualization|n|Thanks to *virtualization*, we cut the number of physical servers in half.|仮想化のおかげで、物理サーバーの台数を半分に減らせた。
+edge computing|n|With *edge computing*, the camera analyzes video without sending it to the cloud.|エッジコンピューティングなら、カメラは動画をクラウドに送らずに分析できる。
+Internet of Things|n|Smart meters are a common example of the *Internet of Things*.|スマートメーターはIoTのよくある例だ。
+large language model|n|The *large language model* was trained on billions of words.|その大規模言語モデルは、何十億もの単語で学習された。
+training data|n|If the *training data* is biased, the model's results will be too.|学習データに偏りがあれば、モデルの結果も偏る。
+hallucination|n|The chatbot's fake book title was a clear *hallucination*.|チャットボットが挙げた架空の本の題名は、明らかなハルシネーションだった。
+fine-tune|v|We plan to *fine-tune* the model with our product manuals.|製品マニュアルでモデルを追加学習させる予定だ。
+neural network|n|The *neural network* recognizes handwritten numbers with high accuracy.|そのニューラルネットワークは、手書きの数字を高い精度で認識する。
+computer vision|n|The store uses *computer vision* to count how many people come in.|その店はコンピュータビジョンで来店者の数を数えている。
+robotic process automation|n|*Robotic process automation* copies data between systems without human help.|RPAは、人の手を借りずにシステム間でデータをコピーする。
+API key|n|If your *API key* is leaked, create a new one immediately.|APIキーが漏れたら、すぐに新しいものを作ってください。
+environment variable|n|The app reads the database address from an *environment variable*.|アプリはデータベースのアドレスを環境変数から読み込む。
+code freeze|n|During the *code freeze*, only critical bug fixes are allowed.|コードフリーズの間は、重大なバグの修正しか認められない。
+stack trace|n|The *stack trace* showed which function caused the crash.|スタックトレースから、どの関数がクラッシュの原因かが分かった。
+memory leak|n|We found the *memory leak* by watching memory use for a week.|1週間メモリの使用量を見て、メモリリークを見つけた。
+end-to-end encryption|n|With *end-to-end encryption*, even the service provider cannot read your messages.|エンドツーエンド暗号化なら、サービスの提供者でさえメッセージを読めない。
+parallel run|n|The *parallel run* showed small differences between the old and new reports.|並行稼働で、新旧のレポートに小さな違いがあることが分かった。
+change management|n|Without proper *change management*, small updates can break important systems.|適切な変更管理がなければ、小さな更新が重要なシステムを壊しかねない。
+recovery time objective|n|To meet our *recovery time objective*, backups must be restored within an hour.|目標復旧時間を守るには、バックアップを1時間以内に復元しなければならない。
+vendor lock-in|n|Using only one cloud provider increases the risk of *vendor lock-in*.|クラウド事業者を1社だけ使うと、ベンダーロックインのリスクが高まる。
+total cost of ownership|n|The cheaper server had a higher *total cost of ownership* over five years.|安いほうのサーバーのほうが、5年間の総保有コストは高かった。
+SaaS|n|With *SaaS*, we don't need to install updates ourselves.|SaaSなら、自分たちで更新をインストールする必要がない。
+on-premises|adj|Moving from *on-premises* servers to the cloud took two years.|オンプレミスのサーバーからクラウドへの移行には2年かかった。
+open standard|n|Email works everywhere because it is based on an *open standard*.|メールはオープンな標準に基づいているので、どこでも使える。
+data pipeline|n|A broken *data pipeline* meant the sales report was empty this morning.|データパイプラインが壊れていたため、今朝の売上レポートは空だった。
+interoperable|adj|Our devices are *interoperable* with most major smart home systems.|当社の機器は、主要なスマートホームのシステムのほとんどと相互運用できる。
+predictive model|n|Our *predictive model* estimates how many customers will cancel next month.|当社の予測モデルは、来月何人の顧客が解約するかを見積もる。
+anomaly detection|n|The bank uses *anomaly detection* to spot unusual card payments.|その銀行は異常検知を使って、ふだんと違うカードの支払いを見つける。
+digital signature|n|A *digital signature* proves that the document has not been changed.|電子署名によって、文書が改ざんされていないことが証明される。
+certificate authority|n|The website's certificate was issued by a trusted *certificate authority*.|そのウェブサイトの証明書は、信頼できる認証局が発行した。
+denial-of-service attack|n|The online store was down for hours because of a *denial-of-service attack*.|サービス妨害攻撃のせいで、そのネットショップは何時間も止まっていた。
+social engineering|n|Emails pretending to be from your boss are a common *social engineering* trick.|上司を装った偽のメールは、ソーシャルエンジニアリングのよくある手口だ。
+business continuity|n|Training staff to work from home supports *business continuity*.|在宅で働けるよう社員を訓練することは、事業継続に役立つ。
+technical specification|n|The *technical specification* lists the minimum memory the software needs.|技術仕様には、そのソフトに必要な最小限のメモリが書かれている。
+requirements gathering|n|During *requirements gathering*, we asked users about their daily work.|要件の聞き取りでは、利用者に日々の業務について尋ねた。
+scope creep|n|To avoid *scope creep*, we said no to new requests after March.|スコープクリープを避けるため、3月以降の新しい要望は断った。
+minimum viable product|n|Our *minimum viable product* had only three features.|当社のMVPには機能が3つしかなかった。

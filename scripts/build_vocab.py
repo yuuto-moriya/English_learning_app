@@ -6,6 +6,7 @@
   data-src/lists/ngsl.csv        NGSL 1.2 (CC BY-SA 4.0, Browne, Culligan & Phillips)
   data-src/lists/business.csv    BSL 1.2 / TSL 1.2 (CC BY-SA 4.0)
   data-src/vocab/*.txt           和訳・例文（lemma|pos|ja|例文EN|例文JA）
+  data-src/vocab/more/*.txt      2つ目の例文（lemma|pos|例文EN|例文JA。同じファイル名の語に足す）
   data-src/rail/*.txt            保線用語（en|us|ja|lv|ipa_uk|ipa_us|refs|note|例文EN|例文JA）
   data-src/ipa/en_US.tsv         米音IPA（ipa-dict / cmudict-ipa, MIT）
   data-src/neighbors.tsv         意味の近い語（scripts/build_neighbors.py が WordNet 3.0 から生成）→ near
@@ -355,6 +356,22 @@ def read_pipe(path: Path, ncols: int) -> list[list[str]]:
     return rows
 
 
+def more_examples(path: Path) -> dict[tuple[str, str], list[dict[str, str]]]:
+    """2つ目以降の例文（data-src/vocab/more/<同じファイル名>：lemma|品詞|例文(英)|例文(和)）。
+    はじめて学ぶときのカードには1つ目だけを出し、2つ目は問題の「新しい文脈」（使い分け・穴埋め）に使う"""
+    more = SRC / "vocab" / "more" / path.name
+    out: dict[tuple[str, str], list[dict[str, str]]] = {}
+    if not more.exists():
+        return out
+    for lemma, pos, en, jx in read_pipe(more, 4):
+        en2, ok = ensure_marked(en, lemma)
+        if not ok:
+            print(f"[WARN] 2つ目の例文に見出し語がない: {lemma}: {en}", file=sys.stderr)
+            continue
+        out.setdefault((lemma.lower(), pos), []).append({"en": en2, "ja": jx})
+    return out
+
+
 def build_general_business(ipa: dict[str, str]):
     warnings = 0
     # 一般（NGSL）
@@ -369,6 +386,7 @@ def build_general_business(ipa: dict[str, str]):
         path = SRC / "vocab" / f"general-{lvl}.txt"
         if not path.exists():
             continue
+        more = more_examples(path)
         for lemma, pos, ja, en, jx in read_pipe(path, 5):
             key = lemma.lower()
             if key in seen:
@@ -389,7 +407,7 @@ def build_general_business(ipa: dict[str, str]):
                 "cat": "general",
                 "ipa": us_ipa(lemma, ipa, pos),
                 "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
-                "ex": [{"en": en2, "ja": jx}],
+                "ex": [{"en": en2, "ja": jx}, *more.get((key, pos), [])],
                 "rank": rank,
             }
             general.append({k: v for k, v in item.items() if v is not None})
@@ -402,6 +420,7 @@ def build_general_business(ipa: dict[str, str]):
     business = []
     for path in sorted((SRC / "vocab").glob("business-*.txt")):
         lvl = int(path.stem.split("-")[1])
+        more = more_examples(path)
         for lemma, pos, ja, en, jx in read_pipe(path, 5):
             key = lemma.lower()
             if key in seen:
@@ -425,7 +444,7 @@ def build_general_business(ipa: dict[str, str]):
                 "cat": "business",
                 "ipa": us_ipa(lemma, ipa, pos),
                 "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
-                "ex": [{"en": en2, "ja": jx}],
+                "ex": [{"en": en2, "ja": jx}, *more.get((key, pos), [])],
                 "rank": rank,
                 "refs": [source],
             }
@@ -440,6 +459,7 @@ def build_it(ipa: dict[str, str], taken: set[str]):
     warnings = 0
     for path in sorted((SRC / "vocab").glob("it-*.txt")):
         lvl = int(path.stem.split("-")[1])
+        more = more_examples(path)
         rows = []
         with open(path, encoding="utf-8") as f:
             for no, line in enumerate(f, 1):
@@ -471,7 +491,7 @@ def build_it(ipa: dict[str, str], taken: set[str]):
                 "lv": lvl,
                 "cat": "it",
                 "ipa": ipa_override or us_ipa(lemma, ipa, pos),
-                "ex": [{"en": en2, "ja": jx}],
+                "ex": [{"en": en2, "ja": jx}, *more.get((key, pos), [])],
             }
             it.append({k: v for k, v in item.items() if v is not None})
     return it, warnings

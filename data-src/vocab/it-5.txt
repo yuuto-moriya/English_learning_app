@@ -33,7 +33,7 @@ postmortem|n|事後検証（障害の振り返り報告）|We wrote a *postmorte
 observability|n|可観測性（システムの状態を外から把握できること）|Better *observability* helps us find problems faster.|可観測性を高めると、問題を早く見つけられる。|əbˌzɝvəˈbɪləti
 feature flag|n|機能フラグ（機能のオン・オフの切り替え）|We hide the new feature behind a *feature flag*.|新機能は機能フラグで隠しておく。
 regression|n|デグレ（以前は動いていた機能が壊れること）|The update caused a *regression* in the search function.|その更新で検索機能にデグレが起きた。
-edge case|n|特殊なケース（めったに起きない境界的な条件）|The code fails in one rare *edge case*.|そのコードは、まれな特殊ケースで1つだけ失敗する。
+edge case|n|特殊なケース（めったに起きない境界的な条件）|The code fails in one rare *edge case*.|そのコードは、まれな特殊ケースの1つで失敗する。
 deprecated|adj|非推奨の（廃止予定の）|This function is *deprecated* and will be removed.|この関数は非推奨で、今後削除される。|ˈdɛprəˌkeɪtɪd
 backward compatible|adj|後方互換性のある（古い版とも動く）|The new version of the API is *backward compatible*.|新しい版のAPIは後方互換性がある。
 infrastructure as code|n|コードによるインフラ管理（IaC）|With *infrastructure as code*, servers are built automatically.|コードによるインフラ管理なら、サーバーは自動で構築される。
@@ -69,7 +69,7 @@ digital signature|n|電子署名|The contract was approved with a *digital signa
 certificate authority|n|認証局（電子証明書を発行する機関）|The browser trusts certificates from a known *certificate authority*.|ブラウザは、信頼できる認証局が発行した証明書を信頼する。
 denial-of-service attack|n|サービス妨害攻撃（DoS攻撃）|A *denial-of-service attack* made the website unavailable.|サービス妨害攻撃でウェブサイトが使えなくなった。|dɪˌnaɪəl əv ˈsɝvəs əˈtæk
 social engineering|n|ソーシャルエンジニアリング（人の心理を突いて情報を盗む手口）|The caller used *social engineering* to get a password.|電話をかけてきた人物は、ソーシャルエンジニアリングでパスワードを聞き出した。
-business continuity|n|事業継続（BCP）|Cloud backups are part of our *business continuity* plan.|クラウドへのバックアップは事業継続計画の一部だ。
+business continuity|n|事業継続（災害などのときも業務を続けること）|Cloud backups are part of our *business continuity* plan.|クラウドへのバックアップは事業継続計画の一部だ。
 technical specification|n|技術仕様（書）|Check the *technical specification* before you order the parts.|部品を注文する前に技術仕様を確認してください。
 requirements gathering|n|要件の聞き取り（ヒアリング）|*Requirements gathering* took three weeks of interviews.|要件の聞き取りには3週間の面談がかかった。
 scope creep|n|スコープクリープ（作業範囲が少しずつ広がること）|*Scope creep* delayed the project by three months.|作業範囲が少しずつ広がり、プロジェクトは3か月遅れた。

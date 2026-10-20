@@ -127,7 +127,8 @@ describe('学習セッション', () => {
     const api = w('API', { ja: 'API（ソフト同士をつなぐ仕組み）' })
     expect(chooseType(undefined, api, 0)).toBe('flip')
     const stable = { reps: 6, state: 2, stability: 40 } as CardRow
-    for (const s of [0, 1, 2, 3, 4, 5]) expect(['flip']).toContain(chooseType(stable, api, s))
+    // 並べかえは意味を見せない問題なので出してよい
+    for (const s of [0, 1, 2, 3, 4, 5]) expect(['flip', 'order']).toContain(chooseType(stable, api, s))
   })
   it('和訳が同じ語がほかにある語は、和訳から書く問題にしない（例文の穴埋めにする）', () => {
     const stable = { reps: 6, state: 2, stability: 40 } as CardRow

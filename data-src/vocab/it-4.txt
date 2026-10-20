@@ -25,7 +25,7 @@ user interface|n|ユーザーインターフェース（UI）|The *user interfac
 user experience|n|ユーザー体験（UX）|Slow pages create a poor *user experience*.|表示の遅いページはユーザー体験を損なう。
 front end|n|フロントエンド（画面側）|She works on the *front end* of the website.|彼女はウェブサイトのフロントエンドを担当している。
 back end|n|バックエンド（サーバー側）|The *back end* processes all the orders.|バックエンドがすべての注文を処理している。
-dependency|n|依存関係（依存するソフト）|Update all *dependencies* before the release.|リリース前に、依存しているパッケージをすべて更新してください。
+dependency|n|依存パッケージ（使っている外部のソフト）；依存関係|Update all *dependencies* before the release.|リリース前に、依存しているパッケージをすべて更新してください。
 configuration|n|設定；構成|A wrong *configuration* caused the outage.|設定の誤りが障害の原因だった。
 open-source|adj|オープンソースの|We use many *open-source* tools.|私たちは多くのオープンソースのツールを使っている。
 programming language|n|プログラミング言語|Python is a popular *programming language*.|Pythonは人気のあるプログラミング言語だ。

@@ -17,6 +17,11 @@ export default function Practice() {
           <PracticeRows keys={['handsfree']} />
         </List>
 
+        <SectionTitle>単語を確かめる</SectionTitle>
+        <List>
+          <PracticeRows keys={PRACTICE_MODES.filter((m) => m.group === '単語').map((m) => m.key)} />
+        </List>
+
         <SectionTitle>聞く</SectionTitle>
         <List>
           <PracticeRows keys={PRACTICE_MODES.filter((m) => m.group === '聞く').map((m) => m.key)} />
