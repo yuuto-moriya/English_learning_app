@@ -10,6 +10,7 @@
   data-src/rail/*.txt            保線用語（en|us|ja|lv|ipa_uk|ipa_us|refs|note|例文EN|例文JA）
   data-src/ipa/en_US.tsv         米音IPA（ipa-dict / cmudict-ipa, MIT）
   data-src/neighbors.tsv         意味の近い語（scripts/build_neighbors.py が WordNet 3.0 から生成）→ near
+  data-src/near-extra.tsv        WordNet で見つからなかった語の、意味の近い語（同じコース・同じ品詞から選んだもの）
 出力:
   src/data/vocab/general.json, business.json, rail.json
 """
@@ -570,6 +571,14 @@ def load_neighbors() -> dict[str, list[str]]:
             continue
         wid, ids = line.split("\t")
         out[wid] = ids.split(",")
+    # WordNet で近い語が見つからなかった語（形容詞・副詞・ビジネス・IT の用語など）は、手で選んだ近い語を使う
+    extra = SRC / "near-extra.tsv"
+    if extra.exists():
+        for line in extra.read_text(encoding="utf-8").splitlines():
+            if not line.strip() or line.startswith("#"):
+                continue
+            wid, ids = line.split("\t")
+            out.setdefault(wid, [i.strip() for i in ids.split(",") if i.strip()])
     return out
 
 

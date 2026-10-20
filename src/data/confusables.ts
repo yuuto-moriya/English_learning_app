@@ -205,7 +205,7 @@ export const CONFUSABLES: ConfusableSet[] = [
       { en: 'The trip was a lot of ___.', ja: '旅行はとても楽しかった。', opts: ['fun', 'funny', 'interesting'], ans: 'fun' },
       { en: 'He told us a ___ story, and everyone laughed.', ja: '彼がおかしな話をして、みんな笑った。', opts: ['fun', 'funny'], ans: 'funny' },
       { en: 'This book about history is very ___.', ja: 'この歴史の本はとても興味深い。', opts: ['fun', 'funny', 'interesting'], ans: 'interesting' },
-      { en: 'That’s an ___ idea. Tell me more.', ja: 'おもしろい考えだね。もっと聞かせて。', opts: ['fun', 'funny', 'interesting'], ans: 'interesting' },
+      { en: 'I found the history museum very ___.', ja: 'その歴史博物館はとても興味深かった。', opts: ['fun', 'funny', 'interesting'], ans: 'interesting' },
     ],
   },
   {

@@ -135,3 +135,13 @@ describe('使い分けのデータ', () => {
     expect(new Set(CONFUSABLES.map((s) => s.id)).size).toBe(CONFUSABLES.length)
   })
 })
+
+describe('空所の前の a / an', () => {
+  it('選択肢に a の語と an の語が混ざるときだけ a(n) にする', async () => {
+    const { neutralArticle } = await import('../src/lib/quiz')
+    expect(neutralArticle('I got an ＿＿＿ today.', ['error', 'warning'])).toBe('I got a(n) ＿＿＿ today.')
+    expect(neutralArticle('An ＿＿＿ came.', ['error', 'letter'])).toBe('A(n) ＿＿＿ came.')
+    expect(neutralArticle('I have a ＿＿＿ friends.', ['few', 'little'])).toBe('I have a ＿＿＿ friends.')
+    expect(neutralArticle('a ＿＿＿ later', ['hour', 'day'])).toBe('a(n) ＿＿＿ later')
+  })
+})

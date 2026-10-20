@@ -9,6 +9,7 @@ import { bumpDaily } from '@/lib/db'
 import { correctMessage, type GuideLine } from '@/lib/guide'
 import { useSettings } from '@/lib/settings'
 import { shuffle } from '@/lib/vocab'
+import { neutralArticle } from '@/lib/quiz'
 import { stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { play as playCue } from '@/lib/sounds'
 
@@ -97,7 +98,7 @@ export default function Usage() {
       >
         <div className={picked ? 'pb-56' : 'pb-8'}>
           <p className="mb-5 text-[13px] font-medium text-muted">和訳に合うように、空所に入る語を選ぼう</p>
-          <p className="en text-[22px] leading-snug">{cur.item.en.replace('___', '＿＿＿')}</p>
+          <p className="en text-[22px] leading-snug">{neutralArticle(cur.item.en.replace('___', '＿＿＿'), cur.options)}</p>
           <p className="mt-2 text-[13px] leading-relaxed text-muted">{cur.item.ja}</p>
           <div className="mt-6 space-y-2">
             {cur.options.map((o, k) => (

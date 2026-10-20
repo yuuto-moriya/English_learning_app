@@ -63,6 +63,19 @@ export function inflect(w: Word, f: FormKey): string | null {
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
+/** a / an のどちらが付く語か（音ではなく綴りで見るので、hour・unit などは例外にする） */
+const takesAn = (w: string) => /^(hour|honest|honor|heir)/i.test(w) || (/^[aeiou]/i.test(w) && !/^(uni|use|usu|eu|one|once)/i.test(w))
+
+/**
+ * 空所の前の a / an が答えの手がかりにならないようにする。選択肢に a の語と an の語が混ざっているときは「a(n)」にする
+ * （「an ＿＿＿」なら母音で始まる選択肢だけが答えになってしまうため）
+ */
+export function neutralArticle(blanked: string, options: string[]): string {
+  const kinds = new Set(options.map(takesAn))
+  if (kinds.size < 2) return blanked
+  return blanked.replace(/\b([Aa])n? (＿＿＿|___)/, '$1(n) $2')
+}
+
 // ───────── 使い分け（例文の空所に入る語を選ぶ） ─────────
 
 export interface UsageQuestion {
@@ -100,7 +113,7 @@ export function usageQuestion(w: Word, pool: Word[], tier: Tier, ex?: Example): 
   }
   if (options.length < 3) return null
   return {
-    blanked: ex.en.replace(/\*[^*]+\*/, '＿＿＿'),
+    blanked: neutralArticle(ex.en.replace(/\*[^*]+\*/, '＿＿＿'), options.map((o) => o.text)),
     en: plain(ex.en),
     ja: ex.ja,
     answer: used,
