@@ -356,6 +356,7 @@ export default function Settings() {
           <ApiRow label="翻訳（Azure Translator）" ok={health?.translator} loading={health === undefined} />
           <ApiRow label="発音評価・音声入力（Azure Speech）" ok={health?.speech} loading={health === undefined} />
           <ApiRow label="高品質音声（Azure ニューラル音声）" ok={health?.tts} loading={health === undefined} />
+          <ApiRow label="AI と会話（Cloudflare / Groq）" ok={health?.chat} loading={health === undefined} />
           {health === null && <p className="text-[12px] text-muted">サーバーに接続できません（オフライン、またはローカル開発サーバーで起動中）。</p>}
           {health?.tokenRequired && (
             <div>

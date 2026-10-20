@@ -84,6 +84,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - **耳で復習**：「和訳 → 考える間 → 英語 → 例文」を流す、画面を見ない復習（通勤中など）
 - **ながら練習**：家事や身支度をしながら、耳と声だけで練習（`src/pages/Handsfree.tsx`・`src/lib/handsfree.ts`）。はじめに時間（5分〜1時間）・内容・考える間（ゆっくり／ふつう／はやめ）・日本語の案内を選ぶと、「単語を思い出す（5問）→ まねして言う（4文）→ 日本語から英語で言う（3文）→ 会話を聞く（1場面。あなたの台詞は間を置いてまねして言う）」を順番に流しっぱなしにする。言う間は文の長さに合わせて変わる。時間になったら1問の区切りで終わり、「あと5分」でのばせる。画面は消えないようにし（Wake Lock）、ほかのアプリに切り替えると一時停止。答え合わせはしないので復習の予定（FSRS）は変えず、練習した時間を今日の学習に記録する
 - **シャドーイング**：「聞く → つぶやく → 意味確認 → 同時読み → シャドーイング」の 5 ステップコーチ
+- **AIと会話**（`/practice/chat`、`src/pages/Conversation.tsx`・`server/chat.ts`）：場面（自由に話す・カフェ・自己紹介・会議・面接・障害報告など、学ぶコースに合わせて14場面）と相手のレベル（A1〜C1）を選ぶと、AI が相手役で話しかける。話した英語（声かキーボード）に返事をし、より自然な言い方と日本語の説明を添える。「ヒント」で返事の例、相手の発言は聞く・和訳。終わると直しの一覧で振り返り。AI は Cloudflare Workers AI → Groq の順に試す（どちらも無料プラン。枠を超えたら止まるだけ）。会話はサーバーにも端末にも保存しない。端末ごとに1日200回まで
 - **発音チェック**：Azure AI Speech の発音評価で、文・単語・音素ごとのスコアと誤りを表示
   - Azure 未設定時は、Safari のタブでは端末の音声認識による簡易判定、ホーム画面アプリ（iOS では SpeechRecognition 非対応）では録音して聞き比べる自己評価に切り替え
 
@@ -320,9 +321,13 @@ npx vercel --prod   # 本番へ
 | `AZURE_TRANSLATOR_ENDPOINT` | 任意 | 既定 `https://api.cognitive.microsofttranslator.com` |
 | `AZURE_SPEECH_KEY` / `AZURE_SPEECH_REGION` | 音声に必須 | Speech リソースのキーとリージョン（同時通訳・リアルタイムの音声入力にはリージョンが必要） |
 | `AZURE_SPEECH_ENDPOINT` | 任意 | 例 `https://<resource>.cognitiveservices.azure.com` |
+| `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_AI_TOKEN` | AI と会話に（どちらか） | Cloudflare Workers AI のアカウント ID と API トークン（無料プラン） |
+| `GROQ_API_KEY` | AI と会話に（どちらか） | Groq の API キー（無料プラン。Cloudflare の予備） |
+| `CLOUDFLARE_MODEL` / `GROQ_MODEL` | 任意 | 既定 `@cf/meta/llama-3.1-8b-instruct-fp8-fast` / `openai/gpt-oss-20b` |
 | `APP_ACCESS_TOKEN` | 任意（推奨） | 設定すると `/api/*` に `X-App-Token` が必要。アプリの設定画面で入力 |
 
 リソースの作り方・無料枠・確認方法は **[docs/SETUP_AZURE.md](docs/SETUP_AZURE.md)** を参照してください。
+AI と会話の設定（Cloudflare・Groq のアカウントとキー、料金がかからない理由）は **[docs/SETUP_AI.md](docs/SETUP_AI.md)** を参照してください。
 設定後は `https://<project>.vercel.app/api/health` か、アプリの **設定 → クラウド機能 →「接続を確認」** で確認できます。
 
 ## iPhone のホーム画面に追加する
@@ -498,6 +503,7 @@ python scripts/blender/postprocess_logo.py logo-out    # → public/opening/*.we
 |---|---|
 | [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | オーナーの要件と決定事項（機能追加・変更の前に読む） |
 | [docs/SETUP_AZURE.md](docs/SETUP_AZURE.md) | Azure Translator / Speech の作成、Vercel への設定、アクセストークン、動作確認 |
+| [docs/SETUP_AI.md](docs/SETUP_AI.md) | AI と会話（Cloudflare Workers AI / Groq）のアカウント・キー、無料枠、Vercel への設定 |
 | [docs/RESEARCH.md](docs/RESEARCH.md) | 学習法のエビデンス（文献）と、アプリでの実装 |
 | [docs/RAIL_GLOSSARY.md](docs/RAIL_GLOSSARY.md) | 保線用語集の編集方針・出典タグ・著作権・追加方法 |
 | [DATA_LICENSE.md](DATA_LICENSE.md) | データ・素材のライセンスと出典 |

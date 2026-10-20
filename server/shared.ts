@@ -8,6 +8,13 @@ export interface Env {
   AZURE_SPEECH_REGION?: string
   /** 例: https://<resource>.cognitiveservices.azure.com （任意） */
   AZURE_SPEECH_ENDPOINT?: string
+  /** AI 会話（/api/chat）：Groq（無料プラン）。GROQ_MODEL は任意 */
+  GROQ_API_KEY?: string
+  GROQ_MODEL?: string
+  /** AI 会話の予備：Cloudflare Workers AI（無料プラン）。CLOUDFLARE_MODEL は任意 */
+  CLOUDFLARE_ACCOUNT_ID?: string
+  CLOUDFLARE_AI_TOKEN?: string
+  CLOUDFLARE_MODEL?: string
   /** 設定するとクライアントは X-App-Token ヘッダーが必要（無料枠の不正利用防止） */
   APP_ACCESS_TOKEN?: string
 }

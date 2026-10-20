@@ -9,6 +9,8 @@ export interface Health {
   tts?: boolean
   /** リアルタイムの音声認識・音声翻訳（同時通訳） */
   realtime?: boolean
+  /** AI 会話（Cloudflare Workers AI / Groq） */
+  chat?: boolean
   tokenRequired: boolean
 }
 
@@ -132,4 +134,28 @@ export async function transcribe(wav: Blob, lang: 'en-US' | 'ja-JP'): Promise<st
   await ensureOk(res)
   const j = (await res.json()) as { text: string }
   return j.text
+}
+
+export interface ChatTurn {
+  role: 'user' | 'assistant'
+  content: string
+}
+
+export interface ChatReply {
+  reply: string
+  /** 直前の自分の発言の直し（直すところがなければ null） */
+  correction: { better: string; note: string } | null
+  /** 次に言える返事の例 */
+  hint: string
+}
+
+/** AI との英会話：場面・レベル・これまでの会話を送り、相手の返事・直し・ヒントを受け取る（会話はサーバーに保存しない） */
+export async function chat(scene: string, level: string, messages: ChatTurn[]): Promise<ChatReply> {
+  const res = await fetch('/api/chat', {
+    method: 'POST',
+    headers: headers({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ scene, level, messages }),
+  })
+  await ensureOk(res)
+  return (await res.json()) as ChatReply
 }
