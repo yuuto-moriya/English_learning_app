@@ -18,6 +18,8 @@
 - **Cloudflare を先に、Groq を予備に** 使います。どちらか一方だけでも動きます。
 - 返事は生成しながら端末に送ります（stream）。返事の行を書き終えた時点で読み上げを始めるので、待ち時間が短くなります。stream で何も届かなかったときは、同じサービスにふつうの形でたのみ直します。
 - Cloudflare には会話ごとの ID（`x-session-affinity`）を付けて送り、同じ会話の前の部分の計算を使い回してもらいます（プロンプトキャッシュ。効き方はモデルによります）。
+- **返事と直しは別々に同時にたのみます。** 返事は速いモデル（既定 `@cf/meta/llama-3.1-8b-instruct-fp8-fast`）で、返事と返事の例だけを書かせます。直し・解説・先生への質問は先生役（`/api/tutor`）で、日本語の説明が得意なモデル（既定 `@cf/google/gemma-4-26b-a4b-it`。考える過程は `chat_template_kwargs.enable_thinking=false` で切る）を使い、使えなければ会話と同じモデルに切り替えます。モデルは `CLOUDFLARE_TUTOR_MODEL` / `GROQ_TUTOR_MODEL` で変えられます。1往復あたりの消費は、返事（約7 Neurons）＋直し（約6 Neurons）で、1日 約700往復の見込み（2026年10月の料金表から試算）。
+- **関数は東京（hnd1）で動かします**（`vercel.json` の `regions`。Hobby プランでも1つのリージョンを選べます）。iPhone・Azure（東日本）との往復が短くなります。
 - 会話の中身はサーバーに保存しません（届いた会話をそのまま AI に渡して、返事を返すだけ）。振り返りで★を付けた言い方だけ、端末（localStorage）に残ります。
 - 端末ごとに 1日 200 回までに抑えています（`src/pages/Conversation.tsx` の `DAILY_LIMIT`）。
 

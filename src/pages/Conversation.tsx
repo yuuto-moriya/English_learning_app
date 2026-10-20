@@ -1,21 +1,24 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router'
-import { Check, ChevronDown, ChevronRight, Eye, Flag, Keyboard, Languages, Lightbulb, Loader2, Mic, PencilLine, RotateCcw, Send, Snail, Square, Star, Trash2 } from 'lucide-react'
+import { AudioLines, Check, ChevronDown, ChevronRight, Eye, Flag, Keyboard, Languages, Lightbulb, Loader2, Mic, PencilLine, RotateCcw, Send, Snail, Square, Star, Trash2 } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SessionShell, SLOW_RATE } from '@/components/Session'
 import { SpeakCheck } from '@/components/SpeakCheck'
+import { MineExplain, ReplyExplain } from '@/components/ChatTutor'
 import { Button, Card, List, ListRow, Notice, Segmented, SectionTitle, SpeakButton, Toggle, cx } from '@/components/ui'
 import { chatScenes, scenePrompt, type ChatScene } from '@/data/chatScenes'
 import { loadPhrases, removePhrase, savePhrase, type SavedPhrase } from '@/lib/chatPhrases'
-import { ApiError, chat, transcribe, translate, type ChatReply, type ChatTurn } from '@/lib/api'
+import { ERROR_INFO, errorSummary, recordError } from '@/lib/chatErrors'
+import { autoSendDelay, sentenceEnd, splitSentences } from '@/lib/chatSpeech'
+import { ApiError, askTutor, chat, correct, transcribe, translate, type ChatReply, type ChatTurn } from '@/lib/api'
 import { bumpDaily } from '@/lib/db'
 import { useHealth } from '@/lib/hooks'
 import { liveEngine, startLive, warmLive, type Engine, type LiveSession } from '@/lib/live'
 import { WavRecorder } from '@/lib/recorder'
 import { useSettings } from '@/lib/settings'
 import { play } from '@/lib/sounds'
-import { primeAudio, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
+import { prefetchSpeech, primeAudio, speak, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 
 /** 会話の CEFR レベル（設定のレベルから既定を決める。専門は B2 として話す） */
 const CHAT_LEVELS = [
@@ -28,18 +31,29 @@ const CHAT_LEVELS = [
 type ChatLevel = (typeof CHAT_LEVELS)[number]['value']
 const levelOf = (maxLevel: number): ChatLevel => CHAT_LEVELS[Math.min(Math.max(maxLevel, 1), 4) - 1].value
 
-/** 話し終えてから自動で送るまでの無音（ミリ秒）。「ゆっくり話す」なら長めに待つ */
-const AUTO_SEND_MS = 1400
-const AUTO_SEND_SLOW_MS = 2600
-/** 文の途中で考えている（and・but・um などで終わる）ときは、さらに待つ */
-const MID_SENTENCE = /\b(and|but|so|because|or|um+|uh+|er+|like|the|a|an|to|of|with|my|i)[.,]?$/i
-export const autoSendDelay = (said: string, slow: boolean) => (slow ? AUTO_SEND_SLOW_MS : AUTO_SEND_MS) + (MID_SENTENCE.test(said.trim()) ? 1200 : 0)
+
 /** AI に送る会話の長さ（サーバーの上限は 16 発言。短いほど返事が速く、無料枠も減りにくい） */
 const SEND_TURNS = 12
+/**
+ * 困ったときの決まり文句。押すとそのまま英語で送る（相手に聞き返す言い方そのものを練習できる。
+ * 聞き返し・言い換えの頼み方は、やりとりの中で意味をすり合わせる力として学習効果がある）
+ */
+const QUICK_REPLIES = [
+  { label: 'もう一度', en: 'Sorry, could you say that again?' },
+  { label: 'やさしく', en: 'Could you say that more simply?' },
+  { label: 'ゆっくり', en: 'Could you speak more slowly, please?' },
+  { label: '話題を変える', en: "Can we talk about something else?" },
+] as const
+
 /** この回数話したら、振り返りをすすめる */
 const SUGGEST_REVIEW_AFTER = 6
 /** 1日に送れる回数（端末ごと。無料枠を使い切らないための目安） */
 export const DAILY_LIMIT = 200
+
+/** 直しの種類ごとの名前（誤りの直し・より自然な言い方・日本語で言ったことの英語） */
+const FIX_LABEL = { fix: '直し', natural: 'もっと自然に', ja: '英語では' } as const
+const fixLabel = (c: { kind?: keyof typeof FIX_LABEL }) => (c.kind ? FIX_LABEL[c.kind] : 'より自然な言い方')
+const sec = (ms?: number) => (ms === undefined ? '—' : `${(ms / 1000).toFixed(1)}秒`)
 
 interface Turn {
   role: 'user' | 'assistant'
@@ -49,6 +63,8 @@ interface Turn {
   /** AI の発言：次に言える返事の例・和訳 */
   hint?: string
   ja?: string
+  /** 返事までの時間（ミリ秒）：話し終えてから送るまで・送ってから最初の文字・返事の完成 */
+  timing?: { wait?: number; first?: number; done: number }
 }
 
 const todayKey = () => `chat-count-${new Date().toISOString().slice(0, 10)}`
@@ -115,8 +131,19 @@ export default function Conversation() {
   const [jaText, setJaText] = useState('')
   const [jaOut, setJaOut] = useState<string | null>(null)
   const [jaBusy, setJaBusy] = useState(false)
+  /** ヒントの中のタブ：返事の例・日本語から英語・先生に質問 */
+  const [hintTab, setHintTab] = useState<'example' | 'ja' | 'ask'>('example')
+  const [askText, setAskText] = useState('')
+  const [askOut, setAskOut] = useState<string | null>(null)
+  const [askBusy, setAskBusy] = useState(false)
   const [phrases, setPhrases] = useState<SavedPhrase[]>(loadPhrases)
   const [showAllPhrases, setShowAllPhrases] = useState(false)
+  /** まねして言う（シャドーイング）を開いている相手の発言 */
+  const [mimicAt, setMimicAt] = useState<number | null>(null)
+  /** 返事のあと、しばらく何もしていなければヒントをすすめる（責めずに、押せる場所を知らせるだけ） */
+  const [nudge, setNudge] = useState(false)
+  /** 始める前の準備（使える言い方を見てから話す） */
+  const [prep, setPrep] = useState<ChatScene | null>(null)
   /** 振り返りで「言ってみる」を開いている直し */
   const [tryAt, setTryAt] = useState<number | null>(null)
   /** 振り返りで答え（より自然な言い方）を見た直し。先に自分で言い直してから見る */
@@ -127,6 +154,10 @@ export default function Conversation() {
   const [slowSpeaker, setSlowSpeaker] = useState(() => loadPref('chat-slow', false))
   /** 会話ごとの ID */
   const cid = useRef('')
+  /** 話し終えた時刻（返事までの時間の表示用） */
+  const speechEndAt = useRef(0)
+  /** 返事までの時間を表示する（調整用） */
+  const [showTiming, setShowTiming] = useState(() => loadPref('chat-timing', false))
   const session = useRef<LiveSession | null>(null)
   const rec = useRef<WavRecorder | null>(null)
   const micText = useRef('')
@@ -169,7 +200,61 @@ export default function Conversation() {
     bottom.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
   }, [turns.length, busy, showHint, pending, jaOut])
 
+  // 返事のあと 15 秒なにもしていなければ、ヒントや決まり文句をそっとすすめる
+  useEffect(() => {
+    setNudge(false)
+    const last = turns[turns.length - 1]
+    if (!scene || done || busy || recording || draft || showHint || last?.role !== 'assistant') return
+    const t = setTimeout(() => setNudge(true), 15_000)
+    return () => clearTimeout(t)
+  }, [scene, done, busy, recording, draft, showHint, turns])
+
   const canMic = !!health?.speech || !!health?.realtime
+
+  /** 読み上げの順番待ち。話し始めたり送り直したりしたら止める */
+  const speaker = useRef<{ cancel: () => void } | null>(null)
+  const newSpeaker = () => {
+    speaker.current?.cancel()
+    const queue: string[] = []
+    let queued = 0
+    let running = false
+    let cancelled = false
+    const pump = async () => {
+      if (running) return
+      running = true
+      while (queue.length && !cancelled && mounted.current) {
+        const next = queue.shift()!
+        if (queue[0]) prefetchSpeech([{ text: queue[0], accent }])
+        await speak(next, { accent })
+      }
+      running = false
+    }
+    const sp = {
+      feed(text: string, complete: boolean) {
+        if (cancelled) return
+        const end = sentenceEnd(text, complete)
+        const fresh = text.slice(queued, end)
+        if (!fresh.trim()) return
+        queued = end
+        const parts = splitSentences(fresh)
+        queue.push(...parts)
+        primeAudio()
+        prefetchSpeech(parts.map((t) => ({ text: t, accent })))
+        void pump()
+      },
+      cancel() {
+        cancelled = true
+        queue.length = 0
+      },
+    }
+    speaker.current = sp
+    return sp
+  }
+  /** 読み上げを止める（順番待ちも捨てる） */
+  const hush = () => {
+    speaker.current?.cancel()
+    stopSpeaking()
+  }
 
   /** AI に会話を送り、返事・直し・ヒントを受け取る。返事は届いたところから表示し、文を書き終えたら読み上げを始める */
   const ask = async (history: Turn[], sc: ChatScene) => {
@@ -182,13 +267,10 @@ export default function Conversation() {
     setCanRetry(false)
     setShowHint(false)
     setPending('')
-    let spoken = false
-    const say = (text: string) => {
-      if (spoken || !autoSpeak || !mounted.current) return
-      spoken = true
-      primeAudio()
-      void speak(text, { accent })
-    }
+    // 返事は1文ずつ、書き終えた文から読み上げる（最初の声を早く出す）
+    const voice = autoSpeak ? newSpeaker() : null
+    const t0 = performance.now()
+    let tFirst: number | undefined
     try {
       const r = await chat(
         scenePrompt(sc),
@@ -196,21 +278,20 @@ export default function Conversation() {
         turnsToSend(history),
         (text, complete) => {
           if (!mounted.current) return
+          tFirst ??= performance.now() - t0
           setPending(text)
-          if (complete) say(text)
+          voice?.feed(text, complete)
         },
         cid.current,
       )
       countUse()
       if (!mounted.current) return
-      setTurns((prev) => {
-        const next = [...prev]
-        const last = next[next.length - 1]
-        if (last?.role === 'user') next[next.length - 1] = { ...last, correction: r.correction }
-        next.push({ role: 'assistant', text: r.reply, hint: r.hint })
-        return next
-      })
-      say(r.reply)
+      const timing = { wait: speechEndAt.current ? Math.max(0, t0 - speechEndAt.current) : undefined, first: tFirst, done: performance.now() - t0 }
+      speechEndAt.current = 0
+      setTurns((prev) => [...prev, { role: 'assistant', text: r.reply, hint: r.hint, timing }])
+      voice?.feed(r.reply, true)
+      // 押すとすぐ聞けるように、返事の例の音声を先に用意しておく
+      if (r.hint) prefetchSpeech([{ text: r.hint, accent }])
       void bumpDaily({ seconds: 20 }).catch(console.error)
     } catch (e) {
       if (!mounted.current) return
@@ -246,6 +327,7 @@ export default function Conversation() {
   }
 
   const start = (sc: ChatScene) => {
+    setPrep(null)
     warmUpSpeech()
     primeAudio()
     warmLive(engine)
@@ -268,20 +350,35 @@ export default function Conversation() {
   const send = (text: string) => {
     const t = text.trim()
     if (!t || !scene || busy) return
-    stopSpeaking()
+    hush()
     const next: Turn[] = [...turns, { role: 'user', text: t }]
     setTurns(next)
     setDraft('')
     void ask(next, scene)
+    void check(t, next)
+  }
+
+  /** 自分の発言の直しを、返事とは別に同時にたのむ（返事を待たせない。直しは届いたら小さなボタンで出す） */
+  const check = async (said: string, history: Turn[]) => {
+    const at = history.length - 1
+    let c: Turn['correction'] = null
+    try {
+      c = await correct(said, { level, scene: scene ? scenePrompt(scene) : '', context: turnsToSend(history) })
+    } catch {
+      c = null
+    }
+    if (!mounted.current) return
+    setTurns((prev) => prev.map((x, i) => (i === at && x.role === 'user' && x.text === said ? { ...x, correction: c } : x)))
+    if (c?.kind === 'fix') recordError(c.type)
+    if (c) prefetchSpeech([{ text: c.better, accent }])
   }
 
   /** 話す：リアルタイムの認識なら話しながら文字を出し、話し終えて少し黙ると自動で送る（止めて送るボタンでもすぐ送れる）。なければ録音して文字起こし */
   const startMic = async () => {
     if (session.current || rec.current || busy || starting) return
-    stopSpeaking()
+    hush()
     setError(null)
     setStarting(true)
-    play('start')
     const gen = ++micGen.current
     micText.current = ''
     lastFinal.current = ''
@@ -303,6 +400,7 @@ export default function Conversation() {
             // 同じ区切りが続けて届いたとき（端末の認識で起きる）は1回だけ使う
             if (!text || text.toLowerCase() === lastFinal.current.toLowerCase()) return
             lastFinal.current = text
+            speechEndAt.current = performance.now()
             micText.current = (micText.current + ' ' + text).trim()
             if (!mounted.current) return
             setDraft(micText.current)
@@ -321,6 +419,8 @@ export default function Conversation() {
           return
         }
         session.current = sess
+        // 聞き取りが本当に始まってから合図を出す（合図の前に話すと最初の言葉が落ちるため）
+        play('start')
         setRecording(true)
         return
       }
@@ -328,6 +428,7 @@ export default function Conversation() {
       r.onAutoStop = () => void stopRef.current()
       await r.start()
       rec.current = r
+      play('start')
       setRecording(true)
     } catch {
       if (mounted.current) setError('マイクを使用できません。下のキーボードから入力することもできます')
@@ -381,6 +482,25 @@ export default function Conversation() {
     stopRef.current = stopMic
   })
 
+  /** 先生役に渡す、場面と、その発言までの会話 */
+  const tutorBase = (k: number) => ({ level, scene: scene ? scenePrompt(scene) : '', context: turnsToSend(turns.slice(0, k + 1)) })
+
+  /** 先生に日本語で質問する（会話の相手役とは別。会話の流れには入れない） */
+  const ask2 = async () => {
+    const q = askText.trim()
+    if (!q || askBusy) return
+    setAskBusy(true)
+    setAskOut(null)
+    try {
+      const a = await askTutor(q, tutorBase(turns.length - 1))
+      if (mounted.current) setAskOut(a)
+    } catch (e) {
+      if (mounted.current) setError(e instanceof ApiError ? e.message : '先生に接続できませんでした')
+    } finally {
+      if (mounted.current) setAskBusy(false)
+    }
+  }
+
   const showJa = async (k: number) => {
     const t = turns[k]
     if (!t || t.ja) return
@@ -396,13 +516,63 @@ export default function Conversation() {
   const corrections = turns.filter((t) => t.role === 'user' && t.correction)
   const userTurns = turns.filter((t) => t.role === 'user').length
   const isSaved = (t: Turn) => !!t.correction && phrases.some((p) => p.better === t.correction!.better)
+  const spokenWords = turns.filter((t) => t.role === 'user').reduce((n, t) => n + (t.text.match(/[A-Za-z']+/g)?.length ?? 0), 0)
+  const naturalCount = turns.filter((t) => t.role === 'user' && t.correction === null).length
+  const sessionTop = errorSummary(1, turns.flatMap((t) => (t.correction?.kind === 'fix' && t.correction.type ? [{ type: t.correction.type, at: Date.now() }] : [])))[0]?.type
+  const recentErrors = errorSummary(7)
+
+  // ───────── 始める前の準備：やることと使える言い方を見てから話す（準備の時間は流暢さと文の複雑さを上げる） ─────────
+  if (prep && !scene)
+    return (
+      <SessionShell onClose={() => setPrep(null)}>
+        <div className="space-y-3 pb-8">
+          <div>
+            <p className="text-[13px] font-medium text-muted">準備</p>
+            <h1 className="text-[22px] font-bold">{prep.title}</h1>
+            <p className="mt-0.5 text-[13px] text-muted">{prep.sub}</p>
+          </div>
+          <Card className="space-y-1.5">
+            <p className="flex items-center gap-1.5 text-[13px] font-semibold">
+              <Flag className="h-4 w-4 text-brand" strokeWidth={1.9} />
+              この場面でやること
+            </p>
+            <ol className="space-y-1 text-[14px] leading-snug">
+              {prep.goals.map(([ja], k) => (
+                <li key={k} className="flex gap-2">
+                  <span className="mt-px flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-brand-soft text-[11px] font-bold text-brand-strong">{k + 1}</span>
+                  {ja}
+                </li>
+              ))}
+            </ol>
+          </Card>
+          <Card className="space-y-2.5">
+            <p className="text-[13px] font-semibold">使える言い方</p>
+            {prep.phrases.map(([en, ja]) => (
+              <div key={en} className="flex items-start gap-2">
+                <div className="min-w-0 flex-1">
+                  <p className="en text-[16px] leading-snug">{en}</p>
+                  <p className="text-[12.5px] text-muted">{ja}</p>
+                </div>
+                <SpeakButton text={en.replace(/_+/g, 'something')} accent={accent} size="sm" />
+              </div>
+            ))}
+          </Card>
+          <p className="px-1 text-[12.5px] leading-relaxed text-muted">
+            聞いて、声に出してから始めよう。会話の途中で困ったら「ヒント」で返事の例や、日本語で先生に質問もできます。
+          </p>
+          <Button block size="lg" onClick={() => start(prep)}>
+            はじめる
+          </Button>
+        </div>
+      </SessionShell>
+    )
 
   // ───────── 会話中 ─────────
   if (scene && !done)
     return (
       <SessionShell
         onClose={() => {
-          stopSpeaking()
+          hush()
           clearTimeout(silence.current)
           void session.current?.stop()
           rec.current?.cancel()
@@ -441,7 +611,7 @@ export default function Conversation() {
               <div key={k} className="max-w-[88%] rounded-[18px] rounded-tl-[6px] border border-line bg-surface p-3.5">
                 <p className="en text-[17px] leading-snug">{t.text}</p>
                 {t.ja && <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{t.ja}</p>}
-                <div className="mt-2 flex items-center gap-1.5">
+                <div className="mt-2 flex flex-wrap items-center gap-1.5">
                   <SpeakButton text={t.text} accent={accent} size="sm" />
                   <button
                     onClick={() => {
@@ -459,37 +629,59 @@ export default function Conversation() {
                       和訳
                     </button>
                   )}
+                  <button
+                    onClick={() => setMimicAt((v) => (v === k ? null : k))}
+                    aria-pressed={mimicAt === k}
+                    className="flex min-h-8 items-center gap-1 rounded-full px-2 text-[12px] font-semibold text-muted active:bg-surface-2"
+                  >
+                    <AudioLines className="h-4 w-4" strokeWidth={1.8} />
+                    まねする
+                  </button>
+                  <ReplyExplain text={t.text} base={tutorBase(k)} accent={accent} />
                 </div>
+                {mimicAt === k && (
+                  <div className="mt-2">
+                    <SpeakCheck text={t.text} accent={accent} source="chat" compact />
+                  </div>
+                )}
+                {showTiming && t.timing && (
+                  <p className="mt-1.5 text-[11px] tabular-nums text-faint">
+                    {t.timing.wait !== undefined && `話し終えて送るまで ${sec(t.timing.wait)}・`}最初の文字 {sec(t.timing.first)}・返事の完成 {sec(t.timing.done)}
+                  </p>
+                )}
               </div>
             ) : (
               <div key={k} className="ml-auto max-w-[88%]">
                 <div className="rounded-[18px] rounded-tr-[6px] bg-brand-soft p-3.5">
                   <p className="en text-[17px] leading-snug">{t.text}</p>
                 </div>
-                {showFix && t.correction && !openFix.has(k) ? (
-                  <button
-                    onClick={() => setOpenFix((v) => new Set(v).add(k))}
-                    className="ml-auto mt-1 flex min-h-8 items-center gap-1 rounded-full px-2 text-[12px] font-semibold text-brand-strong active:bg-surface-2"
-                  >
-                    <PencilLine className="h-3.5 w-3.5" strokeWidth={2} />
-                    より自然な言い方
-                  </button>
-                ) : showFix && t.correction ? (
+                <div className="mt-1 flex flex-wrap items-center justify-end gap-x-1">
+                  {t.correction === null && (
+                    <span className="flex min-h-8 items-center gap-1 px-1 text-[12px] font-medium text-ok">
+                      <Check className="h-3.5 w-3.5" strokeWidth={2.4} />
+                      自然に伝わります
+                    </span>
+                  )}
+                  {showFix && t.correction && !openFix.has(k) && (
+                    <button
+                      onClick={() => setOpenFix((v) => new Set(v).add(k))}
+                      className="flex min-h-8 items-center gap-1 rounded-full px-2 text-[12px] font-semibold text-brand-strong active:bg-surface-2"
+                    >
+                      <PencilLine className="h-3.5 w-3.5" strokeWidth={2} />
+                      {fixLabel(t.correction)}
+                    </button>
+                  )}
+                  {t.correction !== undefined && <MineExplain text={t.text} base={tutorBase(k)} accent={accent} />}
+                </div>
+                {showFix && t.correction && openFix.has(k) && (
                   <div className="mt-1.5 rounded-[14px] border border-line bg-surface p-3">
-                    <p className="text-[11.5px] font-semibold text-brand-strong">より自然な言い方</p>
+                    <p className="text-[11.5px] font-semibold text-brand-strong">{fixLabel(t.correction)}</p>
                     <div className="mt-0.5 flex items-start gap-2">
                       <p className="en min-w-0 flex-1 text-[16px] leading-snug">{t.correction.better}</p>
                       <SpeakButton text={t.correction.better} accent={accent} size="sm" />
                     </div>
                     {t.correction.note && <p className="mt-1 text-[12.5px] leading-relaxed text-muted">{t.correction.note}</p>}
                   </div>
-                ) : (
-                  t.correction === null && (
-                    <p className="mt-1 flex items-center justify-end gap-1 text-[12px] font-medium text-ok">
-                      <Check className="h-3.5 w-3.5" strokeWidth={2.4} />
-                      自然に伝わります
-                    </p>
-                  )
                 )}
               </div>
             ),
@@ -510,24 +702,33 @@ export default function Conversation() {
           )}
           {showHint && (
             <div className="space-y-3 rounded-[14px] bg-warn-soft p-3">
-              {lastAi?.hint && (
-                <div>
-                  <p className="text-[11.5px] font-semibold text-muted">返事の例</p>
-                  <div className="mt-0.5 flex items-start gap-2">
+              <Segmented
+                size="sm"
+                value={hintTab}
+                onChange={setHintTab}
+                options={[
+                  { value: 'example', label: '返事の例' },
+                  ...(health?.translator ? [{ value: 'ja' as const, label: '日本語→英語' }] : []),
+                  { value: 'ask', label: '先生に質問' },
+                ]}
+              />
+              {hintTab === 'example' &&
+                (lastAi?.hint ? (
+                  <div className="flex items-start gap-2">
                     <p className="en min-w-0 flex-1 text-[16px] leading-snug">{lastAi.hint}</p>
                     <SpeakButton text={lastAi.hint} accent={accent} size="sm" />
                   </div>
-                </div>
-              )}
-              {health?.translator && (
+                ) : (
+                  <p className="text-[13px] text-muted">相手の返事が届くと、返事の例が出ます。</p>
+                ))}
+              {hintTab === 'ja' && (
                 <form
                   onSubmit={(e) => {
                     e.preventDefault()
                     void helpJa()
                   }}
                 >
-                  <p className="text-[11.5px] font-semibold text-muted">言いたいことを日本語で</p>
-                  <div className="mt-1 flex gap-2">
+                  <div className="flex gap-2">
                     <input
                       value={jaText}
                       onChange={(e) => {
@@ -549,6 +750,32 @@ export default function Conversation() {
                     </div>
                   )}
                   {jaOut && <p className="mt-1 text-[12px] text-muted">聞いてから、自分の声で言ってみよう</p>}
+                </form>
+              )}
+              {hintTab === 'ask' && (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    void ask2()
+                  }}
+                >
+                  <div className="flex gap-2">
+                    <input
+                      value={askText}
+                      onChange={(e) => {
+                        setAskText(e.target.value.slice(0, 300))
+                        setAskOut(null)
+                      }}
+                      placeholder="例：for here ってどういう意味？"
+                      aria-label="先生に質問"
+                      className="h-11 min-w-0 flex-1 rounded-full border border-line bg-surface px-4 text-[16px] outline-none focus:border-line-strong"
+                    />
+                    <Button type="submit" variant="ink" size="sm" className="min-h-11 shrink-0 px-3" disabled={!askText.trim() || askBusy}>
+                      {askBusy ? <Loader2 className="h-4 w-4 animate-spin" /> : '質問'}
+                    </Button>
+                  </div>
+                  {askOut && <p className="mt-2 whitespace-pre-wrap text-[13.5px] leading-relaxed">{askOut}</p>}
+                  <p className="mt-1 text-[11.5px] text-muted">会話の相手とは別の先生が、日本語で答えます（会話には入りません）</p>
                 </form>
               )}
             </div>
@@ -583,6 +810,36 @@ export default function Conversation() {
         {/* 下の操作：話す（または入力）・ヒント */}
         <div className="glass fixed inset-x-0 bottom-0 z-10 px-4 pb-safe hairline-t">
           <div className="mx-auto max-w-[640px] py-3">
+            {nudge && (
+              <p className="mb-1.5 flex items-center gap-1 text-[12px] font-medium text-muted">
+                <Lightbulb className="h-3.5 w-3.5 text-warn" strokeWidth={2} />
+                困ったら、ヒントや下の言い方を使ってみよう（日本語で先生に聞いても大丈夫）
+              </p>
+            )}
+            {!recording && !draft && turns.length > 0 && (
+              <div className="-mx-4 mb-2 flex gap-1.5 overflow-x-auto px-4 [scrollbar-width:none]" aria-label="困ったときの言い方">
+                {QUICK_REPLIES.map((q) => (
+                  <button
+                    key={q.en}
+                    onClick={() => send(q.en)}
+                    disabled={busy}
+                    title={q.en}
+                    className="flex h-8 shrink-0 items-center rounded-full border border-line bg-surface px-3 text-[12px] font-semibold text-muted disabled:opacity-40"
+                  >
+                    {q.label}
+                  </button>
+                ))}
+                <button
+                  onClick={() => {
+                    setShowHint(true)
+                    setHintTab('ask')
+                  }}
+                  className="flex h-8 shrink-0 items-center rounded-full border border-line bg-surface px-3 text-[12px] font-semibold text-muted"
+                >
+                  先生に質問
+                </button>
+              </div>
+            )}
             {(recording || draft) && !typing && <p className="mb-2 line-clamp-3 min-h-6 text-[15px] leading-snug text-muted">{draft ? <span className="en">{draft}</span> : '聞き取っています。話し終えると自動で送ります'}</p>}
             {typing || !canMic ? (
               <form
@@ -670,9 +927,28 @@ export default function Conversation() {
                 : `${userTurns}回話したワン。まず自分で言い直してから答えを見よう。覚えたいものは★で保存できるよ。`
             }
           />
+          <div className="grid grid-cols-3 gap-2 text-center">
+            {[
+              ['話した回数', `${userTurns}回`],
+              ['話した語数', `${spokenWords}語`],
+              ['そのまま伝わった', `${naturalCount}回`],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-[14px] border border-line bg-surface px-2 py-2.5">
+                <p className="text-[18px] font-bold tabular-nums">{value}</p>
+                <p className="text-[11px] text-muted">{label}</p>
+              </div>
+            ))}
+          </div>
+          {sessionTop && (
+            <Card className="space-y-0.5">
+              <p className="text-[12px] font-semibold text-muted">今回いちばん多かった間違い</p>
+              <p className="text-[15px] font-semibold">{ERROR_INFO[sessionTop].label}</p>
+              {ERROR_INFO[sessionTop].tip && <p className="text-[12.5px] leading-relaxed text-muted">{ERROR_INFO[sessionTop].tip}</p>}
+            </Card>
+          )}
           {corrections.length > 0 && (
             <>
-              <SectionTitle>より自然な言い方（{corrections.length}）</SectionTitle>
+              <SectionTitle>直しとより自然な言い方（{corrections.length}）</SectionTitle>
               {corrections.map((t, k) =>
                 revealed.has(k) ? (
                   <Card key={k} className="space-y-1.5">
@@ -753,9 +1029,26 @@ export default function Conversation() {
         <SectionTitle>場面を選ぶ</SectionTitle>
         <List>
           {scenes.map((sc) => (
-            <ListRow key={sc.id} title={sc.title} sub={sc.sub} onClick={ready ? () => start(sc) : undefined} className={ready ? undefined : 'opacity-50'} />
+            <ListRow key={sc.id} title={sc.title} sub={sc.sub} onClick={ready ? () => setPrep(sc) : undefined} className={ready ? undefined : 'opacity-50'} />
           ))}
         </List>
+
+        {recentErrors.length > 0 && (
+          <>
+            <SectionTitle>最近7日で多い間違い</SectionTitle>
+            <Card className="space-y-2">
+              {recentErrors.slice(0, 3).map((e, k) => (
+                <div key={e.type}>
+                  <p className="flex items-baseline justify-between gap-2 text-[14px]">
+                    <span className={cx(k === 0 && 'font-semibold')}>{ERROR_INFO[e.type]?.label ?? e.type}</span>
+                    <span className="text-[12px] tabular-nums text-muted">{e.count}回</span>
+                  </p>
+                  {k === 0 && ERROR_INFO[e.type]?.tip && <p className="mt-0.5 text-[12.5px] leading-relaxed text-muted">{ERROR_INFO[e.type].tip}</p>}
+                </div>
+              ))}
+            </Card>
+          </>
+        )}
 
         {phrases.length > 0 && (
           <>
@@ -815,9 +1108,18 @@ export default function Conversation() {
               savePref('chat-fix', v)
             }}
           />
+          <Toggle
+            label="返事までの時間を表示"
+            desc="話し終えてから送るまで・最初の文字・返事の完成までの時間を、相手の発言の下に出します（調子を確かめたいとき）"
+            checked={showTiming}
+            onChange={(v) => {
+              setShowTiming(v)
+              savePref('chat-timing', v)
+            }}
+          />
         </Card>
         <p className="px-1 text-[12px] leading-relaxed text-muted">
-          話した英語は文字にして、AI（Cloudflare Workers AI または Groq）に送ります。会話の中身はサーバーに保存しません。★で保存した言い方だけ、この端末に残ります。AI の直しはときどき外れることがあります。1日 {DAILY_LIMIT} 回までです。
+          日本語で話しても大丈夫です（英語での言い方を教えてくれます）。話した英語は文字にして、AI（Cloudflare Workers AI または Groq）に送ります。会話の中身はサーバーに保存しません。★で保存した言い方だけ、この端末に残ります。AI の直しはときどき外れることがあります。1日 {DAILY_LIMIT} 回までです。
         </p>
       </div>
     </div>

@@ -144,7 +144,7 @@ export interface ChatTurn {
 export interface ChatReply {
   reply: string
   /** 直前の自分の発言の直し（直すところがなければ null） */
-  correction: { better: string; note: string } | null
+  correction: Correction | null
   /** 次に言える返事の例 */
   hint: string
 }
@@ -193,3 +193,46 @@ export async function chat(
   }
   throw new ApiError(502, 'AI の返事が途中で切れました。もう一度送ってください')
 }
+
+export interface ReplyExplanation {
+  ja: string
+  phrases: { en: string; ja: string }[]
+  point: string
+  answers: string[]
+}
+export interface MineFeedback {
+  good: string
+  fix: string
+  why: string
+  casual: string
+  polite: string
+}
+type TutorBase = { level: string; scene: string; context: ChatTurn[] }
+
+async function tutor<T>(mode: 'correct' | 'explain-reply' | 'explain-mine' | 'ask', text: string, base: TutorBase): Promise<T> {
+  const res = await fetch('/api/tutor', {
+    method: 'POST',
+    headers: headers({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ mode, text, ...base, context: base.context.slice(-6) }),
+  })
+  await ensureOk(res)
+  return (await res.json()) as T
+}
+
+/** 先生役：相手の英語の解説（訳・表現・ポイント・返し方の例） */
+export const explainReply = (text: string, base: TutorBase) => tutor<ReplyExplanation>('explain-reply', text, base)
+/** 先生役：自分の英語の詳しい評価（よかった点・直し・理由・くだけた言い方・ていねいな言い方） */
+export const explainMine = (text: string, base: TutorBase) => tutor<MineFeedback>('explain-mine', text, base)
+/** 先生役：会話の途中で日本語で質問する */
+export const askTutor = (question: string, base: TutorBase) => tutor<{ answer: string }>('ask', question, base).then((r) => r.answer)
+
+export interface Correction {
+  better: string
+  note: string
+  type?: string
+  /** fix＝誤りの直し、natural＝より自然な言い方、ja＝日本語で言ったことの英語 */
+  kind?: 'fix' | 'natural' | 'ja'
+}
+
+/** 先生役：自分の発言の直し（会話の返事と同時にたのむ。直すところがなければ null） */
+export const correct = (text: string, base: TutorBase) => tutor<{ correction: Correction | null }>('correct', text, base).then((r) => r.correction)
