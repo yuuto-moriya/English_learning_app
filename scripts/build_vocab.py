@@ -106,6 +106,9 @@ OVERRIDE_US = {
     "printer": "ˈprɪntɚ", "center": "ˈsɛntɚ", "interface": "ˈɪntɚˌfeɪs", "neural": "ˈnʊrəl",
     "tissue": "ˈtɪʃuː", "saturday": "ˈsætɚdeɪ", "email": "ˈiːmeɪl", "between": "bɪˈtwiːn", "often": "ˈɔfən",
     "beyond": "bɪˈjɑnd", "eventually": "ɪˈvɛntʃuəli", "forget": "fɚˈɡɛt",
+    # 辞書にない語（CEFR-J の追加語）
+    "snowboarding": "ˈsnoʊˌbɔrdɪŋ", "stomachache": "ˈstʌməkˌeɪk", "toothache": "ˈtuːθˌeɪk", "earache": "ˈɪrˌeɪk",
+    "antonym": "ˈæntəˌnɪm", "phrasal": "ˈfreɪzəl", "preposition": "ˌprɛpəˈzɪʃən",
 }
 
 # 品詞で発音が変わる語（名詞と動詞で強勢や音が違う）。辞書の最初の発音が別の品詞のものを直す
@@ -373,6 +376,10 @@ def more_examples(path: Path) -> dict[tuple[str, str], list[dict[str, str]]]:
     return out
 
 
+# NGSL のグループごとの頻度順位の範囲（general-N-plus.txt の語の順位の目安に使う）
+NGSL_SPAN = {1: (1, 500), 2: (500, 1000), 3: (1000, 2000), 4: (2000, 2800)}
+
+
 def build_general_business(ipa: dict[str, str]):
     warnings = 0
     # 一般（NGSL）
@@ -383,12 +390,16 @@ def build_general_business(ipa: dict[str, str]):
     cefrj = load_cefrj()
     general = []
     seen = set()
-    for lvl in (1, 2, 3, 4):
-        path = SRC / "vocab" / f"general-{lvl}.txt"
+    # general-N.txt（NGSL のグループ N）と、general-N-plus.txt（NGSL にない CEFR-J の語。N は CEFR-J のレベル）
+    paths = [p for lvl in (1, 2, 3, 4) for p in (SRC / "vocab" / f"general-{lvl}.txt", SRC / "vocab" / f"general-{lvl}-plus.txt")]
+    for path in paths:
         if not path.exists():
             continue
+        lvl = int(path.stem.split("-")[1])
+        plus = path.stem.endswith("-plus")
         more = more_examples(path)
-        for lemma, pos, ja, en, jx in read_pipe(path, 5):
+        rows = read_pipe(path, 5)
+        for k, (lemma, pos, ja, en, jx) in enumerate(rows):
             key = lemma.lower()
             if key in seen:
                 print(f"[WARN] 重複: {lemma}", file=sys.stderr)
@@ -399,6 +410,10 @@ def build_general_business(ipa: dict[str, str]):
                 warnings += 1
                 print(f"[WARN] 例文に見出し語がない: {lemma}: {en}", file=sys.stderr)
             group, rank = ngsl.get(key, (lvl, 9999))
+            if plus and key not in ngsl:
+                # NGSL にない語は頻度の順位がないので、同じレベルの NGSL の語の順位の範囲に均等に混ぜる
+                lo, hi = NGSL_SPAN.get(lvl, (1, 2800))
+                rank = int(lo + (hi - lo) * (k + 0.5) / max(1, len(rows)))
             item = {
                 "id": f"g-{slug(lemma)}",
                 "w": lemma,

@@ -4,8 +4,8 @@
 
 > **English summary**
 > Eliza Patina is an English-learning and translation PWA for Japanese learners. The name joins Eliza Doolittle of *My Fair Lady* (who changes herself by practising how she speaks; the first chatbot, ELIZA, was named after her) and patina, the beauty that copper, leather and denim gain with use — like the green of Lady Liberty. It was — originally built for a railway track-maintenance (保線) and EAM professional — designed for iPhone (add to home screen).
-> Learners choose and quickly switch modes (everyday / business / IT / rail maintenance) and study 4,070 words (general NGSL / business BSL+TSL / IT / rail & EAM glossary) in an evidence-based session (retrieval practice + FSRS spaced repetition + interleaving).
-> Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, a timed "while you do chores" mode that cycles recall, repeat-after-me, spoken translation and role-play dialogues by ear and voice, Azure pronunciation assessment and 40 role-play dialogues.
+> Learners choose and quickly switch modes (everyday / business / IT / rail maintenance) and study 5,716 words (general NGSL + CEFR-J / business BSL+TSL / IT / rail & EAM glossary) in an evidence-based session (retrieval practice + FSRS spaced repetition + interleaving).
+> Practice modes include listening, dictation, shadowing, high-variability minimal-pair training, quick Japanese-to-English production, hands-free audio review, a timed "while you do chores" mode that cycles recall, repeat-after-me, spoken translation and role-play dialogues by ear and voice, Azure pronunciation assessment and 64 role-play dialogues.
 > Speech uses Azure neural voices in eight English accents (US, UK, Australia, Canada, Ireland, India, New Zealand, South Africa), cached on the device and falling back to the device voice.
 > The translator works as you type or speak, and a simultaneous-interpretation screen streams live transcripts and translations (Azure Speech translation via short-lived tokens), with a face-to-face conversation mode, sound cues and a guided tour for new users.
 > Built with React 19, TypeScript, Vite, Tailwind CSS v4 and Dexie (all learning data stays on the device), hosted on Vercel (static site + Vercel Functions).
@@ -37,12 +37,12 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 ## 主な機能
 
-### 単語（4,070語）
+### 単語（5,716語）
 
 | カテゴリ（モード） | 語数 | 出典 | レベル |
 |---|---|---|---|
-| 一般 | 2,847 | NGSL 1.2（一般英語の約92%をカバーする高頻度語） | A1〜B2 |
-| ビジネス | 555 | BSL 1.2 / TSL 1.2（ビジネス・TOEIC 頻出語） | B1〜C1 |
+| 一般 | 4,142 | NGSL 1.2（一般英語の約92%をカバーする高頻度語）2,847語 ＋ NGSL にない CEFR-J の語（日本人学習者向けの語彙表）1,295語 | A1〜B2 |
+| ビジネス | 904 | BSL 1.2 / TSL 1.2（ビジネス・TOEIC 頻出語） | B1〜C1 |
 | IT | 248 | IT の現場でよく使う用語を独自に編集（パソコン操作・開発・運用・セキュリティ・データ・AI） | B1〜C1 |
 | 鉄道（保線） | 422 | EN 規格・TSI・JIS の用語体系から独自に編集（設備管理/EAM・SAP 用語を含む） | B2〜専門 |
 
@@ -77,7 +77,7 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 
 - **読み上げ**：Azure のニューラル音声。**発音（国・地域）を8つから選べます**（アメリカ・イギリス・オーストラリア・カナダ・アイルランド・インド・ニュージーランド・南アフリカ。各国2人以上の声）。鉄道は別に設定でき、はじめはイギリス。一度聞いた音声は端末に保存して次からはすぐ・オフラインでも再生。未設定・オフライン時は端末の声（その国の声がなければ近い発音の声）。品詞で読みが変わる語（live, record など）は、その品詞の発音で読みます
 - **定着チェック**（`/study?mode=check`）：定着した（安定度21日以上）はずの単語を、1語に2問（使い分け＋和訳から英語を選ぶ・書く）で確かめる。どちらかをまちがえたら「定着していなかった」として FSRS に「もう一度」を記録して覚え直しに戻し、両方正解なら「確かめた」日時を記録（正解しても復習の間隔は延ばさない）。まだ確かめていない語から出す
-- **使い分け**（`/practice/usage`、`src/data/confusables.ts`）：borrow / lend / rent、say / tell / speak / talk、make / do、lose / miss、cheap / low など、日本語では同じ言葉になる英語の組 43組（ビジネスの組はビジネスを選んだとき）。文の形か和訳で答えが1つに決まる問題だけにし、答え合わせのあとに違いの解説を出す
+- **使い分け**（`/practice/usage`、`src/data/confusables.ts`）：borrow / lend / rent、say / tell / speak / talk、make / do、lose / miss、cheap / low など、日本語では同じ言葉になる英語の組 73組（前置詞の at / on / in・by / with / in、語法の used to / be used to、make / let なども）（ビジネスの組はビジネスを選んだとき）。文の形か和訳で答えが1つに決まる問題だけにし、答え合わせのあとに違いの解説を出す
 - **リスニングクイズ**、**ディクテーション**（毎回ちがう声で聞く・いろいろな国の英語を混ぜて聞くことも可能）
 - **聞き分け**：L/R・B/V・S/TH・F/H・語末の N/NG・work/walk の母音・子音の連続（sport/support）など、日本語話者が苦手な13種類の音の対立（144組の最小対語）を複数の声で（高変動音声訓練：HVPT）。選択肢に単語の意味、回答後に両方の語の例文（英・和）と聞き比べを表示。形式は「単語」「例文（文の中で聞き分け）」「同じ？ちがう？」の3つ
 - **瞬間英作文**：学習した単語の例文を、日本語から英語ですぐ言う。言えなかった文はもう一度
@@ -87,9 +87,9 @@ iPhone のホーム画面に追加して使うことを前提に作っていま�
 - **発音チェック**：Azure AI Speech の発音評価で、文・単語・音素ごとのスコアと誤りを表示
   - Azure 未設定時は、Safari のタブでは端末の音声認識による簡易判定、ホーム画面アプリ（iOS では SpeechRecognition 非対応）では録音して聞き比べる自己評価に切り替え
 
-### シーン別会話（40本）
+### シーン別会話（64本）
 
-- 一般 10・ビジネス 10・IT 8・鉄道 12。「この場面のゴール」→ キーフレーズ → 聞いて理解 → ロールプレイ
+- 一般 22・ビジネス 18・IT 12・鉄道 12（追加分は `src/data/scenes-more.ts`）。「この場面のゴール」→ キーフレーズ → 聞いて理解 → ロールプレイ
 - 一般・ビジネスは身近な場面（自己紹介・ホテル・会議・交渉・苦情対応など）。IT では、ヘルプデスクへの問い合わせ、朝会、コードレビュー、障害報告、要件の聞き取り、技術をやさしく説明する、不審なメールの報告、クラウド移行の打ち合わせ。鉄道では、作業前の安全ミーティング、指令への線路閉鎖の連絡、軌道検測データのレビュー、EN 規格と JIS の違いの議論、EAM 導入ワークショップ、夜間工事の苦情対応など実務に直結する場面
 - 話者ごとに声を変えて読み上げます（1人目は設定の発音、相手役は米・英のもう一方）。英国が舞台の場面は英国の発音
 
@@ -349,8 +349,8 @@ data-src/neighbors.tsv        意味の近い語（WordNet 3.0 から生成。�
 data-src/near-extra.tsv       WordNet で見つからなかった語（形容詞・副詞・ビジネス・IT の用語など）の意味の近い語
         │
         ▼  npm run data:build（scripts/build_vocab.py）
-src/data/vocab/general.json   一般 2,847語
-src/data/vocab/business.json  ビジネス 555語
+src/data/vocab/general.json   一般 4,142語
+src/data/vocab/business.json  ビジネス 904語
 src/data/vocab/it.json        IT 248語
 src/data/vocab/rail.json      保線 422語
 ```
@@ -406,7 +406,7 @@ reservation|n|予約|I have a *reservation* under the name Moriya.|守屋の名�
 
 - 例文の見出し語は `*アスタリスク*` で囲みます（囲み忘れはビルド時に活用形を探して自動で囲み、見つからなければ警告）
 - 2つ目の例文は `data-src/vocab/more/` の同じ名前のファイルに `lemma|品詞|例文(英)|例文(和)` で書きます（lemma と品詞が同じ行の語に足されます）。和訳の最初の意味で、1つ目とは別の場面の文にします
-- レベルはファイルで決まります：`general-N.txt` → NGSL のグループ N（一般語は、これを `data-src/lists/cefrj.csv`（CEFR-J）のレベルとの中間に補正して `lv` にします。bread・cat のような身近な語が上級に、government のような語が入門に偏らないように）、`business-3/4.txt` → レベル 3/4
+- レベルはファイルで決まります：`general-N.txt` → NGSL のグループ N、`general-N-plus.txt` → NGSL にない CEFR-J の語（N は CEFR-J のレベル。頻度の順位がないので、同じレベルの NGSL の語の間に均等に混ぜる）（一般語は、これを `data-src/lists/cefrj.csv`（CEFR-J）のレベルとの中間に補正して `lv` にします。bread・cat のような身近な語が上級に、government のような語が入門に偏らないように）、`business-3/4.txt`・`business-3/4-plus.txt`（BSL/TSL の追加語） → レベル 3/4
   （`business-4.txt` のうち BSL の順位が 300 より低い語はレベル 5 に）
 - 一般語とビジネス語で重複した語は警告を出してスキップされます。NGSL/BSL/TSL にない語の頻度順位は 9999 になります
 - ID は見出し語から作られます（`g-<語>` / `b-<語>`）。**見出し語を変えると、その語の学習履歴は引き継がれません**

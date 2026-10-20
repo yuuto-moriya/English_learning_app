@@ -32,6 +32,9 @@ export interface Item {
   seed?: number
 }
 
+/** 問題ごとの種（出題形式・例文の選び方）。連番にすると形式が決まった順に回ってしまうので、毎回ばらばらにする */
+export const randomSeed = () => Math.floor(Math.random() * 1_000_000)
+
 /** 同じ語をセッション内で再出題する上限。何度も間違えたときに問題数が際限なく増えないようにする */
 export const MAX_RETRIES = 2
 
@@ -100,10 +103,14 @@ export function ambiguousGloss(cat: Category): Promise<Set<string>> {
 
 const FUNCTION_POS = new Set(['det', 'pron', 'prep', 'conj', 'aux', 'int', 'num'])
 
+/** 新しい単語の順番のゆらぎ：頻度の順位をこの幅でずらす（毎回・人ごとに同じ順にならないように。よく使う語が先なのは保つ） */
+export const RANK_JITTER = 300
+
 export function newWordPool(
   all: Word[],
   cards: Set<string>,
   s: Pick<Settings, 'studyCats' | 'maxLevel'> & { minLevel?: number },
+  rnd: () => number = Math.random,
 ): Word[][] {
   const groups: Record<Category, Word[]> = { general: [], business: [], it: [], rail: [] }
   for (const w of all) {
@@ -128,13 +135,17 @@ export function newWordPool(
       groups[c] = g.filter((w) => dist(w) === best)
     }
   }
-  // 同じレベル内では内容語を先に、機能語（冠詞・前置詞など）は後回し
+  // 同じレベル内では内容語を先に、機能語（冠詞・前置詞など）は後回し。
+  // 頻度の順位はそのまま使うと毎回まったく同じ順になるので、少しずらして混ぜる（よく使う語ほど先に出やすいのは変えない）
   const fn = (w: Word) => (FUNCTION_POS.has(w.pos) ? 1 : 0)
-  const order = (a: Word, b: Word) => a.lv - b.lv || fn(a) - fn(b) || (a.rank ?? 9999) - (b.rank ?? 9999)
+  const key = new Map(all.map((w) => [w.id, (w.rank ?? 9999) + rnd() * RANK_JITTER]))
+  const order = (a: Word, b: Word) => a.lv - b.lv || fn(a) - fn(b) || key.get(a.id)! - key.get(b.id)!
   groups.general.sort(order)
   groups.business.sort(order)
-  groups.it.sort((a, b) => a.lv - b.lv)
-  groups.rail.sort((a, b) => a.lv - b.lv)
+  // IT・鉄道は頻度の順位がないので、レベルの中で混ぜる
+  const mix = (g: Word[]) => shuffle(g, rnd).sort((a, b) => a.lv - b.lv)
+  groups.it = mix(groups.it)
+  groups.rail = mix(groups.rail)
   return ALL_CATS.map((c) => groups[c]).filter((g) => g.length > 0)
 }
 
@@ -154,12 +165,12 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
   const fresh = pool.slice(0, newCount)
 
   const dueItems: Item[] = []
-  let seed = Math.floor(Math.random() * 1000)
-  for (const r of dueRows) {
+  // 期日の早い語から選ぶが、出す順は混ぜる（毎回、期日順・同じ形式の順に並ばないように）
+  for (const r of shuffle(dueRows)) {
     const w = await getWord(r.id)
     if (!w) continue
     const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
-    const sd = seed++
+    const sd = randomSeed()
     dueItems.push({ key: `d-${w.id}`, word: w, type: chooseType(rowMap.get(w.id), w, sd, ambiguous), isNew: false, seed: sd })
   }
   // 復習もカテゴリを混ぜる
@@ -173,7 +184,8 @@ export async function buildSession(s: Settings, opts: { extra?: boolean; maxDue?
     for (const w of chunk) out.push({ key: `l-${w.id}`, word: w, type: 'learn', isNew: true })
     // 提示と想起テストの間に少し間隔を空ける（短い分散）
     for (let k = 0; k < 3 && di < dueMixed.length; k++) out.push(dueMixed[di++])
-    for (const w of chunk) out.push({ key: `t-${w.id}`, word: w, type: glossRevealsWord(w) ? 'flip' : 'mc', isNew: true })
+    // 想起テストは、提示した順とは別の順で（順番で答えの見当がつかないように）
+    for (const w of shuffle(chunk)) out.push({ key: `t-${w.id}`, word: w, type: glossRevealsWord(w) ? 'flip' : 'mc', isNew: true })
   }
   while (di < dueMixed.length) out.push(dueMixed[di++])
   return out
@@ -206,8 +218,7 @@ export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<I
       .slice(0, limit)
   }
   const out: Item[] = []
-  let seed = Math.floor(Math.random() * 1000)
-  for (const id of ids) {
+  for (const id of shuffle(ids)) {
     const w = await getWord(id)
     if (!w) continue
     const row = rowMap.get(id)
@@ -219,7 +230,7 @@ export async function buildDrill(kind: 'weak' | 'marked', limit = 15): Promise<I
     }
     // 苦手な語は意味の想起（選択・音声）を中心に、安定してきた語は産出も混ぜる
     const ambiguous = (await ambiguousGloss(w.cat)).has(w.id)
-    const sd = seed++
+    const sd = randomSeed()
     out.push({ key: `x-${id}`, word: w, type: chooseType(row, w, sd, ambiguous), isNew: false, seed: sd })
   }
   return out
@@ -261,8 +272,7 @@ export async function buildCheck(limit = 10): Promise<Item[]> {
   cands = shuffle(cands).sort((a, b) => (a.checkedAt ?? 0) - (b.checkedAt ?? 0)).slice(0, limit)
   const first: Item[] = []
   const second: Item[] = []
-  let seed = Math.floor(Math.random() * 1000)
-  for (const r of cands) {
+  for (const r of shuffle(cands)) {
     const w = await getWord(r.id)
     if (!w) continue
     const reveals = glossRevealsWord(w)
@@ -274,7 +284,7 @@ export async function buildCheck(limit = 10): Promise<Item[]> {
       ...(spellable ? (['spell'] as const) : []),
       ...(reveals ? (['flip'] as const) : ['mc' as const]),
     ]
-    const sd = seed++
+    const sd = randomSeed()
     first.push({ key: `c1-${w.id}`, word: w, type: kinds[0], isNew: false, seed: sd })
     if (kinds[1]) second.push({ key: `c2-${w.id}`, word: w, type: kinds[1], isNew: false, seed: sd + 1 })
   }

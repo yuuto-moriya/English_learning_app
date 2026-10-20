@@ -1,0 +1,127 @@
+# NGSL にない CEFR-J の語（A1）。lemma|品詞|和訳|例文(英)|例文(和)
+airport|n|空港|We took a bus from the *airport* to the hotel.|私たちは空港からホテルまでバスに乗った。
+all right|adj|大丈夫な；まあまあの|Are you *all right*? You look pale.|大丈夫？顔色が悪いよ。
+apple|n|りんご|She cut an *apple* into four pieces for the kids.|彼女は子どもたちのためにりんごを4つに切った。
+apron|n|エプロン|He put on an *apron* before he started cooking.|彼は料理を始める前にエプロンをつけた。
+awake|adj|目が覚めて；眠らずに|I was *awake* all night because of the noise.|騒音のせいで私は一晩中眠れなかった。
+banana|n|バナナ|I had a *banana* and some milk for breakfast.|私は朝食にバナナと牛乳をとった。
+baseball|n|野球|My son plays *baseball* on Saturdays with his friends.|息子は土曜日に友達と野球をする。
+bat|n|バット；（動物）コウモリ|He swung the *bat* and hit the ball very far.|彼はバットを振ってボールをとても遠くへ飛ばした。
+bean|n|豆|We had rice and *beans* for dinner tonight.|今夜の夕食はごはんと豆だった。
+bee|n|ハチ；ミツバチ|A *bee* was flying around the flowers in the garden.|庭の花のまわりをハチが飛んでいた。
+beef|n|牛肉|I don't eat *beef*, but I eat chicken and fish.|私は牛肉は食べないが、鶏肉と魚は食べる。
+bicycle|n|自転車|I ride my *bicycle* to the station every day.|私は毎日自転車で駅まで行く。
+blank|adj|空白の；何も書いていない|Please leave this part *blank* and sign at the bottom.|この部分は空白のままにして、下に署名してください。
+boring|adj|退屈な|The movie was so *boring* that I fell asleep.|その映画はとても退屈で、私は寝てしまった。
+boyfriend|n|ボーイフレンド；彼氏|Her *boyfriend* picked her up after work.|彼女の彼氏が仕事のあと迎えに来た。
+broken|adj|壊れた；割れた|The window is *broken*, so please call someone to fix it.|窓が壊れているので、だれかに直してもらうよう電話してください。
+bucket|n|バケツ|He filled a *bucket* with water and washed the car.|彼はバケツに水を入れて車を洗った。
+building|n|建物；ビル|Their office is on the tenth floor of that tall *building*.|彼らの事務所はあの高いビルの10階にある。
+burger|n|ハンバーガー|I'll have a cheese *burger* and a small salad, please.|チーズバーガーと小さいサラダをお願いします。
+butter|n|バター|Could you pass me the *butter*, please?|バターを取っていただけますか。
+butterfly|n|チョウ|A yellow *butterfly* landed on the flower.|黄色いチョウが花にとまった。
+bye|int|バイバイ；じゃあね|*Bye*! See you again next week.|じゃあね！また来週会おう。
+cafe|n|カフェ；喫茶店|We met at a small *cafe* near the station.|私たちは駅の近くの小さなカフェで会った。
+candy|n|キャンディー；あめ|The kids got a lot of *candy* at the festival.|子どもたちは祭りでたくさんのキャンディーをもらった。
+cartoon|n|アニメ；漫画|My son watches a *cartoon* on TV after school.|息子は放課後にテレビでアニメを見る。
+classmate|n|クラスメート；同級生|My *classmate* lent me a pen when I forgot mine.|ペンを忘れたとき、同級生が貸してくれた。
+classroom|n|教室|There are thirty desks in this *classroom*.|この教室には机が30台ある。
+clean|adj|きれいな；清潔な|The hotel room was small but very *clean*.|そのホテルの部屋は小さかったが、とても清潔だった。
+clever|adj|頭のいい；賢い|Ken is a *clever* boy who learns very fast.|ケンはとても早く覚える頭のいい男の子だ。
+closed|adj|閉まっている；休業の|The shop is *closed* on Sundays, so we went on Monday.|その店は日曜日は休みなので、私たちは月曜日に行った。
+cloth|n|布；ふきん|She wiped the table with a wet *cloth*.|彼女はぬれたふきんでテーブルをふいた。
+cookie|n|クッキー|My grandmother bakes *cookies* every Christmas.|祖母は毎年クリスマスにクッキーを焼く。
+cop|n|警官；おまわりさん|A *cop* stopped the car and asked to see his license.|警官が車を止めて、彼の免許証を見せるよう求めた。
+corn|n|トウモロコシ|We ate sweet *corn* at the summer barbecue.|私たちは夏のバーベキューで甘いトウモロコシを食べた。
+couch|n|ソファー；長いす|He fell asleep on the *couch* in front of the TV.|彼はテレビの前のソファーで寝てしまった。
+credit card|n|クレジットカード|Can I pay by *credit card*?|クレジットカードで払えますか。
+cute|adj|かわいい|Your baby is so *cute*! How old is she?|赤ちゃんはとてもかわいいですね。何か月ですか。
+dictionary|n|辞書|I looked up the word in my *dictionary*.|私は辞書でその単語を調べた。
+dining room|n|食堂；ダイニングルーム|We eat breakfast in the *dining room* every morning.|私たちは毎朝ダイニングルームで朝食をとる。
+doll|n|人形|She got a new *doll* for her birthday.|彼女は誕生日に新しい人形をもらった。
+drum|n|太鼓；ドラム|He plays the *drum* in a rock band.|彼はロックバンドでドラムをたたいている。
+each other|pron|お互い|Tom and Anna have known *each other* for ten years.|トムとアンナはお互いを10年前から知っている。
+elementary|adj|初歩の；小学校の|My daughter goes to an *elementary* school near our house.|娘は家の近くの小学校に通っている。
+excited|adj|わくわくした；興奮した|The kids were *excited* about the trip to the zoo.|子どもたちは動物園への遠足にわくわくしていた。
+exciting|adj|わくわくさせる；おもしろい|The soccer game was very *exciting* until the end.|そのサッカーの試合は最後までとてもわくわくした。
+feeling|n|気持ち；感情|I have a good *feeling* about the interview tomorrow.|明日の面接にはいい予感がする。
+fever|n|熱；発熱|My son has a high *fever*, so I stayed home today.|息子が高い熱を出したので、今日は家にいた。
+fishing|n|釣り|My father goes *fishing* at the lake every summer.|父は毎年夏に湖へ釣りに行く。
+foggy|adj|霧のかかった|It was too *foggy* to see the road.|霧が深すぎて道が見えなかった。
+foreigner|n|外国人|Many *foreigners* visit this old town every year.|毎年多くの外国人がこの古い町を訪れる。
+frog|n|カエル|A small green *frog* jumped into the pond.|小さな緑のカエルが池に飛びこんだ。
+ghost|n|幽霊|The children were afraid of the *ghost* in the old house.|子どもたちは古い家の幽霊をこわがっていた。
+girlfriend|n|ガールフレンド；彼女|Ken took his *girlfriend* to a nice restaurant.|ケンは彼女をすてきなレストランに連れていった。
+glasses|n|めがね|I can't read the menu without my *glasses*.|めがねがないとメニューが読めない。
+good afternoon|int|こんにちは|*Good afternoon*, everyone. Let's begin the class.|みなさん、こんにちは。授業を始めましょう。
+good morning|int|おはようございます|*Good morning*! Did you sleep well?|おはよう！よく眠れた？
+good night|int|おやすみなさい|*Good night*, Mom. See you in the morning.|おやすみ、お母さん。また朝にね。
+grandfather|n|祖父；おじいさん|My *grandfather* tells us stories about his childhood.|祖父は私たちに子どものころの話をしてくれる。
+grandma|n|おばあちゃん|I visit my *grandma* every Sunday and help her cook.|私は毎週日曜日におばあちゃんを訪ね、料理を手伝う。
+grandpa|n|おじいちゃん|*Grandpa* takes a walk in the park every morning.|おじいちゃんは毎朝公園を散歩する。
+grandparent|n|祖父母；祖父か祖母|Both of my *grandparents* live in the countryside.|私の祖父母は2人とも田舎に住んでいる。
+grape|n|ぶどう|She bought a bunch of green *grapes* at the market.|彼女は市場で緑のぶどうを一房買った。
+haircut|n|散髪；ヘアカット|I need a *haircut* before the wedding.|結婚式の前に髪を切りに行かなければならない。
+hamburger|n|ハンバーガー|We ate a *hamburger* and french fries for lunch.|私たちは昼食にハンバーガーとフライドポテトを食べた。
+handsome|adj|ハンサムな；顔立ちのよい|He is a tall, *handsome* man with dark hair.|彼は背が高く、黒い髪のハンサムな男性だ。
+headache|n|頭痛|I have a bad *headache*, so I'm going to lie down.|ひどい頭痛がするので、横になります。
+hobby|n|趣味|My *hobby* is taking pictures of old buildings.|私の趣味は古い建物の写真を撮ることだ。
+hometown|n|故郷；出身地|I go back to my *hometown* every New Year.|私は毎年お正月に故郷へ帰る。
+homework|n|宿題|I have a lot of *homework* to finish tonight.|今夜は終わらせなければならない宿題がたくさんある。
+ice cream|n|アイスクリーム|We had *ice cream* by the lake on a hot day.|私たちは暑い日に湖のそばでアイスクリームを食べた。
+interested|adj|興味がある|I'm very *interested* in learning about other cultures.|私は他の文化について学ぶことにとても興味がある。
+interesting|adj|おもしろい；興味深い|That was an *interesting* story. Tell me more.|それはおもしろい話だね。もっと聞かせて。
+interviewer|n|面接官；聞き手|The *interviewer* asked me why I wanted the job.|面接官は私になぜその仕事がしたいのか尋ねた。
+jeans|n|ジーンズ|I wear *jeans* and a T-shirt on weekends.|私は週末はジーンズとTシャツを着る。
+juice|n|ジュース|I'd like a glass of orange *juice*, please.|オレンジジュースを1杯お願いします。
+kite|n|凧|The kids flew a *kite* in the park on a windy day.|子どもたちは風の強い日に公園で凧を揚げた。
+last name|n|姓；名字|Please write your first name and *last name* here.|ここに名前と名字を書いてください。
+leaf|n|葉|A red *leaf* fell from the tree onto my head.|赤い葉が木から私の頭に落ちてきた。
+lion|n|ライオン|The *lion* lay in the shade and slept all afternoon.|ライオンは日陰で午後ずっと眠っていた。
+living room|n|居間；リビング|We watch TV together in the *living room* after dinner.|私たちは夕食のあと居間でいっしょにテレビを見る。
+lonely|adj|さびしい；孤独な|She felt *lonely* after she moved to a new city.|彼女は新しい街に引っ越してからさびしく感じた。
+math|n|数学；算数|*Math* was my favorite subject in high school.|数学は高校でいちばん好きな科目だった。
+meeting|n|会議；打ち合わせ|I have a *meeting* with my boss at ten o'clock.|私は10時に上司と打ち合わせがある。
+monkey|n|サル|A *monkey* took the banana from the boy's hand.|サルが男の子の手からバナナを取った。
+nationality|n|国籍|What is your *nationality*? I'm Japanese.|あなたの国籍は何ですか。私は日本人です。
+notebook|n|ノート；帳面|I wrote down his phone number in my *notebook*.|私は彼の電話番号をノートに書き留めた。
+o'clock|adv|〜時|The store opens at ten *o'clock* every morning.|その店は毎朝10時に開く。
+painting|n|絵；絵画|He hung a *painting* of the sea over the sofa.|彼はソファーの上に海の絵を掛けた。
+palace|n|宮殿|The king lived in a big *palace* on the hill.|王様は丘の上の大きな宮殿に住んでいた。
+pants|n|ズボン|These *pants* are too long for me.|このズボンは私には長すぎる。
+pencil|n|鉛筆|Please use a *pencil* to fill in the answers.|答えは鉛筆で記入してください。
+pizza|n|ピザ|We ordered a large *pizza* and shared it.|私たちはLサイズのピザを注文して分け合った。
+prince|n|王子|The *prince* married a woman from a small village.|王子は小さな村の女性と結婚した。
+princess|n|王女；お姫さま|The little girl dressed up as a *princess* for the party.|その小さな女の子はパーティーのために王女の格好をした。
+purple|adj|紫色の|She wore a *purple* dress to the party.|彼女はパーティーに紫色のドレスを着ていった。
+rabbit|n|ウサギ|The children gave the *rabbit* some carrots.|子どもたちはウサギににんじんをあげた。
+ribbon|n|リボン|She tied a red *ribbon* around the gift box.|彼女は贈り物の箱に赤いリボンを結んだ。
+rose|n|バラ|He gave her a red *rose* on Valentine's Day.|彼はバレンタインデーに彼女に赤いバラを贈った。
+rude|adj|失礼な；無礼な|It is *rude* to talk with your mouth full.|口にものを入れたまま話すのは失礼だ。
+ruler|n|定規|Use a *ruler* to draw a straight line.|まっすぐな線を引くには定規を使いなさい。
+sailor|n|船乗り；水兵|The old *sailor* told us stories about the sea.|その年老いた船乗りは私たちに海の話をしてくれた。
+shopping|n|買い物|I'm going *shopping* with my sister this afternoon.|私は今日の午後、姉と買い物に行く。
+shy|adj|内気な；恥ずかしがりの|My daughter is *shy* and doesn't talk much at school.|娘は内気で、学校ではあまり話さない。
+smoking|n|喫煙；たばこを吸うこと|*Smoking* is not allowed in this building.|この建物内では喫煙は禁止されている。
+snake|n|ヘビ|We saw a long *snake* in the grass.|私たちは草むらで長いヘビを見た。
+snowy|adj|雪の降る；雪の多い|It was a cold, *snowy* day, so we stayed inside.|寒くて雪の降る日だったので、私たちは家の中にいた。
+soup|n|スープ|The *soup* was too hot, so I waited a little.|スープが熱すぎたので、少し待った。
+spy|n|スパイ|The *spy* sent secret information to another country.|そのスパイは別の国に秘密の情報を送った。
+sunshine|n|日光；日ざし|We sat in the *sunshine* and had lunch outside.|私たちは日ざしの中で外で昼食をとった。
+super|adj|すごい；最高の|We had a *super* time at the beach.|私たちは海辺で最高の時間を過ごした。
+supermarket|n|スーパーマーケット|I buy milk and eggs at the *supermarket* every week.|私は毎週スーパーで牛乳と卵を買う。
+surf|v|サーフィンをする；（ネットを）見て回る|He goes to the beach every weekend to *surf*.|彼は毎週末サーフィンをしに海へ行く。
+swimming|n|水泳|*Swimming* is good exercise for your whole body.|水泳は全身にいい運動だ。
+swimming pool|n|プール|The hotel has a big *swimming pool* on the roof.|そのホテルには屋上に大きなプールがある。
+T-shirt|n|Tシャツ|He wore a white *T-shirt* and blue jeans.|彼は白いTシャツと青いジーンズを着ていた。
+temple|n|寺；神殿|We visited an old *temple* on our trip to Kyoto.|私たちは京都旅行で古い寺を訪れた。
+tiger|n|トラ|The *tiger* walked slowly around its cage.|トラは檻の中をゆっくり歩き回った。
+tired|adj|疲れた|I was so *tired* after work that I went to bed early.|仕事のあとでとても疲れていたので、私は早く寝た。
+toilet|n|トイレ；便器|Excuse me, where is the *toilet*?|すみません、トイレはどこですか。
+tomato|n|トマト|She put a fresh *tomato* in the salad.|彼女はサラダに新鮮なトマトを入れた。
+towel|n|タオル|Can I have a clean *towel*, please?|きれいなタオルをもらえますか。
+turkey|n|七面鳥|We eat *turkey* with my family on Thanksgiving.|私たちは感謝祭に家族で七面鳥を食べる。
+vase|n|花びん|She put the flowers in a glass *vase*.|彼女は花をガラスの花びんに生けた。
+volleyball|n|バレーボール|My sister plays *volleyball* on the school team.|姉は学校のチームでバレーボールをしている。
+yogurt|n|ヨーグルト|I eat *yogurt* with fruit for breakfast.|私は朝食にフルーツ入りのヨーグルトを食べる。
+zoo|n|動物園|We took the kids to the *zoo* on Sunday.|私たちは日曜日に子どもたちを動物園に連れていった。

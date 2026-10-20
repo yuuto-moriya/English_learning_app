@@ -133,7 +133,8 @@ export async function reviewWords(n = 20): Promise<{ words: Word[]; learned: num
     .map((r) => ({ r, p: retrievability(r, now) }))
     .sort((a, b) => a.p - b.p)
     .slice(0, n)
-  const words = (await Promise.all(ranked.map((x) => getWord(x.r.id)))).filter(Boolean) as Word[]
+  // 忘れかけている語から選ぶが、流す順は混ぜる（毎回同じ順にならないように）
+  const words = shuffle((await Promise.all(ranked.map((x) => getWord(x.r.id)))).filter(Boolean) as Word[])
   if (words.length >= 5) return { words, learned: words.length }
   const lists = await Promise.all(selectedCats(s).map((c) => loadCategory(c)))
   // これから学ぶ語の候補から、学習した語と「知っている」にした語を除く
