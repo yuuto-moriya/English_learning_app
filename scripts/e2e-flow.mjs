@@ -184,6 +184,26 @@ check((await page.getByLabel('翻訳する文').inputValue()) === 'See you tomor
 await page.unroute('**/api/health')
 await page.unroute('**/api/translate')
 
+// AI と会話（API はモック）：場面を選ぶ → 相手が話しかける → 入力して送る → 直しが出る → 振り返り
+await page.route('**/api/health', (r) => r.fulfill({ json: { translator: false, speech: false, tts: false, realtime: false, chat: true, tokenRequired: false } }))
+let chatN = 0
+await page.route('**/api/chat', (r) => {
+  chatN++
+  r.fulfill({ json: chatN === 1 ? { reply: 'Hi! What can I get for you?', correction: null, hint: 'A latte, please.' } : { reply: 'Sure. What size?', correction: { better: "I'd like a latte, please.", note: '丁寧な言い方' }, hint: 'Medium, please.' } })
+})
+await page.goto(BASE + '/practice/chat')
+await page.getByText('カフェで注文').click()
+await page.getByText('Hi! What can I get for you?').waitFor({ timeout: 5000 })
+check(await page.getByText('Hi! What can I get for you?').isVisible(), 'AI と会話：相手が話しかける')
+await page.getByLabel('英語で返事を入力').fill('I want latte')
+await page.getByRole('button', { name: '送る' }).click()
+await page.getByText("I'd like a latte, please.").waitFor({ timeout: 5000 })
+check(await page.getByText('より自然な言い方').isVisible(), 'AI と会話：より自然な言い方が出る')
+await page.getByRole('button', { name: 'やめる' }).click()
+check(await page.getByRole('heading', { name: '会話の振り返り' }).isVisible(), 'AI と会話：振り返り')
+await page.unroute('**/api/health')
+await page.unroute('**/api/chat')
+
 // 翻訳画面のヘルプと同時通訳
 await page.goto(BASE + '/translate')
 await page.getByRole('button', { name: '翻訳画面の使い方' }).click()

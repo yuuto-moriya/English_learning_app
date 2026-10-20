@@ -30,7 +30,7 @@ describe('guard', () => {
   it('health はトークンなしでも見られる', async () => {
     const env = { ...ENV, APP_ACCESS_TOKEN: 'secret' }
     const res = await guard(new Request('https://app.example/api/health'), env, () => handleHealth(env), { public: true })
-    expect(await res.json()).toEqual({ translator: true, speech: true, tts: true, realtime: true, tokenRequired: true })
+    expect(await res.json()).toEqual({ translator: true, speech: true, tts: true, realtime: true, chat: false, tokenRequired: true })
     // カスタムドメインだけ（リージョンなし）だと、リアルタイム音声は使えない
     const noRegion = handleHealth({ AZURE_SPEECH_KEY: 'sk', AZURE_SPEECH_ENDPOINT: 'https://my.cognitiveservices.azure.com' })
     expect(((await noRegion.json()) as { realtime: boolean }).realtime).toBe(false)

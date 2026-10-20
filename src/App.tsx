@@ -25,6 +25,7 @@ const AudioReview = lazy(() => import('./pages/AudioReview'))
 const Handsfree = lazy(() => import('./pages/Handsfree'))
 const Interpreter = lazy(() => import('./pages/Interpreter'))
 const Usage = lazy(() => import('./pages/Usage'))
+const Conversation = lazy(() => import('./pages/Conversation'))
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: 'practice', element: <Practice /> },
       { path: 'practice/listening', element: <Listening /> },
       { path: 'practice/dictation', element: <Dictation /> },
+      { path: 'practice/chat', element: <Conversation /> },
       { path: 'practice/speaking', element: <Speaking /> },
       { path: 'practice/sounds', element: <Sounds /> },
       { path: 'practice/compose', element: <Compose /> },

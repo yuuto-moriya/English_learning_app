@@ -16,6 +16,7 @@ const PAGES = [
   ['practice', '/practice'],
   ['listening', '/practice/listening'],
   ['sounds', '/practice/sounds'],
+  ['chat', '/practice/chat'],
   ['compose', '/practice/compose'],
   ['audio', '/practice/audio'],
   ['speaking', '/practice/speaking?mode=shadow'],
