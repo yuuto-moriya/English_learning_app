@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { guard, handleHealth, handlePronunciation, handleSpeechToken, handleStt, handleTranslate, handleTts, TTS_VOICES } from '../server/handlers.js'
+import { guard, handleHealth, handlePronunciation, handleSpeechToken, handleStt, handleTranslate, handleTts, translatorError, TTS_VOICES } from '../server/handlers.js'
 import { buildSsml } from '../server/shared.js'
 import type { Env } from '../server/shared.js'
 
@@ -71,6 +71,16 @@ describe('translate', () => {
     vi.stubGlobal('fetch', vi.fn(async () => Promise.reject(new TypeError('network'))))
     const res = await handleTranslate(post('/api/translate', JSON.stringify({ text: 'hello', to: 'ja' })), ENV)
     expect(res.status).toBe(502)
+  })
+
+  it('無料枠を使い切ったとき（F0 の 403001）は、料金がかからず来月使えることを伝える', async () => {
+    const body = JSON.stringify({ error: { code: 403001, message: 'The operation is not allowed because the subscription has exceeded its free quota.' } })
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(body, { status: 403 })))
+    const res = await handleTranslate(post('/api/translate', JSON.stringify({ text: 'hello', to: 'ja' })), ENV)
+    expect(res.status).toBe(502)
+    expect(((await res.json()) as { error: string }).error).toContain('料金はかからず')
+    expect(translatorError(429)).toContain('少し待って')
+    expect(translatorError(401)).toBe('翻訳APIエラー (401)')
   })
 })
 
