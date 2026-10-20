@@ -150,6 +150,8 @@ export type SceneGroup = 'daily' | 'business' | 'it' | 'rail'
 export interface Scene {
   id: string
   group: SceneGroup
+  /** 小分類（src/data/scenes/subs.ts の id） */
+  sub: string
   /** 舞台の土地の発音（最初の話者がこの発音で話す）。省略時は保線＝英国、それ以外＝米国 */
   accent?: Accent
   title: string

@@ -5,6 +5,8 @@ import rail from '../src/data/vocab/rail.json'
 import itWords from '../src/data/vocab/it.json'
 import counts from '../src/data/vocab/counts.json'
 import { SCENES } from '../src/data/scenes'
+import { SCENE_SUBS } from '../src/data/scenes/subs'
+import { sceneProblems } from './sceneRules'
 import { CONTRASTS } from '../src/data/minimalPairs'
 import { PAIR_WORDS } from '../src/data/pairWords'
 import type { Word } from '../src/lib/types'
@@ -82,26 +84,49 @@ describe('単語データ', () => {
   })
 })
 
+/** 拡充前（2026-10）の64場面の ID */
+const OLD_SCENE_IDS = [
+  'd-intro', 'd-cafe', 'd-directions', 'd-station', 'd-hotel', 'd-restaurant', 'd-shopping', 'd-pharmacy', 'd-airport', 'd-smalltalk',
+  'b-meeting-partner', 'b-phone', 'b-run-meeting', 'b-opinion', 'b-schedule', 'b-presentation', 'b-online', 'b-negotiate', 'b-complaint', 'b-email',
+  'i-helpdesk', 'i-standup', 'i-code-review', 'i-outage', 'i-requirements', 'i-explain', 'i-phishing', 'i-cloud-migration', 'r-briefing',
+  'r-possession', 'r-broken-rail', 'r-recording-review', 'r-planning', 'r-site-visit', 'r-standards', 'r-contractor', 'r-eam', 'r-heavy-rain',
+  'r-opinion', 'r-complaint', 'd-clinic', 'd-taxi', 'd-bank', 'd-postoffice', 'd-salon', 'd-reserve-call', 'd-repair', 'd-lost-found',
+  'd-houseparty', 'd-tourist-info', 'd-gym', 'd-neighbor', 'b-interview', 'b-welcome-colleague', 'b-one-on-one', 'b-client-smalltalk',
+  'b-product-demo', 'b-extension', 'b-client-dinner', 'b-trade-show', 'i-password-reset', 'i-sprint-planning', 'i-demo', 'i-postmortem',
+]
+
 describe('シーン会話データ', () => {
-  it('日常・ビジネス・保線がそれぞれ8場面以上', () => {
-    for (const g of ['daily', 'business', 'it', 'rail'] as const) {
-      expect(SCENES.filter((s) => s.group === g).length).toBeGreaterThanOrEqual(8)
-    }
+  const groups = ['daily', 'business', 'it', 'rail'] as const
+  it('場面の数：一般48・ビジネス40・IT 32・鉄道30 以上（拡充前の64本の倍以上）', () => {
+    const min = { daily: 48, business: 40, it: 32, rail: 30 }
+    for (const g of groups) expect(SCENES.filter((s) => s.group === g).length, g).toBeGreaterThanOrEqual(min[g])
+    expect(SCENES.length).toBeGreaterThanOrEqual(128)
   })
   it('ID が重複せず、接頭辞がグループと一致する', () => {
     const prefix = { daily: 'd-', business: 'b-', it: 'i-', rail: 'r-' }
     expect(new Set(SCENES.map((s) => s.id)).size).toBe(SCENES.length)
     for (const s of SCENES) expect(s.id.startsWith(prefix[s.group]), s.id).toBe(true)
   })
-  it('日常・ビジネス・IT の場面に保線の専門語が入っていない（鉄道はコースで選ぶ）', () => {
-    const railish = /\b(track|tracks|rail|rails|railway|sleepers?|tamp\w*|possession|ballast|grinding)\b/i
-    for (const s of SCENES.filter((x) => x.group !== 'rail'))
-      for (const t of [...s.phrases, ...s.lines]) expect(railish.test(t.en), `${s.id}: ${t.en}`).toBe(false)
+  it('拡充前からある場面の ID が残っている（練習の記録が場面の ID で残るため）', () => {
+    const ids = new Set(SCENES.map((s) => s.id))
+    for (const id of OLD_SCENE_IDS) expect(ids.has(id), id).toBe(true)
   })
-  it('会話の話者がrolesに含まれる', () => {
-    for (const s of SCENES) {
-      const ids = new Set(s.roles.map((r) => r.id))
-      for (const l of s.lines) expect(ids.has(l.sp), `${s.id}:${l.en}`).toBe(true)
+  it('どの小分類にも5場面以上あり、グループの中で題が重ならない', () => {
+    for (const sub of SCENE_SUBS) expect(SCENES.filter((s) => s.group === sub.group && s.sub === sub.id).length, `${sub.group}/${sub.id}`).toBeGreaterThanOrEqual(5)
+    for (const g of groups) {
+      const titles = SCENES.filter((s) => s.group === g).map((s) => s.title)
+      expect(new Set(titles).size, g).toBe(titles.length)
+    }
+  })
+  it('書式の決まり（台詞12〜16行・キーフレーズ6〜8個・あなたの役・和訳・保線の語など）を守る', () => {
+    expect(SCENES.flatMap(sceneProblems)).toEqual([])
+  })
+  it('グループ → 小分類 → レベルの順に並ぶ', () => {
+    const rank = (s: (typeof SCENES)[number]) => groups.indexOf(s.group) * 100 + SCENE_SUBS.findIndex((x) => x.group === s.group && x.id === s.sub)
+    for (let i = 1; i < SCENES.length; i++) {
+      const a = SCENES[i - 1]
+      const b = SCENES[i]
+      expect(rank(a) < rank(b) || (rank(a) === rank(b) && a.lv <= b.lv), `${a.id} → ${b.id}`).toBe(true)
     }
   })
 })

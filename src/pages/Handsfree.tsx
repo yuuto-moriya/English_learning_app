@@ -29,7 +29,7 @@ import { accentFor, formatMinutes, useSettings } from '@/lib/settings'
 import { play } from '@/lib/sounds'
 import { prefetchSpeech, speak, speakJa, stopSpeaking, warmUpSpeech } from '@/lib/tts'
 import { jaForSpeech, plain } from '@/lib/vocab'
-import { sceneAccent } from '@/data/scenes'
+import { sceneAccent } from '@/data/scenes/helpers'
 import { useWakeLock, wakeLockSupported } from '@/lib/wakeLock'
 
 type Phase = 'cue' | 'prompt' | 'think' | 'answer' | 'example' | 'listen' | 'yourturn' | 'model'

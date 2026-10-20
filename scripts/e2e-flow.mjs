@@ -285,6 +285,11 @@ check(await modeGroup.getByText('ITだけを出題').isVisible(), '1つのモー
 await page.goto(BASE + '/scenes')
 await page.getByText('朝会で進捗を報告する').waitFor({ timeout: 5000 })
 check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シーンが IT モードの場面で開く')
+// シーンは グループ → 小分類 → 場面。小分類を選ぶと、その場面だけを出す
+await page.getByRole('tab', { name: /運用・障害対応/ }).click()
+await page.getByText('システム障害を報告する').waitFor({ timeout: 5000 })
+check(await page.getByText('システム障害を報告する').isVisible(), 'シーンの小分類を切り替える')
+check(!(await page.getByText('朝会で進捗を報告する').isVisible()), '選んだ小分類の場面だけを出す')
 
 // 起動時のオープニング（自動テストでは ?opening を付けたときだけ）：出て、時間がたつと消える。タップでも飛ばせる
 await page.goto(BASE + '/?opening')

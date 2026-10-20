@@ -1,4 +1,4 @@
-import { SCENES, sceneAccent } from '@/data/scenes'
+import { sceneAccent } from '@/data/scenes/helpers'
 import { catMeta, type Category } from './types'
 import { accentFor } from './settings'
 import type { Accent } from './accents'
@@ -27,6 +27,8 @@ export async function sentencePool(sources: Source[], maxLv: number, minLv = 1):
     if (src === 'scene') {
       // 一緒に選んだコースに合う場面だけ（シーン会話だけを選んだときはすべて）
       const groups = new Set(sources.flatMap((x) => (x === 'scene' ? [] : [catMeta(x).scene])))
+      // 場面のデータは大きいので、使うときだけ読み込む
+      const { SCENES } = await import('@/data/scenes')
       for (const sc of SCENES) {
         if (sc.lv > maxLv || sc.lv < minLv) continue
         if (groups.size && !groups.has(sc.group)) continue
