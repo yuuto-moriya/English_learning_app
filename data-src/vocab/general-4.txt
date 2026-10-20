@@ -3,13 +3,13 @@ dominate|v|支配する；優位を占める|A few large companies *dominate* th
 supplier|n|供給業者；納入業者|The restaurant changed its vegetable *supplier*.|そのレストランは野菜の仕入れ先を変えた。
 prize|n|賞；賞品|She won first *prize*.|彼女は1等賞を取った。
 typically|adv|典型的に；通常は|The trip *typically* takes two hours.|その移動には通常2時間かかる。
-peer|n|同僚；仲間|Learning with *peers* can be very effective.|仲間と学ぶことは非常に効果的になりうる。
+peer|n|仲間；同輩；同僚|Learning with *peers* can be very effective.|仲間と学ぶことは非常に効果的になりうる。
 pension|n|年金|He lives on a *pension*.|彼は年金で暮らしている。
-wing|n|翼；（建物の）棟|The office is in the east *wing*.|事務所は東棟にある。
+wing|n|翼；（建物の）棟|From my window seat, I could see the plane's *wing*.|窓側の席から飛行機の翼が見えた。
 acquisition|n|獲得；買収|Vocabulary *acquisition* takes time.|語彙の習得には時間がかかる。
 laughter|n|笑い|The room was filled with *laughter*.|部屋は笑い声に包まれた。
 deeply|adv|深く|I'm *deeply* grateful.|深く感謝しています。
-recognition|n|認識；評価|She received *recognition* for her work.|彼女は仕事が認められた。
+recognition|n|評価；認識|She received *recognition* for her work.|彼女は仕事が認められた。
 electricity|n|電気|The trains run on *electricity*.|列車は電気で走る。
 assistance|n|援助|Do you need any *assistance*?|何かお手伝いが必要ですか。
 roof|n|屋根|Snow piled up on the *roof*.|屋根に雪が積もった。
@@ -45,8 +45,8 @@ zone|n|地帯；区域|This is a no-parking *zone*.|ここは駐車禁止区域�
 restrict|v|制限する|Parking is *restricted* to two hours.|駐車は2時間までに制限されている。
 trace|n|痕跡；（動詞）たどる|The police found no *trace* of the thief.|警察は泥棒の痕跡を何も見つけられなかった。
 inch|n|インチ|The gap was about an *inch* wide.|すき間は約1インチの幅だった。
-equivalent|adj|同等の；（名詞）相当するもの|What is the English *equivalent* of this term?|この用語に相当する英語は何ですか。
-solid|adj|固体の；頑丈な|The bridge stands on *solid* rock.|その橋は堅い岩盤の上に立っている。
+equivalent|adj|同等の；（名詞）相当するもの|One mile is *equivalent* to about 1.6 kilometers.|1マイルは約1.6キロメートルに相当する。
+solid|adj|固体の；頑丈な|Water becomes *solid* when it freezes.|水は凍ると固体になる。
 enterprise|n|企業；事業|She runs a small *enterprise*.|彼女は小さな企業を経営している。
 elderly|adj|年配の|Please give your seat to *elderly* people.|お年寄りに席をお譲りください。
 owe|v|借りがある；〜のおかげである|I *owe* you 1,000 yen.|あなたに1,000円借りている。
@@ -56,12 +56,12 @@ port|n|港|The ship arrived at the *port* this morning.|船は今朝港に着い
 pitch|n|音の高さ；（競技場の）ピッチ；間隔|Pay attention to the *pitch* of your voice.|声の高さに注意しなさい。
 arrival|n|到着|Please check the *arrival* time.|到着時刻を確認してください。
 contemporary|adj|現代の；同時代の|The museum shows *contemporary* art.|その美術館は現代美術を展示している。
-gate|n|門；改札；搭乗口|Please go to *gate* 12.|12番ゲートへお進みください。
+gate|n|門；改札；搭乗口|The school *gate* opens at 7:30 a.m.|校門は午前7時30分に開く。
 ease|n|容易さ；（動詞）和らげる|The new tool can be used with *ease*.|新しい工具は簡単に使える。
 beer|n|ビール|Let's have a *beer* after work.|仕事の後にビールを飲もう。
 specialist|n|専門家|My doctor sent me to a heart *specialist*.|主治医は私を心臓の専門医に紹介した。
 assure|v|保証する；安心させる|I *assure* you it is safe.|それが安全であることを保証します。
-profile|n|輪郭；断面；プロフィール|Please update your *profile* picture.|プロフィール写真を更新してください。
+profile|n|プロフィール；横顔；輪郭|Please update your *profile* picture.|プロフィール写真を更新してください。
 mood|n|気分|She's in a good *mood* today.|彼女は今日機嫌がいい。
 episode|n|エピソード；（番組の）1回分|I watched the latest *episode*.|最新話を見た。
 crack|n|ひび；亀裂|There is a *crack* in the window.|窓にひびが入っている。
@@ -73,9 +73,9 @@ era|n|時代|The Showa *era* ended in 1989.|昭和の時代は1989年に終わ�
 coverage|n|範囲；報道；補償範囲|The insurance *coverage* includes flood damage.|保険の補償範囲には洪水被害も含まれる。
 tension|n|緊張；緊迫した状態|There was *tension* between the two countries.|2国の間には緊張関係があった。
 cable|n|ケーブル|Where can I buy a charging *cable*?|充電ケーブルはどこで買えますか。
-sensitive|adj|敏感な；取り扱いに注意を要する|This is *sensitive* information.|これは取り扱い注意の情報だ。
+sensitive|adj|敏感な；取り扱いに注意を要する|My skin is *sensitive* to the sun.|私の肌は日光に敏感だ。
 nervous|adj|緊張した|I'm *nervous* about the presentation.|プレゼンで緊張している。
-input|n|入力；意見|Thank you for your *input*.|ご意見をありがとうございます。
+input|n|意見；入力|Thank you for your *input*.|ご意見をありがとうございます。
 isolate|v|隔離する；切り離す|The village was *isolated* by heavy snow.|その村は大雪で孤立した。
 prisoner|n|囚人|The *prisoner* escaped.|囚人が脱走した。
 eliminate|v|取り除く|We need to *eliminate* unnecessary costs.|不要なコストを省く必要がある。
@@ -85,8 +85,8 @@ secondary|adj|二次的な；中等の|This is a *secondary* issue.|これは二
 welfare|n|福祉；幸福|We care about the *welfare* of our staff.|私たちは職員の福利を大切にしている。
 recruit|v|採用する|We are *recruiting* new staff for the shop.|店の新しいスタッフを募集している。
 exclude|v|除外する|The price *excludes* tax.|価格には税が含まれていない。
-string|n|ひも；一連|She has had a *string* of successes this year.|彼女は今年、成功が続いている。
-cloud|n|雲；クラウド|The data is stored in the *cloud*.|データはクラウドに保存されている。
+string|n|ひも；一連|I tied the box with a piece of *string*.|箱をひもで縛った。
+cloud|n|雲；クラウド|There wasn't a *cloud* in the sky.|空には雲ひとつなかった。
 persuade|v|説得する|I *persuaded* him to come.|彼を説得して来てもらった。
 inspire|v|奮い立たせる；刺激する|Her speech *inspired* us.|彼女のスピーチは私たちを奮い立たせた。
 grand|adj|壮大な|The station has a *grand* hall.|その駅には壮大なホールがある。
@@ -94,7 +94,7 @@ hence|adv|それゆえ|The road was icy, *hence* the accident.|道路が凍っ�
 crew|n|乗組員；作業班|The flight *crew* were very friendly.|乗務員の皆さんはとても親切だった。
 phenomenon|n|現象|Snow in April is a rare *phenomenon* here.|ここでは4月の雪は珍しい現象だ。
 pupil|n|生徒；瞳孔|The school has 300 *pupils*.|その学校には生徒が300人いる。
-false|adj|誤った；偽の|The alarm was *false*.|その警報は誤報だった。
+false|adj|誤った；偽の|Don't worry, it was just a *false* alarm.|心配しないで、ただの誤報だったから。
 assist|v|手伝う|Staff will *assist* passengers with disabilities.|係員が障害のあるお客様をお手伝いします。
 restore|v|回復させる；復旧する|Power was *restored* after two hours.|2時間後に電力が復旧した。
 formula|n|公式；製法|Use this *formula* to calculate the area.|面積はこの公式で計算してください。
@@ -112,7 +112,7 @@ meter|n|メートル；計器|The pool is 25 *meters* long.|そのプールは�
 truck|n|トラック|A *truck* delivered the furniture.|トラックが家具を配達した。
 nose|n|鼻|I have a runny *nose*.|鼻水が出ている。
 beside|prep|〜のそばに|Sit *beside* me.|私の隣に座って。
-sail|v|航海する|We *sailed* across the bay.|私たちは湾を横断した。
+sail|v|航海する|We *sailed* across the bay.|私たちは船で湾を渡った。
 disaster|n|災害|The earthquake was a terrible *disaster*.|その地震はひどい災害だった。
 pace|n|ペース；歩調|Learn at your own *pace*.|自分のペースで学びなさい。
 heavily|adv|激しく；大量に|It snowed *heavily* last night.|昨夜は大雪が降った。
@@ -131,7 +131,7 @@ mom|n|お母さん|My *mom* makes great curry.|お母さんのカレーは最高
 distinction|n|区別；差異|There is a clear *distinction* between the two terms.|2つの用語には明確な区別がある。
 satisfaction|n|満足|Customer *satisfaction* is improving.|顧客満足度が向上している。
 incorporate|v|組み込む|We *incorporated* your feedback into the design.|ご意見を設計に反映しました。
-pour|v|注ぐ；（雨が）激しく降る|It's *pouring* outside.|外は土砂降りだ。
+pour|v|注ぐ；（雨が）激しく降る|She *poured* hot water into the cup.|彼女はカップにお湯を注いだ。
 sweep|v|掃く|Please *sweep* the floor after lunch.|昼食後に床を掃いてください。
 obligation|n|義務|There is no *obligation* to buy.|購入の義務はありません。
 sir|n|（男性への敬称）お客様|Excuse me, *sir*. May I see your ticket?|失礼します、お客様。切符を拝見できますか。
@@ -139,16 +139,16 @@ evaluate|v|評価する|We *evaluate* each contractor every year.|毎年各請�
 anger|n|怒り|He couldn't hide his *anger*.|彼は怒りを隠せなかった。
 pub|n|パブ；酒場|Let's meet at the *pub*.|パブで会おう。
 perception|n|知覚；認識|Public *perception* of the company has improved.|その会社に対する世間の見方は良くなった。
-naturally|adv|自然に；当然|*Naturally*, we checked it twice.|当然、2回確認した。
+naturally|adv|自然に；当然|Just smile and act *naturally* in the photo.|写真では笑って自然にふるまってね。
 currency|n|通貨|What *currency* is used in the UK?|イギリスではどの通貨が使われていますか。
 database|n|データベース|All customer records are stored in a *database*.|すべての顧客記録はデータベースに保存されている。
 initially|adv|最初は|*Initially*, the plan seemed simple.|最初はその計画は単純に思えた。
-territory|n|領土；領域|This is new *territory* for us.|これは私たちにとって未知の領域だ。
+territory|n|領土；領域|The island became French *territory* in 1850.|その島は1850年にフランスの領土になった。
 stream|n|小川；流れ|A small *stream* runs under the bridge.|橋の下を小川が流れている。
 rarely|adv|めったに〜ない|I *rarely* eat breakfast.|朝食はめったに食べない。
 height|n|高さ|What is the *height* of Mt. Fuji?|富士山の高さはどれくらいですか。
 apparent|adj|明らかな|There was no *apparent* damage.|目に見える損傷はなかった。
-western|adj|西の；西洋の|Many *Western* tourists visit Kyoto.|多くの欧米からの観光客が京都を訪れる。
+western|adj|西の；西洋の|The storm hit the *western* part of the country.|嵐はその国の西部を襲った。
 expansion|n|拡大；膨張|The company announced plans for overseas *expansion*.|その会社は海外進出の計画を発表した。
 constantly|adv|絶えず|The system is *constantly* monitored.|そのシステムは常時監視されている。
 muscle|n|筋肉|I pulled a *muscle* in my back.|背中の筋を痛めた。
@@ -156,7 +156,7 @@ scare|v|怖がらせる|The noise *scared* the children.|その音に子ども�
 badly|adv|ひどく|The car was *badly* damaged.|車はひどく損傷した。
 everyday|adj|日常の|Learn *everyday* English expressions.|日常英語の表現を学ぼう。
 boundary|n|境界|The river marks the *boundary* between the two towns.|その川が2つの町の境界になっている。
-ratio|n|比率|What is the *ratio* of cost to benefit?|費用対効果の比率はどうですか。
+ratio|n|比率|The *ratio* of boys to girls in the class is 2 to 1.|そのクラスの男女の比率は2対1だ。
 essay|n|作文；小論文|Write an *essay* about your job.|自分の仕事について作文を書きなさい。
 scream|v|悲鳴を上げる|She *screamed* when she saw the spider.|彼女はクモを見て悲鳴を上げた。
 withdraw|v|引き出す；撤退する|I need to *withdraw* some cash.|現金を少し引き出す必要がある。
@@ -182,26 +182,26 @@ singer|n|歌手|She is a famous *singer*.|彼女は有名な歌手だ。
 trail|n|小道；跡|We hiked along a mountain *trail*.|山道を歩いた。
 trap|n|わな|Don't fall into that *trap*.|そのわなにはまるな。
 loose|adj|緩い|This button is *loose*.|このボタンが取れかけている。
-extension|n|延長；内線|Call me on *extension* 205.|内線205番にお電話ください。
-wealth|n|富|He made his *wealth* in trade.|彼は貿易で富を築いた。
+extension|n|延長；内線|I asked for an *extension* of the deadline.|締め切りの延長をお願いした。
+wealth|n|富|He gained great *wealth* through trade.|彼は貿易で莫大な富を得た。
 gradually|adv|徐々に|The weather *gradually* got better.|天気は徐々に良くなった。
 tank|n|タンク；戦車|Fill up the gas *tank*, please.|ガソリンを満タンにしてください。
-evil|adj|邪悪な|The story is about good and *evil*.|それは善と悪の物語だ。
+evil|adj|邪悪な|In the story, an *evil* king steals the land.|その物語では、邪悪な王が国を奪う。
 remarkable|adj|注目すべき；著しい|She made *remarkable* progress in English.|彼女は英語で目覚ましい進歩を遂げた。
 tune|n|曲；（動詞）調整する|I can't get this *tune* out of my head.|この曲が頭から離れない。
 grass|n|草；芝生|Keep off the *grass*.|芝生に入らないでください。
 invitation|n|招待（状）|Thank you for the *invitation*.|ご招待ありがとうございます。
 transition|n|移行；遷移|The *transition* to the new system went smoothly.|新システムへの移行は円滑に進んだ。
 frighten|v|怖がらせる|The thunder *frightened* the dog.|雷に犬がおびえた。
-bid|n|入札；（動詞）入札する|Three companies *bid* for the contract.|3社がその契約に入札した。
-breed|v|繁殖する；（名詞）品種|What *breed* is your dog?|あなたの犬は何という犬種ですか。
+bid|n|入札；（動詞）入札する|Our company made a *bid* for the contract.|当社はその契約に入札した。
+breed|v|繁殖する；（名詞）品種|Rabbits *breed* very quickly.|ウサギはとても速く繁殖する。
 extraordinary|adj|並外れた|It was an *extraordinary* achievement.|それは並外れた業績だった。
 brilliant|adj|すばらしい；輝かしい|That's a *brilliant* idea!|それはすばらしいアイデアだ！
 adviser|n|助言者；顧問|He is a technical *adviser* to the ministry.|彼は省の技術顧問だ。
 stem|v|生じる（stem from）|Many of his problems *stem* from a lack of sleep.|彼の問題の多くは睡眠不足に起因している。
-reverse|v|逆にする；後退させる|She *reversed* the car into the parking space.|彼女は車をバックで駐車スペースに入れた。
+reverse|v|逆にする；後退させる|Let's *reverse* the order and start with the last question.|順番を逆にして、最後の質問から始めよう。
 mode|n|方式；モード|Switch the app to dark *mode*.|アプリをダークモードに切り替えて。
-mirror|n|鏡|Check the *mirror* before you reverse.|後退する前にミラーを確認してください。
+mirror|n|鏡|Check the *mirror* before you back up.|バックする前にミラーを確認してください。
 awful|adj|ひどい|The food was *awful*.|料理はひどかった。
 pose|v|（問題などを）引き起こす；ポーズをとる|Smoking *poses* a serious risk to your health.|喫煙は健康に深刻なリスクをもたらす。
 adjust|v|調整する|You can *adjust* the height of the chair.|椅子の高さを調整できます。
@@ -219,21 +219,21 @@ planet|n|惑星|We must protect our *planet*.|私たちは地球を守らなけ�
 curve|n|曲線；カーブ|The road has a lot of sharp *curves*.|その道路には急カーブが多い。
 knee|n|ひざ|I hurt my *knee*.|ひざを痛めた。
 overcome|v|克服する|We *overcame* many difficulties.|私たちは多くの困難を克服した。
-web|n|クモの巣；ウェブ|Search the *web* for more information.|詳しくはウェブで検索してください。
+web|n|ウェブ；クモの巣|Search the *web* for more information.|詳しくはウェブで検索してください。
 depth|n|深さ|What is the *depth* of the pool?|そのプールの深さはどれくらいですか。
 entrance|n|入口|Meet me at the north *entrance*.|北口で会いましょう。
-log|n|記録；丸太；（動詞）記録する|We sat on a *log* by the river.|川辺の丸太に座った。
+log|n|記録；丸太；（動詞）記録する|Keep a *log* of your daily exercise.|毎日の運動の記録をつけなさい。
 giant|adj|巨大な|A *giant* wave hit the beach.|巨大な波が浜辺に押し寄せた。
 god|n|神|Many people believe in *God*.|多くの人が神を信じている。
-portion|n|部分；一人前|The restaurant serves large *portions*.|そのレストランは量が多い。
+portion|n|部分；一人前|A large *portion* of my salary goes to rent.|給料の大部分は家賃に消える。
 substance|n|物質|This *substance* is dangerous.|この物質は危険だ。
 extensive|adj|広範囲の|The flood caused *extensive* damage.|洪水は広範囲に被害をもたらした。
 interpret|v|解釈する；通訳する|How do you *interpret* this data?|このデータをどう解釈しますか。
 independence|n|独立|The country gained *independence* in 1960.|その国は1960年に独立した。
 sugar|n|砂糖|Do you take *sugar* in your coffee?|コーヒーに砂糖を入れますか。
 inner|adj|内側の|Keep your wallet in an *inner* pocket.|財布は内ポケットに入れておいてください。
-harm|n|害；（動詞）害する|The chemicals can *harm* the environment.|その化学物質は環境を害する可能性がある。
-consult|v|相談する；参照する|*Consult* the manual before use.|使用前にマニュアルを参照してください。
+harm|n|害；（動詞）害する|Too much sun can do *harm* to your skin.|日光を浴びすぎると肌に害になる。
+consult|v|相談する；参照する|You should *consult* a doctor about that cough.|そのせきについては医者に相談したほうがいい。
 pink|adj|ピンクの|She wore a *pink* dress.|彼女はピンクのドレスを着ていた。
 shadow|n|影|The children played in the *shadow* of the building.|子どもたちは建物の陰で遊んだ。
 strip|n|細長い一片；（動詞）はがす|Cut the paper into thin *strips*.|紙を細長く切ってください。
@@ -259,7 +259,7 @@ iron|n|鉄；アイロン|The old bridge is made of *iron*.|その古い橋は�
 broadcast|v|放送する|The match was *broadcast* live.|その試合は生中継された。
 membership|n|会員資格|*Membership* costs 5,000 yen a year.|会費は年5,000円です。
 bread|n|パン|I had *bread* and coffee for breakfast.|朝食にパンとコーヒーをとった。
-blind|adj|目の見えない|Tactile paving helps *blind* passengers.|点字ブロックは目の不自由な乗客を助ける。
+blind|adj|目の見えない|He has been *blind* since birth.|彼は生まれつき目が見えない。
 pure|adj|純粋な|This is *pure* water.|これは純水だ。
 bloody|adj|血まみれの|It was a *bloody* battle.|それは血みどろの戦いだった。
 ally|n|同盟国；味方|Japan is a close *ally* of the US.|日本は米国の緊密な同盟国だ。
@@ -269,11 +269,11 @@ mature|adj|成熟した|The market for this product is *mature*.|この製品の
 briefly|adv|手短に|Let me *briefly* explain the plan.|計画を手短に説明させてください。
 alarm|n|警報；目覚まし時計|The fire *alarm* went off.|火災報知器が鳴った。
 disturb|v|邪魔をする|Sorry to *disturb* you.|お邪魔してすみません。
-sustain|v|維持する；（損害を）受ける|The bridge *sustained* minor damage.|その橋は軽微な損傷を受けた。
+sustain|v|維持する；（損害を）受ける|We can't *sustain* this level of spending.|この支出水準を維持することはできない。
 flood|n|洪水|The *flood* damaged many houses.|洪水で多くの家が被害を受けた。
 poverty|n|貧困|Many children live in *poverty*.|多くの子どもが貧困の中で暮らしている。
-crazy|adj|狂った；夢中で|He is *crazy* about soccer.|彼はサッカーに夢中だ。
-cite|v|引用する；挙げる|The report *cites* three causes.|報告書は3つの原因を挙げている。
+crazy|adj|夢中で；ばかげた；正気でない|He is *crazy* about soccer.|彼はサッカーに夢中だ。
+cite|v|引用する；挙げる|The writer *cites* a famous poem in the first chapter.|筆者は第1章で有名な詩を引用している。
 newly|adv|新たに|This is a *newly* built house.|これは新築の家だ。
 parallel|adj|平行な|The road runs *parallel* to the river.|その道路は川と平行に走っている。
 gender|n|性別|There is no *gender* difference in pay.|給与に男女差はない。
@@ -284,7 +284,7 @@ dealer|n|販売業者|Ask your local *dealer*.|地元の販売店にお問い合
 button|n|ボタン|Press the green *button*.|緑のボタンを押してください。
 burden|n|負担|Medical costs are a heavy *burden* for many families.|医療費は多くの家庭にとって重い負担だ。
 desert|n|砂漠|Very little rain falls in the *desert*.|砂漠にはほとんど雨が降らない。
-mate|n|仲間|He's my work *mate*.|彼は仕事仲間だ。
+mate|n|仲間|He's one of my *mates* from work.|彼は職場の仲間の一人だ。
 occasionally|adv|時折|We *occasionally* eat out on weekends.|週末にたまに外食する。
 shareholder|n|株主|The *shareholders* approved the merger.|株主は合併を承認した。
 bowl|n|わん；ボウル|A *bowl* of rice, please.|ご飯を1杯ください。
@@ -294,12 +294,12 @@ bath|n|風呂|I take a *bath* every night.|毎晩風呂に入る。
 frequency|n|頻度；周波数|What is the *frequency* of buses on this route?|この路線のバスの運行頻度はどのくらいですか。
 criticize|v|批判する|The plan was *criticized* by residents.|その計画は住民から批判された。
 tap|v|軽くたたく；（名詞）蛇口|*Tap* the screen to continue.|画面をタップして続行してください。
-philosophy|n|哲学；理念|Our *philosophy* is to put customers first.|私たちの理念は顧客第一だ。
+philosophy|n|哲学；理念|She studied *philosophy* at university.|彼女は大学で哲学を学んだ。
 lip|n|唇；縁|She bit her *lip* nervously.|彼女は緊張して唇をかんだ。
 attribute|v|〜のせいにする；（名詞）属性|He *attributes* his success to hard work.|彼は自分の成功は努力のおかげだと考えている。
 apologize|v|謝罪する|We *apologize* for the inconvenience.|ご不便をおかけしおわび申し上げます。
 approval|n|承認|We need *approval* from head office.|本社の承認が必要だ。
-grab|v|つかむ|*Grab* the handrail.|手すりにおつかまりください。
+grab|v|つかむ|He *grabbed* my arm to stop me from falling.|彼は私が転ばないように腕をつかんだ。
 entitle|v|権利を与える；題をつける|You are *entitled* to a refund.|あなたには払い戻しを受ける権利がある。
 lend|v|貸す|Can you *lend* me your car?|車を貸してもらえますか。
 involvement|n|関与|Thank you for your *involvement* in the project.|プロジェクトへのご参加に感謝します。
@@ -309,18 +309,18 @@ digital|adj|デジタルの|We are moving to *digital* records.|デジタル記�
 translate|v|翻訳する|Can you *translate* this into English?|これを英語に翻訳してもらえますか。
 edit|v|編集する|Please *edit* the draft.|草稿を編集してください。
 formation|n|形成；隊形|The *formation* of good habits takes time.|良い習慣を身につけるには時間がかかる。
-deposit|n|預金；手付金；堆積物|You need to pay a *deposit*.|手付金を払う必要がある。
+deposit|n|預金；手付金；堆積物|I made a *deposit* at the bank this morning.|今朝、銀行に預金をした。
 pleasant|adj|快い|Have a *pleasant* trip.|楽しいご旅行を。
 overseas|adv|海外へ|He was sent *overseas* to work.|彼は海外勤務を命じられた。
 advocate|v|提唱する；（名詞）支持者|Doctors *advocate* regular exercise.|医師は定期的な運動を勧めている。
 establishment|n|設立；施設；体制|The *establishment* of the new company took a year.|新会社の設立には1年かかった。
 summary|n|要約|Please write a short *summary*.|短い要約を書いてください。
-rough|adj|粗い；おおよその|Give me a *rough* estimate.|おおよその見積もりを教えてください。
+rough|adj|粗い；おおよその|The wall has a *rough* surface.|その壁の表面はざらざらしている。
 pen|n|ペン|I always carry a *pen* and a notebook.|いつもペンとノートを持ち歩いている。
 recovery|n|回復；復旧|She made a quick *recovery* from her illness.|彼女は病気から早く回復した。
 seal|v|密封する；（名詞）封印|*Seal* the envelope before you mail it.|投函する前に封筒の封をしてください。
-tube|n|管；チューブ；（英）地下鉄|We took the *Tube* to Oxford Circus.|地下鉄でオックスフォード・サーカスへ行った。
-tower|n|塔|Tokyo *Tower* is 333 meters tall.|東京タワーの高さは333メートルだ。
+tube|n|管；チューブ；（英）地下鉄|Water flows through this plastic *tube*.|水はこのプラスチックの管を通って流れる。
+tower|n|塔|You can see the whole city from the top of the *tower*.|塔のてっぺんから町全体が見える。
 characterize|v|特徴づける|The area is *characterized* by heavy snow.|その地域は大雪が特徴だ。
 specify|v|明記する；指定する|The contract *specifies* the delivery date.|契約には納期が明記されている。
 exact|adj|正確な|What is the *exact* time?|正確な時刻は何時ですか。
@@ -340,7 +340,7 @@ anxiety|n|不安|Speaking English causes me *anxiety*.|英語を話すと不安�
 virus|n|ウイルス|The computer has a *virus*.|そのコンピューターはウイルスに感染している。
 precisely|adv|正確に；まさに|The train arrived at *precisely* 9:00.|列車はちょうど9時に到着した。
 rival|n|ライバル|The two companies are *rivals*.|その2社はライバルだ。
-offense|n|違反；攻撃；気分を害すること|No *offense*, but I disagree.|気を悪くしないでほしいが、私は反対だ。
+offense|n|違反；攻撃；気分を害すること|Driving without a license is a serious *offense*.|無免許運転は重大な違反だ。
 detect|v|検出する|This alarm *detects* smoke.|この警報器は煙を感知する。
 teenager|n|10代の若者|My son is a *teenager*.|息子は10代だ。
 admire|v|称賛する|I *admire* your hard work.|あなたの努力に感服します。
@@ -367,10 +367,10 @@ clinical|adj|臨床の|The drug is in *clinical* trials.|その薬は臨床試�
 eastern|adj|東の|*Eastern* Japan was hit by the typhoon.|東日本が台風に見舞われた。
 forecast|n|予報；予測|The weather *forecast* says it will snow.|天気予報では雪が降るそうだ。
 segment|n|部分；区分|This *segment* of the market is growing.|市場のこの部分は成長している。
-custom|n|慣習；（複数で）税関|It took an hour to get through *customs*.|税関を通るのに1時間かかった。
+custom|n|慣習；（複数で）税関|It's a Japanese *custom* to take off your shoes at home.|家で靴を脱ぐのは日本の慣習だ。
 adapt|v|適応する；適合させる|It took me a while to *adapt* to life in London.|ロンドンの生活に慣れるまでしばらくかかった。
 sand|n|砂|This beach has white *sand*.|この浜辺は砂が白い。
-cap|n|帽子；ふた；上限|There is a *cap* on spending.|支出には上限がある。
+cap|n|帽子；ふた；上限|He wore a baseball *cap* to keep the sun off.|日差しを避けるために彼は野球帽をかぶっていた。
 prompt|adj|迅速な；（動詞）促す|Thank you for your *prompt* reply.|迅速なご返信ありがとうございます。
 charm|n|魅力|The old town has a lot of *charm*.|その旧市街には多くの魅力がある。
 react|v|反応する|How did he *react* to the news?|彼はその知らせにどう反応しましたか。
@@ -382,17 +382,17 @@ mess|n|散らかった状態；混乱|The office is a *mess*.|事務所が散ら
 preference|n|好み；優先|Do you have a seat *preference*?|座席のご希望はありますか。
 comprehensive|adj|包括的な|We need a *comprehensive* review of the system.|システムの包括的な見直しが必要だ。
 incentive|n|動機づけ；奨励金|Bonuses give staff an *incentive* to work hard.|賞与は職員が懸命に働く動機になる。
-league|n|リーグ；連盟|He plays in a local football *league*.|彼は地元のサッカーリーグでプレーしている。
-dialog|n|対話；ダイアログ|Click OK to close the *dialog*.|OKをクリックしてダイアログを閉じてください。
+league|n|リーグ；連盟|He plays in a local soccer *league*.|彼は地元のサッカーリーグでプレーしている。
+dialog|n|対話；ダイアログ|The textbook has a short *dialog* in each lesson.|その教科書には各課に短い対話文がある。
 cream|n|クリーム|Would you like *cream* in your coffee?|コーヒーにクリームを入れますか。
-rapid|adj|急速な；（名詞）快速|There has been *rapid* growth in online shopping.|ネット通販が急速に伸びている。
-cancel|v|取り消す；運休する|The 7:30 train has been *canceled*.|7時30分の列車は運休となった。
-regret|v|後悔する；残念に思う|We *regret* to inform you that the event is canceled.|残念ながらイベントは中止となりました。
-dismiss|v|退ける；解雇する|He was *dismissed* for being late too often.|彼は遅刻が多すぎて解雇された。
+rapid|adj|急速な；速い|There has been *rapid* growth in online shopping.|ネット通販が急速に伸びている。
+cancel|v|取り消す；中止する|I had to *cancel* my dentist appointment.|歯医者の予約を取り消さなければならなかった。
+regret|v|後悔する；残念に思う|I *regret* not studying harder in school.|学生時代にもっと勉強しなかったことを後悔している。
+dismiss|v|退ける；解雇する|The manager *dismissed* my idea without listening.|部長は話も聞かずに私の案を退けた。
 margin|n|余白；余裕；利ざや|Write your notes in the *margin*.|メモは余白に書いてください。
 beneath|prep|〜の下に|We found a coin *beneath* the sofa.|ソファの下で硬貨を見つけた。
 opponent|n|対戦相手；反対者|He beat his *opponent* easily.|彼は対戦相手に楽勝した。
-resist|v|抵抗する；耐える|I couldn't *resist* eating another cookie.|もう1枚クッキーを食べずにはいられなかった。
+resist|v|抵抗する；耐える|The thief *resisted* when the police tried to catch him.|泥棒は警察に捕まえられそうになると抵抗した。
 capability|n|能力|The new machine has greater *capability*.|新しい機械の方が能力が高い。
 absolute|adj|絶対的な|I have *absolute* trust in her.|彼女を絶対的に信頼している。
 correspond|v|一致する；文通する|The figures *correspond* to last year's data.|その数字は昨年のデータと一致している。
@@ -420,7 +420,7 @@ electric|adj|電気の|I bought an *electric* car.|電気自動車を買った�
 impressive|adj|印象的な|Her speech was very *impressive*.|彼女のスピーチはとても印象的だった。
 evolution|n|進化；発展|The *evolution* of smartphones has been very fast.|スマートフォンの進化はとても速い。
 awareness|n|意識；認識|We need to raise *awareness* of climate change.|気候変動への意識を高める必要がある。
-violent|adj|暴力的な；激しい|A *violent* storm hit the coast.|激しい嵐が沿岸を襲った。
+violent|adj|暴力的な；激しい|The movie is too *violent* for young children.|その映画は幼い子どもには暴力的すぎる。
 slave|n|奴隷|Don't be a *slave* to your phone.|携帯電話の奴隷になるな。
 wealthy|adj|裕福な|He comes from a *wealthy* family.|彼は裕福な家の出身だ。
 architecture|n|建築（様式）|I love the *architecture* of old temples.|古い寺の建築が大好きだ。
@@ -428,12 +428,12 @@ acceptable|adj|許容できる|The noise level is *acceptable*.|騒音レベル�
 journal|n|専門誌；日誌|The study was published in a scientific *journal*.|その研究は学術誌に掲載された。
 coal|n|石炭|Many power stations still burn *coal*.|多くの発電所はいまだに石炭を燃やしている。
 measurement|n|測定（値）|Take three *measurements* and record the average.|3回測定して平均を記録してください。
-random|adj|無作為の|The winners were chosen at *random*.|当選者は無作為に選ばれた。
+random|adj|無作為の|The winners were chosen in a *random* draw.|当選者は無作為の抽選で選ばれた。
 successfully|adv|首尾よく|The test was *successfully* completed.|試験は無事完了した。
 depress|v|落ち込ませる；押し下げる|The bad news *depressed* everyone.|悪い知らせに皆が落ち込んだ。
 illustration|n|挿絵；例証|See the *illustration* on page 5.|5ページの図をご覧ください。
 burst|v|破裂する|A water pipe *burst* in the kitchen.|台所で水道管が破裂した。
-privilege|n|特権；光栄|It's a *privilege* to work with you.|あなたと働けるのは光栄です。
+privilege|n|特権；光栄|Members enjoy special *privileges* such as free parking.|会員は無料駐車などの特権を受けられる。
 buyer|n|買い手|We found a *buyer* for our old car.|古い車の買い手が見つかった。
 mutual|adj|相互の|The agreement is based on *mutual* trust.|その協定は相互の信頼に基づいている。
 rail|n|手すり；レール；鉄道|Hold on to the *rail* when you use the stairs.|階段を使うときは手すりにつかまってください。
@@ -459,15 +459,15 @@ salt|n|塩|Too much *salt* is bad for your health.|塩分のとりすぎは健�
 glance|v|ちらりと見る|He *glanced* at his watch.|彼は腕時計をちらりと見た。
 opera|n|オペラ|We went to the *opera* last night.|昨夜オペラを見に行った。
 contest|n|競技会；コンテスト|She won the speech *contest*.|彼女はスピーチコンテストで優勝した。
-brush|n|ブラシ；（動詞）磨く|*Brush* your teeth after meals.|食後に歯を磨きなさい。
+brush|n|ブラシ；（動詞）磨く|Clean your shoes with a soft *brush*.|柔らかいブラシで靴をきれいにしなさい。
 embarrass|v|恥ずかしい思いをさせる|I was *embarrassed* by my mistake.|自分の間違いが恥ずかしかった。
 gallery|n|美術館；画廊|The *gallery* is free to enter.|その美術館は入場無料だ。
 genetic|adj|遺伝の|It's a *genetic* condition.|それは遺伝性の疾患だ。
-aggressive|adj|攻撃的な；積極的な|He has an *aggressive* sales style.|彼は積極的な営業スタイルだ。
+aggressive|adj|攻撃的な；積極的な|The dog became *aggressive* when strangers came near.|見知らぬ人が近づくと、その犬は攻撃的になった。
 chest|n|胸；大箱|I have a pain in my *chest*.|胸が痛い。
 format|n|形式|Please send the file in PDF *format*.|ファイルはPDF形式で送ってください。
 literary|adj|文学の|She won a *literary* prize.|彼女は文学賞を受賞した。
-govern|v|統治する；規定する|Strict rules *govern* the use of personal data.|個人情報の利用は厳しい規則で定められている。
+govern|v|統治する；規定する|The king *governed* the country for forty years.|王は40年間その国を統治した。
 embrace|v|受け入れる；抱きしめる|We *embrace* new technology.|私たちは新しい技術を積極的に取り入れる。
 praise|v|ほめる|The manager *praised* the team's effort.|部長はチームの努力をほめた。
 silent|adj|静かな；無言の|The room went *silent*.|部屋がしんと静まり返った。
@@ -477,26 +477,26 @@ celebration|n|祝賀（会）|We had a small *celebration*.|ささやかなお�
 golf|n|ゴルフ|He plays *golf* on weekends.|彼は週末にゴルフをする。
 compensation|n|補償（金）|Passengers received *compensation* for the delay.|乗客は遅延の補償を受けた。
 classical|adj|古典的な；クラシックの|I like *classical* music.|クラシック音楽が好きだ。
-weigh|v|重さを量る；重さが〜である|How much do you *weigh*?|体重はどのくらいですか。
+weigh|v|重さを量る；重さが〜である|Please *weigh* your suitcase at the counter.|カウンターでスーツケースの重さを量ってください。
 versus|prep|〜対…；〜と比較して|Compare cost *versus* benefit.|費用と便益を比較してください。
 deficit|n|赤字；不足|The company is running at a *deficit*.|その会社は赤字経営だ。
 modify|v|修正する；改造する|We *modified* the design.|設計を修正した。
-flash|n|閃光；（動詞）点滅する|The warning light is *flashing*.|警告灯が点滅している。
+flash|n|閃光；（動詞）点滅する|I saw a *flash* of lightning in the sky.|空に稲妻の閃光が見えた。
 friendship|n|友情|Our *friendship* is important to me.|私たちの友情は私にとって大切だ。
 profession|n|職業；専門職|Engineering is a demanding *profession*.|技術者は厳しい職業だ。
 literally|adv|文字通り|I was *literally* shaking with cold.|私は文字通り寒さで震えていた。
 equation|n|方程式；等式|Solve the *equation*.|その方程式を解きなさい。
 gesture|n|身振り|He made a friendly *gesture*.|彼は親しげな身振りをした。
-entertain|v|楽しませる；もてなす|We *entertained* our foreign guests.|海外からの客をもてなした。
+entertain|v|楽しませる；もてなす|The clown *entertained* the children at the party.|パーティーでピエロが子どもたちを楽しませた。
 fantastic|adj|すばらしい|The view is *fantastic*.|景色はすばらしい。
 assign|v|割り当てる|I was *assigned* to the night shift.|私は夜勤に割り当てられた。
 inflation|n|インフレ；物価上昇|*Inflation* has made food more expensive.|物価上昇で食品が高くなった。
 historic|adj|歴史的に重要な|This is a *historic* day for the company.|今日は会社にとって歴史的な日だ。
 injure|v|けがをさせる|Two workers were *injured*.|作業員2人が負傷した。
-remote|adj|遠隔の；人里離れた|She lives in a *remote* village in the mountains.|彼女は山奥の人里離れた村に住んでいる。
+remote|adj|遠く離れた；遠隔の|She lives in a *remote* village in the mountains.|彼女は山奥の人里離れた村に住んでいる。
 therapy|n|療法|She is receiving physical *therapy*.|彼女は理学療法を受けている。
 orange|n|オレンジ|Would you like some *orange* juice?|オレンジジュースはいかがですか。
-twist|n|ねじれ；（話の）意外な展開|The story has a surprising *twist* at the end.|その物語は最後に意外な展開がある。
+twist|n|（話の）意外な展開；ねじれ|The story has a surprising *twist* at the end.|その物語は最後に意外な展開がある。
 personnel|n|人員；人事|Only authorized *personnel* may enter.|権限のある職員のみ立入可。
 imagination|n|想像力|Children have a rich *imagination*.|子どもは想像力が豊かだ。
 disagree|v|意見が合わない|I *disagree* with that idea.|その考えには反対です。
@@ -509,7 +509,7 @@ expenditure|n|支出|Capital *expenditure* rose this year.|今年は設備投資
 joy|n|喜び|Learning a language is a *joy*.|言語を学ぶのは喜びだ。
 pregnant|adj|妊娠している|She is six months *pregnant*.|彼女は妊娠6か月だ。
 reliable|adj|信頼できる|This car is very *reliable*.|この車はとても信頼性が高い。
-gear|n|ギア；装備|We need some new camping *gear*.|新しいキャンプ用品が必要だ。
+gear|n|装備；ギア|We need some new camping *gear*.|新しいキャンプ用品が必要だ。
 poet|n|詩人|He is a famous *poet*.|彼は有名な詩人だ。
 fortune|n|財産；運|It cost a *fortune*.|大金がかかった。
 ceremony|n|式典|The opening *ceremony* starts at ten.|開会式は10時に始まる。
@@ -520,7 +520,7 @@ automatically|adv|自動的に|The doors close *automatically*.|ドアは自動�
 scholar|n|学者|He is a respected *scholar*.|彼は尊敬される学者だ。
 psychological|adj|心理的な|Fear is a *psychological* barrier to speaking.|恐怖は話すことへの心理的な壁だ。
 dramatically|adv|劇的に|Costs fell *dramatically*.|費用が劇的に下がった。
-stake|n|杭；利害関係|There's a lot at *stake* in this game.|この試合には多くのものがかかっている。
+stake|n|出資（分）；利害関係；杭|Our company owns a 30% *stake* in the hotel.|当社はそのホテルに30%出資している。
 creature|n|生き物|All living *creatures* need water.|すべての生き物は水を必要とする。
 partnership|n|提携|We formed a *partnership* with a European firm.|欧州企業と提携した。
 participation|n|参加|Thank you for your *participation*.|ご参加ありがとうございます。
@@ -536,11 +536,11 @@ sake|n|ため（for the sake of）|For your health's *sake*, please stop smoking
 shelf|n|棚|Put the book back on the *shelf*.|本を棚に戻してください。
 boost|v|押し上げる；高める|The new service *boosted* sales.|新サービスで売上が伸びた。
 tail|n|尾；後部|The dog wagged its *tail*.|犬はしっぽを振った。
-possession|n|所有；（複数で）所持品|Keep your *possessions* with you at all times.|所持品は常に身につけておいてください。
+possession|n|所有；（複数で）所持品|The house came into his *possession* after his father died.|父の死後、その家は彼の所有となった。
 abortion|n|妊娠中絶|*Abortion* is a sensitive topic.|妊娠中絶はデリケートな話題だ。
 curious|adj|好奇心の強い|Children are *curious* about everything.|子どもは何にでも好奇心を持つ。
 wooden|adj|木製の|We sat on a *wooden* bench.|木のベンチに座った。
-boom|n|好景気；急増|There is a camping *boom* in Japan.|日本ではキャンプがブームになっている。
+boom|n|好景気；急増|The country enjoyed an economic *boom* in the 1980s.|その国は1980年代に好景気に沸いた。
 tale|n|話；物語|My grandfather told us a *tale* about the old days.|祖父は昔の話をしてくれた。
 democratic|adj|民主的な|We made the decision in a *democratic* way.|民主的な方法で決定した。
 maintenance|n|整備；保守；維持管理|The building is closed for *maintenance*.|その建物はメンテナンスのため休業中だ。
@@ -551,7 +551,7 @@ strengthen|v|強化する|Exercise *strengthens* your bones.|運動は骨を丈�
 whilst|conj|〜する間；〜である一方（主に英）|*Whilst* in London, I visited the British Museum.|ロンドン滞在中に大英博物館を訪れた。
 constraint|n|制約|Time is the main *constraint*.|時間が主な制約だ。
 fold|v|折りたたむ|*Fold* the paper in half.|紙を半分に折ってください。
-bin|n|ごみ箱；容器|Put the rubbish in the *bin*.|ごみはごみ箱に入れてください。
+bin|n|ごみ箱；容器|Put the empty cans in the recycling *bin*.|空き缶はリサイクル用のごみ箱に入れてください。
 undergo|v|受ける；経験する|He will *undergo* surgery next week.|彼は来週手術を受ける。
 potentially|adv|潜在的に|This situation is *potentially* dangerous.|この状況は危険になりうる。
 scope|n|範囲|This question is beyond the *scope* of today's lesson.|この質問は今日の授業の範囲外だ。
@@ -562,7 +562,7 @@ pride|n|誇り|We take *pride* in our work.|私たちは自分の仕事に誇り
 intense|adj|激しい；強烈な|The heat was *intense*.|暑さは強烈だった。
 inquiry|n|問い合わせ；調査|Thank you for your *inquiry*.|お問い合わせありがとうございます。
 resign|v|辞職する|He *resigned* from his job.|彼は仕事を辞めた。
-craft|n|技能；工芸|Pottery is a traditional *craft* in this area.|陶芸はこの地域の伝統工芸だ。
+craft|n|工芸；技能|Pottery is a traditional *craft* in this area.|陶芸はこの地域の伝統工芸だ。
 strict|adj|厳しい|My parents were very *strict*.|両親はとても厳しかった。
 concrete|n|コンクリート；（形容詞）具体的な|The building is made of *concrete*.|その建物はコンクリート造りだ。
 shell|n|殻；貝殻|We collected *shells* on the beach.|浜辺で貝殻を集めた。
@@ -574,7 +574,7 @@ indication|n|兆候；指示|There is no *indication* of damage.|損傷の兆候
 stability|n|安定性|The country needs political *stability*.|その国には政治的な安定が必要だ。
 wise|adj|賢い|That was a *wise* choice.|それは賢明な選択だった。
 neglect|v|怠る；放置する|Don't *neglect* your health.|健康をおろそかにしないで。
-compose|v|構成する；作曲する|Mozart *composed* his first music at the age of five.|モーツァルトは5歳で最初の曲を作った。
+compose|v|構成する；作曲する|The team is *composed* of five engineers.|そのチームは5人のエンジニアで構成されている。
 jail|n|刑務所|He spent a night in *jail*.|彼は一晩留置場で過ごした。
 shelter|n|避難所；住まい|We took *shelter* from the rain under a tree.|木の下で雨宿りをした。
 mere|adj|単なる|It was a *mere* five minutes late.|ほんの5分遅れただけだった。
@@ -591,12 +591,12 @@ magic|n|魔法；手品|There's no *magic* way to learn English.|英語を覚え
 mystery|n|謎|The cause of the noise is a *mystery*.|その騒音の原因は謎だ。
 ski|v|スキーをする|We *ski* every winter.|毎冬スキーをする。
 whisper|v|ささやく|She *whispered* something to me.|彼女は私に何かをささやいた。
-rear|n|後部；（形容詞）後ろの|Please use the *rear* door.|後ろのドアをご利用ください。
+rear|n|後部；（形容詞）後ろの|Our seats are at the *rear* of the plane.|私たちの席は飛行機の後部にある。
 menu|n|メニュー|Can I see the *menu*, please?|メニューを見せてもらえますか。
 species|n|種（生物）|This area is home to rare *species*.|この地域には希少な生物種が生息している。
 moon|n|月|The *moon* is bright tonight.|今夜は月が明るい。
 presumably|adv|おそらく|*Presumably*, the train will be late.|おそらく列車は遅れるだろう。
-bless|v|祝福する|*Bless* you!|（くしゃみをした人に）お大事に！
+bless|v|祝福する|The priest *blessed* the couple at their wedding.|結婚式で司祭が二人を祝福した。
 airline|n|航空会社|Which *airline* are you flying with?|どの航空会社を利用しますか。
 amendment|n|修正；改正|The *amendment* to the regulation came into force in 2023.|その規則の改正は2023年に施行された。
 grandmother|n|祖母|My *grandmother* lives in the country.|祖母は田舎に住んでいる。
@@ -606,7 +606,7 @@ civilian|n|民間人|No *civilians* were hurt.|民間人に負傷者はいなか
 composition|n|構成；組成；作文|The *composition* of the team has changed.|チームの構成が変わった。
 coin|n|硬貨|Do you have any *coins*?|小銭を持っていますか。
 regardless|adv|〜にかかわらず（regardless of）|The event will be held *regardless* of the weather.|イベントは天候にかかわらず開催される。
-scan|v|走査する；スキャンする|*Scan* the QR code to check in.|QRコードを読み取ってチェックインしてください。
+scan|v|スキャンする；ざっと目を通す|*Scan* the QR code to check in.|QRコードを読み取ってチェックインしてください。
 bunch|n|束；房|She bought a *bunch* of flowers.|彼女は花束を買った。
 racial|adj|人種の|*Racial* discrimination is illegal.|人種差別は違法だ。
 greet|v|あいさつする；迎える|The staff *greeted* us warmly.|スタッフが温かく迎えてくれた。
@@ -624,7 +624,7 @@ tissue|n|ティッシュ；組織|Can I have a *tissue*?|ティッシュをも�
 barely|adv|かろうじて|I *barely* caught the train.|かろうじて電車に間に合った。
 invent|v|発明する|Who *invented* the steam engine?|蒸気機関を発明したのは誰ですか。
 tourism|n|観光業|*Tourism* is important for this town.|観光業はこの町にとって重要だ。
-pro|n|プロ；賛成論|Let's list the *pros* and cons.|賛否両論を挙げてみよう。
+pro|n|利点；賛成意見；プロ|Let's list the *pros* and cons.|長所と短所を挙げてみよう。
 stair|n|階段（の1段）|Please use the *stairs*.|階段をご利用ください。
 hesitate|v|ためらう|Don't *hesitate* to ask questions.|遠慮なく質問してください。
 shine|v|輝く|The sun is *shining*.|太陽が輝いている。
@@ -636,9 +636,9 @@ stomach|n|胃；腹|I have a *stomach* ache.|おなかが痛い。
 nowhere|adv|どこにも〜ない|There is *nowhere* to park.|駐車する場所がどこにもない。
 pray|v|祈る|We *prayed* for good weather.|好天を祈った。
 championship|n|選手権|They won the *championship*.|彼らは選手権で優勝した。
-servant|n|使用人；公務員|He is a civil *servant*.|彼は公務員だ。
+servant|n|使用人；（civil servant で）公務員|The rich family had many *servants*.|その裕福な家族には使用人がたくさんいた。
 immigrant|n|移民|The city has many *immigrants*.|その都市には多くの移民がいる。
-excess|n|過剰；（形容詞）超過の|Cut off the *excess* fat from the meat.|肉の余分な脂身を切り取ってください。
+excess|n|過剰；（形容詞）超過の|An *excess* of salt can cause health problems.|塩分の過剰は健康問題の原因になる。
 complexity|n|複雑さ|The *complexity* of the project surprised us.|プロジェクトの複雑さに私たちは驚いた。
 liability|n|法的責任；負債|The contractor has *liability* for defects.|請負業者は瑕疵に対する責任を負う。
 surprisingly|adv|驚くほど|The test was *surprisingly* easy.|テストは驚くほど簡単だった。
@@ -648,14 +648,14 @@ bias|n|偏り；偏見|The sample has a *bias*.|そのサンプルには偏り�
 differently|adv|違うふうに|People learn *differently*.|人によって学び方は異なる。
 catalog|n|カタログ|Please send me a *catalog*.|カタログを送ってください。
 continuous|adj|連続的な|We had *continuous* rain for three days.|3日間雨が降り続いた。
-golden|adj|金色の；絶好の|This is a *golden* opportunity.|これは絶好の機会だ。
+golden|adj|金色の；絶好の|She has long *golden* hair.|彼女は長い金色の髪をしている。
 stamp|n|切手；スタンプ|I need a *stamp* for this letter.|この手紙に切手が必要だ。
 guideline|n|指針|Follow the company *guidelines*.|会社の指針に従ってください。
 envelope|n|封筒|Put the letter in an *envelope*.|手紙を封筒に入れてください。
 knife|n|ナイフ|Be careful with that *knife*.|そのナイフに気をつけて。
 biological|adj|生物学的な|She is the child's *biological* mother.|彼女はその子の生みの母だ。
 consume|v|消費する|The heater *consumes* a lot of power.|そのヒーターは電力を多く消費する。
-luxury|n|ぜいたく；高級|This is a *luxury* hotel.|これは高級ホテルだ。
+luxury|n|ぜいたく；高級|A long hot bath is my little *luxury*.|長い熱いお風呂は私のささやかなぜいたくだ。
 weekly|adj|毎週の|We have a *weekly* team meeting.|毎週チーム会議がある。
 wherever|conj|どこへ〜しても|You can sit *wherever* you like.|好きなところに座っていいですよ。
 bite|v|かむ|Does your dog *bite*?|あなたの犬はかみますか。
@@ -670,8 +670,8 @@ ocean|n|大洋；海|The hotel has an *ocean* view.|そのホテルはオーシ�
 quietly|adv|静かに|She closed the door *quietly*.|彼女はそっとドアを閉めた。
 castle|n|城|Matsumoto *Castle* is a national treasure.|松本城は国宝だ。
 veteran|n|ベテラン；退役軍人|He is a *veteran* teacher with 30 years of experience.|彼は30年の経験を持つベテラン教師だ。
-reflection|n|反射；熟考|Take time for *reflection* after each lesson.|各レッスンの後に振り返りの時間をとりなさい。
-nerve|n|神経；度胸|It takes *nerve* to speak in public.|人前で話すには度胸がいる。
+reflection|n|反射；熟考|The *reflection* of sunlight on the snow hurt my eyes.|雪に反射した日光がまぶしくて目が痛かった。
+nerve|n|神経；度胸|The dentist touched a *nerve*, and it really hurt.|歯医者が神経に触れて、とても痛かった。
 determination|n|決意|She showed great *determination*.|彼女は強い決意を示した。
 altogether|adv|全部で；まったく|That's 3,000 yen *altogether*.|全部で3,000円です。
 fiction|n|小説；作り話|I prefer *fiction* to non-fiction.|ノンフィクションより小説が好きだ。
@@ -693,16 +693,16 @@ uncle|n|おじ|My *uncle* runs a small restaurant.|おじは小さなレスト�
 rice|n|米；ご飯|We eat *rice* every day.|私たちは毎日ご飯を食べる。
 slope|n|斜面；勾配|We skied down the *slope*.|私たちはスキーで斜面を滑り降りた。
 happiness|n|幸福|Money doesn't buy *happiness*.|お金で幸せは買えない。
-genuine|adj|本物の；心からの|She showed a *genuine* interest in our work.|彼女は私たちの仕事に心からの関心を示した。
+genuine|adj|本物の；心からの|Is this a *genuine* leather bag?|これは本物の革のバッグですか？
 vessel|n|船；容器|The *vessel* sailed into the harbor.|その船は港に入った。
 verb|n|動詞|"Run" is a *verb*.|「run」は動詞だ。
 reckon|v|思う；見積もる|I *reckon* it will take two hours.|2時間はかかると思う。
 silly|adj|ばかげた|Don't be *silly*.|ばかなことを言わないで。
-transportation|n|輸送；交通機関|Public *transportation* is cheap here.|ここでは公共交通機関が安い。
+transportation|n|交通機関；輸送|Public *transportation* is cheap here.|ここでは公共交通機関が安い。
 harbor|n|港|Boats are anchored in the *harbor*.|港にボートが停泊している。
 comedy|n|喜劇|We watched a *comedy*.|コメディを見た。
 chase|v|追いかける|The dog *chased* the cat.|犬が猫を追いかけた。
-storage|n|保管；記憶装置|This phone has a lot of *storage*.|この携帯電話は保存容量が大きい。
+storage|n|保管；記憶装置|Our old furniture is in *storage* until we move.|引っ越すまで、古い家具は保管してある。
 universe|n|宇宙|The *universe* is very large.|宇宙はとても大きい。
 horrible|adj|恐ろしい；ひどい|What a *horrible* day!|なんてひどい日だ！
 sheep|n|羊|There are many *sheep* on the farm.|その農場には多くの羊がいる。
@@ -711,12 +711,12 @@ rat|n|ネズミ|There's a *rat* in the kitchen!|台所にネズミがいる！
 portrait|n|肖像画|There is a *portrait* of the founder in the hall.|ホールには創業者の肖像画がある。
 innocent|adj|無実の；無邪気な|He is *innocent*.|彼は無実だ。
 substitute|n|代替品；（動詞）代用する|You can use honey as a *substitute* for sugar.|砂糖の代わりにはちみつを使えます。
-supplement|n|補足；追加料金|I take a vitamin *supplement* every day.|毎日ビタミンのサプリメントを飲んでいる。
+supplement|n|補足；サプリメント；追加料金|This booklet is a *supplement* to the textbook.|この冊子は教科書の補足だ。
 adjustment|n|調整|I made a small *adjustment* to the schedule.|予定を少し調整した。
 reasonably|adv|ほどよく；合理的に|The hotel is *reasonably* priced.|そのホテルは手頃な価格だ。
 filter|n|フィルター；（動詞）ふるいにかける|Change the air *filter* every month.|毎月エアフィルターを交換してください。
 flexible|adj|柔軟な|We need a *flexible* schedule.|柔軟なスケジュールが必要だ。
-abstract|adj|抽象的な；（名詞）要旨|Please read the *abstract* of the paper.|論文の要旨を読んでください。
+abstract|adj|抽象的な；（名詞）要旨|His ideas are too *abstract* for me to understand.|彼の考えは抽象的すぎて私には理解できない。
 tent|n|テント|We set up a *tent* by the river.|川のそばにテントを張った。
 precise|adj|正確な；精密な|The instructions were clear and *precise*.|説明は明確で正確だった。
 distant|adj|遠い|We could see *distant* mountains.|遠くの山々が見えた。
@@ -725,7 +725,7 @@ shade|n|日陰|Let's rest in the *shade*.|日陰で休もう。
 grain|n|穀物；粒子|Rice is the main *grain* eaten in Japan.|日本で主に食べられている穀物は米だ。
 situate|v|位置づける（be situated）|The hotel is *situated* on a hill.|そのホテルは丘の上にある。
 summarize|v|要約する|Please *summarize* the main points.|要点をまとめてください。
-leap|v|跳ぶ；跳躍する|Sales *leapt* by 50%.|売上が50%急増した。
+leap|v|跳ぶ；跳躍する|The cat *leaped* onto the table.|猫がテーブルに跳び乗った。
 snap|v|ぽきっと折れる|The branch *snapped* under the weight of the snow.|雪の重みで枝がぽきっと折れた。
 probability|n|確率|What is the *probability* of rain tomorrow?|明日の降水確率はどれくらいですか。
 leather|n|革|This bag is made of *leather*.|このかばんは革製だ。
@@ -740,7 +740,7 @@ excitement|n|興奮|The children were full of *excitement*.|子どもたちは�
 sigh|v|ため息をつく|She *sighed* with relief.|彼女は安堵のため息をついた。
 pregnancy|n|妊娠|She took leave during her *pregnancy*.|彼女は妊娠中に休暇をとった。
 experimental|adj|実験的な|This is an *experimental* treatment for the disease.|これはその病気に対する実験的な治療法だ。
-institutional|adj|制度上の；機関の|*Institutional* investors bought the bonds.|機関投資家がその債券を購入した。
+institutional|adj|機関の；制度上の|*Institutional* investors bought the bonds.|機関投資家がその債券を購入した。
 slice|n|一切れ|Can I have a *slice* of bread?|パンを1切れもらえますか。
 wander|v|歩き回る；さまよう|We *wandered* around the old town.|旧市街をぶらぶら歩いた。
 empire|n|帝国|The Roman *Empire* built many roads.|ローマ帝国は多くの道路を建設した。
@@ -749,14 +749,14 @@ gentle|adj|穏やかな；緩やかな|She has a *gentle* voice.|彼女は穏や
 attendance|n|出席|*Attendance* at the meeting is required.|その会議への出席は必須だ。
 ownership|n|所有権|The *ownership* of the land is unclear.|その土地の所有権ははっきりしない。
 qualification|n|資格|What *qualifications* do you have?|どんな資格をお持ちですか。
-suspend|v|一時停止する；つるす|Service was *suspended* due to strong winds.|強風のため運転が見合わされた。
+suspend|v|一時停止する；つるす|Ferry service was *suspended* due to strong winds.|強風のため、フェリーの運航が一時停止された。
 functional|adj|機能的な；作動する|The backup system is fully *functional*.|予備システムは完全に機能している。
 voluntary|adj|自発的な；任意の|Attendance is *voluntary*.|参加は任意です。
 pale|adj|青白い；淡い|You look *pale*. Are you OK?|顔色が悪いよ。大丈夫？
 stain|n|しみ；汚れ|I can't get this coffee *stain* out.|このコーヒーのしみが落ちない。
 athlete|n|運動選手|She is a top *athlete*.|彼女は一流の運動選手だ。
 organic|adj|有機の|I buy *organic* vegetables.|有機野菜を買っている。
-tongue|n|舌；言語|English is not my mother *tongue*.|英語は私の母語ではない。
+tongue|n|舌；言語|I burned my *tongue* on the hot soup.|熱いスープで舌をやけどした。
 server|n|サーバー；給仕係|The *server* is down.|サーバーがダウンしている。
 structural|adj|構造上の|The bridge has no *structural* damage.|その橋に構造上の損傷はない。
 fool|n|ばか者；（動詞）だます|Don't be a *fool*.|ばかなまねはよせ。
@@ -780,11 +780,11 @@ tournament|n|トーナメント；大会|Our team won the *tournament*.|私た�
 registration|n|登録|*Registration* closes on Friday.|登録は金曜日に締め切られる。
 fragment|n|破片|*Fragments* of glass were all over the floor.|床一面にガラスの破片が散らばっていた。
 listener|n|聞き手|She is a good *listener*.|彼女は聞き上手だ。
-tender|adj|優しい；柔らかい；（名詞）入札|The meat is very *tender*.|その肉はとても柔らかい。
+tender|adj|優しい；柔らかい；（名詞）入札|She gave the child a *tender* smile.|彼女は子どもに優しくほほえんだ。
 density|n|密度|Tokyo has a high population *density*.|東京は人口密度が高い。
 ugly|adj|醜い|It's an *ugly* building.|それは醜い建物だ。
 module|n|単位；モジュール|This course has six *modules*.|この講座には6つの単元がある。
-faithfully|adv|忠実に|Yours *faithfully*,|敬具（英式の手紙の結び）
+faithfully|adv|忠実に|He *faithfully* followed his doctor's advice.|彼は医者の助言に忠実に従った。
 autumn|n|秋|*Autumn* is the best season for hiking.|秋はハイキングに最適な季節だ。
 cheek|n|ほお|She kissed him on the *cheek*.|彼女は彼のほおにキスした。
 attachment|n|添付ファイル；愛着|Please open the *attachment*.|添付ファイルを開いてください。
@@ -795,8 +795,8 @@ fortunate|adj|幸運な|We were *fortunate* that nobody was hurt.|けが人が�
 alright|adj|大丈夫な|Are you *alright*?|大丈夫？
 lazy|adj|怠惰な|Don't be *lazy*.|怠けるな。
 hello|int|こんにちは；もしもし|*Hello*, this is Moriya speaking.|もしもし、守屋です。
-hunger|n|空腹；飢え|Millions suffer from *hunger*.|何百万人もの人が飢えに苦しんでいる。
+hunger|n|空腹；飢え|A glass of water can ease your *hunger* for a while.|コップ1杯の水で、しばらく空腹をやわらげられる。
 insure|v|保険をかける|Is the equipment *insured*?|その機材には保険がかかっていますか。
 ashamed|adj|恥じて|I'm *ashamed* of what I said.|自分の言ったことを恥じている。
 found|v|設立する|The company was *founded* in 1872.|その会社は1872年に設立された。
-thirst|n|のどの渇き|Drink water before you feel *thirst*.|のどが渇く前に水を飲みなさい。
+thirst|n|のどの渇き|Water is the best way to satisfy your *thirst*.|のどの渇きをいやすには水が一番だ。

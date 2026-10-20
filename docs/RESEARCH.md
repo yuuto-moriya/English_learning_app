@@ -29,6 +29,7 @@ Eliza Patina の学習機能は、認知心理学・第二言語習得研究で�
 | 17 | [レベルに合った語から学ぶ（レベル診断）](#17-placement) | 最初の設定で2分のレベル診断 |
 | 18 | [「いつ・どこで」を決める（実行意図）](#18-intention) | 学習する時間帯と1日の分数を決めてホームに表示 |
 | 19 | [いろいろな話し方に慣れる（多様なアクセント）](#19-accents) | 8つの国・地域の発音から選べる。リスニングで国の発音を混ぜる |
+| 20 | [新しい文脈で確かめる（転移と使い分け）](#20-transfer) | 2つ目の例文で問う、使い分け（意味の近い語から選ぶ）、定着チェック、使い分けの練習 |
 
 <a id="1-spacing"></a>
 ## 1. 分散学習（間隔を空けた復習）
@@ -382,6 +383,24 @@ Azure Speechの発音評価で、文・単語・音ごと（米音はIPA表記�
 
 - Bradlow, A. R., & Bent, T. (2008). Perceptual adaptation to non-native speech. Cognition, 106(2), 707–729.
 - Baese-Berk, M. M., Bradlow, A. R., & Wright, B. A. (2013). Accent-independent adaptation to foreign accented speech. The Journal of the Acoustical Society of America, 133(3), EL174–EL180.
+
+<a id="20-transfer"></a>
+## 20. 新しい文脈で確かめる（転移と使い分け）
+
+**研究で分かっていること**
+
+練習した内容をそのまま再テストするより、テストで思い出す練習を重ねた方が、問われ方の違う新しい問題（別の文脈・推論が必要な問題）にも知識を使えるようになった（転移）。また、もっともらしい誤答を含む選択問題は、正解だけでなく関連する知識の想起も促す。覚えた1つの文を思い出せるだけでなく、はじめて見る文脈で、意味の近い語と区別して使えるかで定着を確かめる方が、実際に使える知識かどうかが分かる。
+
+**アプリでの実装**
+
+一般・ビジネス・IT の全語に例文を2つ用意し、新しい単語のカードには1つ目だけを見せ、2つ目は問題の「はじめて見る文」に使います。覚えた語には「使い分け」（例文の空所に入る語を、意味の近い語の中から選ぶ）・和訳から英語を選ぶ・不規則動詞の変化形・並べかえも出します。「定着チェック」では、定着したはずの語を1語2問で確かめ、まちがえた語は覚え直しに戻します。練習の「使い分け」では、日本語では同じ言葉になる英語の組（borrow / lend など）を解説つきで練習します。
+
+実装箇所: `src/lib/quiz.ts`（`usageQuestion`, `quizExample`, `formQuestion`） / `src/lib/session.ts`（`chooseType`, `buildCheck`） / `src/pages/Study.tsx`（`UsageQ` ほか） / `src/data/confusables.ts` / `src/pages/Usage.tsx` / `data-src/vocab/more/`（2つ目の例文） / `data-src/near-extra.tsv`
+
+**文献**
+
+- Butler, A. C. (2010). Repeated testing produces superior transfer of learning relative to repeated studying. Journal of Experimental Psychology: Learning, Memory, and Cognition, 36(5), 1118–1133. <https://doi.org/10.1037/a0019902>
+- Little, J. L., Bjork, E. L., Bjork, R. A., & Angello, G. (2012). Multiple-choice tests exonerated, at least of some charges: Fostering test-induced learning and avoiding test-induced forgetting. Psychological Science, 23(11), 1337–1344. <https://doi.org/10.1177/0956797612443370>
 
 ---
 

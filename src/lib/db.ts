@@ -19,6 +19,8 @@ export interface CardRow {
   addedAt: number
   /** 既知としてスキップ */
   known?: boolean
+  /** 定着チェックで、近い意味の選択肢・新しい例文でも正解した日時（定着を確かめた） */
+  checkedAt?: number
 }
 
 export interface LogRow {

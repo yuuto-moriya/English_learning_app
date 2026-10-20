@@ -1,0 +1,232 @@
+vacation|n|She is taking a two-week *vacation* in August.|彼女は8月に2週間の休暇を取る。
+memo|n|The manager sent a *memo* about the new office hours.|部長が新しい勤務時間についての社内連絡を出した。
+reservation|n|I'd like to make a *reservation* for dinner at seven.|7時に夕食の予約をしたいのですが。
+refund|n|The customer asked for a *refund* because the shoes were broken.|靴が壊れていたので、客は払い戻しを求めた。
+workshop|n|All new staff must join the safety *workshop* next month.|新入社員は全員、来月の安全研修会に参加しなければならない。
+downtown|adv|Our office moved *downtown* last year.|私たちの事務所は昨年、中心街へ移った。
+deadline|n|We missed the *deadline*, so the client was not happy.|締め切りに間に合わなかったので、顧客は不満だった。
+brochure|n|The travel agent gave us a *brochure* about Hawaii.|旅行代理店の人がハワイのパンフレットをくれた。
+noon|n|Let's meet in the lobby at *noon*.|正午にロビーで会いましょう。
+clerk|n|The office *clerk* filed all the invoices.|事務員が請求書をすべてファイルにとじた。
+enclose|v|Please *enclose* a photo with your application.|申込書に写真を同封してください。
+seminar|n|Will you join the free *seminar* on Saturday?|土曜日の無料セミナーに参加しますか？
+technician|n|We called a *technician* because the copier was broken.|コピー機が壊れたので技術者を呼んだ。
+traveler|n|The hotel is popular with *travelers* from abroad.|そのホテルは海外からの旅行者に人気がある。
+caller|n|The *caller* asked to speak to the manager.|電話をかけてきた人は部長と話したいと言った。
+subway|n|I go to work by *subway* every day.|毎日地下鉄で通勤している。
+luggage|n|How many pieces of *luggage* do you have?|手荷物はいくつお持ちですか？
+shipment|n|We will send the next *shipment* on Monday.|次の発送は月曜日に行います。
+waiter|n|Let's ask the *waiter* for the check.|ウェイターに会計を頼もう。
+cafeteria|n|The *cafeteria* on the third floor opens at eleven.|3階の社員食堂は11時に開く。
+chef|n|The *chef* at this restaurant cooks Italian food.|このレストランの料理長はイタリア料理を作る。
+elevator|n|The *elevator* is out of order, so please use the stairs.|エレベーターが故障中なので、階段をご利用ください。
+reception|n|Your visitor is waiting at *reception*.|お客様が受付でお待ちです。
+correctly|adv|Did I write your name *correctly*?|お名前を正しく書けていますか？
+notify|v|The bank will *notify* you by email.|銀行がメールで通知します。
+preview|n|Buyers came to a *preview* of the new products.|バイヤーが新製品の下見会に来た。
+attendant|n|A parking *attendant* showed us where to park.|駐車場の係員が車を止める場所を教えてくれた。
+convenient|adj|Is Tuesday morning *convenient* for a call?|火曜日の午前中は電話のご都合はよろしいですか？
+outdoor|adj|The company party will be an *outdoor* barbecue.|会社のパーティーは屋外のバーベキューになる。
+suitcase|n|She packed her *suitcase* for the business trip.|彼女は出張のためにスーツケースに荷物を詰めた。
+destination|n|Hawaii is a popular *destination* for tourists.|ハワイは観光客に人気の目的地だ。
+occupation|n|She changed her *occupation* from nurse to teacher.|彼女は看護師から教師へ職業を変えた。
+postpone|v|Can we *postpone* lunch until next week?|昼食は来週に延期できますか？
+umbrella|n|Take an *umbrella*. It's going to rain.|傘を持っていきなさい。雨が降りそうだ。
+cellphone|n|I can't find my *cellphone*. Can you call it?|携帯電話が見つからない。かけてくれる？
+compact|adj|We need a *compact* printer for this small office.|この小さな事務所には小型のプリンターが必要だ。
+receptionist|n|Please ask the *receptionist* to call a taxi.|受付係にタクシーを呼ぶよう頼んでください。
+dentist|n|The *dentist* told me to brush my teeth more often.|歯科医は私にもっと頻繁に歯を磨くように言った。
+depart|v|The bus will *depart* from the hotel at eight.|バスは8時にホテルを出発する。
+reschedule|v|The doctor's office called to *reschedule* my appointment.|病院から予約の日時を変更する電話があった。
+renovation|n|The *renovation* of our kitchen will take two weeks.|台所の改修には2週間かかる。
+dine|v|Guests can *dine* in the hotel restaurant until ten.|宿泊客は10時までホテルのレストランで食事ができる。
+passport|n|My *passport* expires next year, so I need a new one.|パスポートが来年切れるので、新しいのが必要だ。
+coworker|n|I had lunch with a *coworker* today.|今日は同僚と昼食を食べた。
+upcoming|adj|Please check the schedule for *upcoming* events.|近く行われるイベントの予定を確認してください。
+appliance|n|This store sells kitchen *appliances* like rice cookers.|この店は炊飯器などの台所用の電化製品を売っている。
+instructor|n|The driving *instructor* was very patient with me.|自動車教習の指導員は私にとても辛抱強く接してくれた。
+keyboard|n|I spilled coffee on my *keyboard*.|キーボードにコーヒーをこぼした。
+admission|n|*Admission* to the museum costs ten dollars.|博物館の入場料は10ドルだ。
+laptop|n|Can I borrow your *laptop* for the presentation?|プレゼンのためにノートパソコンを借りてもいいですか？
+underline|v|I *underlined* the important dates in the contract.|契約書の重要な日付に下線を引いた。
+electrical|adj|Please don't touch the *electrical* wires behind the desk.|机の裏の電気の配線には触らないでください。
+airplane|n|My son wants to fly an *airplane* someday.|息子はいつか飛行機を操縦したいと思っている。
+attendee|n|Each *attendee* will receive a name tag at the door.|出席者は入口でそれぞれ名札を受け取る。
+cruise|n|My parents are going on a *cruise* to Alaska.|両親はアラスカへの船旅に出る。
+birthday|n|We bought a cake for Ken's *birthday*.|ケンの誕生日のためにケーキを買った。
+comprehension|n|The students took a reading *comprehension* test today.|学生たちは今日、読解力のテストを受けた。
+mall|n|We went shopping at the *mall* on Sunday.|日曜日にショッピングモールへ買い物に行った。
+medication|n|Take this *medication* twice a day after meals.|この薬を1日2回、食後に飲んでください。
+recycle|v|Old phones can be *recycled* at this store.|この店では古い携帯電話を再利用に回せる。
+sandwich|n|She made a ham *sandwich* for her son.|彼女は息子にハムサンドイッチを作った。
+fitness|n|I walk to work to improve my *fitness*.|健康のために歩いて通勤している。
+inconvenience|n|The power cut caused great *inconvenience* to our customers.|停電でお客様に大きな不便をかけた。
+banquet|n|The awards *banquet* starts at seven tonight.|表彰式の宴会は今夜7時に始まる。
+closet|n|There are extra towels in the *closet*.|クローゼットに予備のタオルがある。
+folder|n|I put all the receipts in a blue *folder*.|領収書はすべて青いフォルダーに入れた。
+photocopy|n|Can you send me a *photocopy* of your ID?|身分証のコピーを送ってもらえますか？
+renovate|v|We plan to *renovate* the kitchen next year.|来年、台所を改修する予定だ。
+sunny|adj|We had lunch outside because it was *sunny*.|晴れていたので外で昼食をとった。
+calendar|n|Let me check my *calendar* for next week.|来週の予定表を確認させてください。
+donation|n|The school received a large *donation* of books.|学校はたくさんの本の寄付を受けた。
+shortly|adv|Your food will be ready *shortly*.|お料理はまもなくできあがります。
+snack|n|I always keep a *snack* in my desk.|いつも机に軽食を入れている。
+copier|n|Is the *copier* on the second floor working?|2階のコピー機は動いていますか？
+beverage|n|Hot *beverages* are served in the lobby.|ロビーで温かい飲料を提供しています。
+hungry|adj|The kids were *hungry* after school.|子どもたちは放課後おなかがすいていた。
+recipient|n|The *recipient* must sign for the package.|受取人は荷物を受け取る際に署名しなければならない。
+aisle|n|The coffee is in *aisle* five.|コーヒーは5番通路にある。
+inspect|v|The officer *inspected* our bags at the airport.|係官が空港で私たちのかばんを検査した。
+mechanic|n|The *mechanic* said the car needs new tires.|整備士は車に新しいタイヤが必要だと言った。
+soccer|n|We watched a *soccer* game on TV last night.|昨夜テレビでサッカーの試合を見た。
+sweater|n|It's cold, so I'm wearing a warm *sweater*.|寒いので暖かいセーターを着ている。
+ingredient|n|Fresh *ingredients* make the food taste better.|新鮮な材料を使うと料理がおいしくなる。
+rewrite|v|I had to *rewrite* the email three times.|そのメールを3回書き直さなければならなかった。
+itinerary|n|Our *itinerary* includes two days in London.|私たちの旅程にはロンドンでの2日間が入っている。
+architect|n|The *architect* showed us a model of the house.|建築家が家の模型を見せてくれた。
+convenience|n|I like the *convenience* of shopping online.|ネットで買い物ができる便利さが気に入っている。
+indoor|adj|On rainy days, the children play *indoor* games.|雨の日は、子どもたちは屋内の遊びをする。
+baggage|n|Each passenger may check two pieces of *baggage*.|乗客1人につき手荷物を2個まで預けられる。
+dial|v|I *dialed* the wrong number by mistake.|うっかり番号をまちがえてダイヤルした。
+container|n|Put the leftover rice in a plastic *container*.|残ったご飯はプラスチックの容器に入れて。
+drawer|n|I keep my pens in the desk *drawer*.|ペンは机の引き出しにしまっている。
+lab|n|She works in a science *lab* at the university.|彼女は大学の科学研究室で働いている。
+submission|n|Late *submissions* will not be accepted.|期限後の提出は受け付けません。
+bulletin|n|A *bulletin* on the wall explains the new rules.|壁の掲示に新しい規則が説明されている。
+gym|n|Does this hotel have a *gym*?|このホテルにはジムがありますか？
+highway|n|We drove on the *highway* for three hours.|3時間、幹線道路を走った。
+jewelry|n|She keeps her *jewelry* in a small box.|彼女は宝石類を小さな箱にしまっている。
+overtime|n|We don't get paid for *overtime*.|私たちは残業代をもらえない。
+battery|n|This remote control needs two new *batteries*.|このリモコンには新しい電池が2本必要だ。
+donate|v|She *donates* blood twice a year.|彼女は年に2回献血している。
+skim|v|I *skimmed* the newspaper on the way to work.|通勤中に新聞にざっと目を通した。
+briefcase|n|He opened his *briefcase* and took out a contract.|彼は書類かばんを開けて契約書を取り出した。
+dessert|n|We had ice cream for *dessert*.|デザートにアイスクリームを食べた。
+inquire|v|Many customers *inquired* about the new price.|多くの客が新しい価格について問い合わせた。
+overnight|adv|You can leave your car here *overnight*.|ここに一晩中車を置いておけます。
+venue|n|The wedding *venue* is near the beach.|結婚式の会場は海辺の近くにある。
+commuter|n|Many *commuters* ride bikes to work in this city.|この街では多くの通勤者が自転車で職場に通う。
+logo|n|Our new *logo* is a green tree.|私たちの新しいロゴは緑の木だ。
+newsletter|n|The school sends a *newsletter* to parents every month.|学校は毎月保護者に会報を送っている。
+cartridge|n|Where do we keep the spare printer *cartridges*?|予備のプリンターのカートリッジはどこに置いていますか？
+cloudy|adj|It was *cloudy*, so we couldn't see the mountain.|曇っていたので山が見えなかった。
+photographer|n|We hired a *photographer* for the company website.|会社のウェブサイト用に写真家を雇った。
+shopper|n|Many *shoppers* came to the store for the sale.|セールで多くの買い物客が店に来た。
+tag|n|Check the price *tag* before you buy it.|買う前に値札を確認して。
+announcer|n|The *announcer* told us the game would start soon.|アナウンサーは試合がまもなく始まると伝えた。
+password|n|I forgot my *password*, so I can't log in.|パスワードを忘れたのでログインできない。
+stadium|n|We took the bus to the baseball *stadium*.|野球場までバスで行った。
+terminal|n|The bus *terminal* is next to the station.|バスターミナルは駅の隣にある。
+weekday|n|Is the store busy on a *weekday* morning?|その店は平日の朝は混んでいますか？
+cart|n|I pushed the shopping *cart* to the car.|ショッピングカートを車まで押していった。
+delicious|adj|Thank you for the *delicious* dinner.|おいしい夕食をありがとう。
+ink|n|The printer is out of black *ink*.|プリンターの黒インクが切れている。
+supervise|v|Who will *supervise* the project while you're away?|あなたの不在中、誰がプロジェクトを監督しますか？
+waitress|n|The *waitress* brought us some water.|ウェイトレスが水を持ってきてくれた。
+cleaner|n|The office *cleaner* empties the trash every evening.|オフィスの清掃員が毎晩ごみ箱を空にする。
+shuttle|n|The hotel *shuttle* leaves every thirty minutes.|ホテルのシャトル便は30分ごとに出ている。
+stationery|n|We sell *stationery* like pens and notebooks.|ペンやノートなどの文房具を売っています。
+subscribe|v|Do you *subscribe* to a newspaper?|新聞を購読していますか？
+alike|adj|The twins are so *alike* that I can't tell them apart.|その双子はとても似ていて区別がつかない。
+flavor|n|This ice cream comes in five *flavors*.|このアイスクリームには5つの味がある。
+picnic|n|We had a *picnic* by the lake on Sunday.|日曜日に湖のそばでピクニックをした。
+recipe|n|I followed the *recipe*, but the cake didn't rise.|作り方どおりにしたのに、ケーキがふくらまなかった。
+refreshment|n|Light *refreshments* are available in the lobby.|ロビーで軽い飲食物をご用意しています。
+sofa|n|The cat is sleeping on the *sofa*.|猫がソファーで寝ている。
+accommodate|v|The new meeting room *accommodates* twenty people.|新しい会議室は20人を収容できる。
+affordable|adj|It's hard to find *affordable* housing in big cities.|大都市で手頃な価格の住宅を見つけるのは難しい。
+annoy|v|It *annoys* me when people talk during movies.|映画の最中に人がしゃべるといらいらする。
+commute|v|Do you *commute* by car or by bus?|車で通勤していますか、それともバスですか？
+paperwork|n|Moving to a new country means lots of *paperwork*.|外国に引っ越すと書類仕事がたくさんある。
+quit|v|My father *quit* smoking ten years ago.|父は10年前にたばこをやめた。
+flu|n|I got a *flu* shot last week.|先週インフルエンザの予防接種を受けた。
+captain|n|The *captain* told us to fasten our seat belts.|機長がシートベルトを締めるように言った。
+installation|n|*Installation* of the new air conditioner is free.|新しいエアコンの設置は無料です。
+trainer|n|My personal *trainer* helps me exercise at the gym.|パーソナルトレーナーがジムで運動を指導してくれる。
+complimentary|adj|All guests receive a *complimentary* bottle of water.|宿泊客は全員、無料の水を1本受け取れる。
+hike|n|The bus company announced a fare *hike*.|バス会社は運賃の値上げを発表した。
+midnight|n|The party went on until *midnight*.|パーティーは午前0時まで続いた。
+rainy|adj|Take an umbrella on *rainy* days.|雨の日は傘を持っていきなさい。
+relocate|v|Our factory *relocated* to Vietnam last year.|私たちの工場は昨年ベトナムに移転した。
+trainee|n|Each *trainee* works with an experienced staff member.|研修生はそれぞれ経験豊富な社員と一緒に働く。
+unhappy|adj|She was *unhappy* with her low pay.|彼女は給料が低いことに不満だった。
+verify|v|We need to *verify* that the data is correct.|データが正しいかどうか検証する必要がある。
+courier|n|A *courier* delivered the package this morning.|今朝、宅配便業者が荷物を届けた。
+incomplete|adj|Your report is *incomplete*. Some pages are missing.|あなたの報告書は不完全だ。何ページか抜けている。
+questionnaire|n|Over 500 customers answered our *questionnaire*.|500人以上の顧客がアンケートに答えた。
+dock|n|The boxes are waiting on the *dock* for the truck.|箱は荷積み場でトラックを待っている。
+lamp|n|The room was dark, so I turned on a *lamp*.|部屋が暗かったので照明をつけた。
+lately|adv|I haven't seen Ken at the office *lately*.|最近、会社でケンを見かけない。
+presenter|n|Each *presenter* has ten minutes to speak.|発表者はそれぞれ10分間話せる。
+seldom|adv|It *seldom* snows here, even in winter.|ここでは冬でもめったに雪が降らない。
+grocery|n|I need to buy *groceries* on the way home.|帰りに食料品を買わなければならない。
+memorandum|n|The lawyer prepared a *memorandum* for the meeting.|弁護士が会議のために覚書を準備した。
+suite|n|We booked a *suite* for our honeymoon.|新婚旅行のためにスイートルームを予約した。
+thorough|adj|The doctor gave me a *thorough* checkup.|医師は徹底的な健康診断をしてくれた。
+bookstore|n|I bought this dictionary at a used *bookstore*.|この辞書は古書店で買った。
+cater|v|A local restaurant *catered* our office party.|地元のレストランが会社のパーティーに料理を提供した。
+dental|adj|Regular *dental* checkups keep your teeth healthy.|定期的な歯の検診で歯を健康に保てる。
+lounge|n|There is free coffee in the staff *lounge*.|職員ラウンジには無料のコーヒーがある。
+painter|n|The *painter* finished the walls in two days.|塗装工は2日で壁を塗り終えた。
+patron|n|Most *patrons* of this restaurant come every week.|このレストランの常連客の多くは毎週来る。
+prescription|n|The doctor wrote me a *prescription* for my cough.|医者がせきの薬の処方箋を書いてくれた。
+salad|n|Would you like soup or *salad*?|スープとサラダのどちらにしますか？
+stack|v|She *stacked* the boxes in the corner.|彼女は箱を隅に積み重ねた。
+salesperson|n|A friendly *salesperson* helped me find a jacket.|親切な販売員が上着を探すのを手伝ってくれた。
+garbage|n|The *garbage* is collected on Tuesdays.|ごみは火曜日に収集される。
+omit|v|You can *omit* your middle name on this form.|この用紙ではミドルネームを省いてもかまいません。
+in spite of|prep|We went out *in spite of* the cold weather.|寒さにもかかわらず私たちは出かけた。
+bathroom|n|The hotel room has a large *bathroom*.|ホテルの部屋には広い浴室がある。
+cab|n|It's late, so let's call a *cab*.|遅いのでタクシーを呼ぼう。
+correspondence|n|My assistant handles all my *correspondence*.|アシスタントが私の文書のやり取りをすべて担当している。
+ladder|n|He climbed the *ladder* to change the light bulb.|彼は電球を替えるためにはしごに登った。
+photography|n|She takes a *photography* class on weekends.|彼女は週末に写真撮影の教室に通っている。
+sculpture|n|The museum has a famous *sculpture* of a horse.|その美術館には有名な馬の彫刻がある。
+anniversary|n|My parents went out for dinner on their wedding *anniversary*.|両親は結婚記念日に外食した。
+buffet|n|The hotel offers a lunch *buffet* every Sunday.|そのホテルは毎週日曜日にランチビュッフェを出している。
+defective|adj|The store replaced my *defective* phone.|店は欠陥のある電話を交換してくれた。
+leak|n|We found a gas *leak* in the kitchen.|台所でガス漏れが見つかった。
+occupancy|n|The *occupancy* rate of our hotel was 90 percent.|当ホテルの稼働率は90％だった。
+proficiency|n|You need a high level of *proficiency* in Japanese for this job.|この仕事には高い日本語の運用能力が必要だ。
+renewal|n|The *renewal* of my passport took two weeks.|パスポートの更新に2週間かかった。
+urgent|adj|Please call me back. It's *urgent*.|折り返し電話をください。緊急です。
+basketball|n|The students play *basketball* after school.|生徒たちは放課後バスケットボールをする。
+delete|v|I *deleted* the email by mistake.|まちがえてそのメールを削除した。
+pet|n|Do you have any *pets* at home?|家でペットを飼っていますか？
+textbook|n|The *textbook* for this class costs fifty dollars.|この授業の教科書は50ドルする。
+accurately|adv|Please answer all the questions *accurately*.|すべての質問に正確に答えてください。
+cabin|n|Our *cabin* on the ship had a small window.|船の私たちの客室には小さな窓があった。
+conductor|n|Ask the *conductor* which stop is next.|次の停車駅を車掌に聞いてください。
+inspector|n|The building *inspector* checked the fire exits.|建物の検査員が非常口を点検した。
+intern|n|The *intern* will help you with the copies today.|今日は実習生がコピーを手伝います。
+semester|n|I'm taking four classes this *semester*.|今学期は4つの授業を取っている。
+confirmation|n|Please bring your booking *confirmation* to the front desk.|予約確認書をフロントにお持ちください。
+congratulation|n|Please give my *congratulations* to your sister.|お姉さんにお祝いの言葉をお伝えください。
+voucher|n|Show this *voucher* to get a free drink.|この引換券を見せると飲み物が1杯無料になる。
+optional|adj|The tour is free, but lunch is *optional*.|ツアーは無料ですが、昼食は任意です。
+paycheck|n|Most of my *paycheck* goes to rent.|給料の大半は家賃に消える。
+polite|adj|It's not *polite* to talk with your mouth full.|口に食べ物を入れたまま話すのは礼儀正しくない。
+protective|adj|Workers must wear *protective* clothing in the lab.|作業員は実験室で防護服を着なければならない。
+sidewalk|n|Kids were drawing pictures on the *sidewalk*.|子どもたちが歩道に絵を描いていた。
+sightseeing|n|We did some *sightseeing* in Paris on our day off.|休みの日にパリで少し観光をした。
+transit|n|The package was damaged in *transit*.|荷物は輸送中に破損した。
+wallet|n|I found a *wallet* on the street and took it to the police.|道で財布を拾って警察に届けた。
+cashier|n|The *cashier* gave me the wrong change.|レジ係がおつりをまちがえた。
+casual|adj|You can wear *casual* clothes to the party.|パーティーにはくだけた服装で来ていいですよ。
+drill|n|The school held an earthquake *drill* this morning.|今朝、学校で地震の訓練があった。
+lane|n|Please stay in the right *lane* after the bridge.|橋を過ぎたら右車線を走ってください。
+poster|n|There is a *poster* for the concert on the wall.|壁にコンサートのポスターが貼ってある。
+promptly|adv|The store *promptly* sent me a replacement.|店は迅速に代わりの品を送ってくれた。
+vacancy|n|The apartment building has one *vacancy* on the third floor.|そのアパートは3階に1つ空き部屋がある。
+bench|n|We ate lunch on a *bench* in the park.|公園のベンチで昼食を食べた。
+directory|n|Is your number listed in the company *directory*?|あなたの番号は社内名簿に載っていますか？
+housekeeper|n|Please ask the *housekeeper* for more towels.|客室係にタオルを追加で頼んでください。
+internship|n|I'm looking for a summer *internship* at a design company.|デザイン会社での夏のインターンシップを探している。
+knowledgeable|adj|Our staff are *knowledgeable* about all our products.|当社のスタッフは全製品について知識が豊富だ。
+organizer|n|The *organizers* expect 3,000 visitors this year.|主催者は今年3,000人の来場者を見込んでいる。
+overdue|adj|This library book is three days *overdue*.|この図書館の本は返却期限を3日過ぎている。
+subscriber|n|*Subscribers* get the magazine before it goes on sale.|購読者は発売前に雑誌を受け取れる。
+booklet|n|A *booklet* with the rules comes with the game.|そのゲームにはルールを書いた小冊子が付いている。
+enroll|v|You can *enroll* in the course online.|その講座にはオンラインで登録できる。
+frustrate|v|It *frustrates* me when my computer is slow.|パソコンが遅いといらいらする。
+garment|n|Wash this *garment* in cold water only.|この衣服は冷水でのみ洗ってください。

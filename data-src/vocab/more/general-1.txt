@@ -1,0 +1,549 @@
+the|det|Can you pass me *the* salt, please?|塩を取ってもらえますか。
+be|v|My brother *was* a student in Kyoto.|兄は京都で学生でした。
+and|conj|My sister *and* I went shopping yesterday.|姉と私は昨日買い物に行きました。
+of|prep|What is the name *of* this street?|この通りの名前は何ですか。
+to|prep|We went *to* the beach last summer.|去年の夏、私たちは海へ行きました。
+a|det|There is *a* cat under the table.|テーブルの下に猫が1匹います。
+in|prep|The kids are playing *in* the garden.|子どもたちは庭で遊んでいます。
+have|v|Does your sister *have* a car?|お姉さんは車を持っていますか。
+it|pron|This soup is hot, so eat *it* slowly.|このスープは熱いので、ゆっくり食べてね。
+you|pron|Are *you* a student at this school?|あなたはこの学校の生徒ですか。
+he|pron|My brother is tall, and *he* plays basketball.|兄は背が高く、バスケットボールをしています。
+for|prep|I made this cake *for* my mother.|母のためにこのケーキを作りました。
+they|pron|My parents are busy, so *they* can't come.|両親は忙しいので来られません。
+not|adv|This shop is *not* open on Mondays.|この店は月曜日は開いていません。
+that|det|Who lives in *that* big house?|あの大きな家には誰が住んでいますか。
+we|pron|*We* went to the zoo last Sunday.|私たちはこの前の日曜日に動物園へ行きました。
+on|prep|Your phone is *on* the kitchen table.|あなたの携帯は台所のテーブルの上にあります。
+with|prep|Do you want to come *with* us?|私たちと一緒に来ませんか。
+this|det|I would like to buy *this* blue shirt.|この青いシャツを買いたいです。
+I|pron|*I* have two cats at home.|私は家で猫を2匹飼っています。
+do|v|I *do* my homework after dinner.|夕食の後に宿題をします。
+as|prep|He used the box *as* a table.|彼はその箱をテーブルとして使った。
+at|prep|We had lunch *at* a café near school.|私たちは学校の近くのカフェで昼食を食べました。
+she|pron|My mother is a nurse, and *she* works at night.|母は看護師で、夜に働いています。
+but|conj|I like dogs, *but* my wife likes cats.|私は犬が好きですが、妻は猫が好きです。
+from|prep|I got a letter *from* my grandmother.|祖母から手紙をもらいました。
+by|prep|This picture was painted *by* my son.|この絵は息子が描いたものです。
+will|aux|I think she *will* like this present.|彼女はこのプレゼントを気に入るだろうと思います。
+or|conj|Is your new bag black *or* brown?|新しいかばんは黒ですか、それとも茶色ですか。
+say|v|He *said* hello to everyone in the room.|彼は部屋にいるみんなに「こんにちは」と言った。
+go|v|Let's *go* to the park after lunch.|昼食の後、公園に行こう。
+so|adv|Thank you *so* much for your help.|手伝ってくれて本当にありがとう。
+all|det|*All* my friends came to my birthday party.|友達はみんな私の誕生日パーティーに来てくれた。
+if|conj|Call me *if* you need any help.|助けが必要なら電話してね。
+one|num|I'd like *one* coffee and two cakes, please.|コーヒーを1つとケーキを2つください。
+would|aux|It *would* be nice to live by the sea.|海のそばに住めたらすてきだろう。
+about|prep|This book is *about* a little dog.|この本は小さな犬についての話です。
+can|aux|My son *can* ride a bike now.|息子はもう自転車に乗れます。
+which|det|*Which* color do you like, red or blue?|赤と青、どちらの色が好きですか。
+there|adv|We went to the beach and swam *there* all day.|私たちは海へ行き、そこで一日中泳いだ。
+know|v|I don't *know* the answer to this question.|この質問の答えを知りません。
+more|det|Can I have some *more* rice, please?|ごはんをもう少しもらえますか。
+get|v|Where did you *get* that nice jacket?|そのすてきなジャケットはどこで手に入れたの？
+who|pron|*Who* is the tall boy next to Ken?|ケンの隣の背の高い男の子は誰ですか。
+like|v|My kids *like* playing soccer after school.|うちの子どもたちは放課後にサッカーをするのが好きです。
+when|adv|*When* did you come back from your trip?|旅行からいつ戻ったのですか。
+think|v|Do you *think* it will rain tomorrow?|明日は雨が降ると思いますか。
+make|v|My father *makes* bread every Sunday.|父は毎週日曜日にパンを作ります。
+time|n|I don't have *time* to cook today.|今日は料理をする時間がありません。
+see|v|Can you *see* that bird on the roof?|屋根の上のあの鳥が見えますか。
+what|pron|*What* did you eat for breakfast?|朝食に何を食べましたか。
+up|adv|The cat jumped *up* onto the table.|猫はテーブルの上へ跳び上がった。
+some|det|Let's buy *some* fruit for the party.|パーティー用に果物をいくらか買おう。
+other|adj|Ken is here, but the *other* boys are late.|ケンはここにいますが、ほかの男の子たちは遅れています。
+out|adv|The children went *out* to play.|子どもたちは外へ遊びに出かけた。
+good|adj|It's a *good* day for a walk in the park.|今日は公園を散歩するのに良い日です。
+people|n|How many *people* are coming to dinner?|夕食には何人来ますか。
+year|n|My son will be ten this *year*.|息子は今年10歳になります。
+take|v|Please *take* one cookie from the box.|箱からクッキーを1つ取ってください。
+no|det|Sorry, I have *no* time today.|ごめん、今日は時間がまったくないんだ。
+well|adv|I didn't sleep *well* last night.|昨夜はよく眠れなかった。
+because|conj|We didn't go out *because* it was raining.|雨が降っていたので、出かけなかった。
+very|adv|My new teacher is *very* kind.|新しい先生はとても親切です。
+just|adv|I *just* finished my homework, Mom.|お母さん、ちょうど宿題が終わったところだよ。
+come|v|Can you *come* to my party on Saturday?|土曜日の私のパーティーに来られますか。
+could|aux|I *could* swim well when I was a child.|子どものころは上手に泳げた。
+work|v|My father *works* at a big hospital in town.|父は町の大きな病院で働いています。
+use|v|We *use* this room for meetings.|この部屋は会議に使います。
+than|conj|My brother is taller *than* my father.|兄は父より背が高い。
+now|adv|It's raining *now*, so let's stay inside.|今雨が降っているので、中にいよう。
+then|adv|I was a student *then*, so I had little money.|その時は学生だったので、お金があまりなかった。
+also|adv|Ken speaks English, and he *also* speaks French.|ケンは英語を話し、フランス語も話します。
+into|prep|The cat jumped *into* the box.|猫は箱の中へ飛び込んだ。
+only|adv|There is *only* one apple left.|リンゴが1つしか残っていない。
+look|v|Please *look* at the board, everyone.|みなさん、黒板を見てください。
+want|v|Do you *want* some more cake, Ken?|ケン、ケーキをもう少し欲しい？
+give|v|I *gave* my sister a book for her birthday.|妹の誕生日に本をあげた。
+first|adj|January is the *first* month of the year.|1月は1年の最初の月です。
+new|adj|Our school has a *new* teacher this year.|今年、私たちの学校に新しい先生が来ました。
+way|n|We lost our *way* in the big city.|大きな街で道に迷った。
+find|v|I *found* a nice café near my office.|会社の近くですてきなカフェを見つけた。
+over|prep|There is a bridge *over* the river.|川の上に橋が架かっています。
+any|det|Is there *any* milk in the fridge?|冷蔵庫に牛乳はありますか。
+after|prep|I take a bath *after* dinner.|夕食の後にお風呂に入ります。
+day|n|I work eight hours a *day*.|私は1日に8時間働きます。
+where|adv|*Where* did you buy that bag?|そのかばんはどこで買いましたか。
+thing|n|What is that *thing* on the table?|テーブルの上のあれは何ですか。
+most|det|*Most* shops close at eight here.|ここではほとんどの店が8時に閉まります。
+should|aux|It's cold outside, so you *should* wear a coat.|外は寒いから、コートを着たほうがいいよ。
+need|v|We *need* eggs and milk for the cake.|ケーキには卵と牛乳が必要です。
+much|det|Don't put too *much* sugar in my coffee.|私のコーヒーに砂糖を入れすぎないで。
+right|adj|I think your answer is *right*.|あなたの答えは正しいと思います。
+how|adv|*How* do you make this soup?|このスープはどうやって作るのですか。
+back|adv|She came *back* home at nine.|彼女は9時に家に戻ってきた。
+mean|v|I don't understand. What do you *mean*?|分かりません。どういう意味ですか。
+even|adv|My dad works *even* on Sundays and holidays.|父は日曜日や休日でさえ働きます。
+may|aux|Take an umbrella. It *may* rain later.|傘を持っていって。後で雨が降るかもしれないよ。
+here|adv|Come *here* and look at this picture.|ここに来てこの写真を見て。
+many|det|How *many* brothers do you have?|兄弟は何人いますか。
+such|det|I didn't know he was *such* a kind man.|彼がそんなに親切な人だとは知らなかった。
+last|adj|Who ate the *last* piece of cake?|最後のケーキを食べたのは誰？
+child|n|Our *child* starts school next year.|私たちの子どもは来年学校に入ります。
+tell|v|Please *tell* me your name again.|もう一度お名前を教えてください。
+really|adv|Is this cake *really* for me?|このケーキは本当に私にくれるの？
+call|v|Please *call* me when you get home.|家に着いたら電話してください。
+before|prep|I always brush my teeth *before* bed.|寝る前にいつも歯をみがきます。
+company|n|My father has worked for this *company* for 20 years.|父はこの会社に20年勤めています。
+through|prep|The cat came in *through* the window.|猫は窓を通って入ってきた。
+down|adv|The sun goes *down* at six in winter.|冬は6時に日が沈みます。
+show|v|Please *show* me your new bike.|新しい自転車を見せて。
+life|n|How is your *life* in the new town?|新しい町での生活はどうですか。
+man|n|Who is the old *man* by the door?|ドアのそばの年配の男性は誰ですか。
+change|v|I want to *change* my hair color.|髪の色を変えたい。
+place|n|Let's find a quiet *place* to study.|勉強できる静かな場所を探そう。
+long|adj|My sister has very *long* black hair.|姉はとても長い黒髪です。
+between|prep|I sat *between* my mother and my sister.|母と姉の間に座った。
+feel|v|Do you *feel* cold? I can close the window.|寒いですか。窓を閉めましょうか。
+too|adv|I like this song. My sister likes it, *too*.|私はこの歌が好きです。妹も好きです。
+still|adv|My grandfather is 90, but he *still* works.|祖父は90歳ですが、まだ働いています。
+problem|n|Money is a big *problem* for many students.|お金は多くの学生にとって大きな問題です。
+write|v|I *wrote* a letter to my grandmother.|祖母に手紙を書いた。
+same|adj|Your bag is the *same* as mine.|あなたのかばんは私のと同じです。
+lot|n|There were *a lot* of people at the beach.|海辺にはたくさんの人がいた。
+great|adj|We had a *great* time at the party.|パーティーではすばらしい時間を過ごした。
+try|v|Let's *try* the new Thai restaurant tonight.|今夜、新しいタイ料理店に行ってみよう。
+leave|v|What time do you *leave* home in the morning?|朝何時に家を出ますか。
+number|n|Think of a *number* between one and ten.|1から10までの数を1つ思い浮かべて。
+both|det|I like *both* cats and dogs.|猫も犬も両方好きです。
+own|adj|Each student has their *own* desk.|生徒はそれぞれ自分の机を持っています。
+part|n|The first *part* of the movie was boring.|映画の最初の部分は退屈だった。
+point|n|Our team won by one *point*.|私たちのチームは1点差で勝った。
+little|adj|They live in a *little* house by the sea.|彼らは海のそばの小さな家に住んでいる。
+help|v|Can you *help* me with my homework?|宿題を手伝ってくれる？
+ask|v|I *asked* the teacher about the test.|先生にテストについて尋ねた。
+meet|v|Let's *meet* in front of the library at three.|3時に図書館の前で会おう。
+start|v|School *starts* in April in Japan.|日本では学校は4月に始まります。
+talk|v|We *talked* on the phone for an hour.|私たちは1時間電話で話した。
+something|pron|There is *something* in my eye.|目に何か入っている。
+put|v|She *put* the flowers on the table.|彼女は花をテーブルの上に置いた。
+another|det|I'm still hungry. Can I have *another* sandwich?|まだおなかがすいています。サンドイッチをもう1つもらえますか。
+become|v|My son wants to *become* a teacher.|息子は先生になりたがっています。
+interest|n|She shows no *interest* in sports.|彼女はスポーツにまったく興味を示さない。
+country|n|How many *countries* have you visited?|これまでに何か国を訪れましたか。
+old|adj|My *old* car still runs well.|私の古い車はまだよく走る。
+each|det|The teacher gave *each* child a pencil.|先生はそれぞれの子どもに鉛筆を1本ずつ渡した。
+school|n|What did you learn at *school* today?|今日は学校で何を習ったの？
+late|adj|The bus was ten minutes *late* this morning.|今朝はバスが10分遅れた。
+high|adj|The kitchen shelf is too *high* for me.|台所の棚は私には高すぎる。
+different|adj|My two sons are very *different*.|私の2人の息子はまったく違います。
+off|adv|The cat jumped *off* the table.|猫はテーブルから飛び降りた。
+next|adj|Let's get off at the *next* stop.|次の停留所で降りよう。
+end|n|We have a test at the *end* of the month.|月末にテストがある。
+live|v|Where does your grandmother *live* now?|おばあさんは今どこに住んでいますか。
+why|adv|*Why* did you come home so late?|どうしてこんなに遅く帰ってきたの？
+while|conj|Please don't use your phone *while* you are eating.|食事をしている間はスマホを使わないで。
+world|n|She wants to travel around the *world*.|彼女は世界中を旅したいと思っている。
+week|n|The store is closed this *week*.|その店は今週閉まっています。
+play|v|The children *played* in the snow all day.|子どもたちは一日中雪の中で遊んだ。
+might|aux|Call him now. He *might* be at home.|今彼に電話して。家にいるかもしれない。
+must|aux|I *must* finish this work by tomorrow.|明日までにこの仕事を終えなければならない。
+home|n|Our *home* is near the park.|私たちの家は公園の近くです。
+never|adv|My father *never* drinks coffee at night.|父は夜は決してコーヒーを飲みません。
+include|v|Does the price of the tour *include* lunch?|ツアー料金には昼食が含まれていますか。
+course|n|She took a cooking *course* last summer.|彼女は去年の夏、料理の講座を受けた。
+house|n|We painted our *house* white last summer.|去年の夏、家を白く塗った。
+report|n|I have to write a *report* about the trip.|旅行についての報告書を書かなければならない。
+group|n|A *group* of students is waiting outside.|学生のグループが外で待っています。
+case|n|In *case* of fire, use the stairs.|火事の場合は階段を使ってください。
+woman|n|A young *woman* sat next to me on the bus.|バスで若い女性が私の隣に座った。
+around|prep|The children sat *around* the table.|子どもたちはテーブルの周りに座った。
+book|n|I borrowed three *books* from the library.|図書館で本を3冊借りた。
+family|n|My *family* goes camping every summer.|家族で毎年夏にキャンプに行きます。
+seem|v|The new teacher *seems* very kind.|新しい先生はとても親切そうだ。
+let|v|My mother doesn't *let* me play games at night.|母は夜にゲームをさせてくれない。
+again|adv|I'd love to visit this town *again*.|この町をまた訪れたいです。
+kind|n|This shop sells many *kinds* of bread.|この店では多くの種類のパンを売っている。
+keep|v|You should *keep* your room clean.|部屋はきれいに保ったほうがいいよ。
+hear|v|Did you *hear* that noise outside?|外のあの音が聞こえた？
+system|n|The heating *system* in our house is old.|家の暖房システムは古い。
+every|det|*Every* student in my class has a phone.|私のクラスの生徒はみんな携帯を持っています。
+question|n|That's a good *question*. Let me think.|それは良い質問ですね。考えさせてください。
+during|prep|I fell asleep *during* the movie.|映画の間に眠ってしまった。
+always|adv|My father *always* gets up at five.|父はいつも5時に起きます。
+big|adj|We need a *big* box for these books.|これらの本を入れる大きな箱が必要だ。
+set|v|She *set* the plates on the table.|彼女はテーブルに皿を置いた。
+small|adj|This shirt is too *small* for me.|このシャツは私には小さすぎる。
+study|v|She is *studying* for her test in her room.|彼女は部屋でテストの勉強をしています。
+follow|v|The little dog *followed* me home.|子犬は家まで私についてきた。
+begin|v|When does the new school year *begin*?|新学年はいつ始まりますか。
+important|adj|It's *important* to drink enough water.|十分な水を飲むことが大切です。
+since|prep|It has been raining *since* last Monday.|先週の月曜日からずっと雨が降っている。
+run|v|I *run* in the park every morning.|毎朝公園で走っています。
+under|prep|I found my phone *under* the bed.|ベッドの下で携帯を見つけた。
+turn|v|The car *turned* left at the corner.|車は角を左に曲がった。
+few|det|Only a *few* students were late today.|今日遅刻した生徒は数人だけだった。
+bring|v|Can I *bring* my sister to the party?|パーティーに妹を連れて行ってもいい？
+early|adj|I take the *early* bus to school.|私は早い時間のバスで通学しています。
+hand|n|Wash your *hands* before you eat.|食べる前に手を洗いなさい。
+state|n|Your room is in a terrible *state*.|あなたの部屋はひどい状態だ。
+move|v|Please don't *move*. I'll take a photo.|動かないで。写真を撮るよ。
+money|n|I'm saving *money* for a new bike.|新しい自転車のためにお金をためている。
+fact|n|It is a *fact* that the earth goes around the sun.|地球が太陽の周りを回っているのは事実だ。
+however|adv|I like the house. *However*, it's too far from school.|その家は気に入っています。しかし、学校から遠すぎます。
+area|n|There are many good shops in this *area*.|この地域には良い店がたくさんある。
+provide|v|The school *provides* lunch for all students.|学校はすべての生徒に昼食を提供している。
+name|n|What's the *name* of your dog?|あなたの犬の名前は何ですか。
+read|v|Did you *read* the email from Ken?|ケンからのメールを読みましたか。
+friend|n|I'm going to the movies with a *friend*.|友達と映画に行きます。
+month|n|There is a math test every *month*.|毎月数学のテストがある。
+large|adj|Can I have a *large* coffee, please?|Lサイズのコーヒーをください。
+business|n|My uncle started his own *business* last year.|おじは去年、自分の事業を始めた。
+without|prep|He left the house *without* his keys.|彼は鍵を持たずに家を出た。
+information|n|Ask at the desk for *information* about the tours.|ツアーについての情報は受付で聞いてください。
+open|v|Can you *open* the window, please?|窓を開けてもらえますか。
+order|n|I'd like to change my *order*.|注文を変更したいのですが。
+government|n|The *government* will build a new airport.|政府は新しい空港を建設する予定だ。
+word|n|Please write ten new *words* in your notebook.|ノートに新しい単語を10個書いてください。
+issue|n|Parking is a big *issue* in this town.|この町では駐車が大きな問題だ。
+market|n|There is a big fish *market* in our town.|私たちの町には大きな魚市場がある。
+pay|v|I *paid* ten dollars for this shirt.|このシャツに10ドル払った。
+build|v|They *built* a new house next to ours.|うちの隣に新しい家が建てられた。
+hold|v|Can you *hold* my bag for a minute?|ちょっとかばんを持っていてくれる？
+service|n|The *service* at that café is very slow.|あのカフェはサービスがとても遅い。
+against|prep|Are you for or *against* the new plan?|新しい計画に賛成ですか、反対ですか。
+believe|v|I can't *believe* it's already December.|もう12月だなんて信じられない。
+second|adj|Our office is on the *second* floor.|私たちの事務所は2階にあります。
+though|conj|*Though* she is only ten, she can cook well.|彼女はまだ10歳だけれども、料理が上手だ。
+yes|int|When I asked her to dinner, she said *yes*.|夕食に誘うと、彼女は「はい」と言った。
+love|v|I *love* my family very much.|家族をとても愛しています。
+increase|v|Prices *increased* a lot last year.|去年は物価がかなり上がった。
+job|n|What kind of *job* do you want in the future?|将来どんな仕事をしたいですか。
+plan|n|We made a *plan* for our summer trip.|夏の旅行の計画を立てた。
+result|n|We will tell you the *result* next week.|来週、結果をお知らせします。
+away|adv|The bird flew *away* when I came near.|近づくと鳥は飛び去った。
+example|n|This is a good *example* of an old Japanese house.|これは古い日本家屋の良い例です。
+happen|v|What *happened* to your car last night?|昨夜あなたの車に何があったの？
+offer|v|He *offered* to help me with the boxes.|彼は箱運びを手伝うと申し出てくれた。
+young|adj|When I was *young*, I lived by the sea.|若いころは海のそばに住んでいた。
+close|v|What time does the bank *close*?|銀行は何時に閉まりますか。
+program|n|What *program* are you watching on TV?|テレビで何の番組を見ているの？
+lead|v|The teacher *led* the children to the park.|先生は子どもたちを先導して公園へ行った。
+buy|v|Where did you *buy* those shoes?|その靴はどこで買ったの？
+understand|v|Do you *understand* what I'm saying?|私の言っていることが分かりますか。
+thank|v|I want to *thank* you for the lovely dinner.|すてきな夕食のお礼を言いたいです。
+far|adv|My school is not *far* from my house.|学校は家から遠くない。
+today|n|I have a lot of homework *today*.|今日は宿題がたくさんある。
+hour|n|I studied for two *hours* last night.|昨夜は2時間勉強した。
+student|n|There are thirty *students* in my class.|私のクラスには生徒が30人います。
+face|n|Wash your *face* and brush your teeth.|顔を洗って歯をみがきなさい。
+hope|v|We *hope* to see you again soon.|またすぐにお会いできることを願っています。
+idea|n|Going to the beach was my *idea*.|海へ行くのは私の考えだった。
+cost|n|The *cost* of the trip was very high.|旅行の費用はとても高かった。
+less|det|You should eat *less* sugar and salt.|砂糖と塩を控えたほうがいいよ。
+room|n|My *room* is on the second floor.|私の部屋は2階にあります。
+until|prep|I'll stay in Kyoto *until* Sunday.|日曜日まで京都に滞在します。
+reason|n|Tell me the *reason* you were late.|遅れた理由を教えて。
+form|n|Water can take the *form* of ice or snow.|水は氷や雪の形にもなる。
+spend|v|How much did you *spend* on that dress?|そのドレスにいくら使ったの？
+head|n|My *head* hurts, so I'll go to bed.|頭が痛いので寝ます。
+car|n|Whose *car* is parked in front of my house?|家の前に止まっているのは誰の車ですか。
+learn|v|Children *learn* new words very quickly.|子どもは新しい言葉をとても速く覚える。
+level|n|This book is too hard for my *level*.|この本は私のレベルには難しすぎる。
+person|n|He is the only *person* who knows the answer.|答えを知っている人は彼だけだ。
+experience|n|Living in another country was a great *experience*.|外国で暮らしたことはすばらしい経験だった。
+once|adv|I go swimming *once* a week.|週に一度泳ぎに行きます。
+member|n|Every *member* of my family likes soccer.|家族の全員がサッカー好きです。
+enough|det|Is there *enough* food for everyone?|みんなの分の食べ物は十分ありますか。
+bad|adj|Eating too much candy is *bad* for your teeth.|甘いものの食べすぎは歯に悪い。
+city|n|New York is a very big *city*.|ニューヨークはとても大きな都市です。
+night|n|We stayed at a hotel for one *night*.|ホテルに1泊した。
+able|adj|My grandmother is not *able* to walk far.|祖母は遠くまで歩くことができない。
+support|v|Many people *support* our soccer team.|多くの人が私たちのサッカーチームを応援している。
+whether|conj|I'm not sure *whether* the shop is open today.|今日その店が開いているかどうか分からない。
+line|n|Draw a straight *line* on the paper.|紙にまっすぐな線を引いて。
+present|n|I got a nice *present* from my aunt.|おばからすてきな贈り物をもらった。
+side|n|Our school is on the other *side* of the river.|私たちの学校は川の向こう側にある。
+quite|adv|This room is *quite* small for four people.|この部屋は4人にはかなり狭い。
+although|conj|*Although* the test was hard, I passed it.|テストは難しかったけれど、合格した。
+sure|adj|I'm *sure* she will like your gift.|彼女はきっとあなたの贈り物を気に入ると思います。
+term|n|Can you explain this *term* in easy words?|この用語をやさしい言葉で説明してもらえますか。
+least|adv|You should sleep at *least* seven hours.|少なくとも7時間は寝たほうがいい。
+age|n|My son and Ken's son are the same *age*.|うちの息子とケンの息子は同い年です。
+low|adj|This table is too *low* for me.|このテーブルは私には低すぎる。
+speak|v|Could you *speak* a little more slowly, please?|もう少しゆっくり話していただけますか。
+within|prep|We will arrive *within* an hour.|1時間以内に到着します。
+process|n|Making bread is a slow *process*.|パン作りは時間のかかる過程だ。
+public|adj|Smoking is not allowed in *public* places.|公共の場所での喫煙は禁止されています。
+often|adv|It *often* rains here in June.|ここでは6月によく雨が降る。
+train|n|We took the *train* to the beach.|海辺まで電車で行った。
+possible|adj|Please come as early as *possible*.|できるだけ早く来てください。
+actually|adv|He looks young, but he is *actually* fifty.|彼は若く見えるが、実は50歳だ。
+rather|adv|I'd *rather* walk than take the bus.|バスに乗るよりむしろ歩きたい。
+view|n|Our room has a great *view* of the sea.|私たちの部屋は海の眺めがすばらしい。
+together|adv|Let's all have lunch *together* tomorrow.|明日みんなで一緒に昼食を食べよう。
+consider|v|We are *considering* moving to a bigger house.|もっと大きな家への引っ越しをよく考えています。
+price|n|The *price* of this bag is too high.|このかばんの価格は高すぎる。
+parent|n|My *parents* gave me a bike for my birthday.|両親が誕生日に自転車をくれた。
+hard|adj|Was the English test *hard* for you?|英語のテストは難しかった？
+party|n|Thank you for inviting me to your *party*.|パーティーに招待してくれてありがとう。
+local|adj|Our *local* library is open until eight.|地元の図書館は8時まで開いている。
+control|n|The driver lost *control* of the car.|運転手は車を制御できなくなった。
+already|adv|Hurry! The movie has *already* started.|急いで！映画はもうすでに始まっているよ。
+concern|n|My main *concern* is my son's health.|一番の心配は息子の健康です。
+product|n|This shop sells only local *products*.|この店は地元の製品だけを売っている。
+lose|v|I *lost* my wallet on the way home.|帰り道で財布をなくした。
+story|n|My grandfather told us a funny *story*.|祖父がおもしろい話をしてくれた。
+almost|adv|It's *almost* time for dinner, kids.|子どもたち、そろそろ夕食の時間だよ。
+continue|v|The heavy rain *continued* all night long.|激しい雨は一晩中続いた。
+stand|v|We *stood* in line for an hour.|私たちは1時間列に並んで立っていた。
+whole|adj|He ate the *whole* pizza by himself.|彼はピザを1枚まるごと1人で食べた。
+yet|adv|I haven't finished my homework *yet*.|まだ宿題を終えていない。
+rate|n|The pass *rate* for this test is high.|このテストの合格率は高い。
+care|n|Drive with *care* on snowy roads.|雪道は注意して運転してください。
+expect|v|I didn't *expect* to see you here.|ここであなたに会うとは思わなかった。
+effect|n|Too much coffee has a bad *effect* on sleep.|コーヒーの飲みすぎは睡眠に悪い影響がある。
+sort|n|This shop sells all *sorts* of toys.|この店ではあらゆる種類のおもちゃを売っている。
+ever|adv|This is the best cake I've *ever* eaten.|これまでに食べた中で一番おいしいケーキだ。
+anything|pron|Do you need *anything* from the store?|お店で何か必要なものはある？
+cause|v|Smoking can *cause* serious health problems.|喫煙は深刻な健康問題を引き起こすことがある。
+fall|v|My phone *fell* off the desk.|携帯が机から落ちた。
+deal|n|The two companies signed a *deal* yesterday.|2社は昨日、取引の契約を結んだ。
+water|n|Please drink a lot of *water* on hot days.|暑い日は水をたくさん飲んでください。
+send|v|Did you *send* a card to Grandma?|おばあちゃんにカードを送った？
+allow|v|My parents don't *allow* me to stay out late.|両親は私が夜遅くまで出歩くのを許さない。
+soon|adv|Dinner will be ready very *soon*, kids.|子どもたち、夕食はもうすぐできるよ。
+watch|v|We *watched* the sunset from the beach.|浜辺から夕日を眺めた。
+base|n|The *base* of the lamp is made of wood.|そのランプの土台は木でできている。
+probably|adv|He is *probably* still at work.|彼はたぶんまだ仕事中だ。
+suggest|v|Ken *suggested* a picnic in the park.|ケンは公園でのピクニックを提案した。
+past|n|Let's forget the *past* and start again.|過去のことは忘れて、やり直そう。
+power|n|Kind words have the *power* to help people.|優しい言葉には人を助ける力がある。
+test|n|Did you pass your driving *test*?|運転免許の試験に合格しましたか。
+visit|v|We *visited* my grandparents last weekend.|先週末、祖父母を訪ねた。
+center|n|There is a big tree in the *center* of the park.|公園の中心に大きな木がある。
+grow|v|This tree has *grown* a lot this year.|今年この木はずいぶん成長した。
+nothing|pron|I have *nothing* to do this weekend.|今週末はすることが何もない。
+return|v|When will you *return* from your trip?|旅行からいつ戻りますか。
+mother|n|My *mother* makes the best curry in the world.|母のカレーは世界一おいしい。
+walk|v|We *walked* for two hours in the mountains.|山の中を2時間歩いた。
+matter|n|It's a family *matter*, so I can't talk about it.|家族の問題なので話せません。
+mind|n|Music helps me relax my body and *mind*.|音楽は体と心をリラックスさせてくれる。
+value|n|These old books have little *value*.|これらの古い本にはほとんど価値がない。
+office|n|I left my umbrella at the *office*.|オフィスに傘を置いてきた。
+record|n|The *records* show that he was here yesterday.|記録によると、彼は昨日ここにいた。
+stay|v|We *stayed* at a small hotel near the beach.|浜辺の近くの小さなホテルに滞在した。
+force|n|He opened the door by *force*.|彼は力ずくでドアを開けた。
+stop|v|Could you *stop* the car here, please?|ここで車を止めてもらえますか。
+several|det|*Several* people were waiting at the door.|何人かがドアの前で待っていた。
+light|n|This room gets a lot of *light* in the morning.|この部屋は朝たくさん光が入る。
+develop|v|This small town *developed* into a big city.|この小さな町は大都市へと発展した。
+remember|v|Do you *remember* the name of that hotel?|あのホテルの名前を覚えていますか。
+bit|n|Could you wait a *bit* longer?|もう少し待ってもらえますか。
+share|v|I *share* a room with my sister.|私は妹と部屋を共有しています。
+real|adj|These flowers look *real*, but they are paper.|この花は本物に見えるが、紙でできている。
+answer|n|Please write your *answer* in the box.|答えを枠の中に書いてください。
+sit|v|The children *sat* on the floor and listened.|子どもたちは床に座って話を聞いた。
+figure|n|Please check the *figures* in this report again.|この報告書の数字をもう一度確認してください。
+letter|n|I got a *letter* from my old friend.|古い友人から手紙が来た。
+decide|v|We haven't *decided* where to go yet.|どこへ行くかまだ決めていない。
+language|n|English is not an easy *language* to learn.|英語は学ぶのが簡単な言語ではない。
+subject|n|Math was my worst *subject* at school.|学校では数学が一番苦手な科目だった。
+class|n|I was late for *class* this morning.|今朝、授業に遅れた。
+development|n|The *development* of the town brought many new shops.|町の発展で新しい店がたくさんできた。
+town|n|Our *town* has a nice library.|私たちの町にはすてきな図書館がある。
+half|n|I ate *half* of the cake.|ケーキの半分を食べた。
+minute|n|The bus comes every ten *minutes*.|バスは10分ごとに来る。
+food|n|What kind of *food* do you like?|どんな食べ物が好きですか。
+break|v|My old watch *broke*, so I bought a new one.|古い腕時計が壊れたので、新しいのを買った。
+clear|adj|It was *clear* that she was angry.|彼女が怒っているのは明らかだった。
+future|n|I want to live by the sea in the *future*.|将来は海のそばに住みたい。
+either|det|*Either* day is fine with me, Saturday or Sunday.|土曜日でも日曜日でも、どちらの日でも大丈夫です。
+ago|adv|My grandfather died ten years *ago*.|祖父は10年前に亡くなった。
+per|prep|The tickets cost ten dollars *per* person.|チケットは1人につき10ドルです。
+remain|v|Only two cookies *remained* on the plate.|皿にはクッキーが2枚しか残っていなかった。
+top|n|Write your name at the *top* of the page.|ページの一番上に名前を書いてください。
+among|prep|The house stands *among* tall trees.|その家は高い木々の間に建っている。
+win|v|Which team do you think will *win*?|どちらのチームが勝つと思いますか。
+color|n|The leaves change *color* in the fall.|秋には葉の色が変わる。
+involve|v|The plan *involves* moving to a new office.|その計画には新しい事務所への移転が含まれる。
+reach|v|We finally *reached* the top of the hill.|ついに丘の頂上に到着した。
+social|adj|We study *social* problems in this class.|この授業では社会問題を学びます。
+period|n|I lived in London for a short *period*.|短い期間、ロンドンに住んでいた。
+across|prep|The children ran *across* the street to the park.|子どもたちは通りを走って渡り、公園へ行った。
+note|n|I left a *note* on the kitchen table.|台所のテーブルにメモを残した。
+history|n|My son is good at *history*.|息子は歴史が得意です。
+create|v|The children *created* a beautiful picture together.|子どもたちは一緒に美しい絵を作り上げた。
+drive|v|My father *drives* me to school every morning.|父は毎朝、車で学校に送ってくれる。
+along|prep|There are many shops *along* this street.|この通り沿いにはたくさんの店がある。
+type|n|This *type* of phone is very popular.|このタイプの携帯はとても人気がある。
+sound|n|The *sound* of the rain helps me sleep.|雨の音を聞くとよく眠れる。
+eye|n|Close your *eyes* and count to ten.|目を閉じて10まで数えて。
+music|n|We danced to the *music* all night.|一晩中音楽に合わせて踊った。
+game|n|We lost the *game* by one point.|試合に1点差で負けた。
+political|adj|We don't talk about *political* things at dinner.|夕食の時は政治の話はしない。
+free|adj|Birds are *free* to fly anywhere.|鳥はどこへでも自由に飛べる。
+receive|v|I *received* a nice card from my teacher.|先生からすてきなカードを受け取った。
+moment|n|I will never forget that happy *moment*.|あの幸せな瞬間は決して忘れない。
+sale|n|Is this old piano for *sale*?|この古いピアノは売り物ですか。
+policy|n|What is the hotel's *policy* on pets?|ペットに関するホテルの方針はどうなっていますか。
+further|adv|Let's not talk about this *further*.|この件についてはこれ以上話すのはやめよう。
+body|n|Swimming uses every part of your *body*.|水泳は体のあらゆる部分を使う。
+require|v|This cake recipe *requires* three eggs and milk.|このケーキのレシピには卵3個と牛乳が必要です。
+wait|v|We *waited* for the bus in the rain.|雨の中でバスを待った。
+general|adj|The quiz tests your *general* knowledge.|このクイズは一般的な知識を試すものです。
+appear|v|A cat suddenly *appeared* at the window.|突然、窓に猫が現れた。
+toward|prep|The little dog ran *toward* me happily.|子犬はうれしそうに私の方へ走ってきた。
+team|n|She is the best player on our *team*.|彼女は私たちのチームで一番の選手だ。
+easy|adj|Is it *easy* to learn Japanese?|日本語を学ぶのは簡単ですか。
+individual|adj|Please put the cookies in *individual* bags.|クッキーを個別の袋に入れてください。
+full|adj|I can't eat any more. I'm *full*.|もう食べられない。おなかがいっぱいだ。
+black|adj|She wore a long *black* dress to the party.|彼女はパーティーに黒いロングドレスを着ていった。
+sense|n|Dogs have a good *sense* of smell.|犬は嗅覚が鋭い。
+perhaps|adv|*Perhaps* he missed the bus this morning.|ひょっとすると彼は今朝バスに乗り遅れたのかもしれない。
+add|v|Can you *add* my name to the list?|リストに私の名前を加えてもらえますか。
+rule|n|Do you know the *rules* of this game?|このゲームの規則を知っていますか。
+pass|v|We *passed* a lot of shops on the way.|途中でたくさんの店の前を通り過ぎた。
+produce|v|This farm *produces* milk and cheese.|この農場は牛乳とチーズを生産している。
+sell|v|I *sold* my old bike to a friend.|古い自転車を友達に売った。
+short|adj|My sister has *short* hair now.|姉は今、髪が短い。
+agree|v|My parents didn't *agree* with my plan.|両親は私の計画に同意しなかった。
+law|n|Everyone in the country must follow the *law*.|国民は誰もが法律を守らなければならない。
+everything|pron|Thank you for *everything* you did for me.|私にしてくれたすべてのことに感謝します。
+research|n|My sister does *research* at a university.|姉は大学で研究をしています。
+cover|v|She *covered* her face with her hands.|彼女は両手で顔を覆った。
+paper|n|This bag is made of *paper*.|この袋は紙でできている。
+position|n|Move the table back to its old *position*.|テーブルを元の位置に戻して。
+near|prep|My grandparents live *near* a big lake.|祖父母は大きな湖の近くに住んでいる。
+human|adj|Some dogs can understand *human* words.|人間の言葉を理解できる犬もいる。
+computer|n|My old *computer* is too slow for games.|私の古いコンピューターはゲームをするには遅すぎる。
+situation|n|What would you do in this *situation*?|この状況なら、あなたはどうしますか。
+staff|n|The hotel *staff* were very kind to us.|ホテルのスタッフは私たちにとても親切だった。
+activity|n|Swimming is a fun summer *activity*.|水泳は夏の楽しい活動だ。
+film|n|Have you seen this *film* before?|以前にこの映画を見たことがありますか。
+morning|n|I drink coffee in the *morning*.|朝にコーヒーを飲みます。
+war|n|My grandfather never talked about the *war*.|祖父は戦争について決して話さなかった。
+account|n|I put some money into my bank *account*.|銀行口座にお金を入れた。
+shop|n|There is a flower *shop* next to the bank.|銀行の隣に花屋がある。
+major|adj|Tokyo is a *major* city in Asia.|東京はアジアの主要な都市だ。
+someone|pron|*Someone* left a bag on the bus.|誰かがバスにかばんを置き忘れた。
+above|prep|There is a clock *above* the door.|ドアの上に時計がある。
+design|n|The *design* of this house is very simple.|この家の設計はとてもシンプルだ。
+event|n|The school festival is a big *event* for us.|学園祭は私たちにとって大きな行事だ。
+special|adj|We cook a *special* dinner on New Year's Eve.|大みそかには特別な夕食を作ります。
+sometimes|adv|We *sometimes* eat dinner at my parents' house.|ときどき両親の家で夕食を食べます。
+condition|n|My grandmother's *condition* is getting better.|祖母の状態は良くなってきている。
+carry|v|He *carried* the heavy box upstairs.|彼は重い箱を上の階へ運んだ。
+choose|v|It's hard to *choose* a present for him.|彼へのプレゼントを選ぶのは難しい。
+father|n|My *father* taught me how to swim.|父が泳ぎ方を教えてくれた。
+decision|n|Moving to Osaka was a big *decision*.|大阪に引っ越すのは大きな決定だった。
+table|n|We sat around the kitchen *table*.|私たちは台所のテーブルを囲んで座った。
+certain|adj|Are you *certain* that the shop is open?|その店が開いているのは確かですか。
+forward|adv|The car moved slowly *forward* in the snow.|車は雪の中をゆっくり前へ進んだ。
+main|adj|Rice is the *main* food in Japan.|日本では米が主な食べ物です。
+die|v|My old dog *died* last year.|去年、年老いた犬が死んだ。
+bear|v|She couldn't *bear* to leave her dog.|彼女は犬を置いていくのに耐えられなかった。
+cut|v|Please *cut* the cake into eight pieces.|ケーキを8つに切ってください。
+describe|v|Can you *describe* the man you saw?|見た男性の様子を説明してもらえますか。
+himself|pron|Ken cut *himself* with a knife.|ケンはナイフで自分を切ってしまった。
+available|adj|Is a room *available* for two people tonight?|今夜、2人用の部屋は利用できますか。
+especially|adv|This winter is *especially* cold in our town.|今年の冬は私たちの町では特に寒い。
+strong|adj|My brother is *strong* enough to lift me.|兄は私を持ち上げられるほど力が強い。
+rise|v|The sun *rises* in the east.|太陽は東から昇る。
+girl|n|A little *girl* asked me the way.|小さな女の子が私に道を尋ねた。
+maybe|adv|*Maybe* she didn't hear the phone ring.|もしかしたら彼女は電話が鳴ったのが聞こえなかったのかもしれない。
+community|n|Our *community* has a festival every summer.|私たちの地域社会では毎年夏にお祭りがある。
+else|adv|What *else* do we need for the trip?|旅行にほかに何が必要ですか。
+particular|adj|Do you like any *particular* kind of music?|特に好きな種類の音楽はありますか。
+role|n|She played the *role* of a teacher in the play.|彼女は劇で先生の役を演じた。
+join|v|My son *joined* the soccer club this year.|息子は今年サッカー部に加わった。
+difficult|adj|It was *difficult* to find a parking space.|駐車できる場所を見つけるのは難しかった。
+please|adv|*Please* take off your shoes here.|ここで靴を脱いでください。
+detail|n|Please tell me every *detail* about your trip.|旅行の詳細を全部教えてください。
+difference|n|There is a big *difference* in price.|値段に大きな違いがある。
+action|n|His quick *action* saved the boy's life.|彼の素早い行動が少年の命を救った。
+health|n|My grandfather is in good *health*.|祖父は健康状態が良い。
+eat|v|We usually *eat* dinner at seven.|たいてい7時に夕食を食べます。
+step|n|The baby took her first *steps* today.|赤ちゃんが今日、初めての一歩を踏み出した。
+true|adj|Is it *true* that you're moving to Osaka?|大阪に引っ越すというのは本当ですか。
+phone|n|Please turn off your *phone* in the library.|図書館では電話の電源を切ってください。
+themselves|pron|The children made dinner by *themselves*.|子どもたちは自分たちで夕食を作った。
+draw|v|My daughter likes to *draw* animals.|娘は動物の絵を描くのが好きです。
+white|adj|The snow made the whole town *white*.|雪で町全体が白くなった。
+date|n|Let's choose a *date* for the party.|パーティーの日付を決めよう。
+practice|n|Soccer *practice* starts at four today.|今日のサッカーの練習は4時に始まる。
+model|n|My son made a *model* of a ship.|息子は船の模型を作った。
+raise|v|The café *raised* the price of coffee.|そのカフェはコーヒーの値段を上げた。
+customer|n|The shop gives free coffee to every *customer*.|その店はすべての客に無料のコーヒーを出している。
+front|n|I sat in the *front* of the bus.|バスの前の方に座った。
+explain|v|Can you *explain* how this machine works?|この機械の仕組みを説明してもらえますか。
+door|n|Don't forget to lock the *door*.|ドアに鍵をかけるのを忘れないで。
+outside|adv|It's sunny, so the kids are playing *outside*.|晴れているので、子どもたちは外で遊んでいる。
+behind|prep|The cat is hiding *behind* the sofa.|猫はソファの後ろに隠れている。
+economic|adj|The country has serious *economic* problems.|その国は深刻な経済問題を抱えている。
+site|n|Workers must wear helmets at the building *site*.|建設現場では作業員はヘルメットをかぶらなければならない。
+approach|n|Her *approach* to teaching is very fun.|彼女の教え方はとても楽しい。
+teacher|n|Our *teacher* gave us a lot of homework.|先生は私たちにたくさん宿題を出した。
+land|n|After ten days at sea, we saw *land*.|海の上で10日過ごした後、陸地が見えた。
+charge|n|There is no *charge* for children under six.|6歳未満の子どもは料金がかかりません。
+finally|adv|After three hours, the bus *finally* came.|3時間待って、ついにバスが来た。
+sign|n|Follow the *signs* to the airport.|空港への標識に従って進んでください。
+two|num|We have *two* cats and a dog.|うちには猫が2匹と犬が1匹います。
+three|num|My son is *three* years old.|息子は3歳です。
+four|num|Our team has *four* new players.|私たちのチームには新しい選手が4人いる。
+five|num|I bought *five* apples at the store.|店でリンゴを5個買った。
+million|num|Over a *million* people visit this park every year.|毎年100万人以上がこの公園を訪れる。
+six|num|There are *six* eggs in the box.|箱に卵が6個入っている。
+hundred|num|This shirt costs one *hundred* dollars.|このシャツは100ドルです。
+ten|num|I can count to *ten* in English.|英語で10まで数えられます。
+thousand|num|A *thousand* people ran in the race.|1,000人がそのレースを走った。
+seven|num|We will have dinner at *seven* tonight.|今夜は7時に夕食にします。
+eight|num|My daughter is *eight* years old.|娘は8歳です。
+nine|num|The movie starts at *nine* tonight.|映画は今夜9時に始まる。
+billion|num|There are about eight *billion* people in the world.|世界には約80億人がいる。
+twenty|num|There are *twenty* students in this class.|このクラスには生徒が20人いる。
+thirty|num|This old book costs only *thirty* dollars.|この古い本はたった30ドルです。
+fifty|num|My mother turned *fifty* last month.|母は先月50歳になった。
+twelve|num|I bought *twelve* eggs at the store.|店で卵を12個買った。
+fifteen|num|The bus stop is *fifteen* minutes from here.|バス停はここから15分です。
+nineteen|num|There are *nineteen* students in my class.|私のクラスには生徒が19人いる。
+forty|num|The hotel has *forty* rooms and a pool.|そのホテルには部屋が40室とプールがある。
+zero|num|Our team lost the game three to *zero*.|私たちのチームは3対0で試合に負けた。
+eighteen|num|My son will be *eighteen* next month.|息子は来月18歳になる。
+eleven|num|Our soccer team has *eleven* players.|私たちのサッカーチームには11人の選手がいる。
+sixteen|num|There are *sixteen* cookies in this box.|この箱にはクッキーが16枚入っている。
+sixty|num|My grandfather stopped working at *sixty*.|祖父は60歳で仕事を辞めた。
+fourteen|num|My son is *fourteen* and loves soccer.|息子は14歳で、サッカーが大好きです。
+eighty|num|The small theater has *eighty* seats.|その小さな劇場には80席ある。
+seventy|num|The tickets cost *seventy* dollars each.|チケットは1枚70ドルです。
+seventeen|num|My sister is *seventeen* and in high school.|姉は17歳で高校生です。
+thirteen|num|There are *thirteen* people on our team.|私たちのチームには13人いる。
+ninety|num|I got *ninety* points on the math test.|数学のテストで90点を取った。
+trillion|num|The country spends over a *trillion* yen on schools.|その国は学校に1兆円以上を使っている。
+August|n|We went to the beach in *August*.|8月に海へ行った。
+July|n|The festival is held in *July* every year.|そのお祭りは毎年7月に行われる。
+Monday|n|I have a test next *Monday*.|来週の月曜日にテストがある。
+October|n|My birthday is on *October* 5.|私の誕生日は10月5日です。
+February|n|It sometimes snows here in *February*.|ここでは2月にときどき雪が降る。
+January|n|We visit my grandparents every *January*.|毎年1月に祖父母を訪ねます。
+June|n|Our wedding will be in *June*.|私たちの結婚式は6月です。
+Friday|n|Is the store open on *Friday*?|金曜日はその店は開いていますか。
+Saturday|n|Do you want to see a movie on *Saturday*?|土曜日に映画を見に行かない？
+Sunday|n|I'll call you on *Sunday* morning.|日曜日の朝に電話するね。
+Wednesday|n|I have piano lessons every *Wednesday*.|毎週水曜日にピアノのレッスンがある。
+Thursday|n|Today is *Thursday*, so tomorrow is Friday.|今日は木曜日なので、明日は金曜日です。
+April|n|The cherry flowers are beautiful in *April*.|4月は桜の花がきれいだ。
+December|n|We put up a Christmas tree in *December*.|12月にクリスマスツリーを飾ります。
+November|n|My sister's birthday is in *November*.|姉の誕生日は11月です。
+Tuesday|n|The library is closed every *Tuesday*.|図書館は毎週火曜日が休みです。
+September|n|My son starts a new school in *September*.|息子は9月に新しい学校に通い始める。

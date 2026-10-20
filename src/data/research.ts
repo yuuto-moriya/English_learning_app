@@ -214,6 +214,18 @@ export const EVIDENCE: Evidence[] = [
       { cite: 'Baese-Berk, M. M., Bradlow, A. R., & Wright, B. A. (2013). Accent-independent adaptation to foreign accented speech. The Journal of the Acoustical Society of America, 133(3), EL174–EL180.' },
     ],
   },
+  {
+    id: 'transfer',
+    title: '新しい文脈で確かめる（転移と使い分け）',
+    finding:
+      '練習した内容をそのまま再テストするより、テストで思い出す練習を重ねた方が、問われ方の違う新しい問題（別の文脈・推論が必要な問題）にも知識を使えるようになった（転移）。また、もっともらしい誤答を含む選択問題は、正解だけでなく関連する知識の想起も促す。覚えた1つの文を思い出せるだけでなく、はじめて見る文脈で、意味の近い語と区別して使えるかで定着を確かめる方が、実際に使える知識かどうかが分かる。',
+    inApp:
+      '一般・ビジネス・IT の全語に例文を2つ用意し、新しい単語のカードには1つ目だけを見せ、2つ目は問題の「はじめて見る文」に使います。覚えた語には「使い分け」（例文の空所に入る語を、意味の近い語の中から選ぶ）・和訳から英語を選ぶ・不規則動詞の変化形・並べかえも出します。「定着チェック」では、定着したはずの語を1語2問で確かめ、まちがえた語は覚え直しに戻します。練習の「使い分け」では、日本語では同じ言葉になる英語の組（borrow / lend など）を解説つきで練習します。',
+    refs: [
+      { cite: 'Butler, A. C. (2010). Repeated testing produces superior transfer of learning relative to repeated studying. Journal of Experimental Psychology: Learning, Memory, and Cognition, 36(5), 1118–1133.', url: 'https://doi.org/10.1037/a0019902' },
+      { cite: 'Little, J. L., Bjork, E. L., Bjork, R. A., & Angello, G. (2012). Multiple-choice tests exonerated, at least of some charges: Fostering test-induced learning and avoiding test-induced forgetting. Psychological Science, 23(11), 1337–1344.', url: 'https://doi.org/10.1177/0956797612443370' },
+    ],
+  },
 ]
 
 export const CREDITS: { name: string; desc: string; url?: string }[] = [

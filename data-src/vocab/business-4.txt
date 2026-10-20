@@ -7,9 +7,9 @@ distribution|n|流通；配布；分布|We handle the *distribution* of products
 premium|n|保険料；割増金|The insurance *premium* went up this year.|今年は保険料が上がった。
 client|n|顧客；依頼人|We have a meeting with a *client* at two.|2時に顧客と打ち合わせがある。
 impact|n|影響；衝撃|What is the *impact* of the new tax on our sales?|新しい税は当社の売上にどう影響しますか。
-authority|n|権限；当局|The local *authorities* approved the plan.|地元当局がその計画を承認した。
+authority|n|権限；当局|Only the manager has the *authority* to approve refunds.|返金を承認する権限があるのは部長だけだ。
 obtain|v|得る；取得する|You must *obtain* a visa before you travel.|渡航前にビザを取得しなければならない。
-publish|v|出版する；公表する|The results will be *published* next month.|結果は来月公表される。
+publish|v|公表する；出版する|The results will be *published* next month.|結果は来月公表される。
 candidate|n|候補者|We interviewed three *candidates*.|3人の候補者を面接した。
 merger|n|合併|The *merger* created the largest bank in the country.|その合併で国内最大の銀行が誕生した。
 audit|n|監査|The *audit* found no major issues.|監査で大きな問題は見つからなかった。
@@ -20,7 +20,7 @@ overhead|n|間接費；（形容詞）頭上の|We need to reduce our *overhead*
 commodity|n|商品；必需品|Steel prices depend on *commodity* markets.|鋼材価格は商品市場に左右される。
 valuation|n|評価額|The *valuation* of our assets is updated every year.|当社資産の評価額は毎年更新される。
 fiscal|adj|会計の；財政の|The *fiscal* year begins in April.|会計年度は4月に始まる。
-payable|adj|支払うべき|The invoice is *payable* within 30 days.|請求書は30日以内に支払われるべきものだ。
+payable|adj|支払うべき|The invoice is *payable* within 30 days.|この請求書は30日以内にお支払いいただくものです。
 aspect|n|側面；局面|Customer service is the most important *aspect* of our business.|顧客サービスは当社の事業で最も重要な側面だ。
 calculation|n|計算|Please check my *calculation*.|私の計算を確認してください。
 subsidiary|n|子会社|The company has a *subsidiary* in Singapore.|その会社はシンガポールに子会社がある。
@@ -32,7 +32,7 @@ disclosure|n|開示|The rules require full *disclosure* of risks.|規則はリ�
 leverage|v|活用する；（名詞）てこの作用|We can *leverage* data to improve our service.|データを活用してサービスを改善できる。
 website|n|ウェブサイト|Check our *website* for the latest news.|最新情報は当社ウェブサイトをご確認ください。
 broker|n|仲介業者|An insurance *broker* found us a better policy.|保険の仲介業者がより良い契約を見つけてくれた。
-outstanding|adj|未払いの；未解決の；優れた|There are still three *outstanding* issues.|まだ未解決の問題が3つある。
+outstanding|adj|未払いの；未解決の；優れた|We still have two *outstanding* invoices.|未払いの請求書がまだ2件ある。
 internet|n|インターネット|The *internet* is down in the office.|事務所のインターネットがつながらない。
 maximize|v|最大化する|We want to *maximize* profits.|利益を最大化したい。
 lender|n|貸し手|The *lender* approved the loan.|貸し手は融資を承認した。
@@ -42,7 +42,7 @@ fraud|n|詐欺|Report any *fraud* to the compliance team.|不正はコンプラ�
 allocate|v|割り当てる|We *allocated* two people to the new project.|新しいプロジェクトに2人を割り当てた。
 conference|n|会議；学会|I'm presenting at an international *conference*.|国際会議で発表する予定だ。
 provider|n|提供者|We changed our internet *provider*.|インターネットの接続業者を変えた。
-turnover|n|売上高；離職率|Staff *turnover* is low in our team.|私たちのチームは離職率が低い。
+turnover|n|離職率；（英）売上高|Staff *turnover* is low in our team.|私たちのチームは離職率が低い。
 criteria|n|基準（criterionの複数形）|What are the *criteria* for promotion?|昇進の基準は何ですか。
 accountant|n|会計士|Our *accountant* prepared the tax return.|会計士が確定申告書を作成した。
 profitable|adj|利益になる|The new service is already *profitable*.|新サービスはすでに黒字だ。
@@ -53,7 +53,7 @@ borrower|n|借り手|The *borrower* must repay the loan in five years.|借り手
 insurer|n|保険会社|The *insurer* will cover the damage.|保険会社が損害を補償する。
 patent|n|特許|The company holds a *patent* for this design.|その会社はこのデザインの特許を持っている。
 profitability|n|収益性|We need to improve the *profitability* of our stores.|店舗の収益性を改善する必要がある。
-debit|n|借方；デビット|You can pay by *debit* card.|デビットカードで支払えます。
+debit|n|デビット（カード）；借方|You can pay by *debit* card.|デビットカードで支払えます。
 duration|n|期間；持続時間|What is the *duration* of the contract?|契約期間はどれくらいですか。
 scenario|n|筋書き；想定|In the worst-case *scenario*, the project will be a month late.|最悪の場合、プロジェクトは1か月遅れる。
 regulatory|adj|規制の|We must meet all *regulatory* requirements.|すべての規制要件を満たさなければならない。
@@ -61,14 +61,14 @@ indicator|n|指標；表示器|Customer satisfaction is a key performance *indic
 classify|v|分類する|We *classify* customers into three groups.|顧客を3つのグループに分類している。
 receipt|n|領収書；受領|Can I have a *receipt*, please?|領収書をいただけますか。
 optimal|adj|最適な|We need to find the *optimal* price for the product.|その製品の最適な価格を見つける必要がある。
-nominal|adj|名目上の；公称の；わずかな|There is a *nominal* fee for the service.|そのサービスにはわずかな料金がかかる。
+nominal|adj|名目上の；公称の；わずかな|He is the *nominal* head of the company, but his son runs it.|彼は名目上の社長だが、実際は息子が経営している。
 infrastructure|n|社会基盤；インフラ|The country needs to invest in its *infrastructure*.|その国はインフラに投資する必要がある。
 disclose|v|開示する|The company *disclosed* its financial results.|その会社は財務結果を開示した。
 offset|v|相殺する|Higher prices *offset* the rising costs.|値上げで費用の上昇を相殺した。
 effectiveness|n|有効性|We measured the *effectiveness* of the training.|研修の有効性を測定した。
 merchandise|n|商品|The shop sells sports *merchandise*.|その店はスポーツ用品を販売している。
 bargain|n|お買い得品；取引|This ticket is a real *bargain*.|この切符は本当にお得だ。
-conversion|n|変換；転換|The *conversion* of the old factory into offices took a year.|古い工場をオフィスに改装するのに1年かかった。
+conversion|n|変換；転換|File *conversion* to PDF takes only a few seconds.|PDFへのファイル変換は数秒しかかからない。
 statistics|n|統計（学）|Accident *statistics* are published every year.|事故統計は毎年公表される。
 stakeholder|n|利害関係者|We consulted all *stakeholders* before the project.|プロジェクト前にすべての利害関係者と協議した。
 administrative|adj|管理上の；事務の|She handles *administrative* tasks.|彼女は事務作業を担当している。
@@ -82,7 +82,7 @@ parameter|n|変数；条件|We changed the *parameters* of the model.|モデル�
 integration|n|統合|System *integration* is the hardest part.|システム統合が最も難しい部分だ。
 interval|n|間隔|Buses run at ten-minute *intervals*.|バスは10分間隔で運行している。
 defer|v|延期する|We had to *defer* the payment until next month.|支払いを来月に延期しなければならなかった。
-carrier|n|運送業者；航空会社|Japan Airlines is a major *carrier*.|日本航空は大手航空会社だ。
+carrier|n|運送業者；航空会社|The *carrier* will pick up the boxes tomorrow.|運送業者が明日、箱を引き取りに来る。
 worldwide|adj|世界的な|The company has a *worldwide* network.|その会社は世界的なネットワークを持つ。
 ethical|adj|倫理的な|We follow *ethical* business practices.|私たちは倫理的な商慣行に従っている。
 bonus|n|賞与；ボーナス|We get a *bonus* twice a year.|年2回賞与がある。
@@ -96,18 +96,18 @@ execute|v|実行する|The plan was *executed* without problems.|計画は問題
 warranty|n|保証（書）|The machine is under *warranty* for two years.|その機械には2年間の保証がある。
 query|n|問い合わせ；質問|If you have any *queries*, please contact me.|ご質問があればご連絡ください。
 deem|v|〜とみなす|The building was *deemed* safe after the inspection.|点検の結果、その建物は安全とみなされた。
-dynamic|adj|動的な；活動的な|She is a *dynamic* leader.|彼女は行動力のあるリーダーだ。
+dynamic|adj|動的な；活動的な|We use *dynamic* pricing, so prices change with demand.|動的な価格設定を採用しているので、需要に応じて価格が変わる。
 statistical|adj|統計の|We used *statistical* methods to analyze sales.|売上の分析に統計的手法を用いた。
 matrix|n|行列；マトリクス|Use a risk *matrix* to rank the hazards.|リスクマトリクスを使って危険源を順位付けしてください。
 graph|n|グラフ|This *graph* shows the trend in sales.|このグラフは売上の推移を示している。
 allowance|n|手当；許容量|Employees receive a travel *allowance*.|従業員には交通費が支給される。
-commerce|n|商業|E-*commerce* is growing fast.|電子商取引が急成長している。
+commerce|n|商業|The city has long been a center of *commerce*.|その都市は昔から商業の中心地だ。
 assignment|n|任務；課題|My new *assignment* is in the planning team.|私の新しい任務は計画チームでの仕事だ。
 enforce|v|施行する；強制する|The speed limit is strictly *enforced*.|速度制限は厳格に守らせている。
 emission|n|排出|We aim to cut CO2 *emissions* by half.|CO2排出量を半減させることを目指している。
 workforce|n|全従業員；労働力|Our *workforce* is getting older.|当社の従業員は高齢化している。
 founder|n|創業者|The *founder* started the company in 1950.|創業者は1950年に会社を始めた。
-replacement|n|交換；後任|We need to find a *replacement* for Mr. Tanaka.|田中さんの後任を見つける必要がある。
+replacement|n|交換；後任|The *replacement* of the old printers will take a week.|古いプリンターの交換には1週間かかる。
 tenant|n|テナント；賃借人|The office building has ten *tenants*.|そのオフィスビルにはテナントが10社入っている。
 accumulate|v|蓄積する|Unpaid bills *accumulated* quickly.|未払いの請求書がすぐにたまった。
 diversify|v|多角化する|The company *diversified* into real estate.|その会社は不動産事業に多角化した。
@@ -127,35 +127,35 @@ shortage|n|不足|There is a *shortage* of skilled workers.|熟練作業員が�
 technological|adj|技術的な|*Technological* change is very fast.|技術の変化はとても速い。
 multinational|adj|多国籍の|He works for a *multinational* company.|彼は多国籍企業で働いている。
 prohibit|v|禁止する|Smoking is *prohibited* in the building.|建物内は禁煙です。
-withdrawal|n|撤退；引き出し|You can make a *withdrawal* at any ATM.|どのATMでもお金を引き出せます。
+withdrawal|n|撤退；引き出し|The company announced its *withdrawal* from the Chinese market.|その会社は中国市場からの撤退を発表した。
 prediction|n|予測|Our sales *prediction* was accurate.|当社の売上予測は正確だった。
 tariff|n|関税；料金表|The government raised the *tariff* on imported cars.|政府は輸入車への関税を引き上げた。
 compensate|v|補償する；埋め合わせる|The company will *compensate* you for the delay.|会社が遅延の補償をいたします。
 merge|v|合併する；合流する|The two companies *merged* last year.|その2社は昨年合併した。
-operational|adj|運用上の；稼働可能な|The new factory will be *operational* next year.|新工場は来年稼働を開始する。
+operational|adj|運用上の；稼働可能な|We had some *operational* problems last month.|先月、運用上の問題がいくつかあった。
 consolidate|v|統合する；強化する|We *consolidated* three offices into one.|3つの事務所を1つに統合した。
 completion|n|完了|*Completion* of the project is expected in March.|プロジェクトは3月に完了の見込みだ。
 disadvantage|n|不利な点|What are the *disadvantages* of this method?|この方法の欠点は何ですか。
 productive|adj|生産的な|It was a very *productive* meeting.|とても有意義な会議だった。
 managerial|adj|管理（職）の|She has *managerial* experience.|彼女には管理職の経験がある。
 subordinate|n|部下|He has ten *subordinates*.|彼には部下が10人いる。
-compliance|n|法令遵守；適合|We check *compliance* with the standard.|規格への適合を確認している。
+compliance|n|法令遵守；適合|All staff must take *compliance* training every year.|全社員が毎年、法令遵守の研修を受けなければならない。
 collateral|n|担保|The loan requires *collateral*.|その融資には担保が必要だ。
-modest|adj|控えめな；適度な|We expect a *modest* increase in sales.|売上の緩やかな増加を見込んでいる。
+modest|adj|控えめな；適度な|She is very *modest* about her success.|彼女は自分の成功についてとても控えめだ。
 thereby|adv|それによって|We automated the process, *thereby* reducing costs.|工程を自動化し、それによって費用を削減した。
 ledger|n|元帳；台帳|All sales are recorded in the *ledger*.|すべての売上は台帳に記録されている。
 linear|adj|直線の；線形の|The relationship is not *linear*.|その関係は線形ではない。
 summit|n|首脳会議；頂上|The leaders met at the *summit*.|首脳たちはサミットで会談した。
 repay|v|返済する|We will *repay* the loan in ten years.|ローンを10年で返済する。
-loyalty|n|忠誠；愛顧|Customer *loyalty* is important to us.|顧客の愛顧は私たちにとって重要だ。
-headquarter|n|本社（通例複数headquarters）|Our *headquarters* are in Tokyo.|当社の本社は東京にある。
-guidance|n|指導；手引き|Please follow the *guidance* in the manual.|マニュアルの手引きに従ってください。
+loyalty|n|愛顧；忠誠（心）|Customer *loyalty* is important to us.|顧客の愛顧は私たちにとって重要だ。
+headquarters|n|本社|Our *headquarters* are in Tokyo.|当社の本社は東京にある。
+guidance|n|指導；手引き|Ask your manager for *guidance* if you are not sure.|分からないときは上司に指導を求めてください。
 rental|n|賃貸；レンタル|We need a *rental* car at the airport.|空港でレンタカーが必要だ。
 comply|v|従う（comply with）|All work must *comply* with the safety rules.|すべての作業は安全規則に従わなければならない。
 consensus|n|合意；総意|We reached a *consensus* on the plan.|計画について合意に達した。
 essentially|adv|本質的に；基本的に|The two methods are *essentially* the same.|2つの方法は本質的に同じだ。
 rational|adj|合理的な|We need a *rational* approach to the budget.|予算には合理的な取り組みが必要だ。
-violation|n|違反|A speed *violation* was recorded.|速度違反が記録された。
+violation|n|違反|He got a ticket for a traffic *violation*.|彼は交通違反で切符を切られた。
 undermine|v|むしばむ；弱める|Constant criticism can *undermine* your confidence.|絶えず批判されると自信が失われることがある。
 applicable|adj|適用できる|Only the *applicable* standards are listed.|適用可能な規格のみを記載している。
 quarterly|adj|四半期ごとの|We publish a *quarterly* report.|四半期報告書を発行している。
@@ -167,11 +167,11 @@ surge|n|急増|There was a *surge* in passengers during the festival.|祭りの�
 substantially|adv|大幅に|Costs were *substantially* reduced.|費用は大幅に削減された。
 spreadsheet|n|表計算シート|I put the data in a *spreadsheet*.|データを表計算シートに入力した。
 accuracy|n|正確さ；精度|The *accuracy* of the data is very important.|データの正確さはとても重要だ。
-favorable|adj|好都合な；好意的な|We received a *favorable* response from the client.|顧客から好意的な反応をもらった。
+favorable|adj|好都合な；好意的な|The weather was *favorable* for the outdoor event.|天候は屋外イベントに好都合だった。
 predecessor|n|前任者；前のもの|My *predecessor* left detailed notes.|前任者が詳細なメモを残してくれた。
 annually|adv|毎年|The conference is held *annually* in Tokyo.|その会議は毎年東京で開かれる。
-deputy|n|代理；副〜|She is the *deputy* manager.|彼女は副部長だ。
-availability|n|可用性；空き状況|Please check the *availability* of the room.|部屋の空き状況を確認してください。
+deputy|n|副〜；代理|She is the *deputy* manager.|彼女は副部長だ。
+availability|n|空き状況；可用性|Please check the *availability* of the room.|部屋の空き状況を確認してください。
 sole|adj|唯一の|We are the *sole* distributor of this brand in Japan.|当社はこのブランドの日本における唯一の販売代理店だ。
 outsource|v|外部委託する|We *outsource* our IT support.|ITサポートを外部委託している。
 entrepreneur|n|起業家|She is a young *entrepreneur*.|彼女は若い起業家だ。
@@ -189,8 +189,8 @@ invoice|n|請求書|Please send the *invoice* to our accounting department.|請�
 remedy|n|改善策；救済策|We need a *remedy* for our high staff turnover.|高い離職率の改善策が必要だ。
 innovative|adj|革新的な|This is an *innovative* way to sell online.|これはネット販売の革新的な方法だ。
 vertical|adj|垂直の|Draw a *vertical* line here.|ここに縦線を引いてください。
-reinforce|v|補強する；強化する|The new data *reinforces* our conclusion.|新しいデータは私たちの結論を裏付けている。
-franchise|n|営業権；フランチャイズ|He owns a fast-food *franchise*.|彼はファストフードのフランチャイズ店を経営している。
+reinforce|v|補強する；強化する|Workers *reinforced* the old wall with steel.|作業員が古い壁を鋼材で補強した。
+franchise|n|フランチャイズ（店）；営業権|He owns a fast-food *franchise*.|彼はファストフードのフランチャイズ店を経営している。
 purchaser|n|購入者|The *purchaser* must pay within 30 days.|購入者は30日以内に支払わなければならない。
 consultancy|n|コンサルティング（会社）|He works for an engineering *consultancy*.|彼は技術コンサルティング会社で働いている。
 classification|n|分類|We use a simple *classification* of customer complaints.|顧客からの苦情を簡単に分類している。
@@ -199,9 +199,9 @@ methodology|n|方法論|The study explains its *methodology* in detail.|その�
 applicant|n|応募者；申請者|All *applicants* must take an English test.|応募者全員が英語のテストを受けなければならない。
 upward|adj|上向きの|Costs show an *upward* trend.|費用は上昇傾向にある。
 separately|adv|別々に|The two systems are tested *separately*.|2つのシステムは別々に試験される。
-vulnerable|adj|脆弱な；影響を受けやすい|Older people are more *vulnerable* to heat.|高齢者は暑さの影響を受けやすい。
+vulnerable|adj|脆弱な；影響を受けやすい|This old software is *vulnerable* to attacks.|この古いソフトは攻撃に対して脆弱だ。
 dominant|adj|支配的な；主要な|The company has a *dominant* position in the market.|その会社は市場で支配的な地位にある。
-subscription|n|定期購読；加入|The software costs 1,000 yen a month by *subscription*.|そのソフトは月額1,000円のサブスクリプションだ。
+subscription|n|定期購読；加入|A *subscription* to the magazine costs 1,000 yen a month.|その雑誌の定期購読は月1,000円だ。
 downturn|n|下降；不況|Sales fell during the economic *downturn*.|景気後退期に売上が落ちた。
 specification|n|仕様（書）|The product must meet the customer's *specifications*.|製品は顧客の仕様を満たさなければならない。
 execution|n|実行；遂行|Good planning leads to smooth *execution*.|良い計画が円滑な遂行につながる。
@@ -215,7 +215,7 @@ accrue|v|（利子などが）生じる；たまる|Interest *accrues* daily.|�
 deduct|v|差し引く|Tax is *deducted* from your salary.|税金は給与から差し引かれる。
 reluctant|adj|気が進まない|He was *reluctant* to speak English at first.|彼は最初、英語を話すのに消極的だった。
 supervisor|n|監督者；上司|Report any problem to your *supervisor*.|問題があればすべて上司に報告してください。
-duplicate|n|複製；（動詞）複製する|Avoid *duplicate* entries in the database.|データベースへの重複入力を避けてください。
+duplicate|n|複製；（動詞）複製する|Please keep a *duplicate* of the contract.|契約書の複製を保管してください。
 interim|adj|中間の；暫定の|We submitted an *interim* report.|中間報告書を提出した。
 expire|v|期限が切れる|My passport *expires* next month.|パスポートの期限が来月切れる。
 jurisdiction|n|管轄（権）|This bridge is under the city's *jurisdiction*.|この橋は市の管轄下にある。
@@ -226,11 +226,11 @@ defect|n|欠陥；不具合|Return the product if you find a *defect*.|不具合
 partial|adj|部分的な|We received a *partial* payment.|代金の一部を受け取った。
 copyright|n|著作権|This photo is protected by *copyright*.|この写真は著作権で保護されている。
 algorithm|n|アルゴリズム|The *algorithm* schedules your reviews.|そのアルゴリズムが復習の予定を組む。
-horizon|n|地平線；見通し|We plan our investments over a ten-year *horizon*.|10年の見通しで投資を計画している。
+horizon|n|見通し；地平線|We plan our investments over a ten-year *horizon*.|10年の見通しで投資を計画している。
 quantitative|adj|定量的な|We need *quantitative* data, not opinions.|意見ではなく定量的なデータが必要だ。
 desirable|adj|望ましい|English skills are *desirable* for this job.|この仕事には英語力があることが望ましい。
 eligible|adj|資格のある|You are *eligible* for a discount.|あなたは割引の対象です。
-counterpart|n|相手方；対応する人|I met my German *counterpart* at the conference.|会議でドイツ側のカウンターパートに会った。
+counterpart|n|相手方；対応する人|I met my German *counterpart* at the conference.|会議でドイツ側の同じ立場の担当者に会った。
 diminish|v|減少する；減らす|His influence has *diminished* over the years.|彼の影響力は年々弱まっている。
 simplify|v|単純化する|We *simplified* the reporting process.|報告手順を簡素化した。
 repayment|n|返済|*Repayment* starts next year.|返済は来年始まる。
@@ -248,14 +248,14 @@ transmit|v|送信する；伝える|The sensor *transmits* data every minute.|�
 efficiently|adv|効率的に|We need to use our budget *efficiently*.|予算を効率的に使う必要がある。
 designate|v|指定する|This area is *designated* as a smoking area.|この区域は喫煙所に指定されている。
 consistently|adv|一貫して|She has *consistently* exceeded her sales targets.|彼女は一貫して売上目標を上回ってきた。
-mandate|n|権限；命令；（動詞）義務づける|The law *mandates* regular health checks for employees.|法律は従業員の定期健康診断を義務づけている。
+mandate|n|権限；命令；（動詞）義務づける|The new manager has a *mandate* to cut costs.|新しい部長にはコスト削減の権限が与えられている。
 merchant|n|商人|The *merchant* sold goods at the port.|その商人は港で商品を売った。
 developer|n|開発者；開発業者|The app *developer* fixed the bug.|アプリの開発者がバグを修正した。
 delegate|v|委任する；（名詞）代表|Learn to *delegate* tasks to your team.|チームに仕事を任せることを覚えなさい。
 informal|adj|非公式の；くだけた|We had an *informal* chat over coffee.|コーヒーを飲みながら気軽に話した。
 deduction|n|控除；推論|Tax *deductions* are listed on your pay slip.|税控除は給与明細に記載されている。
 tighten|v|締める；厳しくする|The government *tightened* the rules on imports.|政府は輸入に関する規則を厳しくした。
-amend|v|改正する；修正する|The contract was *amended* last week.|契約は先週修正された。
+amend|v|改正する；修正する|The government *amended* the tax law last year.|政府は昨年、税法を改正した。
 expiration|n|満了；期限切れ|Check the *expiration* date on the milk.|牛乳の期限を確認してください。
 appraisal|n|評価；査定|My performance *appraisal* is next week.|来週人事考課がある。
 optimistic|adj|楽観的な|I'm *optimistic* about the project.|そのプロジェクトについては楽観している。
@@ -267,7 +267,7 @@ fare|n|運賃|The *fare* to Tokyo is 2,000 yen.|東京までの運賃は2,000円
 scrap|n|くず；廃材；（動詞）廃棄する|Old cars are sold as *scrap*.|古い車はスクラップとして売られる。
 uncertain|adj|不確かな|The future of the company is *uncertain*.|その会社の将来は不透明だ。
 identification|n|身元確認；識別|Please bring photo *identification*.|写真付き身分証明書をお持ちください。
-pipeline|n|パイプライン；（計画の）準備中|Several projects are in the *pipeline*.|いくつかのプロジェクトが準備中だ。
+pipeline|n|準備段階（in the pipelineで「準備中」）；パイプライン|Several projects are in the *pipeline*.|いくつかのプロジェクトが準備中だ。
 manual|n|手引書；（形容詞）手動の|Check the *manual* before operating the machine.|機械を操作する前にマニュアルを確認してください。
 workplace|n|職場|Safety in the *workplace* is everyone's job.|職場の安全は全員の仕事だ。
 mislead|v|誤解させる|The sign *misled* many passengers.|その標識は多くの乗客を誤解させた。
@@ -290,7 +290,7 @@ affiliate|n|関連会社|The work is done by an *affiliate* company.|その作�
 statutory|adj|法定の|All employees get *statutory* paid leave.|全従業員に法定の有給休暇がある。
 consent|n|同意|We need written *consent* from the landowner.|土地所有者の書面による同意が必要だ。
 excessive|adj|過度の|*Excessive* speed caused the accident.|速度の出しすぎが事故の原因となった。
-assemble|v|組み立てる；集まる|The team *assembled* in the lobby at 9 a.m.|チームは午前9時にロビーに集合した。
+assemble|v|組み立てる；集まる|It took two hours to *assemble* the new desk.|新しい机を組み立てるのに2時間かかった。
 renew|v|更新する|I need to *renew* my passport.|パスポートを更新する必要がある。
 cumulative|adj|累積の|The *cumulative* effect of small savings is large.|小さな節約の積み重ねは大きな効果がある。
 projection|n|予測；投影|Our *projection* shows rising sales next year.|当社の予測では来年売上が伸びる。
@@ -302,11 +302,11 @@ initiate|v|開始する|The company *initiated* talks with the union.|会社は�
 calculator|n|計算機|Use a *calculator* to check the figures.|計算機で数字を確認してください。
 obstacle|n|障害（物）|The biggest *obstacle* is the lack of funding.|最大の障害は資金不足だ。
 render|v|〜にする；提供する|The flood *rendered* the road unusable.|洪水で道路が使えなくなった。
-bundle|n|束；（製品の）セット|The software comes in a *bundle* with the laptop.|そのソフトはノートパソコンとセットになっている。
+bundle|n|セット；束|The software comes in a *bundle* with the laptop.|そのソフトはノートパソコンとセットになっている。
 unexpected|adj|予期しない|We had an *unexpected* problem.|予期しない問題が起きた。
 departure|n|出発|*Departure* is at 9:15 from platform 4.|9時15分に4番線から出発します。
 contractual|adj|契約上の|We have a *contractual* obligation to finish by June.|6月までに完了する契約上の義務がある。
-terminate|v|終了する；（列車が）終点に着く|This train *terminates* here.|この列車は当駅止まりです。
+terminate|v|終了する；（列車が）終点に着く|The company *terminated* its contract with the supplier.|会社は納入業者との契約を打ち切った。
 advisor|n|顧問；助言者|He is a financial *advisor* to the board.|彼は取締役会の財務顧問だ。
 induce|v|誘発する|Some medicines can *induce* sleepiness.|眠気を誘発する薬もある。
 coordinate|v|調整する|I'll *coordinate* with the sales team.|営業チームと調整します。

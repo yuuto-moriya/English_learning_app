@@ -1,0 +1,280 @@
+equity|n|Her *equity* in the house grew after she paid off the loan.|ローンを返済して、彼女の家の純資産価値は増えた。
+dividend|n|Shareholders will receive a *dividend* of two dollars per share.|株主は1株あたり2ドルの配当金を受け取る。
+portfolio|n|A good *portfolio* should include both stocks and bonds.|よいポートフォリオには株式と債券の両方を入れるべきだ。
+sponsorship|n|We are looking for *sponsorship* to pay for the event.|私たちはそのイベントの費用を出してくれる協賛を探している。
+hedge|v|Investors often buy gold to *hedge* against a falling market.|投資家は相場の下落に備えて金を買うことが多い。
+maturity|n|You will get your money back when the loan reaches *maturity*.|ローンが満期になれば、お金が戻ってくる。
+marginal|adj|The new product brought a *marginal* improvement in profit.|その新製品で利益はわずかに改善した。
+variance|n|There was a large *variance* in sales across the regions.|地域ごとに売上の差が大きかった。
+depreciation|n|*Depreciation* lowers the value of a machine each year.|減価償却により、機械の価値は毎年下がる。
+entity|n|The money was paid to a foreign business *entity*.|そのお金は外国の事業体に支払われた。
+utility|n|A large *utility* provides power to the whole city.|大手の公益事業会社が市全体に電力を供給している。
+organizational|adj|Good *organizational* skills are important for this job.|この仕事には、優れた段取りの力が大切だ。
+monetary|adj|The gift has little *monetary* value, but it means a lot.|その贈り物に金銭的な価値はほとんどないが、とても大切だ。
+infer|v|What can you *infer* from the customer survey?|顧客アンケートから何が読み取れますか？
+aggregate|n|In the *aggregate*, our costs have fallen this year.|全体として、今年は費用が減っている。
+default|n|A *default* by one large borrower can hurt the whole bank.|大口の借り手が1社でも債務不履行になれば、銀行全体が打撃を受ける。
+volatility|n|High *volatility* makes it hard to plan ahead.|変動が激しいと、先の計画を立てにくい。
+deviation|n|There was a small *deviation* from the budget last month.|先月は予算からのずれが少しあった。
+equilibrium|n|The market returned to *equilibrium* after the sudden change.|急な変化の後、市場は均衡に戻った。
+creditor|n|The bank is the largest *creditor* of the firm.|その銀行は、その会社の最大の債権者だ。
+derivative|n|A *derivative* gets its value from another asset.|デリバティブは、ほかの資産から価値が決まる。
+incur|v|You may *incur* a fee if you cancel the order.|注文を取り消すと、手数料がかかることがある。
+annuity|n|The *annuity* pays her a fixed amount every year.|その年金は、彼女に毎年一定の額を支払う。
+regime|n|Companies must follow the strict rules of the new *regime*.|企業は新しい制度の厳しい規則に従わなければならない。
+contradict|v|Your answer seems to *contradict* the company's policy.|あなたの答えは会社の方針に反しているように思える。
+coalition|n|The two companies formed a *coalition* to fight the new rule.|その2社は新しい規則に対抗するために連合を組んだ。
+liquidity|n|Low *liquidity* can make it hard to sell shares quickly.|流動性が低いと、株をすぐに売るのが難しくなる。
+stockholder|n|The *stockholders* voted to approve the new plan.|株主たちは新しい計画を承認するために投票した。
+regulator|n|A government *regulator* approved the new drug.|政府の規制当局がその新薬を承認した。
+par|n|The share price is now below *par*.|株価は今、額面を下回っている。
+bankruptcy|n|Many workers lost their jobs after the *bankruptcy*.|その倒産のあと、多くの従業員が仕事を失った。
+explanatory|adj|The manual has an *explanatory* section on how to log in.|そのマニュアルには、ログイン方法の説明の項がある。
+monopoly|n|The government wants to break up the *monopoly*.|政府はその独占企業を分割したいと考えている。
+correlation|n|There is no clear *correlation* between price and quality.|価格と品質の間に、はっきりした関連はない。
+corruption|n|The new law is meant to stop *corruption* in business.|その新しい法律は、ビジネスでの汚職をなくすためのものだ。
+issuer|n|The credit card *issuer* sent me a new card.|クレジットカードの発行会社が新しいカードを送ってくれた。
+respondent|n|Most *respondents* said they would buy the product again.|回答者の大半が、その商品をまた買うと答えた。
+takeover|n|Workers feared they would lose their jobs after the *takeover*.|従業員は買収のあとで職を失うことを心配した。
+coefficient|n|Add the *coefficient* to the formula in this cell.|このセルの式に係数を加えてください。
+debtor|n|The bank sent a letter to the *debtor* last week.|銀行は先週、その債務者に手紙を送った。
+payoff|n|The *payoff* from the new system was worth the cost.|その新しいシステムから得た利益は費用に見合うものだった。
+marketer|n|Smart *marketers* study what their customers want.|賢いマーケティング担当者は、顧客が何を求めているかを調べる。
+statute|n|Under the *statute*, workers must be paid for overtime.|その法令では、従業員は残業代を支払われなければならない。
+arbitrage|n|*Arbitrage* works by buying cheap and selling at a higher price.|裁定取引は、安く買って高く売ることで成り立つ。
+defendant|n|The judge asked the *defendant* to stand.|裁判官は被告に立つように言った。
+warrant|n|The bond came with a *warrant* to buy shares later.|その債券には、後で株を買える新株予約権がついていた。
+referendum|n|Voters rejected the plan in a *referendum* last month.|有権者は先月の住民投票でその計画を拒否した。
+treaty|n|The *treaty* lowers taxes on imported goods.|その条約は輸入品にかかる税を引き下げる。
+plaintiff|n|The *plaintiff* asked the court for ten thousand dollars.|原告は裁判所に1万ドルを求めた。
+lobby|v|The group will *lobby* lawmakers to change the rule.|そのグループは規則を変えるよう議員に働きかける予定だ。
+taxable|adj|Some gifts from companies are not *taxable*.|会社からの贈り物には、課税されないものもある。
+inflow|n|The company needs a steady *inflow* of new customers.|その会社には、新しい顧客が安定して入ってくることが必要だ。
+pledge|v|Several firms *pledged* to give money to the project.|数社がそのプロジェクトに資金を出すと約束した。
+convertible|adj|This currency is not *convertible* into dollars.|この通貨はドルに交換できない。
+presidency|n|She hopes to win the *presidency* of the trade group.|彼女はその業界団体の会長職を得たいと思っている。
+soar|v|Profits are expected to *soar* next year.|利益は来年、急増すると見込まれている。
+goodwill|n|A quick apology can build *goodwill* with customers.|すぐに謝れば、顧客との好意的な関係を築ける。
+insider|n|Using *insider* information to buy stock is illegal.|内部情報を使って株を買うのは違法だ。
+privatization|n|Many workers opposed the *privatization* of the post office.|多くの職員が郵便局の民営化に反対した。
+tactic|n|The team discussed a new *tactic* to win more customers.|チームは、より多くの顧客を獲得する新しい戦術を話し合った。
+illogical|adj|It is *illogical* to spend more than you earn.|稼ぐ以上に使うのは筋が通らない。
+accordance|n|Please fill out the form in *accordance* with these steps.|これらの手順に従ってその用紙に記入してください。
+parliamentary|adj|The company hired a lawyer to follow *parliamentary* debates.|その会社は議会の議論を追うために弁護士を雇った。
+activist|n|*Activists* gathered outside the company's office.|活動家たちが会社の事務所の外に集まった。
+node|n|If one *node* fails, the system can still work.|1つのノードが故障しても、システムは動き続けられる。
+charter|n|The *charter* says that members must pay dues each year.|その憲章には、会員は毎年会費を払うと書かれている。
+citation|n|Please add a *citation* to the source of this chart.|このグラフには、出典を示す引用を加えてください。
+lessee|n|The *lessee* signed a three-year lease for the office.|借り主はそのオフィスについて3年の賃貸契約を結んだ。
+rally|n|The market *rally* helped many investors recover their losses.|相場の反発のおかげで、多くの投資家が損失を取り戻した。
+globalization|n|Many small firms are worried about *globalization*.|多くの中小企業がグローバル化を心配している。
+violate|v|Employees who *violate* the rules may lose their jobs.|規則に違反した従業員は、職を失うことがある。
+elasticity|n|High price *elasticity* means sales drop when prices rise.|価格弾力性が高いと、値上げしたときに売上が落ちる。
+payout|n|Investors expect a bigger *payout* this year.|投資家は今年、より多い配当を期待している。
+suppress|v|The firm tried to *suppress* the bad news.|その会社は悪いニュースを隠そうとした。
+electoral|adj|Stocks fell ahead of the *electoral* results.|選挙結果の発表を前に、株価が下がった。
+outsider|n|The board chose an *outsider* as the new CEO.|取締役会は新しいCEOに外部の人を選んだ。
+observer|n|Industry *observers* say the merger will go ahead.|業界の観測筋は、その合併は進むだろうと言っている。
+ethics|n|The class teaches business *ethics* to new managers.|その講座は新任の管理職にビジネス倫理を教える。
+collective|adj|The team's *collective* effort led to a great result.|チーム全員の努力が、すばらしい結果につながった。
+precede|v|Several meetings *preceded* the final decision.|最終決定の前に、いくつかの会議があった。
+offshore|adj|The company moved its customer service to an *offshore* center.|その会社はカスタマーサービスを海外の拠点に移した。
+reimburse|v|Please send us the receipts so we can *reimburse* you.|払い戻しのために領収書をお送りください。
+politically|adv|The plan is *politically* risky, but good for business.|その計画は政治的には危険だが、事業にはよい。
+hostile|adj|The manager was *hostile* to the new idea.|その部長は新しい考えに敵意を示した。
+luncheon|n|The sales team will attend the *luncheon* at noon.|営業チームは正午の昼食会に出席する。
+gamble|v|The firm decided to *gamble* on a new product.|その会社は新製品に賭けることにした。
+norm|n|Remote work is now the *norm* at many companies.|リモートワークは今や多くの会社で普通のことだ。
+squeeze|v|We had to *squeeze* the budget to pay for the project.|そのプロジェクトのために予算を切り詰めなければならなかった。
+ultimate|adj|The *ultimate* decision belongs to the president.|最終的な決定は社長にある。
+quota|n|Each factory has a *quota* for how many units it can make.|それぞれの工場には、作れる台数の割り当てがある。
+trustee|n|A *trustee* was chosen to handle the company's debts.|その会社の借金を処理する管財人が選ばれた。
+frontier|n|The company is at the *frontier* of battery research.|その会社は電池研究の最先端にいる。
+unattended|adj|An *unattended* package was found in the lobby.|ロビーで持ち主のわからない荷物が見つかった。
+capitalism|n|The professor teaches the history of *capitalism*.|その教授は資本主義の歴史を教えている。
+boardroom|n|There is a large table in the *boardroom*.|役員会議室には大きなテーブルがある。
+caterer|n|The *caterer* will bring the food at noon.|ケータリング業者は正午に料理を届ける。
+capitalization|n|Small *capitalization* stocks can be risky.|時価総額の小さい株は危険が大きいことがある。
+diplomat|n|The company invited a *diplomat* to speak at the event.|その会社は外交官をイベントの講演に招いた。
+malfunction|n|Please report any *malfunction* to the IT desk.|不具合があれば、ITデスクに知らせてください。
+lessor|n|The *lessor* owns the building and collects the rent.|貸し主はその建物を所有し、賃料を受け取る。
+assurance|n|We need *assurance* that the payment will arrive on Monday.|支払いが月曜日に届くという保証がほしい。
+coordinator|n|She works as a project *coordinator* at a design firm.|彼女はデザイン会社でプロジェクトの調整役として働いている。
+exporter|n|Japan is a large *exporter* of electronics.|日本は電子機器の大きな輸出国だ。
+prosecutor|n|The *prosecutor* showed the court the bank records.|検察官は裁判所に銀行の記録を示した。
+excursion|n|The team enjoyed a one-day *excursion* to the mountains.|チームは山への日帰りの小旅行を楽しんだ。
+inexperience|n|She lost the job because of her *inexperience*.|経験が足りなくて、彼女はその仕事を逃した。
+slump|n|The company is trying to recover from a long *slump*.|その会社は長い不振から立ち直ろうとしている。
+lengthy|adj|Please avoid *lengthy* emails and get to the point.|長いメールは避けて、要点を書いてください。
+adjacent|adj|The meeting is in the room *adjacent* to the lobby.|会議はロビーの隣の部屋で行われる。
+alternate|adj|We use *alternate* routes when the main road is closed.|主要道路が閉鎖されたときは、代わりの道を使う。
+issuance|n|The company stopped the *issuance* of credit cards.|その会社はクレジットカードの発行を止めた。
+escort|v|Please *escort* our guests to the front door.|お客様を玄関までお連れください。
+capitalist|n|Some *capitalists* are looking for a quick profit.|短期の利益を狙う資本家もいる。
+capitalize|v|We should *capitalize* on the growing demand for our product.|増えている製品の需要を生かすべきだ。
+differential|n|The price *differential* between the two products is small.|その2つの商品の価格差は小さい。
+amortization|n|*Amortization* lowers the value of an asset over time.|償却により、資産の価値は時間とともに減っていく。
+spokesperson|n|The *spokesperson* said the report was wrong.|広報担当者は、その報告は間違っていると述べた。
+elite|adj|She joined an *elite* team of sales managers.|彼女は営業部長のエリートチームに加わった。
+faulty|adj|A *faulty* switch caused the system to stop.|欠陥のあるスイッチが原因で、システムが止まった。
+demographic|n|This product appeals to the older *demographic*.|この商品は高齢の層に受けがよい。
+misplace|v|Please do not *misplace* the key to the storage room.|倉庫の鍵をなくさないでください。
+stimulus|n|A sale can be a *stimulus* for slow sales.|セールは、伸びない売上への刺激になりうる。
+remodel|v|They plan to *remodel* the office to add more desks.|机を増やすため、彼らはオフィスを改装する予定だ。
+senator|n|The *senator* wants to lower taxes for small firms.|その上院議員は中小企業の税を下げたいと考えている。
+opt|v|You can *opt* out of the email list at any time.|メールの配信は、いつでも停止を選べる。
+auditorium|n|About five hundred employees filled the *auditorium*.|約500人の従業員が講堂をいっぱいにした。
+exemption|n|The company asked for an *exemption* from the new rule.|その会社は新しい規則の適用免除を求めた。
+macroeconomic|adj|Changes in *macroeconomic* policy affect small firms.|マクロ経済政策の変化は、中小企業に影響する。
+concession|n|The supplier offered a price *concession* to keep our business.|仕入れ先は、取引を続けるために値引きの譲歩をしてきた。
+contingent|adj|Payment is *contingent* upon the delivery of the goods.|支払いは、商品の納品が条件になっている。
+pharmaceutical|adj|The *pharmaceutical* industry spends a lot on research.|製薬業界は研究に多くの費用をかけている。
+administer|v|Who *administers* the company's online training system?|会社のオンライン研修システムは誰が管理していますか？
+automate|v|Many banks *automate* simple tasks like sending payment reminders.|多くの銀行は、支払いの督促通知の送付のような簡単な作業を自動化しています。
+repurchase|v|The firm will *repurchase* the bonds before they expire.|その会社は満期になる前に社債を買い戻す予定です。
+proofread|v|I always *proofread* my reports twice to find spelling mistakes.|私は綴りの誤りを見つけるため、報告書を必ず2回読み直して直します。
+denote|v|The letters "Q1" *denote* the first quarter of the year.|「Q1」という文字は、年の第1四半期を表します。
+inequality|n|Income *inequality* has become a serious problem in many countries.|所得の格差は、多くの国で深刻な問題になっています。
+plunge|v|Sales *plunged* by thirty percent during the economic crisis.|経済危機の間に、売上は30パーセント急落しました。
+vacant|adj|We have a *vacant* office on the third floor.|3階に空いている事務所が1つあります。
+horizontal|adj|Draw a *horizontal* line across the middle of the slide.|スライドの真ん中に水平な線を引いてください。
+installment|n|The first *installment* is due at the end of this month.|最初の分割払いの支払期限は今月末です。
+empirical|adj|The report is based on *empirical* research with over 500 customers.|その報告書は、500人以上の顧客に対する実証的な調査に基づいています。
+revive|v|The company tried to *revive* sales with a new advertising campaign.|その会社は新しい広告キャンペーンで売上を回復させようとしました。
+engagement|n|Our goal is to increase customer *engagement* on social media.|私たちの目標は、ソーシャルメディアでの顧客のエンゲージメントを高めることです。
+array|n|We have an *array* of options for your next business trip.|次の出張には、さまざまな選択肢をご用意しています。
+ballot|n|The board members voted by secret *ballot*.|取締役たちは無記名投票で票を投じました。
+treasury|n|She works in the *treasury* team at a large bank.|彼女は大手銀行の財務チームで働いています。
+intermediary|n|We sell our products through an *intermediary* in Asia.|私たちはアジアの仲介業者を通じて製品を販売しています。
+hierarchy|n|Everyone must follow the *hierarchy* when asking for approval.|承認を求めるときは、全員が序列に従わなければなりません。
+widen|v|The gap between the two companies continues to *widen*.|2社の差は広がり続けています。
+qualitative|adj|The report includes both numbers and *qualitative* feedback.|その報告書には、数字と質的なフィードバックの両方が含まれています。
+apprentice|n|The company hires an *apprentice* every spring to train.|その会社は毎年春に、訓練のために見習いを1人採用します。
+oblige|v|Bad weather *obliged* the company to close the store early.|悪天候のため、会社は店を早く閉めざるを得ませんでした。
+curb|v|New rules were made to *curb* the use of paper.|紙の使用を抑えるために、新しい規則が作られました。
+outlet|n|You can buy last year's models at the factory *outlet*.|昨年のモデルは、工場直営店で買えます。
+robust|adj|We need a *robust* system that can handle many users.|私たちには、多くの利用者を処理できる頑丈なシステムが必要です。
+brokerage|n|The *brokerage* charges a small fee for each trade.|その証券会社は、取引ごとに少額の手数料を取ります。
+devise|v|She *devised* a simple way to track customer orders.|彼女は顧客の注文を記録する簡単な方法を考案しました。
+speculation|n|The bank lost money through *speculation* in the stock market.|その銀行は株式市場での投機で損をしました。
+incremental|adj|The company expects *incremental* growth over the next three years.|会社は今後3年間、緩やかな成長を見込んでいます。
+subsidize|v|Our company *subsidizes* lunch for all employees.|私たちの会社は、全従業員の昼食費を補助しています。
+assert|v|She *asserted* her opinion clearly during the meeting.|彼女は会議中、自分の意見をはっきりと主張しました。
+underwrite|v|Insurance companies *underwrite* the risk of fire and theft.|保険会社は、火事や盗難の危険を引き受けます。
+differentiate|v|It is hard to *differentiate* between the two brands.|その2つのブランドを区別するのは難しいです。
+correlate|v|Customer satisfaction *correlates* strongly with repeat purchases.|顧客満足度は、リピート購入と強く相関しています。
+compel|v|Falling sales *compelled* us to cut our budget.|売上の減少により、私たちは予算を削らざるを得ませんでした。
+transmission|n|There was an error during the *transmission* of the file.|ファイルの送信中にエラーが起きました。
+multiplier|n|The analyst used a *multiplier* of five to estimate the value.|アナリストは価値を見積もるために5倍の倍率を使いました。
+unspecified|adj|The meeting will be held at an *unspecified* time next week.|会議は来週の、まだ決まっていない時間に開かれます。
+slowdown|n|An economic *slowdown* made many firms stop hiring.|景気の減速で、多くの会社が採用をやめました。
+adverse|adj|The company must report any *adverse* changes in its finances.|会社は財務状況の不利な変化をすべて報告しなければなりません。
+bureaucracy|n|Getting a business license involves a lot of *bureaucracy*.|事業許可を取るには、たくさんのお役所手続きが必要です。
+threshold|n|Sales passed the million-dollar *threshold* in June.|売上は6月に100万ドルの大台を超えました。
+timely|adj|A *timely* report helps managers make better decisions.|時機を得た報告は、管理職がより良い判断をするのに役立ちます。
+wholesale|n|*Wholesale* prices are lower than prices in stores.|卸売価格は、店頭の価格より安いです。
+legitimate|adj|Make sure you buy from a *legitimate* business.|必ず正規の業者から買うようにしてください。
+behavioral|adj|A *behavioral* interview asks how you acted in past situations.|行動面接では、過去の場面でどう行動したかを質問します。
+tangible|adj|Buildings and machines are *tangible* assets.|建物や機械は有形資産です。
+documentation|n|The software comes with clear *documentation* for new users.|そのソフトには、新しい利用者向けのわかりやすい資料が付いています。
+discharge|v|The firm must *discharge* its duty to pay all its debts.|その会社はすべての借金を返すという義務を果たさなければなりません。
+explicit|adj|The contract has an *explicit* rule about late payments.|契約書には、支払い遅延についての明確な規定があります。
+breakdown|n|The report includes a *breakdown* of sales by region.|報告書には地域別の売上の内訳が載っています。
+span|n|The training covers a wide *span* of topics.|その研修は幅広い話題を扱います。
+incumbent|adj|The *incumbent* chairman is running for the board again.|現職の会長は、再び取締役に立候補します。
+influential|adj|An *influential* customer recommended our service to others.|影響力のある顧客が、私たちのサービスを他の人たちに勧めてくれました。
+rehearse|v|Let's *rehearse* the sales pitch once more tomorrow.|明日、もう一度売り込みの練習をしましょう。
+outflow|n|The *outflow* of skilled workers is a problem for us.|熟練した従業員の流出は、私たちにとって問題です。
+albeit|conj|Sales grew last year, *albeit* slowly.|売上は、ゆっくりではあるが昨年伸びました。
+spokesman|n|The *spokesman* answered questions from the news reporters.|広報担当者は報道記者たちの質問に答えました。
+contingency|n|We need a *contingency* plan in case the supplier closes.|仕入先が閉鎖した場合に備えて、非常時の計画が必要です。
+judicial|adj|A *judicial* decision will be made by the end of the year.|司法の判断は年末までに出されます。
+mainstream|adj|The product started small but became *mainstream* quickly.|その製品は小さく始まりましたが、すぐに主流になりました。
+corrupt|adj|A *corrupt* official took money from the company.|不正を働いた役人が、その会社から金を受け取りました。
+integrity|n|The auditor is known for her *integrity*.|その監査人は誠実さで知られています。
+elegant|adj|We held the dinner in an *elegant* hotel ballroom.|私たちはその夕食会を、優雅なホテルの宴会場で開きました。
+proposition|n|Our value *proposition* is simple: low prices and fast delivery.|私たちの提供価値は単純で、低価格と迅速な配達です。
+litigation|n|*Litigation* can be expensive and take a long time.|訴訟は費用がかかり、長い時間がかかることがあります。
+amid|prep|Sales rose *amid* strong demand for the new model.|新型モデルへの強い需要の中で、売上が伸びました。
+generic|adj|*Generic* drugs are cheaper than brand name drugs.|ジェネリック薬は、ブランド薬より安いです。
+straightforward|adj|She gave a *straightforward* answer to the customer's question.|彼女は顧客の質問に分かりやすく答えました。
+handful|n|A *handful* of customers asked for a refund.|ごく少数の客が返金を求めました。
+layout|n|The *layout* of the website is clean and simple.|そのウェブサイトのレイアウトは、すっきりして簡単です。
+unchanged|adj|The meeting time is *unchanged*, so please arrive at nine.|会議の時間は変わらないので、9時に来てください。
+bidder|n|Three *bidders* sent their offers before the deadline.|3社の入札者が締め切り前に見積りを提出しました。
+respective|adj|Each team will report on its *respective* projects.|各チームはそれぞれのプロジェクトについて報告します。
+renown|n|She gained *renown* as an expert in marketing.|彼女はマーケティングの専門家として名声を得ました。
+deliverable|n|Please list all the *deliverables* in the contract.|契約書にあるすべての成果物を一覧にしてください。
+depict|v|The advertisement *depicts* a happy family using our product.|その広告は、私たちの製品を使う幸せな家族を描いています。
+odds|n|Against the *odds*, the small firm survived the crisis.|見込みが低い中、その小さな会社は危機を乗り越えました。
+lifetime|n|Our goal is to increase the *lifetime* value of each customer.|私たちの目標は、顧客1人あたりの生涯価値を高めることです。
+allegation|n|The firm denied the *allegations* in a short statement.|その会社は短い声明で疑惑を否定しました。
+redemption|n|Points can be used for *redemption* at any of our stores.|ポイントは、どの店舗でも引き換えに使えます。
+advancement|n|Good results can lead to *advancement* within the company.|良い成果は、社内での昇進につながることがあります。
+alternatively|adv|We can meet on Monday. *Alternatively*, we can talk by phone.|月曜日にお会いできます。あるいは、電話で話すこともできます。
+depreciate|v|The firm *depreciates* its machines over ten years.|その会社は機械を10年かけて減価償却します。
+interface|n|The *interface* of the app was designed for older users.|そのアプリのインターフェースは、年配の利用者向けに設計されました。
+hybrid|adj|The *hybrid* meeting included people in the room and online.|そのハイブリッド会議には、会場にいる人とオンラインの人が参加しました。
+foster|v|We hope to *foster* new ideas through open discussion.|私たちは自由な議論を通じて、新しい考えを育てたいと思っています。
+concierge|n|Ask the *concierge* if you need help with your trip.|旅行で助けが必要なら、コンシェルジュに聞いてください。
+inevitably|adv|Costs will *inevitably* rise if we expand the business.|事業を拡大すれば、費用は必然的に増えます。
+dilemma|n|We are in a *dilemma* because both options have risks.|どちらの選択肢にも危険があり、私たちはジレンマに陥っています。
+deck|n|Please check the *deck* before the client meeting.|顧客との会議の前に、そのスライド資料を確認してください。
+cease|v|The company *ceased* trading after it ran out of money.|その会社はお金が尽きて、営業をやめました。
+withhold|v|The company *withholds* tax from each paycheck.|会社は給料のたびに税金を源泉徴収します。
+familiarize|v|The training will *familiarize* new staff with our rules.|研修は、新しい従業員に私たちの規則を理解させます。
+legacy|adj|We are slowly replacing our *legacy* software.|私たちは旧式のソフトを少しずつ入れ替えています。
+thrive|v|The company continues to *thrive* in a tough market.|その会社は厳しい市場でも栄え続けています。
+autonomy|n|Employees work better when they have some *autonomy*.|従業員は、ある程度の自主性があるほうがよく働きます。
+accountability|n|We need more *accountability* in how we spend money.|私たちには、お金の使い方についてもっと説明責任が必要です。
+incorporation|n|The *incorporation* of customer feedback improved our product.|顧客の意見を取り入れたことで、私たちの製品は良くなりました。
+equip|v|The training will *equip* staff with useful skills.|その研修は、従業員に役立つ技能を身につけさせます。
+termination|n|The letter explains the *termination* of his employment.|その手紙は、彼の雇用の終了について説明しています。
+tuition|n|The *tuition* for the evening program is high.|その夜間プログラムの授業料は高いです。
+unveil|v|The CEO *unveiled* the plan at the annual meeting.|最高経営責任者は年次総会でその計画を発表しました。
+intrinsic|adj|Trust is an *intrinsic* part of any good business.|信頼は、あらゆる良い事業に欠かせない本質的な部分です。
+computation|n|A mistake in the *computation* made the total wrong.|計算の誤りで、合計が間違っていました。
+diplomatic|adj|It is better to be *diplomatic* when you disagree with your boss.|上司と意見が合わないときは、角が立たないようにするのが賢明です。
+appendix|n|Please see the *appendix* for the price list.|価格表は付録をご覧ください。
+advisory|adj|We offer *advisory* services to small businesses.|私たちは小さな会社に助言を行うサービスを提供しています。
+modification|n|Any *modification* of the plan needs the manager's approval.|計画の変更はどんなものでも、部長の承認が必要です。
+customize|v|We *customize* each product for our business clients.|私たちは法人のお客様向けに、製品を1つ1つ注文に合わせて作っています。
+formerly|adv|The company, *formerly* a small shop, now has fifty stores.|その会社は以前は小さな店でしたが、今では50店舗あります。
+dedication|n|Her *dedication* to the customers earned her a promotion.|顧客への熱意が認められて、彼女は昇進しました。
+optimization|n|Cost *optimization* is a top goal for the company this year.|費用の最適化は、今年の会社の最優先目標です。
+diagnose|v|We need to *diagnose* why sales are falling.|なぜ売上が落ちているのか、原因を突き止める必要があります。
+economize|v|The company *economized* by using less paper.|その会社は紙の使用を減らして節約しました。
+magnitude|n|We did not understand the *magnitude* of the problem.|私たちは問題の大きさを理解していませんでした。
+validity|n|The team questioned the *validity* of the survey results.|チームは調査結果の妥当性に疑問を持ちました。
+considerably|adv|The new model is *considerably* cheaper than the old one.|新モデルは旧モデルよりかなり安いです。
+intervene|v|The government may *intervene* to protect small businesses.|政府は小さな会社を守るために介入するかもしれません。
+inclusive|adj|We want to build an *inclusive* workplace for everyone.|私たちは誰もが働きやすい職場を作りたいと考えています。
+halt|v|Trading was *halted* for an hour after the news.|そのニュースの後、取引は1時間停止されました。
+introductory|adj|She attended an *introductory* course on accounting.|彼女は会計の入門講座に参加しました。
+niche|n|The firm sells to a small but loyal *niche* of customers.|その会社は、小さいけれど忠実なニッチ層の顧客に販売しています。
+whereby|adv|The company has a policy *whereby* staff can work from home.|その会社には、従業員が在宅で働ける方針があります。
+median|n|The *median* is often more useful than the average.|中央値は、平均より役に立つことがよくあります。
+sufficiently|adv|Please check that the room is *sufficiently* large.|その部屋が十分に広いか確認してください。
+protocol|n|The company has a strict *protocol* for handling complaints.|その会社には苦情を扱う厳しい決まりがあります。
+punctual|adj|He is always *punctual* for meetings.|彼は会議にいつも時間どおりに来ます。
+constrain|v|Strict rules *constrain* how banks can lend money.|厳しい規則が、銀行の貸し出し方法を制限しています。
+publicity|n|Good *publicity* can bring more customers to our shop.|良い宣伝は、私たちの店により多くの客を呼べます。
+embed|v|We try to *embed* safety into everything we do.|私たちは、行うすべてのことに安全を組み込むよう努めています。
+beneficial|adj|Regular training is *beneficial* for both staff and the company.|定期的な研修は、従業員にも会社にも有益です。
+predictable|adj|A *predictable* income makes it easy to plan ahead.|予測できる収入があると、先の計画を立てやすいです。
+liquidation|n|The *liquidation* of assets will pay back the loans.|資産の現金化によって、借入れは返済されます。
+tailor|v|Please *tailor* your presentation to the audience.|聴衆に合わせて、プレゼンを調整してください。
+impairment|n|An *impairment* loss reduces the value of an asset.|減損損失は、資産の価値を減らします。
+fluctuate|v|Our sales tend to *fluctuate* with the seasons.|売上は季節によって変動しがちです。
+authentic|adj|We only sell *authentic* products from the official makers.|私たちは正規メーカーの本物の製品だけを販売しています。
+macroeconomics|n|*Macroeconomics* studies the whole economy of a country.|マクロ経済学は、一国の経済全体を研究します。
+preliminary|adj|We held a *preliminary* meeting before the main talks.|私たちは本交渉の前に予備の会合を開きました。
+accrual|n|The accountant recorded the *accrual* for unpaid bills.|経理担当者は、未払いの請求書について未払い計上を記録しました。
+cosmetic|adj|The company makes *cosmetic* products for young women.|その会社は若い女性向けの化粧品を作っています。
+confront|v|Many small firms *confront* rising costs.|多くの小さな会社が、上がり続ける費用に直面しています。
+courtesy|n|It is a *courtesy* to reply to every email.|すべてのメールに返信するのは礼儀です。
+conditional|adj|He received a *conditional* approval from the board.|彼は取締役会から条件付きの承認を受けました。
+grid|n|The schedule is shown in a *grid* of days and times.|予定は、日と時間の表で示されています。
+hotline|n|The company set up a *hotline* for employees to report concerns.|会社は、従業員が不安を報告できるホットラインを設けました。
+wholly|adv|I am not *wholly* happy with the draft of the contract.|私は契約書の草案に完全には満足していません。
+bondholder|n|The company must pay back every *bondholder* in ten years.|その会社は10年後に、すべての債券保有者に返済しなければなりません。

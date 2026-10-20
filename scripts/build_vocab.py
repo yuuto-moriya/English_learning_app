@@ -6,9 +6,11 @@
   data-src/lists/ngsl.csv        NGSL 1.2 (CC BY-SA 4.0, Browne, Culligan & Phillips)
   data-src/lists/business.csv    BSL 1.2 / TSL 1.2 (CC BY-SA 4.0)
   data-src/vocab/*.txt           和訳・例文（lemma|pos|ja|例文EN|例文JA）
+  data-src/vocab/more/*.txt      2つ目の例文（lemma|pos|例文EN|例文JA。同じファイル名の語に足す）
   data-src/rail/*.txt            保線用語（en|us|ja|lv|ipa_uk|ipa_us|refs|note|例文EN|例文JA）
   data-src/ipa/en_US.tsv         米音IPA（ipa-dict / cmudict-ipa, MIT）
   data-src/neighbors.tsv         意味の近い語（scripts/build_neighbors.py が WordNet 3.0 から生成）→ near
+  data-src/near-extra.tsv        WordNet で見つからなかった語の、意味の近い語（同じコース・同じ品詞から選んだもの）
 出力:
   src/data/vocab/general.json, business.json, rail.json
 """
@@ -104,6 +106,9 @@ OVERRIDE_US = {
     "printer": "ˈprɪntɚ", "center": "ˈsɛntɚ", "interface": "ˈɪntɚˌfeɪs", "neural": "ˈnʊrəl",
     "tissue": "ˈtɪʃuː", "saturday": "ˈsætɚdeɪ", "email": "ˈiːmeɪl", "between": "bɪˈtwiːn", "often": "ˈɔfən",
     "beyond": "bɪˈjɑnd", "eventually": "ɪˈvɛntʃuəli", "forget": "fɚˈɡɛt",
+    # 辞書にない語（CEFR-J の追加語）
+    "snowboarding": "ˈsnoʊˌbɔrdɪŋ", "stomachache": "ˈstʌməkˌeɪk", "toothache": "ˈtuːθˌeɪk", "earache": "ˈɪrˌeɪk",
+    "antonym": "ˈæntəˌnɪm", "phrasal": "ˈfreɪzəl", "preposition": "ˌprɛpəˈzɪʃən",
 }
 
 # 品詞で発音が変わる語（名詞と動詞で強勢や音が違う）。辞書の最初の発音が別の品詞のものを直す
@@ -355,6 +360,26 @@ def read_pipe(path: Path, ncols: int) -> list[list[str]]:
     return rows
 
 
+def more_examples(path: Path) -> dict[tuple[str, str], list[dict[str, str]]]:
+    """2つ目以降の例文（data-src/vocab/more/<同じファイル名>：lemma|品詞|例文(英)|例文(和)）。
+    はじめて学ぶときのカードには1つ目だけを出し、2つ目は問題の「新しい文脈」（使い分け・穴埋め）に使う"""
+    more = SRC / "vocab" / "more" / path.name
+    out: dict[tuple[str, str], list[dict[str, str]]] = {}
+    if not more.exists():
+        return out
+    for lemma, pos, en, jx in read_pipe(more, 4):
+        en2, ok = ensure_marked(en, lemma)
+        if not ok:
+            print(f"[WARN] 2つ目の例文に見出し語がない: {lemma}: {en}", file=sys.stderr)
+            continue
+        out.setdefault((lemma.lower(), pos), []).append({"en": en2, "ja": jx})
+    return out
+
+
+# NGSL のグループごとの頻度順位の範囲（general-N-plus.txt の語の順位の目安に使う）
+NGSL_SPAN = {1: (1, 500), 2: (500, 1000), 3: (1000, 2000), 4: (2000, 2800)}
+
+
 def build_general_business(ipa: dict[str, str]):
     warnings = 0
     # 一般（NGSL）
@@ -365,11 +390,16 @@ def build_general_business(ipa: dict[str, str]):
     cefrj = load_cefrj()
     general = []
     seen = set()
-    for lvl in (1, 2, 3, 4):
-        path = SRC / "vocab" / f"general-{lvl}.txt"
+    # general-N.txt（NGSL のグループ N）と、general-N-plus.txt（NGSL にない CEFR-J の語。N は CEFR-J のレベル）
+    paths = [p for lvl in (1, 2, 3, 4) for p in (SRC / "vocab" / f"general-{lvl}.txt", SRC / "vocab" / f"general-{lvl}-plus.txt")]
+    for path in paths:
         if not path.exists():
             continue
-        for lemma, pos, ja, en, jx in read_pipe(path, 5):
+        lvl = int(path.stem.split("-")[1])
+        plus = path.stem.endswith("-plus")
+        more = more_examples(path)
+        rows = read_pipe(path, 5)
+        for k, (lemma, pos, ja, en, jx) in enumerate(rows):
             key = lemma.lower()
             if key in seen:
                 print(f"[WARN] 重複: {lemma}", file=sys.stderr)
@@ -380,6 +410,10 @@ def build_general_business(ipa: dict[str, str]):
                 warnings += 1
                 print(f"[WARN] 例文に見出し語がない: {lemma}: {en}", file=sys.stderr)
             group, rank = ngsl.get(key, (lvl, 9999))
+            if plus and key not in ngsl:
+                # NGSL にない語は頻度の順位がないので、同じレベルの NGSL の語の順位の範囲に均等に混ぜる
+                lo, hi = NGSL_SPAN.get(lvl, (1, 2800))
+                rank = int(lo + (hi - lo) * (k + 0.5) / max(1, len(rows)))
             item = {
                 "id": f"g-{slug(lemma)}",
                 "w": lemma,
@@ -389,7 +423,7 @@ def build_general_business(ipa: dict[str, str]):
                 "cat": "general",
                 "ipa": us_ipa(lemma, ipa, pos),
                 "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
-                "ex": [{"en": en2, "ja": jx}],
+                "ex": [{"en": en2, "ja": jx}, *more.get((key, pos), [])],
                 "rank": rank,
             }
             general.append({k: v for k, v in item.items() if v is not None})
@@ -402,6 +436,7 @@ def build_general_business(ipa: dict[str, str]):
     business = []
     for path in sorted((SRC / "vocab").glob("business-*.txt")):
         lvl = int(path.stem.split("-")[1])
+        more = more_examples(path)
         for lemma, pos, ja, en, jx in read_pipe(path, 5):
             key = lemma.lower()
             if key in seen:
@@ -425,7 +460,7 @@ def build_general_business(ipa: dict[str, str]):
                 "cat": "business",
                 "ipa": us_ipa(lemma, ipa, pos),
                 "say": us_ipa(lemma, ipa, pos) if key in HOMOGRAPHS else None,
-                "ex": [{"en": en2, "ja": jx}],
+                "ex": [{"en": en2, "ja": jx}, *more.get((key, pos), [])],
                 "rank": rank,
                 "refs": [source],
             }
@@ -440,6 +475,7 @@ def build_it(ipa: dict[str, str], taken: set[str]):
     warnings = 0
     for path in sorted((SRC / "vocab").glob("it-*.txt")):
         lvl = int(path.stem.split("-")[1])
+        more = more_examples(path)
         rows = []
         with open(path, encoding="utf-8") as f:
             for no, line in enumerate(f, 1):
@@ -471,7 +507,7 @@ def build_it(ipa: dict[str, str], taken: set[str]):
                 "lv": lvl,
                 "cat": "it",
                 "ipa": ipa_override or us_ipa(lemma, ipa, pos),
-                "ex": [{"en": en2, "ja": jx}],
+                "ex": [{"en": en2, "ja": jx}, *more.get((key, pos), [])],
             }
             it.append({k: v for k, v in item.items() if v is not None})
     return it, warnings
@@ -550,6 +586,14 @@ def load_neighbors() -> dict[str, list[str]]:
             continue
         wid, ids = line.split("\t")
         out[wid] = ids.split(",")
+    # WordNet で近い語が見つからなかった語（形容詞・副詞・ビジネス・IT の用語など）は、手で選んだ近い語を使う
+    extra = SRC / "near-extra.tsv"
+    if extra.exists():
+        for line in extra.read_text(encoding="utf-8").splitlines():
+            if not line.strip() or line.startswith("#"):
+                continue
+            wid, ids = line.split("\t")
+            out.setdefault(wid, [i.strip() for i in ids.split(",") if i.strip()])
     return out
 
 

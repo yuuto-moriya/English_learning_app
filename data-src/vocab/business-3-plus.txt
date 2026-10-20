@@ -1,0 +1,70 @@
+# ビジネス（BSL/TSL の追加語）レベル3
+sincerely|adv|心から；（手紙の結びで）敬具|I *sincerely* apologize for the mistake in your order.|ご注文の誤りについて心からお詫びいたします。
+economist|n|経済学者；エコノミスト|The *economist* said prices would rise next year.|そのエコノミストは、来年は物価が上がると言った。
+media|n|報道機関；マスコミ；媒体|The *media* reported on the company's new product today.|報道機関は今日、その会社の新製品について伝えた。
+seller|n|売り手；販売者|The *seller* agreed to lower the price by ten percent.|売り手は価格を1割下げることに同意した。
+e-book|n|電子書籍|The company sells its training manual as an *e-book*.|その会社は研修マニュアルを電子書籍として販売している。
+résumé|n|履歴書；職務経歴書|Please send your *résumé* and a cover letter by Friday.|金曜日までに履歴書と添え状をお送りください。
+recession|n|景気後退；不況|Many small companies closed during the *recession*.|不況の間に多くの中小企業が閉店した。
+coupon|n|クーポン券；割引券；（債券の）利札|Show this *coupon* at the register to get ten percent off.|会計でこのクーポンを見せれば1割引になる。
+risky|adj|危険の大きい；リスクの高い|Putting all your money in one stock is *risky*.|全財産を1つの株に入れるのは危険が大きい。
+swap|v|交換する；入れ替える|Can we *swap* shifts on Friday?|金曜日のシフトを替わってもらえますか？
+trader|n|取引業者；トレーダー；商人|The *trader* bought a thousand shares this morning.|そのトレーダーは今朝、1,000株を買った。
+banker|n|銀行員；銀行家|The *banker* explained the terms of the loan.|銀行員はそのローンの条件を説明した。
+scandal|n|不祥事；スキャンダル|The *scandal* hurt the company's image badly.|その不祥事は会社のイメージを大きく傷つけた。
+shrink|v|縮小する；減る；小さくなる|The market for paper products continues to *shrink*.|紙製品の市場は縮小し続けている。
+sharply|adv|急激に；大幅に|Sales fell *sharply* in the second quarter.|第2四半期に売上が急激に落ち込んだ。
+cabinet|n|キャビネット；戸棚；（政府の）内閣|Please put the files back in the *cabinet* after the meeting.|会議のあとは、書類をキャビネットに戻してください。
+ministry|n|省；（政府の）部門|A *ministry* official visited our office today.|省の職員が今日、私たちのオフィスを訪れた。
+multiply|v|掛ける；増える；増やす|If you *multiply* the price by ten, you get the total.|価格に10を掛けると、合計が出る。
+sue|v|訴える；訴訟を起こす|The customer decided to *sue* the company for the damage.|その顧客は損害について会社を訴えることにした。
+weaken|v|弱める；弱まる；低下させる|A high price can *weaken* demand for a product.|価格が高いと、商品への需要が弱まることがある。
+popularity|n|人気；評判|The *popularity* of the new phone surprised the company.|その新しい携帯電話の人気は会社を驚かせた。
+economical|adj|経済的な；節約になる|This printer is more *economical* than the old one.|このプリンターは古いものより経済的だ。
+flyer|n|チラシ；ビラ|We handed out *flyers* for the new store downtown.|私たちは市内の新店舗のチラシを配った。
+automobile|n|自動車|The *automobile* industry employs many workers in this region.|自動車産業はこの地域で多くの人を雇っている。
+showroom|n|ショールーム；展示場|Customers can see the new models in our *showroom*.|お客様は当店のショールームで新型車をご覧になれます。
+finalize|v|最終決定する；仕上げる|We need to *finalize* the budget by Friday.|金曜日までに予算を最終決定する必要がある。
+microphone|n|マイク|Please speak into the *microphone* so everyone can hear.|全員に聞こえるよう、マイクに向かって話してください。
+projector|n|プロジェクター|The *projector* in the meeting room is not working.|会議室のプロジェクターが動かない。
+spacious|adj|広々とした|The new office is bright and *spacious*.|新しいオフィスは明るくて広々としている。
+sender|n|送り主；送信者|The *sender* of this email is not clear.|このメールの送信者がはっきりしない。
+cooperate|v|協力する|Both companies agreed to *cooperate* on the new project.|両社はその新しいプロジェクトで協力することに合意した。
+distract|v|気を散らす；邪魔をする|Noise in the office can *distract* workers.|オフィスの騒音は、従業員の気を散らすことがある。
+hourly|adj|1時間ごとの；時給の|She earns an *hourly* wage of twenty dollars.|彼女は時給20ドルで働いている。
+tray|n|トレイ；書類入れ|Please put the signed forms in the *tray* on my desk.|署名した用紙は、私の机の上のトレイに入れてください。
+yen|n|円（日本の通貨）|The price is ten thousand *yen*.|価格は1万円です。
+anytime|adv|いつでも|Please call me *anytime* if you have questions.|質問があれば、いつでも電話してください。
+badge|n|バッジ；身分証；入館証|Employees must wear a *badge* inside the building.|従業員は建物の中で入館証をつけなければならない。
+reviewer|n|審査員；評論家；レビューを書く人|A *reviewer* checked the report for mistakes.|審査担当者が報告書の間違いを確認した。
+unfamiliar|adj|なじみのない；よく知らない|The software was *unfamiliar* to most of the staff.|そのソフトは、ほとんどの社員にとってなじみがなかった。
+realtor|n|不動産業者|Our *realtor* showed us three office spaces downtown.|不動産業者が、市内の貸しオフィスを3件見せてくれた。
+reopen|v|再開する；もう一度開く|The store will *reopen* next Monday after the repairs.|その店は修理のあと、来週の月曜日に再開する。
+airfare|n|航空運賃|The company pays your *airfare* for business trips.|会社は出張のときの航空運賃を負担する。
+businessperson|n|ビジネスパーソン；実業家|A successful *businessperson* gave a talk to students.|成功したビジネスパーソンが学生に話をした。
+actively|adv|積極的に|The company is *actively* hiring new engineers.|その会社は新しい技術者を積極的に採用している。
+sensible|adj|分別のある；賢明な；理にかなった|Hiring a lawyer was a *sensible* choice.|弁護士を雇ったのは賢明な選択だった。
+electrician|n|電気技師；電気工事士|We called an *electrician* to fix the office lights.|オフィスの照明を直すため、電気技師を呼んだ。
+privately|adv|内密に；個人的に；民間で|He spoke *privately* with the manager after the meeting.|彼は会議のあと、部長と内々に話した。
+carpenter|n|大工|We hired a *carpenter* to build shelves in the office.|オフィスに棚を作ってもらうため、大工を雇った。
+plumber|n|配管工|We called a *plumber* to fix the leak in the office.|オフィスの水漏れを直すため、配管工を呼んだ。
+recruiter|n|採用担当者；リクルーター|The *recruiter* called me to set up a job interview.|採用担当者が面接の日程を決めるために私に電話をくれました。
+overview|n|概要；全体像|Here is a short *overview* of this year's sales plan.|こちらが今年の販売計画の短い概要です。
+unsure|adj|確信がない；はっきりしない|I am *unsure* about the deadline, so I will ask my manager.|締め切りがはっきりしないので、上司に聞きます。
+poorly|adv|不十分に；まずく|The new product sold *poorly* in the first month.|新製品は最初の月、売れ行きが悪かったです。
+postage|n|郵便料金；郵送料|The *postage* for this package is ten dollars.|この小包の郵便料金は10ドルです。
+tricky|adj|厄介な；扱いにくい|Setting the right price for a new product is *tricky*.|新製品に適切な価格をつけるのは厄介です。
+subtract|v|引く；差し引く|Please *subtract* the tax from the total amount.|合計金額から税金を引いてください。
+beforehand|adv|前もって；事前に|Please send me the agenda *beforehand*.|前もって議題を送ってください。
+digit|n|数字の桁；（0〜9の）数字|The account number has ten *digits*.|口座番号は10桁です。
+salesman|n|販売員；営業マン|The *salesman* showed us three different models.|その営業担当者は、私たちに3つの異なるモデルを見せてくれました。
+translator|n|翻訳者；通訳者|We hired a *translator* to help with the Japanese contract.|私たちは日本語の契約書を手伝ってもらうため、翻訳者を雇いました。
+unavailable|adj|利用できない；都合がつかない|The manager is *unavailable* until two o'clock.|部長は2時まで都合がつきません。
+webpage|n|ウェブページ|Our new product has its own *webpage*.|私たちの新製品には専用のウェブページがあります。
+translation|n|翻訳|Please send the Japanese *translation* of the contract by Friday.|契約書の日本語訳を金曜日までに送ってください。
+booth|n|ブース；仕切り席|Please visit our *booth* at the trade show.|見本市の私たちのブースにお立ち寄りください。
+ton|n|トン|The factory produces fifty *tons* of steel every month.|その工場は毎月50トンの鉄鋼を生産しています。
+shorten|v|短くする；短縮する|We want to *shorten* the time it takes to ship orders.|私たちは注文の発送にかかる時間を短縮したいと考えています。
+insert|v|挿入する；差し込む|Please *insert* a new page after the title slide.|タイトルのスライドの後に、新しいページを挿入してください。
+orientation|n|オリエンテーション；新人研修|New employees attend an *orientation* on their first day.|新入社員は初日にオリエンテーションに出ます。
+gasoline|n|ガソリン|The price of *gasoline* affects our delivery costs.|ガソリンの価格は、私たちの配送費に影響します。

@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router'
-import { ArrowRight, BarChart3, ChevronRight, Dumbbell } from 'lucide-react'
+import { ArrowLeftRight, ArrowRight, BadgeCheck, BarChart3, ChevronRight, Dumbbell } from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { CharImage } from '@/components/Guide'
 import { ModeSwitcher } from '@/components/ModeSwitcher'
@@ -217,6 +217,18 @@ export default function Home() {
             <Card className="flex items-center gap-2.5 py-3">
               <Dumbbell className="h-5 w-5 text-muted" strokeWidth={1.7} />
               <span className="text-[14px] font-medium">苦手な単語</span>
+            </Card>
+          </Link>
+          <Link to="/study?mode=check" viewTransition>
+            <Card className="flex items-center gap-2.5 py-3">
+              <BadgeCheck className="h-5 w-5 text-muted" strokeWidth={1.7} />
+              <span className="text-[14px] font-medium">定着チェック</span>
+            </Card>
+          </Link>
+          <Link to="/practice/usage" viewTransition>
+            <Card className="flex items-center gap-2.5 py-3">
+              <ArrowLeftRight className="h-5 w-5 text-muted" strokeWidth={1.7} />
+              <span className="text-[14px] font-medium">使い分け</span>
             </Card>
           </Link>
         </div>

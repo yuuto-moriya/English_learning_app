@@ -53,6 +53,7 @@ export function cardToRow(card: Card, word: Pick<Word, 'id' | 'cat' | 'lv'>, pre
     last_review: card.last_review ? card.last_review.getTime() : null,
     addedAt: prev?.addedAt ?? Date.now(),
     known: prev?.known,
+    checkedAt: prev?.checkedAt,
   }
 }
 

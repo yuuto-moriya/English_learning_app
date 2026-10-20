@@ -1,0 +1,96 @@
+source code|n|Anyone can read the *source code* of this project online.|このプロジェクトのソースコードは、だれでもネットで読める。
+repository|n|I pushed my changes to the team's *repository* this morning.|今朝、変更をチームのリポジトリにプッシュした。
+version control|n|Without *version control*, it's hard to see who changed what.|バージョン管理がないと、だれが何を変えたのか分かりにくい。
+pull request|n|Can you review my *pull request* before lunch?|昼までに私のプルリクエストをレビューしてもらえますか？
+code review|n|The *code review* found a security problem in my change.|コードレビューで、私の変更にセキュリティ上の問題が見つかった。
+merge conflict|n|Two people edited the same line, so we got a *merge conflict*.|2人が同じ行を編集したので、マージの競合が起きた。
+deploy|v|We *deployed* the update late at night to avoid problems for users.|利用者への影響を避けるため、更新は深夜にデプロイした。
+deployment|n|The *deployment* finished in ten minutes without any errors.|デプロイはエラーなく10分で完了した。
+production environment|n|The bug only appears in the *production environment*, not on my laptop.|そのバグは本番環境でだけ起き、私のノートパソコンでは起きない。
+staging environment|n|The *staging environment* uses the same settings as production.|ステージング環境は本番と同じ設定を使っている。
+debug|v|I spent the morning *debugging* the login page.|午前中はログイン画面のデバッグに費やした。
+unit test|n|All the *unit tests* passed after my change.|私の変更のあと、単体テストはすべて通った。
+test case|n|This *test case* checks what happens when the password is empty.|このテストケースは、パスワードが空のときの動作を確かめる。
+bug report|n|A customer sent a *bug report* about the search page.|顧客から検索画面についての不具合報告が届いた。
+user story|n|We wrote a *user story* for customers who want to cancel orders.|注文を取り消したい顧客向けのユーザーストーリーを書いた。
+sprint|n|We finished all the tasks before the end of the *sprint*.|スプリントの終わりまでに、すべてのタスクを終えた。
+stand-up meeting|n|Our *stand-up meeting* starts at 9:30 and lasts fifteen minutes.|朝会は9時30分に始まり、15分で終わる。
+retrospective|n|At the end of each sprint, we hold a *retrospective*.|スプリントの終わりごとに振り返り会を開く。
+agile|adj|In *agile* teams, plans can change every two weeks.|アジャイルのチームでは、計画が2週間ごとに変わることもある。
+roadmap|n|The new search feature is on our *roadmap* for next spring.|新しい検索機能は、来春のロードマップに入っている。
+wireframe|n|Let's draw a simple *wireframe* before we choose the colors.|色を決める前に、簡単なワイヤーフレームを描こう。
+user interface|n|Users complained that the new *user interface* was confusing.|利用者は、新しいユーザーインターフェースが分かりにくいと不満を言った。
+user experience|n|A clear sign-up form improves the *user experience*.|分かりやすい登録フォームはユーザー体験を高める。
+front end|n|I'm changing the button colors on the *front end*.|フロントエンドでボタンの色を変えている。
+back end|n|The *back end* stores user data in a database.|バックエンドは利用者のデータをデータベースに保存する。
+dependency|n|This project has too many *dependencies*, so it builds slowly.|このプロジェクトは依存パッケージが多すぎるので、ビルドが遅い。
+configuration|n|I copied the *configuration* from the old server to the new one.|古いサーバーの設定を新しいサーバーにコピーした。
+open-source|adj|The library is *open-source*, so anyone can improve it.|そのライブラリはオープンソースなので、だれでも改良できる。
+programming language|n|Which *programming language* did you learn first?|最初に学んだプログラミング言語は何ですか？
+script|n|This *script* backs up the database every night.|このスクリプトは毎晩データベースをバックアップする。
+API|n|The map on our website uses a free *API*.|当社のウェブサイトの地図は無料のAPIを使っている。
+cloud computing|n|With *cloud computing*, we no longer buy our own servers.|クラウドコンピューティングを使うので、もう自社でサーバーを買わない。
+virtual machine|n|I tested the software safely on a *virtual machine*.|そのソフトを仮想マシン上で安全にテストした。
+latency|n|Low *latency* is important for online games.|オンラインゲームでは遅延が小さいことが重要だ。
+outage|n|During the *outage*, nobody could send emails.|障害の間、だれもメールを送れなかった。
+monitoring|n|We set up *monitoring* for the new database last week.|先週、新しいデータベースの監視を設定した。
+encryption|n|Without *encryption*, anyone could read these messages.|暗号化しなければ、だれでもこれらのメッセージを読めてしまう。
+encrypt|v|Our laptops *encrypt* all data on the hard drive.|当社のノートパソコンはハードディスク上のデータをすべて暗号化する。
+authentication|n|*Authentication* failed because the password was wrong.|パスワードが違っていたので、認証に失敗した。
+two-factor authentication|n|With *two-factor authentication*, you also need a code from your phone.|二要素認証では、スマホに届くコードも必要になる。
+firewall|n|The *firewall* stopped me from opening the game website.|ファイアウォールのせいで、そのゲームのサイトを開けなかった。
+vulnerability|n|Hackers used a *vulnerability* in the old software to get in.|ハッカーは古いソフトの脆弱性を利用して侵入した。
+security patch|n|This *security patch* closes a hole that hackers were using.|このセキュリティパッチは、ハッカーが使っていた穴をふさぐ。
+access rights|n|I can't open the folder because I don't have *access rights*.|アクセス権がないので、そのフォルダを開けない。
+administrator|n|Only an *administrator* can install software on these computers.|これらのパソコンにソフトを入れられるのは管理者だけだ。
+workaround|n|Restarting the app is a simple *workaround* for now.|今のところ、アプリを再起動するのが簡単な回避策だ。
+root cause|n|The *root cause* was an old setting nobody had changed.|根本原因は、だれも変えていなかった古い設定だった。
+data migration|n|Before the *data migration*, we made a full backup.|データ移行の前に、完全なバックアップを取った。
+legacy system|n|Nobody on the team knows how the *legacy system* works anymore.|チームのだれも、もうレガシーシステムの仕組みを知らない。
+scalable|adj|The cloud makes it easy to build *scalable* services.|クラウドを使えば、拡張しやすいサービスを簡単に作れる。
+bandwidth|n|Large file downloads use most of the office *bandwidth*.|大きなファイルのダウンロードが、オフィスの帯域幅の大半を使っている。
+data center|n|The company built a new *data center* near the sea.|その会社は海の近くに新しいデータセンターを建てた。
+go live|v|The new payment system *went live* last night.|新しい決済システムが昨夜稼働を始めた。
+rollout|n|The *rollout* of the new email system starts in April.|新しいメールシステムの展開は4月に始まる。
+beta version|n|The *beta version* still has a few bugs.|ベータ版にはまだいくつかバグがある。
+release notes|n|The *release notes* list all the bugs we fixed.|リリースノートには、直したバグがすべて載っている。
+cache|n|The browser stores images in its *cache* to load pages faster.|ブラウザは、ページを速く表示するために画像をキャッシュに保存する。
+domain name|n|Our *domain name* expires next month, so please renew it.|当社のドメイン名は来月期限が切れるので、更新してください。
+IP address|n|The server blocked requests from that *IP address*.|サーバーはそのIPアドレスからのリクエストを遮断した。
+VPN|n|I can't open the internal website without the *VPN*.|VPNなしでは社内サイトを開けない。
+remote access|n|*Remote access* lets me fix servers from home at night.|リモートアクセスのおかげで、夜に家からサーバーを直せる。
+data entry|n|She spends two hours a day on *data entry*.|彼女は1日2時間をデータ入力に費やしている。
+machine learning|n|The app uses *machine learning* to recommend songs.|そのアプリは機械学習を使って曲をおすすめする。
+artificial intelligence|n|Many companies now use *artificial intelligence* to answer customer emails.|今では多くの会社が、顧客のメールへの返信に人工知能を使っている。
+generative AI|n|*Generative AI* can create images from a short description.|生成AIは短い説明から画像を作れる。
+data analysis|n|We hired an expert in *data analysis* to study our sales.|売上を調べるために、データ分析の専門家を雇った。
+macro|n|This *macro* copies data from one sheet to another.|このマクロは、あるシートから別のシートにデータをコピーする。
+firmware|n|The camera needs a *firmware* update before it can connect.|そのカメラは、接続する前にファームウェアの更新が必要だ。
+dashboard|n|I check the server *dashboard* every morning.|毎朝、サーバーのダッシュボードを確認している。
+analytics|n|According to our *analytics*, most visitors leave after one page.|分析によると、ほとんどの訪問者は1ページ見ただけで離れている。
+real-time|adj|The screen shows *real-time* data from the sensors in the factory.|画面には工場のセンサーのリアルタイムのデータが表示される。
+syntax|n|Python's *syntax* is simple, so it's easy to learn.|Pythonの構文はシンプルなので学びやすい。
+plug-in|n|This browser *plug-in* blocks ads on most websites.|このブラウザのプラグインは、ほとんどのサイトで広告をブロックする。
+responsive design|n|Our old website had no *responsive design*, so it looked bad on tablets.|当社の古いサイトはレスポンシブデザインではなかったので、タブレットでは見づらかった。
+accessibility|n|Adding captions to videos improves *accessibility*.|動画に字幕を付けると、アクセシビリティが向上する。
+usability|n|Bigger buttons improved the *usability* of the app.|ボタンを大きくしたら、アプリの使いやすさが向上した。
+requirements definition|n|We spent a month on *requirements definition* with the client.|顧客と一緒に、要件定義に1か月を費やした。
+specification document|n|The developer asked for a more detailed *specification document*.|開発者は、もっと詳しい仕様書を求めた。
+help desk ticket|n|Your *help desk ticket* was closed after the printer was fixed.|プリンターが直ったので、あなたの問い合わせチケットは完了になった。
+service request|n|My *service request* for extra software was approved today.|追加のソフトについての私のサービス要求が、今日承認された。
+device driver|n|The mouse didn't work because the *device driver* was missing.|デバイスドライバが入っていなかったので、マウスが動かなかった。
+log in|v|You have to *log in* again after thirty minutes.|30分たつと、もう一度ログインする必要がある。
+hotfix|n|The team worked all night to prepare a *hotfix*.|チームは徹夜で緊急修正を準備した。
+rollback|n|After the *rollback*, the website worked normally again.|切り戻しのあと、ウェブサイトは再び正常に動いた。
+uptime|n|The server's *uptime* was over 300 days before its first restart.|そのサーバーは最初の再起動まで、稼働時間が300日を超えていた。
+proof of concept|n|The *proof of concept* showed that the idea could work.|概念実証で、そのアイデアが実現できることが分かった。
+cybersecurity|n|Weak passwords are a big *cybersecurity* risk.|弱いパスワードは、サイバーセキュリティ上の大きなリスクだ。
+personal data|n|The app asks for too much *personal data*, like your address.|そのアプリは、住所などの個人データを求めすぎる。
+access control|n|*Access control* decides who can open each folder.|アクセス制御によって、だれがどのフォルダを開けるかが決まる。
+command line|n|Some tasks are faster on the *command line* than with a mouse.|作業によっては、マウスよりもコマンドラインのほうが速い。
+timeout|n|The connection ended with a *timeout* after thirty seconds.|接続は30秒後にタイムアウトで切れた。
+sandbox|n|Suspicious files are opened in a *sandbox* to keep the network safe.|ネットワークを守るために、怪しいファイルはサンドボックスで開く。
+data loss|n|The power outage caused *data loss* on two computers.|停電で、2台のパソコンでデータ消失が起きた。
+user acceptance testing|n|During *user acceptance testing*, staff tried the new system with real tasks.|受け入れテストの間、社員は実際の業務で新システムを試した。
+cutover|n|We stopped all orders for two hours during the *cutover*.|切り替えの間、2時間すべての注文を止めた。
+digital transformation|n|Our *digital transformation* started with moving paper forms online.|当社のDXは、紙の書類をオンラインに移すことから始まった。

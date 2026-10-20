@@ -22,7 +22,7 @@ cafeteria|n|社員食堂；カフェテリア|Let's have lunch in the *cafeteria
 chef|n|料理長|The *chef* recommends the fish.|料理長のおすすめは魚料理です。
 elevator|n|（米）エレベーター|Take the *elevator* to the fifth floor.|エレベーターで5階へ行ってください。
 reception|n|受付；歓迎会|Please check in at *reception*.|受付で手続きをしてください。
-correctly|adv|正しく|Make sure the form is filled in *correctly*.|用紙が正しく記入されているか確認してください。
+correctly|adv|正しく|Make sure the form is filled out *correctly*.|用紙が正しく記入されているか確認してください。
 notify|v|通知する|Please *notify* us of any changes.|変更があればお知らせください。
 preview|n|下見；プレビュー|Click *preview* to check the layout.|プレビューをクリックしてレイアウトを確認してください。
 attendant|n|係員；添乗員|The flight *attendant* brought me a blanket.|客室乗務員が毛布を持ってきてくれた。
@@ -57,7 +57,7 @@ cruise|n|船旅|They went on a *cruise*.|彼らは船旅に出かけた。
 birthday|n|誕生日|Happy *birthday*!|誕生日おめでとう！
 comprehension|n|理解（力）|This test checks your listening *comprehension*.|このテストはリスニングの理解力を測る。
 mall|n|ショッピングモール|There is a *mall* next to the station.|駅の隣にショッピングモールがある。
-medication|n|薬（物療法）|Are you taking any *medication*?|何か薬を服用していますか。
+medication|n|薬；薬物療法|Are you taking any *medication*?|何か薬を服用していますか。
 recycle|v|再利用する|We *recycle* paper and plastic bottles.|紙とペットボトルをリサイクルしている。
 sandwich|n|サンドイッチ|I'll have a *sandwich* for lunch.|昼食はサンドイッチにする。
 fitness|n|健康；フィットネス|The hotel has a *fitness* center.|そのホテルにはフィットネスセンターがある。
@@ -97,7 +97,7 @@ bulletin|n|掲示；会報|Check the *bulletin* board for updates.|最新情報�
 gym|n|ジム|I go to the *gym* after work.|仕事の後にジムへ行く。
 highway|n|幹線道路|There was heavy traffic on the *highway*.|幹線道路は交通量が多かった。
 jewelry|n|宝石類|This shop sells handmade *jewelry*.|この店は手作りのアクセサリーを売っている。
-overtime|n|残業|I worked *overtime* last night.|昨夜は残業した。
+overtime|n|残業|I did three hours of *overtime* last night.|昨夜は3時間残業した。
 battery|n|電池；バッテリー|My laptop *battery* is almost dead.|ノートパソコンのバッテリーがもうすぐ切れる。
 donate|v|寄付する|We *donated* old computers to a school.|古いパソコンを学校に寄付した。
 skim|v|ざっと読む|*Skim* the report before the meeting.|会議の前に報告書にざっと目を通しておいてください。
@@ -117,7 +117,7 @@ tag|n|札；タグ|Attach a name *tag* to your bag.|かばんに名札を付け�
 announcer|n|アナウンサー|The *announcer* read the news.|アナウンサーがニュースを読んだ。
 password|n|パスワード|Don't share your *password*.|パスワードを他人に教えないでください。
 stadium|n|競技場|The *stadium* holds 50,000 people.|その競技場は5万人収容できる。
-terminal|n|終点；ターミナル；端末|Our flight leaves from *Terminal* 2.|私たちの便は第2ターミナルから出発する。
+terminal|n|ターミナル；終点；端末|Our flight leaves from *Terminal* 2.|私たちの便は第2ターミナルから出発する。
 weekday|n|平日|The office is open on *weekdays*.|事務所は平日に開いている。
 cart|n|カート|You can use a free luggage *cart*.|無料の荷物用カートを使えます。
 delicious|adj|おいしい|This curry is *delicious*.|このカレーはおいしい。
@@ -137,7 +137,7 @@ sofa|n|ソファー|Please have a seat on the *sofa*.|ソファーにおかけ�
 accommodate|v|収容する；対応する|The hall can *accommodate* 300 people.|ホールは300人を収容できる。
 affordable|adj|手頃な価格の|We offer *affordable* prices for students.|学生向けに手頃な価格を提供しています。
 annoy|v|いらいらさせる|The noise *annoys* the neighbors.|その騒音は近所の人をいらだたせている。
-commute|v|通勤する；（名詞）通勤|My *commute* takes an hour.|通勤に1時間かかる。
+commute|v|通勤する；（名詞）通勤|I *commute* to work by train every day.|毎日電車で通勤している。
 paperwork|n|書類仕事|I have a lot of *paperwork* to do.|書類仕事がたくさんある。
 quit|v|やめる|He *quit* his job last month.|彼は先月仕事を辞めた。
 flu|n|インフルエンザ|She is off work with the *flu*.|彼女はインフルエンザで休んでいる。
@@ -145,7 +145,7 @@ captain|n|機長；船長；主将|This is your *captain* speaking.|こちらは
 installation|n|設置；取り付け|The *installation* of the new software took an hour.|新しいソフトウェアのインストールに1時間かかった。
 trainer|n|指導者；トレーナー|Our *trainer* explained the procedure.|指導員が手順を説明した。
 complimentary|adj|無料の；賞賛の|Breakfast is *complimentary*.|朝食は無料です。
-hike|n|ハイキング；値上げ|There will be a price *hike* in April.|4月に値上げがある。
+hike|n|値上げ；ハイキング|There will be a price *hike* in April.|4月に値上げがある。
 midnight|n|午前0時|The store is open until *midnight*.|その店は深夜0時まで営業している。
 rainy|adj|雨の|It's the *rainy* season.|今は梅雨だ。
 relocate|v|移転する|The office will *relocate* to Osaka.|事務所は大阪に移転する。
@@ -154,29 +154,29 @@ unhappy|adj|不満な|Customers were *unhappy* with the delay.|顧客は遅れ�
 verify|v|検証する；確認する|Please *verify* your email address.|メールアドレスを確認してください。
 courier|n|宅配便業者|I'll send the documents by *courier*.|書類を宅配便で送ります。
 incomplete|adj|不完全な|The application is *incomplete*.|申込書に不備がある。
-questionnaire|n|アンケート|Please fill in this *questionnaire*.|このアンケートにご記入ください。
-dock|n|波止場；荷積み場|The truck is at the loading *dock*.|トラックは荷積み場にいる。
+questionnaire|n|アンケート|Please fill out this *questionnaire*.|このアンケートにご記入ください。
+dock|n|荷積み場；波止場|The truck is at the loading *dock*.|トラックは荷積み場にいる。
 lamp|n|ランプ；照明|Turn on the desk *lamp*.|机のライトをつけてください。
 lately|adv|最近|Have you been busy *lately*?|最近忙しいですか。
 presenter|n|発表者|The *presenter* answered our questions.|発表者が私たちの質問に答えた。
 seldom|adv|めったに〜ない|He *seldom* takes a day off.|彼はめったに休まない。
 grocery|n|食料雑貨（店）|I stopped at the *grocery* store.|食料品店に立ち寄った。
 memorandum|n|覚書|We signed a *memorandum* of understanding.|覚書（MOU）に署名した。
-suite|n|スイートルーム；一式|The software *suite* includes a planning tool.|そのソフトウェア一式には計画ツールが含まれる。
+suite|n|スイートルーム；一式|The president is staying in a *suite* on the top floor.|社長は最上階のスイートルームに泊まっている。
 thorough|adj|徹底的な|We carried out a *thorough* inspection.|徹底的な点検を実施した。
 bookstore|n|書店|There is a *bookstore* in the station.|駅の中に書店がある。
 cater|v|料理を提供する；応える|The hotel will *cater* the event.|ホテルがそのイベントの料理を提供する。
 dental|adj|歯の|I have a *dental* appointment.|歯医者の予約がある。
 lounge|n|ラウンジ|Wait in the *lounge*.|ラウンジでお待ちください。
 painter|n|塗装工；画家|The *painters* are working on the office walls.|塗装工がオフィスの壁を塗っている。
-patron|n|常連客；後援者|The museum thanks its *patrons*.|美術館は後援者に感謝している。
+patron|n|常連客；後援者|The café gives free coffee to its regular *patrons*.|そのカフェは常連客に無料のコーヒーを出している。
 prescription|n|処方箋|You need a *prescription* for this medicine.|この薬には処方箋が必要だ。
 salad|n|サラダ|I'll have a green *salad*.|グリーンサラダをください。
 stack|v|積み重ねる|*Stack* the chairs after the meeting.|会議の後で椅子を積み重ねてください。
 salesperson|n|販売員|The *salesperson* showed us the new model.|販売員が新モデルを見せてくれた。
 garbage|n|ごみ|Take out the *garbage*.|ごみを出してください。
 omit|v|省く|Don't *omit* any steps.|どの手順も省略しないでください。
-spite|n|悪意（in spite ofで「〜にもかかわらず」）|In *spite* of the rain, we finished the work.|雨にもかかわらず作業を終えた。
+in spite of|prep|〜にもかかわらず|*In spite of* the rain, we finished the work.|雨にもかかわらず作業を終えた。
 bathroom|n|浴室；トイレ|Where is the *bathroom*?|トイレはどこですか。
 cab|n|タクシー；運転室|Let's take a *cab* to the hotel.|ホテルまでタクシーで行こう。
 correspondence|n|通信；文書のやり取り|Keep all *correspondence* with the supplier.|納入業者とのやり取りはすべて保存してください。
@@ -187,7 +187,7 @@ anniversary|n|記念日|The company celebrates its 50th *anniversary*.|会社は
 buffet|n|ビュッフェ|Breakfast is a *buffet*.|朝食はビュッフェ形式です。
 defective|adj|欠陥のある|Return any *defective* parts to the supplier.|不良品は納入業者に返品してください。
 leak|n|漏れ|There is a water *leak* in the ceiling.|天井から水漏れしている。
-occupancy|n|占有（率）|Hotel *occupancy* is high this month.|今月はホテルの稼働率が高い。
+occupancy|n|稼働率；占有|Hotel *occupancy* is high this month.|今月はホテルの稼働率が高い。
 proficiency|n|熟達|English *proficiency* is required for this position.|この職には英語の運用能力が求められる。
 renewal|n|更新|Your contract is due for *renewal* next month.|あなたの契約は来月更新の時期です。
 urgent|adj|緊急の|This is an *urgent* message.|これは緊急の伝言です。
@@ -209,7 +209,7 @@ paycheck|n|給料（小切手）|I get my *paycheck* on the 25th.|25日に給料
 polite|adj|礼儀正しい|Please be *polite* to customers.|お客様には礼儀正しく接してください。
 protective|adj|保護の|Wear *protective* glasses.|保護眼鏡を着用してください。
 sidewalk|n|（米）歩道|Walk on the *sidewalk*.|歩道を歩いてください。
-sightsee|v|観光する（go sightseeing）|We went *sightseeing* in Kyoto after the meeting.|会議の後、京都を観光した。
+sightseeing|n|観光（go sightseeingで「観光に行く」）|We went *sightseeing* in Kyoto after the meeting.|会議の後、京都を観光した。
 transit|n|輸送；乗り継ぎ|Public *transit* is good in this city.|この都市は公共交通が充実している。
 wallet|n|財布|I left my *wallet* at home.|財布を家に忘れた。
 cashier|n|レジ係|Pay the *cashier*, please.|レジ係にお支払いください。
@@ -217,7 +217,7 @@ casual|adj|くだけた；普段着の|Friday is *casual* day.|金曜日はカ�
 drill|n|訓練；ドリル|We have a fire *drill* twice a year.|年に2回、火災訓練がある。
 lane|n|車線；小道|The left *lane* is closed.|左車線は閉鎖されている。
 poster|n|ポスター|Put up the *poster* in the break room.|休憩室にポスターを貼ってください。
-promptly|adv|迅速に；時間通りに|The meeting will start *promptly* at nine.|会議は9時ちょうどに始まります。
+promptly|adv|迅速に；時間通りに|Please answer customer emails *promptly*.|お客様のメールには迅速に返信してください。
 vacancy|n|空き；欠員|Do you have any *vacancies*?|空室はありますか。
 bench|n|ベンチ|Sit on the *bench* and wait.|ベンチに座って待ってください。
 directory|n|名簿；案内板|Check the staff *directory* for her number.|職員名簿で彼女の番号を調べてください。
