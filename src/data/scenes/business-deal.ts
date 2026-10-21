@@ -45,7 +45,7 @@ const scenes: Scene[] = [
         ja: 'こんにちは、キタ・ロジスティクスの森あおいです。御社のヘッドセットH5を500台、見積もりをお願いしたいのですが。',
       },
       { sp: 'A', en: 'Certainly. The list price for the H5 is $40 per unit.', ja: 'かしこまりました。H5の定価は1台40ドルです。' },
-      { sp: 'B', en: 'Sorry, was that 14 or 40?', ja: 'すみません、14ドルですか、40ドルですか。' },
+      { sp: 'B', en: 'Sorry, was that 14 or 40? You broke up a little.', ja: 'すみません、14ドルですか、40ドルですか。少し音声が途切れてしまって。' },
       { sp: 'A', en: 'Forty. Four-zero.', ja: '40ドルです。「4・0」の40です。' },
       {
         sp: 'B',
@@ -65,8 +65,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "We'd rather get everything in one delivery. Is shipping included in the price?",
-        ja: '全部まとめて一度に納品していただくほうが助かります。送料は価格に含まれていますか。',
+        en: "We'd prefer a single delivery, so three weeks is fine. Is shipping included in the price?",
+        ja: '一度にまとめて納品していただきたいので、3週間なら問題ありません。送料は価格に含まれていますか。',
       },
       {
         sp: 'A',
@@ -351,7 +351,7 @@ const scenes: Scene[] = [
       {
         en: 'Thank you for holding.',
         ja: 'お待たせいたしました。',
-        note: '保留から戻ったときの定番。Sorry for waiting は「自分が待った」の意味になる。謝るなら Sorry to keep you waiting.',
+        note: '保留から戻ったときの定番。Sorry for waiting は「自分が待ったこと」を謝るように聞こえて不自然。謝るなら Sorry to keep you waiting.',
       },
       { en: "I'm very sorry for the inconvenience.", ja: 'ご迷惑をおかけして大変申し訳ございません。' },
       {
@@ -632,8 +632,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "That seems reasonable. On liability, we'd like the cap set at the total contract value.",
-        ja: '妥当だと思います。責任については、損害賠償の上限を契約総額にしたいと考えています。',
+        en: "That seems reasonable. On liability, we'd like the cap set at the contract value.",
+        ja: '妥当だと思います。責任については、損害賠償の上限を契約金額と同額にしたいと考えています。',
       },
       {
         sp: 'B',
@@ -677,8 +677,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "So we still need to settle the liability cap and the penalty cap. I'll email you a summary of today's points this afternoon.",
-        ja: 'では、損害賠償の上限とペナルティの上限がまだ決まっていませんね。本日の論点をまとめて、午後にメールでお送りします。',
+        en: "That leaves two open points: the liability cap and the penalty cap. I'll email you a summary of today's points this afternoon.",
+        ja: '未決の点は2つ、損害賠償の上限とペナルティの上限ですね。本日の論点をまとめて、午後にメールでお送りします。',
       },
     ],
     tip: "契約の場では We want ～ より We'd prefer ～ や Would you be open to ～? と控えめに提案します。その場で決められない点は無理に答えず、誰に確認していつ返事するかを伝え、最後に未決の点を言葉でまとめると行き違いを防げます。",

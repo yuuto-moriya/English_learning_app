@@ -52,8 +52,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Sure. Our budget is about 10% smaller than last year's, so we'll need to cut some advertising.",
-        ja: 'はい。予算は昨年より約10%少ないので、広告を一部削る必要があります。',
+        en: "Sure. Our budget is about 10% smaller than last year's, so we'll need to cut back on advertising.",
+        ja: 'はい。予算は昨年より約10%少ないので、広告費を削る必要があります。',
       },
       {
         sp: 'B',
@@ -83,8 +83,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Then let's go with June 1. Does anyone have anything to add?",
-        ja: 'では、6月1日でいきましょう。ほかに付け加えることはありますか。',
+        en: "Unless anyone objects, let's go with June 1. Does anyone have anything to add?",
+        ja: '異論がなければ、6月1日でいきましょう。ほかに付け加えることはありますか。',
       },
       {
         sp: 'A',
@@ -194,7 +194,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: 'Thanks, Yuto. Could you also post the chart in the chat?',
-        ja: 'ありがとう、ユウトさん。グラフもチャットに貼ってもらえますか。',
+        ja: 'ありがとうございます、ユウトさん。グラフもチャットに貼ってもらえますか。',
       },
       { sp: 'B', en: "Sure. I'll stop sharing now and post it right away.", ja: 'はい。画面共有を止めて、すぐに貼りますね。' },
     ],
@@ -226,9 +226,9 @@ const scenes: Scene[] = [
         note: '-teen は後ろ、-ty は前を強く言う。聞き間違えやすいので確認を',
       },
       {
-        en: 'Just to confirm, Q3 means October to December, right?',
-        ja: '念のため確認ですが、第3四半期は10月から12月ですよね。',
-        note: '会計年度の始まりは会社や国で違う。日本の4月始まりを前提にしない',
+        en: 'Just to confirm, by Q3 you mean October to December, right?',
+        ja: '念のため確認ですが、第3四半期というのは10月から12月のことですよね。',
+        note: 'by ~ you mean ...? で相手の言葉の意味を確かめる。会計年度の始まりは会社で違うので、日本式の4月始まりを前提にしない',
       },
       { en: "I'm glad I asked.", ja: '聞いてよかったです。' },
       {
@@ -265,8 +265,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'Forty thousand. Four-zero.', ja: '4万人です。「4・0」のほうです。' },
       {
         sp: 'B',
-        en: 'Got it. Just to confirm, Q3 means October to December, right?',
-        ja: '分かりました。念のため確認ですが、第3四半期は10月から12月ですよね。',
+        en: 'Got it. Just to confirm, by Q3 you mean October to December, right?',
+        ja: '分かりました。念のため確認ですが、第3四半期というのは10月から12月のことですよね。',
       },
       {
         sp: 'A',
@@ -295,8 +295,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Thanks, I will. And thanks for clarifying everything.',
-        ja: 'ありがとうございます、そうします。いろいろ説明してくださってありがとうございました。',
+        en: 'I will. Thanks for clarifying everything.',
+        ja: 'そうします。いろいろ説明してくださってありがとうございました。',
       },
     ],
     tip: "分からないまま Yes. と流すのが一番危険です。数字・略語・期間はその場で聞き返し、最後に So what you're saying is ~? と自分の言葉で言い直すと、誤解がその場で見つかります。",
@@ -412,7 +412,7 @@ const scenes: Scene[] = [
     emoji: '📈',
     goal: '進み具合・遅れの理由・対策を伝え、上司に必要な判断を頼むことができる',
     roles: [
-      { id: 'A', name: 'Mr. Novak' },
+      { id: 'A', name: 'Ms. Nguyen' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -429,7 +429,7 @@ const scenes: Scene[] = [
         ja: '毎日スタジオに状況を確認しています。',
         note: 'check in with ~ は「〜に連絡して様子を確かめる」',
       },
-      { en: 'I need a decision by Friday.', ja: '金曜日までにご判断をいただきたいです。', note: '判断を頼むときは期限と選択肢を添える' },
+      { en: "I'll need a decision from you by Friday.", ja: '金曜日までにご判断をいただく必要があります。', note: '判断を頼むときは期限と選択肢を添える' },
       {
         en: "I'd recommend launching on schedule.",
         ja: '予定どおりの公開をお勧めします。',
@@ -478,8 +478,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'Good. Is there anything you need from me?', ja: 'いいですね。私に何か頼みたいことはありますか。' },
       {
         sp: 'B',
-        en: 'Yes, I need a decision by Friday. We can launch on June 3 with temporary photos, or push the launch back a week.',
-        ja: 'はい、金曜日までにご判断をいただきたいです。6月3日に仮の写真で公開するか、公開を1週間延ばすかです。',
+        en: "Yes, I'll need a decision from you by Friday. We can launch on June 3 with temporary photos, or push the launch back a week.",
+        ja: 'はい、金曜日までにご判断をいただく必要があります。6月3日に仮の写真で公開するか、公開を1週間延ばすかです。',
       },
       { sp: 'A', en: 'Hmm. Which would you recommend?', ja: 'うーん。あなたならどちらを勧めますか。' },
       {
@@ -498,7 +498,7 @@ const scenes: Scene[] = [
         ja: '承知しました。公開まで毎週月曜日に簡単な報告をお送りします。',
       },
     ],
-    tip: '進捗報告は「全体の状況 → 遅れている点と理由 → 影響 → 対策 → 必要な判断」の順に。悪い知らせは早めに伝え、選択肢と自分のおすすめを添えると、上司は判断しやすくなります。',
+    tip: '進捗報告は「全体の状況 → 遅れている点と理由 → 影響 → 対策 → 必要な判断」の順に。悪い知らせは早めに伝え、選択肢とおすすめを添えましょう。なお、サイトの「リニューアル」は英語では redesign です（renewal は契約などの更新）。',
   },
   {
     id: 'b-action-items',
@@ -525,7 +525,7 @@ const scenes: Scene[] = [
         ja: 'では、木曜の午前にしましょう。',
         note: '〜 it is. で「では〜で決まり」と相手の案を受け入れる',
       },
-      { en: "Who's going to handle the legal check?", ja: '法務の確認は誰が担当しますか。' },
+      { en: "Who's going to handle the legal review?", ja: '法務の確認は誰が担当しますか。' },
       {
         en: "Let's park that until next week.",
         ja: 'その件は来週まで保留にしましょう。',
@@ -563,7 +563,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Great. Who's going to handle the legal check? We said we'd need one.",
+        en: "Great. Who's going to handle the legal review? We said we'd need one.",
         ja: 'いいですね。法務の確認は誰が担当しますか。必要だという話でしたよね。',
       },
       {
@@ -590,11 +590,11 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: 'Perfect. Could you put the deadlines in bold? People tend to miss them.',
-        ja: 'ばっちりです。締め切りを太字にしてもらえますか。見落とす人が多いので。',
+        ja: '助かります。締め切りを太字にしてもらえますか。見落とす人が多いので。',
       },
       {
         sp: 'B',
-        en: 'No problem. So, to recap: the draft by Thursday morning, the customer list by Friday, and the legal check by next Tuesday.',
+        en: 'No problem. So, to recap: the draft by Thursday morning, the customer list by Friday, and the legal review by next Tuesday.',
         ja: '分かりました。では、まとめると、案は木曜の午前、顧客リストは金曜日、法務の確認は来週火曜日までですね。',
       },
       {
@@ -615,7 +615,7 @@ const scenes: Scene[] = [
     emoji: '🗣️',
     goal: '根拠を添えて意見を言い、角を立てずに反対して代案を出すことができる',
     roles: [
-      { id: 'A', name: 'Ms. Alvarez' },
+      { id: 'A', name: 'Ms. Haddad' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -626,7 +626,7 @@ const scenes: Scene[] = [
       },
       {
         en: "I'm not sure that's the best option.",
-        ja: 'それが最善の選択肢かどうか、確信が持てません。',
+        ja: 'それが最善の策かどうか、少し疑問です。',
         note: 'I disagree. よりずっと柔らかい反対',
       },
       {
@@ -642,7 +642,7 @@ const scenes: Scene[] = [
         ja: 'まず3か月、試験運用してみる価値はあるのではないでしょうか。',
         note: 'Would it be worth ~ing? で控えめに提案する',
       },
-      { en: "It's not everything, but it's a start.", ja: '全部ではありませんが、第一歩にはなります。' },
+      { en: "It won't get us all the way, but it's a start.", ja: '目標には届きませんが、第一歩にはなります。' },
     ],
     lines: [
       {
@@ -653,7 +653,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "I see where you're coming from, but I'm not sure that's the best option.",
-        ja: 'お考えはよく分かりますが、それが最善の選択肢かどうか、確信が持てません。',
+        ja: 'お考えはよく分かりますが、それが最善の策かどうか、少し疑問です。',
       },
       { sp: 'A', en: 'Really? Support is one of our biggest costs.', ja: 'そうですか？サポートは最も大きなコストの一つですよ。' },
       {
@@ -696,8 +696,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'And if it works, how much would we save?', ja: 'それでうまくいったら、どのくらい削減できますか。' },
       {
         sp: 'B',
-        en: "My rough estimate is about a third of the target, mostly from less overtime. It's not everything, but it's a start.",
-        ja: 'ざっと見積もって目標の3分の1ほどで、主に残業が減る分です。全部ではありませんが、第一歩にはなります。',
+        en: "My rough estimate is about a third of the target, mostly from reduced overtime. It won't get us all the way, but it's a start.",
+        ja: 'ざっと見積もって目標の3分の1ほどで、主に残業が減る分です。目標には届きませんが、第一歩にはなります。',
       },
       {
         sp: 'A',

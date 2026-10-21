@@ -38,7 +38,6 @@ const scenes: Scene[] = [
         ja: 'チームは何人いらっしゃるのですか。',
         note: '米国では on your team。英国では in your team とも言う',
       },
-      { en: "I've heard a lot about your company.", ja: '御社のことはよく伺っています。' },
       {
         en: 'I look forward to working with you.',
         ja: 'ご一緒にお仕事できるのを楽しみにしています。',
@@ -84,8 +83,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "I've heard a lot about your company. I look forward to working with you.",
-        ja: '御社のことはよく伺っています。ご一緒にお仕事できるのを楽しみにしています。',
+        en: 'You must be very busy. I look forward to working with you.',
+        ja: 'とてもお忙しいでしょうね。ご一緒にお仕事できるのを楽しみにしています。',
       },
       { sp: 'A', en: 'Likewise. Is anyone else joining us today?', ja: 'こちらこそ。今日はほかにどなたか参加されますか。' },
       {
@@ -106,7 +105,7 @@ const scenes: Scene[] = [
     emoji: '🏙️',
     goal: '移動・街・食事などの話題で雑談を広げ、本題へ自然に移ることができる',
     roles: [
-      { id: 'A', name: 'Ms. Okafor' },
+      { id: 'A', name: 'Ms. Mensah' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -138,8 +137,8 @@ const scenes: Scene[] = [
     lines: [
       {
         sp: 'B',
-        en: "Ms. Okafor, welcome to Tokyo! It's so nice to finally meet you in person.",
-        ja: 'オカフォーさん、東京へようこそ！ようやく直接お会いできて、本当にうれしいです。',
+        en: "Ms. Mensah, welcome to Tokyo! It's so nice to finally meet you in person.",
+        ja: 'メンサーさん、東京へようこそ！ようやく直接お会いできて、本当にうれしいです。',
       },
       { sp: 'A', en: "You too! Video calls just aren't the same.", ja: 'こちらこそ！ビデオ通話だと、やっぱり違いますからね。' },
       { sp: 'B', en: "They really aren't. How was your flight?", ja: '本当にそうですね。フライトはいかがでしたか。' },
@@ -191,7 +190,7 @@ const scenes: Scene[] = [
         en: "Ah, here's our director, Ken Ito. Shall we get started?",
         ja: 'あ、部長の伊藤ケンが来ました。では、始めましょうか。',
       },
-      { sp: 'A', en: "Sure, let's do it.", ja: 'ええ、始めましょう。' },
+      { sp: 'A', en: "Yes, let's.", ja: 'ええ、そうしましょう。' },
     ],
     tip: "「It really has.」「They really aren't.」のように、相手の文の主語と動詞を受けて返すと「本当にそうですね」という共感になります。そこに質問を一つ足すと、雑談が途切れません。",
   },
@@ -290,13 +289,13 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Well, I think we've covered everything. Could you call me a taxi to Haneda?",
-        ja: 'さて、これで全部話せたと思います。羽田までタクシーを呼んでいただけますか。',
+        en: 'That was a really useful meeting. I should head to Haneda soon for my flight.',
+        ja: 'とても有意義な会議でした。そろそろ飛行機に乗るので羽田に向かわないと。',
       },
       {
         sp: 'B',
-        en: "It's already on its way. Thanks for coming, and let me walk you to the elevator.",
-        ja: 'もうこちらに向かっています。お越しいただきありがとうございました。エレベーターまでお送りします。',
+        en: "I've already booked you a taxi, and it'll be here in five minutes. Let me walk you to the elevator.",
+        ja: 'タクシーをもう手配してあり、5分で着きます。エレベーターまでお送りします。',
       },
       {
         sp: 'A',
@@ -507,12 +506,12 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "I'll make the recommendation, but our COO signs off on anything over $250,000.",
-        ja: '推薦するのは私ですが、25万ドルを超えるものはCOOの承認が必要です。',
+        ja: '推薦するのは私ですが、25万ドルを超える案件はCOOの承認が必要です。',
       },
       {
         sp: 'B',
-        en: 'Let me just summarize: fewer errors at peak, a budget of up to $500,000, and go-live by the end of September. Did I miss anything?',
-        ja: '要点をまとめさせてください。繁忙期のミスを減らすこと、予算は最大50万ドル、9月末までの稼働開始ですね。何か抜けている点はありますか。',
+        en: 'Let me just summarize: fewer errors at peak, a budget of $300,000 to $500,000, go-live by the end of September, and COO approval. Did I miss anything?',
+        ja: '要点をまとめさせてください。繁忙期のミスを減らすこと、予算は30万〜50万ドル、9月末までの稼働開始、そしてCOOの承認ですね。何か抜けている点はありますか。',
       },
       {
         sp: 'A',
@@ -609,8 +608,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'What sets it apart is the filter. It lasts two years instead of one, so running costs are lower.',
-        ja: 'ほかとの違いはフィルターです。1年ではなく2年もつので、維持費が抑えられます。',
+        en: 'What sets it apart is the filter. It lasts two years instead of the usual one, so running costs are lower.',
+        ja: 'ほかとの違いはフィルターです。ふつうは1年のところ2年もつので、維持費が抑えられます。',
       },
       { sp: 'A', en: 'How much is a replacement filter?', ja: '交換用のフィルターはおいくらですか。' },
       {
@@ -641,8 +640,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Certainly. I'll send it by Friday, along with a floor plan showing where each unit should go.",
-        ja: 'かしこまりました。金曜日までに、各台の設置場所を示したフロア図と一緒にお送りします。',
+        en: "Certainly. I'll send it by Friday. If you share your floor plan, I can suggest where each unit should go.",
+        ja: 'かしこまりました。金曜日までにお送りします。フロア図をいただければ、各台の設置場所もご提案できます。',
       },
     ],
     tip: '製品説明は「特長 → 他との違い → 費用・保証 → 実演」の順に。相手の条件に合わない点は「Honestly, no.」と正直に伝え、代わりの案を出すと、かえって信頼されます。',
@@ -734,7 +733,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Well, this has been a wonderful evening. Let me get the bill.',
+        en: 'Well, this has been a wonderful evening. Let me get the check.',
         ja: 'いやあ、素晴らしい夜でした。お会計は私が。',
       },
       {

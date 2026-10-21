@@ -125,14 +125,14 @@ const scenes: Scene[] = [
         note: 'take＋日＋off で「〜を休む」。I want to より I\'d like to が丁寧',
       },
       {
-        en: 'Do you mean this Friday or next week?',
-        ja: '今週の金曜日ですか、それとも来週ですか。',
+        en: 'Do you mean this Friday or Friday next week?',
+        ja: '今週の金曜日ですか、それとも来週の金曜日ですか。',
         note: 'あいまいな日付を確かめる',
       },
       { en: 'Is that a problem?', ja: 'それは問題になりますか。' },
       {
         en: "Who can cover your work while you're away?",
-        ja: '休みの間、誰があなたの仕事を代わりにできますか。',
+        ja: '休みの間、あなたの仕事は誰に代わってもらえますか。',
       },
       {
         en: "I've already asked Tom to cover for me.",
@@ -156,8 +156,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Oh, congratulations! Just to check, do you mean this Friday or next week?',
-        ja: 'わあ、おめでとう！念のため聞くけど、今週の金曜日？それとも来週？',
+        en: 'Oh, congratulations! Just to check, do you mean this Friday or Friday next week?',
+        ja: 'わあ、おめでとう！念のため聞くけど、今週の金曜日？それとも来週の金曜日？',
       },
       { sp: 'B', en: 'Sorry, I mean next week. Friday the 14th.', ja: 'すみません、来週のほうです。14日の金曜日です。' },
       {
@@ -169,7 +169,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "It might be. Who can cover your work while you're away?",
-        ja: 'なるかもしれないね。休みの間、誰があなたの仕事を代わりにできる？',
+        ja: 'なるかもしれないね。休みの間、仕事は誰に代わってもらえる？',
       },
       {
         sp: 'B',
@@ -188,7 +188,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Perfect. Could you also write a short handover note for Tom?',
+        en: 'Perfect. Could you also write up some quick notes for Tom?',
         ja: '完璧。トムに簡単な引き継ぎメモも書いてもらえる？',
       },
       {
@@ -303,7 +303,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "That's so kind of you! I'm really looking forward to it.",
-        ja: '本当にご親切に！すごく楽しみです。',
+        ja: 'わあ、ありがとうございます！すごく楽しみです。',
       },
       {
         sp: 'A',
@@ -318,8 +318,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Got it, thanks. Everyone here is so welcoming!',
-        ja: 'わかりました、ありがとうございます。ここのみなさんは本当に温かいですね！',
+        en: "Got it, thanks for everything, Marco. I think I'm going to like it here.",
+        ja: 'わかりました。いろいろありがとうございます、マルコさん。ここが気に入りそうです。',
       },
     ],
     tip: '初日の自己紹介は、役割（I\'m the new ~）と経歴（Before this, I worked in ~）の2文で十分です。そのあと「誰に聞けばいいか」を最初に確かめておくと、2日目から動きやすくなります。',
@@ -399,7 +399,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Not really. Most of us come in Tuesday to Thursday and work from home on Mondays and Fridays.',
+        en: 'Not really. Most of us come in Tuesday through Thursday and work from home on Mondays and Fridays.',
         ja: 'そうでもないです。ほとんどの人は火曜から木曜に出社して、月曜と金曜は在宅勤務です。',
       },
       {
@@ -430,7 +430,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "Of course! I'll introduce you to a few more people at lunch.",
-        ja: '当然ですよ！お昼に、ほかにも何人か紹介しますね。',
+        ja: 'いえいえ！お昼に、ほかにも何人か紹介しますね。',
       },
     ],
     tip: '中国・韓国・日本などの人は、名字を先に名乗ることがあります。どちらが名前か迷ったら What should I call you? と聞くのがいちばん確実で、失礼にもなりません。',
@@ -490,7 +490,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'Basically, a five-page report on the key findings, with a few charts. You know this data better than anyone.',
-        ja: '要するに、主な結果をまとめた5ページのレポートで、グラフも何点か入れます。このデータはあなたが誰よりも詳しいので。',
+        ja: '要するに、主な結果をまとめた5ページのレポートで、グラフも何点か入れます。このデータは、アナさんが誰よりもよく分かっていますから。',
       },
       {
         sp: 'A',
@@ -766,8 +766,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "I understand, but it's always your place. We'd much rather hear about problems early.",
-        ja: 'わかるよ。でも、いつだって言っていいんだよ。問題は早めに聞けたほうがずっといいから。',
+        en: "I get that, but it's always your place to flag a risk. We'd much rather hear about problems early.",
+        ja: 'わかるよ。でも、リスクを指摘するのに遠慮はいらないよ。問題は早めに聞けたほうがずっといいから。',
       },
       {
         sp: 'B',
