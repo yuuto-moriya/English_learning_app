@@ -1,4 +1,4 @@
-import { SCENES } from '@/data/scenes'
+import { learnerRole } from '@/data/scenes/helpers'
 import { db } from './db'
 import { interleave, retrievability } from './srs'
 import { newWordPool } from './session'
@@ -159,6 +159,7 @@ export async function buildPools(): Promise<HfPools> {
   // 瞬間英作文は短めの文で。まねして言う練習と同じ文が続かないよう、別に並べ直す
   const compose = pickRound(short.filter((x) => wc(x.en) <= 12), 200, learned)
   const groups = new Set(cats.map((c) => catMeta(c).scene))
+  const { SCENES } = await import('@/data/scenes')
   const inGroups = SCENES.filter((sc) => groups.has(sc.group))
   const fit = inGroups.filter((sc) => sc.lv <= level + 1)
   const scenes = shuffle(fit.length ? fit : inGroups)
@@ -167,5 +168,5 @@ export async function buildPools(): Promise<HfPools> {
 
 /** 会話で「あなた」の役（台詞のあとにまねして言う間を置く）。いない場面は聞くだけ */
 export function userRole(scene: Scene): string | undefined {
-  return scene.roles.find((r) => r.name === 'You')?.id
+  return learnerRole(scene)
 }

@@ -9,6 +9,7 @@
 - `docs/RESEARCH.md` — 学習設計の根拠となる研究
 - `docs/RAIL_GLOSSARY.md` — 保線用語データの方針
 - `docs/SETUP_AZURE.md` — Azure と Vercel の環境変数
+- `docs/SETUP_AI.md` — AI と会話（Cloudflare Workers AI / Groq）の設定
 
 ## 構成
 

@@ -52,6 +52,8 @@ export function handleHealth(env: Env): Response {
     tts: !!(env.AZURE_SPEECH_KEY && (env.AZURE_SPEECH_REGION || env.AZURE_SPEECH_ENDPOINT)),
     // リアルタイムの音声認識・音声翻訳（同時通訳）は、ブラウザから Azure へ直接つなぐのでリージョンが必要
     realtime: !!(env.AZURE_SPEECH_KEY && env.AZURE_SPEECH_REGION),
+    // AI 会話（Cloudflare Workers AI か Groq のどちらかがあれば使える）
+    chat: !!(env.GROQ_API_KEY || (env.CLOUDFLARE_ACCOUNT_ID && env.CLOUDFLARE_AI_TOKEN)),
     tokenRequired: !!env.APP_ACCESS_TOKEN,
   })
 }

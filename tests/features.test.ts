@@ -182,14 +182,15 @@ describe('聞き分けの最小対語', () => {
 })
 
 describe('練習の文（シーン会話）', () => {
-  const sceneOf = new Map(SCENES.flatMap((sc) => sc.lines.map((l) => [l.en, sc] as const)))
+  // 同じ台詞（Thank you. など）が別のグループの場面にもあるので、文ではなく場面の ID で調べる
+  const groupOf = (id?: string) => SCENES.find((sc) => sc.id === id)?.group
   it('一緒に選んだコースの場面だけを使う', async () => {
     const pool = (await sentencePool(['general', 'scene'], 6)).filter((s) => s.src === 'scene')
     expect(pool.length).toBeGreaterThan(0)
-    for (const s of pool) expect(sceneOf.get(s.en)?.group, s.en).toBe('daily')
+    for (const s of pool) expect(groupOf(s.scene), s.en).toBe('daily')
   })
   it('シーン会話だけを選んだときはすべての場面', async () => {
-    const groups = new Set((await sentencePool(['scene'], 6)).map((s) => sceneOf.get(s.en)?.group))
+    const groups = new Set((await sentencePool(['scene'], 6)).map((s) => groupOf(s.scene)))
     expect(groups).toEqual(new Set(['daily', 'business', 'it', 'rail']))
   })
   it('発音は舞台に合わせる（英国の駅は英国の発音）', () => {

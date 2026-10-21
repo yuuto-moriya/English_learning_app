@@ -184,6 +184,62 @@ check((await page.getByLabel('翻訳する文').inputValue()) === 'See you tomor
 await page.unroute('**/api/health')
 await page.unroute('**/api/translate')
 
+// AI と会話（API はモック）：場面を選ぶ → 準備 → 相手が話しかける → 入力して送る → 直し（返事と別に同時にたのむ）→ 先生役 → 振り返り
+await page.route('**/api/health', (r) => r.fulfill({ json: { translator: false, speech: false, tts: false, realtime: false, chat: true, tokenRequired: false } }))
+let chatN = 0
+await page.route('**/api/chat', (r) => {
+  chatN++
+  r.fulfill({ json: chatN === 1 ? { reply: 'Hi! What can I get for you?', correction: null, hint: 'A latte, please.' } : { reply: 'Sure. What size?', correction: null, hint: 'Medium, please.' } })
+})
+await page.route('**/api/tutor', (r) => {
+  const b = JSON.parse(r.request().postData() || '{}')
+  r.fulfill({
+    json:
+      b.mode === 'correct'
+        ? { correction: { better: 'I want a latte.', note: 'a が必要', kind: 'fix', type: 'article' } }
+        : b.mode === 'explain-reply'
+          ? { ja: 'サイズは？', phrases: [{ en: 'What size', ja: 'どのサイズ' }], point: '店でよく聞く言い方', answers: ['Medium, please.'] }
+          : b.mode === 'explain-mine'
+            ? { good: '伝わります', fix: 'I want a latte.', why: 'a が必要', casual: 'A latte, please.', polite: 'Could I have a latte?' }
+            : { answer: '「店内で」という意味です。' },
+  })
+})
+await page.goto(BASE + '/practice/chat')
+await page.getByText('カフェで注文').click()
+check(await page.getByText('使える言い方').isVisible(), 'AI と会話：始める前の準備（使える言い方）')
+await page.getByRole('button', { name: 'はじめる' }).click()
+await page.getByText('Hi! What can I get for you?').waitFor({ timeout: 5000 })
+check(await page.getByText('Hi! What can I get for you?').isVisible(), 'AI と会話：相手が話しかける')
+check(await page.getByText('飲み物を注文する').isVisible(), 'AI と会話：場面のやること（ゴール）')
+await page.getByLabel('英語で返事を入力').fill('I want latte')
+await page.getByRole('button', { name: '送る' }).click()
+await page.getByRole('button', { name: '直し' }).waitFor({ timeout: 5000 })
+await page.getByRole('button', { name: '直し' }).click()
+check(await page.getByText('I want a latte.').first().isVisible(), 'AI と会話：直しが出る（返事と別に、押すと開く）')
+await page.getByRole('button', { name: '解説' }).last().click()
+await page.getByText('店でよく聞く言い方').waitFor({ timeout: 5000 })
+check(await page.getByText('店でよく聞く言い方').isVisible(), 'AI と会話：相手の英語の解説')
+await page.getByRole('button', { name: '詳しく' }).first().click()
+await page.getByText('Could I have a latte?').waitFor({ timeout: 5000 })
+check(await page.getByText('Could I have a latte?').isVisible(), 'AI と会話：自分の英語の詳しい評価')
+await page.getByRole('button', { name: 'ヒント' }).click()
+await page.getByRole('tab', { name: '先生に質問' }).click()
+await page.getByLabel('先生に質問').fill('for here って何？')
+await page.getByRole('button', { name: '質問', exact: true }).click()
+await page.getByText('「店内で」という意味です。').waitFor({ timeout: 5000 })
+check(await page.getByText('「店内で」という意味です。').isVisible(), 'AI と会話：先生に日本語で質問')
+await page.getByRole('button', { name: 'やめる' }).click()
+check(await page.getByRole('heading', { name: '会話の振り返り' }).isVisible(), 'AI と会話：振り返り')
+check(await page.getByText('冠詞（a / the）').isVisible(), 'AI と会話：今回いちばん多かった間違い')
+await page.getByRole('button', { name: '答えを見る' }).click()
+await page.getByRole('button', { name: '保存', exact: true }).click()
+await page.getByRole('button', { name: 'ほかの場面を選ぶ' }).click()
+check(await page.getByText('保存した言い方（1）').isVisible(), 'AI と会話：保存した言い方')
+check(await page.getByText('最近7日で多い間違い').isVisible(), 'AI と会話：最近多い間違い')
+await page.unroute('**/api/tutor')
+await page.unroute('**/api/health')
+await page.unroute('**/api/chat')
+
 // 翻訳画面のヘルプと同時通訳
 await page.goto(BASE + '/translate')
 await page.getByRole('button', { name: '翻訳画面の使い方' }).click()
@@ -229,6 +285,11 @@ check(await modeGroup.getByText('ITだけを出題').isVisible(), '1つのモー
 await page.goto(BASE + '/scenes')
 await page.getByText('朝会で進捗を報告する').waitFor({ timeout: 5000 })
 check(await page.getByText('朝会で進捗を報告する').isVisible(), 'シーンが IT モードの場面で開く')
+// シーンは グループ → 小分類 → 場面。小分類を選ぶと、その場面だけを出す
+await page.getByRole('tab', { name: /運用・障害対応/ }).click()
+await page.getByText('システム障害を報告する').waitFor({ timeout: 5000 })
+check(await page.getByText('システム障害を報告する').isVisible(), 'シーンの小分類を切り替える')
+check(!(await page.getByText('朝会で進捗を報告する').isVisible()), '選んだ小分類の場面だけを出す')
 
 // 起動時のオープニング（自動テストでは ?opening を付けたときだけ）：出て、時間がたつと消える。タップでも飛ばせる
 await page.goto(BASE + '/?opening')
