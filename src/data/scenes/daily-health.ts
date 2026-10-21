@@ -151,7 +151,7 @@ const scenes: Scene[] = [
     emoji: '🩼',
     goal: '診断と治療の指示を聞き取り、分からない語を確かめて復唱できる',
     roles: [
-      { id: 'A', name: 'Dr. Okafor' },
+      { id: 'A', name: 'Dr. Nguyen' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -171,9 +171,13 @@ const scenes: Scene[] = [
       { sp: 'B', en: "Sorry, no fracture? So it's not broken?", ja: 'すみません、骨折はない、ですか。つまり、折れていないんですね？' },
       { sp: 'A', en: "That's right, nothing's broken. But a bad sprain can take a few weeks to heal.", ja: 'そうです、どこも折れていません。ただ、ひどいねんざは治るまでに数週間かかることもあります。' },
       { sp: 'B', en: 'I see. What should I do to help it heal?', ja: 'わかりました。治すためにはどうすればいいですか。' },
-      { sp: 'A', en: 'For the next two days, rest it and ice it for 20 minutes, three or four times a day.', ja: 'これから2日間は安静にして、1日3〜4回、1回20分ずつ冷やしてください。' },
+      { sp: 'A', en: 'For the next two days, rest it and ice it for 20 minutes every two or three hours.', ja: 'これから2日間は安静にして、2〜3時間おきに20分ずつ冷やしてください。' },
       { sp: 'B', en: 'Okay. Should I wrap it, too?', ja: 'わかりました。包帯も巻いたほうがいいですか。' },
-      { sp: 'A', en: 'Yes, use an elastic bandage. And keep it elevated as much as you can.', ja: 'はい、伸縮性の包帯を巻いてください。それと、できるだけ足を高く上げておいてください。' },
+      {
+        sp: 'A',
+        en: 'Yes, use an elastic bandage, but not too tight. And keep it elevated as much as you can.',
+        ja: 'はい、伸縮性の包帯を巻いてください。ただし、きつく巻きすぎないように。それと、できるだけ足を高く上げておいてください。',
+      },
       { sp: 'B', en: "Sorry, what do you mean by 'elevated'?", ja: 'すみません、「elevated」とはどういう意味ですか。' },
       { sp: 'A', en: 'It means keep your foot up, higher than your heart. A couple of pillows work well.', ja: '足を心臓より高い位置に上げておく、ということです。枕を2つほど重ねるといいですよ。' },
       { sp: 'B', en: 'Got it. And what can I take for the pain?', ja: 'わかりました。それから、痛みには何を飲めばいいですか。' },
