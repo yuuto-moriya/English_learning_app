@@ -113,7 +113,7 @@ const scenes: Scene[] = [
       { sp: 'B', en: "In this heat, that's worrying. Did the driver say what it felt like?", ja: 'この暑さだと心配ですね。運転士はどんな揺れだったと言っていましたか。' },
       { sp: 'A', en: "She said the train lurched sideways. I've stopped all trains on the down line for now.", ja: '列車が横に大きく揺れたそうです。下り線の列車はひとまず全部止めました。' },
       { sp: 'B', en: "Thanks. It sounds like a buckle. What's the rail temperature there?", ja: '助かります。張り出しのようですね。そこのレール温度は何度ですか。' },
-      { sp: 'A', en: "The nearest sensor is reading 52 degrees, and it's still rising.", ja: '最寄りのセンサーで52℃で、まだ上がっています。' },
+      { sp: 'A', en: "The nearest sensor is reading 52 degrees, and it's still rising.", ja: '最寄りのセンサーの値は52℃で、まだ上がっています。' },
       { sp: 'B', en: "I'm on my way. I should be on site by 15:10.", ja: 'すぐ向かいます。15時10分には現場に着けるはずです。' },
       { sp: 'A', en: "It's Sunil again. Are you there yet?", ja: 'たびたびすみません、スニールです。もう現場に着きましたか。' },
       { sp: 'B', en: "Yes, I'm at 41 km 200 m. It's a buckle: the down line has moved about 100 millimetres sideways.", ja: 'はい、41km200m地点にいます。張り出しです。下り線が横に約100mm動いています。' },
@@ -126,7 +126,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'OK. Should we put watchmen at any other sites?', ja: '分かりました。ほかの箇所にも監視員を置いたほうがいいですか。' },
       { sp: 'B', en: "Yes, please put watchmen on the curves at 37 and 45 km until it cools down. I'll update you at 18:00.", ja: 'はい、涼しくなるまで、37kmと45kmの曲線に監視員を置いてください。18時にまた状況を連絡します。' },
     ],
-    tip: '聞いた話から判断するときは It sounds like 〜、自分の目で見て判断するときは It looks like 〜、確認できたら It\'s 〜 と言い切ります。現場に着く前と後で使い分けると、判断の確かさが相手に伝わります。',
+    tip: "聞いた話から判断するときは It sounds like 〜、自分の目で見て判断するときは It looks like 〜、確認できたら It's 〜 と言い切ります。現場に着く前と後で使い分けると、判断の確かさが相手に伝わります。",
   },
   {
     id: 'r-snow',
