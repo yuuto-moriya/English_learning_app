@@ -17,9 +17,9 @@ const scenes: Scene[] = [
     ],
     phrases: [
       {
-        en: 'Before we go out, please put on this helmet and hi-vis vest.',
+        en: 'Before we go out, please put on this hard hat and hi-vis vest.',
         ja: '外に出る前に、このヘルメットと安全ベストを着用してください。',
-        note: 'hi-vis は high-visibility（高視認性）の略。英国の現場の定番語',
+        note: '現場のヘルメットは hard hat。hi-vis は high-visibility（高視認性）の略で、英国の現場の定番語',
       },
       {
         en: 'Our conventional lines are narrow gauge, 1,067 millimetres.',
@@ -48,7 +48,7 @@ const scenes: Scene[] = [
     lines: [
       {
         sp: 'B',
-        en: 'Welcome to our maintenance depot. Before we go out, please put on this helmet and hi-vis vest.',
+        en: 'Welcome to our maintenance depot. Before we go out, please put on this hard hat and hi-vis vest.',
         ja: '保線基地へようこそ。外に出る前に、このヘルメットと安全ベストを着用してください。',
       },
       {
@@ -69,8 +69,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "In the EN standards it's 'ballastless track', but most of us say 'slab track' as well.",
-        ja: 'EN規格では「ballastless track」ですが、たいていは「slab track」とも言います。',
+        en: "In the EN standards it's 'ballastless track', but most people just say 'slab track'.",
+        ja: 'EN規格では「ballastless track」ですが、普段はたいてい「slab track」と言います。',
       },
       {
         sp: 'B',
@@ -80,8 +80,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'How short are we talking?', ja: '具体的にはどのくらい短いのですか。' },
       {
         sp: 'B',
-        en: "No trains run from midnight to six, but once we've set up and cleared away, we often get under four hours of real work.",
-        ja: '0時から6時までは列車が走りませんが、準備と片付けを除くと、実際に作業できるのは4時間未満のことが多いです。',
+        en: 'Trains stop around midnight and start again at about six. After setting up and clearing away, we often get under four hours of real work.',
+        ja: '列車は0時ごろに終わり、6時ごろに再開します。準備と片付けを除くと、実際に作業できるのは4時間未満のことが多いです。',
       },
       {
         sp: 'A',
@@ -203,8 +203,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'And is there anything you can do about the noise?', ja: 'それと、騒音について何かしてもらえることはありますか。' },
       {
         sp: 'B',
-        en: "We'll try to keep the noise down. For example, we'll switch off engines when they're not in use and point the lights away from homes.",
-        ja: '騒音はできるだけ抑えるようにします。たとえば、使っていないエンジンは止め、照明は住宅に向けないようにします。',
+        en: "We'll try to keep the noise down. For example, we'll switch off engines when they're not in use and use quieter equipment where we can.",
+        ja: '騒音はできるだけ抑えるようにします。たとえば、使っていないエンジンは止め、できるだけ低騒音の機械を使います。',
       },
       {
         sp: 'A',
@@ -408,7 +408,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "That's a fair point, and honestly, it's a limitation of our study. Our axle loads are relatively light, so we have no heavy-freight data yet.",
-        ja: 'ごもっともなご指摘で、正直に申し上げると、そこが今回の研究の限界です。日本の軸重は比較的軽いため、重量貨物のデータはまだありません。',
+        ja: 'ごもっともなご指摘で、正直に申し上げると、そこが今回の研究の限界です。私たちの路線は軸重が比較的軽いため、重量貨物のデータはまだありません。',
       },
       { sp: 'A', en: 'Understood. And how much training did your staff need?', ja: '分かりました。それと、職員の教育はどの程度必要でしたか。' },
       {
@@ -432,7 +432,7 @@ const scenes: Scene[] = [
         en: "Thank you. I'll need to get approval from my company first, but I should be able to email you within two weeks.",
         ja: 'ありがとうございます。まず社内の承認を得る必要がありますが、2週間以内にはメールでお送りできると思います。',
       },
-      { sp: 'A', en: 'Perfect. Thanks again for such a clear answer.', ja: '完璧です。分かりやすいご回答を本当にありがとうございました。' },
+      { sp: 'A', en: 'Great. Thanks again for such clear answers.', ja: 'よかったです。分かりやすいご回答を本当にありがとうございました。' },
     ],
     tip: "質疑応答は ①質問を確認（Just to make sure I understand ~）②結論 ③根拠（数字と期間）④限界は正直に ⑤後日のフォロー の順に。推測で答えるより、it's a limitation と認めるほうが信頼されます。",
   },
