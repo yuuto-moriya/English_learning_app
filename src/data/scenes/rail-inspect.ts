@@ -121,7 +121,7 @@ const scenes: Scene[] = [
     titleEn: 'Taking Manual Measurements',
     lv: 4,
     emoji: '📐',
-    goal: '軌間・水準の測定値を正確に読み上げて復唱し、限度値と比べられる',
+    goal: '軌間・水準の測定値を正確に読み上げて復唱し、限度値と比較できる',
     roles: [
       { id: 'A', name: 'Tom' },
       { id: 'B', name: 'You' },
@@ -171,7 +171,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Two is fourteen thirty-nine and seventy. For three, was that sixty or sixteen?',
+        en: 'Position two, fourteen thirty-nine and seventy. For three, was that sixty or sixteen?',
         ja: '2点目は1439とカント70。3点目のカントは60でしたか、16でしたか。',
       },
       { sp: 'A', en: 'Six-zero. Sixty.', ja: 'ろく、ゼロ。60です。' },
@@ -182,7 +182,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Good shout. There's a bit of ballast on the low rail... Right, cant sixty-three.",
+        en: 'Good shout. There was a bit of ballast on the low rail... Right, cant sixty-three.',
         ja: 'いい指摘ですね。内軌側のレールにバラストのかけらが乗っていました。…よし、カント63。',
       },
       {
@@ -380,7 +380,7 @@ const scenes: Scene[] = [
       },
       {
         en: 'Will standard fishplates clear the weld collar?',
-        ja: '普通の継目板で、溶接部の余盛りに当たりませんか。',
+        ja: '普通の継目板は、溶接部の余盛りに当たらずに付けられますか。',
         note: 'clear＝ぶつからずに収まる。weld collar＝溶接部の余盛り',
       },
       { en: 'How long do we have to get the rail out?', ja: 'レールの撤去まで、どれくらい猶予がありますか。' },
@@ -435,7 +435,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'Yes, please. Will standard fishplates clear the weld collar, or do we need a clamp?',
-        ja: 'はい、お願いします。普通の継目板で溶接部の余盛りに当たりませんか。それともクランプが必要ですか。',
+        ja: 'はい、お願いします。普通の継目板は溶接部の余盛りに当たらずに付けられますか。それともクランプが必要ですか。',
       },
       {
         sp: 'A',
@@ -461,7 +461,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'Thanks, Sean. So, to confirm: a two-one-one at 32.418, left rail, 30 km/h now, clamp today, and the rail out by Wednesday night.',
-        ja: 'ありがとうございます、ショーンさん。確認します。32.418km、左レールの211、今から時速30km、今日クランプ、水曜夜までにレール撤去ですね。',
+        ja: 'ありがとうございます、ショーンさん。確認します。32.418km、左レールの211、今から時速30km制限、今日中にクランプ取付け、水曜夜までにレール撤去ですね。',
       },
     ],
     tip: '探傷結果は「位置（キロ程・左右）→ 部位（頭部か、溶接部か母材か）→ 大きさ・分類 → 再探傷の有無」の順に確認します。最後に So, to confirm: で措置を復唱すると、聞き違いを防げます。',
@@ -565,8 +565,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Sure. I'll raise three: drain cleaning, the hand repair this week, and machine tamping after the 20th.",
-        ja: 'はい。排水溝の清掃、今週の人力での補修、20日以降のマルタイによるつき固めの3件を起票します。',
+        en: "Sure. I'll raise three: drain cleaning, hand tamping this week, and machine tamping after the 20th.",
+        ja: 'はい。排水溝の清掃、今週のタイタンパによるつき固め、20日以降のマルタイによるつき固めの3件を起票します。',
       },
       {
         sp: 'A',
