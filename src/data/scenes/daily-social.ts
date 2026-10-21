@@ -107,7 +107,7 @@ const scenes: Scene[] = [
       { en: "I'm driving tonight, so I'll just have some sparkling water.", ja: '今夜は車なので、炭酸水にしておきます。', note: 'お酒を断るときは、理由を短く添えると自然' },
       { en: 'Make yourself at home.', ja: 'くつろいでね。', note: '招く側の言葉。言われたら Thanks! で十分' },
       { en: 'Who else is coming tonight?', ja: '今夜はほかに誰が来るんですか。' },
-      { en: 'Everything smells delicious.', ja: 'どれもすごくいい匂いですね。' },
+      { en: 'Everything smells delicious.', ja: 'どれもおいしそうな匂いがしますね。' },
       { en: "What's in it?", ja: '何が入っているんですか。', note: '料理をほめたあとに聞くと、会話のきっかけになる' },
     ],
     lines: [
@@ -122,7 +122,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'Sure, here you go. Make yourself at home.', ja: 'もちろん、はいどうぞ。くつろいでね。' },
       { sp: 'B', en: 'Thanks. So, who else is coming tonight?', ja: 'ありがとうございます。それで、今夜はほかに誰が来るんですか。' },
       { sp: 'A', en: 'Just a few friends from work. They should be here any minute.', ja: '職場の友達が何人かだけ。もうすぐ来ると思う。' },
-      { sp: 'B', en: 'Great. Everything smells delicious, by the way.', ja: 'いいですね。ところで、どれもすごくいい匂いがします。' },
+      { sp: 'B', en: 'Great. Everything smells delicious, by the way.', ja: 'いいですね。ところで、どれもおいしそうな匂いがします。' },
       { sp: 'A', en: "Thanks! That's my grandma's chili. Help yourself!", ja: 'ありがとう！おばあちゃん直伝のチリなんだ。自由に取ってね！' },
       { sp: 'B', en: "It looks amazing. What's in it?", ja: 'すごくおいしそう。何が入っているんですか。' },
       { sp: 'A', en: "Beans, beef, lots of spices, and a little dark chocolate. That's the secret.", ja: '豆と牛肉、スパイスをたっぷり、それにダークチョコレートを少し。それが隠し味なんだ。' },
