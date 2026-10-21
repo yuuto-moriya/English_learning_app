@@ -66,7 +66,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "We'd rather get everything in one delivery. Is shipping included in the price?",
-        ja: '全部まとめて一度に納品してもらうほうがいいです。送料は価格に含まれていますか。',
+        ja: '全部まとめて一度に納品していただくほうが助かります。送料は価格に含まれていますか。',
       },
       {
         sp: 'A',
@@ -83,7 +83,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "No problem. You'll have it by Thursday. Should I send it to you directly?",
-        ja: '承知しました。木曜日までにはお手元に届くようにします。あなた宛てに直接お送りすればよろしいですか。',
+        ja: '承知しました。木曜日までにはお手元に届くようにします。森様に直接お送りすればよろしいですか。',
       },
       {
         sp: 'B',
@@ -91,7 +91,7 @@ const scenes: Scene[] = [
         ja: 'はい、お願いします。上司の伊藤にもCCで送っていただけますか。ご対応ありがとうございました。',
       },
     ],
-    tip: 'quote（quotation）はその価格で売ると約束する正式な見積もり、estimate は変わることもある概算です。数社を比べるときは We\'re getting quotes from three suppliers. のように言います。',
+    tip: "quote（quotation）はその価格で売ると約束する正式な見積もり、estimate は変わることもある概算です。数社を比べるときは We're getting quotes from three suppliers. のように言います。",
   },
   {
     id: 'b-extension',
@@ -351,7 +351,7 @@ const scenes: Scene[] = [
       {
         en: 'Thank you for holding.',
         ja: 'お待たせいたしました。',
-        note: '保留から戻ったときの定番。Sorry for waiting は「待ったのは自分」の意味になり誤り',
+        note: '保留から戻ったときの定番。Sorry for waiting は「自分が待った」の意味になる。謝るなら Sorry to keep you waiting.',
       },
       { en: "I'm very sorry for the inconvenience.", ja: 'ご迷惑をおかけして大変申し訳ございません。' },
       {
@@ -410,7 +410,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "I understand. I'll email you the tracking number within the hour and check the delivery status myself first thing tomorrow.",
-        ja: '承知しております。1時間以内に追跡番号をメールでお送りし、明日の朝一番に私自身が配送状況を確認いたします。',
+        ja: 'おっしゃることはよく分かります。1時間以内に追跡番号をメールでお送りし、明日の朝一番に私自身が配送状況を確認いたします。',
       },
       { sp: 'A', en: "Okay. But we're not paying for express shipping.", ja: '分かりました。でも、速達の料金は払いませんよ。' },
       {
@@ -618,7 +618,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "We'd prefer net 30, since that's what we have with most of our partners. Would you be open to net 45 as a compromise?",
-        ja: '弊社としては30日払いを希望します。ほとんどの取引先とその条件ですので。折衷案として、45日でご検討いただけないでしょうか。',
+        ja: '弊社としては30日払いを希望します。ほとんどの取引先とはその条件ですので。折衷案として、45日でご検討いただけないでしょうか。',
       },
       {
         sp: 'A',
@@ -678,10 +678,10 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "So we still need to settle the liability cap and the penalty cap. I'll email you a summary of today's points this afternoon.",
-        ja: 'では、損害賠償の上限とペナルティの上限がまだ決まっていませんね。今日の論点をまとめて、今日の午後にメールでお送りします。',
+        ja: 'では、損害賠償の上限とペナルティの上限がまだ決まっていませんね。本日の論点をまとめて、午後にメールでお送りします。',
       },
     ],
-    tip: '契約の場では We want ～ より We\'d prefer ～ や Would you be open to ～? と控えめに提案します。その場で決められない点は無理に答えず、誰に確認していつ返事するかを伝え、最後に未決の点を言葉でまとめると行き違いを防げます。',
+    tip: "契約の場では We want ～ より We'd prefer ～ や Would you be open to ～? と控えめに提案します。その場で決められない点は無理に答えず、誰に確認していつ返事するかを伝え、最後に未決の点を言葉でまとめると行き違いを防げます。",
   },
 ]
 
