@@ -9,7 +9,9 @@ const names = readdirSync(new URL('../src/data/scenes/', import.meta.url))
   .filter((f) => /^[a-z]+-[a-z]+\.ts$/.test(f))
   .map((f) => f.replace(/\.ts$/, ''))
   .filter((n) => !only || n === only)
-const files = await Promise.all(names.map(async (n) => [n, ((await import(`../src/data/scenes/${n}.ts`)) as { default: Scene[] }).default] as const))
+// 変数入りの import は Vite がテストの変換時にファイルの一覧を固めてしまう（キャッシュで新しいファイルを見落とす）ので、変換させない
+const load = async (n: string) => ((await import(/* @vite-ignore */ new URL(`../src/data/scenes/${n}.ts`, import.meta.url).pathname)) as { default: Scene[] }).default
+const files = await Promise.all(names.map(async (n) => [n, await load(n)] as const))
 
 describe('シーン会話の書式', () => {
   if (only) it(`${only} がある`, () => expect(names).toEqual([only]))
