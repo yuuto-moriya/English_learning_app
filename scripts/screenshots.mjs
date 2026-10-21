@@ -92,6 +92,10 @@ for (const scheme of ['light', 'dark']) {
       await page.getByRole('tab', { name: 'IT' }).click()
       await page.waitForTimeout(300)
       await page.screenshot({ path: `${OUT}/${scheme}-scenes-it.png` })
+      await page.getByRole('tab', { name: '鉄道' }).click()
+      await page.getByRole('tab', { name: /検査・測定/ }).click()
+      await page.waitForTimeout(300)
+      await page.screenshot({ path: `${OUT}/${scheme}-scenes-rail.png`, fullPage: true })
     }
     if (name === 'settings') {
       await page.getByText('英語の発音（国・地域）').scrollIntoViewIfNeeded()

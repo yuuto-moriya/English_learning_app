@@ -5,7 +5,8 @@ import { PageHeader } from '@/components/Layout'
 import { Guide } from '@/components/Guide'
 import { SpeakCheck } from '@/components/SpeakCheck'
 import { Button, Card, Empty, Segmented, SectionTitle, SpeakButton, Toggle, cx } from '@/components/ui'
-import { getScene, sceneAccent } from '@/data/scenes'
+import { getScene, learnerRole, sceneAccent } from '@/data/scenes'
+import { SCENE_GROUP_LABEL, subOf } from '@/data/scenes/subs'
 import { otherAccent } from '@/lib/accents'
 import { prefetchSpeech, speak, stopSpeaking, warmUpSpeech, type Accent, type VoiceRole } from '@/lib/tts'
 import { speakingMessage, type GuideLine } from '@/lib/guide'
@@ -75,6 +76,9 @@ export default function SceneDetail() {
       <PageHeader title={scene.title} back="/scenes" />
       <div className="px-4 pb-10">
         <p className="en -mt-3 px-1 text-[17px] italic text-muted">{scene.titleEn}</p>
+        <p className="mt-1 px-1 text-[12.5px] text-muted">
+          {SCENE_GROUP_LABEL[scene.group]} › {subOf(scene)?.label}
+        </p>
         <Card className="mt-4 flex items-start gap-3">
           <Target className="mt-0.5 h-5 w-5 shrink-0 text-brand" strokeWidth={1.8} />
           <div>
@@ -128,7 +132,7 @@ export default function SceneDetail() {
             <Toggle label="和訳を表示" checked={showJa} onChange={setShowJa} />
             <div className="space-y-2.5" onClickCapture={interruptPlayAll}>
               {scene.lines.map((l, i) => {
-                const mine = l.sp === scene.roles[scene.roles.length - 1].id
+                const mine = l.sp === (learnerRole(scene) ?? scene.roles[scene.roles.length - 1].id)
                 return (
                   <div key={i} className={cx('flex items-end gap-2', mine && 'flex-row-reverse')}>
                     <div
@@ -166,7 +170,7 @@ export default function SceneDetail() {
 }
 
 function RolePlay({ scene }: { scene: Scene }) {
-  const [role, setRole] = useState(scene.roles[scene.roles.length - 1].id)
+  const [role, setRole] = useState(learnerRole(scene) ?? scene.roles[scene.roles.length - 1].id)
   const [i, setI] = useState(-1)
   const [hint, setHint] = useState(false)
   const [guide, setGuide] = useState<GuideLine | null>(null)
