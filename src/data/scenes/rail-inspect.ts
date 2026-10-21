@@ -34,8 +34,8 @@ const scenes: Scene[] = [
         note: 'trespass＝線路への無断立ち入り。境界柵（boundary fence）の破損は優先度の高い不良',
       },
       {
-        en: 'There are clips missing on three sleepers in a row.',
-        ja: '連続する3本のまくらぎでクリップが欠落しています。',
+        en: 'Three sleepers in a row have a clip missing.',
+        ja: '連続する3本のまくらぎで、クリップが1個ずつ欠けています。',
         note: 'in a row＝連続して。連続した欠落は1本だけの欠落より危険度が高い',
       },
       { en: 'I fitted them there and then.', ja: 'その場で取り付けました。', note: 'there and then＝その場ですぐに' },
@@ -81,8 +81,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Next, there are clips missing on three sleepers in a row, about 200 metres past kilometre post 14.',
-        ja: '次に、14kmのキロポストから約200m先で、連続する3本のまくらぎのクリップが欠落しています。',
+        en: 'Next, three sleepers in a row have a clip missing, about 200 metres past kilometre post 14.',
+        ja: '次に、14kmのキロポストから約200m先で、連続する3本のまくらぎのクリップが1個ずつ欠けています。',
       },
       { sp: 'A', en: 'Three in a row? Did you have any spares on you?', ja: '3本連続ですか。予備は持っていましたか。' },
       {
@@ -133,11 +133,11 @@ const scenes: Scene[] = [
         ja: '60でしたか、16でしたか。',
         note: '-ty と -teen は聞き違えやすい。答える側は six-zero のように1桁ずつ言い直す',
       },
-      { en: 'Can you take it again?', ja: 'もう一度測ってもらえますか。', note: 'take a reading＝測定値を取る。測り直しは re-take / re-measure' },
+      { en: 'Can you take it again?', ja: 'もう一度測ってもらえますか。', note: 'take a reading＝測定値を取る。測り直しは re-measure / take another reading とも言う' },
       {
         en: 'The twist is seven millimetres over three metres.',
         ja: '平面性は3mで7mmです。',
-        note: 'twist（平面性）は基長とセットで言う。日本の在来線は5m基長が一般的なので、海外の値と比べるときは注意',
+        note: 'twist（平面性）は基長とセットで言う。日本の在来線は基長5mが一般的なので、3m基長などの海外の値と比べるときは注意',
       },
       { en: "That's still within our limit for this line speed.", ja: 'この線路最高速度での限度値には、まだ収まっています。' },
       { en: "I'd flag it for the tamping list.", ja: 'つき固めの候補リストに載せておきたいです。', note: "flag＝要注意の印を付ける。I'd ～ は控えめな提案" },
@@ -171,8 +171,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Position two, fourteen thirty-nine and seventy. For three, was that sixty or sixteen?',
-        ja: '2点目は1439とカント70。3点目のカントは60でしたか、16でしたか。',
+        en: 'Position two, fourteen thirty-nine and seventy. Position three, fourteen forty, and was that sixty or sixteen?',
+        ja: '2点目は1439とカント70。3点目は1440で、カントは60でしたか、16でしたか。',
       },
       { sp: 'A', en: 'Six-zero. Sixty.', ja: 'ろく、ゼロ。60です。' },
       {
@@ -193,7 +193,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "True, but it's quite a sharp change on a curve like this. Should we do anything about it?",
-        ja: '確かに。でも、こういう曲線にしてはかなり急な変化です。何か手を打ったほうがいいですかね。',
+        ja: '確かに。でも、こういう曲線では、かなり急な変化です。何か手を打ったほうがいいですかね。',
       },
       {
         sp: 'B',
@@ -271,8 +271,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Four issues, mainly. The most serious is a chip on the left-hand switch rail, about 400 millimetres from the toe.',
-        ja: '主に4点です。最も深刻なのは左のトングレールの欠けで、先端から約400mmの位置です。',
+        en: 'A few things. The most serious is a chip on the left-hand switch rail, about 400 millimetres from the toe.',
+        ja: 'いくつかあります。最も深刻なのは左のトングレールの欠けで、先端から約400mmの位置です。',
       },
       {
         sp: 'A',
@@ -281,8 +281,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "It's about three mil deep with rounded edges. Measured with our gauge, it's within the limit, but only just.",
-        ja: '深さは約3mmで、縁は丸くなっています。ゲージで測ると限度値内ですが、ぎりぎりです。',
+        en: "It's about three mil deep with rounded edges. Measured with the damage gauge, it's within the limit, but only just.",
+        ja: '深さは約3mmで、縁は丸くなっています。損傷ゲージで測ると限度値内ですが、ぎりぎりです。',
       },
       {
         sp: 'A',
@@ -291,8 +291,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "The right-hand switch rail isn't closing fully against the stock rail at the back drive. There's a gap of about four millimetres.",
-        ja: '右のトングレールが、バックドライブの位置で基本レールに完全に密着していません。約4mmのすき間があります。',
+        en: "The right-hand switch rail isn't closing fully against the stock rail at the back drive. There's a gap of about five millimetres.",
+        ja: '右のトングレールが、バックドライブの位置で基本レールに完全に密着していません。約5mmのすき間があります。',
       },
       {
         sp: 'A',
@@ -306,8 +306,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Agreed, any back drive adjustment has to be a joint job with signalling. I'll ring Kwame and book him in for Thursday night.",
-        ja: 'そうですね。バックドライブの調整は、必ず信号との合同作業です。クワメに電話して、木曜の夜に来てもらうよう手配します。',
+        en: "Agreed, any back drive adjustment has to be a joint job with signalling. I'll ask Kwame to check detection today.",
+        ja: 'そうですね。バックドライブの調整は、必ず信号との合同作業です。今日中にクワメに検知を確認してもらいます。',
       },
       {
         sp: 'B',
@@ -331,8 +331,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "It's got worse, with about six mil of wear on the nose. I'd recommend a weld repair before it starts cracking.",
-        ja: '悪化していて、ノーズに約6mmの摩耗があります。き裂が出始める前に、溶接補修をお勧めします。',
+        en: "It's got worse: there's more lipping, and about six mil of wear on the nose. I'd recommend a weld repair before it starts cracking.",
+        ja: '悪化しています。リッピングが進み、ノーズに約6mmの摩耗もあります。き裂が出始める前に、溶接補修をお勧めします。',
       },
       {
         sp: 'A',
@@ -381,10 +381,10 @@ const scenes: Scene[] = [
       {
         en: 'Will standard fishplates clear the weld collar?',
         ja: '普通の継目板は、溶接部の余盛りに当たらずに付けられますか。',
-        note: 'clear＝ぶつからずに収まる。weld collar＝溶接部の余盛り',
+        note: 'clear＝ぶつからずに収まる。weld collar＝溶接部の余盛り。当たるときは余盛りをよける段付きの joggled fishplates を使う',
       },
       { en: 'How long do we have to get the rail out?', ja: 'レールの撤去まで、どれくらい猶予がありますか。' },
-      { en: 'The restriction stays on until then.', ja: 'それまで速度制限は継続します。' },
+      { en: "The restriction stays on until the rail's replaced.", ja: 'レールを交換するまで、速度制限は継続します。' },
     ],
     lines: [
       {
@@ -434,24 +434,24 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Yes, please. Will standard fishplates clear the weld collar, or do we need a clamp?',
-        ja: 'はい、お願いします。普通の継目板は溶接部の余盛りに当たらずに付けられますか。それともクランプが必要ですか。',
+        en: 'Yes, please. Will standard fishplates clear the weld collar, or do we need joggled ones?',
+        ja: 'はい、お願いします。普通の継目板は溶接部の余盛りに当たらずに付けられますか。それとも段付きの継目板が必要ですか。',
       },
       {
         sp: 'A',
-        en: "Not at 200 mil, they won't. We've got an emergency clamp in the van, so we'll use that.",
-        ja: '200mmだと当たってしまいます。車に緊急用のクランプがあるので、それを使います。',
+        en: "Not at 200 mil, they won't. We've got joggled fishplates and clamps in the van, so we'll use those.",
+        ja: '200mmだと当たってしまいます。車に段付きの継目板とクランプがあるので、それを使います。',
       },
       { sp: 'B', en: 'Great. How long do we have to get the rail out?', ja: '助かります。そのレールの撤去まで、どれくらい猶予がありますか。' },
       {
         sp: 'A',
-        en: 'Our standard gives us 72 hours for a defect this size, and the restriction stays on until then.',
-        ja: 'この大きさのきずなら、社内基準では72時間です。それまで速度制限は継続します。',
+        en: "Our company standard gives us 72 hours for a defect this size. The restriction stays on until the rail's replaced.",
+        ja: 'この大きさのきずなら、社内基準では72時間以内です。レールを交換するまで、速度制限は継続します。',
       },
       {
         sp: 'B',
-        en: "Then let's cut it out in Wednesday night's possession and take the old weld out with it.",
-        ja: 'では、水曜夜の線路閉鎖で切り取って、古い溶接部も一緒に撤去しましょう。',
+        en: "Then let's cut it out in tomorrow night's possession and take the old weld out with it.",
+        ja: 'では、明日の夜の線路閉鎖で切り取って、古い溶接部も一緒に撤去しましょう。',
       },
       {
         sp: 'A',
@@ -460,8 +460,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Thanks, Sean. So, to confirm: a two-one-one at 32.418, left rail, 30 km/h now, clamp today, and the rail out by Wednesday night.',
-        ja: 'ありがとうございます、ショーンさん。確認します。32.418km、左レールの211、今から時速30km制限、今日中にクランプ取付け、水曜夜までにレール撤去ですね。',
+        en: 'Thanks, Sean. So, to confirm: a two-one-one at 32.418, left rail, 30 km/h now, fishplates on today, and the rail out tomorrow night.',
+        ja: 'ありがとうございます、ショーンさん。確認します。32.418km、左レールの211、今から時速30km制限、今日中に継目板取付け、明日の夜にレール撤去ですね。',
       },
     ],
     tip: '探傷結果は「位置（キロ程・左右）→ 部位（頭部か、溶接部か母材か）→ 大きさ・分類 → 再探傷の有無」の順に確認します。最後に So, to confirm: で措置を復唱すると、聞き違いを防げます。',
@@ -520,7 +520,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "Fairly sure. It shows up in the same place on the last three runs, and it's slightly worse each time.",
-        ja: 'ほぼ確実です。直近3回の走行で同じ位置に出ていて、毎回少しずつ悪くなっています。',
+        ja: 'かなり確かです。直近3回の走行で同じ位置に出ていて、毎回少しずつ悪くなっています。',
       },
       { sp: 'A', en: 'Right. And the longitudinal level around there?', ja: 'なるほど。その付近の高低はどうですか。' },
       {

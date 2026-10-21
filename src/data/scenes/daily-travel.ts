@@ -33,7 +33,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'Sure, no problem. Which button do I press?', ja: 'ええ、いいですよ。どのボタンを押せばいいですか。' },
       { sp: 'B', en: 'Just press this button here, at the bottom.', ja: 'この、下にあるボタンを押すだけです。' },
       { sp: 'A', en: 'OK, move a little to the left. Great, one, two, three!', ja: 'じゃあ、少し左に寄ってください。いいですね、1、2、3！' },
-      { sp: 'B', en: 'Oh, my eyes are closed. Could you take one more?', ja: 'あ、目をつぶっています。もう1枚撮っていただけますか。' },
+      { sp: 'B', en: 'Oh, my eyes were closed. Could you take one more?', ja: 'あ、目をつぶっていました。もう1枚撮っていただけますか。' },
       { sp: 'A', en: 'Of course. Keep your eyes open this time!', ja: 'もちろん。今度は目を開けていてくださいね！' },
       { sp: 'B', en: 'Thanks. Could you take a vertical one, too?', ja: 'ありがとうございます。縦の写真も撮っていただけますか。' },
       { sp: 'A', en: 'Sorry, what do you mean?', ja: 'すみません、どういう意味ですか。' },
@@ -144,7 +144,7 @@ const scenes: Scene[] = [
     emoji: '🌡️',
     goal: '部屋の不具合を電話で伝え、修理や部屋の交換を依頼できる',
     roles: [
-      { id: 'A', name: 'Daniel' },
+      { id: 'A', name: 'Tyler' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -161,7 +161,7 @@ const scenes: Scene[] = [
       { en: 'Thanks for taking care of it.', ja: '対応していただいてありがとうございます。' },
     ],
     lines: [
-      { sp: 'A', en: 'Front desk, this is Daniel. How can I help you?', ja: 'フロントのダニエルです。どうなさいましたか。' },
+      { sp: 'A', en: 'Front desk, this is Tyler. How can I help you?', ja: 'フロントのタイラーです。どうなさいましたか。' },
       {
         sp: 'B',
         en: "Hi, I'm calling from room 507. The air conditioning isn't working.",
@@ -169,8 +169,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "I'm sorry about that. Have you tried the control panel by the door?",
-        ja: '申し訳ございません。ドアの横の操作パネルはお試しになりましたか。',
+        en: "I'm sorry about that. Have you tried the thermostat by the door?",
+        ja: '申し訳ございません。ドアの横の温度調節パネルはお試しになりましたか。',
       },
       {
         sp: 'B',
@@ -183,7 +183,7 @@ const scenes: Scene[] = [
         ja: 'すぐに設備の担当者を向かわせます。10分ほどでお部屋に伺います。',
       },
       { sp: 'B', en: "Thanks. I'll wait in the room.", ja: 'ありがとうございます。部屋で待っています。' },
-      { sp: 'A', en: 'Front desk. Hi again, is the air conditioning working now?', ja: 'フロントです。先ほどはどうも。エアコンは直りましたか。' },
+      { sp: 'A', en: "Hi, it's Tyler from the front desk again. Is the air conditioning working now?", ja: 'もしもし、フロントのタイラーです。エアコンは直りましたか。' },
       {
         sp: 'B',
         en: "Not really. The technician says they need a part, so it's still not working.",
@@ -218,7 +218,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: "Again, I'm sorry for the trouble. Have a good night.", ja: '重ねて、ご不便をおかけして申し訳ございません。おやすみなさいませ。' },
       { sp: 'B', en: 'Thanks for taking care of it so quickly.', ja: 'すぐに対応していただいてありがとうございます。' },
     ],
-    tip: '米国のエアコンの温度は華氏（°F）表示。68°F ≈ 20°C、72°F ≈ 22°C が目安です。温度を下げるのは turn it down、上げるのは turn it up と言います。',
+    tip: '米国では部屋の温度調節パネルを thermostat と言い、温度は華氏（°F）表示。68°F ≈ 20°C、72°F ≈ 22°C が目安です。温度を下げるのは turn it down、上げるのは turn it up と言います。',
   },
   {
     id: 'd-rental-host',
@@ -230,7 +230,7 @@ const scenes: Scene[] = [
     emoji: '🔑',
     goal: '民泊のホストから鍵・Wi-Fi・ごみ出しなどの説明を聞き、確認できる',
     roles: [
-      { id: 'A', name: 'Maria' },
+      { id: 'A', name: 'Hannah' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -255,8 +255,8 @@ const scenes: Scene[] = [
       },
     ],
     lines: [
-      { sp: 'A', en: "Hi, you must be Aoi! I'm Maria, welcome.", ja: 'こんにちは、アオイさんですね！マリアです、ようこそ。' },
-      { sp: 'B', en: 'Nice to meet you, Maria. Thanks for meeting me here.', ja: 'はじめまして、マリアさん。出迎えていただいてありがとうございます。' },
+      { sp: 'A', en: "Hi, you must be Sota! I'm Hannah, welcome.", ja: 'こんにちは、ソウタさんですね！ハンナです、ようこそ。' },
+      { sp: 'B', en: 'Nice to meet you, Hannah. Thanks for meeting me here.', ja: 'はじめまして、ハンナさん。出迎えていただいてありがとうございます。' },
       {
         sp: 'A',
         en: 'Sure. So, the key is in a lockbox by the front door. The code is 4-7-1-9.',
@@ -305,7 +305,7 @@ const scenes: Scene[] = [
     title: 'チェックアウトと荷物預け',
     titleEn: 'Checking Out',
     lv: 2,
-    emoji: '🧳',
+    emoji: '🛎️',
     goal: '請求の誤りを伝え、荷物を預けて空港への行き方を確認できる',
     roles: [
       { id: 'A', name: 'Omar' },
@@ -344,15 +344,15 @@ const scenes: Scene[] = [
       { sp: 'B', en: "Thanks. So what's the total now?", ja: 'ありがとうございます。それで、合計はいくらになりますか。' },
       {
         sp: 'A',
-        en: "It's $468, including tax. Shall I put it on the card you gave us at check-in?",
+        en: "It's $468, including tax. Would you like to put it on the card you gave us at check-in?",
         ja: '税込みで468ドルです。チェックインの際にお預かりしたカードでお支払いでよろしいですか。',
       },
       { sp: 'B', en: 'Yes, please. Could you send the receipt by email?', ja: 'はい、お願いします。領収書はメールで送っていただけますか。' },
       { sp: 'A', en: "Sure, I'll send it to the email address on your reservation.", ja: 'かしこまりました。ご予約のメールアドレスにお送りします。' },
       {
         sp: 'B',
-        en: "My flight isn't until six. Could I leave my luggage here until 3?",
-        ja: '飛行機が6時の便なんです。3時まで荷物を預けてもいいですか。',
+        en: "My flight isn't until seven. Could I leave my luggage here until 3?",
+        ja: '飛行機が7時の便なんです。3時まで荷物を預けてもいいですか。',
       },
       {
         sp: 'A',
@@ -495,7 +495,7 @@ const scenes: Scene[] = [
       },
     ],
     lines: [
-      { sp: 'A', en: 'Hello, next, please. How can I help?', ja: 'こんにちは、次の方どうぞ。ご用件をどうぞ。' },
+      { sp: 'A', en: 'Next, please! Hi, how can I help?', ja: '次の方どうぞ！こんにちは、ご用件をお伺いします。' },
       { sp: 'B', en: 'Hi. Is it free to get in?', ja: 'こんにちは。入館は無料ですか。' },
       {
         sp: 'A',
@@ -544,7 +544,7 @@ const scenes: Scene[] = [
         ja: 'それなら、先に特別展を見たほうがいいですね。ありがとうございました。',
       },
     ],
-    tip: '英国の国立の美術館・博物館は常設展が無料で、有料なのは特別展だけということが多く、入口で寄付（donation）を募っています。列は queue、リュックは rucksack と、米国と違う言葉にも注意。',
+    tip: '英国の国立の美術館・博物館は常設展が無料で、有料なのは特別展だけということが多く、入口で寄付（donation）を募っています。列は queue、リュックは rucksack（backpack も使う）と、米国と違う言葉にも注意。',
   },
   {
     id: 'd-tour-booking',
@@ -553,7 +553,7 @@ const scenes: Scene[] = [
     title: '現地ツアーを申し込む',
     titleEn: 'Booking a Day Tour',
     lv: 3,
-    emoji: '🚌',
+    emoji: '🌊',
     goal: 'ツアーの内容・送迎・キャンセル規定を確認して申し込みができる',
     roles: [
       { id: 'A', name: 'Sofia' },
@@ -570,7 +570,11 @@ const scenes: Scene[] = [
         ja: 'キャンセル規定はどうなっていますか。',
         note: 'non-refundable（返金不可）もあわせて覚えておくと安心',
       },
-      { en: "I'll take it.", ja: 'それにします。', note: '買う・申し込むと決めたときの決まり文句' },
+      {
+        en: "I'd like to book the coast tour for one, please.",
+        ja: '海岸ツアーを1名でお願いします。',
+        note: "申し込みは I'd like to book 〜 for ＋人数。2人なら for two",
+      },
     ],
     lines: [
       {
@@ -596,10 +600,10 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Yes, it's guided in English and Spanish, and groups are limited to 16 people.",
-        ja: 'はい、英語とスペイン語で案内します。1グループは16人までです。',
+        en: 'Yes, the tour is in English and Spanish, and groups are limited to 16 people.',
+        ja: 'はい、ツアーは英語とスペイン語で案内します。1グループは16人までです。',
       },
-      { sp: 'B', en: 'Great. What time is pick-up, and where?', ja: 'いいですね。迎えは何時に、どこに来ますか。' },
+      { sp: 'B', en: 'Perfect. What time is pick-up, and where?', ja: 'よかった。迎えは何時に、どこに来ますか。' },
       {
         sp: 'A',
         en: 'We can pick you up at your hotel at 8:15, or you can meet the bus here at 8:30.',
@@ -627,7 +631,7 @@ const scenes: Scene[] = [
         en: "It's free to cancel up to 24 hours before. And if we cancel due to the weather, you get a full refund.",
         ja: '24時間前までなら無料でキャンセルできます。また、天候のためにこちらで中止した場合は、全額返金します。',
       },
-      { sp: 'B', en: "Great, I'll take it. Can I pay by card?", ja: 'よかった、それにします。カードで払えますか。' },
+      { sp: 'B', en: "Great, then I'd like to book the coast tour for one, please. Can I pay by card?", ja: 'よかった。では、海岸ツアーを1名でお願いします。カードで払えますか。' },
       {
         sp: 'A',
         en: 'Of course. Just show this voucher to the guide on Thursday morning.',
