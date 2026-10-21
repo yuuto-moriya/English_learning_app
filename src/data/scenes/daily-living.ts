@@ -116,7 +116,7 @@ const scenes: Scene[] = [
     emoji: '🔧',
     goal: '故障の様子を説明し、修理の日時や留守中の入室を相談できる',
     roles: [
-      { id: 'A', name: 'Mr. Okafor' },
+      { id: 'A', name: 'Mr. Kowalski' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -124,13 +124,13 @@ const scenes: Scene[] = [
       { en: 'Only cold air comes out.', ja: '冷たい風しか出てきません。' },
       { en: 'Do you mean the panel on the wall?', ja: '壁のパネルのことですか。', note: 'Do you mean ...? は、わからない言葉が何を指すか確かめる言い方' },
       { en: 'The kitchen faucet is leaking.', ja: '台所の蛇口から水が漏れています。', note: '蛇口は米国で faucet、英国で tap' },
-      { en: 'When can someone take a look at it?', ja: 'いつ見に来てもらえますか。' },
+      { en: 'When can someone come and take a look?', ja: 'いつ見に来てもらえますか。', note: 'take a look は「（状態を）見る・点検する」。修理の依頼でよく使う' },
       { en: 'Do I need to be home?', ja: '私が家にいる必要がありますか。' },
       { en: 'Could you please lock the door when you leave?', ja: '出るときにドアの鍵をかけていただけますか。' },
       { en: 'I really appreciate the quick help.', ja: 'すぐに対応していただいて、本当に助かります。' },
     ],
     lines: [
-      { sp: 'A', en: 'Good morning, building office. This is Daniel Okafor.', ja: 'おはようございます、管理事務所のダニエル・オカフォーです。' },
+      { sp: 'A', en: 'Good morning, management office. This is Peter Kowalski.', ja: 'おはようございます、管理事務所のピーター・コワルスキーです。' },
       { sp: 'B', en: "Hi, this is Yuto in apartment 302. The heater isn't working.", ja: 'もしもし、302号室のユウトです。暖房が動かないんです。' },
       { sp: 'A', en: "I'm sorry to hear that. Does it turn on at all?", ja: 'それはお困りですね。そもそも電源は入りますか。' },
       { sp: 'B', en: 'It turns on, but only cold air comes out.', ja: '電源は入るんですが、冷たい風しか出てこないんです。' },
@@ -139,7 +139,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: "Yes, that's it. It controls the temperature.", ja: 'はい、それです。温度を調節するものです。' },
       { sp: 'B', en: "It's on heat, at 72 degrees. But the air is still cold.", ja: '「暖房」で、華氏72度になっています。でも、風はまだ冷たいです。' },
       { sp: 'A', en: "Okay, it sounds like it's broken. Is there anything else?", ja: 'わかりました、どうやら故障のようですね。ほかに何かありますか。' },
-      { sp: 'B', en: 'Yes, the kitchen faucet is leaking too. When can someone take a look at it?', ja: 'はい、台所の蛇口からも水が漏れています。いつ見に来てもらえますか。' },
+      { sp: 'B', en: 'Yes, the kitchen faucet is leaking too. When can someone come and take a look?', ja: 'はい、台所の蛇口からも水が漏れています。いつ見に来てもらえますか。' },
       { sp: 'A', en: 'Someone from maintenance can come tomorrow, between nine and noon. Will you be home?', ja: '明日の9時から12時の間に、修理担当の者が伺えます。ご在宅ですか。' },
       { sp: 'B', en: "I'm at work until six. Do I need to be home?", ja: '6時まで仕事です。私が家にいないといけませんか。' },
       { sp: 'A', en: "No. If you're out, we can go in with our key. Is that okay?", ja: 'いいえ。お留守なら、こちらの鍵で入ることもできます。それでよろしいですか。' },
@@ -164,7 +164,7 @@ const scenes: Scene[] = [
     ],
     phrases: [
       { en: 'I missed a delivery today.', ja: '今日、荷物を受け取れませんでした。', note: 'miss は「（不在で）受け取りそこねる」' },
-      { en: 'There was a notice on my door.', ja: 'ドアに不在票が貼ってありました。', note: '不在票は delivery notice。notice だけでも通じる' },
+      { en: 'There was a notice on my door.', ja: 'ドアに不在票が貼ってありました。', note: '不在票は delivery notice や door tag。notice だけでも通じる' },
       { en: "It's B as in boy.", ja: 'boy の B です。', note: '電話でつづりを伝えるときは「文字＋ as in ＋単語」' },
       { en: 'Can you deliver it again tomorrow morning?', ja: '明日の午前中にもう一度配達してもらえますか。' },
       { en: 'Is there another option?', ja: 'ほかの方法はありますか。' },
@@ -233,7 +233,11 @@ const scenes: Scene[] = [
       { sp: 'B', en: "Here's my passport. Is a copy of my lease okay as proof of address?", ja: 'パスポートはこちらです。住所の証明は、賃貸契約書のコピーでも大丈夫ですか。' },
       { sp: 'A', en: 'That works. And do you have a Social Security number?', ja: 'それで大丈夫です。あと、社会保障番号はお持ちですか。' },
       { sp: 'B', en: 'Not yet. I applied for one last week. Is that a problem?', ja: 'まだです。先週申請しました。それだと問題がありますか。' },
-      { sp: 'A', en: 'Not at all. We can open it with your passport and visa, and add the number later.', ja: 'まったく問題ありません。パスポートとビザで開設して、番号はあとで登録できます。' },
+      {
+        sp: 'A',
+        en: 'Not with us. We can open it with your passport and visa, and add the number once you have it.',
+        ja: '当行では問題ありません。パスポートとビザで開設して、番号はお手元に届いてから登録できます。',
+      },
       { sp: 'B', en: "That's a relief. Is there a monthly fee?", ja: '安心しました。月々の手数料はかかりますか。' },
       {
         sp: 'A',
@@ -252,7 +256,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: "No problem. Just sign here, and you're all set.", ja: '承知しました。こちらにサインしていただければ、手続きは完了です。' },
       { sp: 'B', en: 'Sure. Thank you for walking me through everything.', ja: 'はい。一つひとつ丁寧に説明していただき、ありがとうございました。' },
     ],
-    tip: '米国の口座の月額手数料は、給与の振り込み（direct deposit）や最低残高などの条件を満たすと免除（waive）されることがよくあります。条件は「Just to confirm, ...」と自分の言葉で言い直して確かめましょう。',
+    tip: '米国の口座の月額手数料は、給与の振り込み（direct deposit）や最低残高などの条件で免除（waive）されることがよくあります。SSN がなくても開ける銀行はありますが、必要な書類は銀行ごとに違うので、行く前に確認しておきましょう。',
   },
   {
     id: 'd-gym',
@@ -270,7 +274,7 @@ const scenes: Scene[] = [
     phrases: [
       { en: "I'm interested in becoming a member.", ja: '会員になりたいと考えています。' },
       { en: 'What membership options do you have?', ja: 'どんな会員プランがありますか。' },
-      { en: 'Is there a joining fee?', ja: '入会金はかかりますか。', note: '米国では sign-up fee や enrollment fee とも言う' },
+      { en: 'Is there a sign-up fee?', ja: '入会金はかかりますか。', note: 'enrollment fee や initiation fee とも言う。joining fee は主に英国' },
       { en: 'Can I cancel at any time?', ja: 'いつでも解約できますか。' },
       { en: 'When is it least busy?', ja: 'いちばん空いているのはいつですか。', note: '混む時間帯は peak hours / busiest time' },
       { en: 'Good to know.', ja: 'なるほど、参考になります。', note: '新しい情報を聞いたときのあいづち' },
@@ -287,9 +291,9 @@ const scenes: Scene[] = [
       },
       { sp: 'B', en: "What kind of classes do you have? I'm mostly interested in yoga.", ja: 'どんなレッスンがありますか。主にヨガに興味があるんです。' },
       { sp: 'A', en: 'We have yoga every weekday, morning and evening. You can book a spot on our app.', ja: 'ヨガは平日は毎日、朝と夜にあります。アプリで枠を予約できます。' },
-      { sp: 'B', en: 'Sounds good. Is there a joining fee?', ja: 'いいですね。入会金はかかりますか。' },
+      { sp: 'B', en: 'Sounds good. Is there a sign-up fee?', ja: 'いいですね。入会金はかかりますか。' },
       { sp: 'A', en: "Normally it's 25 dollars, but we're waiving it this month.", ja: '通常は25ドルですが、今月は無料にしています。' },
-      { sp: 'B', en: 'Nice. Is there a contract, or can I cancel at any time?', ja: 'いいですね。契約期間の縛りはありますか。それとも、いつでも解約できますか。' },
+      { sp: 'B', en: 'Nice. Is there a contract, or can I cancel at any time?', ja: 'それは助かります。契約期間の縛りはありますか。それとも、いつでも解約できますか。' },
       {
         sp: 'A',
         en: "It's month-to-month, so no long-term contract. You just need to give us 30 days' notice.",
@@ -315,7 +319,7 @@ const scenes: Scene[] = [
     emoji: '🔑',
     goal: '内見で家賃・設備・契約の条件を確かめ、申し込みの相談ができる',
     roles: [
-      { id: 'A', name: 'Nadia' },
+      { id: 'A', name: 'Keisha' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -334,17 +338,17 @@ const scenes: Scene[] = [
       },
       { en: 'Will that be an issue?', ja: '問題になりますか。' },
       {
-        en: 'I could also pay a larger deposit, if that helps.',
-        ja: 'それで助かるなら、敷金を多めに払うこともできます。',
-        note: 'could で「〜することもできます」と控えめに申し出る',
+        en: 'I could also use a guarantor company, if that helps.',
+        ja: 'それで助かるなら、保証会社を利用することもできます。',
+        note: 'could で「〜することもできます」と控えめに申し出る。保証会社は guarantor company',
       },
       { en: "I'll send in my application today.", ja: '今日中に申込書を送ります。' },
     ],
     lines: [
       {
         sp: 'A',
-        en: "Hi, you must be Ken. I'm Nadia. Come on in. This one-bedroom is 1,800 dollars a month.",
-        ja: 'こんにちは、ケンさんですね。ナディアです。どうぞお入りください。こちらの1ベッドルームは、家賃が月1,800ドルです。',
+        en: "Hi, you must be Ken. I'm Keisha, come on in. This one-bedroom is 1,800 dollars a month.",
+        ja: 'こんにちは、ケンさんですね。キーシャです。どうぞお入りください。こちらの1ベッドルームは、家賃が月1,800ドルです。',
       },
       { sp: 'B', en: "Thanks. It's brighter than in the photos. Are any utilities included in the rent?", ja: 'ありがとうございます。写真より明るいですね。家賃に水道光熱費は含まれていますか。' },
       { sp: 'A', en: 'Water and trash are included. Tenants pay for electricity and gas.', ja: '水道とごみ収集は含まれています。電気とガスは入居者の負担です。' },
@@ -372,17 +376,21 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'It might be. Can you show proof of income, like an offer letter or pay stubs?', ja: 'なるかもしれません。採用通知書や給与明細など、収入を証明するものは出せますか。' },
       {
         sp: 'B',
-        en: 'Yes, I have my offer letter and my first pay stub. I could also pay a larger deposit, if that helps.',
-        ja: 'はい、採用通知書と最初の給与明細があります。それで助かるなら、敷金を多めに払うこともできます。',
+        en: 'Yes, I have my offer letter and my first pay stub. I could also use a guarantor company, if that helps.',
+        ja: 'はい、採用通知書と最初の給与明細があります。それで助かるなら、保証会社を利用することもできます。',
       },
       {
         sp: 'A',
-        en: "That should help. I'll check with the owner, but two months' deposit is usually enough.",
-        ja: 'それなら通りやすくなるはずです。オーナーに確認しますが、たいていは敷金2か月分で十分です。',
+        en: "That should help. I'll check with the owner, but a lot of our tenants who are new to the US do that.",
+        ja: 'それなら通りやすくなるはずです。オーナーに確認しますが、アメリカに来たばかりの入居者の方は、そうされることが多いですよ。',
       },
-      { sp: 'B', en: "Great. So that would be 3,600 dollars for the deposit. I'll send in my application today.", ja: 'よかった。では、敷金は3,600ドルになりますね。今日中に申込書を送ります。' },
+      {
+        sp: 'B',
+        en: "Great. I'll send in my application today, with my offer letter and pay stub.",
+        ja: 'よかった。今日中に、採用通知書と給与明細を付けて申込書を送ります。',
+      },
     ],
-    tip: '米国の人気の物件は、すぐに借り手が決まってしまいます。内見には身分証と収入の証明（採用通知書・給与明細など）を持っていくと、気に入ったときにその日のうちに申し込めます。',
+    tip: '米国の人気の物件はすぐに埋まるので、内見には身分証と収入の証明（採用通知書・給与明細など）を持っていきましょう。信用履歴がない場合は、保証会社を使う方法もあります。敷金の上限を法律で決めている州や市も多く、多めに払うという申し出は使えないことがあります。',
   },
   {
     id: 'd-phone-plan',
@@ -428,7 +436,11 @@ const scenes: Scene[] = [
       { sp: 'B', en: 'About ten gigabytes a month, I think. I watch videos on my commute.', ja: '月に10ギガくらいだと思います。通勤中に動画を見るので。' },
       { sp: 'A', en: "Then I'd recommend the 15-gig plan. It's 40 dollars a month.", ja: 'それなら15ギガのプランがおすすめです。月40ドルです。' },
       { sp: 'B', en: 'Is that the total, including taxes and fees? And can I call Japan?', ja: 'それは税金や手数料を含めた総額ですか。あと、日本に電話できますか。' },
-      { sp: 'A', en: 'Yes, taxes and fees are included. Calls to Japan cost an extra 10 dollars a month.', ja: 'はい、税金と手数料は込みです。日本への通話は、月10ドルの追加料金がかかります。' },
+      {
+        sp: 'A',
+        en: 'Yes, our prepaid plans include taxes and fees. Calls to Japan cost an extra 10 dollars a month.',
+        ja: 'はい、当店のプリペイドプランは税金と手数料込みです。日本への通話は、月10ドルの追加料金がかかります。',
+      },
       { sp: 'B', en: "I'll skip that. I mostly make video calls on Wi-Fi anyway.", ja: 'それはやめておきます。どのみち、ほとんど Wi-Fi でビデオ通話をするので。' },
       { sp: 'A', en: "Makes sense. Can I see your passport for ID? Then I'll set up your eSIM.", ja: 'そうですね。本人確認のため、パスポートを見せていただけますか。そのあと eSIM を設定します。' },
       { sp: 'B', en: 'Here it is. Thanks for making this so easy.', ja: 'こちらです。スムーズに進めてくださって、ありがとうございます。' },

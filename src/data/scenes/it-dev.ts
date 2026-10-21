@@ -17,16 +17,20 @@ const scenes: Scene[] = [
     ],
     phrases: [
       { en: 'Yesterday I finished the login screen.', ja: '昨日はログイン画面を仕上げました。' },
-      { en: "Today I'm going to write unit tests.", ja: '今日は単体テストを書きます。' },
+      {
+        en: "Today I'm going to work on the payment feature.",
+        ja: '今日は支払い機能の作業をします。',
+        note: 'work on 〜＝〜に取り組む。今日の予定は I\'m going to 〜 で',
+      },
       {
         en: 'Could someone take a look at it today?',
         ja: '今日どなたか見ていただけますか。',
         note: 'take a look at は「ちょっと見てみる・確認する」。レビューや調査を頼むときの定番',
       },
       {
-        en: "I'm blocked by an API issue.",
+        en: "I'm blocked on an API issue.",
         ja: 'APIの問題で作業が止まっています。',
-        note: 'blocked は「ほかの原因で先に進めない」。朝会では Any blockers?（妨げはある？）とよく聞かれる',
+        note: 'blocked on 〜＝〜のせいで先に進めない（blocked by とも言う）。朝会では Any blockers? とよく聞かれる',
       },
       {
         en: 'Sorry, you cut out for a second.',
@@ -36,7 +40,7 @@ const scenes: Scene[] = [
       {
         en: 'Can we talk about it after the stand-up?',
         ja: 'その件は朝会のあとで相談できますか。',
-        note: '朝会では深い議論をせず、関係者だけであとで話すのが一般的',
+        note: "朝会では深い議論をせず、関係者だけであとで話すのが一般的。Let's take it offline.（別の場で話しましょう）とも言う",
       },
       { en: "That's all from me.", ja: '私からは以上です。', note: "That's it for me. とも言う" },
     ],
@@ -45,7 +49,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'Sure. Yesterday I finished the login screen and opened a pull request.',
-        ja: 'はい。昨日はログイン画面を仕上げて、プルリクエストを出しました。',
+        ja: 'はい。昨日はログイン画面を仕上げて、プルリクを出しました。',
       },
       { sp: 'A', en: 'Nice. Has anyone reviewed it yet?', ja: 'いいですね。もう誰かレビューしましたか。' },
       { sp: 'B', en: 'Not yet. Could someone take a look at it today?', ja: 'まだです。今日どなたか見ていただけますか。' },
@@ -56,14 +60,14 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Today I'm going to write unit tests for the payment feature.",
-        ja: '今日は支払い機能の単体テストを書きます。',
+        en: "Today I'm going to work on the payment feature and test it on staging.",
+        ja: '今日は支払い機能の作業をして、ステージングで動作確認をします。',
       },
-      { sp: 'A', en: 'Okay. Any blockers?', ja: '分かりました。何か作業の妨げになっていることはありますか。' },
+      { sp: 'A', en: 'Okay. Any blockers?', ja: '分かりました。何か詰まっていることはありますか。' },
       {
         sp: 'B',
-        en: "Yes, I'm blocked by an API issue. The staging server keeps returning an error.",
-        ja: 'はい、APIの問題で作業が止まっています。ステージングサーバーがエラーを返し続けるんです。',
+        en: "Yes, I'm blocked on an API issue. The staging server keeps returning an error.",
+        ja: 'はい、APIの問題で作業が止まっています。ステージングサーバーがエラーを返し続けているんです。',
       },
       {
         sp: 'A',
@@ -72,7 +76,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "The staging server. Since yesterday's deployment, the orders API has been returning a 500 error.",
+        en: "The staging server. Since yesterday's deployment, the orders API has been returning 500 errors.",
         ja: 'ステージングサーバーです。昨日のデプロイ以降、注文APIが500エラーを返しています。',
       },
       { sp: 'A', en: "That's not good. Do you know what's causing it?", ja: 'それは困りましたね。原因は分かっていますか。' },
@@ -88,8 +92,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Thanks. In the meantime, I'll use a mock API so I can keep writing tests.",
-        ja: 'ありがとうございます。それまでは、モックのAPIを使ってテストを書き進めます。',
+        en: "Thanks. In the meantime, I'll use a mock API so I can keep working.",
+        ja: 'ありがとうございます。それまでは、モックのAPIを使って作業を進めます。',
       },
       { sp: 'A', en: 'Good idea. Anything else?', ja: 'いい考えですね。ほかには？' },
       { sp: 'B', en: "No, that's all from me.", ja: 'いいえ、私からは以上です。' },
@@ -139,7 +143,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "So, we're adding pagination to the search results. I'll drive first and you navigate, okay?",
-        ja: 'さて、検索結果にページ分けを付けるんですよね。最初は私がドライバーで、あなたがナビゲーターでいいですか。',
+        ja: 'さて、検索結果にページネーションを付けるんですよね。最初は私がドライバーをやるので、ナビゲーターをお願いしてもいいですか。',
       },
       { sp: 'B', en: "Sounds good. Why don't we write the test first?", ja: 'いいですよ。先にテストを書きませんか。' },
       {
@@ -194,8 +198,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Oh, because page numbers start at 1. With page minus one... it passes!',
-        ja: 'あ、ページ番号は1から始まるからですね。page から1を引くと……通りました！',
+        en: 'Oh, right, page numbers start at 1. So it should be page minus one... It passes!',
+        ja: 'あ、そうか、ページ番号は1から始まるんですね。だから page から1を引いて……通りました！',
       },
       {
         sp: 'B',
@@ -205,7 +209,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "Sure, you drive and I'll navigate. Let's do the page buttons next.",
-        ja: 'いいですよ。今度はあなたがドライバーで、私がナビゲーターです。次はページボタンをやりましょう。',
+        ja: 'いいですよ。今度はそちらがドライバーで、私がナビゲーターですね。次はページボタンをやりましょう。',
       },
       {
         sp: 'B',
@@ -262,7 +266,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: 'Hey, thanks for reviewing my pull request so quickly. Got a minute to go over your comments?',
-        ja: 'プルリクエストをすぐにレビューしてくれてありがとう。コメントについて少し話せますか。',
+        ja: 'プルリクをすぐにレビューしてくれてありがとう。コメントについて少し話せますか。',
       },
       {
         sp: 'B',
@@ -313,13 +317,13 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Agreed. And your comment on the date formatting, do I need to fix that too?',
-        ja: '賛成です。それと、日付の書式についてのコメントですが、あれも直したほうがいいですか。',
+        en: 'Agreed. What about your comment on the date formatting? Do I need to fix that too?',
+        ja: '賛成です。日付の書式についてのコメントはどうですか。あれも直したほうがいいですか。',
       },
       {
         sp: 'B',
         en: "No, that one's just a nit. It's not a blocker, so feel free to leave it for another PR.",
-        ja: 'いいえ、あれは細かい指摘です。マージを止めるほどではないので、別のプルリクエストに回してもらってかまいません。',
+        ja: 'いいえ、あれは細かい指摘です。マージを止めるほどではないので、別のプルリクに回してもらってかまいません。',
       },
       { sp: 'A', en: "Perfect. I'll push the fixes this afternoon.", ja: 'よかった。今日の午後に修正をプッシュします。' },
       { sp: 'B', en: "Thanks. I'll approve it once those two are fixed.", ja: 'ありがとう。その2つが直ったら承認します。' },
@@ -399,8 +403,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'I see. Can we fit all of that into this sprint?', ja: 'なるほど。それを全部、今回のスプリントに入れられますか。' },
       {
         sp: 'B',
-        en: "I'm afraid not. With Ken on vacation and some leftover work from last sprint, we only have about 10 points.",
-        ja: '残念ながら、できません。ケンさんが休暇で、前回のスプリントの残りの作業もあるので、10ポイントほどしかないんです。',
+        en: "I'm afraid not. With Ken on vacation and some leftover work from last sprint, we only have capacity for about 10 points.",
+        ja: '残念ながら、できません。ケンさんが休暇で、前回のスプリントの残りの作業もあるので、10ポイント分ほどの余力しかないんです。',
       },
       {
         sp: 'A',
@@ -434,8 +438,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Agreed. I'll put it and the website at the top of the backlog.",
-        ja: '賛成です。パスワードの画面とWebサイトの分は、バックログの一番上に置いておきます。',
+        en: "Agreed. I'll move the website and the password page to the top of the backlog.",
+        ja: '賛成です。Webサイトの分とパスワードの画面は、バックログの一番上に移しておきます。',
       },
       {
         sp: 'B',
@@ -476,7 +480,7 @@ const scenes: Scene[] = [
         ja: '計画のあとの変更は、どれもプロダクトオーナーを通すべきです。',
       },
       {
-        en: 'A few UI tests fail at random.',
+        en: 'A few UI tests fail randomly.',
         ja: 'いくつかのUIテストが、ときどき理由もなく失敗します。',
         note: 'こうしたテストを flaky test（不安定なテスト）と呼ぶ',
       },
@@ -499,8 +503,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Pairing on the payment feature went really well. We caught a lot of bugs early.',
-        ja: '支払い機能をペアで進めたのは、とてもうまくいきました。バグを早い段階でたくさん見つけられました。',
+        en: 'Pairing on the refund feature went really well. We caught a lot of bugs early.',
+        ja: '返金機能をペアで進めたのは、とてもうまくいきました。バグを早い段階でたくさん見つけられました。',
       },
       { sp: 'A', en: "Great to hear. What didn't go so well?", ja: 'それはよかったです。では、あまりうまくいかなかったことは？' },
       {
@@ -535,7 +539,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Yes, flaky tests. A few UI tests fail at random, so people just rerun the pipeline.',
+        en: 'Yes, flaky tests. A few UI tests fail randomly, so people just rerun the pipeline.',
         ja: 'はい、不安定なテストです。いくつかのUIテストがときどき理由もなく失敗するので、みんなパイプラインを再実行して済ませています。',
       },
       {
@@ -652,7 +656,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'The worker retries with exponential backoff for up to two hours. After that, the message goes to a dead-letter queue and we get alerted.',
-        ja: 'ワーカーが間隔を指数的に延ばしながら、最大2時間再試行します。それでもだめなら、メッセージはデッドレターキューに移り、アラートが届きます。',
+        ja: 'ワーカーが指数バックオフで最大2時間リトライします。それでもだめなら、メッセージはデッドレターキューに移り、アラートが届きます。',
       },
       {
         sp: 'A',

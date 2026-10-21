@@ -53,7 +53,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Let me walk you through the main findings. Churn went up from 2% to 3.5% a month after the price increase in March.',
+        en: 'Let me walk you through the main findings. Monthly churn went up from 2% to 3.5% after the price increase in March.',
         ja: '主な結果を順にご説明します。3月の値上げの後、月間の解約率が2%から3.5%に上がりました。',
       },
       {
@@ -102,7 +102,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'If you can approve the offer by Friday, we could start on the first of next month.',
-        ja: '金曜日までにこの割引を承認していただければ、来月1日から始められます。',
+        ja: '金曜日までに旧価格での提供を承認していただければ、来月1日から始められます。',
       },
       {
         sp: 'A',
@@ -259,7 +259,7 @@ const scenes: Scene[] = [
       { en: 'There are two main causes.', ja: '主な原因は2つあります。' },
       {
         en: 'How much is that costing us?',
-        ja: 'それでいくらかかっているのですか。',
+        ja: 'その分で、いくらかかっているのですか。',
         note: '進行形で「いま実際にかかっている」費用を聞く',
       },
       {
@@ -292,15 +292,15 @@ const scenes: Scene[] = [
     lines: [
       {
         sp: 'A',
-        en: 'Thanks for joining. Our cloud bill jumped 40% last month, from $25,000 to $35,000.',
-        ja: '参加してくれてありがとうございます。先月、クラウドの請求額が2万5,000ドルから3万5,000ドルへと40%も跳ね上がりました。',
+        en: 'Our cloud bill jumped 40% last month, from $25,000 to $35,000. Do we know why?',
+        ja: '先月、クラウドの請求額が2万5,000ドルから3万5,000ドルへと40%も跳ね上がりました。原因は分かっていますか。',
       },
       {
         sp: 'B',
         en: 'I looked into it, and there are two main causes. First, some test servers were left running after a load test.',
         ja: '調べたところ、主な原因は2つあります。1つ目は、負荷テストの後もテスト用のサーバーがいくつか動いたままになっていたことです。',
       },
-      { sp: 'A', en: 'How much is that costing us?', ja: 'それでいくらかかっているのですか。' },
+      { sp: 'A', en: 'How much is that costing us?', ja: 'その分で、いくらかかっているのですか。' },
       {
         sp: 'B',
         en: "About $7,000 last month. I'll shut down the unused resources today, after checking with their owners.",
@@ -309,8 +309,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'Please do. And the second cause?', ja: 'お願いします。2つ目の原因は？' },
       {
         sp: 'B',
-        en: 'Data transfer. A new analytics job copies large amounts of data between regions every hour, which adds about $3,000.',
-        ja: 'データ転送です。新しい分析処理が毎時、大量のデータをリージョン間でコピーしていて、それで約3,000ドル増えています。',
+        en: 'Data transfer. A new analytics job copies large amounts of data between regions every hour, which adds about $3,000 a month.',
+        ja: 'データ転送です。新しい分析処理が1時間ごとに大量のデータをリージョン間でコピーしていて、それで月に約3,000ドル増えています。',
       },
       {
         sp: 'A',
@@ -331,8 +331,8 @@ const scenes: Scene[] = [
       { sp: 'A', en: 'Sorry, what does right-sizing mean?', ja: 'すみません、ライトサイジングとはどういう意味ですか。' },
       {
         sp: 'B',
-        en: 'It means switching to smaller, cheaper servers. Many of ours use less than 20% of their CPU.',
-        ja: 'より小さくて安いサーバーに切り替えることです。うちのサーバーの多くは、CPU を20%未満しか使っていません。',
+        en: 'It means moving to smaller, cheaper servers that fit the actual load. Many of ours use less than 20% of their CPU.',
+        ja: '実際の負荷に見合った、より小さく安いサーバーに切り替えることです。うちのサーバーの多くは、CPU 使用率が20%未満です。',
       },
       {
         sp: 'A',
@@ -351,8 +351,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Let's tag every resource with its team and project, and set an alert at 80% of each team's budget. I'll send you a plan by Thursday.",
-        ja: 'すべてのリソースにチームとプロジェクトのタグを付け、各チームの予算の80%でアラートが出るようにしましょう。木曜日までに計画をお送りします。',
+        en: "Let's tag every resource with its team and project, and set an alert at 80% of each team's budget. I'll have a plan ready by Thursday.",
+        ja: 'すべてのリソースにチームとプロジェクトのタグを付け、各チームの予算の80%でアラートが出るようにしましょう。木曜日までに計画を用意します。',
       },
     ],
     tip: '費用の削減は『止める（使っていないものを停止）→ 小さくする（right-size）→ 約束して安くする（commitment）→ 見張る（タグと予算アラート）』の順に考えると、説明しやすくなります。',
@@ -374,7 +374,7 @@ const scenes: Scene[] = [
       {
         en: "I'd suggest migrating in phases.",
         ja: '段階的に移行することをおすすめします。',
-        note: 'suggest の後は動詞の -ing。suggest to migrate とは言わない',
+        note: 'suggest の後は -ing か that 節（I\'d suggest that we migrate ~）。suggest to migrate は誤り',
       },
       { en: "What's the biggest risk?", ja: '最大のリスクは何ですか。' },
       {
@@ -408,7 +408,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'We want to move our on-premises servers to the cloud by next spring, ideally without disrupting daily operations.',
-        ja: '来年の春までに、できれば日々の業務に支障を出さずに、自社内のサーバーをクラウドに移したいと考えています。',
+        ja: '来年の春までに、できれば日々の業務に支障を出さずに、オンプレミスのサーバーをクラウドに移したいと考えています。',
       },
       {
         sp: 'A',
@@ -468,7 +468,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "Just to confirm, if the checks haven't all passed by 5 a.m., we switch back to the on-premises system?",
-        ja: '確認ですが、午前5時までにチェックがすべて通っていなければ、自社内のシステムに戻すということですね。',
+        ja: '確認ですが、午前5時までにチェックがすべて通っていなければ、オンプレミスのシステムに戻すということですね。',
       },
       {
         sp: 'A',
@@ -478,7 +478,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'Great. Could you put all of this in a migration plan so I can take it to our steering committee?',
-        ja: 'よかったです。運営委員会に諮れるよう、ここまでの内容を移行計画にまとめていただけますか。',
+        ja: 'いいですね。ステアリングコミッティにかけられるよう、ここまでの内容を移行計画にまとめていただけますか。',
       },
     ],
     tip: '切り替えでは、続行か中止かを決める「go/no-go」の時刻を先に決めておくのが定番です。「in phases」（段階的に）「in parallel」（並行して）「in case ~」（〜に備えて）も計画の説明でよく使います。',

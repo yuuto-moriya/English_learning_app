@@ -28,7 +28,7 @@ const scenes: Scene[] = [
       { sp: 'B', en: 'Thanks for making time today, Ms. Okafor. To start, what problem are you trying to solve?', ja: 'オカフォーさん、本日はお時間をいただきありがとうございます。まず、どんな課題を解決したいとお考えですか。' },
       { sp: 'A', en: 'Our inspection data is always out of date. It takes days to get it into the system.', ja: '点検データがいつも最新ではないんです。システムに入れるまでに何日もかかります。' },
       { sp: 'B', en: 'I see. Could you walk me through the current process?', ja: 'なるほど。今の業務の流れを順に説明していただけますか。' },
-      { sp: 'A', en: 'Sure. Inspectors fill out paper forms on site, and the office types them up at the end of each week.', ja: 'ええ。点検担当者が現場で紙の用紙に記入して、毎週、週の終わりに事務所がそれを入力しています。' },
+      { sp: 'A', en: 'Sure. Inspectors fill out paper forms on site, and the office types them up at the end of each week.', ja: 'ええ。点検担当者が現場で紙の用紙に記入して、それを事務所が週の終わりにまとめて入力しています。' },
       { sp: 'B', en: 'Got it. And who will be using the new system?', ja: '分かりました。それで、新しいシステムを使うのはどなたですか。' },
       { sp: 'A', en: 'About fifty inspectors, mostly on tablets, plus four people in the office.', ja: '点検担当者が約50人で、ほとんどはタブレットを使います。それに事務所の4人です。' },
       { sp: 'B', en: 'Will the inspectors ever need to work offline?', ja: '点検担当者がオフラインで作業する必要が出ることはありますか。' },
@@ -58,7 +58,7 @@ const scenes: Scene[] = [
       { id: 'B', name: 'You' },
     ],
     phrases: [
-      { en: "Sorry, you've lost me.", ja: 'すみません、話についていけなくなりました。', note: '聞き手のときにも使える。I don\'t understand. より柔らかい' },
+      { en: "Sorry, you've lost me.", ja: 'すみません、話についていけなくなりました。', note: '相手の説明が分からなくなったときに。I don\'t understand. より柔らかく、相手を責めない響き' },
       { en: 'Let me put it another way.', ja: '別の言い方をしますね。', note: '伝わらなかったら、同じ説明を繰り返さずに言い換える' },
       { en: "It's like renting a car instead of buying one.", ja: '車を買うのではなく、借りるようなものです。', note: "It's like ~ で身近なものにたとえる" },
       { en: 'The main benefit is that you only pay for what you use.', ja: '主な利点は、使った分だけ払えばよいことです。' },
@@ -96,7 +96,7 @@ const scenes: Scene[] = [
     emoji: '🖥️',
     goal: '画面を見せながら操作を説明し、質問や要望に対応できる',
     roles: [
-      { id: 'A', name: 'Priya' },
+      { id: 'A', name: 'Anika' },
       { id: 'B', name: 'You' },
     ],
     phrases: [
@@ -110,7 +110,7 @@ const scenes: Scene[] = [
       { en: "We're aiming for the end of the month.", ja: '月末を目指しています。', note: 'aim for は「目標にする」。確約ではないニュアンス' },
     ],
     lines: [
-      { sp: 'B', en: "Hi Priya, let's get started. I'll share my screen so you can see the new search filter.", ja: 'プリヤさん、こんにちは。始めましょう。新しい検索フィルターをご覧いただけるよう、画面を共有しますね。' },
+      { sp: 'B', en: "Hi Anika, let's get started. I'll share my screen so you can see the new search feature.", ja: 'アニカさん、こんにちは。始めましょう。新しい検索機能をご覧いただけるよう、画面を共有しますね。' },
       { sp: 'A', en: "Hmm, I think I'm seeing your email.", ja: 'うーん、メールの画面が見えているようですが。' },
       { sp: 'B', en: 'Oh, sorry, wrong window. Can you see my screen now?', ja: 'あ、すみません、ウィンドウを間違えました。これで画面は見えていますか。' },
       { sp: 'A', en: 'Yes, I can see the search page. Go ahead.', ja: 'はい、検索ページが見えます。どうぞ。' },
@@ -121,7 +121,7 @@ const scenes: Scene[] = [
       { sp: 'B', en: 'Good question. Instead of an empty page, it suggests similar products.', ja: '良いご質問です。何もないページを出す代わりに、似た商品を提案します。' },
       { sp: 'A', en: 'Wait, it seems to have frozen.', ja: 'あれ、固まってしまったみたいです。' },
       { sp: 'B', en: "Sorry, it's still in beta, so there are a few known issues. Let me refresh the page.", ja: 'すみません、まだベータ版なので、いくつか既知の不具合があるんです。ページを再読み込みしますね。' },
-      { sp: 'A', en: 'No problem. While it loads, could we also filter by price range?', ja: '大丈夫です。読み込んでいる間にお聞きしますが、価格帯でも絞り込めるようにできますか。' },
+      { sp: 'A', en: 'No problem. While it reloads, could we also get a filter for price range?', ja: '大丈夫です。再読み込みしている間にお聞きしますが、価格帯で絞り込むフィルターも付けられますか。' },
       { sp: 'B', en: "That's a great suggestion. I'll add it to the backlog and get back to you with an estimate.", ja: 'とても良いご提案です。バックログに追加して、見積もりを出してからご連絡します。' },
       { sp: 'A', en: "Oh, it's working again. When do you think this will go live?", ja: 'あ、また動きました。これはいつごろ公開になりそうですか。' },
       { sp: 'B', en: "We're aiming for the end of the month, once the beta issues are fixed.", ja: 'ベータ版の不具合を直したうえで、月末の公開を目指しています。' },
