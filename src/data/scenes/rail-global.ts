@@ -168,7 +168,7 @@ const scenes: Scene[] = [
         en: "I'm very sorry for the inconvenience. I completely understand why you're upset.",
         ja: 'ご迷惑をおかけして大変申し訳ありません。お怒りはごもっともです。',
       },
-      { sp: 'A', en: 'So what was so urgent that it couldn\'t wait?', ja: 'それで、待てないほど急ぎの作業って何だったんですか。' },
+      { sp: 'A', en: "So what was so urgent that it couldn't wait?", ja: 'それで、待てないほど急ぎの作業って何だったんですか。' },
       {
         sp: 'B',
         en: 'Let me explain what happened. One of the rails had cracked, and we had to fix it before the first train.',
@@ -287,7 +287,7 @@ const scenes: Scene[] = [
         en: "There's also the definition of track gauge. The TSI measures it up to 14 millimetres below the running surface, doesn't it?",
         ja: '軌間の定義の問題もあります。TSIでは、レール頭頂面から14mm下までの範囲で測りますよね。',
       },
-      { sp: 'A', en: 'That\'s right. Is it different in Japan?', ja: 'そのとおりです。日本では違うのですか。' },
+      { sp: 'A', en: "That's right. Is it different in Japan?", ja: 'そのとおりです。日本では違うのですか。' },
       {
         sp: 'B',
         en: "Yes, we measure at a slightly different depth, so the figures can't be compared directly.",
@@ -434,7 +434,7 @@ const scenes: Scene[] = [
       },
       { sp: 'A', en: 'Perfect. Thanks again for such a clear answer.', ja: '完璧です。分かりやすいご回答を本当にありがとうございました。' },
     ],
-    tip: '質疑応答は ①質問を確認（Just to make sure I understand ~）②結論 ③根拠（数字と期間）④限界は正直に ⑤後日のフォロー の順に。推測で答えるより、it\'s a limitation と認めるほうが信頼されます。',
+    tip: "質疑応答は ①質問を確認（Just to make sure I understand ~）②結論 ③根拠（数字と期間）④限界は正直に ⑤後日のフォロー の順に。推測で答えるより、it's a limitation と認めるほうが信頼されます。",
   },
   {
     id: 'r-overseas-project',
@@ -553,7 +553,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: "Certainly. We'd aim to start training in April, six months before opening. I'll send both documents by the 28th.",
-        ja: '承知しました。研修は開業6か月前の4月に始めたいと考えています。28日までに両方の書類をお送りします。',
+        ja: '承知しました。教育は開業6か月前の4月に始めたいと考えています。28日までに両方の書類をお送りします。',
       },
     ],
     tip: '海外案件では、言葉の定義と優先順位を最初に確かめるのが鉄則です。support が作業か助言か、基準が食い違うときにどちらが優先か（take precedence）を曖昧にしたまま進めると、後で契約上のもめごとになります。',

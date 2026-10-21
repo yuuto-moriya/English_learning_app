@@ -21,9 +21,21 @@ const scenes: Scene[] = [
         ja: '今夜の作業範囲には、レール60mの交換が含まれます。',
         note: 'scope of work＝作業範囲。契約や指示の基本語',
       },
-      { en: 'All welds must be ultrasonically tested.', ja: 'すべての溶接部に超音波探傷が必要です。', note: '必須の条件は must で言い切る' },
-      { en: "Who's your lead welder tonight?", ja: '今夜の溶接の責任者はどなたですか。', note: 'lead 〜＝〜の主任・まとめ役。lead engineer なども同じ' },
-      { en: "We can't risk an overrun.", ja: '時間超過になるわけにはいきません。', note: 'overrun＝線路閉鎖の時間超過（解除の遅れ）。英国の現場の重要語' },
+      {
+        en: 'All welds must be ultrasonically tested.',
+        ja: 'すべての溶接部に超音波探傷が必要です。',
+        note: '必須の条件は must で言い切る',
+      },
+      {
+        en: "Who's your lead welder tonight?",
+        ja: '今夜の溶接の責任者はどなたですか。',
+        note: 'lead 〜＝〜の主任・まとめ役。lead engineer なども同じ',
+      },
+      {
+        en: "We can't risk an overrun.",
+        ja: '時間超過になるわけにはいきません。',
+        note: 'overrun＝線路閉鎖の時間超過（解除の遅れ）。英国の現場の重要語',
+      },
       { en: 'Is there another machine you could use?', ja: 'ほかに使える機械はありますか。' },
       { en: 'Please send us the test records within 24 hours.', ja: '試験記録は24時間以内に送ってください。' },
       {
@@ -31,7 +43,11 @@ const scenes: Scene[] = [
         ja: '軌道形状の確認が済んだ時点で作業完了とします。',
         note: 'only when 〜＝〜して初めて。完了の条件をはっきりさせる',
       },
-      { en: 'Just leave it in the cess.', ja: '線路脇に置いておいてください。', note: 'cess＝線路脇のスペース（英国の現場用語）' },
+      {
+        en: 'Just leave it in the cess.',
+        ja: '線路脇に置いておいてください。',
+        note: 'cess＝線路脇のスペース（英国の現場用語）',
+      },
     ],
     lines: [
       {
@@ -45,8 +61,16 @@ const scenes: Scene[] = [
         ja: '来ていただいてありがとうございます、マイクさん。今夜の作業範囲には、上り線のレール60mの交換が含まれます。',
       },
       { sp: 'A', en: 'Is that one rail or both?', ja: '片側のレールですか、それとも両側ですか。' },
-      { sp: 'B', en: "Both rails, so that's four aluminothermic welds in total.", ja: '両側です。なので、テルミット溶接は合計4か所になります。' },
-      { sp: 'A', en: 'Okay. Any particular requirements for the welds?', ja: '分かりました。溶接について、何か特別な要求はありますか。' },
+      {
+        sp: 'B',
+        en: "Both rails, so that's four aluminothermic welds in total.",
+        ja: '両側です。なので、テルミット溶接は合計4か所になります。',
+      },
+      {
+        sp: 'A',
+        en: 'Okay. Any particular requirements for the welds?',
+        ja: '分かりました。溶接について、何か特別な要求はありますか。',
+      },
       {
         sp: 'B',
         en: 'Yes. Welding must follow EN 14730, and all welds must be ultrasonically tested.',
@@ -82,7 +106,11 @@ const scenes: Scene[] = [
         en: 'Please do. And please send us the test records within 24 hours.',
         ja: 'ぜひお願いします。それから、試験記録は24時間以内に送ってください。',
       },
-      { sp: 'A', en: 'Will do. So when will you sign the job off?', ja: '分かりました。では、作業完了の承認はどの時点になりますか。' },
+      {
+        sp: 'A',
+        en: 'Will do. So when will you sign the job off?',
+        ja: '分かりました。では、作業完了の承認はどの時点になりますか。',
+      },
       {
         sp: 'B',
         en: "The work is complete only when the geometry has been checked and we've received all the test records.",
@@ -126,7 +154,11 @@ const scenes: Scene[] = [
         note: 'lift＝こう上量、slew＝通り整正の横移動量（英国の現場用語）',
       },
       { en: 'The maximum lift is 35 millimetres.', ja: '最大こう上量は35mmです。' },
-      { en: 'The ballast was topped up on Tuesday night.', ja: '火曜の夜にバラストを補充しました。', note: 'top up＝補充する・継ぎ足す' },
+      {
+        en: 'The ballast was topped up on Tuesday night.',
+        ja: '火曜の夜にバラストを補充しました。',
+        note: 'top up＝補充する・継ぎ足す',
+      },
       {
         en: 'Keep both run-outs inside the worksite limits.',
         ja: '両端のすりつけを作業区間の中に収めてください。',
@@ -156,13 +188,21 @@ const scenes: Scene[] = [
         en: 'Yes, we surveyed it last week. The maximum lift is 35 millimetres, at around 23.7.',
         ja: 'はい、先週測量しました。最大こう上量は23k700m付近で35mmです。',
       },
-      { sp: 'A', en: "That's a fair lift. Will there be enough ballast?", ja: 'けっこうなこう上量ですね。バラストは足りますか。' },
+      {
+        sp: 'A',
+        en: "That's a fair lift. Will there be enough ballast?",
+        ja: 'けっこうなこう上量ですね。バラストは足りますか。',
+      },
       {
         sp: 'B',
         en: 'Yes, the ballast was topped up on Tuesday night, so there should be plenty.',
         ja: 'はい、火曜の夜にバラストを補充したので、十分あるはずです。',
       },
-      { sp: 'A', en: 'Great. And how do you want the run-outs at each end?', ja: 'いいですね。それで、両端のすりつけはどうしますか。' },
+      {
+        sp: 'A',
+        en: 'Great. And how do you want the run-outs at each end?',
+        ja: 'いいですね。それで、両端のすりつけはどうしますか。',
+      },
       {
         sp: 'B',
         en: 'Please follow our standard for the gradient, and keep both run-outs inside the worksite limits.',
@@ -184,7 +224,11 @@ const scenes: Scene[] = [
         en: "Thirty, three-zero. I'll let Control know before we hand back.",
         ja: '30、さん・ぜろです。解除の前に指令に伝えておきます。',
       },
-      { sp: 'A', en: 'Okay. What time do you need us off the worksite?', ja: '分かりました。何時までに作業区間から撤収すればいいですか。' },
+      {
+        sp: 'A',
+        en: 'Okay. What time do you need us off the worksite?',
+        ja: '分かりました。何時までに作業区間から撤収すればいいですか。',
+      },
       {
         sp: 'B',
         en: "Handback is at 05:10, so please finish tamping by 04:30. I'll need time to check the geometry.",
@@ -195,7 +239,11 @@ const scenes: Scene[] = [
         en: 'Just to confirm: tamping finished by 04:30, for a 05:10 handback.',
         ja: '確認です。5時10分の解除に向けて、4時30分までにつき固めを終える、ですね。',
       },
-      { sp: 'B', en: "That's right. See you at the access point at 23:30.", ja: 'その通りです。23時30分に線路への出入口で会いましょう。' },
+      {
+        sp: 'B',
+        en: "That's right. See you at the access point at 23:30.",
+        ja: 'その通りです。23時30分に線路への出入口で会いましょう。',
+      },
     ],
     tip: '英国の現場では、こう上量を lift、通り整正の横移動量を slew と言い、設計値は "design lifts and slews" と呼びます。すりつけは run-out で、両端のすりつけまで作業区間の中に収めるのが基本です。',
   },
@@ -225,7 +273,11 @@ const scenes: Scene[] = [
         ja: '今夜はレール温度が設定温度をかなり下回ります。',
         note: 'stress-free temperature＝設定温度（中立温度）。米国では neutral temperature',
       },
-      { en: "I'd rather not.", ja: 'それは避けたいです。', note: '相手の提案をやんわり断る言い方。理由を続けると角が立たない' },
+      {
+        en: "I'd rather not.",
+        ja: 'それは避けたいです。',
+        note: '相手の提案をやんわり断る言い方。理由を続けると角が立たない',
+      },
       {
         en: "If we leave it unstressed, there's a risk of a buckle next summer.",
         ja: '設定替をしないままだと、来年の夏に座屈のおそれがあります。',
@@ -327,7 +379,11 @@ const scenes: Scene[] = [
     ],
     phrases: [
       { en: 'We found 18 cracked concrete sleepers.', ja: 'コンクリートまくらぎのひび割れを18本見つけました。' },
-      { en: 'Five of them are cracked right through.', ja: 'そのうち5本は完全に割れています。', note: 'right through＝（ひびが）端から端まで貫通して' },
+      {
+        en: 'Five of them are cracked right through.',
+        ja: 'そのうち5本は完全に割れています。',
+        note: 'right through＝（ひびが）端から端まで貫通して',
+      },
       { en: 'Three of them are consecutive.', ja: 'そのうち3本が連続しています。', note: 'three in a row とも言う' },
       {
         en: "I'd suggest replacing the five broken ones now.",
@@ -361,13 +417,21 @@ const scenes: Scene[] = [
         en: 'We found 18 cracked concrete sleepers. Five of them are cracked right through.',
         ja: 'コンクリートまくらぎのひび割れを18本見つけました。そのうち5本は完全に割れています。',
       },
-      { sp: 'A', en: 'Are any of those five next to each other?', ja: 'その5本の中に、隣り合っているものはありますか。' },
+      {
+        sp: 'A',
+        en: 'Are any of those five next to each other?',
+        ja: 'その5本の中に、隣り合っているものはありますか。',
+      },
       {
         sp: 'B',
         en: "Yes, three of them are consecutive, so there's a risk of gauge spread there.",
         ja: 'はい、そのうち3本が連続しているので、そこは軌間拡大のおそれがあります。',
       },
-      { sp: 'A', en: "That's a priority, then. How many do you want to replace?", ja: 'それなら優先ですね。何本交換したいですか。' },
+      {
+        sp: 'A',
+        en: "That's a priority, then. How many do you want to replace?",
+        ja: 'それなら優先ですね。何本交換したいですか。',
+      },
       {
         sp: 'B',
         en: "I'd suggest replacing the five broken ones now and monitoring the other 13 at each inspection.",
@@ -389,7 +453,11 @@ const scenes: Scene[] = [
         en: 'Just to confirm, we need new clips, pads and insulators for all five?',
         ja: '確認ですが、5本すべてに新しいクリップ・軌道パッド・絶縁材が必要ということですね。',
       },
-      { sp: 'A', en: "That's right. I'll check we've got enough in the stores.", ja: 'その通りです。倉庫に十分あるか確認します。' },
+      {
+        sp: 'A',
+        en: "That's right. I'll check we've got enough in the stores.",
+        ja: 'その通りです。倉庫に十分あるか確認します。',
+      },
       {
         sp: 'B',
         en: "Thanks. After the change, we'll pack the new sleepers and consolidate the ballast.",
@@ -405,7 +473,11 @@ const scenes: Scene[] = [
         en: "Yes, 30 km/h, as our standard requires. I'll re-check the geometry before we lift the restriction.",
         ja: 'はい、当社基準どおり時速30kmです。制限を解除する前に軌道形状を再確認します。',
       },
-      { sp: 'A', en: "Perfect. When's the next possession you could use?", ja: '完璧です。次に使える線路閉鎖はいつですか。' },
+      {
+        sp: 'A',
+        en: "Perfect. When's the next possession you could use?",
+        ja: '完璧です。次に使える線路閉鎖はいつですか。',
+      },
       {
         sp: 'B',
         en: "There's one next Tuesday night. I'll book the gang and order the materials today.",
@@ -428,7 +500,11 @@ const scenes: Scene[] = [
       { id: 'B', name: 'You' },
     ],
     phrases: [
-      { en: 'Can you talk me through how it went?', ja: '作業の経過を順に説明してもらえますか。', note: 'talk 人 through 〜＝〜を順を追って説明する' },
+      {
+        en: 'Can you talk me through how it went?',
+        ja: '作業の経過を順に説明してもらえますか。',
+        note: 'talk 人 through 〜＝〜を順を追って説明する',
+      },
       { en: 'Were the rail ends dry?', ja: 'レール端は乾いていましたか。' },
       { en: "I'll check it with the one-metre straightedge.", ja: '1mの直定規で確認します。' },
       {
@@ -437,7 +513,11 @@ const scenes: Scene[] = [
         note: '凸は peak、凹みは dip',
       },
       { en: "That's outside our tolerance.", ja: '当社の許容差を超えています。', note: '範囲内なら within tolerance' },
-      { en: 'What if it had been a dip instead?', ja: 'もし凹みだったらどうなっていましたか。', note: '仮定法過去完了で、起きなかった場合の扱いを確かめる' },
+      {
+        en: 'What if it had been a dip instead?',
+        ja: 'もし凹みだったらどうなっていましたか。',
+        note: '仮定法過去完了で、起きなかった場合の扱いを確かめる',
+      },
       { en: "What's the weld number?", ja: '溶接番号は何ですか。' },
       { en: "I'll re-check it and sign the record.", ja: 'もう一度確認して記録に署名します。' },
     ],
@@ -457,13 +537,21 @@ const scenes: Scene[] = [
         en: 'Sure. We set the gap at 25 millimetres, as the process specifies, and preheated for the full time.',
         ja: 'ええ。ギャップは工法の規定どおり25mmに合わせ、予熱も規定の時間しっかり行いました。',
       },
-      { sp: 'B', en: 'Were the rail ends dry? It was drizzling earlier.', ja: 'レール端は乾いていましたか。さっき霧雨が降っていましたが。' },
+      {
+        sp: 'B',
+        en: 'Were the rail ends dry? It was drizzling earlier.',
+        ja: 'レール端は乾いていましたか。さっき霧雨が降っていましたが。',
+      },
       {
         sp: 'A',
         en: 'Bone dry. We kept a cover over the gap the whole time.',
         ja: '完全に乾いていました。ずっとギャップにカバーをかけていましたから。',
       },
-      { sp: 'B', en: "Great. I'll check it with the one-metre straightedge now.", ja: 'よかったです。では1mの直定規で確認します。' },
+      {
+        sp: 'B',
+        en: "Great. I'll check it with the one-metre straightedge now.",
+        ja: 'よかったです。では1mの直定規で確認します。',
+      },
       {
         sp: 'A',
         en: "Go ahead. We finished the profile grinding a while ago, so it's cooled right down.",

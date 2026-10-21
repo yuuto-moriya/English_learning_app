@@ -182,7 +182,7 @@ const scenes: Scene[] = [
       { sp: 'B', en: 'Let me walk you through our as-is process. Inspectors record defects on paper, and the office types them into a spreadsheet.', ja: '現行の業務プロセスを順にご説明します。検査員が欠陥を紙に記録し、事務所がそれを表計算ソフトに入力しています。' },
       { sp: 'A', en: 'And how long does it take from finding a defect to fixing it?', ja: 'では、欠陥の発見から補修まで、どのくらいかかりますか。' },
       { sp: 'B', en: 'For non-urgent defects, process mining showed an average lead time of 12 days. The bottleneck is the approval step.', ja: '緊急でない欠陥では、プロセスマイニングで平均リードタイムは12日でした。ボトルネックは承認ステップです。' },
-      { sp: 'A', en: "That's quite typical. In SAP, inspectors could raise a maintenance notification on a tablet, right there on site.", ja: 'よくあるケースです。SAPなら、検査員が現場でその場でタブレットから保全通知を起票できます。' },
+      { sp: 'A', en: "That's quite typical. In SAP, inspectors could raise a maintenance notification on a tablet, right there on site.", ja: 'よくあるケースです。SAPなら、検査員が現場でタブレットから保全通知を起票できます。' },
       { sp: 'B', en: 'Just to check, is a notification basically the same as our defect report?', ja: '確認ですが、保全通知は基本的に私たちの欠陥報告と同じものですか。' },
       { sp: 'A', en: "More or less. It records the problem. Once it's approved, it's converted into a work order, where you plan the labour, materials and costs.", ja: 'おおむねそうです。通知は問題を記録するものです。承認されると作業指示に変換され、そこで人員・資材・費用を計画します。' },
       { sp: 'B', en: 'I see. Could managers approve them on a tablet too? That would cut out most of the delay.', ja: 'なるほど。管理者もタブレットで承認できますか。そうすれば遅れの大半がなくなります。' },
@@ -195,7 +195,7 @@ const scenes: Scene[] = [
       { sp: 'A', en: "Technically, yes, but I'd create a notification first, so a planner can catch any mistyped readings.", ja: '技術的には可能です。ただ私なら、まず保全通知を作成して、計画担当者が入力ミスの測定値に気づけるようにします。' },
       { sp: 'B', en: "Good point. Let's add that to the to-be process and go through it with the planners next week.", ja: 'ごもっともです。それをあるべきプロセス（To-Be）に加えて、来週計画担当者と一緒に確認しましょう。' },
     ],
-    tip: 'SAP では、不具合の記録は notification（保全通知）、作業の計画と費用は work order（作業指示）、設備を付ける場所は functional location（機能場所）、測定値の記録先は measuring point（測定ポイント）。機器を equipment として分けると、交換しても履歴が機器について回ります。',
+    tip: 'SAP では、不具合の記録は notification（保全通知）、作業の計画と費用は work order（作業指示）、設備を付ける場所は functional location（機能場所）、測定値の記録先は measuring point（測定ポイント）。機器を equipment として分ければ、交換しても履歴が残ります。',
   },
   {
     id: 'r-condition-monitoring',
