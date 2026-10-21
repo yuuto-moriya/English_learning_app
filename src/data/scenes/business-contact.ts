@@ -43,8 +43,8 @@ const scenes: Scene[] = [
     lines: [
       {
         sp: 'A',
-        en: 'Good morning, Lakeside Parts. How can I help you?',
-        ja: 'おはようございます。レイクサイド・パーツです。どのようなご用件でしょうか。',
+        en: 'Good afternoon, Lakeside Parts. How can I help you?',
+        ja: 'こんにちは。レイクサイド・パーツです。どのようなご用件でしょうか。',
       },
       {
         sp: 'B',
@@ -83,13 +83,13 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Thanks. Diana Ruiz in sales will email you the list today. Her direct line is three one two, five five five, zero one four eight.',
-        ja: 'ありがとうございます。本日、営業のダイアナ・ルイスが価格表をメールでお送りします。ルイスの直通番号は312-555-0148です。',
+        en: 'Thanks. Diana Ruiz in sales will email you the list today. Her direct line is five zero three, five five five, zero one four eight.',
+        ja: 'ありがとうございます。本日、営業のダイアナ・ルイスが価格表をメールでお送りします。ルイスの直通番号は503-555-0148です。',
       },
       {
         sp: 'B',
-        en: 'Let me read that back: Diana Ruiz, three one two, five five five, zero one four eight.',
-        ja: '復唱させてください。ダイアナ・ルイスさん、312-555-0148。',
+        en: 'Let me read that back: Diana Ruiz, five zero three, five five five, zero one four eight.',
+        ja: '復唱させてください。ダイアナ・ルイスさん、503-555-0148ですね。',
       },
       {
         sp: 'A',
@@ -149,7 +149,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: 'Could he call me as soon as he gets out of the meeting? It\'s about the delivery date for your order.',
+        en: "Could he call me as soon as he gets out of the meeting? It's about the delivery date for your order.",
         ja: '会議が終わりしだい、お電話をいただけますか。御社のご注文の納期の件です。',
       },
       {
@@ -200,7 +200,7 @@ const scenes: Scene[] = [
       {
         en: "I'm afraid I'm busy then.",
         ja: 'あいにくその日は予定があります。',
-        note: 'then は「その日・その時間」。断りは I\'m afraid でやわらげる',
+        note: "then は「その日・その時間」。断りは I'm afraid でやわらげる",
       },
       {
         en: 'Does Wednesday at 2 p.m. work for you?',
@@ -247,8 +247,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Let me look at her calendar. It looks like she's free from ten to twelve.",
-        ja: 'アイシャさんのカレンダーを見てみますね。10時から12時まで空いているようです。',
+        en: 'Let me pull up her calendar. She seems to be free from ten to twelve.',
+        ja: 'アイシャさんのカレンダーを開いてみますね。10時から12時まで空いているようです。',
       },
       { sp: 'A', en: 'Great. How long do you think we need?', ja: 'よかった。どのくらい時間が必要だと思いますか。' },
       {
@@ -276,7 +276,7 @@ const scenes: Scene[] = [
         en: "Sure. I'll add it to the invite by the end of the day.",
         ja: 'はい。今日中に招待に添付しておきます。',
       },
-      { sp: 'A', en: "Thanks, Yuto. Glad we found a time.", ja: 'ありがとう、ユウトさん。時間が決まってよかったです。' },
+      { sp: 'A', en: 'Thanks, Yuto. Glad we found a time.', ja: 'ありがとう、ユウトさん。時間が決まってよかったです。' },
     ],
     tip: 'next Tuesday は「来週の火曜」とも「次に来る火曜（今週）」とも取れ、ネイティブ同士でも食い違います。this Wednesday / Wednesday next week のように言い分けるか、日付（the 14th など）を添えると確実です。',
   },
@@ -468,7 +468,7 @@ const scenes: Scene[] = [
       {
         sp: 'B',
         en: 'How about the week after? Would Tuesday the 14th or Thursday the 16th work?',
-        ja: 'では、その翌週はいかがでしょうか。14日の火曜か16日の木曜はいかがですか。',
+        ja: 'では、その翌週はどうでしょうか。14日の火曜か16日の木曜はいかがですか。',
       },
       {
         sp: 'A',
@@ -612,7 +612,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: 'Perfect. Could you send me the tracking number when they ship?',
-        ja: 'ばっちりです。発送したら、追跡番号を送ってもらえますか。',
+        ja: 'いいですね。発送したら、追跡番号を送ってもらえますか。',
       },
       {
         sp: 'B',
@@ -680,7 +680,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "Not for a client. For colleagues, 'I hope you're doing well' sounds friendlier.",
-        ja: 'お客様あてなら大丈夫です。同僚あてなら「I hope you\'re doing well」のほうが親しみやすいですね。',
+        ja: "お客様あてなら大丈夫です。同僚あてなら「I hope you're doing well」のほうが親しみやすいですね。",
       },
       {
         sp: 'B',
@@ -690,7 +690,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "Not quite. Just say, 'I've attached the quotation.' 'Please find attached the quotation' also works, but it's more formal.",
-        ja: '少し不自然ですね。「I\'ve attached the quotation.」で十分です。「Please find attached the quotation」も使えますが、より改まった言い方です。',
+        ja: "少し不自然ですね。「I've attached the quotation.」で十分です。「Please find attached the quotation」も使えますが、より改まった言い方です。",
       },
       {
         sp: 'B',
