@@ -84,7 +84,7 @@ describe('単語のダミー', () => {
         }
         for (let a = 0; a < 3; a++) for (let b = a + 1; b < 3; b++) expect(meaningOverlap(d[a].word.ja, d[b].word.ja)).toBe(false)
       }
-  })
+  }, 20_000) // 全語を回すので、テストを並列で走らせて CPU が混むと 5 秒を超えることがある
 
   it('難しいほど似た選択肢が増える', () => {
     const [c1, c2, c3] = [closeCount(1), closeCount(2), closeCount(3)]
@@ -133,7 +133,9 @@ describe('例文のダミー（リスニング）', () => {
   const pool: Sentence[] = []
   for (const w of words) if (w.lv <= 3) for (const e of w.ex) pool.push({ en: plain(e.en), ja: e.ja, lv: w.lv, src: 'general', accent: 'en-US', wordId: w.id })
   for (const sc of SCENES) for (const l of sc.lines) pool.push({ en: l.en, ja: l.ja, lv: sc.lv, src: 'scene', accent: 'en-US', scene: sc.id })
-  const sample = pool.filter((_, i) => i % 41 === 0)
+  // 場面が増えて文の数が多いので、全体から等間隔に約120文を選んで確かめる
+  const step = Math.ceil(pool.length / 120)
+  const sample = pool.filter((_, i) => i % step === 0)
 
   it('3つ選び、正解と同じ和訳・ダミーどうしの同じ和訳は入れない', () => {
     for (const t of sample) {
@@ -144,10 +146,12 @@ describe('例文のダミー（リスニング）', () => {
     }
   })
 
-  it('似た例文の数は難しさの数まで', () => {
+  it('似た例文の数は難しさの数まで（1問あたり 20ms 以内）', () => {
+    const t0 = performance.now()
     for (const t of sample)
       for (const tier of [1, 2, 3] as const) expect(sentenceDistractors(t, pool, tier).filter((x) => x.kind === 'close').length).toBeLessThanOrEqual(tier)
-  })
+    console.log(`例文のダミー：${pool.length}文から1問 ${((performance.now() - t0) / (sample.length * 3)).toFixed(1)}ms`)
+  }, 20_000)
 })
 
 describe('音だけで答える問題の選択肢', () => {

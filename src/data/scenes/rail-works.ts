@@ -39,9 +39,9 @@ const scenes: Scene[] = [
       { en: 'Is there another machine you could use?', ja: 'ほかに使える機械はありますか。' },
       { en: 'Please send us the test records within 24 hours.', ja: '試験記録は24時間以内に送ってください。' },
       {
-        en: 'The work is complete only when the geometry has been checked.',
-        ja: '軌道形状の確認が済んだ時点で作業完了とします。',
-        note: 'only when 〜＝〜して初めて。完了の条件をはっきりさせる',
+        en: "We won't sign it off until the geometry has been checked.",
+        ja: '軌道形状の確認が済むまでは、完了の承認はしません。',
+        note: 'not 〜 until …＝…して初めて〜する。sign off＝（完了を）承認する',
       },
       {
         en: 'Just leave it in the cess.',
@@ -88,8 +88,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "It's Raj Patel, and I'll send it over now. The only thing is, our road-rail vehicle is running about 30 minutes late.",
-        ja: 'ラージ・パテルです。すぐに送ります。ただ、うちの軌陸車が30分ほど遅れているんです。',
+        en: "It's Raj Patel, and I'll send it over now. The only thing is, our road-rail vehicle is stuck in traffic after a crash on the motorway.",
+        ja: 'ラージ・パテルです。すぐに送ります。ただ、うちの軌陸車が高速道路の事故渋滞に巻き込まれているんです。',
       },
       {
         sp: 'B',
@@ -98,8 +98,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "There's a spare one at our depot. I can have it here by 00:30.",
-        ja: 'うちの基地に予備が1台あります。0時30分までにここへ持ってこられます。',
+        en: "There's a spare one at our other depot, which is closer. I can have it here by 00:30.",
+        ja: 'もっと近いうちの別の基地に、予備が1台あります。0時30分までにここへ持ってこられます。',
       },
       {
         sp: 'B',
@@ -113,8 +113,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "The work is complete only when the geometry has been checked and we've received all the test records.",
-        ja: '軌道形状の確認が済み、試験記録がすべてこちらに届いた時点で作業完了とします。',
+        en: "We won't sign it off until the geometry has been checked and we've received all the test records.",
+        ja: '軌道形状の確認が済み、試験記録がすべてこちらに届くまでは、完了の承認はしません。',
       },
       {
         sp: 'A',
@@ -123,11 +123,11 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "No, just leave it in the cess, and we'll collect it next week. See you on site.",
-        ja: 'いいえ、線路脇に置いておいてください。来週こちらで回収します。では現場で。',
+        en: "No, just leave it in the cess, and we'll collect it next week. Right, let's go and brief the team.",
+        ja: 'いいえ、線路脇に置いておいてください。来週こちらで回収します。では、作業班への説明に行きましょう。',
       },
     ],
-    tip: '必須の条件は must、お願いは please と使い分けます。完了の条件は "The work is complete only when 〜" のように最初に示しておくと、引き渡しのときにもめません。',
+    tip: '必須の条件は must、お願いは please と使い分けます。完了の条件は "We won\'t sign it off until 〜"（〜するまで承認しない）のように最初に示しておくと、引き渡しのときにもめません。',
   },
   {
     id: 'r-tamping-shift',
@@ -149,7 +149,7 @@ const scenes: Scene[] = [
         note: 'worksite limits＝作業区域の境界。英国では標識で示す',
       },
       {
-        en: 'Have the design lifts and slews come from the latest survey?',
+        en: 'Are the design lifts and slews from the latest survey?',
         ja: '設計のこう上量と移動量は最新の測量に基づいていますか。',
         note: 'lift＝こう上量、slew＝通り整正の横移動量（英国の現場用語）',
       },
@@ -162,7 +162,7 @@ const scenes: Scene[] = [
       {
         en: 'Keep both run-outs inside the worksite limits.',
         ja: '両端のすりつけを作業区間の中に収めてください。',
-        note: 'run-out＝すりつけ（こう上・移動をゼロに戻していく区間）',
+        note: 'run-out＝すりつけ（こう上量・移動量をゼロに戻していく区間）。ramp とも言う',
       },
       { en: 'The speed restriction has to be 30 km/h.', ja: '速度制限は時速30kmにしなければなりません。' },
       { en: 'Please finish tamping by 04:30.', ja: '4時30分までにつき固めを終えてください。' },
@@ -180,7 +180,7 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "So that's 600 metres. Have the design lifts and slews come from the latest survey?",
+        en: "So that's 600 metres. Are the design lifts and slews from the latest survey?",
         ja: 'では600mですね。設計のこう上量と移動量は最新の測量に基づいていますか。',
       },
       {
@@ -205,8 +205,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: 'Please follow our standard for the gradient, and keep both run-outs inside the worksite limits.',
-        ja: '勾配は当社基準に従い、両端のすりつけを作業区間の中に収めてください。',
+        en: 'Please follow our standard for the run-out gradient, and keep both run-outs inside the worksite limits.',
+        ja: 'すりつけの勾配は当社基準に従い、両端のすりつけを作業区間の中に収めてください。',
       },
       {
         sp: 'A',
@@ -271,7 +271,7 @@ const scenes: Scene[] = [
       {
         en: 'The rail will be well below the stress-free temperature tonight.',
         ja: '今夜はレール温度が設定温度をかなり下回ります。',
-        note: 'stress-free temperature＝設定温度（中立温度）。米国では neutral temperature',
+        note: 'stress-free temperature＝レール設定温度（中立温度）。米国では rail neutral temperature',
       },
       {
         en: "I'd rather not.",
@@ -279,8 +279,8 @@ const scenes: Scene[] = [
         note: '相手の提案をやんわり断る言い方。理由を続けると角が立たない',
       },
       {
-        en: "If we leave it unstressed, there's a risk of a buckle next summer.",
-        ja: '設定替をしないままだと、来年の夏に座屈のおそれがあります。',
+        en: "If we leave it unstressed, there's a risk of a buckle in hot weather.",
+        ja: '設定替をしないままだと、暑くなったときに座屈のおそれがあります。',
         note: 'buckle＝座屈。米国では sun kink とも言う',
       },
       { en: "I'll check the gauge and cross level before we hand back.", ja: '解除の前に軌間と水準を確認します。' },
@@ -318,8 +318,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Agreed. We'll set the machine's swing limits and put a fence up in the six-foot.",
-        ja: 'そうですね。機械の旋回範囲を制限して、線間に柵を立てます。',
+        en: "Agreed. We'll set the machine's slew limiter and put a fence up in the six-foot.",
+        ja: 'そうですね。機械の旋回制限装置を設定して、線間に柵を立てます。',
       },
       {
         sp: 'B',
@@ -333,8 +333,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "I'd rather not. If we leave it unstressed, there's a risk of a buckle next summer.",
-        ja: 'それは避けたいです。設定替をしないままだと、来年の夏に座屈のおそれがあります。',
+        en: "I'd rather not. If we leave it unstressed, there's a risk of a buckle in hot weather, and we'd need another possession.",
+        ja: 'それは避けたいです。設定替をしないままだと、暑くなったときに座屈のおそれがありますし、線路閉鎖ももう1回必要になります。',
       },
       {
         sp: 'A',
@@ -359,7 +359,7 @@ const scenes: Scene[] = [
       {
         sp: 'A',
         en: "Sounds like a plan. I'll go through all this with the gang at the briefing.",
-        ja: 'それでいきましょう。安全ミーティングで、作業班にこれを全部説明します。',
+        ja: 'それでいきましょう。作業前の打ち合わせで、作業班にこれを全部説明します。',
       },
     ],
     tip: '手順は First → Then → After that でつなぎます。相手の説明は "Then you 〜?" と上がり調子で言い直して確認すると自然です。英国では隣り合う線路の間を six-foot、線路脇を cess と言います。',
@@ -424,8 +424,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "Yes, three of them are consecutive, so there's a risk of gauge spread there.",
-        ja: 'はい、そのうち3本が連続しているので、そこは軌間拡大のおそれがあります。',
+        en: "Yes, three of them are consecutive, so there's a risk of gauge spread. We've already imposed a 30 km/h ESR there.",
+        ja: 'はい、そのうち3本が連続しているので、軌間拡大のおそれがあります。そこにはすでに時速30kmの緊急速度制限をかけています。',
       },
       {
         sp: 'A',
@@ -465,13 +465,13 @@ const scenes: Scene[] = [
       },
       {
         sp: 'A',
-        en: "Good. You'll need a speed restriction until the ballast settles, won't you?",
-        ja: 'いいですね。道床が落ち着くまで速度制限が必要ですよね。',
+        en: "Good. You'll need to keep a restriction on until the ballast settles, won't you?",
+        ja: 'いいですね。道床が落ち着くまでは、速度制限を続ける必要がありますよね。',
       },
       {
         sp: 'B',
-        en: "Yes, 30 km/h, as our standard requires. I'll re-check the geometry before we lift the restriction.",
-        ja: 'はい、当社基準どおり時速30kmです。制限を解除する前に軌道形状を再確認します。',
+        en: "Yes, we'll keep the 30 km/h on, as our standard requires. I'll re-check the geometry before we lift the restriction.",
+        ja: 'はい、当社基準どおり時速30kmのままにします。制限を解除する前に軌道形状を再確認します。',
       },
       {
         sp: 'A',
@@ -480,8 +480,8 @@ const scenes: Scene[] = [
       },
       {
         sp: 'B',
-        en: "There's one next Tuesday night. I'll book the gang and order the materials today.",
-        ja: '来週火曜の夜にあります。今日中に作業班を手配して、資材を発注します。',
+        en: "There's one this Thursday night. I'll book the gang today and get the materials sent to site.",
+        ja: '今週木曜の夜にあります。今日中に作業班を手配して、資材を現場に送ってもらいます。',
       },
     ],
     tip: '本数は "five of them"（そのうち5本）、"three of them are consecutive"（そのうち3本が連続）のように言うと正確に伝わります。速度制限を「かける」は impose、「解除する」は lift です。',
