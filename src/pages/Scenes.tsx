@@ -1,6 +1,33 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { ChevronRight } from 'lucide-react'
+import {
+  Building2,
+  ChevronRight,
+  ClipboardList,
+  Cloud,
+  Code,
+  Globe,
+  HardHat,
+  Handshake,
+  Headset,
+  Hotel,
+  House,
+  MessagesSquare,
+  Network,
+  Phone,
+  Presentation,
+  Ruler,
+  Scale,
+  ShieldCheck,
+  Siren,
+  Stethoscope,
+  TrainFront,
+  TriangleAlert,
+  UtensilsCrossed,
+  Users,
+  Wrench,
+  type LucideIcon,
+} from 'lucide-react'
 import { PageHeader } from '@/components/Layout'
 import { Guide, type CharId, type Pose } from '@/components/Guide'
 import { LevelBadge, Segmented, cx } from '@/components/ui'
@@ -8,6 +35,38 @@ import { scenesByGroup } from '@/data/scenes'
 import { SCENE_GROUP_LABEL as GROUP_LABEL, subsOf } from '@/data/scenes/subs'
 import { CATEGORIES, type SceneGroup } from '@/lib/types'
 import { getSettings, selectedCats } from '@/lib/settings'
+
+/** 小分類のアイコン（絵文字ではなく、アプリの他の画面と同じ線画） */
+const SUB_ICONS: Record<string, LucideIcon> = {
+  users: Users,
+  train: TrainFront,
+  hotel: Hotel,
+  utensils: UtensilsCrossed,
+  house: House,
+  stethoscope: Stethoscope,
+  messages: MessagesSquare,
+  phone: Phone,
+  handshake: Handshake,
+  scale: Scale,
+  building: Building2,
+  presentation: Presentation,
+  code: Code,
+  siren: Siren,
+  shield: ShieldCheck,
+  headset: Headset,
+  clipboard: ClipboardList,
+  cloud: Cloud,
+  hardhat: HardHat,
+  ruler: Ruler,
+  wrench: Wrench,
+  alert: TriangleAlert,
+  network: Network,
+  globe: Globe,
+}
+const SubIcon = ({ name, className }: { name: string; className?: string }) => {
+  const Icon = SUB_ICONS[name] ?? Users
+  return <Icon className={className} strokeWidth={1.8} aria-hidden />
+}
 
 const INTRO: Record<SceneGroup, { who: CharId; pose: Pose; text: string }> = {
   daily: { who: 'tetsu', pose: 'greet', text: '旅行や毎日の暮らしで「すぐ使える」会話だワン。場面の種類を選んで、まず聞いて、次にロールプレイ！' },
@@ -92,8 +151,8 @@ export default function Scenes() {
                     on ? 'border-ink bg-surface shadow-[inset_0_0_0_1px_var(--color-ink)]' : 'border-line bg-surface',
                   )}
                 >
-                  <span className="text-[20px] leading-none" aria-hidden>
-                    {x.emoji}
+                  <span className={cx('flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px]', on ? 'bg-ink text-bg' : 'bg-brand-soft text-brand-strong')}>
+                    <SubIcon name={x.icon} className="h-[19px] w-[19px]" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block text-[13.5px] font-semibold leading-tight">{x.label}</span>
@@ -107,8 +166,8 @@ export default function Scenes() {
 
         <section aria-label={current.label}>
           <div className="mb-2 px-1">
-            <h2 className="text-[16px] font-semibold">
-              <span aria-hidden>{current.emoji} </span>
+            <h2 className="flex items-center gap-2 text-[16px] font-semibold">
+              <SubIcon name={current.icon} className="h-[18px] w-[18px] text-brand-strong" />
               {current.label}
             </h2>
             <p className="mt-0.5 text-[12.5px] leading-snug text-muted">{current.desc}</p>
@@ -116,9 +175,7 @@ export default function Scenes() {
           <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
             {list.map((s, k) => (
               <Link key={s.id} to={`/scenes/${s.id}`} viewTransition className={cx('flex items-center gap-3.5 py-3.5 pl-4 pr-3 active:bg-surface-2', k > 0 && 'hairline-t')}>
-                <span className="w-7 shrink-0 text-center text-[20px] leading-none" aria-hidden>
-                  {s.emoji}
-                </span>
+                <span className="w-6 shrink-0 text-[13px] font-medium tabular-nums text-faint">{String(k + 1).padStart(2, '0')}</span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-medium leading-snug">{s.title}</p>
                   <p className="en text-[14px] italic leading-snug text-muted">{s.titleEn}</p>
